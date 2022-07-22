@@ -1,0 +1,9 @@
+audit_rules_login_events
+configure_bind_crypto_policy
+configure_opensc_card_drivers
+dconf_db_up_to_date
+file_ownership_var_log_audit
+file_permissions_var_log_audit
+force_opensc_card_drivers
+rpm_verify_hashes
+sshd_use_directory_configuration

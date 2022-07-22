@@ -1,0 +1,9 @@
+configure_bashrc_exec_tmux
+configure_usbguard_auditbackend
+disable_ctrlaltdel_burstaction
+disable_ctrlaltdel_reboot
+dnf-automatic_apply_updates
+enable_fips_mode
+no_tmux_in_shells
+sshd_use_directory_configuration
+zipl_bootmap_is_up_to_date

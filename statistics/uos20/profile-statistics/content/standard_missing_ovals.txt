@@ -1,0 +1,2 @@
+ensure_redhat_gpgkey_installed
+security_patches_up_to_date

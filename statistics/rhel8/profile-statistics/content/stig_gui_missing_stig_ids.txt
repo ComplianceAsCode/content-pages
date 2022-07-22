@@ -1,0 +1,2 @@
+enable_authselect
+ensure_redhat_gpgkey_installed

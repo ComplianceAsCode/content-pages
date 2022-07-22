@@ -1,0 +1,2 @@
+grub2_uefi_password
+zipl_bls_entries_only

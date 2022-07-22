@@ -1,0 +1,2 @@
+dir_perms_world_writable_root_owned
+file_permissions_unauthorized_world_writable

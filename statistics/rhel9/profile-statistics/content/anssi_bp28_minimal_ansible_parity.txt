@@ -1,0 +1,2 @@
+dnf-automatic_apply_updates
+dnf-automatic_security_updates_only

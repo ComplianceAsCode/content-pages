@@ -1,0 +1,3 @@
+aide_verify_acls
+aide_verify_ext_attributes
+file_permissions_unauthorized_world_writable

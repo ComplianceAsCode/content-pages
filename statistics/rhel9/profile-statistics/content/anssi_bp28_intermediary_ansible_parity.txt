@@ -1,0 +1,7 @@
+accounts_polyinstantiated_tmp
+accounts_polyinstantiated_var_tmp
+dir_perms_world_writable_root_owned
+dnf-automatic_apply_updates
+dnf-automatic_security_updates_only
+file_permissions_unauthorized_world_writable
+sshd_use_directory_configuration

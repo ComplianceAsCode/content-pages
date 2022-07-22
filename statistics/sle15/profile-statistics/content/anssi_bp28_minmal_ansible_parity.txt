@@ -1,0 +1,2 @@
+file_permissions_unauthorized_world_writable
+sshd_set_keepalive

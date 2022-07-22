@@ -1,0 +1,11 @@
+configure_bashrc_exec_tmux
+configure_bind_crypto_policy
+configure_usbguard_auditbackend
+grub2_uefi_password
+no_tmux_in_shells
+partition_for_home
+partition_for_var
+partition_for_var_log
+partition_for_var_log_audit
+partition_for_var_tmp
+zipl_bls_entries_only

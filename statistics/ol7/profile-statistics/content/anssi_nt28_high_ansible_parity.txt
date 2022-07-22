@@ -1,0 +1,6 @@
+accounts_polyinstantiated_tmp
+accounts_polyinstantiated_var_tmp
+aide_verify_acls
+aide_verify_ext_attributes
+ensure_oracle_gpgkey_installed
+file_permissions_unauthorized_world_writable

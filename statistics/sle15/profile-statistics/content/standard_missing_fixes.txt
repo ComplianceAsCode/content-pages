@@ -1,0 +1,11 @@
+audit_rules_successful_file_modification_chmod
+file_permissions_systemmap
+installed_OS_is_vendor_supported
+partition_for_home
+partition_for_tmp
+partition_for_var
+partition_for_var_log
+partition_for_var_log_audit
+rsyslog_files_groupownership
+rsyslog_files_ownership
+sshd_allow_only_protocol2

@@ -1,0 +1,2 @@
+chronyd_run_as_chrony_user
+sshd_set_max_auth_tries

@@ -1,0 +1,2 @@
+file_ownership_var_log_audit
+file_permissions_var_log_audit
