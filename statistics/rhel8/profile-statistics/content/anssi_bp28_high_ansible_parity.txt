@@ -1,0 +1,3 @@
+xccdf_org.ssgproject.content_rule_file_permissions_unauthorized_world_writable
+xccdf_org.ssgproject.content_rule_ldap_client_start_tls
+xccdf_org.ssgproject.content_rule_sssd_enable_pam_services

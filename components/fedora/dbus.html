@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'dbus'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'dbus'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>dbus</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<div>None</div>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#service_messagebus_disabled">service_messagebus_disabled</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="service_messagebus_disabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable D-Bus IPC Service (messagebus)</h3>
+<div>service_messagebus_disabled</div>
+<h4>Description</h4>
+<p>D-Bus provides an IPC mechanism used by a growing list of programs, such as
+those used for Gnome, Bluetooth, and Avahi. Due to these dependencies,
+disabling D-Bus may not be practical for many systems. 
+
+The <code>messagebus</code> service can be disabled with the following command:
+<pre>$ sudo systemctl mask --now messagebus.service</pre></p>
+<h4>Rationale</h4>
+<p>If no services which require D-Bus are needed, then it
+can be disabled. As a broker for IPC between processes of different privilege levels,
+it could be a target for attack. However, disabling D-Bus is likely to be
+impractical for any system which needs to provide
+a graphical login session.</p>
+</div>
+
+
+
+
+</body>
+</html>

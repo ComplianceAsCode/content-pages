@@ -1,0 +1,4 @@
+xccdf_org.ssgproject.content_rule_api_server_anonymous_auth
+xccdf_org.ssgproject.content_rule_kubeadmin_removed
+xccdf_org.ssgproject.content_rule_ocp_insecure_allowed_registries_for_import
+xccdf_org.ssgproject.content_rule_ocp_insecure_registries

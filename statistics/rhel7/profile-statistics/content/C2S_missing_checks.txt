@@ -1,0 +1,3 @@
+xccdf_org.ssgproject.content_rule_rsyslog_accept_remote_messages_tcp
+xccdf_org.ssgproject.content_rule_rsyslog_accept_remote_messages_udp
+xccdf_org.ssgproject.content_rule_security_patches_up_to_date

@@ -1,0 +1,1 @@
+xccdf_org.ssgproject.content_rule_kubelet_anonymous_auth
