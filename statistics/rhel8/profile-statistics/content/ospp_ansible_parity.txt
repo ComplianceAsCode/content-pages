@@ -1,0 +1,2 @@
+xccdf_org.ssgproject.content_rule_configure_bind_crypto_policy
+xccdf_org.ssgproject.content_rule_no_tmux_in_shells

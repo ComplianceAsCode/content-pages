@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'libcgroup'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'libcgroup'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>libcgroup</li>
+
+<li>libcgroup-tools</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<div>None</div>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#service_cgconfig_disabled">service_cgconfig_disabled</a></li>
+
+<li><a href="#service_cgred_disabled">service_cgred_disabled</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="service_cgconfig_disabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable Control Group Config (cgconfig)</h3>
+<div>service_cgconfig_disabled</div>
+<h4>Description</h4>
+<p>Control groups allow an administrator to allocate system resources (such as CPU,
+memory, network bandwidth, etc) among a defined group (or groups) of processes executing on
+a system. The <tt>cgconfig</tt> daemon starts at boot and establishes the predefined control groups.
+
+The <code>cgconfig</code> service can be disabled with the following command:
+<pre>$ sudo systemctl mask --now cgconfig.service</pre></p>
+<h4>Rationale</h4>
+<p>Unless control groups are used to manage system resources, running the cgconfig
+service is not necessary.</p>
+</div>
+
+<div id="service_cgred_disabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable Control Group Rules Engine (cgred)</h3>
+<div>service_cgred_disabled</div>
+<h4>Description</h4>
+<p>The <tt>cgred</tt> service moves tasks into control groups according to
+parameters set in the <tt>/etc/cgrules.conf</tt> configuration file.
+
+The <code>cgred</code> service can be disabled with the following command:
+<pre>$ sudo systemctl mask --now cgred.service</pre></p>
+<h4>Rationale</h4>
+<p>Unless control groups are used to manage system resources, running the cgred service
+service is not necessary.</p>
+</div>
+
+
+
+
+</body>
+</html>

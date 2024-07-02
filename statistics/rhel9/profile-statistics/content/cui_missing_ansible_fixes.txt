@@ -1,0 +1,5 @@
+xccdf_org.ssgproject.content_rule_grub2_uefi_password
+xccdf_org.ssgproject.content_rule_no_tmux_in_shells
+xccdf_org.ssgproject.content_rule_partition_for_var_log_audit
+xccdf_org.ssgproject.content_rule_sshd_use_directory_configuration
+xccdf_org.ssgproject.content_rule_zipl_bls_entries_only
