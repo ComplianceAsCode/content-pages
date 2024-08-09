@@ -1,0 +1,4 @@
+xccdf_org.ssgproject.content_rule_installed_OS_is_vendor_supported
+xccdf_org.ssgproject.content_rule_package_audit-audispd-plugins_installed
+xccdf_org.ssgproject.content_rule_package_policycoreutils-python-utils_installed
+xccdf_org.ssgproject.content_rule_package_policycoreutils_installed
