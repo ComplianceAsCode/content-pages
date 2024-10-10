@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'chrony'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'chrony'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>chrony</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<div>None</div>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#chronyd_configure_pool_and_server">chronyd_configure_pool_and_server</a></li>
+
+<li><a href="#chronyd_run_as_chrony_user">chronyd_run_as_chrony_user</a></li>
+
+<li><a href="#chronyd_server_directive">chronyd_server_directive</a></li>
+
+<li><a href="#chronyd_specify_remote_server">chronyd_specify_remote_server</a></li>
+
+<li><a href="#file_groupowner_etc_chrony_keys">file_groupowner_etc_chrony_keys</a></li>
+
+<li><a href="#file_owner_etc_chrony_keys">file_owner_etc_chrony_keys</a></li>
+
+<li><a href="#file_permissions_etc_chrony_keys">file_permissions_etc_chrony_keys</a></li>
+
+<li><a href="#package_chrony_installed">package_chrony_installed</a></li>
+
+<li><a href="#service_chronyd_enabled">service_chronyd_enabled</a></li>
+
+<li><a href="#chrony_set_nts">chrony_set_nts</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="chronyd_configure_pool_and_server" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Chrony Configure Pool and Server</h3>
+<div>chronyd_configure_pool_and_server</div>
+<h4>Description</h4>
+<p><tt>Chrony</tt> is a daemon which implements the Network Time Protocol (NTP). It is designed to
+synchronize system clocks across a variety of systems and use a source that is highly
+accurate. More information on <tt>chrony</tt> can be found at
+
+    <a xmlns='http://www.w3.org/1999/xhtml' href='https://chrony-project.org/'>https://chrony-project.org/</a>.
+<tt>Chrony</tt> can be configured to be a client and/or a server.
+Add or edit server or pool lines to <tt>/etc/chrony.conf</tt> as appropriate:
+<pre>server &lt;remote-server&gt;</pre>
+Multiple servers may be configured.</p>
+<h4>Rationale</h4>
+<p>If <tt>chrony</tt> is in use on the system proper configuration is vital to ensuring time
+synchronization is working properly.</p>
+</div>
+
+<div id="chronyd_run_as_chrony_user" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure that chronyd is running under chrony user account</h3>
+<div>chronyd_run_as_chrony_user</div>
+<h4>Description</h4>
+<p>chrony is a daemon which implements the Network Time Protocol (NTP). It is designed to
+synchronize system clocks across a variety of systems and use a source that is highly
+accurate. More information on chrony can be found at
+
+    <a xmlns='http://www.w3.org/1999/xhtml' href='https://chrony-project.org/'>https://chrony-project.org/</a>.
+Chrony can be configured to be a client and/or a server.
+To ensure that chronyd is running under chrony user account,
+remove any <tt>-u ...</tt> option from <tt>OPTIONS</tt> other than <tt>-u chrony</tt>,
+as chrony is run under its own user by default.
+This recommendation only applies if chrony is in use on the system.</p>
+<h4>Rationale</h4>
+<p>If chrony is in use on the system proper configuration is vital to ensuring time synchronization
+is working properly.</p>
+</div>
+
+<div id="chronyd_server_directive" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure Chrony is only configured with the server directive</h3>
+<div>chronyd_server_directive</div>
+<h4>Description</h4>
+<p>Check that Chrony only has time sources configured with the <tt>server</tt> directive.</p>
+<h4>Rationale</h4>
+<p>Depending on the infrastructure being used the <tt>pool</tt> directive may not be supported.
+Using the <tt>server</tt> directive allows for better control of where the system gets time data from.</p>
+</div>
+
+<div id="chronyd_specify_remote_server" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>A remote time server for Chrony is configured</h3>
+<div>chronyd_specify_remote_server</div>
+<h4>Description</h4>
+<p><tt>Chrony</tt> is a daemon which implements the Network Time Protocol (NTP). It is designed
+to synchronize system clocks across a variety of systems and use a source that is highly
+accurate. More information on <tt>chrony</tt> can be found at
+
+    <a xmlns='http://www.w3.org/1999/xhtml' href='https://chrony-project.org/'>https://chrony-project.org/</a>.
+<tt>Chrony</tt> can be configured to be a client and/or a server.
+Add or edit server or pool lines to <tt>/etc/chrony.conf</tt> as appropriate:
+<pre>server &lt;remote-server&gt;</pre>
+Multiple servers may be configured.</p>
+<h4>Rationale</h4>
+<p>If <tt>chrony</tt> is in use on the system proper configuration is vital to ensuring time
+synchronization is working properly.</p>
+</div>
+
+<div id="file_groupowner_etc_chrony_keys" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Group Who Owns /etc/chrony.keys File</h3>
+<div>file_groupowner_etc_chrony_keys</div>
+<h4>Description</h4>
+<p> To properly set the group owner of <code>/etc/chrony.keys</code>, run the command: <pre>$ sudo chgrp chrony /etc/chrony.keys</pre></p>
+<h4>Rationale</h4>
+<p>The ownership of the /etc/chrony.keys file by the chrony group is important
+because this file hosts chrony cryptographic keys. Protection
+of this file is critical for system security. Assigning the ownership to
+chrony ensures exclusive control of the chrony cryptography keys.</p>
+</div>
+
+<div id="file_owner_etc_chrony_keys" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify User Who Owns /etc/chrony.keys File</h3>
+<div>file_owner_etc_chrony_keys</div>
+<h4>Description</h4>
+<p> To properly set the owner of <code>/etc/chrony.keys</code>, run the command: <pre>$ sudo chown root /etc/chrony.keys </pre></p>
+<h4>Rationale</h4>
+<p>The ownership of the /etc/chrony.keys file by the chrony user is important
+because this file hosts chrony cryptographic keys. Protection
+of this file is critical for system security. Assigning the ownership to
+chrony ensures exclusive control of the chrony cryptographic keys.</p>
+</div>
+
+<div id="file_permissions_etc_chrony_keys" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Permissions On /etc/chrony.keys File</h3>
+<div>file_permissions_etc_chrony_keys</div>
+<h4>Description</h4>
+<p> To properly set the permissions of <code>/etc/chrony.keys</code>, run the command: <pre>$ sudo chmod 0600 /etc/chrony.keys</pre></p>
+<h4>Rationale</h4>
+<p>Setting correct permissions on the /etc/chrony.keys file is important
+because this file hosts chrony cryptographic keys. Protection
+of this file is critical for system security. Assigning the correct mode
+ensures exclusive control of the chrony cryptographic keys.</p>
+</div>
+
+<div id="package_chrony_installed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>The Chrony package is installed</h3>
+<div>package_chrony_installed</div>
+<h4>Description</h4>
+<p>System time should be synchronized between all systems in an environment. This is
+typically done by establishing an authoritative time server or set of servers and having all
+systems synchronize their clocks to them.
+The <code>chrony</code> package can be installed with the following command:
+<pre>
+$ sudo dnf install chrony</pre></p>
+<h4>Rationale</h4>
+<p>Time synchronization is important to support time sensitive security mechanisms like
+Kerberos and also ensures log files have consistent time records across the enterprise,
+which aids in forensic investigations.</p>
+</div>
+
+<div id="service_chronyd_enabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>The Chronyd service is enabled</h3>
+<div>service_chronyd_enabled</div>
+<h4>Description</h4>
+<p>chrony is a daemon which implements the Network Time Protocol (NTP) is designed to
+synchronize system clocks across a variety of systems and use a source that is highly
+accurate. More information on chrony can be found at
+
+    <a xmlns='http://www.w3.org/1999/xhtml' href='https://chrony-project.org/'>https://chrony-project.org/</a>.
+Chrony can be configured to be a client and/or a server.
+To enable Chronyd service, you can run:
+<tt># systemctl enable chronyd.service</tt>
+This recommendation only applies if chrony is in use on the system.</p>
+<h4>Rationale</h4>
+<p>If chrony is in use on the system proper configuration is vital to ensuring time
+synchronization is working properly.</p>
+</div>
+
+<div id="chrony_set_nts" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure Time Service to use NTS</h3>
+<div>chrony_set_nts</div>
+<h4>Description</h4>
+<p>The system should be configured to use time servers that support Network Time Security (NTS).
+The specified time server must support NTS and must be configured to use NTS.
+To configure NTS for given time server add <tt>nts</tt> to each <tt>server</tt> or <tt>pool</tt> line in <tt>/etc/chrony.conf</tt>.</p>
+<h4>Rationale</h4>
+<p>Network Time Security (NTS) uses Transport Layer Security (TLS) to secure Network Time Protocol (NTP) communications.
+Not using NTS could allow an attacker to interpret and modify the data sent back from the time server
+Inaccurate time stamps make it more difficult to correlate events and can lead to an inaccurate analysis.
+Determining the correct time a particular event occurred on a system is critical when conducting forensic analysis and investigating system events.
+Sources outside the configured acceptable allowance (drift) may be inaccurate.</p>
+</div>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,4 @@
+xccdf_org.ssgproject.content_rule_file_ownership_var_log_audit
+xccdf_org.ssgproject.content_rule_mount_option_home_nosuid
+xccdf_org.ssgproject.content_rule_smartcard_auth
+xccdf_org.ssgproject.content_rule_smartcard_configure_cert_checking
