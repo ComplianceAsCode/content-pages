@@ -1,0 +1,2 @@
+xccdf_org.ssgproject.content_rule_restrict_serial_port_logins
+xccdf_org.ssgproject.content_rule_securetty_root_login_console_only
