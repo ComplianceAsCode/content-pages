@@ -1,0 +1,4 @@
+xccdf_org.ssgproject.content_rule_ensure_oracle_gpgkey_installed
+xccdf_org.ssgproject.content_rule_file_groupowner_efi_grub2_cfg
+xccdf_org.ssgproject.content_rule_file_owner_efi_grub2_cfg
+xccdf_org.ssgproject.content_rule_file_permissions_efi_grub2_cfg

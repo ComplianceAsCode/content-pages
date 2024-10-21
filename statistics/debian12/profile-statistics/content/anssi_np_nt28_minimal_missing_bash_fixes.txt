@@ -1,0 +1,4 @@
+xccdf_org.ssgproject.content_rule_apt_conf_disallow_unauthenticated
+xccdf_org.ssgproject.content_rule_apt_sources_list_official
+xccdf_org.ssgproject.content_rule_service_rsyslog_enabled
+xccdf_org.ssgproject.content_rule_service_syslogng_enabled
