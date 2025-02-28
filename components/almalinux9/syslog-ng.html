@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'syslog-ng'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'syslog-ng'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>syslog-ng</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<div>None</div>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#package_syslogng_installed">package_syslogng_installed</a></li>
+
+<li><a href="#service_syslogng_enabled">service_syslogng_enabled</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="package_syslogng_installed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure syslog-ng is Installed</h3>
+<div>package_syslogng_installed</div>
+<h4>Description</h4>
+<p>syslog-ng can be installed in replacement of rsyslog.
+The <code>syslog-ng-core</code> package can be installed with the following command:
+<pre>
+$ sudo dnf install syslog-ng-core</pre></p>
+<h4>Rationale</h4>
+<p>The syslog-ng-core package provides the syslog-ng daemon, which provides
+system logging services.</p>
+</div>
+
+<div id="service_syslogng_enabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Enable syslog-ng Service</h3>
+<div>service_syslogng_enabled</div>
+<h4>Description</h4>
+<p>The <tt>syslog-ng</tt> service (in replacement of rsyslog) provides syslog-style logging by default on Debian.
+
+The <code>syslog-ng</code> service can be enabled with the following command:
+<pre>$ sudo systemctl enable syslog-ng.service</pre></p>
+<h4>Rationale</h4>
+<p>The <tt>syslog-ng</tt> service must be running in order to provide
+logging services, which are essential to system administration.</p>
+</div>
+
+
+
+
+</body>
+</html>
