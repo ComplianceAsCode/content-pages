@@ -1,0 +1,2 @@
+xccdf_org.ssgproject.content_rule_audit_failure_halt
+xccdf_org.ssgproject.content_rule_service_com_apple_auditd_enabled
