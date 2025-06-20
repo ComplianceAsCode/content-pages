@@ -1,0 +1,3 @@
+xccdf_org.ssgproject.content_rule_coreos_enable_selinux_kernel_argument
+xccdf_org.ssgproject.content_rule_selinux_policytype
+xccdf_org.ssgproject.content_rule_selinux_state
