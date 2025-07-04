@@ -1,0 +1,2 @@
+xccdf_org.ssgproject.content_rule_enable_authselect
+xccdf_org.ssgproject.content_rule_file_permission_user_init_files_root
