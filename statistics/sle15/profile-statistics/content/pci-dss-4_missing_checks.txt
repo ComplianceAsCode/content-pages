@@ -1,0 +1,3 @@
+xccdf_org.ssgproject.content_rule_mask_nonessential_services
+xccdf_org.ssgproject.content_rule_set_ipv6_loopback_traffic
+xccdf_org.ssgproject.content_rule_set_loopback_traffic
