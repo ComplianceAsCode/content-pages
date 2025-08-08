@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'freeradius'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'freeradius'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>freeradius</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<ul>
+
+<li>radius</li>
+
+</ul>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#package_freeradius_removed">package_freeradius_removed</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="package_freeradius_removed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Remove the FreeRadius Server Package</h3>
+<div>package_freeradius_removed</div>
+<h4>Description</h4>
+<p>The <tt>freeradius</tt> package should be removed if not in use.
+Is this system a RADIUS server? If not, remove the package.
+The <code>freeradius</code> package can be removed with the following command:
+<pre>
+$ apt-get remove freeradius</pre>
+The freeradius RPM is not installed by default on a Debian 13
+system. It is needed only by the RADIUS servers, not by the
+clients which use RADIUS for authentication. If the system is not
+intended for use as a RADIUS Server it should be removed.</p>
+<h4>Rationale</h4>
+<p>Unnecessary packages should not be installed to decrease the attack
+surface of the system.  While this software is clearly essential on a
+RADIUS server, it is not necessary on typical desktop or workstation systems.</p>
+</div>
+
+
+
+
+</body>
+</html>
