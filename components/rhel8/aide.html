@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'aide'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'aide'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>aide</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<ul>
+
+<li>aide</li>
+
+</ul>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#aide_build_database">aide_build_database</a></li>
+
+<li><a href="#aide_check_audit_tools">aide_check_audit_tools</a></li>
+
+<li><a href="#aide_disable_silentreports">aide_disable_silentreports</a></li>
+
+<li><a href="#aide_periodic_cron_checking">aide_periodic_cron_checking</a></li>
+
+<li><a href="#aide_periodic_checking_systemd_timer">aide_periodic_checking_systemd_timer</a></li>
+
+<li><a href="#aide_scan_notification">aide_scan_notification</a></li>
+
+<li><a href="#aide_use_fips_hashes">aide_use_fips_hashes</a></li>
+
+<li><a href="#aide_verify_acls">aide_verify_acls</a></li>
+
+<li><a href="#aide_verify_ext_attributes">aide_verify_ext_attributes</a></li>
+
+<li><a href="#file_audit_tools_group_ownership">file_audit_tools_group_ownership</a></li>
+
+<li><a href="#file_audit_tools_ownership">file_audit_tools_ownership</a></li>
+
+<li><a href="#file_audit_tools_permissions">file_audit_tools_permissions</a></li>
+
+<li><a href="#package_aide_installed">package_aide_installed</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="aide_build_database" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Build and Test AIDE Database</h3>
+<div>aide_build_database</div>
+<h4>Description</h4>
+<p>Run the following command to generate a new database:
+
+<pre>$ sudo /usr/sbin/aide --init</pre>
+
+By default, the database will be written to the file
+
+<tt>/var/lib/aide/aide.db.new.gz</tt>.
+
+Storing the database, the configuration file <tt>/etc/aide.conf</tt>, and the binary
+<tt>/usr/sbin/aide</tt>
+(or hashes of these files), in a secure location (such as on read-only media) provides additional assurance about their integrity.
+The newly-generated database can be installed as follows:
+
+<pre>$ sudo cp /var/lib/aide/aide.db.new.gz /var/lib/aide/aide.db.gz</pre>
+
+To initiate a manual check, run the following command:
+<pre>$ sudo /usr/sbin/aide --check</pre>
+If this check produces any unexpected output, investigate.</p>
+<h4>Rationale</h4>
+<p>For AIDE to be effective, an initial database of "known-good" information about files
+must be captured and it should be able to be verified against the installed files.</p>
+</div>
+
+<div id="aide_check_audit_tools" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure AIDE to Verify the Audit Tools</h3>
+<div>aide_check_audit_tools</div>
+<h4>Description</h4>
+<p>The operating system file integrity tool must be configured to protect the integrity of the audit tools.</p>
+<h4>Rationale</h4>
+<p>Protecting the integrity of the tools used for auditing purposes is a
+critical step toward ensuring the integrity of audit information. Audit
+information includes all information (e.g., audit records, audit settings,
+and audit reports) needed to successfully audit information system
+activity.
+
+Audit tools include but are not limited to vendor-provided and open-source
+audit tools needed to successfully view and manipulate audit information
+system activity and records. Audit tools include custom queries and report
+generators.
+
+It is not uncommon for attackers to replace the audit tools or inject code
+into the existing tools to provide the capability to hide or erase system
+activity from the audit logs.
+
+To address this risk, audit tools must be cryptographically signed to
+provide the capability to identify when the audit tools have been modified,
+manipulated, or replaced. An example is a checksum hash of the file or
+files.</p>
+</div>
+
+<div id="aide_disable_silentreports" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure AIDE To Notify Personnel if Baseline Configurations Are Altered</h3>
+<div>aide_disable_silentreports</div>
+<h4>Description</h4>
+<p>The operating system file integrity tool must be configured to notify designated personnel of any changes to configurations.</p>
+<h4>Rationale</h4>
+<p>Detecting changes in the system can help avoid unintended, and negative consequences
+that could affect the security state of the operating system</p>
+</div>
+
+<div id="aide_periodic_cron_checking" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure Periodic Execution of AIDE</h3>
+<div>aide_periodic_cron_checking</div>
+<h4>Description</h4>
+<p>At a minimum, AIDE should be configured to run a weekly scan.
+To implement a daily execution of AIDE at 4:05am using cron, add the following line to <tt>/etc/crontab</tt>:
+<pre>05 4 * * * root /usr/sbin/aide --check</pre>
+To implement a weekly execution of AIDE at 4:05am using cron, add the following line to <tt>/etc/crontab</tt>:
+<pre>05 4 * * 0 root /usr/sbin/aide --check</pre>
+AIDE can be executed periodically through other means; this is merely one example.
+The usage of cron's special time codes, such as  <tt>@daily</tt> and
+<tt>@weekly</tt> is acceptable.</p>
+<h4>Rationale</h4>
+<p>By default, AIDE does not install itself for periodic execution. Periodically
+running AIDE is necessary to reveal unexpected changes in installed files.
+<br /><br />
+Unauthorized changes to the baseline configuration could make the system vulnerable
+to various attacks or allow unauthorized access to the operating system. Changes to
+operating system configurations can have unintended side effects, some of which may
+be relevant to security.
+<br /><br />
+Detecting such changes and providing an automated response can help avoid unintended,
+negative consequences that could ultimately affect the security state of the operating
+system. The operating system's Information Management Officer (IMO)/Information System
+Security Officer (ISSO) and System Administrators (SAs) must be notified via email and/or
+monitoring system trap when there is an unauthorized modification of a configuration item.</p>
+</div>
+
+<div id="aide_periodic_checking_systemd_timer" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure Systemd Timer Execution of AIDE</h3>
+<div>aide_periodic_checking_systemd_timer</div>
+<h4>Description</h4>
+<p>At a minimum, AIDE should be configured to run a weekly scan.
+To implement a systemd service and a timer unit to run the service periodically:
+For example, if a systemd timer is expected to be started every day at 5AM
+<pre>OnCalendar=*-*-* 05:00:0</pre> <pre>[Timer]</pre> section in the timer unit and
+a Unit section starting the AIDE check service unit should be referred.</p>
+<h4>Rationale</h4>
+<p>AIDE provides a means to check if unauthorized changes are made to the system.
+AIDE itself does not setup a periodic execution, so in order to detect unauthorized
+changes a systemd service to run the check and a systemd timer to take care
+of periodical execution of that systemd service should be defined.</p>
+</div>
+
+<div id="aide_scan_notification" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure Notification of Post-AIDE Scan Details</h3>
+<div>aide_scan_notification</div>
+<h4>Description</h4>
+<p>AIDE should notify appropriate personnel of the details of a scan after the scan has been run.
+If AIDE has already been configured for periodic execution in <tt>/etc/crontab</tt>, append the
+following line to the existing AIDE line:
+<pre> | /bin/mail -s "$(hostname) - AIDE Integrity Check" root@localhost</pre>
+Otherwise, add the following line to <tt>/etc/crontab</tt>:
+<pre>05 4 * * * root /usr/sbin/aide --check | /bin/mail -s "$(hostname) - AIDE Integrity Check" root@localhost</pre>
+AIDE can be executed periodically through other means; this is merely one example.</p>
+<h4>Rationale</h4>
+<p>Unauthorized changes to the baseline configuration could make the system vulnerable
+to various attacks or allow unauthorized access to the operating system. Changes to
+operating system configurations can have unintended side effects, some of which may
+be relevant to security.
+<br /><br />
+Detecting such changes and providing an automated response can help avoid unintended,
+negative consequences that could ultimately affect the security state of the operating
+system. The operating system's Information Management Officer (IMO)/Information System
+Security Officer (ISSO) and System Administrators (SAs) must be notified via email and/or
+monitoring system trap when there is an unauthorized modification of a configuration item.</p>
+</div>
+
+<div id="aide_use_fips_hashes" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure AIDE to Use FIPS 140-2 for Validating Hashes</h3>
+<div>aide_use_fips_hashes</div>
+<h4>Description</h4>
+<p>By default, the <tt>sha512</tt> option is added to the <tt>NORMAL</tt> ruleset in AIDE.
+If using a custom ruleset or the <tt>sha512</tt> option is missing, add <tt>sha512</tt>
+to the appropriate ruleset.
+For example, add <tt>sha512</tt> to the following line in <tt>/etc/aide.conf</tt>:
+<pre>NORMAL = FIPSR+sha512</pre>
+AIDE rules can be configured in multiple ways; this is merely one example that is already
+configured by default.</p>
+<h4>Rationale</h4>
+<p>File integrity tools use cryptographic hashes for verifying file contents and directories
+have not been altered. These hashes must be FIPS 140-2 approved cryptographic hashes.</p>
+</div>
+
+<div id="aide_verify_acls" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure AIDE to Verify Access Control Lists (ACLs)</h3>
+<div>aide_verify_acls</div>
+<h4>Description</h4>
+<p>By default, the <tt>acl</tt> option is added to the <tt>FIPSR</tt> ruleset in AIDE.
+If using a custom ruleset or the <tt>acl</tt> option is missing, add <tt>acl</tt>
+to the appropriate ruleset.
+For example, add <tt>acl</tt> to the following line in <tt>/etc/aide.conf</tt>:
+<pre>FIPSR = p+i+n+u+g+s+m+c+acl+selinux+xattrs+sha256</pre>
+AIDE rules can be configured in multiple ways; this is merely one example that is already
+configured by default.
+
+
+The remediation provided with this rule adds <tt>acl</tt> to all rule sets available in
+<tt>/etc/aide.conf</tt></p>
+<h4>Rationale</h4>
+<p>ACLs can provide permissions beyond those permitted through the file mode and must be
+verified by the file integrity tools.</p>
+</div>
+
+<div id="aide_verify_ext_attributes" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure AIDE to Verify Extended Attributes</h3>
+<div>aide_verify_ext_attributes</div>
+<h4>Description</h4>
+<p>By default, the <tt>xattrs</tt> option is added to the <tt>FIPSR</tt> ruleset in AIDE.
+If using a custom ruleset or the <tt>xattrs</tt> option is missing, add <tt>xattrs</tt>
+to the appropriate ruleset.
+For example, add <tt>xattrs</tt> to the following line in <tt>/etc/aide.conf</tt>:
+<pre>FIPSR = p+i+n+u+g+s+m+c+acl+selinux+xattrs+sha256</pre>
+AIDE rules can be configured in multiple ways; this is merely one example that is already
+configured by default.
+
+
+The remediation provided with this rule adds <tt>xattrs</tt> to all rule sets available in
+<tt>/etc/aide.conf</tt></p>
+<h4>Rationale</h4>
+<p>Extended attributes in file systems are used to contain arbitrary data and file metadata
+with security implications.</p>
+</div>
+
+<div id="file_audit_tools_group_ownership" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Audit Tools Must Be Group-owned by Root</h3>
+<div>file_audit_tools_group_ownership</div>
+<h4>Description</h4>
+<p>Red Hat Enterprise Linux 8 systems providing tools to interface with audit information will leverage user permissions and roles identifying the user accessing the tools, and the corresponding rights the user enjoys, to make access decisions regarding the access to audit tools.
+
+Audit tools include, but are not limited to, vendor-provided and open source audit tools needed to successfully view and manipulate audit information system activity and records. Audit tools include custom queries and report generators.
+
+Audit tools must have the correct group owner.</p>
+<h4>Rationale</h4>
+<p>Protecting audit information also includes identifying and protecting the tools used to view and manipulate log data.
+Therefore, protecting audit tools is necessary to prevent unauthorized operations on audit information.</p>
+</div>
+
+<div id="file_audit_tools_ownership" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Audit Tools Must Be Owned by Root</h3>
+<div>file_audit_tools_ownership</div>
+<h4>Description</h4>
+<p>Red Hat Enterprise Linux 8 systems providing tools to interface with audit information will leverage user permissions and roles identifying the user accessing the tools, and the corresponding rights the user enjoys, to make access decisions regarding the access to audit tools.
+
+Audit tools include, but are not limited to, vendor-provided and open source audit tools needed to successfully view and manipulate audit information system activity and records. Audit tools include custom queries and report generators.
+
+Audit tools must have the correct owner.</p>
+<h4>Rationale</h4>
+<p>Protecting audit information also includes identifying and protecting the tools used to view and manipulate log data.
+Therefore, protecting audit tools is necessary to prevent unauthorized operations on audit information.</p>
+</div>
+
+<div id="file_audit_tools_permissions" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Audit Tools Must Have a Mode of 0755 or Less Permissive</h3>
+<div>file_audit_tools_permissions</div>
+<h4>Description</h4>
+<p>Red Hat Enterprise Linux 8 systems providing tools to interface with audit information will leverage user permissions and roles identifying the user accessing the tools, and the corresponding rights the user enjoys, to make access decisions regarding the access to audit tools.
+
+Audit tools include, but are not limited to, vendor-provided and open source audit tools needed to successfully view and manipulate audit information system activity and records. Audit tools include custom queries and report generators.
+
+Audit tools must have a mode of 0755 or less permissive.</p>
+<h4>Rationale</h4>
+<p>Protecting audit information also includes identifying and protecting the tools used to view and manipulate log data.
+Therefore, protecting audit tools is necessary to prevent unauthorized operations on audit information.</p>
+</div>
+
+<div id="package_aide_installed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Install AIDE</h3>
+<div>package_aide_installed</div>
+<h4>Description</h4>
+<p>The <code>aide</code> package can be installed with the following command:
+<pre>
+$ sudo yum install aide</pre></p>
+<h4>Rationale</h4>
+<p>The AIDE package must be installed if it is to be available for integrity checking.</p>
+</div>
+
+
+
+
+</body>
+</html>
