@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'fapolicyd'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'fapolicyd'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>fapolicyd</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<ul>
+
+<li>fapolicyd</li>
+
+</ul>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#fapolicy_default_deny">fapolicy_default_deny</a></li>
+
+<li><a href="#fapolicyd_prevent_home_folder_access">fapolicyd_prevent_home_folder_access</a></li>
+
+<li><a href="#package_fapolicyd_installed">package_fapolicyd_installed</a></li>
+
+<li><a href="#service_fapolicyd_enabled">service_fapolicyd_enabled</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="fapolicy_default_deny" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure Fapolicy Module to Employ a Deny-all, Permit-by-exception Policy to Allow the Execution of Authorized Software Programs.</h3>
+<div>fapolicy_default_deny</div>
+<h4>Description</h4>
+<p>The Fapolicy module must be configured to employ a deny-all, permit-by-exception policy to allow the execution of authorized software programs and to prevent unauthorized software from running.</p>
+<h4>Rationale</h4>
+<p>Utilizing a whitelist provides a configuration management method for allowing the execution of only authorized software.
+Using only authorized software decreases risk by limiting the number of potential vulnerabilities. Verification of whitelisted software occurs prior to execution or at system startup.
+
+Proceed with caution with enforcing the use of this daemon.
+Improper configuration may render the system non-functional.
+The "fapolicyd" API is not namespace aware and can cause issues when launching or running containers.</p>
+</div>
+
+<div id="fapolicyd_prevent_home_folder_access" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>fapolicyd Must be Configured to Limit Access to Users Home Folders</h3>
+<div>fapolicyd_prevent_home_folder_access</div>
+<h4>Description</h4>
+<p>fapolicyd needs be configured so that users cannot give access to their home folders to other users.</p>
+<h4>Rationale</h4>
+<p>Users' home directories/folders may contain information of a sensitive nature.
+Non-privileged users should coordinate any sharing of information with a System Administrator (SA) through shared resources.
+fapolicyd can confine users to their home directory, not allowing them to make any changes outside of their own home directories.
+Confining users to their home directory will minimize the risk of sharing information.</p>
+</div>
+
+<div id="package_fapolicyd_installed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Install fapolicyd Package</h3>
+<div>package_fapolicyd_installed</div>
+<h4>Description</h4>
+<p>The <code>fapolicyd</code> package can be installed with the following command:
+<pre>
+$ sudo yum install fapolicyd</pre></p>
+<h4>Rationale</h4>
+<p><tt>fapolicyd</tt> (File Access Policy Daemon)
+implements application whitelisting to decide file access rights.</p>
+</div>
+
+<div id="service_fapolicyd_enabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Enable the File Access Policy Service</h3>
+<div>service_fapolicyd_enabled</div>
+<h4>Description</h4>
+<p>The File Access Policy service should be enabled.
+
+The <code>fapolicyd</code> service can be enabled with the following command:
+<pre>$ sudo systemctl enable fapolicyd.service</pre></p>
+<h4>Rationale</h4>
+<p>The <tt>fapolicyd</tt> service (File Access Policy Daemon)
+implements application whitelisting to decide file access rights.</p>
+</div>
+
+
+
+
+</body>
+</html>
