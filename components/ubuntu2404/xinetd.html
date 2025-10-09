@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'xinetd'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'xinetd'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>xinetd</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<div>None</div>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#package_xinetd_removed">package_xinetd_removed</a></li>
+
+<li><a href="#service_xinetd_disabled">service_xinetd_disabled</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="package_xinetd_removed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Uninstall xinetd Package</h3>
+<div>package_xinetd_removed</div>
+<h4>Description</h4>
+<p>The <code>xinetd</code> package can be removed with the following command:
+<pre>
+$ apt-get remove xinetd</pre></p>
+<h4>Rationale</h4>
+<p>Removing the <tt>xinetd</tt> package decreases the risk of the
+xinetd service's accidental (or intentional) activation.</p>
+</div>
+
+<div id="service_xinetd_disabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable xinetd Service</h3>
+<div>service_xinetd_disabled</div>
+<h4>Description</h4>
+<p>
+The <code>xinetd</code> service can be disabled with the following command:
+<pre>$ sudo systemctl mask --now xinetd.service</pre></p>
+<h4>Rationale</h4>
+<p>The xinetd service provides a dedicated listener service for some programs,
+which is no longer necessary for commonly-used network services. Disabling
+it ensures that these uncommon services are not running, and also prevents
+attacks against xinetd itself.</p>
+</div>
+
+
+
+
+</body>
+</html>
