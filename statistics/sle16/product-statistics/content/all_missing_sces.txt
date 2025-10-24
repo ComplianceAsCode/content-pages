@@ -1,0 +1,1 @@
+xccdf_org.ssgproject.content_rule_installed_OS_is_vendor_supported
