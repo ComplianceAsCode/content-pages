@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'fedora-release-common'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'fedora-release-common'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>fedora-release-common</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<div>None</div>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#file_groupowner_etc_issue">file_groupowner_etc_issue</a></li>
+
+<li><a href="#file_groupowner_etc_issue_net">file_groupowner_etc_issue_net</a></li>
+
+<li><a href="#file_owner_etc_issue">file_owner_etc_issue</a></li>
+
+<li><a href="#file_owner_etc_issue_net">file_owner_etc_issue_net</a></li>
+
+<li><a href="#file_permissions_etc_issue">file_permissions_etc_issue</a></li>
+
+<li><a href="#file_permissions_etc_issue_net">file_permissions_etc_issue_net</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="file_groupowner_etc_issue" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Group Ownership of System Login Banner</h3>
+<div>file_groupowner_etc_issue</div>
+<h4>Description</h4>
+<p>
+To properly set the group owner of <code>/etc/issue</code>, run the command:
+
+  <pre>$ sudo chgrp root /etc/issue</pre>
+  </p>
+<h4>Rationale</h4>
+<p>Display of a standardized and approved use notification before granting
+access to the operating system ensures privacy and security notification
+verbiage used is consistent with applicable federal laws, Executive Orders,
+directives, policies, regulations, standards, and guidance.<br />
+Proper group ownership will ensure that only root user can modify the banner.</p>
+</div>
+
+<div id="file_groupowner_etc_issue_net" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Group Ownership of System Login Banner for Remote Connections</h3>
+<div>file_groupowner_etc_issue_net</div>
+<h4>Description</h4>
+<p>
+To properly set the group owner of <code>/etc/issue.net</code>, run the command:
+
+  <pre>$ sudo chgrp root /etc/issue.net</pre>
+  </p>
+<h4>Rationale</h4>
+<p>Display of a standardized and approved use notification before granting
+access to the operating system ensures privacy and security notification
+verbiage used is consistent with applicable federal laws, Executive Orders,
+directives, policies, regulations, standards, and guidance.<br />
+Proper group ownership will ensure that only root user can modify the banner.</p>
+</div>
+
+<div id="file_owner_etc_issue" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify ownership of System Login Banner</h3>
+<div>file_owner_etc_issue</div>
+<h4>Description</h4>
+<p>
+To properly set the owner of <code>/etc/issue</code>, run the command:
+
+  <pre>$ sudo chown root /etc/issue </pre>
+  </p>
+<h4>Rationale</h4>
+<p>Display of a standardized and approved use notification before granting
+access to the operating system ensures privacy and security notification
+verbiage used is consistent with applicable federal laws, Executive Orders,
+directives, policies, regulations, standards, and guidance.<br />
+Proper ownership will ensure that only root user can modify the banner.</p>
+</div>
+
+<div id="file_owner_etc_issue_net" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify ownership of System Login Banner for Remote Connections</h3>
+<div>file_owner_etc_issue_net</div>
+<h4>Description</h4>
+<p>
+To properly set the owner of <code>/etc/issue.net</code>, run the command:
+
+  <pre>$ sudo chown root /etc/issue.net </pre>
+  </p>
+<h4>Rationale</h4>
+<p>Display of a standardized and approved use notification before granting
+access to the operating system ensures privacy and security notification
+verbiage used is consistent with applicable federal laws, Executive Orders,
+directives, policies, regulations, standards, and guidance.<br />
+Proper ownership will ensure that only root user can modify the banner.</p>
+</div>
+
+<div id="file_permissions_etc_issue" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify permissions on System Login Banner</h3>
+<div>file_permissions_etc_issue</div>
+<h4>Description</h4>
+<p>
+To properly set the permissions of <code>/etc/issue</code>, run the command:
+<pre>$ sudo chmod 0644 /etc/issue</pre></p>
+<h4>Rationale</h4>
+<p>Display of a standardized and approved use notification before granting
+access to the operating system ensures privacy and security notification
+verbiage used is consistent with applicable federal laws, Executive Orders,
+directives, policies, regulations, standards, and guidance.<br />
+Proper permissions will ensure that only root user can modify the banner.</p>
+</div>
+
+<div id="file_permissions_etc_issue_net" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify permissions on System Login Banner for Remote Connections</h3>
+<div>file_permissions_etc_issue_net</div>
+<h4>Description</h4>
+<p>
+To properly set the permissions of <code>/etc/issue.net</code>, run the command:
+<pre>$ sudo chmod 0644 /etc/issue.net</pre></p>
+<h4>Rationale</h4>
+<p>Display of a standardized and approved use notification before granting
+access to the operating system ensures privacy and security notification
+verbiage used is consistent with applicable federal laws, Executive Orders,
+directives, policies, regulations, standards, and guidance.<br />
+Proper permissions will ensure that only root user can modify the banner.</p>
+</div>
+
+
+
+
+</body>
+</html>
