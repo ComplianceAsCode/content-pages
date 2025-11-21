@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Definition of DRAFT Basis System Security Profile SUSE Linux Enterprise 16 for sle16</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Definition of DRAFT Basis System Security Profile SUSE Linux Enterprise 16 for sle16</h1>
+
+
+
+based on <a href="not_publicly_available">not_publicly_available</a>
+
+
+<div class="all_controls">
+<div class="one_control">
+  <h2>SLES-16-16016700: SLE16 system should have system for checking its integrity</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>pcidss4</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/software-integrity/aide/aide_build_database/rule.yml">aide_build_database</a>: Build and Test AIDE Database</li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/software-integrity/aide/aide_periodic_checking_systemd_timer/rule.yml">aide_periodic_checking_systemd_timer</a>: Configure Systemd Timer Execution of AIDE</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLES-16-16016500: Enable the selinuxuser_execmod SELinux Boolean in SLE16</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>hipaa</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/selinux-booleans/sebool_selinuxuser_execmod/rule.yml">sebool_selinuxuser_execmod</a>: Enable the selinuxuser_execmod SELinux Boolean</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLES-16-16016505: Enable service for audit logs in SLE16</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>hipaa</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/service_auditd_enabled/rule.yml">service_auditd_enabled</a>: Enable auditd Service</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLES-16-16016510: Enable remote logging functionality in SLE16</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>hipaa</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/logging/rsyslog_sending_messages/rsyslog_remote_loghost/rule.yml">rsyslog_remote_loghost</a>: Ensure Logs Sent To Remote Host</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLES-16-16016515: SLE16 system should capture invalid login access attempts</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>pcidss4</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/display_login_attempts/rule.yml">display_login_attempts</a>: Ensure PAM Displays Last Logon/Access Notification</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLES-16-16016400: Enable NX/XD Support</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>pcidss4</li>
+  </ul>
+  <p>Automated: partially</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/restrictions/enable_nx/bios_enable_execution_restrictions/rule.yml">bios_enable_execution_restrictions</a>: Enable NX or XD Support in the BIOS</li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/restrictions/enable_nx/install_PAE_kernel_on_x86-32/rule.yml">install_PAE_kernel_on_x86-32</a>: Install PAE Kernel on Supported 32-bit x86 Systems</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLES-16-16016005: SLES 16 must be a vendor-supported release.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>pcidss4</li><li>anssi_minimal</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/certified-vendor/installed_OS_is_vendor_supported/rule.yml">installed_OS_is_vendor_supported</a>: The Installed Operating System Is Vendor Supported</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLES-16-16016010: SLES 16 should restrict serial port root logins</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>hipaa</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/root_logins/restrict_serial_port_logins/rule.yml">restrict_serial_port_logins</a>: Restrict Serial Port Root Logins</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLES-16-16016100: Ensure All Files Are Owned by a Group</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>anssi_minimal</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/file_permissions_ungroupowned/rule.yml">file_permissions_ungroupowned</a>: Ensure All Files Are Owned by a Group</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLES-16-16016105: Ensure All Files Are Owned by a User</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>anssi_minimal</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/no_files_unowned_by_user/rule.yml">no_files_unowned_by_user</a>: Ensure All Files Are Owned by a User</li>
+  </ul>
+  
+</div>  
+</div>  
+
+
+</body>
+</html>
