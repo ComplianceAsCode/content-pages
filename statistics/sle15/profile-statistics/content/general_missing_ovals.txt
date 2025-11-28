@@ -1,0 +1,3 @@
+xccdf_org.ssgproject.content_rule_accounts_user_home_paths_only
+xccdf_org.ssgproject.content_rule_all_apparmor_profiles_enforced
+xccdf_org.ssgproject.content_rule_ensure_GPG_keys_are_configured
