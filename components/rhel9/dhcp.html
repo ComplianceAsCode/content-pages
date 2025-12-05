@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'dhcp'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'dhcp'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>dhcp</li>
+
+<li>dhcp-client</li>
+
+<li>dhcp-server</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<ul>
+
+<li>dhcp</li>
+
+<li>dhcp_client_configuration</li>
+
+<li>dhcp_server_configuration</li>
+
+<li>disabling_dhcp_client</li>
+
+<li>disabling_dhcp_server</li>
+
+</ul>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#dhcp_client_restrict_options">dhcp_client_restrict_options</a></li>
+
+<li><a href="#dhcp_server_configure_logging">dhcp_server_configure_logging</a></li>
+
+<li><a href="#dhcp_server_deny_bootp">dhcp_server_deny_bootp</a></li>
+
+<li><a href="#dhcp_server_deny_decline">dhcp_server_deny_decline</a></li>
+
+<li><a href="#dhcp_server_disable_ddns">dhcp_server_disable_ddns</a></li>
+
+<li><a href="#dhcp_server_minimize_served_info">dhcp_server_minimize_served_info</a></li>
+
+<li><a href="#package_dhcp_client_removed">package_dhcp_client_removed</a></li>
+
+<li><a href="#package_dhcp_removed">package_dhcp_removed</a></li>
+
+<li><a href="#service_dhcpd_disabled">service_dhcpd_disabled</a></li>
+
+<li><a href="#service_dhcpd6_disabled">service_dhcpd6_disabled</a></li>
+
+<li><a href="#sysconfig_networking_bootproto_ifcfg">sysconfig_networking_bootproto_ifcfg</a></li>
+
+<li><a href="#package_kea_removed">package_kea_removed</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="dhcp_client_restrict_options" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Minimize the DHCP-Configured Options</h3>
+<div>dhcp_client_restrict_options</div>
+<h4>Description</h4>
+<p>Create the file <tt>/etc/dhcp/dhclient.conf</tt>, and add an
+appropriate setting for each of the ten configuration settings which can be
+obtained via DHCP. For each setting, do one of the following:
+<br />
+If the setting should <i>not</i> be configured remotely by the DHCP server,
+select an appropriate static value, and add the line:
+<pre>supersede <tt>setting value</tt>;</pre>
+If the setting should be configured remotely by the DHCP server, add the lines:
+<pre>request <tt>setting</tt>;
+require <tt>setting</tt>;</pre>
+For example, suppose the DHCP server should provide only the IP address itself
+and the subnet mask. Then the entire file should look like:
+<pre>supersede domain-name "example.com";
+supersede domain-name-servers 192.168.1.2;
+supersede nis-domain "";
+supersede nis-servers "";
+supersede ntp-servers "ntp.example.com ";
+supersede routers 192.168.1.1;
+supersede time-offset -18000;
+request subnet-mask;
+require subnet-mask;</pre></p>
+<h4>Rationale</h4>
+<p>By default, the DHCP client program, dhclient, requests and applies
+ten configuration options (in addition to the IP address) from the DHCP server.
+subnet-mask, broadcast-address, time-offset, routers, domain-name,
+domain-name-servers, host-name, nis-domain, nis-servers, and ntp-servers.  Many
+of the options requested and applied by dhclient may be the same for every
+system on a network. It is recommended that almost all configuration options be
+assigned statically, and only options which must vary on a host-by-host basis
+be assigned via DHCP. This limits the damage which can be done by a rogue DHCP
+server.  If appropriate for your site, it is also possible to supersede the
+host-name directive in <tt>/etc/dhcp/dhclient.conf</tt>, establishing a static
+hostname for the system. However, dhclient does not use the host name option
+provided by the DHCP server (instead using the value provided by a reverse DNS
+lookup).</p>
+</div>
+
+<div id="dhcp_server_configure_logging" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure Logging</h3>
+<div>dhcp_server_configure_logging</div>
+<h4>Description</h4>
+<p>Ensure that the following line exists in
+<tt>/etc/rsyslog.conf</tt>:
+<pre>daemon.*           /var/log/daemon.log</pre>
+Configure logwatch or other log monitoring tools to summarize error conditions
+reported by the dhcpd process.</p>
+<h4>Rationale</h4>
+<p>By default, dhcpd logs notices to the daemon facility. Sending all
+daemon messages to a dedicated log file is part of the syslog configuration
+outlined in the Logging and Auditing section</p>
+</div>
+
+<div id="dhcp_server_deny_bootp" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Deny BOOTP Queries</h3>
+<div>dhcp_server_deny_bootp</div>
+<h4>Description</h4>
+<p>Unless your network needs to support older BOOTP clients, disable
+support for the bootp protocol by adding or correcting the global option:
+<pre>deny bootp;</pre></p>
+<h4>Rationale</h4>
+<p>The bootp option tells dhcpd to respond to BOOTP queries. If support
+for this simpler protocol is not needed, it should be disabled to remove attack
+vectors against the DHCP server.</p>
+</div>
+
+<div id="dhcp_server_deny_decline" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Deny Decline Messages</h3>
+<div>dhcp_server_deny_decline</div>
+<h4>Description</h4>
+<p>Edit <tt>/etc/dhcp/dhcpd.conf</tt> and add or correct the following
+global option to prevent the DHCP server from responding the DHCPDECLINE
+messages, if possible: <pre>deny declines;</pre></p>
+<h4>Rationale</h4>
+<p>The DHCPDECLINE message can be sent by a DHCP client to indicate
+that it does not consider the lease offered by the server to be valid. By
+issuing many DHCPDECLINE messages, a malicious client can exhaust the DHCP
+server's pool of IP addresses, causing the DHCP server to forget old address
+allocations.</p>
+</div>
+
+<div id="dhcp_server_disable_ddns" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Do Not Use Dynamic DNS</h3>
+<div>dhcp_server_disable_ddns</div>
+<h4>Description</h4>
+<p>To prevent the DHCP server from receiving DNS information from
+clients, edit <tt>/etc/dhcp/dhcpd.conf</tt>, and add or correct the following global
+option: <pre>ddns-update-style none;</pre></p>
+<h4>Rationale</h4>
+<p>The Dynamic DNS protocol is used to remotely update the data served
+by a DNS server. DHCP servers can use Dynamic DNS to publish information about
+their clients. This setup carries security risks, and its use is not
+recommended.  If Dynamic DNS must be used despite the risks it poses, it is
+critical that Dynamic DNS transactions be protected using TSIG or some other
+cryptographic authentication mechanism. See dhcpd.conf(5) for more information
+about protecting the DHCP server from passing along malicious DNS data from its
+clients.</p>
+</div>
+
+<div id="dhcp_server_minimize_served_info" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Minimize Served Information</h3>
+<div>dhcp_server_minimize_served_info</div>
+<h4>Description</h4>
+<p>Edit /etc/dhcp/dhcpd.conf. Examine each address range section within
+the file, and ensure that the following options are not defined unless there is
+an operational need to provide this information via DHCP:
+<pre>option domain-name
+option domain-name-servers
+option nis-domain
+option nis-servers
+option ntp-servers
+option routers
+option time-offset</pre></p>
+<h4>Rationale</h4>
+<p>Because the configuration information provided by the DHCP server
+could be maliciously provided to clients by a rogue DHCP server, the amount of
+information provided via DHCP should be minimized. Remove these definitions
+from the DHCP server configuration to ensure that legitimate clients do not
+unnecessarily rely on DHCP for this information.</p>
+</div>
+
+<div id="package_dhcp_client_removed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Uninstall DHCP Client Package</h3>
+<div>package_dhcp_client_removed</div>
+<h4>Description</h4>
+<p>If the system does not need to act as a DHCP client,
+the dhcp-client package can be uninstalled.
+The <code>dhcp-client</code> package can be removed with the following command:
+<pre>
+$ sudo dnf remove dhcp-client</pre></p>
+<h4>Rationale</h4>
+<p>Removing the DHCP client is necessary when the system works
+or will work in a static network environment. In this case
+the system has/will have a static IP address assigned.</p>
+</div>
+
+<div id="package_dhcp_removed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Uninstall DHCP Server Package</h3>
+<div>package_dhcp_removed</div>
+<h4>Description</h4>
+<p>If the system does not need to act as a DHCP server,
+the dhcp package can be uninstalled.
+
+The <code>dhcp-server</code> package can be removed with the following command:
+<pre>
+$ sudo dnf remove dhcp-server</pre></p>
+<h4>Rationale</h4>
+<p>Removing the DHCP server ensures that it cannot be easily or
+accidentally reactivated and disrupt network operation.</p>
+</div>
+
+<div id="service_dhcpd_disabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable DHCP Service</h3>
+<div>service_dhcpd_disabled</div>
+<h4>Description</h4>
+<p>The <tt>dhcpd</tt> service should be disabled on
+any system that does not need to act as a DHCP server.
+
+
+The <code>dhcpd</code> service can be disabled with the following command:
+<pre>$ sudo systemctl mask --now dhcpd.service</pre></p>
+<h4>Rationale</h4>
+<p>Unmanaged or unintentionally activated DHCP servers may provide faulty information
+to clients, interfering with the operation of a legitimate site
+DHCP server if there is one.</p>
+</div>
+
+<div id="service_dhcpd6_disabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable DHCPD6 Service</h3>
+<div>service_dhcpd6_disabled</div>
+<h4>Description</h4>
+<p>The <tt>dhcp6</tt> service should be disabled on
+any system that does not need to act as a DHCP server.
+
+
+The <code>dhcpd6</code> service can be disabled with the following command:
+<pre>$ sudo systemctl mask --now dhcpd6.service</pre></p>
+<h4>Rationale</h4>
+<p>Unmanaged or unintentionally activated DHCP servers may provide faulty information
+to clients, interfering with the operation of a legitimate site
+DHCP server if there is one.</p>
+</div>
+
+<div id="sysconfig_networking_bootproto_ifcfg" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable DHCP Client in ifcfg</h3>
+<div>sysconfig_networking_bootproto_ifcfg</div>
+<h4>Description</h4>
+<p>For each interface on the system (e.g. eth0), edit
+<tt>/etc/sysconfig/network-scripts/ifcfg-<i>interface</i></tt> and make the
+following changes:
+<ul>
+<li> Correct the BOOTPROTO line to read:
+<pre>BOOTPROTO=none</pre>
+</li>
+<li> Add or correct the following lines, substituting the appropriate
+values based on your site's addressing scheme:
+<pre>NETMASK=255.255.255.0
+IPADDR=192.168.1.2
+GATEWAY=192.168.1.1</pre>
+</li>
+</ul></p>
+<h4>Rationale</h4>
+<p>DHCP relies on trusting the local network. If the local network is not trusted,
+then it should not be used.  However, the automatic configuration provided by
+DHCP is commonly used and the alternative, manual configuration, presents an
+unacceptable burden in many circumstances.</p>
+</div>
+
+<div id="package_kea_removed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Uninstall kea Package</h3>
+<div>package_kea_removed</div>
+<h4>Description</h4>
+<p>If the system does not need to act as a DHCP server,
+the kea package can be uninstalled.</p>
+<h4>Rationale</h4>
+<p>Removing the DHCP server ensures that it cannot be easily or
+accidentally reactivated and disrupt network operation.</p>
+</div>
+
+
+
+
+</body>
+</html>

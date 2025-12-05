@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'iptables'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'iptables'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>iptables</li>
+
+<li>iptables-ipv6</li>
+
+<li>iptables-nft</li>
+
+<li>iptables-persistent</li>
+
+<li>iptables-services</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<div>None</div>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#directory_groupowner_etc_iptables">directory_groupowner_etc_iptables</a></li>
+
+<li><a href="#directory_owner_etc_iptables">directory_owner_etc_iptables</a></li>
+
+<li><a href="#directory_permissions_etc_iptables">directory_permissions_etc_iptables</a></li>
+
+<li><a href="#package_iptables-nft_installed">package_iptables-nft_installed</a></li>
+
+<li><a href="#package_iptables-nft_installed">package_iptables-nft_installed</a></li>
+
+<li><a href="#package_iptables-persistent_installed">package_iptables-persistent_installed</a></li>
+
+<li><a href="#package_iptables-persistent_removed">package_iptables-persistent_removed</a></li>
+
+<li><a href="#package_iptables-services_installed">package_iptables-services_installed</a></li>
+
+<li><a href="#package_iptables-services_removed">package_iptables-services_removed</a></li>
+
+<li><a href="#package_iptables_installed">package_iptables_installed</a></li>
+
+<li><a href="#service_ip6tables_enabled">service_ip6tables_enabled</a></li>
+
+<li><a href="#service_iptables_enabled">service_iptables_enabled</a></li>
+
+<li><a href="#ensure_iptables_are_flushed">ensure_iptables_are_flushed</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="directory_groupowner_etc_iptables" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Group Who Owns /etc/iptables Directory</h3>
+<div>directory_groupowner_etc_iptables</div>
+<h4>Description</h4>
+<p> To properly set the group owner of <code>/etc/iptables</code>, run the command:
+<pre>$ sudo chgrp root /etc/iptables</pre>
+</p>
+<h4>Rationale</h4>
+<p>The ownership of the /etc/iptables directory by the root group is important
+because this directory hosts iptables configuration. Protection of this
+file is critical for system security. Assigning the ownership to root
+ensures exclusive control of the iptables configuration.</p>
+</div>
+
+<div id="directory_owner_etc_iptables" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify User Who Owns /etc/iptables Directory</h3>
+<div>directory_owner_etc_iptables</div>
+<h4>Description</h4>
+<p> To properly set the owner of <code>/etc/iptables</code>, run the command:
+<pre>$ sudo chown root /etc/iptables </pre>
+</p>
+<h4>Rationale</h4>
+<p>The ownership of the /etc/iptables directory by the root user is important
+because this directory hosts iptables configuration. Protection of this
+file is critical for system security. Assigning the ownership to root
+ensures exclusive control of the iptables configuration.</p>
+</div>
+
+<div id="directory_permissions_etc_iptables" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Permissions On /etc/iptables Directory</h3>
+<div>directory_permissions_etc_iptables</div>
+<h4>Description</h4>
+<p> To properly set the permissions of <code>/etc/iptables</code>, run the command: <pre>$ sudo chmod 0700 /etc/iptables</pre></p>
+<h4>Rationale</h4>
+<p>Setting correct permissions on the /etc/iptables directory is important
+because this directory hosts iptables configuration. Protection of this
+directory is critical for system security. Restricting the permissions
+ensures exclusive control of the iptables configuration.</p>
+</div>
+
+<div id="package_iptables-nft_installed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Install iptables-nft Package</h3>
+<div>package_iptables-nft_installed</div>
+<h4>Description</h4>
+<p>The <code>iptables-nft</code> package can be installed with the following command:
+<pre>
+$ sudo dnf install iptables-nft</pre></p>
+<h4>Rationale</h4>
+<p><tt>iptables-nft</tt> controls the Linux kernel network packet filtering
+code. <tt>iptables-nft</tt> allows system operators to set up firewalls and IP
+masquerading, etc.</p>
+</div>
+
+<div id="package_iptables-nft_installed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Install iptables-nft Package</h3>
+<div>package_iptables-nft_installed</div>
+<h4>Description</h4>
+<p>The <code>iptables-nft</code> package can be installed with the following command:
+<pre>
+$ sudo dnf install iptables-nft</pre></p>
+<h4>Rationale</h4>
+<p><tt>iptables-nft</tt> controls the Linux kernel network packet filtering
+code. <tt>iptables-nft</tt> allows system operators to set up firewalls and IP
+masquerading, etc.</p>
+</div>
+
+<div id="package_iptables-persistent_installed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Install iptables-persistent Package</h3>
+<div>package_iptables-persistent_installed</div>
+<h4>Description</h4>
+<p>The <code>iptables-persistent</code> package can be installed with the following command:
+<pre>
+$ sudo dnf install iptables-persistent</pre></p>
+<h4>Rationale</h4>
+<p>A method of configuring and maintaining firewall rules is
+necessary to configure a Host Based Firewall.</p>
+</div>
+
+<div id="package_iptables-persistent_removed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Remove iptables-persistent Package</h3>
+<div>package_iptables-persistent_removed</div>
+<h4>Description</h4>
+<p>The <code>iptables-persistent</code> package can be removed with the following command:
+<pre>
+$ sudo dnf remove iptables-persistent</pre></p>
+<h4>Rationale</h4>
+<p>Running both <tt>ufw</tt> and the services included in the
+<tt>iptables-persistent</tt> package may lead to conflict.</p>
+</div>
+
+<div id="package_iptables-services_installed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Install iptables-services Package</h3>
+<div>package_iptables-services_installed</div>
+<h4>Description</h4>
+<p>The <code>iptables-services</code> package can be installed with the following command:
+<pre>
+$ sudo dnf install iptables-services</pre></p>
+<h4>Rationale</h4>
+<p><tt>iptables-services</tt> provides the services iptables and ip6tables that have been split
+out of the base package since they are not active by default anymore.
+These services load the iptables rules during the system startup and also allow one to reload
+the iptables rules during runtime.</p>
+</div>
+
+<div id="package_iptables-services_removed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Remove iptables-services Package</h3>
+<div>package_iptables-services_removed</div>
+<h4>Description</h4>
+<p>The <code>iptables-services</code> package can be removed with the following command:
+<pre>
+$ sudo dnf remove iptables-services</pre></p>
+<h4>Rationale</h4>
+<p><tt>iptables-services</tt> provides the services iptables and ip6tables that have been split
+out of the base package since they are not active by default anymore. These services load the
+iptables rules during the system startup and also allow one to reload the iptables rules
+during runtime. Those iptables services conflicts with firewalld so they should be removed if
+firewalld is used.</p>
+</div>
+
+<div id="package_iptables_installed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Install iptables Package</h3>
+<div>package_iptables_installed</div>
+<h4>Description</h4>
+<p>The <code>iptables</code> package can be installed with the following command:
+<pre>
+$ sudo dnf install iptables</pre></p>
+<h4>Rationale</h4>
+<p><tt>iptables</tt> controls the Linux kernel network packet filtering
+code. <tt>iptables</tt> allows system operators to set up firewalls and IP
+masquerading, etc.</p>
+</div>
+
+<div id="service_ip6tables_enabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify ip6tables Enabled if Using IPv6</h3>
+<div>service_ip6tables_enabled</div>
+<h4>Description</h4>
+<p>
+The <code>ip6tables</code> service can be enabled with the following command:
+<pre>$ sudo systemctl enable ip6tables.service</pre></p>
+<h4>Rationale</h4>
+<p>The <tt>ip6tables</tt> service provides the system's host-based firewalling
+capability for IPv6 and ICMPv6.</p>
+</div>
+
+<div id="service_iptables_enabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify iptables Enabled</h3>
+<div>service_iptables_enabled</div>
+<h4>Description</h4>
+<p>
+The <code>iptables</code> service can be enabled with the following command:
+<pre>$ sudo systemctl enable iptables.service</pre></p>
+<h4>Rationale</h4>
+<p>The <tt>iptables</tt> service provides the system's host-based firewalling
+capability for IPv4 and ICMP.</p>
+</div>
+
+<div id="ensure_iptables_are_flushed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure iptables are flushed</h3>
+<div>ensure_iptables_are_flushed</div>
+<h4>Description</h4>
+<p>nftables is a replacement for iptables, ip6tables, ebtables and arptables</p>
+<h4>Rationale</h4>
+<p>It is possible to mix iptables and nftables. However, this increases complexity
+and also the chance to introduce errors. For simplicity flush out all iptables
+rules, and ensure it is not loaded.</p>
+</div>
+
+
+
+
+</body>
+</html>

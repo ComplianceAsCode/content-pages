@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'ufw'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'ufw'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>ufw</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<ul>
+
+<li>network-ufw</li>
+
+</ul>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#check_ufw_active">check_ufw_active</a></li>
+
+<li><a href="#package_ufw_installed">package_ufw_installed</a></li>
+
+<li><a href="#package_ufw_removed">package_ufw_removed</a></li>
+
+<li><a href="#service_ufw_enabled">service_ufw_enabled</a></li>
+
+<li><a href="#set_ufw_default_rule">set_ufw_default_rule</a></li>
+
+<li><a href="#set_ufw_loopback_traffic">set_ufw_loopback_traffic</a></li>
+
+<li><a href="#ufw_only_required_services">ufw_only_required_services</a></li>
+
+<li><a href="#ufw_rate_limit">ufw_rate_limit</a></li>
+
+<li><a href="#ufw_rules_for_open_ports">ufw_rules_for_open_ports</a></li>
+
+<li><a href="#package_iptables-persistent_removed">package_iptables-persistent_removed</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="check_ufw_active" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify ufw Active</h3>
+<div>check_ufw_active</div>
+<h4>Description</h4>
+<p>Verify the ufw is enabled on the system with the following command:
+<pre># sudo ufw status</pre>
+If the above command returns the status as "inactive" or any type of error, this is a finding.</p>
+<h4>Rationale</h4>
+<p>Remote access services, such as those providing remote access to network devices and information systems, 
+which lack automated control capabilities, increase risk and make remote user access management difficult at best.  
+Remote access is access to nonpublic information systems by an authorized user (or an information system) communicating 
+through an external, nonorganization-controlled network. Remote access methods include, for example, dial-up, broadband, and wireless.  
+Ubuntu 22.04 LTS functionality (e.g., RDP) must be capable of taking enforcement action if the audit reveals unauthorized activity. 
+Automated control of remote access sessions allows organizations to ensure ongoing compliance with remote access policies by 
+enforcing connection rules of remote access applications on a variety of information system components.</p>
+</div>
+
+<div id="package_ufw_installed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Install ufw Package</h3>
+<div>package_ufw_installed</div>
+<h4>Description</h4>
+<p>The <code>ufw</code> package can be installed with the following command:
+<pre>
+$ sudo dnf install ufw</pre></p>
+<h4>Rationale</h4>
+<p><tt>ufw</tt> controls the Linux kernel network packet filtering
+code. <tt>ufw</tt> allows system operators to set up firewalls and IP
+masquerading, etc.</p>
+</div>
+
+<div id="package_ufw_removed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Remove ufw Package</h3>
+<div>package_ufw_removed</div>
+<h4>Description</h4>
+<p>The <code>ufw</code> package can be removed with the following command:
+<pre>
+$ sudo dnf remove ufw</pre></p>
+<h4>Rationale</h4>
+<p>Running <tt>iptables.persistent</tt> with <tt>ufw</tt> enabled may lead
+to conflict and unexpected results.</p>
+</div>
+
+<div id="service_ufw_enabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify ufw Enabled</h3>
+<div>service_ufw_enabled</div>
+<h4>Description</h4>
+<p>
+The <code>ufw</code> service can be enabled with the following command:
+<pre>$ sudo systemctl enable ufw.service</pre></p>
+<h4>Rationale</h4>
+<p>The ufw service must be enabled and running in order for ufw to protect the system</p>
+</div>
+
+<div id="set_ufw_default_rule" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure ufw Default Deny Firewall Policy</h3>
+<div>set_ufw_default_rule</div>
+<h4>Description</h4>
+<p>A default deny policy on connections ensures that any unconfigured
+network usage will be rejected.
+
+Note: Any port or protocol without a explicit allow before the default
+deny will be blocked.</p>
+<h4>Rationale</h4>
+<p>With a default accept policy the firewall will accept any packet that
+is not configured to be denied. It is easier to allow acceptable
+usage than to block unacceptable usage.</p>
+</div>
+
+<div id="set_ufw_loopback_traffic" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Set UFW Loopback Traffic</h3>
+<div>set_ufw_loopback_traffic</div>
+<h4>Description</h4>
+<p>Configure the loopback interface to accept traffic.
+Configure all other interfaces to deny traffic to the loopback
+network.</p>
+<h4>Rationale</h4>
+<p>Loopback traffic is generated between processes on machine and is
+typically critical to operation of the system. The loopback interface
+is the only place that loopback network traffic should be seen, all
+other interfaces should ignore traffic on this network as an
+anti-spoofing measure.</p>
+</div>
+
+<div id="ufw_only_required_services" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Only Allow Authorized Network Services in ufw</h3>
+<div>ufw_only_required_services</div>
+<h4>Description</h4>
+<p>Check the firewall configuration for any unnecessary or prohibited
+functions, ports, protocols, and/or services by running the following
+command:
+<pre>$ sudo ufw show raw
+Chain OUTPUT (policy ACCEPT)
+target prot opt sources destination
+Chain INPUT (policy ACCEPT 1 packets, 40 bytes)
+pkts bytes target prot opt in out source destination
+Chain FORWARD (policy ACCEPT 0 packets, 0 bytes)
+pkts bytes target prot opt in out source destination
+Chain OUTPUT (policy ACCEPT 0 packets, 0 bytes)
+pkts bytes target prot opt in out source destination</pre>
+
+Ask the System Administrator for the site or program PPSM CLSA. Verify
+the services allowed by the firewall match the PPSM CLSA.</p>
+<h4>Rationale</h4>
+<p>To prevent unauthorized connection of devices, unauthorized transfer of
+information, or unauthorized tunneling (i.e., embedding of data types
+within data types), organizations must disable or restrict unused or
+unnecessary physical and logical ports/protocols on information systems.
+
+Operating systems are capable of providing a wide variety of functions
+and services. Some of the functions and services provided by default
+may not be necessary to support essential organizational operations.
+Additionally, it is sometimes convenient to provide multiple services
+from a single component (e.g., VPN and IPS); however, doing so
+increases risk over limiting the services provided by any one component.
+
+To support the requirements and principles of least functionality, the
+operating system must support the organizational requirements, providing
+only essential capabilities and limiting the use of ports, protocols,
+and/or services to only those required, authorized, and approved to
+conduct official business or to address authorized quality of life
+issues.</p>
+</div>
+
+<div id="ufw_rate_limit" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>ufw Must rate-limit network interfaces</h3>
+<div>ufw_rate_limit</div>
+<h4>Description</h4>
+<p>The operating system must configure the uncomplicated firewall to
+rate-limit impacted network interfaces.
+
+Check all the services listening to the ports with the following
+command:
+<pre>$ sudo ss -l46ut
+Netid State Recv-Q Send-Q Local Address:Port Peer Address:Port Process
+tcp LISTEN 0 128 [::]:ssh [::]:*</pre>
+
+For each entry, verify that the ufw is configured to rate limit the
+service ports with the following command:
+<pre>$ sudo ufw status</pre>
+
+If any port with a state of "LISTEN" is not marked with the "LIMIT"
+action, run the following command, replacing "service" with the
+service that needs to be rate limited:
+<pre>$ sudo ufw limit "service"</pre>
+
+Rate-limiting can also be done on an interface. An example of adding
+a rate-limit on the eth0 interface follows:
+<pre>$ sudo ufw limit in on eth0</pre></p>
+<h4>Rationale</h4>
+<p>This requirement addresses the configuration of the operating system to
+mitigate the impact of DoS attacks that have occurred or are ongoing on
+system availability. For each system, known and potential DoS attacks
+must be identified and solutions for each type implemented. A variety
+of technologies exist to limit or, in some cases, eliminate the effects
+of DoS attacks (e.g., limiting processes or establishing memory
+partitions). Employing increased capacity and bandwidth, combined with
+service redundancy, may reduce the susceptibility to some DoS attacks.</p>
+</div>
+
+<div id="ufw_rules_for_open_ports" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure ufw Firewall Rules Exist for All Open Ports</h3>
+<div>ufw_rules_for_open_ports</div>
+<h4>Description</h4>
+<p>Any ports that have been opened on non-loopback addresses
+need firewall rules to govern traffic.</p>
+<h4>Rationale</h4>
+<p>Without a firewall rule configured for open ports default
+firewall policy will drop all packets to these ports.</p>
+</div>
+
+<div id="package_iptables-persistent_removed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Remove iptables-persistent Package</h3>
+<div>package_iptables-persistent_removed</div>
+<h4>Description</h4>
+<p>The <code>iptables-persistent</code> package can be removed with the following command:
+<pre>
+$ sudo dnf remove iptables-persistent</pre></p>
+<h4>Rationale</h4>
+<p>Running both <tt>ufw</tt> and the services included in the
+<tt>iptables-persistent</tt> package may lead to conflict.</p>
+</div>
+
+
+
+
+</body>
+</html>
