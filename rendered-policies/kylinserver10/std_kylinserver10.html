@@ -1,0 +1,1755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Definition of Standard Benchmark for Kylin Server 10 for kylinserver10</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Definition of Standard Benchmark for Kylin Server 10 for kylinserver10</h1>
+
+
+
+
+<div class="all_controls">
+<div class="one_control">
+  <h2>1.1: Ensure a print server is not installed (Automated)</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/printing/package_cups_removed/rule.yml"> package_cups_removed</a>: Uninstall CUPS Package
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>1.1: system must not have the sendmail package installed.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/mail/package_sendmail_removed/rule.yml"> package_sendmail_removed</a>: Uninstall Sendmail Package
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>1.3: Ensure NFS Service Disabled</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/nfs_and_rpc/nfs_configuring_clients/disabling_nfsd/service_nfs_disabled/rule.yml"> service_nfs_disabled</a>: Disable Network File System (nfs)
+    </li>
+    
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>1.4: Ensure nfs-utils is not installed or the nfs-server service is masked (Automated)</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/nfs_and_rpc/package_nfs-utils_removed/rule.yml"> package_nfs-utils_removed</a>: Uninstall nfs-utils Package
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/nfs_and_rpc/nfs_configuring_clients/disabling_nfsd/service_nfs_disabled/rule.yml"> service_nfs_disabled</a>: Disable Network File System (nfs)
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>1.5: ident{auth.socket}</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>1.6: ntalk</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>1.7: Ensure DHCP Service Disabled</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/dhcp/disabling_dhcp_server/service_dhcpd_disabled/rule.yml"> service_dhcpd_disabled</a>: Disable DHCP Service
+    </li>
+    
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>1.8: Ensure NIS Client Not Installed</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/obsolete/nis/package_ypbind_removed/rule.yml"> package_ypbind_removed</a>: Remove NIS Client
+    </li>
+    
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>1.9: Ensure TFTP Server Not Installed</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/obsolete/tftp/package_tftp-server_removed/rule.yml"> package_tftp-server_removed</a>: Uninstall tftp-server Package
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/obsolete/tftp/package_tftp_removed/rule.yml"> package_tftp_removed</a>: Remove tftp Daemon
+    </li>
+    
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>1.1: Ensure rsync-daemon is not installed or the rsyncd service is masked (Automated)</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/obsolete/package_rsync_removed/rule.yml"> package_rsync_removed</a>: Uninstall rsync Package
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>1.11: Prohibit anonymous VSFTP user login</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>1.12: Prohibit root login to VSFTP</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>1.13: ensure-local-login-warning-banner-is-configured-properly</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-banners/banner_etc_issue/rule.yml"> banner_etc_issue</a>: Modify the System Login Banner
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-banners/login_banner_text.var">login_banner_text</a> = cis_banners</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>1.14: ensure-message-of-the-day-is-configured-properly</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-banners/banner_etc_motd/rule.yml"> banner_etc_motd</a>: Modify the System Message of the Day Banner
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-banners/login_banner_text.var">login_banner_text</a> = cis_banners</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>1.15: Ensure sshd PermitRootLogin is disabled (Automated)</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_disable_root_login/rule.yml"> sshd_disable_root_login</a>: Disable SSH Root Login
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>1.16: Ensure SSHd Protocol Version Is 2</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_allow_only_protocol2/rule.yml"> sshd_allow_only_protocol2</a>: Allow Only SSH Protocol 2
+    </li>
+    
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>1.17: Ensure SSHd Log Level Correct</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_set_loglevel_verbose/rule.yml"> sshd_set_loglevel_verbose</a>: Set SSH Daemon LogLevel to VERBOSE
+    </li>
+    
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>1.18: Ensure SSHd MaxAuthTries Correct</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/sshd_max_auth_tries_value.var">sshd_max_auth_tries_value</a> = 3</li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_set_max_auth_tries/rule.yml"> sshd_set_max_auth_tries</a>: Set SSH authentication attempt limit
+    </li>
+    
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>1.19: ensure-ssh-permitemptypasswords-is-disabled</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_disable_empty_passwords/rule.yml"> sshd_disable_empty_passwords</a>: Disable SSH Access via Empty Passwords
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>1.2: Ensure SSHd PermitUserEnvironment Forbidden</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_do_not_permit_user_env/rule.yml"> sshd_do_not_permit_user_env</a>: Do Not Allow SSH Environment Options
+    </li>
+    
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>1.21: Ensure SSHd Ciphers Algorithm Correct</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_use_strong_ciphers/rule.yml"> sshd_use_strong_ciphers</a>: Use Only Strong Ciphers
+    </li>
+    
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>1.22: check is installed chkrootkit</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>1.23: Check for the existence of rootkit programs</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>1.24: Restricting the directories that FTP users can access after logging in</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>1.25: operating system must use SSH to protect the confidentiality and integrity of transmitted information.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/package_openssh-server_installed/rule.yml"> package_openssh-server_installed</a>: Install the OpenSSH Server Package
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/service_sshd_enabled/rule.yml"> service_sshd_enabled</a>: Enable the OpenSSH Service
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>1.26: Ensure telnet server services are not in use (Automated)</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/obsolete/telnet/package_telnet-server_removed/rule.yml"> package_telnet-server_removed</a>: Uninstall telnet-server Package
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>1.27: Prohibit remote telnet login for root user</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>1.28: Set warning banner before telnet login</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>1.29: Set warning banner after telnet login</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>1.3: Disable unnecessary xinetd services</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>1.31: Ensure Unnecessary Service And Port Disabled (Manual)</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>1.32: Ensure SSH access is limited (Automated)</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_limit_user_access/rule.yml"> sshd_limit_user_access</a>: Limit Users' SSH Access
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>1.33: SSH daemon must display the date and time of the last successful account logon upon an SSH logon.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_print_last_log/rule.yml"> sshd_print_last_log</a>: Enable SSH Print Last Log
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>2.1: Ensure ICMP Redirect Package Not Received</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-kernel/network_host_and_router_parameters/sysctl_net_ipv4_conf_all_accept_redirects/rule.yml"> sysctl_net_ipv4_conf_all_accept_redirects</a>: Disable Accepting ICMP Redirects for All IPv4 Interfaces
+    </li>
+    
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-kernel/network_host_and_router_parameters/sysctl_net_ipv4_conf_all_accept_redirects_value.var">sysctl_net_ipv4_conf_all_accept_redirects_value</a> = disabled</li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-kernel/network_host_and_router_parameters/sysctl_net_ipv4_conf_all_secure_redirects/rule.yml"> sysctl_net_ipv4_conf_all_secure_redirects</a>: Disable Kernel Parameter for Accepting Secure ICMP Redirects on all IPv4 Interfaces
+    </li>
+    
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-kernel/network_host_and_router_parameters/sysctl_net_ipv4_conf_all_secure_redirects_value.var">sysctl_net_ipv4_conf_all_secure_redirects_value</a> = disabled</li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-kernel/network_host_and_router_parameters/sysctl_net_ipv4_conf_default_secure_redirects/rule.yml"> sysctl_net_ipv4_conf_default_secure_redirects</a>: Configure Kernel Parameter for Accepting Secure Redirects By Default
+    </li>
+    
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-kernel/network_host_and_router_parameters/sysctl_net_ipv4_conf_default_secure_redirects_value.var">sysctl_net_ipv4_conf_default_secure_redirects_value</a> = disabled</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>2.2: Ensure packet redirect sending is disabled (Automated)</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-kernel/network_host_parameters/sysctl_net_ipv4_conf_all_send_redirects/rule.yml"> sysctl_net_ipv4_conf_all_send_redirects</a>: Disable Kernel Parameter for Sending ICMP Redirects on all IPv4 Interfaces
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-kernel/network_host_parameters/sysctl_net_ipv4_conf_default_send_redirects/rule.yml"> sysctl_net_ipv4_conf_default_send_redirects</a>: Disable Kernel Parameter for Sending ICMP Redirects on all IPv4 Interfaces by Default
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>2.3: Ensure ICMP Broadcast Package Not Responsed</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-kernel/network_host_and_router_parameters/sysctl_net_ipv4_icmp_echo_ignore_broadcasts/rule.yml"> sysctl_net_ipv4_icmp_echo_ignore_broadcasts</a>: Enable Kernel Parameter to Ignore ICMP Broadcast Echo Requests on IPv4 Interfaces
+    </li>
+    
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>2.4: Ensure Source Route Disabled</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-kernel/network_host_and_router_parameters/sysctl_net_ipv4_conf_all_accept_source_route/rule.yml"> sysctl_net_ipv4_conf_all_accept_source_route</a>: Disable Kernel Parameter for Accepting Source-Routed Packets on all IPv4 Interfaces
+    </li>
+    
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-kernel/network_host_and_router_parameters/sysctl_net_ipv4_conf_all_accept_source_route_value.var">sysctl_net_ipv4_conf_all_accept_source_route_value</a> = disabled</li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-kernel/network_host_and_router_parameters/sysctl_net_ipv4_conf_default_accept_source_route/rule.yml"> sysctl_net_ipv4_conf_default_accept_source_route</a>: Disable Kernel Parameter for Accepting Source-Routed Packets on IPv4 Interfaces by Default
+    </li>
+    
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-kernel/network_host_and_router_parameters/sysctl_net_ipv4_conf_default_accept_source_route_value.var">sysctl_net_ipv4_conf_default_accept_source_route_value</a> = disabled</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>2.5: Ensure IP Forwarding Disabled</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-kernel/network_host_parameters/sysctl_net_ipv4_ip_forward/rule.yml"> sysctl_net_ipv4_ip_forward</a>: Disable Kernel Parameter for IP Forwarding on IPv4 Interfaces
+    </li>
+    
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>3.1: Modify SNMP default group characters</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>3.2: Disable multi IP binding</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>3.3: Ensure Reverse Proxy Filter Enabled</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-kernel/network_host_and_router_parameters/sysctl_net_ipv4_conf_all_rp_filter/rule.yml"> sysctl_net_ipv4_conf_all_rp_filter</a>: Enable Kernel Parameter to Use Reverse Path Filtering on all IPv4 Interfaces
+    </li>
+    
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-kernel/network_host_and_router_parameters/sysctl_net_ipv4_conf_all_rp_filter_value.var">sysctl_net_ipv4_conf_all_rp_filter_value</a> = enabled</li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-kernel/network_host_and_router_parameters/sysctl_net_ipv4_conf_default_rp_filter/rule.yml"> sysctl_net_ipv4_conf_default_rp_filter</a>: Enable Kernel Parameter to Use Reverse Path Filtering on all IPv4 Interfaces by Default
+    </li>
+    
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-kernel/network_host_and_router_parameters/sysctl_net_ipv4_conf_default_rp_filter_value.var">sysctl_net_ipv4_conf_default_rp_filter_value</a> = enabled</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>4.1: Ensure sudo log file exists (Automated)</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/sudo/sudo_custom_logfile/rule.yml"> sudo_custom_logfile</a>: Ensure Sudo Logfile Exists - sudo logfile
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>4.2: Ensure sudo commands use pty (Automated)</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/sudo/sudo_add_use_pty/rule.yml"> sudo_add_use_pty</a>: Ensure Only Users Logged In To Real tty Can Execute Sudo - sudo use_pty
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>4.3: must use the invoking user's password for privilege escalation when using "sudo".</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/sudo/sudoers_validate_passwd/rule.yml"> sudoers_validate_passwd</a>: Ensure invoking users password for privilege escalation when using sudo
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>4.4: Ensure Important Services Logged</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l1_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/logging/ensure_rsyslog_log_file_configuration/rsyslog_logging_configured/rule.yml"> rsyslog_logging_configured</a>: Ensure logging is configured
+    </li>
+    
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>4.5: Ensure HISTSIZE and HISTFILESIZE Limited</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l1_server</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>5.1: check is installed swatch</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l1_server</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>5.2: Ensure Auditd Enabled</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/service_auditd_enabled/rule.yml"> service_auditd_enabled</a>: Enable auditd Service
+    </li>
+    
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>5.3: Set system audit log rules</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l1_server</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>5.4: Ensure Audit Disk Space Set Correct</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l1_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/configure_auditd_data_retention/auditd_data_retention_space_left/rule.yml"> auditd_data_retention_space_left</a>: Configure auditd space_left on Low Disk Space
+    </li>
+    
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>5.5: Ensure cron is restricted to authorized users (Automated)</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/cron_and_at/restrict_at_cron_users/file_cron_allow_exists/rule.yml"> file_cron_allow_exists</a>: Ensure that /etc/cron.allow exists
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>5.6: Ensure Rsyslog Enabled</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/logging/service_rsyslog_enabled/rule.yml"> service_rsyslog_enabled</a>: Enable rsyslog Service
+    </li>
+    
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>5.7: Record user operations on the device</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/base/package_psacct_installed/rule.yml"> package_psacct_installed</a>: Install the psacct package
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/base/service_psacct_enabled/rule.yml"> service_psacct_enabled</a>: Enable Process Accounting (psacct)
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>5.8: Record user login logs</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l1_server</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>5.9: Configure security event logs</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l1_server</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>5.1: Ensure Cron Logged</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/logging/ensure_rsyslog_log_file_configuration/rsyslog_cron_logging/rule.yml"> rsyslog_cron_logging</a>: Ensure cron Is Logging To Rsyslog
+    </li>
+    
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>5.11: Ensure AIDE Enabled</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l1_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/software-integrity/aide/package_aide_installed/rule.yml"> package_aide_installed</a>: Install AIDE
+    </li>
+    
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>5.12: Ensure filesystem integrity is regularly checked (Automated)</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/software-integrity/aide/aide_periodic_cron_checking/rule.yml"> aide_periodic_cron_checking</a>: Configure Periodic Execution of AIDE
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>6.1: Ensure TIMOUT Set Correct</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-session/accounts_tmout/rule.yml"> accounts_tmout</a>: Set Interactive Session Timeout
+    </li>
+    
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-session/var_accounts_tmout.var">var_accounts_tmout</a> = 5_min</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>6.2: Ensure Grub Password Set</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/bootloader-grub2/non-uefi/grub2_password/rule.yml"> grub2_password</a>: Set Boot Loader Password in grub2
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/bootloader-grub2/uefi/grub2_uefi_password/rule.yml"> grub2_uefi_password</a>: Set the UEFI Boot Loader Password
+    </li>
+    
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>6.3: Ensure Use Sudo To Run</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/sudo/sudo_restrict_privilege_elevation_to_authorized/rule.yml"> sudo_restrict_privilege_elevation_to_authorized</a>: The operating system must restrict privilege elevation to authorized personnel
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/sudo/sudoers_no_root_target/rule.yml"> sudoers_no_root_target</a>: Don't target root user in the sudoers file
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>6.4: Ensure SU Usage Limited</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/root_logins/use_pam_wheel_for_su/rule.yml"> use_pam_wheel_for_su</a>: Enforce usage of pam_wheel for su authentication
+    </li>
+    
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>6.5: Ensure time synchronization is in use (Automated)</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ntp/package_chrony_installed/rule.yml"> package_chrony_installed</a>: The Chrony package is installed
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ntp/package_ntp_installed/rule.yml"> package_ntp_installed</a>: Install the ntp service
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>6.6: Ensure chrony is running as user _chrony (Automated)</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ntp/chronyd_configure_pool_and_server/rule.yml"> chronyd_configure_pool_and_server</a>: Chrony Configure Pool and Server
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ntp/service_chronyd_or_ntpd_enabled/rule.yml"> service_chronyd_or_ntpd_enabled</a>: Enable the NTP Daemon
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>6.7: must disable core dumps for all users.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/restrictions/coredumps/disable_users_coredumps/rule.yml"> disable_users_coredumps</a>: Disable Core Dumps for All Users
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>6.8: operating system must disable the x86 Ctrl-Alt-Delete key sequence if a graphical user interface is installed.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/gnome/gnome_system_settings/dconf_gnome_disable_ctrlaltdel_reboot/rule.yml"> dconf_gnome_disable_ctrlaltdel_reboot</a>: Disable Ctrl-Alt-Del Reboot Key Sequence in GNOME3
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>6.9: Enable idle screen lock time</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/gnome/gnome_screen_locking/dconf_gnome_screensaver_idle_delay/rule.yml"> dconf_gnome_screensaver_idle_delay</a>: Set GNOME3 Screensaver Inactivity Timeout
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>6.1: via the session lock, information previously visible on the display with a publicly viewable image.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/gnome/gnome_screen_locking/dconf_gnome_screensaver_mode_blank/rule.yml"> dconf_gnome_screensaver_mode_blank</a>: Implement Blank Screensaver
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>6.11: Prohibit automatic system login</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l1_server</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>6.12: Prohibit SSH password free login</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_disable_pubkey_auth/rule.yml"> sshd_disable_pubkey_auth</a>: Disable PubkeyAuthentication Authentication
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>6.13: Set the umask value of the daemon process</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l1_server</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>6.14: limit the number of concurrent sessions to ten for all accounts and/or account types.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-session/accounts_max_concurrent_login_sessions/rule.yml"> accounts_max_concurrent_login_sessions</a>: Limit the Number of Concurrent Login Sessions Allowed Per User
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-session/var_accounts_max_concurrent_login_sessions.var">var_accounts_max_concurrent_login_sessions</a> = 10</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>7.1: Ensure No Empty Symlink</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>7.2: Ensure SNMP Not Installed</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/snmp/disabling_snmp_service/package_net-snmp_removed/rule.yml"> package_net-snmp_removed</a>: Uninstall net-snmp Package
+    </li>
+    
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>7.3: Check the debuggable components</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/system-tools/package_binutils_installed/rule.yml"> package_binutils_installed</a>: Install binutils Package
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>7.4: /etc/aliases Disable unnecessary aliases</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/mail/postfix_client/postfix_client_configure_mail_alias/rule.yml"> postfix_client_configure_mail_alias</a>: Configure System to Forward All Mail For The Root Account
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>7.5: /etc/mail/aliases Disable unnecessary aliases</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>7.6: Ensure No .netrc Files In Home Folder</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l1_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/password_storage/no_netrc_files/rule.yml"> no_netrc_files</a>: Verify No netrc Files Exist
+    </li>
+    
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>7.7: Ensure No hosts.equiv Files In Home Folder</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>7.8: Ensure No .rhosts Files In Home Folder</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>7.9: Ensure No equiv Files In Home Folder</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>7.1: Ensure No rhosts Files In Home Folder</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>8.1: Ensure All Files Have Owner And Group</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/file_permissions_ungroupowned/rule.yml"> file_permissions_ungroupowned</a>: Ensure All Files Are Owned by a Group
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/no_files_unowned_by_user/rule.yml"> no_files_unowned_by_user</a>: Ensure All Files Are Owned by a User
+    </li>
+    
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>8.2: Ensure UMASK Correct</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-session/user_umask/accounts_umask_etc_bashrc/rule.yml"> accounts_umask_etc_bashrc</a>: Ensure the Default Bash Umask is Set Correctly
+    </li>
+    
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-session/user_umask/var_accounts_user_umask.var">var_accounts_user_umask</a> = 027</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>8.3: Ensure File Permission Minimize</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>8.4: Ensure permissions on /etc/passwd are configured (Automated)</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_important_account_files/file_groupowner_etc_passwd/rule.yml"> file_groupowner_etc_passwd</a>: Verify Group Who Owns passwd File
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_important_account_files/file_owner_etc_passwd/rule.yml"> file_owner_etc_passwd</a>: Verify User Who Owns passwd File
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_important_account_files/file_permissions_etc_passwd/rule.yml"> file_permissions_etc_passwd</a>: Verify Permissions on passwd File
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>8.5: Ensure permissions on /etc/group are configured (Automated)</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_important_account_files/file_groupowner_etc_group/rule.yml"> file_groupowner_etc_group</a>: Verify Group Who Owns group File
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_important_account_files/file_owner_etc_group/rule.yml"> file_owner_etc_group</a>: Verify User Who Owns group File
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_important_account_files/file_permissions_etc_group/rule.yml"> file_permissions_etc_group</a>: Verify Permissions on group File
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>8.6: Ensure permissions on /etc/shadow are configured (Automated)</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_important_account_files/file_groupowner_etc_shadow/rule.yml"> file_groupowner_etc_shadow</a>: Verify Group Who Owns shadow File
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_important_account_files/file_owner_etc_shadow/rule.yml"> file_owner_etc_shadow</a>: Verify User Who Owns shadow File
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_important_account_files/file_permissions_etc_shadow/rule.yml"> file_permissions_etc_shadow</a>: Verify Permissions on shadow File
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>8.7: Ensure all logfiles have appropriate permissions(Automated)</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/logging/ensure_rsyslog_log_file_configuration/rsyslog_files_permissions/rule.yml"> rsyslog_files_permissions</a>: Ensure System Log Files Have Correct Permissions
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>8.8: Restrict the permissions of FTP users to upload files</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>8.9: Prohibit global read-write of log files</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>9.1: Delete accounts unrelated to device operation, maintenance, and other work</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>9.2: Ensure pam_unix does not include nullok (Automated)</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/password_storage/no_empty_passwords/rule.yml"> no_empty_passwords</a>: Prevent Login to Accounts With Empty Password
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>9.3: Ensure /etc/shadow password fields are not empty (Automated)</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/password_storage/no_empty_passwords_etc_shadow/rule.yml"> no_empty_passwords_etc_shadow</a>: Ensure There Are No Accounts With Blank or Null Passwords
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>9.4: Prohibit interactive login of system accounts</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>9.5: Ensure UID Unique</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/account_unique_id/rule.yml"> account_unique_id</a>: Ensure All Accounts on the System Have Unique User IDs
+    </li>
+    
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>10.1: Check the usage rate of system disk partitions</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>11.1: Ensure Set Correct Password Complexity</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_dcredit/rule.yml"> accounts_password_pam_dcredit</a>: Ensure PAM Enforces Password Requirements - Minimum Digit Characters
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_enforce_root/rule.yml"> accounts_password_pam_enforce_root</a>: Ensure PAM Enforces Password Requirements - Enforce for root User
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_lcredit/rule.yml"> accounts_password_pam_lcredit</a>: Ensure PAM Enforces Password Requirements - Minimum Lowercase Characters
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_minclass/rule.yml"> accounts_password_pam_minclass</a>: Ensure PAM Enforces Password Requirements - Minimum Different Categories
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_ocredit/rule.yml"> accounts_password_pam_ocredit</a>: Ensure PAM Enforces Password Requirements - Minimum Special Characters
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_retry/rule.yml"> accounts_password_pam_retry</a>: Ensure PAM Enforces Password Requirements - Authentication Retry Prompts Permitted Per-Session
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_ucredit/rule.yml"> accounts_password_pam_ucredit</a>: Ensure PAM Enforces Password Requirements - Minimum Uppercase Characters
+    </li>
+    
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/var_password_pam_dcredit.var">var_password_pam_dcredit</a> = 0</li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/var_password_pam_lcredit.var">var_password_pam_lcredit</a> = 0</li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/var_password_pam_minclass.var">var_password_pam_minclass</a> = 3</li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/var_password_pam_ocredit.var">var_password_pam_ocredit</a> = 0</li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/var_password_pam_retry.var">var_password_pam_retry</a> = 3</li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/var_password_pam_ucredit.var">var_password_pam_ucredit</a> = 0</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>11.2: Ensure Password Expiration Warning Days</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/password_expiration/accounts_password_warn_age_login_defs/rule.yml"> accounts_password_warn_age_login_defs</a>: Set Password Warning Age
+    </li>
+    
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/password_expiration/var_accounts_password_warn_age_login_defs.var">var_accounts_password_warn_age_login_defs</a> = 7</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>11.3: Enable password complexity policy</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>11.4: Ensure Password Expire Correct</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/password_expiration/accounts_maximum_age_login_defs/rule.yml"> accounts_maximum_age_login_defs</a>: Set Password Maximum Age
+    </li>
+    
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/password_expiration/var_accounts_maximum_age_login_defs.var">var_accounts_maximum_age_login_defs</a> = 90</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>11.5: Ensure Set Correct Password Complexity</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_minlen/rule.yml"> accounts_password_pam_minlen</a>: Ensure PAM Enforces Password Requirements - Minimum Length
+    </li>
+    
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/var_password_pam_minlen.var">var_password_pam_minlen</a> = 8</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>11.6: Minimum Days Between Password Change</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/password_expiration/accounts_minimum_age_login_defs/rule.yml"> accounts_minimum_age_login_defs</a>: Set Password Minimum Age
+    </li>
+    
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/password_expiration/var_accounts_minimum_age_login_defs.var">var_accounts_minimum_age_login_defs</a> = 0</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>11.7: Ensure No History Password Used</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_password_pam_unix_remember/rule.yml"> accounts_password_pam_unix_remember</a>: Limit Password Reuse
+    </li>
+    
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/var_password_pam_unix_remember.var">var_password_pam_unix_remember</a> = 5</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>11.8: Ensure Using Strong Hash Algorithm To Encipher Password</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/set_password_hashing_algorithm/set_password_hashing_algorithm_passwordauth/rule.yml"> set_password_hashing_algorithm_passwordauth</a>: Set PAM Password Hashing Algorithm - password-auth
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/set_password_hashing_algorithm/set_password_hashing_algorithm_systemauth/rule.yml"> set_password_hashing_algorithm_systemauth</a>: Set PAM Password Hashing Algorithm - system-auth
+    </li>
+    
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>12.1: Ensure Account Locked After Accessing Fail</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_faillock_deny/rule.yml"> accounts_passwords_pam_faillock_deny</a>: Lock Accounts After Failed Password Attempts
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_faillock_unlock_time/rule.yml"> accounts_passwords_pam_faillock_unlock_time</a>: Set Lockout Time for Failed Password Attempts
+    </li>
+    
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/var_accounts_passwords_pam_faillock_deny.var">var_accounts_passwords_pam_faillock_deny</a> = 3</li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/var_accounts_passwords_pam_faillock_unlock_time.var">var_accounts_passwords_pam_faillock_unlock_time</a> = 300</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>13.1: Ensure Firewalld Enabled</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l1_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-firewalld/firewalld_activation/service_firewalld_enabled/rule.yml"> service_firewalld_enabled</a>: Verify firewalld Enabled
+    </li>
+    
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>13.2: Ensure the SELinux mode is not disabled (Automated)</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/selinux_not_disabled/rule.yml"> selinux_not_disabled</a>: Ensure SELinux is Not Disabled
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>13.3: Ensure firewalld default zone is set (Automated)</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l1_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-firewalld/ruleset_modifications/set_firewalld_default_zone/rule.yml"> set_firewalld_default_zone</a>: Set Default firewalld Zone for Incoming Packets
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>14.1: Ensure authentication required for single user mode (Automated)</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-physical/require_emergency_target_auth/rule.yml"> require_emergency_target_auth</a>: Require Authentication for Emergency Systemd Target
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-physical/require_singleuser_auth/rule.yml"> require_singleuser_auth</a>: Require Authentication for Single User Mode
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>15.1: Check system resource usage control</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>16.1: Ensure root path integrity (Automated)</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-session/root_paths/accounts_root_path_dirs_no_write/rule.yml"> accounts_root_path_dirs_no_write</a>: Ensure that Root's Path Does Not Include World or Group-Writable Directories
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-session/root_paths/root_path_no_dot/rule.yml"> root_path_no_dot</a>: Ensure that Root's Path Does Not Include Relative Paths or Null Directories
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>16.2: Ensure GPG Check Configured</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/updating/ensure_gpgcheck_globally_activated/rule.yml"> ensure_gpgcheck_globally_activated</a>: Ensure gpgcheck Enabled In Main dnf Configuration
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/updating/ensure_gpgcheck_never_disabled/rule.yml"> ensure_gpgcheck_never_disabled</a>: Ensure gpgcheck Enabled for All dnf Package Repositories
+    </li>
+    
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>16.3: ensure-permissions-on-ssh-private-host-key-files-are-configured</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/file_permissions_sshd_private_key/rule.yml"> file_permissions_sshd_private_key</a>: Verify Permissions on SSH Server Private *_key Key Files
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>16.4: Ensure SSH IgnoreRhosts is enabled (Automated)</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_disable_rhosts/rule.yml"> sshd_disable_rhosts</a>: Disable SSH Support for .rhosts Files
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>16.5: Ensure that SSH X11 forwarding is disabled</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_disable_x11_forwarding/rule.yml"> sshd_disable_x11_forwarding</a>: Disable X11 Forwarding
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>16.6: Ensure sshd Hostl2_serverdAuthentication is disabled (Automated)</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/disable_host_auth/rule.yml"> disable_host_auth</a>: Disable Host-Based Authentication
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>16.7: interactive user accounts must be assigned a home directory upon creation.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-session/accounts_have_homedir_login_defs/rule.yml"> accounts_have_homedir_login_defs</a>: Ensure Home Directories are Created for New Users
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>16.8: Ensure autofs services are not in use (Automated)</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>l2_server</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/mounting/service_autofs_disabled/rule.yml"> service_autofs_disabled</a>: Disable the Automounter
+    </li>
+  </ul>
+  
+</div>  
+</div>  
+
+
+</body>
+</html>

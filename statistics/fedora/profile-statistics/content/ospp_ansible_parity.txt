@@ -1,0 +1,4 @@
+xccdf_org.ssgproject.content_rule_auditd_audispd_encrypt_sent_records
+xccdf_org.ssgproject.content_rule_enable_fips_mode
+xccdf_org.ssgproject.content_rule_ensure_fedora_gpgkey_installed
+xccdf_org.ssgproject.content_rule_sssd_run_as_sssd_user

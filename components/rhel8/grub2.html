@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'grub2'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'grub2'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>grub2</li>
+
+<li>grub2-efi-ia32</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<ul>
+
+<li>bootloader-grub2</li>
+
+</ul>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#coreos_pti_kernel_argument">coreos_pti_kernel_argument</a></li>
+
+<li><a href="#coreos_vsyscall_kernel_argument">coreos_vsyscall_kernel_argument</a></li>
+
+<li><a href="#file_groupowner_efi_grub2_cfg">file_groupowner_efi_grub2_cfg</a></li>
+
+<li><a href="#file_groupowner_efi_user_cfg">file_groupowner_efi_user_cfg</a></li>
+
+<li><a href="#file_groupowner_grub2_cfg">file_groupowner_grub2_cfg</a></li>
+
+<li><a href="#file_groupowner_user_cfg">file_groupowner_user_cfg</a></li>
+
+<li><a href="#file_owner_efi_grub2_cfg">file_owner_efi_grub2_cfg</a></li>
+
+<li><a href="#file_owner_efi_user_cfg">file_owner_efi_user_cfg</a></li>
+
+<li><a href="#file_owner_grub2_cfg">file_owner_grub2_cfg</a></li>
+
+<li><a href="#file_owner_user_cfg">file_owner_user_cfg</a></li>
+
+<li><a href="#file_permissions_efi_grub2_cfg">file_permissions_efi_grub2_cfg</a></li>
+
+<li><a href="#file_permissions_efi_user_cfg">file_permissions_efi_user_cfg</a></li>
+
+<li><a href="#file_permissions_grub2_cfg">file_permissions_grub2_cfg</a></li>
+
+<li><a href="#file_permissions_user_cfg">file_permissions_user_cfg</a></li>
+
+<li><a href="#grub2_admin_username">grub2_admin_username</a></li>
+
+<li><a href="#grub2_audit_argument">grub2_audit_argument</a></li>
+
+<li><a href="#grub2_audit_backlog_limit_argument">grub2_audit_backlog_limit_argument</a></li>
+
+<li><a href="#grub2_disable_interactive_boot">grub2_disable_interactive_boot</a></li>
+
+<li><a href="#grub2_disable_recovery">grub2_disable_recovery</a></li>
+
+<li><a href="#grub2_enable_apparmor">grub2_enable_apparmor</a></li>
+
+<li><a href="#grub2_enable_fips_mode">grub2_enable_fips_mode</a></li>
+
+<li><a href="#grub2_enable_iommu_force">grub2_enable_iommu_force</a></li>
+
+<li><a href="#grub2_enable_selinux">grub2_enable_selinux</a></li>
+
+<li><a href="#grub2_init_on_alloc_argument">grub2_init_on_alloc_argument</a></li>
+
+<li><a href="#grub2_ipv6_disable_argument">grub2_ipv6_disable_argument</a></li>
+
+<li><a href="#grub2_kernel_trust_cpu_rng">grub2_kernel_trust_cpu_rng</a></li>
+
+<li><a href="#grub2_l1tf_argument">grub2_l1tf_argument</a></li>
+
+<li><a href="#grub2_mce_argument">grub2_mce_argument</a></li>
+
+<li><a href="#grub2_mds_argument">grub2_mds_argument</a></li>
+
+<li><a href="#grub2_mitigation_argument">grub2_mitigation_argument</a></li>
+
+<li><a href="#grub2_no_removeable_media">grub2_no_removeable_media</a></li>
+
+<li><a href="#grub2_nosmap_argument_absent">grub2_nosmap_argument_absent</a></li>
+
+<li><a href="#grub2_nosmep_argument_absent">grub2_nosmep_argument_absent</a></li>
+
+<li><a href="#grub2_nousb_argument">grub2_nousb_argument</a></li>
+
+<li><a href="#grub2_page_alloc_shuffle_argument">grub2_page_alloc_shuffle_argument</a></li>
+
+<li><a href="#grub2_page_poison_argument">grub2_page_poison_argument</a></li>
+
+<li><a href="#grub2_password">grub2_password</a></li>
+
+<li><a href="#grub2_password_legacy">grub2_password_legacy</a></li>
+
+<li><a href="#grub2_pti_argument">grub2_pti_argument</a></li>
+
+<li><a href="#grub2_rng_core_default_quality_argument">grub2_rng_core_default_quality_argument</a></li>
+
+<li><a href="#grub2_slab_nomerge_argument">grub2_slab_nomerge_argument</a></li>
+
+<li><a href="#grub2_slub_debug_argument">grub2_slub_debug_argument</a></li>
+
+<li><a href="#grub2_spec_store_bypass_disable_argument">grub2_spec_store_bypass_disable_argument</a></li>
+
+<li><a href="#grub2_spectre_v2_argument">grub2_spectre_v2_argument</a></li>
+
+<li><a href="#grub2_systemd_debug-shell_argument_absent">grub2_systemd_debug-shell_argument_absent</a></li>
+
+<li><a href="#grub2_uefi_admin_username">grub2_uefi_admin_username</a></li>
+
+<li><a href="#grub2_uefi_password">grub2_uefi_password</a></li>
+
+<li><a href="#grub2_uefi_password_legacy">grub2_uefi_password_legacy</a></li>
+
+<li><a href="#grub2_vsyscall_argument">grub2_vsyscall_argument</a></li>
+
+<li><a href="#uefi_no_removeable_media">uefi_no_removeable_media</a></li>
+
+<li><a href="#grub2_init_on_free">grub2_init_on_free</a></li>
+
+<li><a href="#file_permissions_boot_grub2">file_permissions_boot_grub2</a></li>
+
+<li><a href="#file_owner_boot_grub2">file_owner_boot_grub2</a></li>
+
+<li><a href="#file_groupowner_boot_grub2">file_groupowner_boot_grub2</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="coreos_pti_kernel_argument" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Enable Kernel Page-Table Isolation (KPTI)</h3>
+<div>coreos_pti_kernel_argument</div>
+<h4>Description</h4>
+<p>To enable Kernel page-table isolation, add the argument <tt>pti=on</tt> to all
+BLS (Boot Loader Specification) entries ('options' line) for the Linux
+operating system in <tt>/boot/loader/entries/*.conf</tt>.</p>
+<h4>Rationale</h4>
+<p>Kernel page-table isolation is a kernel feature that mitigates
+the Meltdown security vulnerability and hardens the kernel
+against attempts to bypass kernel address space layout
+randomization (KASLR).</p>
+</div>
+
+<div id="coreos_vsyscall_kernel_argument" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable vsyscalls</h3>
+<div>coreos_vsyscall_kernel_argument</div>
+<h4>Description</h4>
+<p>To disable use of virtual syscalls, add the argument <tt>vsyscall=none</tt> to all
+BLS (Boot Loader Specification) entries ('options' line) for the Linux
+operating system in <tt>/boot/loader/entries/*.conf</tt>.</p>
+<h4>Rationale</h4>
+<p>Virtual Syscalls provide an opportunity of attack for a user who has control
+of the return instruction pointer.</p>
+</div>
+
+<div id="file_groupowner_efi_grub2_cfg" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify the UEFI Boot Loader grub.cfg Group Ownership</h3>
+<div>file_groupowner_efi_grub2_cfg</div>
+<h4>Description</h4>
+<p>The file <tt>/boot/efi/EFI/redhat/grub.cfg</tt> should
+be group-owned by the <tt>root</tt> group to prevent
+destruction or modification of the file.
+
+To properly set the group owner of <code>/boot/efi/EFI/redhat/grub.cfg</code>, run the command:
+
+  <pre>$ sudo chgrp root /boot/efi/EFI/redhat/grub.cfg</pre>
+  </p>
+<h4>Rationale</h4>
+<p>The <tt>root</tt> group is a highly-privileged group. Furthermore, the group-owner of this
+file should not have any access privileges anyway.</p>
+</div>
+
+<div id="file_groupowner_efi_user_cfg" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify /boot/efi/EFI/redhat/user.cfg Group Ownership</h3>
+<div>file_groupowner_efi_user_cfg</div>
+<h4>Description</h4>
+<p>The file <tt>/boot/efi/EFI/redhat/user.cfg</tt> should be group-owned by the
+<tt>root</tt> group to prevent reading or modification of the file.
+
+To properly set the group owner of <code>/boot/efi/EFI/redhat/user.cfg</code>, run the command:
+
+  <pre>$ sudo chgrp root /boot/efi/EFI/redhat/user.cfg</pre>
+  </p>
+<h4>Rationale</h4>
+<p>The <tt>root</tt> group is a highly-privileged group. Furthermore, the group-owner of this
+file should not have any access privileges anyway. Non-root users who read the boot parameters
+may be able to identify weaknesses in security upon boot and be able to exploit them.</p>
+</div>
+
+<div id="file_groupowner_grub2_cfg" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify /boot/grub2/grub.cfg Group Ownership</h3>
+<div>file_groupowner_grub2_cfg</div>
+<h4>Description</h4>
+<p>The file <tt>/boot/grub2/grub.cfg</tt> should
+be group-owned by the <tt>root</tt> group to prevent
+destruction or modification of the file.
+
+To properly set the group owner of <code>/boot/grub2/grub.cfg</code>, run the command:
+
+  <pre>$ sudo chgrp root /boot/grub2/grub.cfg</pre>
+  </p>
+<h4>Rationale</h4>
+<p>The <tt>root</tt> group is a highly-privileged group. Furthermore, the group-owner of this
+file should not have any access privileges anyway.</p>
+</div>
+
+<div id="file_groupowner_user_cfg" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify /boot/grub2/user.cfg Group Ownership</h3>
+<div>file_groupowner_user_cfg</div>
+<h4>Description</h4>
+<p>The file <tt>/boot/grub2/user.cfg</tt> should be group-owned by the <tt>root</tt>
+group to prevent reading or modification of the file.
+
+To properly set the group owner of <code>/boot/grub2/user.cfg</code>, run the command:
+
+  <pre>$ sudo chgrp root /boot/grub2/user.cfg</pre>
+  </p>
+<h4>Rationale</h4>
+<p>The <tt>root</tt> group is a highly-privileged group. Furthermore, the group-owner of this
+file should not have any access privileges anyway. Non-root users who read the boot parameters
+may be able to identify weaknesses in security upon boot and be able to exploit them.</p>
+</div>
+
+<div id="file_owner_efi_grub2_cfg" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify the UEFI Boot Loader grub.cfg User Ownership</h3>
+<div>file_owner_efi_grub2_cfg</div>
+<h4>Description</h4>
+<p>The file <tt>/boot/efi/EFI/redhat/grub.cfg</tt> should
+be owned by the <tt>root</tt> user to prevent destruction
+or modification of the file.
+
+To properly set the owner of <code>/boot/efi/EFI/redhat/grub.cfg</code>, run the command:
+
+  <pre>$ sudo chown root /boot/efi/EFI/redhat/grub.cfg </pre>
+  </p>
+<h4>Rationale</h4>
+<p>Only root should be able to modify important boot parameters.</p>
+</div>
+
+<div id="file_owner_efi_user_cfg" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify /boot/efi/EFI/redhat/user.cfg User Ownership</h3>
+<div>file_owner_efi_user_cfg</div>
+<h4>Description</h4>
+<p>The file <tt>/boot/efi/EFI/redhat/user.cfg</tt> should be owned by the <tt>root</tt>
+user to prevent reading or modification of the file.
+
+To properly set the owner of <code>/boot/efi/EFI/redhat/user.cfg</code>, run the command:
+
+  <pre>$ sudo chown root /boot/efi/EFI/redhat/user.cfg </pre>
+  </p>
+<h4>Rationale</h4>
+<p>Only root should be able to modify important boot parameters. Also, non-root users who read
+the boot parameters may be able to identify weaknesses in security upon boot and be able to
+exploit them.</p>
+</div>
+
+<div id="file_owner_grub2_cfg" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify /boot/grub2/grub.cfg User Ownership</h3>
+<div>file_owner_grub2_cfg</div>
+<h4>Description</h4>
+<p>The file <tt>/boot/grub2/grub.cfg</tt> should
+be owned by the <tt>root</tt> user to prevent destruction
+or modification of the file.
+
+To properly set the owner of <code>/boot/grub2/grub.cfg</code>, run the command:
+
+  <pre>$ sudo chown root /boot/grub2/grub.cfg </pre>
+  </p>
+<h4>Rationale</h4>
+<p>Only root should be able to modify important boot parameters.</p>
+</div>
+
+<div id="file_owner_user_cfg" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify /boot/grub2/user.cfg User Ownership</h3>
+<div>file_owner_user_cfg</div>
+<h4>Description</h4>
+<p>The file <tt>/boot/grub2/user.cfg</tt> should be owned by the <tt>root</tt>
+user to prevent reading or modification of the file.
+
+To properly set the owner of <code>/boot/grub2/user.cfg</code>, run the command:
+
+  <pre>$ sudo chown root /boot/grub2/user.cfg </pre>
+  </p>
+<h4>Rationale</h4>
+<p>Only root should be able to modify important boot parameters. Also, non-root users who read
+the boot parameters may be able to identify weaknesses in security upon boot and be able to
+exploit them.</p>
+</div>
+
+<div id="file_permissions_efi_grub2_cfg" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify the UEFI Boot Loader grub.cfg Permissions</h3>
+<div>file_permissions_efi_grub2_cfg</div>
+<h4>Description</h4>
+<p>File permissions for <tt>/boot/efi/EFI/redhat/grub.cfg</tt> should be set to 700.
+
+To properly set the permissions of <code>/boot/efi/EFI/redhat/grub.cfg</code>, run the command:
+<pre>$ sudo chmod 700 /boot/efi/EFI/redhat/grub.cfg</pre></p>
+<h4>Rationale</h4>
+<p>Proper permissions ensure that only the root user can modify important boot
+parameters.</p>
+</div>
+
+<div id="file_permissions_efi_user_cfg" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify /boot/efi/EFI/redhat/user.cfg Permissions</h3>
+<div>file_permissions_efi_user_cfg</div>
+<h4>Description</h4>
+<p>File permissions for <tt>/boot/efi/EFI/redhat/user.cfg</tt> should be set to 600.
+
+To properly set the permissions of <code>/boot/efi/EFI/redhat/user.cfg</code>, run the command:
+<pre>$ sudo chmod 600 /boot/efi/EFI/redhat/user.cfg</pre></p>
+<h4>Rationale</h4>
+<p>Proper permissions ensure that only the root user can read or modify important boot
+parameters.</p>
+</div>
+
+<div id="file_permissions_grub2_cfg" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify /boot/grub2/grub.cfg Permissions</h3>
+<div>file_permissions_grub2_cfg</div>
+<h4>Description</h4>
+<p>File permissions for <tt>/boot/grub2/grub.cfg</tt> should be set to 600.
+
+To properly set the permissions of <code>/boot/grub2/grub.cfg</code>, run the command:
+<pre>$ sudo chmod 600 /boot/grub2/grub.cfg</pre></p>
+<h4>Rationale</h4>
+<p>Proper permissions ensure that only the root user can modify important boot
+parameters.</p>
+</div>
+
+<div id="file_permissions_user_cfg" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify /boot/grub2/user.cfg Permissions</h3>
+<div>file_permissions_user_cfg</div>
+<h4>Description</h4>
+<p>File permissions for <tt>/boot/grub2/user.cfg</tt> should be set to 600.
+
+To properly set the permissions of <code>/boot/grub2/user.cfg</code>, run the command:
+<pre>$ sudo chmod 600 /boot/grub2/user.cfg</pre></p>
+<h4>Rationale</h4>
+<p>Proper permissions ensure that only the root user can read or modify important boot
+parameters.</p>
+</div>
+
+<div id="grub2_admin_username" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Set the Boot Loader Admin Username to a Non-Default Value</h3>
+<div>grub2_admin_username</div>
+<h4>Description</h4>
+<p>The grub2 boot loader should have a superuser account and password
+protection enabled to protect boot-time settings.
+<br /><br />
+To maximize the protection, select a password-protected superuser account with unique name, and modify the
+<tt>/etc/grub.d/01_users</tt> configuration file to reflect the account name change.
+<br /><br />
+Do not to use common administrator account names like root,
+admin, or administrator for the grub2 superuser account.
+<br /><br />
+Change the superuser to a different username (The default is 'root').
+<pre>$ sed -i 's/\(set superusers=\).*/\1"&lt;unique user ID&gt;"/g' /etc/grub.d/01_users</pre>
+The line mentioned above must be followed by the line
+<pre>export superusers</pre>
+so that the <tt>superusers</tt> is honored.
+<br /><br />
+Once the superuser account has been added,
+update the
+<tt>grub.cfg</tt> file by running:
+<pre>grub2-mkconfig -o /boot/grub2/grub.cfg</pre></p>
+<h4>Rationale</h4>
+<p>Having a non-default grub superuser username makes password-guessing attacks less effective.</p>
+</div>
+
+<div id="grub2_audit_argument" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Enable Auditing for Processes Which Start Prior to the Audit Daemon</h3>
+<div>grub2_audit_argument</div>
+<h4>Description</h4>
+<p>To ensure all processes can be audited, even those which start
+prior to the audit daemon, add the argument <tt>audit=1</tt> to the default
+GRUB 2 command line for the Linux operating system.
+To ensure that <tt>audit=1</tt> is added as a kernel command line
+argument to newly installed kernels, add <tt>audit=1</tt> to the
+default Grub2 command line for Linux operating systems. Modify the line within
+<tt>/etc/default/grub</tt> as shown below:
+<pre>GRUB_CMDLINE_LINUX="... audit=1 ..."</pre>
+Run the following command to update command line for already installed kernels:<pre># grubby --update-kernel=ALL --args="audit=1"</pre></p>
+<h4>Rationale</h4>
+<p>Each process on the system carries an "auditable" flag which indicates whether
+its activities can be audited. Although <tt>auditd</tt> takes care of enabling
+this for all processes which launch after it does, adding the kernel argument
+ensures it is set for every process during boot.</p>
+</div>
+
+<div id="grub2_audit_backlog_limit_argument" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Extend Audit Backlog Limit for the Audit Daemon</h3>
+<div>grub2_audit_backlog_limit_argument</div>
+<h4>Description</h4>
+<p>To improve the kernel capacity to queue all log events, even those which occurred
+prior to the audit daemon, add the argument <tt>audit_backlog_limit=<tt>$var_audit_backlog_limit</tt></tt> to the default
+GRUB 2 command line for the Linux operating system.
+To ensure that <tt>audit_backlog_limit=<tt>$var_audit_backlog_limit</tt></tt> is added as a kernel command line
+argument to newly installed kernels, add <tt>audit_backlog_limit=<tt>$var_audit_backlog_limit</tt></tt> to the
+default Grub2 command line for Linux operating systems. Modify the line within
+<tt>/etc/default/grub</tt> as shown below:
+<pre>GRUB_CMDLINE_LINUX="... audit_backlog_limit=<tt>$var_audit_backlog_limit</tt> ..."</pre>
+Run the following command to update command line for already installed kernels:<pre># grubby --update-kernel=ALL --args="audit_backlog_limit=<tt>$var_audit_backlog_limit</tt>"</pre></p>
+<h4>Rationale</h4>
+<p>audit_backlog_limit sets the queue length for audit events awaiting transfer
+to the audit daemon. Until the audit daemon is up and running, all log messages
+are stored in this queue.  If the queue is overrun during boot process, the action
+defined by audit failure flag is taken.</p>
+</div>
+
+<div id="grub2_disable_interactive_boot" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify that Interactive Boot is Disabled</h3>
+<div>grub2_disable_interactive_boot</div>
+<h4>Description</h4>
+<p>Red Hat Enterprise Linux 8 systems support an "interactive boot" option that can
+be used to prevent services from being started. On a Red Hat Enterprise Linux 8
+system, interactive boot can be enabled by providing a <tt>1</tt>,
+<tt>yes</tt>, <tt>true</tt>, or <tt>on</tt> value to the
+<tt>systemd.confirm_spawn</tt> kernel argument in <tt>/etc/default/grub</tt>.
+Remove any instance of <pre>systemd.confirm_spawn=(1|yes|true|on)</pre> from
+the kernel arguments in that file to disable interactive boot.
+Recovery booting must also be disabled. Confirm that
+<tt>GRUB_DISABLE_RECOVERY=true</tt> is set in  <tt>/etc/default/grub</tt>.
+It is also required to change the runtime configuration, run:
+
+<pre>/sbin/grubby --update-kernel=ALL --remove-args="systemd.confirm_spawn"</pre>
+
+<pre>grub2-mkconfig -o /boot/grub2/grub.cfg</pre></p>
+<h4>Rationale</h4>
+<p>Using interactive or recovery boot, the console user could disable auditing, firewalls,
+or other services, weakening system security.</p>
+</div>
+
+<div id="grub2_disable_recovery" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable Recovery Booting</h3>
+<div>grub2_disable_recovery</div>
+<h4>Description</h4>
+<p>Red Hat Enterprise Linux 8 systems support an "recovery boot" option that can be used
+to prevent services from being started. The <tt>GRUB_DISABLE_RECOVERY</tt>
+configuration option in <tt>/etc/default/grub</tt> should be set to
+<tt>true</tt> to disable the generation of recovery mode menu entries. It is
+also required to change the runtime configuration, run:
+<pre>$ sudo grubby --update-kernel=ALL --env=/boot/grub2/grubenv</pre></p>
+<h4>Rationale</h4>
+<p>Using recovery boot, the console user could disable auditing, firewalls,
+or other services, weakening system security.</p>
+</div>
+
+<div id="grub2_enable_apparmor" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure AppArmor is enabled in the bootloader configuration</h3>
+<div>grub2_enable_apparmor</div>
+<h4>Description</h4>
+<p>Configure AppArmor to be enabled at boot time and verify that it has not been
+overwritten by the bootloader boot parameters.
+
+Note: This recommendation is designed around the grub bootloader, if LILO or
+another bootloader is in use in your environment, enact equivalent settings.</p>
+<h4>Rationale</h4>
+<p>AppArmor must be enabled at boot time in your bootloader configuration to
+ensure that the controls it provides are not overridden.</p>
+</div>
+
+<div id="grub2_enable_fips_mode" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Enable FIPS Mode in GRUB2</h3>
+<div>grub2_enable_fips_mode</div>
+<h4>Description</h4>
+<p>
+Red Hat Enterprise Linux 8 has an installation-time kernel flag that can enable FIPS mode.
+The installer must be booted with <tt>fips=1</tt> for the system to have FIPS mode
+enabled. Enabling FIPS mode on a preexisting system is not supported. If
+this rule fails on an installed system, then this is a permanent
+finding and cannot be fixed.
+
+Verifying that the package <tt>dracut-fips</tt> is installed ensures FIPS mode is in
+a good state.
+
+To ensure FIPS mode is enabled, run the following commands:
+<pre>
+
+$ sudo yum install dracut-fips
+</pre></p>
+<h4>Rationale</h4>
+<p>Use of weak or untested encryption algorithms undermines the purposes of utilizing encryption to
+protect data. The operating system must implement cryptographic modules adhering to the higher
+standards approved by the federal government since this provides assurance they have been tested
+and validated.</p>
+</div>
+
+<div id="grub2_enable_iommu_force" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>IOMMU configuration directive</h3>
+<div>grub2_enable_iommu_force</div>
+<h4>Description</h4>
+<p>On x86 architecture supporting VT-d, the IOMMU manages the access control policy between the hardware devices and some
+    of the system critical units such as the memory.
+To ensure that <tt>iommu=force</tt> is added as a kernel command line
+argument to newly installed kernels, add <tt>iommu=force</tt> to the
+default Grub2 command line for Linux operating systems. Modify the line within
+<tt>/etc/default/grub</tt> as shown below:
+<pre>GRUB_CMDLINE_LINUX="... iommu=force ..."</pre>
+Run the following command to update command line for already installed kernels:<pre># grubby --update-kernel=ALL --args="iommu=force"</pre></p>
+<h4>Rationale</h4>
+<p>On x86 architectures, activating the I/OMMU prevents the system from arbitrary accesses potentially made by
+    hardware devices.</p>
+</div>
+
+<div id="grub2_enable_selinux" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure SELinux Not Disabled in /etc/default/grub</h3>
+<div>grub2_enable_selinux</div>
+<h4>Description</h4>
+<p>SELinux can be disabled at boot time by an argument in
+<tt>/etc/default/grub</tt>.
+Remove any instances of <tt>selinux=0</tt> from the kernel arguments in that
+file to prevent SELinux from being disabled at boot.</p>
+<h4>Rationale</h4>
+<p>Disabling a major host protection feature, such as SELinux, at boot time prevents
+it from confining system services at boot time.  Further, it increases
+the chances that it will remain off during system operation.</p>
+</div>
+
+<div id="grub2_init_on_alloc_argument" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure kernel to zero out memory before allocation</h3>
+<div>grub2_init_on_alloc_argument</div>
+<h4>Description</h4>
+<p>To configure the kernel to zero out memory before allocating it, add the
+<tt>init_on_alloc=1</tt> argument to the default GRUB 2 command line.
+To ensure that <tt>init_on_alloc=1</tt> is added as a kernel command line
+argument to newly installed kernels, add <tt>init_on_alloc=1</tt> to the
+default Grub2 command line for Linux operating systems. Modify the line within
+<tt>/etc/default/grub</tt> as shown below:
+<pre>GRUB_CMDLINE_LINUX="... init_on_alloc=1 ..."</pre>
+Run the following command to update command line for already installed kernels:<pre># grubby --update-kernel=ALL --args="init_on_alloc=1"</pre></p>
+<h4>Rationale</h4>
+<p>When the kernel configuration option <tt>init_on_alloc</tt> is enabled,
+all page allocator and slab allocator memory will be zeroed when allocated,
+eliminating many kinds of "uninitialized heap memory" flaws, effectively
+preventing data leaks.</p>
+</div>
+
+<div id="grub2_ipv6_disable_argument" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure IPv6 is disabled through kernel boot parameter</h3>
+<div>grub2_ipv6_disable_argument</div>
+<h4>Description</h4>
+<p>To disable IPv6 protocol support in the Linux kernel,
+add the argument <tt>ipv6.disable=1</tt> to the default
+GRUB2 command line for the Linux operating system.
+To ensure that <tt>ipv6.disable=1</tt> is added as a kernel command line
+argument to newly installed kernels, add <tt>ipv6.disable=1</tt> to the
+default Grub2 command line for Linux operating systems. Modify the line within
+<tt>/etc/default/grub</tt> as shown below:
+<pre>GRUB_CMDLINE_LINUX="... ipv6.disable=1 ..."</pre>
+Run the following command to update command line for already installed kernels:<pre># grubby --update-kernel=ALL --args="ipv6.disable=1"</pre></p>
+<h4>Rationale</h4>
+<p>Any unnecessary network stacks, including IPv6, should be disabled to reduce
+the vulnerability to exploitation.</p>
+</div>
+
+<div id="grub2_kernel_trust_cpu_rng" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure kernel to trust the CPU random number generator</h3>
+<div>grub2_kernel_trust_cpu_rng</div>
+<h4>Description</h4>
+<p>There exist two ways how to ensure that the Linux kernel trusts the CPU
+hardware random number generator. If the option is configured during kernel
+compilation, e.g. the option <tt>CONFIG_RANDOM_TRUST_CPU</tt> is set to
+<tt>Y</tt>, make sure that it is not overridden with the boot parameter.
+There must not exist the boot parameter <tt>random.trust_cpu=off</tt>. If
+the option is not compiled in, make sure that <tt>random.trust_cpu=on</tt>
+is configured as a boot parameter.
+To ensure that <tt>random.trust_cpu=on</tt> is added as a kernel command line
+argument to newly installed kernels, add <tt>random.trust_cpu=on</tt> to the
+default Grub2 command line for Linux operating systems. Modify the line within
+<tt>/etc/default/grub</tt> as shown below:
+<pre>GRUB_CMDLINE_LINUX="... random.trust_cpu=on ..."</pre>
+Run the following command to update command line for already installed kernels:<pre># grubby --update-kernel=ALL --args="random.trust_cpu=on"</pre></p>
+<h4>Rationale</h4>
+<p>The Linux kernel offers an option which signifies if the kernel should trust
+data provided by CPU hardware random number generator. Hardware random
+number generators can provide random data very quickly and are used to generate random cryptographic keys. They can
+be useful during boot time when other means of getting random data can be
+slow because there is not yet enough entropy in the system.</p>
+</div>
+
+<div id="grub2_l1tf_argument" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure L1 Terminal Fault mitigations</h3>
+<div>grub2_l1tf_argument</div>
+<h4>Description</h4>
+<p>L1 Terminal Fault (L1TF) is a hardware vulnerability which allows unprivileged
+speculative access to data which is available in the Level 1 Data Cache when
+the page table entry isn't present.
+
+Select the appropriate mitigation by adding the argument
+<tt>l1tf=<tt>$var_l1tf_options</tt></tt> to the default
+GRUB 2 command line for the Linux operating system.
+To ensure that <tt>l1tf=<tt>$var_l1tf_options</tt></tt> is added as a kernel command line
+argument to newly installed kernels, add <tt>l1tf=<tt>$var_l1tf_options</tt></tt> to the
+default Grub2 command line for Linux operating systems. Modify the line within
+<tt>/etc/default/grub</tt> as shown below:
+<pre>GRUB_CMDLINE_LINUX="... l1tf=<tt>$var_l1tf_options</tt> ..."</pre>
+Run the following command to update command line for already installed kernels:<pre># grubby --update-kernel=ALL --args="l1tf=<tt>$var_l1tf_options</tt>"</pre>
+
+Since Linux Kernel 4.19 you can check the L1TF vulnerability state with the
+following command:
+<tt>cat /sys/devices/system/cpu/vulnerabilities/l1tf</tt></p>
+<h4>Rationale</h4>
+<p>The L1TF vulnerability allows an attacker to bypass memory access security controls imposed
+by the system or hypervisor. The L1TF vulnerability allows read access to any physical memory
+location that is cached in the L1 Data Cache.</p>
+</div>
+
+<div id="grub2_mce_argument" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Force kernel panic on uncorrected MCEs</h3>
+<div>grub2_mce_argument</div>
+<h4>Description</h4>
+<p>A Machine Check Exception is an error generated by the CPU itdetects an error
+in itself, memory or I/O devices.
+These errors may be corrected and generate a check log entry, if an error
+cannot be corrected the kernel may panic or SIGBUS.
+
+To force the kernel to panic on any uncorrected error reported by Machine Check
+set the MCE tolerance to zero by adding <tt>mce=0</tt>
+to the default GRUB 2 command line for the Linux operating system.
+To ensure that <tt>mce=0</tt> is added as a kernel command line
+argument to newly installed kernels, add <tt>mce=0</tt> to the
+default Grub2 command line for Linux operating systems. Modify the line within
+<tt>/etc/default/grub</tt> as shown below:
+<pre>GRUB_CMDLINE_LINUX="... mce=0 ..."</pre>
+Run the following command to update command line for already installed kernels:<pre># grubby --update-kernel=ALL --args="mce=0"</pre></p>
+<h4>Rationale</h4>
+<p>Allowing uncorrected errors to result on a SIGBUS may allow an attacker to continue
+trying to exploit a vulnerability such as Rowhammer.</p>
+</div>
+
+<div id="grub2_mds_argument" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure Microarchitectural Data Sampling mitigation</h3>
+<div>grub2_mds_argument</div>
+<h4>Description</h4>
+<p>Microarchitectural Data Sampling (MDS) is a hardware vulnerability which allows unprivileged
+speculative access to data which is available in various CPU internal buffers.
+
+When performing store, load, L1 refill operations, processors write data into temporary
+microarchitectural structures (buffers), and the data in the buffer can be forwarded to load
+operations as an optimization.
+
+Under certain conditions, data unrelated to the load operations can be speculatively
+forwarded from the buffers to a disclosure gadget which allows in turn to infer the value
+via a cache side channel attack.
+
+Select the appropriate mitigation by adding the argument
+<tt>mds=<tt>$var_mds_options</tt></tt> to the default
+GRUB 2 command line for the Linux operating system.
+To ensure that <tt>mds=<tt>$var_mds_options</tt></tt> is added as a kernel command line
+argument to newly installed kernels, add <tt>mds=<tt>$var_mds_options</tt></tt> to the
+default Grub2 command line for Linux operating systems. Modify the line within
+<tt>/etc/default/grub</tt> as shown below:
+<pre>GRUB_CMDLINE_LINUX="... mds=<tt>$var_mds_options</tt> ..."</pre>
+Run the following command to update command line for already installed kernels:<pre># grubby --update-kernel=ALL --args="mds=<tt>$var_mds_options</tt>"</pre>
+
+Not all processors are affected by all variants of MDS, but the mitigation mechanism is
+identical for all of them.
+
+Since Linux Kernel 5.2 you can check whether the system is vulnerable or mitigated with the
+following command:
+<tt>cat /sys/devices/system/cpu/vulnerabilities/mds</tt></p>
+<h4>Rationale</h4>
+<p>The MDS vulnerability allows an attacker to sample data from internal CPU buffers.</p>
+</div>
+
+<div id="grub2_mitigation_argument" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>System Must Avoid Meltdown and Spectre Exploit Vulnerabilities in Modern Processors</h3>
+<div>grub2_mitigation_argument</div>
+<h4>Description</h4>
+<p>Verify that Meltdown mitigations are not disabled:
+<pre>$ sudo grubby --info=ALL | grep mitigations</pre>
+
+The mitigations must not be set to "off".
+
+Check that the line <pre>GRUB_CMDLINE_LINUX="..."</pre> within <tt>/etc/default/grub</tt>
+doesn't contain the argument <tt>mitigations=off</tt>.
+Run the following command to update command line for already installed kernels:
+<pre># grubby --update-kernel=ALL --remove-args="mitigations=off"</pre></p>
+<h4>Rationale</h4>
+<p>Hardware vulnerabilities allow programs to steal data that is currently processed on the
+computer. While programs are typically not permitted to read data from other programs, a
+malicious program can exploit Meltdown and Spectre to obtain secrets stored in the memory of
+other running programs. This might include passwords stored in a password manager or browser;
+personal photos, emails, and instant messages; and business-critical documents.</p>
+</div>
+
+<div id="grub2_no_removeable_media" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Boot Loader Is Not Installed On Removable Media</h3>
+<div>grub2_no_removeable_media</div>
+<h4>Description</h4>
+<p>The system must not allow removable media to be used as the boot loader.
+Remove alternate methods of booting the system from removable media.
+<tt>usb0</tt>, <tt>cd</tt>, <tt>fd0</tt>, etc. are some examples of removable
+media which should not exist in the lines:
+<pre>set root='hd0,msdos1'</pre></p>
+<h4>Rationale</h4>
+<p>Malicious users with removable boot media can gain access to a system
+configured to use removable media as the boot loader.</p>
+</div>
+
+<div id="grub2_nosmap_argument_absent" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure SMAP is not disabled during boot</h3>
+<div>grub2_nosmap_argument_absent</div>
+<h4>Description</h4>
+<p>The SMAP is used to prevent the supervisor mode from unintentionally reading/writing into
+memory pages in the user space, it is enabled by default since Linux kernel 3.7.
+But it could be disabled through kernel boot parameters.
+
+Ensure that Supervisor Mode Access Prevention (SMAP) is not disabled by
+the <tt>nosmap</tt> boot parameter option.
+
+Check that the line <pre>GRUB_CMDLINE_LINUX="..."</pre> within <tt>/etc/default/grub</tt>
+doesn't contain the argument <tt>nosmap</tt>.
+Run the following command to update command line for already installed kernels:
+<pre># grubby --update-kernel=ALL --remove-args="nosmap"</pre></p>
+<h4>Rationale</h4>
+<p>Disabling SMAP can facilitate exploitation of vulnerabilities caused by unintended access and
+manipulation of data in the user space.</p>
+</div>
+
+<div id="grub2_nosmep_argument_absent" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure SMEP is not disabled during boot</h3>
+<div>grub2_nosmep_argument_absent</div>
+<h4>Description</h4>
+<p>The SMEP is used to prevent the supervisor mode from executing user space code,
+it is enabled by default since Linux kernel 3.0. But it could be disabled through
+kernel boot parameters.
+
+Ensure that Supervisor Mode Execution Prevention (SMEP) is not disabled by
+the <tt>nosmep</tt> boot parameter option.
+
+Check that the line <pre>GRUB_CMDLINE_LINUX="..."</pre> within <tt>/etc/default/grub</tt>
+doesn't contain the argument <tt>nosmep</tt>.
+Run the following command to update command line for already installed kernels:
+<pre># grubby --update-kernel=ALL --remove-args="nosmep"</pre></p>
+<h4>Rationale</h4>
+<p>Disabling SMEP can facilitate exploitation of certain vulnerabilities because it allows
+the kernel to unintentionally execute code in less privileged memory space.</p>
+</div>
+
+<div id="grub2_nousb_argument" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable Kernel Support for USB via Bootloader Configuration</h3>
+<div>grub2_nousb_argument</div>
+<h4>Description</h4>
+<p>All USB support can be disabled by adding the <tt>nousb</tt>
+argument to the kernel's boot loader configuration. To do so,
+add the argument <tt>nousb</tt> to the default
+GRUB 2 command line for the Linux operating system.
+To ensure that <tt>nousb</tt> is added as a kernel command line
+argument to newly installed kernels, add <tt>nousb</tt> to the
+default Grub2 command line for Linux operating systems. Modify the line within
+<tt>/etc/default/grub</tt> as shown below:
+<pre>GRUB_CMDLINE_LINUX="... nousb ..."</pre>
+Run the following command to update command line for already installed kernels:<pre># grubby --update-kernel=ALL --args="nousb"</pre></p>
+<h4>Rationale</h4>
+<p>Disabling the USB subsystem within the Linux kernel at system boot will
+protect against potentially malicious USB devices, although it is only practical
+in specialized systems.</p>
+</div>
+
+<div id="grub2_page_alloc_shuffle_argument" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Enable randomization of the page allocator</h3>
+<div>grub2_page_alloc_shuffle_argument</div>
+<h4>Description</h4>
+<p>To enable randomization of the page allocator in the kernel, add the
+<tt>page_alloc.shuffle=1</tt> argument to the default GRUB 2 command line.
+To ensure that <tt>page_alloc.shuffle=1</tt> is added as a kernel command line
+argument to newly installed kernels, add <tt>page_alloc.shuffle=1</tt> to the
+default Grub2 command line for Linux operating systems. Modify the line within
+<tt>/etc/default/grub</tt> as shown below:
+<pre>GRUB_CMDLINE_LINUX="... page_alloc.shuffle=1 ..."</pre>
+Run the following command to update command line for already installed kernels:<pre># grubby --update-kernel=ALL --args="page_alloc.shuffle=1"</pre></p>
+<h4>Rationale</h4>
+<p>The <tt>CONFIG_SHUFFLE_PAGE_ALLOCATOR</tt> config option is primarily
+focused on improving the average utilization of a direct-mapped
+memory-side-cache. Aside of this performance effect, it also reduces
+predictability of page allocations in situations when the bad actor can
+crash the system and somehow leverage knowledge of (page) allocation order
+right after a fresh reboot, or can control the timing between a
+hot-pluggable memory node (as in NUMA node) and applications allocating
+memory ouf of that node. The <tt>page_alloc.shuffle=1</tt> kernel command
+line parameter then forces this functionality irrespectively of memory cache
+architecture.</p>
+</div>
+
+<div id="grub2_page_poison_argument" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Enable page allocator poisoning</h3>
+<div>grub2_page_poison_argument</div>
+<h4>Description</h4>
+<p>To enable poisoning of free pages,
+add the argument <tt>page_poison=1</tt> to the default
+GRUB 2 command line for the Linux operating system.
+To ensure that <tt>page_poison=1</tt> is added as a kernel command line
+argument to newly installed kernels, add <tt>page_poison=1</tt> to the
+default Grub2 command line for Linux operating systems. Modify the line within
+<tt>/etc/default/grub</tt> as shown below:
+<pre>GRUB_CMDLINE_LINUX="... page_poison=1 ..."</pre>
+Run the following command to update command line for already installed kernels:<pre># grubby --update-kernel=ALL --args="page_poison=1"</pre></p>
+<h4>Rationale</h4>
+<p>Poisoning writes an arbitrary value to freed pages, so any modification or
+reference to that page after being freed or before being initialized will be
+detected and prevented.
+This prevents many types of use-after-free vulnerabilities at little performance cost.
+Also prevents leak of data and detection of corrupted memory.</p>
+</div>
+
+<div id="grub2_password" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Set Boot Loader Password in grub2</h3>
+<div>grub2_password</div>
+<h4>Description</h4>
+<p>The grub2 boot loader should have a superuser account and password
+protection enabled to protect boot-time settings.
+<br /><br />
+Since plaintext passwords are a security risk, generate a hash for the password
+by running the following command:
+
+<pre># grub2-setpassword</pre>
+
+When prompted, enter the password that was selected.
+<br /><br /></p>
+<h4>Rationale</h4>
+<p>Password protection on the boot loader configuration ensures
+users with physical access cannot trivially alter
+important bootloader settings. These include which kernel to use,
+and whether to enter single-user mode.</p>
+</div>
+
+<div id="grub2_password_legacy" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Set Boot Loader Password in grub2 - systems prior to version 7.2</h3>
+<div>grub2_password_legacy</div>
+<h4>Description</h4>
+<p>The grub2 boot loader should have a superuser account and password
+protection enabled to protect boot-time settings.
+<br /><br />
+Since plaintext passwords are a security risk, generate an encrypted grub2 password
+for the grub superusers with the following command:
+<pre>$ grub2-mkpasswd-pbkdf2</pre>
+When prompted, enter the password that was selected.
+<br /><br />
+Using the hash from the output, modify the <tt>/etc/grub.d/40_custom</tt>
+file with the following content:
+<pre>set superusers="root"
+password_pbkdf2 root grub.pbkdf2.sha512.VeryLongString
+</pre>
+Once the superuser password has been added, update the
+<tt>grub.cfg</tt> file by running:
+<pre>grub2-mkconfig -o /boot/grub2/grub.cfg</pre></p>
+<h4>Rationale</h4>
+<p>Password protection on the boot loader configuration ensures
+users with physical access cannot trivially alter
+important bootloader settings. These include which kernel to use,
+and whether to enter single-user mode.</p>
+</div>
+
+<div id="grub2_pti_argument" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Enable Kernel Page-Table Isolation (KPTI)</h3>
+<div>grub2_pti_argument</div>
+<h4>Description</h4>
+<p>To enable Kernel page-table isolation,
+add the argument <tt>pti=on</tt> to the default
+GRUB 2 command line for the Linux operating system.
+To ensure that <tt>pti=on</tt> is added as a kernel command line
+argument to newly installed kernels, add <tt>pti=on</tt> to the
+default Grub2 command line for Linux operating systems. Modify the line within
+<tt>/etc/default/grub</tt> as shown below:
+<pre>GRUB_CMDLINE_LINUX="... pti=on ..."</pre>
+Run the following command to update command line for already installed kernels:<pre># grubby --update-kernel=ALL --args="pti=on"</pre></p>
+<h4>Rationale</h4>
+<p>Kernel page-table isolation is a kernel feature that mitigates
+the Meltdown security vulnerability and hardens the kernel
+against attempts to bypass kernel address space layout
+randomization (KASLR).</p>
+</div>
+
+<div id="grub2_rng_core_default_quality_argument" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure the confidence in TPM for entropy</h3>
+<div>grub2_rng_core_default_quality_argument</div>
+<h4>Description</h4>
+<p>The TPM security chip that is available in most modern systems has a hardware RNG.
+It is also used to feed the entropy pool, but generally not credited entropy.
+
+Use <tt>rng_core.default_quality</tt> in the kernel command line to set the trust
+level on the hardware generators. The trust level defines the amount of entropy to credit.
+A value of <tt>0</tt> tells the system not to trust the hardware random number generators
+available, and doesn't credit any entropy to the pool.
+A value of <tt>1000</tt> assigns full confidence in the generators, and credits all the
+entropy it provides to the pool.
+
+Note that the value of <tt>rng_core.default_quality</tt> is global, affecting the trust
+on all hardware random number generators.
+
+Select the appropriate confidence by adding the argument
+<tt>rng_core.default_quality=<tt>$var_rng_core_default_quality</tt></tt> to the default
+GRUB 2 command line for the Linux operating system.
+To ensure that <tt>rng_core.default_quality=<tt>$var_rng_core_default_quality</tt></tt> is added as a kernel command line
+argument to newly installed kernels, add <tt>rng_core.default_quality=<tt>$var_rng_core_default_quality</tt></tt> to the
+default Grub2 command line for Linux operating systems. Modify the line within
+<tt>/etc/default/grub</tt> as shown below:
+<pre>GRUB_CMDLINE_LINUX="... rng_core.default_quality=<tt>$var_rng_core_default_quality</tt> ..."</pre>
+Run the following command to update command line for already installed kernels:<pre># grubby --update-kernel=ALL --args="rng_core.default_quality=<tt>$var_rng_core_default_quality</tt>"</pre></p>
+<h4>Rationale</h4>
+<p>A system may struggle to initialize its entropy pool and end up starving. Crediting entropy
+from the hardware number generators available in the system helps fill up the entropy pool.</p>
+</div>
+
+<div id="grub2_slab_nomerge_argument" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable merging of slabs with similar size</h3>
+<div>grub2_slab_nomerge_argument</div>
+<h4>Description</h4>
+<p>The kernel may merge similar slabs together to reduce overhead and increase
+cache hotness of objects.
+Disabling merging of slabs keeps the slabs separate and reduces the risk of
+kernel heap overflows overwriting objects in merged caches.
+
+To disable merging of slabs in the Kernel add the argument <tt>slab_nomerge=yes</tt>
+to the default GRUB 2 command line for the Linux operating system.
+To ensure that <tt>slab_nomerge=yes</tt> is added as a kernel command line
+argument to newly installed kernels, add <tt>slab_nomerge=yes</tt> to the
+default Grub2 command line for Linux operating systems. Modify the line within
+<tt>/etc/default/grub</tt> as shown below:
+<pre>GRUB_CMDLINE_LINUX="... slab_nomerge=yes ..."</pre>
+Run the following command to update command line for already installed kernels:<pre># grubby --update-kernel=ALL --args="slab_nomerge=yes"</pre></p>
+<h4>Rationale</h4>
+<p>Disabling the merge of slabs of similar sizes prevents the kernel from
+merging a seemingly useless but vulnerable slab with a useful and valuable slab.
+This increase the risk that a heap overflow could overwrite objects from merged caches,
+with unmerged caches the heap overflow would only affect the objects in the same cache.
+Overall, this reduces the kernel attack surface area by isolating slabs from each other.</p>
+</div>
+
+<div id="grub2_slub_debug_argument" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Enable SLUB/SLAB allocator poisoning</h3>
+<div>grub2_slub_debug_argument</div>
+<h4>Description</h4>
+<p>To enable poisoning of SLUB/SLAB objects,
+add the argument <tt>slub_debug=<tt>$var_slub_debug_options</tt></tt> to the default
+GRUB 2 command line for the Linux operating system.
+To ensure that <tt>slub_debug=<tt>$var_slub_debug_options</tt></tt> is added as a kernel command line
+argument to newly installed kernels, add <tt>slub_debug=<tt>$var_slub_debug_options</tt></tt> to the
+default Grub2 command line for Linux operating systems. Modify the line within
+<tt>/etc/default/grub</tt> as shown below:
+<pre>GRUB_CMDLINE_LINUX="... slub_debug=<tt>$var_slub_debug_options</tt> ..."</pre>
+Run the following command to update command line for already installed kernels:<pre># grubby --update-kernel=ALL --args="slub_debug=<tt>$var_slub_debug_options</tt>"</pre></p>
+<h4>Rationale</h4>
+<p>Poisoning writes an arbitrary value to freed objects, so any modification or
+reference to that object after being freed or before being initialized will be
+detected and prevented.
+This prevents many types of use-after-free vulnerabilities at little performance cost.
+Also prevents leak of data and detection of corrupted memory.</p>
+</div>
+
+<div id="grub2_spec_store_bypass_disable_argument" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure Speculative Store Bypass Mitigation</h3>
+<div>grub2_spec_store_bypass_disable_argument</div>
+<h4>Description</h4>
+<p>Certain CPUs are vulnerable to an exploit against a common wide industry wide performance
+optimization known as Speculative Store Bypass (SSB).
+
+In such cases, recent stores to the same memory location cannot always be observed by later
+loads during speculative execution. However, such stores are unlikely and thus they can be
+detected prior to instruction retirement at the end of a particular speculation execution
+window.
+
+Since Linux Kernel 4.17 you can check the SSB mitigation state with the following command:
+<tt>cat /sys/devices/system/cpu/vulnerabilities/spec_store_bypass</tt>
+
+Select the appropriate SSB state by adding the argument
+<tt>spec_store_bypass_disable=<tt>$var_spec_store_bypass_disable_options</tt></tt> to the default
+GRUB 2 command line for the Linux operating system.
+To ensure that <tt>spec_store_bypass_disable=<tt>$var_spec_store_bypass_disable_options</tt></tt> is added as a kernel command line
+argument to newly installed kernels, add <tt>spec_store_bypass_disable=<tt>$var_spec_store_bypass_disable_options</tt></tt> to the
+default Grub2 command line for Linux operating systems. Modify the line within
+<tt>/etc/default/grub</tt> as shown below:
+<pre>GRUB_CMDLINE_LINUX="... spec_store_bypass_disable=<tt>$var_spec_store_bypass_disable_options</tt> ..."</pre>
+Run the following command to update command line for already installed kernels:<pre># grubby --update-kernel=ALL --args="spec_store_bypass_disable=<tt>$var_spec_store_bypass_disable_options</tt>"</pre></p>
+<h4>Rationale</h4>
+<p>In vulnerable processors, the speculatively forwarded store can be used in a cache side channel
+attack. An example of this is reading memory to which the attacker does not directly have access,
+for example inside the sandboxed code.</p>
+</div>
+
+<div id="grub2_spectre_v2_argument" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Enforce Spectre v2 mitigation</h3>
+<div>grub2_spectre_v2_argument</div>
+<h4>Description</h4>
+<p>Spectre V2 is an indirect branch poisoning attack that can lead to data leakage.
+An exploit for Spectre V2 tricks the indirect branch predictor into executing
+code from a future indirect branch chosen by the attacker, even if the privilege
+level is different.
+
+Since Linux Kernel 4.15 you can check the Spectre V2 mitigation state with the following command:
+<tt>cat /sys/devices/system/cpu/vulnerabilities/spectre_v2</tt>
+
+Enforce the Spectre V2 mitigation by adding the argument
+<tt>spectre_v2=on</tt> to the default
+GRUB 2 command line for the Linux operating system.
+To ensure that <tt>spectre_v2=on</tt> is added as a kernel command line
+argument to newly installed kernels, add <tt>spectre_v2=on</tt> to the
+default Grub2 command line for Linux operating systems. Modify the line within
+<tt>/etc/default/grub</tt> as shown below:
+<pre>GRUB_CMDLINE_LINUX="... spectre_v2=on ..."</pre>
+Run the following command to update command line for already installed kernels:<pre># grubby --update-kernel=ALL --args="spectre_v2=on"</pre></p>
+<h4>Rationale</h4>
+<p>The Spectre V2 vulnerability allows an attacker to read memory that he should not have
+access to.</p>
+</div>
+
+<div id="grub2_systemd_debug-shell_argument_absent" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure debug-shell service is not enabled during boot</h3>
+<div>grub2_systemd_debug-shell_argument_absent</div>
+<h4>Description</h4>
+<p>systemd's <tt>debug-shell</tt> service is intended to
+diagnose systemd related boot issues with various <tt>systemctl</tt>
+commands. Once enabled and following a system reboot, the root shell
+will be available on <tt>tty9</tt> which is access by pressing
+<tt>CTRL-ALT-F9</tt>. The <tt>debug-shell</tt> service should only be used
+for systemd related issues and should otherwise be disabled.
+<br /><br />
+By default, the <tt>debug-shell</tt> systemd service is already disabled.
+
+Ensure the debug-shell is not enabled by the <tt>systemd.debug-shel=1</tt>
+boot parameter option.
+
+Check that the line <pre>GRUB_CMDLINE_LINUX="..."</pre> within <tt>/etc/default/grub</tt>
+doesn't contain the argument <tt>systemd.debug-shell</tt>.
+Run the following command to update command line for already installed kernels:
+<pre># grubby --update-kernel=ALL --remove-args="systemd.debug-shell"</pre></p>
+<h4>Rationale</h4>
+<p>This prevents attackers with physical access from trivially bypassing security
+on the machine through valid troubleshooting configurations and gaining root
+access when the system is rebooted.</p>
+</div>
+
+<div id="grub2_uefi_admin_username" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Set the UEFI Boot Loader Admin Username to a Non-Default Value</h3>
+<div>grub2_uefi_admin_username</div>
+<h4>Description</h4>
+<p>The grub2 boot loader should have a superuser account and password
+protection enabled to protect boot-time settings.
+<br /><br />
+To maximize the protection, select a password-protected superuser account with unique name, and modify the
+<tt>/etc/grub.d/01_users</tt> configuration file to reflect the account name change.
+<br /><br />
+It is highly suggested not to use common administrator account names like root,
+admin, or administrator for the grub2 superuser account.
+<br /><br />
+Change the superuser to a different username (The default is 'root').
+<pre>$ sed -i 's/\(set superusers=\).*/\1"&lt;unique user ID&gt;"/g' /etc/grub.d/01_users</pre>
+The line mentioned above must be followed by the line
+<pre>export superusers</pre>
+so that the <tt>superusers</tt> is honored.
+<br /><br />
+Once the superuser account has been added,
+update the
+<tt>grub.cfg</tt> file by running:
+<pre>grub2-mkconfig -o /boot/grub2/grub.cfg</pre></p>
+<h4>Rationale</h4>
+<p>Having a non-default grub superuser username makes password-guessing attacks less effective.</p>
+</div>
+
+<div id="grub2_uefi_password" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Set the UEFI Boot Loader Password</h3>
+<div>grub2_uefi_password</div>
+<h4>Description</h4>
+<p>The grub2 boot loader should have a superuser account and password
+protection enabled to protect boot-time settings.
+<br /><br />
+Since plaintext passwords are a security risk, generate a hash for the password
+by running the following command:
+
+<pre># grub2-setpassword</pre>
+
+When prompted, enter the password that was selected.
+<br /><br /></p>
+<h4>Rationale</h4>
+<p>Password protection on the boot loader configuration ensures
+users with physical access cannot trivially alter
+important bootloader settings. These include which kernel to use,
+and whether to enter single-user mode.</p>
+</div>
+
+<div id="grub2_uefi_password_legacy" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Set the UEFI Boot Loader Password - systems prior to version 7.2</h3>
+<div>grub2_uefi_password_legacy</div>
+<h4>Description</h4>
+<p>The grub2 boot loader should have a superuser account and password
+protection enabled to protect boot-time settings.
+<br /><br />
+Since plaintext passwords are a security risk, generate a hash for the password
+by running the following command: <pre># grub2-mkpasswd-pbkdf2</pre>
+When prompted, enter the password that was selected.
+<br /><br />
+Using the hash from the output, modify the <tt>/etc/grub.d/40_custom</tt>
+file with the following content:
+<pre>set superusers="root"
+password_pbkdf2 boot grub.pbkdf2.sha512.VeryLongString
+</pre>
+Once the superuser password has been added, update the
+<tt>grub.cfg</tt> file by running:
+<pre>grub2-mkconfig -o /boot/efi/EFI/redhat/grub.cfg</pre></p>
+<h4>Rationale</h4>
+<p>Password protection on the boot loader configuration ensures
+users with physical access cannot trivially alter
+important bootloader settings. These include which kernel to use,
+and whether to enter single-user mode.</p>
+</div>
+
+<div id="grub2_vsyscall_argument" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable vsyscalls</h3>
+<div>grub2_vsyscall_argument</div>
+<h4>Description</h4>
+<p>To disable use of virtual syscalls,
+add the argument <tt>vsyscall=none</tt> to the default
+GRUB 2 command line for the Linux operating system.
+To ensure that <tt>vsyscall=none</tt> is added as a kernel command line
+argument to newly installed kernels, add <tt>vsyscall=none</tt> to the
+default Grub2 command line for Linux operating systems. Modify the line within
+<tt>/etc/default/grub</tt> as shown below:
+<pre>GRUB_CMDLINE_LINUX="... vsyscall=none ..."</pre>
+Run the following command to update command line for already installed kernels:<pre># grubby --update-kernel=ALL --args="vsyscall=none"</pre></p>
+<h4>Rationale</h4>
+<p>Virtual Syscalls provide an opportunity of attack for a user who has control
+of the return instruction pointer.</p>
+</div>
+
+<div id="uefi_no_removeable_media" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>UEFI Boot Loader Is Not Installed On Removable Media</h3>
+<div>uefi_no_removeable_media</div>
+<h4>Description</h4>
+<p>The system must not allow removable media to be used as the boot loader.
+Remove alternate methods of booting the system from removable media.
+<tt>usb0</tt>, <tt>cd</tt>, <tt>fd0</tt>, etc. are some examples of removable
+media which should not exist in the lines:
+<pre>set root='hd0,msdos1'</pre></p>
+<h4>Rationale</h4>
+<p>Malicious users with removable boot media can gain access to a system
+configured to use removable media as the boot loader.</p>
+</div>
+
+<div id="grub2_init_on_free" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>The system must booted with init_on_free=1</h3>
+<div>grub2_init_on_free</div>
+<h4>Description</h4>
+<p>Setting <tt>init_on_free=1</tt> on boot guarantees that pages and heap objects are initialized right after they're freed, so it won't be possible to access stale data by using a dangling pointer.</p>
+<h4>Rationale</h4>
+<p><tt>init_on_free</tt> is a Linux kernel boot parameter that enhances security by initializing memory regions when they are freed, preventing data leakage.
+This process ensures that stale data in freed memory cannot be accessed by malicious programs.</p>
+</div>
+
+<div id="file_permissions_boot_grub2" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>All GRUB configuration files must have mode 0600 or more restrictive</h3>
+<div>file_permissions_boot_grub2</div>
+<h4>Description</h4>
+<p>The files in <tt>/boot/efi/EFI/redhat</tt> should
+have mode <tt>0600</tt> to prevent
+destruction or modification of the file.
+
+To properly set the permissions of <code>/boot/efi/EFI/redhat</code>, run the command:
+<pre>$ sudo chmod 0600 /boot/efi/EFI/redhat</pre></p>
+<h4>Rationale</h4>
+<p>The file mode 0600 prevents unauthorized access and modifications to boot settings.</p>
+</div>
+
+<div id="file_owner_boot_grub2" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>All GRUB configuration files must be owned by root</h3>
+<div>file_owner_boot_grub2</div>
+<h4>Description</h4>
+<p>The files in <tt>/boot/efi/EFI/redhat</tt> should
+be owned by the <tt>root</tt> user to prevent
+destruction or modification of the file.
+
+To properly set the owner of <code>/boot/efi/EFI/redhat</code>, run the command:
+
+  <pre>$ sudo chown root /boot/efi/EFI/redhat </pre>
+  </p>
+<h4>Rationale</h4>
+<p>To prevent unauthorized access and modifications to boot configuration.</p>
+</div>
+
+<div id="file_groupowner_boot_grub2" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>All GRUB configuration files must be group-owned by root</h3>
+<div>file_groupowner_boot_grub2</div>
+<h4>Description</h4>
+<p>The files in <tt>/boot/efi/EFI/redhat</tt> should
+be group-owned by the <tt>root</tt> group to prevent
+destruction or modification of the file.
+
+To properly set the group owner of <code>/boot/efi/EFI/redhat</code>, run the command:
+
+  <pre>$ sudo chgrp root /boot/efi/EFI/redhat</pre>
+  </p>
+<h4>Rationale</h4>
+<p>The <tt>root</tt> group is a highly-privileged group. Furthermore, the group-owner of this
+file should not have any access privileges anyway.</p>
+</div>
+
+
+
+
+</body>
+</html>
