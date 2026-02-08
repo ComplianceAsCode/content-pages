@@ -1,0 +1,1740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'openssh'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'openssh'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>openssh</li>
+
+<li>openssh-clients</li>
+
+<li>openssh-server</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<ul>
+
+<li>ssh</li>
+
+<li>ssh_client</li>
+
+<li>ssh_server</li>
+
+<li>sshd_strengthen_firewall</li>
+
+</ul>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#configure_custom_crypto_policy_cis">configure_custom_crypto_policy_cis</a></li>
+
+<li><a href="#directory_groupowner_sshd_config_d">directory_groupowner_sshd_config_d</a></li>
+
+<li><a href="#directory_owner_sshd_config_d">directory_owner_sshd_config_d</a></li>
+
+<li><a href="#directory_permissions_sshd_config_d">directory_permissions_sshd_config_d</a></li>
+
+<li><a href="#disable_host_auth">disable_host_auth</a></li>
+
+<li><a href="#file_groupowner_etc_sysconfig_sshd">file_groupowner_etc_sysconfig_sshd</a></li>
+
+<li><a href="#file_groupowner_sshd_config">file_groupowner_sshd_config</a></li>
+
+<li><a href="#file_groupowner_sshd_drop_in_config">file_groupowner_sshd_drop_in_config</a></li>
+
+<li><a href="#file_groupownership_sshd_private_key">file_groupownership_sshd_private_key</a></li>
+
+<li><a href="#file_groupownership_sshd_pub_key">file_groupownership_sshd_pub_key</a></li>
+
+<li><a href="#file_owner_etc_sysconfig_sshd">file_owner_etc_sysconfig_sshd</a></li>
+
+<li><a href="#file_owner_sshd_config">file_owner_sshd_config</a></li>
+
+<li><a href="#file_owner_sshd_drop_in_config">file_owner_sshd_drop_in_config</a></li>
+
+<li><a href="#file_ownership_sshd_private_key">file_ownership_sshd_private_key</a></li>
+
+<li><a href="#file_ownership_sshd_pub_key">file_ownership_sshd_pub_key</a></li>
+
+<li><a href="#file_permissions_etc_sysconfig_sshd">file_permissions_etc_sysconfig_sshd</a></li>
+
+<li><a href="#file_permissions_sshd_config">file_permissions_sshd_config</a></li>
+
+<li><a href="#file_permissions_sshd_drop_in_config">file_permissions_sshd_drop_in_config</a></li>
+
+<li><a href="#file_permissions_sshd_private_key">file_permissions_sshd_private_key</a></li>
+
+<li><a href="#file_permissions_sshd_pub_key">file_permissions_sshd_pub_key</a></li>
+
+<li><a href="#file_sshd_50_redhat_exists">file_sshd_50_redhat_exists</a></li>
+
+<li><a href="#firewalld_sshd_disabled">firewalld_sshd_disabled</a></li>
+
+<li><a href="#firewalld_sshd_port_enabled">firewalld_sshd_port_enabled</a></li>
+
+<li><a href="#iptables_sshd_disabled">iptables_sshd_disabled</a></li>
+
+<li><a href="#package_openssh-clients_installed">package_openssh-clients_installed</a></li>
+
+<li><a href="#package_openssh-server_installed">package_openssh-server_installed</a></li>
+
+<li><a href="#package_openssh-server_removed">package_openssh-server_removed</a></li>
+
+<li><a href="#package_openssh_installed">package_openssh_installed</a></li>
+
+<li><a href="#package_openssh_removed">package_openssh_removed</a></li>
+
+<li><a href="#service_sshd_disabled">service_sshd_disabled</a></li>
+
+<li><a href="#service_sshd_enabled">service_sshd_enabled</a></li>
+
+<li><a href="#ssh_client_rekey_limit">ssh_client_rekey_limit</a></li>
+
+<li><a href="#ssh_client_use_strong_rng_csh">ssh_client_use_strong_rng_csh</a></li>
+
+<li><a href="#ssh_client_use_strong_rng_sh">ssh_client_use_strong_rng_sh</a></li>
+
+<li><a href="#ssh_client_use_approved_ciphers_ordered_stig">ssh_client_use_approved_ciphers_ordered_stig</a></li>
+
+<li><a href="#ssh_keys_passphrase_protected">ssh_keys_passphrase_protected</a></li>
+
+<li><a href="#ssh_private_keys_have_passcode">ssh_private_keys_have_passcode</a></li>
+
+<li><a href="#ssh_use_approved_macs_ordered_stig">ssh_use_approved_macs_ordered_stig</a></li>
+
+<li><a href="#sshd_allow_only_protocol2">sshd_allow_only_protocol2</a></li>
+
+<li><a href="#sshd_disable_compression">sshd_disable_compression</a></li>
+
+<li><a href="#sshd_disable_empty_passwords">sshd_disable_empty_passwords</a></li>
+
+<li><a href="#sshd_disable_forwarding">sshd_disable_forwarding</a></li>
+
+<li><a href="#sshd_disable_gssapi_auth">sshd_disable_gssapi_auth</a></li>
+
+<li><a href="#sshd_disable_kerb_auth">sshd_disable_kerb_auth</a></li>
+
+<li><a href="#sshd_disable_pubkey_auth">sshd_disable_pubkey_auth</a></li>
+
+<li><a href="#sshd_disable_rhosts">sshd_disable_rhosts</a></li>
+
+<li><a href="#sshd_disable_rhosts_rsa">sshd_disable_rhosts_rsa</a></li>
+
+<li><a href="#sshd_disable_root_login">sshd_disable_root_login</a></li>
+
+<li><a href="#sshd_disable_root_password_login">sshd_disable_root_password_login</a></li>
+
+<li><a href="#sshd_disable_tcp_forwarding">sshd_disable_tcp_forwarding</a></li>
+
+<li><a href="#sshd_disable_user_known_hosts">sshd_disable_user_known_hosts</a></li>
+
+<li><a href="#sshd_disable_x11_forwarding">sshd_disable_x11_forwarding</a></li>
+
+<li><a href="#sshd_do_not_permit_user_env">sshd_do_not_permit_user_env</a></li>
+
+<li><a href="#sshd_enable_gssapi_auth">sshd_enable_gssapi_auth</a></li>
+
+<li><a href="#sshd_enable_pam">sshd_enable_pam</a></li>
+
+<li><a href="#sshd_enable_pubkey_auth">sshd_enable_pubkey_auth</a></li>
+
+<li><a href="#sshd_enable_strictmodes">sshd_enable_strictmodes</a></li>
+
+<li><a href="#sshd_enable_warning_banner">sshd_enable_warning_banner</a></li>
+
+<li><a href="#sshd_enable_warning_banner_net">sshd_enable_warning_banner_net</a></li>
+
+<li><a href="#sshd_enable_x11_forwarding">sshd_enable_x11_forwarding</a></li>
+
+<li><a href="#sshd_limit_user_access">sshd_limit_user_access</a></li>
+
+<li><a href="#sshd_print_last_log">sshd_print_last_log</a></li>
+
+<li><a href="#sshd_rekey_limit">sshd_rekey_limit</a></li>
+
+<li><a href="#sshd_set_idle_timeout">sshd_set_idle_timeout</a></li>
+
+<li><a href="#sshd_set_keepalive">sshd_set_keepalive</a></li>
+
+<li><a href="#sshd_set_keepalive_0">sshd_set_keepalive_0</a></li>
+
+<li><a href="#sshd_set_login_grace_time">sshd_set_login_grace_time</a></li>
+
+<li><a href="#sshd_set_loglevel_info">sshd_set_loglevel_info</a></li>
+
+<li><a href="#sshd_set_loglevel_verbose">sshd_set_loglevel_verbose</a></li>
+
+<li><a href="#sshd_set_max_auth_tries">sshd_set_max_auth_tries</a></li>
+
+<li><a href="#sshd_set_max_sessions">sshd_set_max_sessions</a></li>
+
+<li><a href="#sshd_set_maxstartups">sshd_set_maxstartups</a></li>
+
+<li><a href="#sshd_use_approved_ciphers">sshd_use_approved_ciphers</a></li>
+
+<li><a href="#sshd_use_approved_ciphers_ordered_stig">sshd_use_approved_ciphers_ordered_stig</a></li>
+
+<li><a href="#sshd_use_approved_kex_ordered_stig">sshd_use_approved_kex_ordered_stig</a></li>
+
+<li><a href="#sshd_use_approved_macs">sshd_use_approved_macs</a></li>
+
+<li><a href="#sshd_use_approved_macs_ordered_stig">sshd_use_approved_macs_ordered_stig</a></li>
+
+<li><a href="#sshd_use_directory_configuration">sshd_use_directory_configuration</a></li>
+
+<li><a href="#sshd_use_priv_separation">sshd_use_priv_separation</a></li>
+
+<li><a href="#sshd_use_strong_ciphers">sshd_use_strong_ciphers</a></li>
+
+<li><a href="#sshd_use_strong_kex">sshd_use_strong_kex</a></li>
+
+<li><a href="#sshd_use_strong_macs">sshd_use_strong_macs</a></li>
+
+<li><a href="#sshd_use_strong_rng">sshd_use_strong_rng</a></li>
+
+<li><a href="#sshd_x11_use_localhost">sshd_x11_use_localhost</a></li>
+
+<li><a href="#sshd_include_crypto_policy">sshd_include_crypto_policy</a></li>
+
+<li><a href="#harden_sshd_crypto_policy">harden_sshd_crypto_policy</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="configure_custom_crypto_policy_cis" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Implement Custom Crypto Policy Modules for CIS Benchmark</h3>
+<div>configure_custom_crypto_policy_cis</div>
+<h4>Description</h4>
+<p>Create a custom crypto policy module to enforce the use of strong ciphers and MACs in SSHD, disable CBC mode ciphers in SSHD and disable the use of weak MACs globally.
+
+
+Add the following line to the file <tt>/etc/crypto-policies/policies/modules/NO-SSHCBC.pmod</tt>:
+<pre>
+cipher@SSH = -*-CBC
+</pre>
+
+Then, set the system wide crypto policy to use the custom policy.
+<pre>
+$ sudo update-crypto-policies --set DEFAULT:NO-SHA1:NO-SSHCBC
+</pre></p>
+<h4>Rationale</h4>
+<p>CBC mode ciphers are vulnerable to certain attacks, such as the BEAST attack.
+Disabling CBC mode ciphers helps protect against these attacks and ensures that only
+strong, proven cryptographic algorithms are used to protect SSH communications.
+Weak ciphers that are used for authentication to the cryptographic module cannot be
+relied upon to provide confidentiality or integrity, and system data may be compromised.
+Message Authentication Codes (MACs) are cryptographic mechanisms used to verify the
+integrity and authenticity of data transmitted over SSH connections. Weak MACs that
+are used for authentication to the cryptographic module cannot be relied upon to
+provide integrity, and system data may be compromised. Implementing a custom crypto
+policy that disables weak MAC algorithms helps ensure that only strong, proven
+cryptographic algorithms are used to protect SSH communications.</p>
+</div>
+
+<div id="directory_groupowner_sshd_config_d" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Group Who Owns SSH Server Configuration Files</h3>
+<div>directory_groupowner_sshd_config_d</div>
+<h4>Description</h4>
+<p>
+To properly set the group owner of <code>/etc/ssh/sshd_config.d</code>, run the command:
+
+  <pre>$ sudo chgrp root /etc/ssh/sshd_config.d</pre>
+  </p>
+<h4>Rationale</h4>
+<p>Service configuration files enable or disable features of their respective
+services that if configured incorrectly can lead to insecure and vulnerable
+configurations. Therefore, service configuration files should be owned by the
+correct group to prevent unauthorized changes.</p>
+</div>
+
+<div id="directory_owner_sshd_config_d" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Owner on SSH Server Configuration Files</h3>
+<div>directory_owner_sshd_config_d</div>
+<h4>Description</h4>
+<p>
+To properly set the owner of <code>/etc/ssh/sshd_config.d</code>, run the command:
+
+  <pre>$ sudo chown root /etc/ssh/sshd_config.d </pre>
+  </p>
+<h4>Rationale</h4>
+<p>Service configuration files enable or disable features of their respective
+services that if configured incorrectly can lead to insecure and vulnerable
+configurations. Therefore, service configuration files should be owned by the
+correct group to prevent unauthorized changes.</p>
+</div>
+
+<div id="directory_permissions_sshd_config_d" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Permissions on SSH Server Config File</h3>
+<div>directory_permissions_sshd_config_d</div>
+<h4>Description</h4>
+<p>
+To properly set the permissions of <code>/etc/ssh/sshd_config.d</code>, run the command:
+<pre>$ sudo chmod 0700 /etc/ssh/sshd_config.d</pre></p>
+<h4>Rationale</h4>
+<p>Service configuration files enable or disable features of their respective
+services that if configured incorrectly can lead to insecure and vulnerable
+configurations. Therefore, service configuration files should be owned by the
+correct group to prevent unauthorized changes.</p>
+</div>
+
+<div id="disable_host_auth" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable Host-Based Authentication</h3>
+<div>disable_host_auth</div>
+<h4>Description</h4>
+<p>SSH's cryptographic host-based authentication is
+more secure than <tt>.rhosts</tt> authentication. However, it is
+not recommended that hosts unilaterally trust one another, even
+within an organization.
+<br />
+The default SSH configuration disables host-based authentication. The appropriate
+configuration is used if no value is set for <tt>HostbasedAuthentication</tt>.
+<br />
+To explicitly disable host-based authentication, add or correct the
+following line in
+
+
+<tt>/etc/ssh/sshd_config.d/00-complianceascode-hardening.conf</tt>:
+
+<pre>HostbasedAuthentication no</pre></p>
+<h4>Rationale</h4>
+<p>SSH trust relationships mean a compromise on one host
+can allow an attacker to move trivially to other hosts.</p>
+</div>
+
+<div id="file_groupowner_etc_sysconfig_sshd" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Group Who Owns /etc/sysconfig/sshd File</h3>
+<div>file_groupowner_etc_sysconfig_sshd</div>
+<h4>Description</h4>
+<p> To properly set the group owner of <code>/etc/sysconfig/sshd</code>, run the command:
+<pre>$ sudo chgrp root /etc/sysconfig/sshd</pre>
+</p>
+<h4>Rationale</h4>
+<p>The <tt>/etc/sysconfig/sshd</tt> file contains configuration options for the SSH daemon.
+Protection of this file is important for system security. The file should be owned by the root
+group to prevent unauthorized changes.</p>
+</div>
+
+<div id="file_groupowner_sshd_config" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Group Who Owns SSH Server config file</h3>
+<div>file_groupowner_sshd_config</div>
+<h4>Description</h4>
+<p>
+To properly set the group owner of <code>/etc/ssh/sshd_config</code>, run the command:
+
+  <pre>$ sudo chgrp root /etc/ssh/sshd_config</pre>
+  </p>
+<h4>Rationale</h4>
+<p>Service configuration files enable or disable features of their respective
+services that if configured incorrectly can lead to insecure and vulnerable
+configurations. Therefore, service configuration files should be owned by the
+correct group to prevent unauthorized changes.</p>
+</div>
+
+<div id="file_groupowner_sshd_drop_in_config" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Group Who Owns SSH Server Configuration Files</h3>
+<div>file_groupowner_sshd_drop_in_config</div>
+<h4>Description</h4>
+<p>
+To properly set the group owner of files in <code>/etc/ssh/sshd_config.d</code>, run the command:
+<pre>find -H /etc/ssh/sshd_config.d -type d -exec chgrp -L root {} \;</pre></p>
+<h4>Rationale</h4>
+<p>Service configuration files enable or disable features of their respective
+services that if configured incorrectly can lead to insecure and vulnerable
+configurations. Therefore, service configuration files should be owned by the
+correct group to prevent unauthorized changes.</p>
+</div>
+
+<div id="file_groupownership_sshd_private_key" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Group Ownership on SSH Server Private *_key Key Files</h3>
+<div>file_groupownership_sshd_private_key</div>
+<h4>Description</h4>
+<p>SSH server private keys, files that match the <code>/etc/ssh/*_key</code> glob, must be
+group-owned by <code>ssh_keys</code> group.</p>
+<h4>Rationale</h4>
+<p>If an unauthorized user obtains the private SSH host key file, the host could be impersonated.</p>
+</div>
+
+<div id="file_groupownership_sshd_pub_key" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Group Ownership on SSH Server Public *.pub Key Files</h3>
+<div>file_groupownership_sshd_pub_key</div>
+<h4>Description</h4>
+<p>SSH server public keys, files that match the <code>/etc/ssh/*.pub</code> glob, must be
+group-owned by <code>root</code> group.</p>
+<h4>Rationale</h4>
+<p>If a public host key file is modified by an unauthorized user, the SSH service
+may be compromised.</p>
+</div>
+
+<div id="file_owner_etc_sysconfig_sshd" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify User Who Owns /etc/sysconfig/sshd File</h3>
+<div>file_owner_etc_sysconfig_sshd</div>
+<h4>Description</h4>
+<p> To properly set the owner of <code>/etc/sysconfig/sshd</code>, run the command:
+<pre>$ sudo chown root /etc/sysconfig/sshd </pre>
+</p>
+<h4>Rationale</h4>
+<p>The <tt>/etc/sysconfig/sshd</tt> file contains configuration options for the SSH daemon.
+Protection of this file is important for system security. The file should be owned by root
+to prevent unauthorized changes.</p>
+</div>
+
+<div id="file_owner_sshd_config" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Owner on SSH Server config file</h3>
+<div>file_owner_sshd_config</div>
+<h4>Description</h4>
+<p>
+To properly set the owner of <code>/etc/ssh/sshd_config</code>, run the command:
+
+  <pre>$ sudo chown root /etc/ssh/sshd_config </pre>
+  </p>
+<h4>Rationale</h4>
+<p>Service configuration files enable or disable features of their respective
+services that if configured incorrectly can lead to insecure and vulnerable
+configurations. Therefore, service configuration files should be owned by the
+correct group to prevent unauthorized changes.</p>
+</div>
+
+<div id="file_owner_sshd_drop_in_config" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Owner on SSH Server Configuration Files</h3>
+<div>file_owner_sshd_drop_in_config</div>
+<h4>Description</h4>
+<p>
+To properly set the owner of files in <code>/etc/ssh/sshd_config.d</code>, run the command:
+<pre>find -H /etc/ssh/sshd_config.d -type d -exec chown -L root {} \;</pre></p>
+<h4>Rationale</h4>
+<p>Service configuration files enable or disable features of their respective
+services that if configured incorrectly can lead to insecure and vulnerable
+configurations. Therefore, service configuration files should be owned by the
+correct group to prevent unauthorized changes.</p>
+</div>
+
+<div id="file_ownership_sshd_private_key" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Ownership on SSH Server Private *_key Key Files</h3>
+<div>file_ownership_sshd_private_key</div>
+<h4>Description</h4>
+<p>SSH server private keys, files that match the <code>/etc/ssh/*_key</code> glob, must be owned
+by <code>root</code> user.</p>
+<h4>Rationale</h4>
+<p>If an unauthorized user obtains the private SSH host key file, the host could be impersonated.</p>
+</div>
+
+<div id="file_ownership_sshd_pub_key" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Ownership on SSH Server Public *.pub Key Files</h3>
+<div>file_ownership_sshd_pub_key</div>
+<h4>Description</h4>
+<p>SSH server public keys, files that match the <code>/etc/ssh/*.pub</code> glob, must be owned
+by <code>root</code> user.</p>
+<h4>Rationale</h4>
+<p>If a public host key file is modified by an unauthorized user, the SSH service
+may be compromised.</p>
+</div>
+
+<div id="file_permissions_etc_sysconfig_sshd" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Permissions on /etc/sysconfig/sshd File</h3>
+<div>file_permissions_etc_sysconfig_sshd</div>
+<h4>Description</h4>
+<p>
+To properly set the permissions of <code>/etc/sysconfig/sshd</code>, run the command:
+<pre>$ sudo chmod 0640 /etc/sysconfig/sshd</pre></p>
+<h4>Rationale</h4>
+<p>The <tt>/etc/sysconfig/sshd</tt> file contains configuration options for the SSH daemon.
+Protection of this file is important for system security. The file should have mode 0640
+or more restrictive to prevent unauthorized access and modifications.</p>
+</div>
+
+<div id="file_permissions_sshd_config" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Permissions on SSH Server config file</h3>
+<div>file_permissions_sshd_config</div>
+<h4>Description</h4>
+<p>
+To properly set the permissions of <code>/etc/ssh/sshd_config</code>, run the command:
+<pre>$ sudo chmod 0600 /etc/ssh/sshd_config</pre></p>
+<h4>Rationale</h4>
+<p>Service configuration files enable or disable features of their respective
+services that if configured incorrectly can lead to insecure and vulnerable
+configurations. Therefore, service configuration files should be owned by the
+correct group to prevent unauthorized changes.</p>
+</div>
+
+<div id="file_permissions_sshd_drop_in_config" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Permissions on SSH Server Config File</h3>
+<div>file_permissions_sshd_drop_in_config</div>
+<h4>Description</h4>
+<p>
+To properly set the permissions of files in <code>/etc/ssh/sshd_config.d</code>, run the command:
+<pre>find -H /etc/ssh/sshd_config.d -type d -exec chown 0600 {} \;</pre></p>
+<h4>Rationale</h4>
+<p>Service configuration files enable or disable features of their respective
+services that if configured incorrectly can lead to insecure and vulnerable
+configurations. Therefore, service configuration files should be owned by the
+correct group to prevent unauthorized changes.</p>
+</div>
+
+<div id="file_permissions_sshd_private_key" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Permissions on SSH Server Private *_key Key Files</h3>
+<div>file_permissions_sshd_private_key</div>
+<h4>Description</h4>
+<p>SSH server private keys - files that match the <code>/etc/ssh/*_key</code> glob, have to have restricted permissions.
+If those files are owned by the <code>root</code> user and the <code>root</code> group, they have to have the <code>0600</code> permission or stricter.
+If they are owned by the <code>root</code> user, but by a dedicated group <code>ssh_keys</code>, they can have the <code>0640</code> permission or stricter.</p>
+<h4>Rationale</h4>
+<p>If an unauthorized user obtains the private SSH host key file, the host could be
+impersonated.</p>
+</div>
+
+<div id="file_permissions_sshd_pub_key" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Permissions on SSH Server Public *.pub Key Files</h3>
+<div>file_permissions_sshd_pub_key</div>
+<h4>Description</h4>
+<p> To properly set the permissions of <code>/etc/ssh/*.pub</code>, run the command: <pre>$ sudo chmod 0644 /etc/ssh/*.pub</pre></p>
+<h4>Rationale</h4>
+<p>If a public host key file is modified by an unauthorized user, the SSH service
+may be compromised.</p>
+</div>
+
+<div id="file_sshd_50_redhat_exists" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>The File /etc/ssh/sshd_config.d/50-redhat.conf Must Exist</h3>
+<div>file_sshd_50_redhat_exists</div>
+<h4>Description</h4>
+<p>The <tt>/etc/ssh/sshd_config.d/50-redhat.conf</tt> file must exist as it contains important
+settings to secure SSH.</p>
+<h4>Rationale</h4>
+<p>The file must exist to configure SSH correctly.</p>
+</div>
+
+<div id="firewalld_sshd_disabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Remove SSH Server firewalld Firewall exception (Unusual)</h3>
+<div>firewalld_sshd_disabled</div>
+<h4>Description</h4>
+<p>By default, inbound connections to SSH's port are allowed. If
+the SSH server is not being used, this exception should be removed from the
+firewall configuration.
+<br /><br />
+
+To configure <code>firewalld</code> to prevent access, run the following command(s):
+<code>firewall-cmd --permanent --remove-service=ssh</code></p>
+<h4>Rationale</h4>
+<p>If inbound SSH connections are not expected, disallowing access to the SSH port will
+avoid possible exploitation of the port by an attacker.</p>
+</div>
+
+<div id="firewalld_sshd_port_enabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Enable SSH Server firewalld Firewall Exception</h3>
+<div>firewalld_sshd_port_enabled</div>
+<h4>Description</h4>
+<p>If the SSH server is in use, inbound connections to SSH's port should be allowed to permit
+remote access through SSH. In more restrictive firewalld settings, the SSH port should be
+added to the proper firewalld zone in order to allow SSH remote access.
+<br /><br />
+
+To configure <code>firewalld</code> to allow <code>ssh</code> access, run the following command(s):
+<pre>firewall-cmd --permanent --add-service=ssh</pre>
+Then run the following command to load the newly created rule(s):
+<pre>firewall-cmd --reload</pre></p>
+<h4>Rationale</h4>
+<p>If inbound SSH connections are expected, adding the SSH port to the proper firewalld zone
+will allow remote access through the SSH port.</p>
+</div>
+
+<div id="iptables_sshd_disabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Remove SSH Server iptables Firewall exception (Unusual)</h3>
+<div>iptables_sshd_disabled</div>
+<h4>Description</h4>
+<p>By default, inbound connections to SSH's port are allowed. If the SSH
+server is not being used, this exception should be removed from the
+firewall configuration.
+<br /><br />
+Edit the files <tt>/etc/sysconfig/iptables</tt> and
+<tt>/etc/sysconfig/ip6tables</tt> (if IPv6 is in use). In each file, locate
+and delete the line:
+<pre>-A INPUT -m state --state NEW -m tcp -p tcp --dport 22 -j ACCEPT</pre>
+This is unusual, as SSH is a common method for encrypted and authenticated
+remote access.</p>
+<h4>Rationale</h4>
+<p>If inbound SSH connections are not expected, disallowing access to the SSH
+port will avoid possible exploitation of the port by an attacker.</p>
+</div>
+
+<div id="package_openssh-clients_installed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Install OpenSSH client software</h3>
+<div>package_openssh-clients_installed</div>
+<h4>Description</h4>
+<p>The <code>openssh-clients</code> package can be installed with the following command:
+<pre>
+$ sudo dnf install openssh-clients</pre></p>
+<h4>Rationale</h4>
+<p>This package includes utilities to make encrypted connections and transfer
+files securely to SSH servers.</p>
+</div>
+
+<div id="package_openssh-server_installed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Install the OpenSSH Server Package</h3>
+<div>package_openssh-server_installed</div>
+<h4>Description</h4>
+<p>The <tt>openssh-server</tt> package should be installed.
+The <code>openssh-server</code> package can be installed with the following command:
+<pre>
+$ sudo dnf install openssh-server</pre></p>
+<h4>Rationale</h4>
+<p>Without protection of the transmitted information, confidentiality, and
+integrity may be compromised because unprotected communications can be
+intercepted and either read or altered.</p>
+</div>
+
+<div id="package_openssh-server_removed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Remove the OpenSSH Server Package</h3>
+<div>package_openssh-server_removed</div>
+<h4>Description</h4>
+<p>The <tt>openssh-server</tt> package should be removed.
+The <code>openssh-server</code> package can be removed with the following command:
+<pre>
+$ sudo dnf remove openssh-server</pre></p>
+<h4>Rationale</h4>
+<p>Without protection of the transmitted information, confidentiality, and
+integrity may be compromised because unprotected communications can be
+intercepted and either read or altered.</p>
+</div>
+
+<div id="package_openssh_installed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Install the OpenSSH Client and Server Package</h3>
+<div>package_openssh_installed</div>
+<h4>Description</h4>
+<p>The <tt>openssh</tt> package should be installed.
+The <code>openssh</code> package can be installed with the following command:
+<pre>
+$ sudo dnf install openssh</pre></p>
+<h4>Rationale</h4>
+<p>Without protection of the transmitted information, confidentiality, and
+integrity may be compromised because unprotected communications can be
+intercepted and either read or altered.</p>
+</div>
+
+<div id="package_openssh_removed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Remove the OpenSSH Client and Server Package</h3>
+<div>package_openssh_removed</div>
+<h4>Description</h4>
+<p>The <tt>openssh</tt> package should be removed.
+The <code>openssh</code> package can be removed with the following command:
+<pre>
+$ sudo dnf remove openssh</pre></p>
+<h4>Rationale</h4>
+<p>Without protection of the transmitted information, confidentiality, and
+integrity may be compromised because unprotected communications can be
+intercepted and either read or altered.</p>
+</div>
+
+<div id="service_sshd_disabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable SSH Server If Possible</h3>
+<div>service_sshd_disabled</div>
+<h4>Description</h4>
+<p>
+The SSH server service, sshd, is commonly needed.
+However, if it can be disabled, do so.
+This is unusual, as SSH is a common method for encrypted and authenticated
+remote access.</p>
+<h4>Rationale</h4>
+<p></p>
+</div>
+
+<div id="service_sshd_enabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Enable the OpenSSH Service</h3>
+<div>service_sshd_enabled</div>
+<h4>Description</h4>
+<p>The SSH server service, sshd, is commonly needed.
+
+The <code>sshd</code> service can be enabled with the following command:
+<pre>$ sudo systemctl enable sshd.service</pre></p>
+<h4>Rationale</h4>
+<p>Without protection of the transmitted information, confidentiality, and
+integrity may be compromised because unprotected communications can be
+intercepted and either read or altered.
+<br /><br />
+This checklist item applies to both internal and external networks and all types
+of information system components from which information can be transmitted (e.g., servers,
+mobile devices, notebook computers, printers, copiers, scanners, etc). Communication paths
+outside the physical protection of a controlled boundary are exposed to the possibility
+of interception and modification.</p>
+</div>
+
+<div id="ssh_client_rekey_limit" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure session renegotiation for SSH client</h3>
+<div>ssh_client_rekey_limit</div>
+<h4>Description</h4>
+<p>The <tt>RekeyLimit</tt> parameter specifies how often
+the session key is renegotiated, both in terms of
+amount of data that may be transmitted and the time
+elapsed. To decrease the default limits, put line
+<tt>RekeyLimit <tt>$var_ssh_client_rekey_limit_size</tt> <tt>$var_ssh_client_rekey_limit_time</tt></tt> to file <tt>/etc/ssh/ssh_config.d/02-rekey-limit.conf</tt>.
+Make sure that there is no other <tt>RekeyLimit</tt> configuration preceding
+the <tt>include</tt> directive in the main config file
+<tt>/etc/ssh/ssh_config</tt>. Check also other files in
+<tt>/etc/ssh/ssh_config.d</tt> directory. Files are processed according to
+lexicographical order of file names. Make sure that there is no file
+processed before <tt>02-rekey-limit.conf</tt> containing definition of
+<tt>RekeyLimit</tt>.</p>
+<h4>Rationale</h4>
+<p>By decreasing the limit based on the amount of data and enabling
+time-based limit, effects of potential attacks against
+encryption keys are limited.</p>
+</div>
+
+<div id="ssh_client_use_strong_rng_csh" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>SSH client uses strong entropy to seed (for CSH like shells)</h3>
+<div>ssh_client_use_strong_rng_csh</div>
+<h4>Description</h4>
+<p>To set up SSH client to use entropy from a high-quality source, make sure
+that the appropriate shell environment variable is configured. The
+<tt>SSH_USE_STRONG_RNG</tt> environment variable determines how many bytes
+of entropy to use. Make sure that the file
+<tt>/etc/profile.d/cc-ssh-strong-rng.csh</tt> contains line
+<pre>setenv SSH_USE_STRONG_RNG 32</pre>.</p>
+<h4>Rationale</h4>
+<p>Some SSH implementations use the openssl library for entropy, which by default, doesn't use high-entropy sources.
+Randomness is needed to generate considerably more secure data-encryption keys. Plaintext padding, initialization vectors
+in encryption algorithms, and high-quality entropy eliminates the possibility that the output of
+the random number generator used by SSH would be known to potential attackers.</p>
+</div>
+
+<div id="ssh_client_use_strong_rng_sh" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>SSH client uses strong entropy to seed (Bash-like shells)</h3>
+<div>ssh_client_use_strong_rng_sh</div>
+<h4>Description</h4>
+<p>To set up SSH client to use entropy from a high-quality source, make sure
+that the appropriate shell environment variable is configured. The
+<tt>SSH_USE_STRONG_RNG</tt> environment variable determines how many bytes
+of entropy to use. Make sure that the file
+<tt>/etc/profile.d/cc-ssh-strong-rng.sh</tt> contains line
+<pre>export SSH_USE_STRONG_RNG=32</pre>.</p>
+<h4>Rationale</h4>
+<p>Some SSH implementations use the openssl library for entropy, which by default, doesn't use high-entropy sources.
+Randomness is needed to generate considerably more secure data-encryption keys. Plaintext padding, initialization vectors
+in encryption algorithms, and high-quality entropy eliminates the possibility that the output of
+the random number generator used by SSH would be known to potential attackers.</p>
+</div>
+
+<div id="ssh_client_use_approved_ciphers_ordered_stig" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Use Only FIPS 140-3 Validated Ciphers in SSH Client Configuration</h3>
+<div>ssh_client_use_approved_ciphers_ordered_stig</div>
+<h4>Description</h4>
+<p>Limit the ciphers to those algorithms which are FIPS-approved.
+The following line in <tt>/etc/ssh/ssh_config</tt>
+demonstrates use of FIPS-approved ciphers:</p>
+<h4>Rationale</h4>
+<p>Unapproved mechanisms that are used for authentication to the cryptographic module are not verified and therefore
+cannot be relied upon to provide confidentiality or integrity, and system data may be compromised.
+<br />
+Operating systems utilizing encryption are required to use FIPS-compliant mechanisms for authenticating to
+cryptographic modules.
+<br />
+FIPS 140-3 is the current standard for validating that mechanisms used to access cryptographic modules
+utilize authentication that meets industry and government requirements. For government systems, this allows
+Security Levels 1, 2, 3, or 4 for use on Amazon Linux 2023.</p>
+</div>
+
+<div id="ssh_keys_passphrase_protected" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify the SSH Private Key Files Have a Passcode</h3>
+<div>ssh_keys_passphrase_protected</div>
+<h4>Description</h4>
+<p>When creating SSH key pairs, always use a passcode.
+<br />
+You can create such keys with the following command:
+<pre>$ sudo ssh-keygen -n [passphrase]</pre>
+Amazon Linux 2023, for certificate-based authentication, must enforce authorized access to the corresponding private key.</p>
+<h4>Rationale</h4>
+<p>If an unauthorized user obtains access to a private key without a passcode,
+that user would have unauthorized access to any system where the associated
+public key has been installed.</p>
+</div>
+
+<div id="ssh_private_keys_have_passcode" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>OpenSSH Service Must Use Passcode for Their Private Keys</h3>
+<div>ssh_private_keys_have_passcode</div>
+<h4>Description</h4>
+<p>Verify the SSH private key files have a passcode.
+For each private key stored on the system, use the following command:
+
+<pre>$ sudo ssh-keygen -y -f /path/to/file</pre>
+
+If the contents of the key are displayed, without asking a passphrase this is a finding.</p>
+<h4>Rationale</h4>
+<p>If an unauthorized user obtains access to a private key without a passcode, that user would
+have unauthorized access to any system where the associated public key has been installed.</p>
+</div>
+
+<div id="ssh_use_approved_macs_ordered_stig" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Use Only FIPS 140-3 Validated MACs</h3>
+<div>ssh_use_approved_macs_ordered_stig</div>
+<h4>Description</h4>
+<p>Limit the MACs to those hash algorithms which are FIPS-approved.
+The following line in <tt>/etc/ssh/ssh_config</tt>
+demonstrates use of FIPS-approved MACs:
+
+<pre>MACs </pre>
+If this line does not contain these MACs in exact order,
+is commented out, or is missing, this is a finding.</p>
+<h4>Rationale</h4>
+<p>DoD Information Systems are required to use FIPS-approved cryptographic hash
+functions. The only hash algorithms meeting this requirement is SHA2.</p>
+</div>
+
+<div id="sshd_allow_only_protocol2" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Allow Only SSH Protocol 2</h3>
+<div>sshd_allow_only_protocol2</div>
+<h4>Description</h4>
+<p>Only SSH protocol version 2 connections should be
+permitted. The default setting in
+<tt>/etc/ssh/sshd_config</tt> is correct, and can be
+verified by ensuring that the following
+line appears:
+<pre>Protocol 2</pre></p>
+<h4>Rationale</h4>
+<p>SSH protocol version 1 is an insecure implementation of the SSH protocol and
+has many well-known vulnerability exploits. Exploits of the SSH daemon could provide
+immediate root access to the system.</p>
+</div>
+
+<div id="sshd_disable_compression" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable Compression Or Set Compression to delayed</h3>
+<div>sshd_disable_compression</div>
+<h4>Description</h4>
+<p>Compression is useful for slow network connections over long
+distances but can cause performance issues on local LANs. If use of compression
+is required, it should be enabled only after a user has authenticated; otherwise,
+it should be disabled. To disable compression or delay compression until after
+a user has successfully authenticated, add or correct the following line in the
+<tt>/etc/ssh/sshd_config</tt> file:
+<pre>Compression <tt>$var_sshd_disable_compression</tt></pre></p>
+<h4>Rationale</h4>
+<p>If compression is allowed in an SSH connection prior to authentication,
+vulnerabilities in the compression software could result in compromise of the
+system from an unauthenticated connection, potentially with root privileges.</p>
+</div>
+
+<div id="sshd_disable_empty_passwords" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable SSH Access via Empty Passwords</h3>
+<div>sshd_disable_empty_passwords</div>
+<h4>Description</h4>
+<p>Disallow SSH login with empty passwords.
+The default SSH configuration disables logins with empty passwords. The appropriate
+configuration is used if no value is set for <tt>PermitEmptyPasswords</tt>.
+<br />
+To explicitly disallow SSH login from accounts with empty passwords,
+add or correct the following line in
+
+
+<tt>/etc/ssh/sshd_config.d/00-complianceascode-hardening.conf</tt>:
+
+<br />
+<pre>PermitEmptyPasswords no</pre>
+Any accounts with empty passwords should be disabled immediately, and PAM configuration
+should prevent users from being able to assign themselves empty passwords.</p>
+<h4>Rationale</h4>
+<p>Configuring this setting for the SSH daemon provides additional assurance
+that remote login via SSH will require a password, even in the event of
+misconfiguration elsewhere.</p>
+</div>
+
+<div id="sshd_disable_forwarding" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable SSH Forwarding</h3>
+<div>sshd_disable_forwarding</div>
+<h4>Description</h4>
+<p>The DisableForwarding parameter disables all forwarding features, including X11,
+ssh-agent(1), TCP and StreamLocal. This option overrides all other forwarding-related
+options and may simplify restricted configurations.
+<br/>
+To explicitly disable SSHD forwarding, add or correct the following line in 
+
+<tt>/etc/ssh/sshd_config.d/00-complianceascode-hardening.conf</tt>:
+
+<pre>DisableForwarding yes</pre></p>
+<h4>Rationale</h4>
+<p>Disable ssh forwarding unless there is an operational requirement to use it. 
+Leaving port forwarding enabled can expose the organization to security risks.</p>
+</div>
+
+<div id="sshd_disable_gssapi_auth" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable GSSAPI Authentication</h3>
+<div>sshd_disable_gssapi_auth</div>
+<h4>Description</h4>
+<p>Unless needed, SSH should not permit extraneous or unnecessary
+authentication mechanisms like GSSAPI.
+<br/>
+The default SSH configuration disallows authentications based on GSSAPI. The appropriate
+configuration is used if no value is set for <tt>GSSAPIAuthentication</tt>.
+<br/>
+To explicitly disable GSSAPI authentication, add or correct the following line in
+
+
+<tt>/etc/ssh/sshd_config.d/00-complianceascode-hardening.conf</tt>:
+
+<pre>GSSAPIAuthentication no</pre></p>
+<h4>Rationale</h4>
+<p>GSSAPI authentication is used to provide additional authentication mechanisms to
+applications. Allowing GSSAPI authentication through SSH exposes the system's
+GSSAPI to remote hosts, increasing the attack surface of the system.</p>
+</div>
+
+<div id="sshd_disable_kerb_auth" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable Kerberos Authentication</h3>
+<div>sshd_disable_kerb_auth</div>
+<h4>Description</h4>
+<p>Unless needed, SSH should not permit extraneous or unnecessary
+authentication mechanisms like Kerberos.
+<br/>
+The default SSH configuration disallows authentication validation through Kerberos.
+The appropriate configuration is used if no value is set for <tt>KerberosAuthentication</tt>.
+<br/>
+To explicitly disable Kerberos authentication, add or correct the following line in
+
+
+<tt>/etc/ssh/sshd_config.d/00-complianceascode-hardening.conf</tt>:
+
+<pre>KerberosAuthentication no</pre></p>
+<h4>Rationale</h4>
+<p>Kerberos authentication for SSH is often implemented using GSSAPI. If Kerberos
+is enabled through SSH, the SSH daemon provides a means of access to the
+system's Kerberos implementation.
+Configuring these settings for the SSH daemon provides additional assurance that remote logon via SSH will not use unused methods of authentication, even in the event of misconfiguration elsewhere.</p>
+</div>
+
+<div id="sshd_disable_pubkey_auth" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable PubkeyAuthentication Authentication</h3>
+<div>sshd_disable_pubkey_auth</div>
+<h4>Description</h4>
+<p>Unless needed, SSH should not permit extraneous or unnecessary
+authentication mechanisms. To disable PubkeyAuthentication authentication, add or
+correct the following line in
+
+
+<tt>/etc/ssh/sshd_config.d/00-complianceascode-hardening.conf</tt>:
+
+<pre>PubkeyAuthentication no</pre></p>
+<h4>Rationale</h4>
+<p>PubkeyAuthentication authentication is used to provide additional authentication mechanisms to
+applications. Allowing PubkeyAuthentication authentication through SSH allows users to
+generate their own authentication tokens, increasing the attack surface of the system.</p>
+</div>
+
+<div id="sshd_disable_rhosts" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable SSH Support for .rhosts Files</h3>
+<div>sshd_disable_rhosts</div>
+<h4>Description</h4>
+<p>SSH can emulate the behavior of the obsolete rsh
+command in allowing users to enable insecure access to their
+accounts via <tt>.rhosts</tt> files.
+<br />
+The default SSH configuration disables support for <tt>.rhosts</tt>. The appropriate
+configuration is used if no value is set for <tt>IgnoreRhosts</tt>.
+<br/>
+To explicitly disable support for .rhosts files, add or correct the following line in
+
+
+<tt>/etc/ssh/sshd_config.d/00-complianceascode-hardening.conf</tt>:
+
+<pre>IgnoreRhosts yes</pre></p>
+<h4>Rationale</h4>
+<p>SSH trust relationships mean a compromise on one host
+can allow an attacker to move trivially to other hosts.</p>
+</div>
+
+<div id="sshd_disable_rhosts_rsa" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable SSH Support for Rhosts RSA Authentication</h3>
+<div>sshd_disable_rhosts_rsa</div>
+<h4>Description</h4>
+<p>SSH can allow authentication through the obsolete rsh
+command through the use of the authenticating user's SSH keys. This should be disabled.
+<br /><br />
+To ensure this behavior is disabled, add or correct the
+following line in <tt>/etc/ssh/sshd_config</tt>:
+<pre>RhostsRSAAuthentication no</pre></p>
+<h4>Rationale</h4>
+<p>Configuring this setting for the SSH daemon provides additional
+assurance that remote login via SSH will require a password, even
+in the event of misconfiguration elsewhere.</p>
+</div>
+
+<div id="sshd_disable_root_login" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable SSH Root Login</h3>
+<div>sshd_disable_root_login</div>
+<h4>Description</h4>
+<p>The root user should never be allowed to login to a
+system directly over a network.
+To disable root login via SSH, add or correct the following line in
+
+
+<tt>/etc/ssh/sshd_config.d/00-complianceascode-hardening.conf</tt>:
+
+<pre>PermitRootLogin no</pre></p>
+<h4>Rationale</h4>
+<p>Even though the communications channel may be encrypted, an additional layer of
+security is gained by extending the policy of not logging directly on as root.
+In addition, logging in with a user-specific account provides individual
+accountability of actions performed on the system and also helps to minimize
+direct attack attempts on root's password.</p>
+</div>
+
+<div id="sshd_disable_root_password_login" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable SSH root Login with a Password (Insecure)</h3>
+<div>sshd_disable_root_password_login</div>
+<h4>Description</h4>
+<p>To disable password-based root logins over SSH, add or correct the following line in
+
+
+<tt>/etc/ssh/sshd_config.d/00-complianceascode-hardening.conf</tt>:
+
+<pre>PermitRootLogin prohibit-password</pre></p>
+<h4>Rationale</h4>
+<p>Even though the communications channel may be encrypted, an additional
+layer of security is gained by preventing use of a password.
+This also helps to minimize direct attack attempts on root's password.</p>
+</div>
+
+<div id="sshd_disable_tcp_forwarding" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable SSH TCP Forwarding</h3>
+<div>sshd_disable_tcp_forwarding</div>
+<h4>Description</h4>
+<p>The <tt>AllowTcpForwarding</tt> parameter specifies whether TCP forwarding is permitted.
+To disable TCP forwarding, add or correct the following line in
+
+
+<tt>/etc/ssh/sshd_config.d/00-complianceascode-hardening.conf</tt>:
+
+<pre>AllowTcpForwarding no</pre></p>
+<h4>Rationale</h4>
+<p>Leaving port forwarding enabled can expose the organization to security risks and back-doors.</p>
+</div>
+
+<div id="sshd_disable_user_known_hosts" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable SSH Support for User Known Hosts</h3>
+<div>sshd_disable_user_known_hosts</div>
+<h4>Description</h4>
+<p>SSH can allow system users to connect to systems if a cache of the remote
+systems public keys is available.  This should be disabled.
+<br /><br />
+To ensure this behavior is disabled, add or correct the following line in
+
+
+<tt>/etc/ssh/sshd_config.d/00-complianceascode-hardening.conf</tt>:
+
+<pre>IgnoreUserKnownHosts yes</pre></p>
+<h4>Rationale</h4>
+<p>Configuring this setting for the SSH daemon provides additional
+assurance that remote login via SSH will require a password, even
+in the event of misconfiguration elsewhere.</p>
+</div>
+
+<div id="sshd_disable_x11_forwarding" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable X11 Forwarding</h3>
+<div>sshd_disable_x11_forwarding</div>
+<h4>Description</h4>
+<p>The X11Forwarding parameter provides the ability to tunnel X11 traffic
+through the connection to enable remote graphic connections.
+SSH has the capability to encrypt remote X11 connections when SSH's
+<tt>X11Forwarding</tt> option is enabled.
+<br />
+The default SSH configuration disables X11Forwarding. The appropriate
+configuration is used if no value is set for <tt>X11Forwarding</tt>.
+<br />
+To explicitly disable X11 Forwarding, add or correct the following line in
+
+
+<tt>/etc/ssh/sshd_config.d/00-complianceascode-hardening.conf</tt>:
+
+<pre>X11Forwarding no</pre></p>
+<h4>Rationale</h4>
+<p>Disable X11 forwarding unless there is an operational requirement to use X11
+applications directly. There is a small risk that the remote X11 servers of
+users who are logged in via SSH with X11 forwarding could be compromised by
+other users on the X11 server. Note that even if X11 forwarding is disabled,
+users can always install their own forwarders.</p>
+</div>
+
+<div id="sshd_do_not_permit_user_env" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Do Not Allow SSH Environment Options</h3>
+<div>sshd_do_not_permit_user_env</div>
+<h4>Description</h4>
+<p>Ensure that users are not able to override environment variables of the SSH daemon.
+<br/>
+The default SSH configuration disables environment processing. The appropriate
+configuration is used if no value is set for <tt>PermitUserEnvironment</tt>.
+<br/>
+To explicitly disable Environment options, add or correct the following
+
+
+<tt>/etc/ssh/sshd_config.d/00-complianceascode-hardening.conf</tt>:
+
+<pre>PermitUserEnvironment no</pre></p>
+<h4>Rationale</h4>
+<p>SSH environment options potentially allow users to bypass
+access restriction in some configurations.</p>
+</div>
+
+<div id="sshd_enable_gssapi_auth" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Enable GSSAPI Authentication</h3>
+<div>sshd_enable_gssapi_auth</div>
+<h4>Description</h4>
+<p>Sites setup to use Kerberos or other GSSAPI Authentication require setting
+sshd to accept this authentication.
+To enable GSSAPI authentication, add or correct the following line in
+
+
+<tt>/etc/ssh/sshd_config.d/00-complianceascode-hardening.conf</tt>:
+
+<pre>GSSAPIAuthentication yes</pre></p>
+<h4>Rationale</h4>
+<p>Kerberos authentication for SSH is often implemented using GSSAPI. If
+Kerberos is enabled through SSH, the SSH daemon provides a means of access
+to the system's Kerberos implementation. Vulnerabilities in the system's
+Kerberos implementations may be subject to exploitation.
+
+For enterprises, Kerberos is often enabled and used with GSSAPI for 
+centralized user account management which may necessitate enabling of
+GSSAPI functionality in SSH. </p>
+</div>
+
+<div id="sshd_enable_pam" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Enable PAM</h3>
+<div>sshd_enable_pam</div>
+<h4>Description</h4>
+<p>UsePAM Enables the Pluggable Authentication Module interface. If set to “yes” this will
+enable PAM authentication using ChallengeResponseAuthentication and
+PasswordAuthentication in addition to PAM account and session module processing for all
+authentication types.
+
+To enable PAM authentication, add or correct the following line in
+
+
+<tt>/etc/ssh/sshd_config.d/00-complianceascode-hardening.conf</tt>:
+
+<pre>UsePAM yes</pre></p>
+<h4>Rationale</h4>
+<p>When UsePAM is set to yes, PAM runs through account and session types properly. This is
+important if you want to restrict access to services based off of IP, time or other factors of
+the account. Additionally, you can make sure users inherit certain environment variables
+on login or disallow access to the server.</p>
+</div>
+
+<div id="sshd_enable_pubkey_auth" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Enable Public Key Authentication</h3>
+<div>sshd_enable_pubkey_auth</div>
+<h4>Description</h4>
+<p>Enable SSH login with public keys.
+<br/>
+The default SSH configuration enables authentication based on public keys. The appropriate
+configuration is used if no value is set for <tt>PubkeyAuthentication</tt>.
+<br/>
+To explicitly enable Public Key Authentication, add or correct the following
+
+
+<tt>/etc/ssh/sshd_config.d/00-complianceascode-hardening.conf</tt>:
+
+<pre>PubkeyAuthentication yes</pre></p>
+<h4>Rationale</h4>
+<p>Without the use of multifactor authentication, the ease of access to
+privileged functions is greatly increased. Multifactor authentication
+requires using two or more factors to achieve authentication.
+A privileged account is defined as an information system account with
+authorizations of a privileged user. 
+Smart cards or hardware tokens paired with digital certificates are
+common examples of multifactor implementations.</p>
+</div>
+
+<div id="sshd_enable_strictmodes" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Enable Use of Strict Mode Checking</h3>
+<div>sshd_enable_strictmodes</div>
+<h4>Description</h4>
+<p>SSHs <tt>StrictModes</tt> option checks file and ownership permissions in
+the user's home directory <tt>.ssh</tt> folder before accepting login. If world-
+writable permissions are found, logon is rejected.
+<br/>
+The default SSH configuration has <tt>StrictModes</tt> enabled. The appropriate
+configuration is used if no value is set for <tt>StrictModes</tt>.
+<br/>
+To explicitly enable <tt>StrictModes</tt> in SSH, add or correct the following line in
+
+
+<tt>/etc/ssh/sshd_config.d/00-complianceascode-hardening.conf</tt>:
+
+<pre>StrictModes yes</pre></p>
+<h4>Rationale</h4>
+<p>If other users have access to modify user-specific SSH configuration files, they
+may be able to log into the system as another user.</p>
+</div>
+
+<div id="sshd_enable_warning_banner" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Enable SSH Warning Banner</h3>
+<div>sshd_enable_warning_banner</div>
+<h4>Description</h4>
+<p>To enable the warning banner and ensure it is consistent
+across the system, add or correct the following line in
+
+
+<tt>/etc/ssh/sshd_config.d/00-complianceascode-hardening.conf</tt>:
+
+<pre>Banner /etc/issue</pre>
+Another section contains information on how to create an
+appropriate system-wide warning banner.</p>
+<h4>Rationale</h4>
+<p>The warning message reinforces policy awareness during the logon process and
+facilitates possible legal action against attackers. Alternatively, systems
+whose ownership should not be obvious should ensure usage of a banner that does
+not provide easy attribution.</p>
+</div>
+
+<div id="sshd_enable_warning_banner_net" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Enable SSH Warning Banner</h3>
+<div>sshd_enable_warning_banner_net</div>
+<h4>Description</h4>
+<p>To enable the warning banner and ensure it is consistent
+across the system, add or correct the following line in
+
+<tt>/etc/ssh/sshd_config.d/00-complianceascode-hardening.conf</tt>:
+
+<pre>Banner /etc/issue.net</pre>
+Another section contains information on how to create an
+appropriate system-wide warning banner.</p>
+<h4>Rationale</h4>
+<p>The warning message reinforces policy awareness during the logon process and
+facilitates possible legal action against attackers. Alternatively, systems
+whose ownership should not be obvious should ensure usage of a banner that does
+not provide easy attribution.</p>
+</div>
+
+<div id="sshd_enable_x11_forwarding" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Enable Encrypted X11 Forwarding</h3>
+<div>sshd_enable_x11_forwarding</div>
+<h4>Description</h4>
+<p>By default, remote X11 connections are not encrypted when initiated
+by users. SSH has the capability to encrypt remote X11 connections when SSH's
+<tt>X11Forwarding</tt> option is enabled.
+<br /><br />
+To enable X11 Forwarding, add or correct the following line in
+
+
+<tt>/etc/ssh/sshd_config.d/00-complianceascode-hardening.conf</tt>:
+
+<pre>X11Forwarding yes</pre></p>
+<h4>Rationale</h4>
+<p>Non-encrypted X displays allow an attacker to capture keystrokes and to execute commands
+remotely.</p>
+</div>
+
+<div id="sshd_limit_user_access" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Limit Users' SSH Access</h3>
+<div>sshd_limit_user_access</div>
+<h4>Description</h4>
+<p>By default, the SSH configuration allows any user with an account
+to access the system. There are several options available to limit
+which users and group can access the system via SSH. It is
+recommended that at least one of the following options be leveraged:
+- AllowUsers variable gives the system administrator the option of
+  allowing specific users to ssh into the system. The list consists of
+  space separated user names. Numeric user IDs are not recognized with
+  this variable. If a system administrator wants to restrict user
+  access further by specifically allowing a user's access only from a
+  particular host, the entry can be specified in the form of user@host.
+- AllowGroups variable gives the system administrator the option of
+  allowing specific groups of users to ssh into the system. The list
+  consists of space separated group names. Numeric group IDs are not
+  recognized with this variable.
+- DenyUsers variable gives the system administrator the option of
+  denying specific users to ssh into the system. The list consists of
+  space separated user names. Numeric user IDs are not recognized with
+  this variable. If a system administrator wants to restrict user
+  access further by specifically denying a user's access from a
+  particular host, the entry can be specified in the form of user@host.
+- DenyGroups variable gives the system administrator the option of
+  denying specific groups of users to ssh into the system. The list
+  consists of space separated group names. Numeric group IDs are not
+  recognized with this variable.</p>
+<h4>Rationale</h4>
+<p>Specifying which accounts are allowed SSH access into the system reduces the
+possibility of unauthorized access to the system.</p>
+</div>
+
+<div id="sshd_print_last_log" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Enable SSH Print Last Log</h3>
+<div>sshd_print_last_log</div>
+<h4>Description</h4>
+<p>Ensure that SSH will display the date and time of the last successful account logon.
+<br/>
+The default SSH configuration enables print of the date and time of the last login.
+The appropriate configuration is used if no value is set for <tt>PrintLastLog</tt>.
+<br/>
+To explicitly enable LastLog in SSH, add or correct the following line in
+
+
+<tt>/etc/ssh/sshd_config.d/00-complianceascode-hardening.conf</tt>:
+
+<pre>PrintLastLog yes</pre></p>
+<h4>Rationale</h4>
+<p>Providing users feedback on when account accesses last occurred facilitates user
+recognition and reporting of unauthorized account use.</p>
+</div>
+
+<div id="sshd_rekey_limit" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Force frequent session key renegotiation</h3>
+<div>sshd_rekey_limit</div>
+<h4>Description</h4>
+<p>The <tt>RekeyLimit</tt> parameter specifies how often
+the session key of the is renegotiated, both in terms of
+amount of data that may be transmitted and the time
+elapsed.<br/>
+To decrease the default limits, add or correct the following line in
+
+
+<tt>/etc/ssh/sshd_config.d/00-complianceascode-hardening.conf</tt>:
+
+<pre>RekeyLimit <tt>$var_rekey_limit_size</tt> <tt>$var_rekey_limit_time</tt></pre></p>
+<h4>Rationale</h4>
+<p>By decreasing the limit based on the amount of data and enabling
+time-based limit, effects of potential attacks against
+encryption keys are limited.</p>
+</div>
+
+<div id="sshd_set_idle_timeout" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Set SSH Client Alive Interval</h3>
+<div>sshd_set_idle_timeout</div>
+<h4>Description</h4>
+<p>SSH allows administrators to set a network responsiveness timeout interval.
+After this interval has passed, the unresponsive client will be automatically logged out.
+<br /><br />
+To set this timeout interval, edit the following line in <tt>/etc/ssh/sshd_config</tt> as
+follows:
+<pre>ClientAliveInterval <b><tt>$sshd_idle_timeout_value</tt></b></pre>
+<br/><br/>
+The timeout <b>interval</b> is given in seconds. For example, have a timeout
+of 10 minutes, set <b>interval</b> to 600.
+<br /><br />
+If a shorter timeout has already been set for the login shell, that value will
+preempt any SSH setting made in <tt>/etc/ssh/sshd_config</tt>. Keep in mind that
+some processes may stop SSH from correctly detecting that the user is idle.</p>
+<h4>Rationale</h4>
+<p>Terminating an idle ssh session within a short time period reduces the window of
+opportunity for unauthorized personnel to take control of a management session
+enabled on the console or console port that has been let unattended.</p>
+</div>
+
+<div id="sshd_set_keepalive" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Set SSH Client Alive Count Max</h3>
+<div>sshd_set_keepalive</div>
+<h4>Description</h4>
+<p>The SSH server sends at most <tt>ClientAliveCountMax</tt> messages
+during a SSH session and waits for a response from the SSH client.
+The option <tt>ClientAliveInterval</tt> configures timeout after
+each <tt>ClientAliveCountMax</tt> message. If the SSH server does not
+receive a response from the client, then the connection is considered unresponsive
+and terminated.
+For SSH earlier than v8.2, a <tt>ClientAliveCountMax</tt> value of <tt>0</tt>
+causes a timeout precisely when the <tt>ClientAliveInterval</tt> is set.
+Starting with v8.2, a value of <tt>0</tt> disables the timeout functionality
+completely. If the option is set to a number greater than <tt>0</tt>, then
+the session will be disconnected after
+<tt>ClientAliveInterval * ClientAliveCountMax</tt> seconds without receiving
+a keep alive message.</p>
+<h4>Rationale</h4>
+<p>This ensures a user login will be terminated as soon as the <tt>ClientAliveInterval</tt>
+is reached.</p>
+</div>
+
+<div id="sshd_set_keepalive_0" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Set SSH Client Alive Count Max to zero</h3>
+<div>sshd_set_keepalive_0</div>
+<h4>Description</h4>
+<p>The SSH server sends at most <tt>ClientAliveCountMax</tt> messages
+during a SSH session and waits for a response from the SSH client.
+The option <tt>ClientAliveInterval</tt> configures timeout after
+each <tt>ClientAliveCountMax</tt> message. If the SSH server does not
+receive a response from the client, then the connection is considered unresponsive
+and terminated.
+
+To ensure the SSH timeout occurs precisely when the
+<tt>ClientAliveInterval</tt> is set, set the <tt>ClientAliveCountMax</tt> to
+value of <tt>0</tt> in
+
+
+<tt>/etc/ssh/sshd_config.d/00-complianceascode-hardening.conf</tt>:</p>
+<h4>Rationale</h4>
+<p>This ensures a user login will be terminated as soon as the <tt>ClientAliveInterval</tt>
+is reached.</p>
+</div>
+
+<div id="sshd_set_login_grace_time" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure SSH LoginGraceTime is configured</h3>
+<div>sshd_set_login_grace_time</div>
+<h4>Description</h4>
+<p>The <tt>LoginGraceTime</tt> parameter to the SSH server specifies the time allowed for successful authentication to
+the SSH server. The longer the Grace period is the more open unauthenticated connections
+can exist. Like other session controls in this session the Grace Period should be limited to
+appropriate limits to ensure the service is available for needed access.</p>
+<h4>Rationale</h4>
+<p>Setting the <tt>LoginGraceTime</tt> parameter to a low number will minimize the risk of successful
+brute force attacks to the SSH server. It will also limit the number of concurrent
+unauthenticated connections.</p>
+</div>
+
+<div id="sshd_set_loglevel_info" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Set LogLevel to INFO</h3>
+<div>sshd_set_loglevel_info</div>
+<h4>Description</h4>
+<p>The INFO parameter specifies that record login and logout activity will be logged.
+<br/>
+The default SSH configuration sets the log level to INFO. The appropriate
+configuration is used if no value is set for <tt>LogLevel</tt>.
+<br/>
+To explicitly specify the log level in SSH, add or correct the following line in
+
+
+<tt>/etc/ssh/sshd_config.d/00-complianceascode-hardening.conf</tt>:
+
+<pre>LogLevel INFO</pre></p>
+<h4>Rationale</h4>
+<p>SSH provides several logging levels with varying amounts of verbosity. <tt>DEBUG</tt> is specifically
+not recommended other than strictly for debugging SSH communications since it provides
+so much data that it is difficult to identify important security information. <tt>INFO</tt> level is the
+basic level that only records login activity of SSH users. In many situations, such as Incident
+Response, it is important to determine when a particular user was active on a system. The
+logout record can eliminate those users who disconnected, which helps narrow the field.</p>
+</div>
+
+<div id="sshd_set_loglevel_verbose" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Set SSH Daemon LogLevel to VERBOSE</h3>
+<div>sshd_set_loglevel_verbose</div>
+<h4>Description</h4>
+<p>The <tt>VERBOSE</tt> parameter configures the SSH daemon to record login and logout activity.
+To specify the log level in
+SSH, add or correct the following line in
+
+
+<tt>/etc/ssh/sshd_config.d/00-complianceascode-hardening.conf</tt>:
+
+<pre>LogLevel VERBOSE</pre></p>
+<h4>Rationale</h4>
+<p>SSH provides several logging levels with varying amounts of verbosity. <tt>DEBUG</tt> is specifically
+not recommended other than strictly for debugging SSH communications since it provides
+so much data that it is difficult to identify important security information. <tt>INFO</tt> or
+<tt>VERBOSE</tt> level is the basic level that only records login activity of SSH users. In many
+situations, such as Incident Response, it is important to determine when a particular user was active
+on a system. The logout record can eliminate those users who disconnected, which helps narrow the
+field.</p>
+</div>
+
+<div id="sshd_set_max_auth_tries" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Set SSH authentication attempt limit</h3>
+<div>sshd_set_max_auth_tries</div>
+<h4>Description</h4>
+<p>The <tt>MaxAuthTries</tt> parameter specifies the maximum number of authentication attempts
+permitted per connection. Once the number of failures reaches half this value, additional failures are logged.
+to set MaxAUthTries edit <tt>/etc/ssh/sshd_config</tt> as follows:
+<pre>MaxAuthTries <tt>$sshd_max_auth_tries_value</tt></pre></p>
+<h4>Rationale</h4>
+<p>Setting the MaxAuthTries parameter to a low number will minimize the risk of successful
+brute force attacks to the SSH server.</p>
+</div>
+
+<div id="sshd_set_max_sessions" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Set SSH MaxSessions limit</h3>
+<div>sshd_set_max_sessions</div>
+<h4>Description</h4>
+<p>The <tt>MaxSessions</tt> parameter specifies the maximum number of open sessions permitted
+from a given connection. To set MaxSessions edit
+<tt>/etc/ssh/sshd_config</tt> as follows: <pre>MaxSessions <tt>$var_sshd_max_sessions</tt></pre></p>
+<h4>Rationale</h4>
+<p>To protect a system from denial of service due to a large number of concurrent
+sessions, use the rate limiting function of MaxSessions to protect availability
+of sshd logins and prevent overwhelming the daemon.</p>
+</div>
+
+<div id="sshd_set_maxstartups" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure SSH MaxStartups is configured</h3>
+<div>sshd_set_maxstartups</div>
+<h4>Description</h4>
+<p>The MaxStartups parameter specifies the maximum number of concurrent unauthenticated
+connections to the SSH daemon. Additional connections will be dropped until authentication
+succeeds or the LoginGraceTime expires for a connection. To configure MaxStartups, you should
+add or edit the following line in the <tt>/etc/ssh/sshd_config</tt> file:
+<pre>MaxStartups <tt>$var_sshd_set_maxstartups</tt></pre></p>
+<h4>Rationale</h4>
+<p>To protect a system from denial of service due to a large number of pending authentication
+connection attempts, use the rate limiting function of MaxStartups to protect availability of
+sshd logins and prevent overwhelming the daemon.</p>
+</div>
+
+<div id="sshd_use_approved_ciphers" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Use Only FIPS 140-2 Validated Ciphers</h3>
+<div>sshd_use_approved_ciphers</div>
+<h4>Description</h4>
+<p>Limit the ciphers to those algorithms which are FIPS-approved.
+Counter (CTR) mode is also preferred over cipher-block chaining (CBC) mode.
+The following line in <tt>/etc/ssh/sshd_config</tt>
+demonstrates use of FIPS-approved ciphers:
+<pre>Ciphers aes128-ctr,aes192-ctr,aes256-ctr,aes128-cbc,3des-cbc,aes192-cbc,aes256-cbc</pre>
+The man page <tt>sshd_config(5)</tt> contains a list of supported ciphers.
+
+The rule is parametrized to use the following ciphers: <code><tt>$sshd_approved_ciphers</tt></code>.</p>
+<h4>Rationale</h4>
+<p>Unapproved mechanisms that are used for authentication to the cryptographic module are not verified and therefore
+cannot be relied upon to provide confidentiality or integrity, and system data may be compromised.
+<br />
+Operating systems utilizing encryption are required to use FIPS-compliant mechanisms for authenticating to
+cryptographic modules.
+<br />
+FIPS 140-2 is the current standard for validating that mechanisms used to access cryptographic modules
+utilize authentication that meets industry and government requirements. For government systems, this allows
+Security Levels 1, 2, 3, or 4 for use on Amazon Linux 2023.</p>
+</div>
+
+<div id="sshd_use_approved_ciphers_ordered_stig" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Use Only FIPS 140-2 Validated Ciphers</h3>
+<div>sshd_use_approved_ciphers_ordered_stig</div>
+<h4>Description</h4>
+<p>Limit the ciphers to those algorithms which are FIPS-approved.
+The following line in <tt>/etc/ssh/sshd_config</tt>
+demonstrates use of FIPS-approved ciphers:
+<pre>Ciphers aes256-ctr,aes192-ctr,aes128-ctr</pre>
+This rule ensures that there are configured ciphers mentioned
+above (or their subset), keeping the given order of algorithms.</p>
+<h4>Rationale</h4>
+<p>Unapproved mechanisms that are used for authentication to the cryptographic module are not verified and therefore
+cannot be relied upon to provide confidentiality or integrity, and system data may be compromised.
+<br />
+Operating systems utilizing encryption are required to use FIPS-compliant mechanisms for authenticating to
+cryptographic modules.
+<br />
+FIPS 140-2 is the current standard for validating that mechanisms used to access cryptographic modules
+utilize authentication that meets industry and government requirements. For government systems, this allows
+Security Levels 1, 2, 3, or 4 for use on Amazon Linux 2023.</p>
+</div>
+
+<div id="sshd_use_approved_kex_ordered_stig" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Use Only FIPS 140-2 Validated Key Exchange Algorithms</h3>
+<div>sshd_use_approved_kex_ordered_stig</div>
+<h4>Description</h4>
+<p>Limit the key exchange algorithms to those  which are FIPS-approved.
+Add or modify the following line in <tt></tt>
+<pre></pre>
+This rule ensures that only the key exchange algorithms mentioned
+above (or their subset) are configured for use, keeping the given
+order of algorithms.</p>
+<h4>Rationale</h4>
+<p>FIPS-approved key exchange algorithms are required to be used.
+The system will attempt to use the first algorithm presented by the client that matches
+the server list. Listing the values "strongest to weakest" is a method to ensure the use
+of the strongest algorithm available to secure the SSH connection.</p>
+</div>
+
+<div id="sshd_use_approved_macs" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Use Only FIPS 140-2 Validated MACs</h3>
+<div>sshd_use_approved_macs</div>
+<h4>Description</h4>
+<p>Limit the MACs to those hash algorithms which are FIPS-approved.
+The following line in <tt>/etc/ssh/sshd_config</tt>
+demonstrates use of FIPS-approved MACs:
+
+<pre>MACs hmac-sha2-512,hmac-sha2-256,hmac-sha1</pre>
+
+The man page <tt>sshd_config(5)</tt> contains a list of supported MACs.
+
+The rule is parametrized to use the following MACs: <code><tt>$sshd_approved_macs</tt></code>.</p>
+<h4>Rationale</h4>
+<p>FIPS-approved cryptographic hash functions are required to be used.
+The only SSHv2 hash algorithms meeting this requirement is SHA2.</p>
+</div>
+
+<div id="sshd_use_approved_macs_ordered_stig" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Use Only FIPS 140-2 Validated MACs</h3>
+<div>sshd_use_approved_macs_ordered_stig</div>
+<h4>Description</h4>
+<p>Limit the MACs to those hash algorithms which are FIPS-approved.
+The following line in <tt>/etc/ssh/sshd_config</tt>
+demonstrates use of FIPS-approved MACs:
+<pre>MACs hmac-sha2-512,hmac-sha2-256</pre>
+This rule ensures that there are configured MACs mentioned
+above (or their subset), keeping the given order of algorithms.</p>
+<h4>Rationale</h4>
+<p>FIPS-approved cryptographic hash functions are required to be used.
+The only SSHv2 hash algorithms meeting this requirement is SHA2.</p>
+</div>
+
+<div id="sshd_use_directory_configuration" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Distribute the SSH Server configuration to multiple files in a config directory.</h3>
+<div>sshd_use_directory_configuration</div>
+<h4>Description</h4>
+<p>Make sure to have the <tt>Include /etc/ssh/sshd_config.d/*.conf</tt> line in the <tt>/etc/ssh/sshd_config</tt> file.
+Ideally, don't have any active configuration directives in that file, and distribute the service configuration
+to several files in the <tt>/etc/ssh/sshd_config.d</tt> directory.</p>
+<h4>Rationale</h4>
+<p>This form of distributed configuration is considered as a good practice, and as other sshd rules assume that directives in files in the <tt>/etc/ssh/sshd_config.d</tt> config directory are effective, there has to be a rule that ensures this.
+Aside from that, having multiple configuration files makes the SSH Server configuration changes easier to partition according to the reason that they were introduced, and therefore it should help to perform merges of hardening updates.</p>
+</div>
+
+<div id="sshd_use_priv_separation" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Enable Use of Privilege Separation</h3>
+<div>sshd_use_priv_separation</div>
+<h4>Description</h4>
+<p>When enabled, SSH will create an unprivileged child process that
+has the privilege of the authenticated user. To enable privilege separation in
+SSH, add or correct the following line in the <tt>/etc/ssh/sshd_config</tt> file:
+<pre>UsePrivilegeSeparation <tt>$var_sshd_priv_separation</tt></pre></p>
+<h4>Rationale</h4>
+<p>SSH daemon privilege separation causes the SSH process to drop root privileges
+when not needed which would decrease the impact of software vulnerabilities in
+the unprivileged section.</p>
+</div>
+
+<div id="sshd_use_strong_ciphers" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Use Only Strong Ciphers</h3>
+<div>sshd_use_strong_ciphers</div>
+<h4>Description</h4>
+<p>Limit the ciphers to strong algorithms.
+Counter (CTR) mode is also preferred over cipher-block chaining (CBC) mode.
+The following line in <tt>/etc/ssh/sshd_config</tt>
+demonstrates use of those ciphers:
+<pre>Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr</pre>
+The man page <tt>sshd_config(5)</tt> contains a list of supported ciphers.</p>
+<h4>Rationale</h4>
+<p>Based on research conducted at various institutions, it was determined that the symmetric
+portion of the SSH Transport Protocol (as described in RFC 4253) has security weaknesses
+that allowed recovery of up to 32 bits of plaintext from a block of ciphertext that was
+encrypted with the Cipher Block Chaining (CBD) method. From that research, new Counter
+mode algorithms (as described in RFC4344) were designed that are not vulnerable to these
+types of attacks and these algorithms are now recommended for standard use.</p>
+</div>
+
+<div id="sshd_use_strong_kex" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Use Only Strong Key Exchange algorithms</h3>
+<div>sshd_use_strong_kex</div>
+<h4>Description</h4>
+<p>Limit the Key Exchange to strong algorithms.
+The following line in <tt>/etc/ssh/sshd_config</tt> demonstrates use
+of those:
+<pre>KexAlgorithms <tt>$sshd_strong_kex</tt></pre></p>
+<h4>Rationale</h4>
+<p>Key exchange is any method in cryptography by which cryptographic keys are exchanged
+between two parties, allowing use of a cryptographic algorithm. If the sender and receiver
+wish to exchange encrypted messages, each must be equipped to encrypt messages to be
+sent and decrypt messages received</p>
+</div>
+
+<div id="sshd_use_strong_macs" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Use Only Strong MACs</h3>
+<div>sshd_use_strong_macs</div>
+<h4>Description</h4>
+<p>Limit the MACs to strong hash algorithms.
+The following line in <tt>/etc/ssh/sshd_config</tt> demonstrates use
+of those MACs:
+<pre>MACs <tt>$sshd_strong_macs</tt></pre></p>
+<h4>Rationale</h4>
+<p>MD5 and 96-bit MAC algorithms are considered weak and have been shown to increase
+exploitability in SSH downgrade attacks. Weak algorithms continue to have a great deal of
+attention as a weak spot that can be exploited with expanded computing power. An
+attacker that breaks the algorithm could take advantage of a MiTM position to decrypt the
+SSH tunnel and capture credentials and information</p>
+</div>
+
+<div id="sshd_use_strong_rng" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>SSH server uses strong entropy to seed</h3>
+<div>sshd_use_strong_rng</div>
+<h4>Description</h4>
+<p>To set up SSH server to use entropy from a high-quality source, edit the <tt>/etc/sysconfig/sshd</tt> file.
+The <tt>SSH_USE_STRONG_RNG</tt> configuration value determines how many bytes of entropy to use, so
+make sure that the file contains line
+<pre>SSH_USE_STRONG_RNG=32</pre></p>
+<h4>Rationale</h4>
+<p>SSH implementation in Amazon Linux 2023 uses the openssl library, which doesn't use
+high-entropy sources by default. Randomness is needed to generate data-encryption keys, and as
+plaintext padding and initialization vectors in encryption algorithms, and high-quality
+entropy eliminates the possibility that the output of the random number generator used by SSH
+would be known to potential attackers.</p>
+</div>
+
+<div id="sshd_x11_use_localhost" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Prevent remote hosts from connecting to the proxy display</h3>
+<div>sshd_x11_use_localhost</div>
+<h4>Description</h4>
+<p>The SSH daemon should prevent remote hosts from connecting to the proxy
+display.
+<br />
+The default SSH configuration for <tt>X11UseLocalhost</tt> is <tt>yes</tt>,
+which prevents remote hosts from connecting to the proxy display.
+<br />
+To explicitly prevent remote connections to the proxy display, add or correct
+the following line in
+
+
+<tt>/etc/ssh/sshd_config.d/00-complianceascode-hardening.conf</tt>:
+
+<tt>X11UseLocalhost yes</tt></p>
+<h4>Rationale</h4>
+<p>When X11 forwarding is enabled, there may be additional exposure to the
+server and client displays if the sshd proxy display is configured to listen
+on the wildcard address. By default, sshd binds the forwarding server to the
+loopback address and sets the hostname part of the <tt>DISPLAY</tt>
+environment variable to localhost. This prevents remote hosts from
+connecting to the proxy display.</p>
+</div>
+
+<div id="sshd_include_crypto_policy" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>SSHD Must Include System Crypto Policy Config File</h3>
+<div>sshd_include_crypto_policy</div>
+<h4>Description</h4>
+<p>SSHD should follow the system cryptographic policy.
+In order to accomplish this the SSHD configuration should include the configuration file provided by the system crypto policy.
+The following line should be present in <tt>/etc/ssh/sshd_config</tt> or in a file included by this file (a file within the <tt>/etc/ssh/sshd_config.d</tt> directory):
+<pre>Include /etc/crypto-policies/back-ends/opensshserver.config</pre></p>
+<h4>Rationale</h4>
+<p>Without cryptographic integrity protections, information can be altered by unauthorized users without detection.</p>
+</div>
+
+<div id="harden_sshd_crypto_policy" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Harden SSHD Crypto Policy</h3>
+<div>harden_sshd_crypto_policy</div>
+<h4>Description</h4>
+<p>Crypto Policies are means of enforcing certain cryptographic settings for selected applications including OpenSSH server.
+The SSHD service is by default configured to modify its configuration based on currently configured Crypto-Policy. However, in certain cases it might be needed to override the Crypto Policy specific to OpenSSH Server and leave rest of the Crypto Policy intact.
+This can be done by dropping a file named <tt>opensshserver-xxx.config</tt>, replacing <tt>xxx</tt> with arbitrary identifier, into <tt>/etc/crypto-policies/local.d</tt>. This has to be followed by running <tt>update-crypto-policies</tt> so that changes are applied.
+Changes are propagated into <tt>/etc/crypto-policies/back-ends/opensshserver.config</tt>. This rule checks if this file contains predefined <tt>CRYPTO_POLICY</tt> environment variable configured with predefined value.</p>
+<h4>Rationale</h4>
+<p>The Common Criteria requirements specify that certain parameters for OpenSSH Server are configured e.g. supported ciphers, accepted host key algorithms, public key types, key exchange algorithms, HMACs and GSSAPI key exchange is disabled. Currently particular requirements specified by CC are stricter compared to any existing Crypto Policy.</p>
+</div>
+
+
+
+
+</body>
+</html>
