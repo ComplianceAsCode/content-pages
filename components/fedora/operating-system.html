@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'operating-system'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'operating-system'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>operating-system</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<div>None</div>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#accounts_tmout">accounts_tmout</a></li>
+
+<li><a href="#accounts_user_home_paths_only">accounts_user_home_paths_only</a></li>
+
+<li><a href="#accounts_user_interactive_home_directory_defined">accounts_user_interactive_home_directory_defined</a></li>
+
+<li><a href="#accounts_user_interactive_home_directory_exists">accounts_user_interactive_home_directory_exists</a></li>
+
+<li><a href="#accounts_user_interactive_home_directory_on_separate_partition">accounts_user_interactive_home_directory_on_separate_partition</a></li>
+
+<li><a href="#bios_assign_password">bios_assign_password</a></li>
+
+<li><a href="#bios_disable_usb_boot">bios_disable_usb_boot</a></li>
+
+<li><a href="#bios_enable_execution_restrictions">bios_enable_execution_restrictions</a></li>
+
+<li><a href="#configure_user_data_backups">configure_user_data_backups</a></li>
+
+<li><a href="#disable_prelink">disable_prelink</a></li>
+
+<li><a href="#encrypt_partitions">encrypt_partitions</a></li>
+
+<li><a href="#ensure_iptables_are_flushed">ensure_iptables_are_flushed</a></li>
+
+<li><a href="#file_groupownership_home_directories">file_groupownership_home_directories</a></li>
+
+<li><a href="#file_permission_user_init_files">file_permission_user_init_files</a></li>
+
+<li><a href="#file_permission_user_init_files_root">file_permission_user_init_files_root</a></li>
+
+<li><a href="#file_permissions_home_directories">file_permissions_home_directories</a></li>
+
+<li><a href="#file_permissions_home_dirs">file_permissions_home_dirs</a></li>
+
+<li><a href="#has_nonlocal_mta">has_nonlocal_mta</a></li>
+
+<li><a href="#install_antivirus">install_antivirus</a></li>
+
+<li><a href="#install_endpoint_security_software">install_endpoint_security_software</a></li>
+
+<li><a href="#install_hids">install_hids</a></li>
+
+<li><a href="#installed_OS_is_FIPS_certified">installed_OS_is_FIPS_certified</a></li>
+
+<li><a href="#installed_OS_is_vendor_supported">installed_OS_is_vendor_supported</a></li>
+
+<li><a href="#ip6tables_rules_for_open_ports">ip6tables_rules_for_open_ports</a></li>
+
+<li><a href="#iptables_rules_for_open_ports">iptables_rules_for_open_ports</a></li>
+
+<li><a href="#mask_nonessential_services">mask_nonessential_services</a></li>
+
+<li><a href="#network_configure_name_resolution">network_configure_name_resolution</a></li>
+
+<li><a href="#network_disable_ddns_interfaces">network_disable_ddns_interfaces</a></li>
+
+<li><a href="#network_disable_zeroconf">network_disable_zeroconf</a></li>
+
+<li><a href="#network_nmcli_permissions">network_nmcli_permissions</a></li>
+
+<li><a href="#network_sniffer_disabled">network_sniffer_disabled</a></li>
+
+<li><a href="#no_forward_files">no_forward_files</a></li>
+
+<li><a href="#no_host_based_files">no_host_based_files</a></li>
+
+<li><a href="#no_rsh_trust_files">no_rsh_trust_files</a></li>
+
+<li><a href="#no_user_host_based_files">no_user_host_based_files</a></li>
+
+<li><a href="#prefer_64bit_os">prefer_64bit_os</a></li>
+
+<li><a href="#root_path_no_dot">root_path_no_dot</a></li>
+
+<li><a href="#set_ip6tables_default_rule">set_ip6tables_default_rule</a></li>
+
+<li><a href="#set_iptables_default_rule">set_iptables_default_rule</a></li>
+
+<li><a href="#set_iptables_default_rule_forward">set_iptables_default_rule_forward</a></li>
+
+<li><a href="#set_iptables_outbound_n_established">set_iptables_outbound_n_established</a></li>
+
+<li><a href="#set_ipv6_loopback_traffic">set_ipv6_loopback_traffic</a></li>
+
+<li><a href="#set_loopback_traffic">set_loopback_traffic</a></li>
+
+<li><a href="#umask_for_daemons">umask_for_daemons</a></li>
+
+<li><a href="#wireless_disable_in_bios">wireless_disable_in_bios</a></li>
+
+<li><a href="#wireless_disable_interfaces">wireless_disable_interfaces</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="accounts_tmout" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Set Interactive Session Timeout</h3>
+<div>accounts_tmout</div>
+<h4>Description</h4>
+<p>Setting the <tt>TMOUT</tt> option in <tt>/etc/profile</tt> ensures that
+all user sessions will terminate based on inactivity. A value of <tt>0</tt> (zero)
+disables the automatic logout feature and is therefore not a compliant setting.
+The value of TMOUT should be a positive integer, exported, and read only.
+The <tt>TMOUT</tt>
+
+setting in a file loaded by <tt>/etc/profile</tt>, e.g.
+<tt>/etc/profile.d/tmout.sh</tt> should read as follows:
+<pre>typeset -xr TMOUT=<tt>$var_accounts_tmout</tt></pre>
+or
+<pre>declare -xr TMOUT=<tt>$var_accounts_tmout</tt></pre>
+Using the <code>typeset</code> keyword is preferred for wider compatibility with ksh and other shells.</p>
+<h4>Rationale</h4>
+<p>Terminating an idle session within a short time period reduces
+the window of opportunity for unauthorized personnel to take control of a
+management session enabled on the console or console port that has been
+left unattended.</p>
+</div>
+
+<div id="accounts_user_home_paths_only" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure that Users Path Contains Only Local Directories</h3>
+<div>accounts_user_home_paths_only</div>
+<h4>Description</h4>
+<p>Ensure that all interactive user initialization files executable search
+path statements do not contain statements that will reference a working
+directory other than the users home directory.</p>
+<h4>Rationale</h4>
+<p>The executable search path (typically the PATH environment variable) contains a
+list of directories for the shell to search to find executables. If this path
+includes the current working directory (other than the users home directory),
+executables in these directories may be executed instead of system commands.
+This variable is formatted as a colon-separated list of directories. If there is
+an empty entry, such as a leading or trailing colon or two consecutive colons,
+this is interpreted as the current working directory. If deviations from the
+default system search path for the local interactive user are required, they
+must be documented with the Information System Security Officer (ISSO).</p>
+</div>
+
+<div id="accounts_user_interactive_home_directory_defined" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>All Interactive Users Must Have A Home Directory Defined</h3>
+<div>accounts_user_interactive_home_directory_defined</div>
+<h4>Description</h4>
+<p>Assign home directories to all interactive users that currently do not
+have a home directory assigned.
+
+This rule checks if the home directory is properly defined in a folder which has
+at least one parent folder, like "user" in "/home/user" or "/remote/users/user".
+Therefore, this rule will report a finding for home directories like <tt>/users</tt>,
+<tt>/tmp</tt> or <tt>/</tt>.</p>
+<h4>Rationale</h4>
+<p>If local interactive users are not assigned a valid home directory, there is no
+place for the storage and control of files they should own.</p>
+</div>
+
+<div id="accounts_user_interactive_home_directory_exists" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>All Interactive Users Home Directories Must Exist</h3>
+<div>accounts_user_interactive_home_directory_exists</div>
+<h4>Description</h4>
+<p>Create home directories to all local interactive users that currently do not
+have a home directory assigned. Use the following commands to create the user
+home directory assigned in <tt>/etc/passwd</tt>:
+<pre>$ sudo mkdir /home/<i>USER</i></pre></p>
+<h4>Rationale</h4>
+<p>If a local interactive user has a home directory defined that does not exist,
+the user may be given access to the / directory as the current working directory
+upon logon. This could create a Denial of Service because the user would not be
+able to access their logon configuration files, and it may give them visibility
+to system files they normally would not be able to access.</p>
+</div>
+
+<div id="accounts_user_interactive_home_directory_on_separate_partition" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>All Interactive User Home Directories Must Reside On a Separate Partition</h3>
+<div>accounts_user_interactive_home_directory_on_separate_partition</div>
+<h4>Description</h4>
+<p>All interactive user home directories must be located on a file system
+partition separate from the root (<tt>/</tt>) partition. If any interactive
+user's home directory resides directly on the root file system, a failure
+of that file system or a user filling it up could impact system operation.</p>
+<h4>Rationale</h4>
+<p>Ensuring that interactive user home directories are on a separate
+partition from the root file system prevents users from filling the root
+partition, which could result in system instability or denial of service.
+It also allows administrators to apply more restrictive mount options
+such as <tt>noexec</tt>, <tt>nosuid</tt>, and <tt>nodev</tt> to the
+partition containing user home directories.</p>
+</div>
+
+<div id="bios_assign_password" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Assign Password to Prevent Changes to Boot Firmware Configuration</h3>
+<div>bios_assign_password</div>
+<h4>Description</h4>
+<p>Assign a password to the system boot firmware (historically called BIOS on PC
+systems) to require a password for any configuration changes.</p>
+<h4>Rationale</h4>
+<p>Assigning a password to the system boot firmware prevents anyone
+with physical access from configuring the system to boot
+from local media and circumvent the operating system's access controls.
+For systems in physically secure locations, such as
+a data center or Sensitive Compartmented Information Facility (SCIF), this risk must be weighed
+against the risk of administrative personnel being unable to conduct recovery operations in
+a timely fashion.</p>
+</div>
+
+<div id="bios_disable_usb_boot" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable Booting from USB Devices in Boot Firmware</h3>
+<div>bios_disable_usb_boot</div>
+<h4>Description</h4>
+<p>Configure the system boot firmware (historically called BIOS on PC
+systems) to disallow booting from USB drives.</p>
+<h4>Rationale</h4>
+<p>Booting a system from a USB device would allow an attacker to
+circumvent any security measures provided by the operating system. Attackers
+could mount partitions and modify the configuration of the OS.</p>
+</div>
+
+<div id="bios_enable_execution_restrictions" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Enable NX or XD Support in the BIOS</h3>
+<div>bios_enable_execution_restrictions</div>
+<h4>Description</h4>
+<p>Reboot the system and enter the BIOS or Setup configuration menu.
+Navigate the BIOS configuration menu and make sure that the option is enabled. The setting may be located
+under a Security section. Look for Execute Disable (XD) on Intel-based systems and No Execute (NX)
+on AMD-based systems.</p>
+<h4>Rationale</h4>
+<p>Computers with the ability to prevent this type of code execution frequently put an option in the BIOS that will
+allow users to turn the feature on or off at will.</p>
+</div>
+
+<div id="configure_user_data_backups" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure Backups of User Data</h3>
+<div>configure_user_data_backups</div>
+<h4>Description</h4>
+<p>The operating system must conduct backups of user data contained
+in the operating system. The operating system provides utilities for
+automating backups of user data. Commercial and open-source products
+are also available.</p>
+<h4>Rationale</h4>
+<p>Operating system backup is a critical step in maintaining data assurance and
+availability. User-level information is data generated by information system
+and/or application users. Backups shall be consistent with organizational
+recovery time and recovery point objectives.</p>
+</div>
+
+<div id="disable_prelink" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable Prelinking</h3>
+<div>disable_prelink</div>
+<h4>Description</h4>
+<p>The prelinking feature changes binaries in an attempt to decrease their startup
+time. In order to disable it, change or add the following line inside the file
+<tt>/etc/sysconfig/prelink</tt>:
+<pre>PRELINKING=no</pre>
+Next, run the following command to return binaries to a normal, non-prelinked state:
+<pre>$ sudo /usr/sbin/prelink -ua</pre></p>
+<h4>Rationale</h4>
+<p>Because the prelinking feature changes binaries, it can interfere with the
+operation of certain software and/or modes such as AIDE, FIPS, etc.</p>
+</div>
+
+<div id="encrypt_partitions" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Encrypt Partitions</h3>
+<div>encrypt_partitions</div>
+<h4>Description</h4>
+<p>Fedora natively supports partition encryption through the
+Linux Unified Key Setup-on-disk-format (LUKS) technology. The easiest way to
+encrypt a partition is during installation time.
+<br /><br />
+For manual installations, select the <tt>Encrypt</tt> checkbox during
+partition creation to encrypt the partition. When this
+option is selected the system will prompt for a passphrase to use in
+decrypting the partition. The passphrase will subsequently need to be entered manually
+every time the system boots.
+
+<br /><br />
+For automated/unattended installations, it is possible to use Kickstart by adding
+the <tt>--encrypted</tt> and <tt>--passphrase=</tt> options to the definition of each partition to be
+encrypted. For example, the following line would encrypt the root partition:
+<pre>part / --fstype=ext4 --size=100 --onpart=hda1 --encrypted --passphrase=<i>PASSPHRASE</i></pre>
+Any <i>PASSPHRASE</i> is stored in the Kickstart in plaintext, and the Kickstart
+must then be protected accordingly.
+Omitting the <tt>--passphrase=</tt> option from the partition definition will cause the
+installer to pause and interactively ask for the passphrase during installation.
+<br /><br />
+By default, the <tt>Anaconda</tt> installer uses <tt>aes-xts-plain64</tt> cipher
+with a minimum <tt>512</tt> bit key size which should be compatible with FIPS enabled.
+
+<br /><br />
+Detailed information on encrypting partitions using LUKS or LUKS ciphers can be found on
+the Fedora Documentation web site:<br />
+
+    
+    <a xmlns='http://www.w3.org/1999/xhtml' href='https://docs.fedoraproject.org/en-US/quick-docs/encrypting-drives-using-LUKS/'>https://docs.fedoraproject.org/en-US/quick-docs/encrypting-drives-using-LUKS/</a>
+.</p>
+<h4>Rationale</h4>
+<p>The risk of a system's physical compromise, particularly mobile systems such as
+laptops, places its data at risk of compromise.  Encrypting this data mitigates
+the risk of its loss if the system is lost.</p>
+</div>
+
+<div id="ensure_iptables_are_flushed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure iptables are flushed</h3>
+<div>ensure_iptables_are_flushed</div>
+<h4>Description</h4>
+<p>nftables is a replacement for iptables, ip6tables, ebtables and arptables</p>
+<h4>Rationale</h4>
+<p>It is possible to mix iptables and nftables. However, this increases complexity
+and also the chance to introduce errors. For simplicity flush out all iptables
+rules, and ensure it is not loaded.</p>
+</div>
+
+<div id="file_groupownership_home_directories" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>All Interactive User Home Directories Must Be Group-Owned By The Primary Group</h3>
+<div>file_groupownership_home_directories</div>
+<h4>Description</h4>
+<p>Change the group owner of interactive users home directory to the
+group found in <tt>/etc/passwd</tt>. To change the group owner of
+interactive users home directory, use the following command:
+<pre>$ sudo chgrp <i>USER_GROUP</i> /home/<i>USER</i></pre>
+
+This rule ensures every home directory related to an interactive user is
+group-owned by an interactive user. It also ensures that interactive users
+are group-owners of one and only one home directory.</p>
+<h4>Rationale</h4>
+<p>If the Group Identifier (GID) of a local interactive users home directory is
+not the same as the primary GID of the user, this would allow unauthorized
+access to the users files, and users that share the same group may not be
+able to access files that they legitimately should.</p>
+</div>
+
+<div id="file_permission_user_init_files" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure All User Initialization Files Have Mode 0740 Or Less Permissive</h3>
+<div>file_permission_user_init_files</div>
+<h4>Description</h4>
+<p>Set the mode of the user initialization files to <tt>0740</tt> with the
+following command:
+<pre>$ sudo chmod 0740 /home/<i>USER</i>/.<i>INIT_FILE</i></pre></p>
+<h4>Rationale</h4>
+<p>Local initialization files are used to configure the user's shell environment
+upon logon. Malicious modification of these files could compromise accounts upon
+logon.</p>
+</div>
+
+<div id="file_permission_user_init_files_root" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure All User Initialization Files Have Mode 0740 Or Less Permissive</h3>
+<div>file_permission_user_init_files_root</div>
+<h4>Description</h4>
+<p>Set the mode of the user initialization files, including the <tt>root</tt> user,
+to <tt>0740</tt> with the following commands:
+<pre>
+$ sudo chmod 0740 /root/.<i>INIT_FILE</i>
+$ sudo chmod 0740 /home/<i>USER</i>/.<i>INIT_FILE</i>
+</pre></p>
+<h4>Rationale</h4>
+<p>Local initialization files are used to configure the user's shell environment
+upon logon. Malicious modification of these files could compromise accounts upon
+logon.</p>
+</div>
+
+<div id="file_permissions_home_directories" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>All Interactive User Home Directories Must Have mode 0750 Or Less Permissive</h3>
+<div>file_permissions_home_directories</div>
+<h4>Description</h4>
+<p>Change the mode of interactive users home directories to <tt>0750</tt>. To
+change the mode of interactive users home directory, use the
+following command:
+<pre>$ sudo chmod 0750 /home/<i>USER</i></pre></p>
+<h4>Rationale</h4>
+<p>Excessive permissions on local interactive user home directories may allow
+unauthorized access to user files by other users.</p>
+</div>
+
+<div id="file_permissions_home_dirs" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure that User Home Directories are not Group-Writable or World-Readable</h3>
+<div>file_permissions_home_dirs</div>
+<h4>Description</h4>
+<p>For each human user of the system, view the
+permissions of the user's home directory:
+<pre># ls -ld /home/<i>USER</i></pre>
+Ensure that the directory is not group-writable and that it
+is not world-readable. If necessary, repair the permissions:
+<pre># chmod g-w /home/<i>USER</i>
+# chmod o-rwx /home/<i>USER</i></pre></p>
+<h4>Rationale</h4>
+<p>User home directories contain many configuration files which
+affect the behavior of a user's account. No user should ever have
+write permission to another user's home directory. Group shared
+directories can be configured in sub-directories or elsewhere in the
+filesystem if they are needed. Typically, user home directories
+should not be world-readable, as it would disclose file names
+to other users. If a subset of users need read access
+to one another's home directories, this can be provided using
+groups or ACLs.</p>
+</div>
+
+<div id="has_nonlocal_mta" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure Mail Transfer Agent is not Listening on any non-loopback Address</h3>
+<div>has_nonlocal_mta</div>
+<h4>Description</h4>
+<p>Mail Transfer Agents (MTA), such as sendmail and Postfix, are used to
+listen for incoming mail and transfer the messages to the appropriate
+user or mail server. If the system is not intended to be a mail server,
+it is recommended that the MTA be configured to only process local mail.</p>
+<h4>Rationale</h4>
+<p>The software for all Mail Transfer Agents is complex and most have a
+long history of security issues. While it is important to ensure that
+the system can process local mail messages, it is not necessary to have
+the MTA's daemon listening on a port unless the server is intended to
+be a mail server that receives and processes mail from other systems.</p>
+</div>
+
+<div id="install_antivirus" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Install Virus Scanning Software</h3>
+<div>install_antivirus</div>
+<h4>Description</h4>
+<p>Virus scanning software can be used to protect a system from penetration from
+computer viruses and to limit their spread through intermediate systems.
+
+The virus scanning software should be configured to perform scans dynamically
+on accessed files. If this capability is not available, the system must be
+configured to scan, at a minimum, all altered files on the system on a daily
+basis.
+
+If the system processes inbound SMTP mail, the virus scanner must be configured
+to scan all received mail.</p>
+<h4>Rationale</h4>
+<p>Virus scanning software can be used to detect if a system has been compromised by
+computer viruses, as well as to limit their spread to other systems.</p>
+</div>
+
+<div id="install_endpoint_security_software" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Install an Endpoint Security Solution</h3>
+<div>install_endpoint_security_software</div>
+<h4>Description</h4>
+<p>Verify that an Endpoint Security Solution has been deployed on the operating system.
+If there is not an Endpoint Security Solution deployed, this is a finding.</p>
+<h4>Rationale</h4>
+<p>Without the use of automated mechanisms to scan for security flaws on a continuous
+and/or periodic basis, the operating system or other system components may remain
+vulnerable to the exploits presented by undetected software flaws.
+
+To support this requirement, the operating system may have an integrated solution
+incorporating continuous scanning and periodic scanning using other tools,
+as specified in the requirement.</p>
+</div>
+
+<div id="install_hids" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Install Intrusion Detection Software</h3>
+<div>install_hids</div>
+<h4>Description</h4>
+<p>The base Fedora platform already includes a sophisticated auditing system that
+can detect intruder activity, as well as SELinux, which provides host-based
+intrusion prevention capabilities by confining privileged programs and user
+sessions which may become compromised.</p>
+<h4>Rationale</h4>
+<p>Host-based intrusion detection tools provide a system-level defense when an
+intruder gains access to a system or network.</p>
+</div>
+
+<div id="installed_OS_is_FIPS_certified" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>The Installed Operating System Is FIPS 140-2 Certified</h3>
+<div>installed_OS_is_FIPS_certified</div>
+<h4>Description</h4>
+<p>To enable processing of sensitive information the operating system must
+provide certified cryptographic modules compliant with FIPS 140-2
+standard.</p>
+<h4>Rationale</h4>
+<p>The Federal Information Processing Standard (FIPS) Publication 140-2, (FIPS
+PUB 140-2) is a computer security standard. The standard specifies security
+requirements for cryptographic modules used to protect sensitive
+unclassified information.  Refer to the full FIPS 140-2 standard at
+
+    <a xmlns='http://www.w3.org/1999/xhtml' href='http://csrc.nist.gov/publications/fips/fips140-2/fips1402.pdf'>http://csrc.nist.gov/publications/fips/fips140-2/fips1402.pdf</a>
+for further details on the requirements.
+FIPS 140-2 validation is required by U.S. law when information systems use
+cryptography to protect sensitive government information. In order to
+achieve FIPS 140-2 certification, cryptographic modules are subject to
+extensive testing by independent laboratories, accredited by National
+Institute of Standards and Technology (NIST).</p>
+</div>
+
+<div id="installed_OS_is_vendor_supported" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>The Installed Operating System Is Vendor Supported</h3>
+<div>installed_OS_is_vendor_supported</div>
+<h4>Description</h4>
+<p>The installed operating system must be maintained by a vendor.
+
+Red Hat Enterprise Linux is supported by Red Hat, Inc. As the Red Hat Enterprise
+Linux vendor, Red Hat, Inc. is responsible for providing security patches.</p>
+<h4>Rationale</h4>
+<p>An operating system is considered "supported" if the vendor continues to
+provide security patches for the product.  With an unsupported release, it
+will not be possible to resolve any security issue discovered in the system
+software.</p>
+</div>
+
+<div id="ip6tables_rules_for_open_ports" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure ip6tables Firewall Rules Exist for All Open Ports</h3>
+<div>ip6tables_rules_for_open_ports</div>
+<h4>Description</h4>
+<p>Any ports that have been opened on non-loopback addresses
+need firewall rules to govern traffic.</p>
+<h4>Rationale</h4>
+<p>Without a firewall rule configured for open ports default
+firewall policy will drop all packets to these ports.</p>
+</div>
+
+<div id="iptables_rules_for_open_ports" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure iptables Firewall Rules Exist for All Open Ports</h3>
+<div>iptables_rules_for_open_ports</div>
+<h4>Description</h4>
+<p>Any ports that have been opened on non-loopback addresses
+need firewall rules to govern traffic.</p>
+<h4>Rationale</h4>
+<p>Without a firewall rule configured for open ports default
+firewall policy will drop all packets to these ports.</p>
+</div>
+
+<div id="mask_nonessential_services" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure nonessential services are removed or masked</h3>
+<div>mask_nonessential_services</div>
+<h4>Description</h4>
+<p>A network port is identified by its number, the associated IP address, 
+and the type of the communication protocol such as TCP or UDP.
+A listening port is a network port on which an application or process 
+listens on, acting as a communication endpoint.
+Each listening port can be open or closed (filtered) using a firewall. 
+In general terms, an open port is a network port that accepts 
+incoming packets from remote locations.</p>
+<h4>Rationale</h4>
+<p>Services listening on the system pose a potential risk as an attack vector. These services should be reviewed, and if not required, the service should be stopped, and the package containing the service should be removed. If required packages have a dependency, the service should be stopped and masked to reduce the attack surface of the system.</p>
+</div>
+
+<div id="network_configure_name_resolution" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure Multiple DNS Servers in /etc/resolv.conf</h3>
+<div>network_configure_name_resolution</div>
+<h4>Description</h4>
+<p>
+Multiple Domain Name System (DNS) Servers should be configured
+in <tt>/etc/resolv.conf</tt>. This provides redundant name resolution services
+in the event that a domain server crashes. To configure the system to contain
+as least <tt>2</tt> DNS servers, add a corresponding <tt>nameserver
+<i>ip_address</i></tt> entry in <tt>/etc/resolv.conf</tt> for each DNS
+server where <i>ip_address</i> is the IP address of a valid DNS server.
+For example:
+<pre>search example.com
+nameserver 192.168.0.1
+nameserver 192.168.0.2</pre></p>
+<h4>Rationale</h4>
+<p>To provide availability for name resolution services, multiple redundant
+name servers are mandated. A failure in name resolution could lead to the
+failure of security functions requiring name resolution, which may include
+time synchronization, centralized authentication, and remote system logging.</p>
+</div>
+
+<div id="network_disable_ddns_interfaces" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable Client Dynamic DNS Updates</h3>
+<div>network_disable_ddns_interfaces</div>
+<h4>Description</h4>
+<p>Dynamic DNS allows clients to dynamically update their own DNS records.
+The updates are transmitted by unencrypted means which can reveal information
+to a potential malicious user. If the system does not require Dynamic DNS,
+remove all <tt>DHCP_HOSTNAME</tt> references from the
+<tt>/etc/sysconfig/network-scripts/ifcfg-<i>interface</i></tt> scripts. If
+<tt>dhclient</tt> is used, remove all <tt>send host-name <i>hostname</i></tt>
+references from the <tt>/etc/dhclient.conf</tt> configuration file and/or any
+reference from the <tt>/etc/dhcp</tt> directory.</p>
+<h4>Rationale</h4>
+<p>Dynamic DNS updates transmit unencrypted information about a system
+including its name and address and should not be used unless needed.</p>
+</div>
+
+<div id="network_disable_zeroconf" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable Zeroconf Networking</h3>
+<div>network_disable_zeroconf</div>
+<h4>Description</h4>
+<p>Zeroconf networking allows the system to assign itself an IP
+address and engage in IP communication without a statically-assigned address or
+even a DHCP server. Automatic address assignment via Zeroconf (or DHCP) is not
+recommended. To disable Zeroconf automatic route assignment in the 169.254.0.0
+subnet, add or correct the following line in <tt>/etc/sysconfig/network</tt>:
+<pre>NOZEROCONF=yes</pre></p>
+<h4>Rationale</h4>
+<p>Zeroconf addresses are in the network 169.254.0.0. The networking
+scripts add entries to the system's routing table for these addresses. Zeroconf
+address assignment commonly occurs when the system is configured to use DHCP
+but fails to receive an address assignment from the DHCP server.</p>
+</div>
+
+<div id="network_nmcli_permissions" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Prevent non-Privileged Users from Modifying Network Interfaces using nmcli</h3>
+<div>network_nmcli_permissions</div>
+<h4>Description</h4>
+<p>By default, non-privileged users are given permissions to modify networking
+interfaces and configurations using the <tt>nmcli</tt> command. Non-privileged
+users should not be making configuration changes to network configurations. To
+ensure that non-privileged users do not have permissions to make changes to the
+network configuration using <tt>nmcli</tt>, create the following configuration in
+<tt>/etc/polkit-1/localauthority/20-org.d/10-nm-harden-access.pkla</tt>:
+<pre>
+[Disable General User Access to NetworkManager]
+Identity=default
+Action=org.freedesktop.NetworkManager.*
+ResultAny=no
+ResultInactive=no
+ResultActive=auth_admin
+</pre></p>
+<h4>Rationale</h4>
+<p>Allowing non-privileged users to make changes to network settings can allow
+untrusted access, prevent system availability, and/or can lead to a compromise or
+attack.</p>
+</div>
+
+<div id="network_sniffer_disabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure System is Not Acting as a Network Sniffer</h3>
+<div>network_sniffer_disabled</div>
+<h4>Description</h4>
+<p>The system should not be acting as a network sniffer, which can
+capture all traffic on the network to which it is connected. Run the following
+to determine if any interface is running in promiscuous mode:
+<pre>$ ip link | grep PROMISC</pre>
+Promiscuous mode of an interface can be disabled with the following command:
+<pre>$ sudo ip link set dev <tt>device_name</tt> multicast off promisc off</pre></p>
+<h4>Rationale</h4>
+<p>Network interfaces in promiscuous mode allow for the capture of all network traffic
+visible to the system. If unauthorized individuals can access these applications, it
+may allow them to collect information such as logon IDs, passwords, and key exchanges
+between systems.
+<br /><br />
+If the system is being used to perform a network troubleshooting function, the use of these
+tools must be documented with the Information Systems Security Manager (ISSM) and restricted
+to only authorized personnel.</p>
+</div>
+
+<div id="no_forward_files" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify No .forward Files Exist</h3>
+<div>no_forward_files</div>
+<h4>Description</h4>
+<p>The <tt>.forward</tt> file specifies an email address to forward the user's mail to.</p>
+<h4>Rationale</h4>
+<p>Use of the <tt>.forward</tt> file poses a security risk in that sensitive data may
+be inadvertently transferred outside the organization. The .forward file
+also poses a risk as it can be used to execute commands that may perform
+unintended actions.</p>
+</div>
+
+<div id="no_host_based_files" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Remove Host-Based Authentication Files</h3>
+<div>no_host_based_files</div>
+<h4>Description</h4>
+<p>The <tt>shosts.equiv</tt> file lists remote hosts and users that are trusted by the local
+system. To remove these files, run the following command to delete them from any location:
+<pre>$ sudo rm /[path]/[to]/[file]/shosts.equiv</pre></p>
+<h4>Rationale</h4>
+<p>The shosts.equiv files are used to configure host-based authentication for the system via SSH.
+Host-based authentication is not sufficient for preventing unauthorized access to the system,
+as it does not require interactive identification and authentication of a connection request,
+or for the use of two-factor authentication.</p>
+</div>
+
+<div id="no_rsh_trust_files" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Remove Rsh Trust Files</h3>
+<div>no_rsh_trust_files</div>
+<h4>Description</h4>
+<p>The files <tt>/etc/hosts.equiv</tt> and <tt>~/.rhosts</tt> (in
+each user's home directory) list remote hosts and users that are trusted by the
+local system when using the rshd daemon.
+To remove these files, run the following command to delete them from any
+location:
+<pre>$ sudo rm /etc/hosts.equiv</pre>
+<pre>$ rm ~/.rhosts</pre></p>
+<h4>Rationale</h4>
+<p>This action is only meaningful if <tt>.rhosts</tt> support is permitted
+through PAM. Trust files are convenient, but when used in conjunction with
+the R-services, they can allow unauthenticated access to a system.</p>
+</div>
+
+<div id="no_user_host_based_files" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Remove User Host-Based Authentication Files</h3>
+<div>no_user_host_based_files</div>
+<h4>Description</h4>
+<p>The <tt>~/.shosts</tt> (in each user's home directory) files
+list remote hosts and users that are trusted by the
+local system. To remove these files, run the following command
+to delete them from any location:
+<pre>$ sudo find / -name '.shosts' -type f -delete</pre></p>
+<h4>Rationale</h4>
+<p>The .shosts files are used to configure host-based authentication for
+individual users or the system via SSH. Host-based authentication is not
+sufficient for preventing unauthorized access to the system, as it does not
+require interactive identification and authentication of a connection request,
+or for the use of two-factor authentication.</p>
+</div>
+
+<div id="prefer_64bit_os" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Prefer to use a 64-bit Operating System when supported</h3>
+<div>prefer_64bit_os</div>
+<h4>Description</h4>
+<p>Prefer installation of 64-bit operating systems when the CPU supports it.</p>
+<h4>Rationale</h4>
+<p>Use of a 64-bit operating system offers a few advantages, like a larger address space range for
+Address Space Layout Randomization (ASLR) and systematic presence of No eXecute and Execute Disable (NX/XD) protection bits.</p>
+</div>
+
+<div id="root_path_no_dot" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure that Root's Path Does Not Include Relative Paths or Null Directories</h3>
+<div>root_path_no_dot</div>
+<h4>Description</h4>
+<p>Ensure that none of the directories in root's path is equal to a single
+<tt>.</tt> character, or
+that it contains any instances that lead to relative path traversal, such as
+<tt>..</tt> or beginning a path without the slash (<tt>/</tt>) character.
+Also ensure that there are no "empty" elements in the path, such as in these examples:
+<pre>PATH=:/bin
+PATH=/bin:
+PATH=/bin::/sbin</pre>
+These empty elements have the same effect as a single <tt>.</tt> character.</p>
+<h4>Rationale</h4>
+<p>Including these entries increases the risk that root could
+execute code from an untrusted location.</p>
+</div>
+
+<div id="set_ip6tables_default_rule" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Set Default ip6tables Policy for Incoming Packets</h3>
+<div>set_ip6tables_default_rule</div>
+<h4>Description</h4>
+<p>To set the default policy to DROP (instead of ACCEPT) for
+the built-in INPUT chain which processes incoming packets,
+add or correct the following line in
+
+<tt>/etc/sysconfig/ip6tables</tt>:
+
+<pre>:INPUT DROP [0:0]</pre>
+If changes were required, reload the ip6tables rules:
+<pre>$ sudo service ip6tables reload</pre></p>
+<h4>Rationale</h4>
+<p>In <tt>ip6tables</tt>, the default policy is applied only after all
+the applicable rules in the table are examined for a match. Setting the
+default policy to <tt>DROP</tt> implements proper design for a firewall, i.e.
+any packets which are not explicitly permitted should not be
+accepted.</p>
+</div>
+
+<div id="set_iptables_default_rule" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Set Default iptables Policy for Incoming Packets</h3>
+<div>set_iptables_default_rule</div>
+<h4>Description</h4>
+<p>To set the default policy to DROP (instead of ACCEPT) for
+the built-in INPUT chain which processes incoming packets,
+add or correct the following line in
+
+<tt>/etc/sysconfig/iptables</tt>:
+
+<pre>:INPUT DROP [0:0]</pre></p>
+<h4>Rationale</h4>
+<p>In <tt>iptables</tt> the default policy is applied only after all
+the applicable rules in the table are examined for a match. Setting the
+default policy to <tt>DROP</tt> implements proper design for a firewall, i.e.
+any packets which are not explicitly permitted should not be
+accepted.</p>
+</div>
+
+<div id="set_iptables_default_rule_forward" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Set Default iptables Policy for Forwarded Packets</h3>
+<div>set_iptables_default_rule_forward</div>
+<h4>Description</h4>
+<p>To set the default policy to DROP (instead of ACCEPT) for
+the built-in FORWARD chain which processes packets that will be forwarded from
+one interface to another,
+add or correct the following line in
+<tt>/etc/sysconfig/iptables</tt>:
+<pre>:FORWARD DROP [0:0]</pre></p>
+<h4>Rationale</h4>
+<p>In <tt>iptables</tt>, the default policy is applied only after all
+the applicable rules in the table are examined for a match. Setting the
+default policy to <tt>DROP</tt> implements proper design for a firewall, i.e.
+any packets which are not explicitly permitted should not be
+accepted.</p>
+</div>
+
+<div id="set_iptables_outbound_n_established" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure Outbound and Established Connections are Configured</h3>
+<div>set_iptables_outbound_n_established</div>
+<h4>Description</h4>
+<p>Configure the firewall rules for new outbound and established connections.</p>
+<h4>Rationale</h4>
+<p>If rules are not in place for new outbound, and established connections all packets will
+be dropped by the default policy preventing network usage.</p>
+</div>
+
+<div id="set_ipv6_loopback_traffic" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Set configuration for IPv6 loopback traffic</h3>
+<div>set_ipv6_loopback_traffic</div>
+<h4>Description</h4>
+<p>Configure the loopback interface to accept traffic.
+Configure all other interfaces to deny traffic to the loopback
+network.</p>
+<h4>Rationale</h4>
+<p>Loopback traffic is generated between processes on machine and is
+typically critical to operation of the system. The loopback interface
+is the only place that loopback network traffic should be seen,
+all other interfaces should ignore traffic on this network as an
+anti-spoofing measure.</p>
+</div>
+
+<div id="set_loopback_traffic" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Set configuration for loopback traffic</h3>
+<div>set_loopback_traffic</div>
+<h4>Description</h4>
+<p>Configure the loopback interface to accept traffic.
+Configure all other interfaces to deny traffic to the loopback
+network.</p>
+<h4>Rationale</h4>
+<p>Loopback traffic is generated between processes on machine and is
+typically critical to operation of the system. The loopback interface
+is the only place that loopback network traffic should be seen, all
+other interfaces should ignore traffic on this network as an
+anti-spoofing measure.</p>
+</div>
+
+<div id="umask_for_daemons" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Set Daemon Umask</h3>
+<div>umask_for_daemons</div>
+<h4>Description</h4>
+<p>The file <tt>/etc/init.d/functions</tt> includes initialization
+parameters for most or all daemons started at boot time. Many daemons
+on the system already individually restrict themselves to
+a umask of <tt>077</tt> in their own init scripts. By default, the umask of
+<tt>022</tt> is set which prevents creation of group- or world-writable files.
+To set the umask for daemons expected by the profile, edit the following line:
+<pre>umask <i><tt>$var_umask_for_daemons</tt></i></pre></p>
+<h4>Rationale</h4>
+<p>The umask influences the permissions assigned to files created by a
+process at run time. An unnecessarily permissive umask could result in files
+being created with insecure permissions.</p>
+</div>
+
+<div id="wireless_disable_in_bios" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable WiFi or Bluetooth in BIOS</h3>
+<div>wireless_disable_in_bios</div>
+<h4>Description</h4>
+<p>Some machines that include built-in wireless support offer the
+ability to disable the device through the BIOS. This is hardware-specific;
+consult your hardware manual or explore the BIOS setup during
+boot.</p>
+<h4>Rationale</h4>
+<p>Disabling wireless support in the BIOS prevents easy
+activation of the wireless interface, generally requiring administrators
+to reboot the system first.</p>
+</div>
+
+<div id="wireless_disable_interfaces" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Deactivate Wireless Network Interfaces</h3>
+<div>wireless_disable_interfaces</div>
+<h4>Description</h4>
+<p>Deactivating wireless network interfaces should prevent normal usage of the wireless
+capability.
+<br /><br />
+
+Configure the system to disable all wireless network interfaces with the following command:
+<pre>$ sudo nmcli radio all off</pre></p>
+<h4>Rationale</h4>
+<p>The use of wireless networking can introduce many different attack vectors into
+the organization's network. Common attack vectors such as malicious association
+and ad hoc networks will allow an attacker to spoof a wireless access point
+(AP), allowing validated systems to connect to the malicious AP and enabling the
+attacker to monitor and record network traffic. These malicious APs can also
+serve to create a man-in-the-middle attack or be used to create a denial of
+service to valid network resources.</p>
+</div>
+
+
+
+
+</body>
+</html>

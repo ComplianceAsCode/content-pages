@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'sudo'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'sudo'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>sudo</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<ul>
+
+<li>sudo</li>
+
+</ul>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#directory_groupowner_etc_sudoersd">directory_groupowner_etc_sudoersd</a></li>
+
+<li><a href="#directory_owner_etc_sudoersd">directory_owner_etc_sudoersd</a></li>
+
+<li><a href="#directory_permissions_etc_sudoersd">directory_permissions_etc_sudoersd</a></li>
+
+<li><a href="#file_groupowner_etc_sudoers">file_groupowner_etc_sudoers</a></li>
+
+<li><a href="#file_owner_etc_sudoers">file_owner_etc_sudoers</a></li>
+
+<li><a href="#file_permissions_etc_sudoers">file_permissions_etc_sudoers</a></li>
+
+<li><a href="#package_sudo_installed">package_sudo_installed</a></li>
+
+<li><a href="#sudo_add_env_reset">sudo_add_env_reset</a></li>
+
+<li><a href="#sudo_add_ignore_dot">sudo_add_ignore_dot</a></li>
+
+<li><a href="#sudo_add_noexec">sudo_add_noexec</a></li>
+
+<li><a href="#sudo_add_passwd_timeout">sudo_add_passwd_timeout</a></li>
+
+<li><a href="#sudo_add_requiretty">sudo_add_requiretty</a></li>
+
+<li><a href="#sudo_add_umask">sudo_add_umask</a></li>
+
+<li><a href="#sudo_add_use_pty">sudo_add_use_pty</a></li>
+
+<li><a href="#sudo_custom_logfile">sudo_custom_logfile</a></li>
+
+<li><a href="#sudo_dedicated_group">sudo_dedicated_group</a></li>
+
+<li><a href="#sudo_remove_no_authenticate">sudo_remove_no_authenticate</a></li>
+
+<li><a href="#sudo_remove_nopasswd">sudo_remove_nopasswd</a></li>
+
+<li><a href="#sudo_require_authentication">sudo_require_authentication</a></li>
+
+<li><a href="#sudo_require_reauthentication">sudo_require_reauthentication</a></li>
+
+<li><a href="#sudo_restrict_others_executable_permission">sudo_restrict_others_executable_permission</a></li>
+
+<li><a href="#sudo_restrict_privilege_elevation_to_authorized">sudo_restrict_privilege_elevation_to_authorized</a></li>
+
+<li><a href="#sudo_vdsm_nopasswd">sudo_vdsm_nopasswd</a></li>
+
+<li><a href="#sudoers_default_includedir">sudoers_default_includedir</a></li>
+
+<li><a href="#sudoers_explicit_command_args">sudoers_explicit_command_args</a></li>
+
+<li><a href="#sudoers_no_command_negation">sudoers_no_command_negation</a></li>
+
+<li><a href="#sudoers_no_root_target">sudoers_no_root_target</a></li>
+
+<li><a href="#sudoers_validate_passwd">sudoers_validate_passwd</a></li>
+
+<li><a href="#file_permissions_sudo">file_permissions_sudo</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="directory_groupowner_etc_sudoersd" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Group Who Owns /etc/sudoers.d Directory</h3>
+<div>directory_groupowner_etc_sudoersd</div>
+<h4>Description</h4>
+<p> To properly set the group owner of <code>/etc/sudoers.d</code>, run the command:
+<pre>$ sudo chgrp root /etc/sudoers.d</pre>
+</p>
+<h4>Rationale</h4>
+<p>The ownership of the /etc/sudoers.d directory by the root group is important
+because this directory hosts sudo configuration. Protection of this
+directory is critical for system security. Assigning the ownership to root
+ensures exclusive control of the sudo configuration.</p>
+</div>
+
+<div id="directory_owner_etc_sudoersd" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify User Who Owns /etc/sudoers.d Directory</h3>
+<div>directory_owner_etc_sudoersd</div>
+<h4>Description</h4>
+<p> To properly set the owner of <code>/etc/sudoers.d</code>, run the command:
+<pre>$ sudo chown root /etc/sudoers.d </pre>
+</p>
+<h4>Rationale</h4>
+<p>The ownership of the /etc/sudoers.d directory by the root user is important
+because this directory hosts sudo configuration. Protection of this
+directory is critical for system security. Assigning the ownership to root
+ensures exclusive control of the sudo configuration.</p>
+</div>
+
+<div id="directory_permissions_etc_sudoersd" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Permissions On /etc/sudoers.d Directory</h3>
+<div>directory_permissions_etc_sudoersd</div>
+<h4>Description</h4>
+<p> To properly set the permissions of <code>/etc/sudoers.d</code>, run the command: <pre>$ sudo chmod 0750 /etc/sudoers.d</pre></p>
+<h4>Rationale</h4>
+<p>Setting correct permissions on the /etc/sudoers.d directory is important
+because this directory hosts sudo configuration. Protection of this
+directory is critical for system security. Restricting the permissions
+ensures exclusive control of the sudo configuration.</p>
+</div>
+
+<div id="file_groupowner_etc_sudoers" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Group Who Owns /etc/sudoers File</h3>
+<div>file_groupowner_etc_sudoers</div>
+<h4>Description</h4>
+<p> To properly set the group owner of <code>/etc/sudoers</code>, run the command:
+<pre>$ sudo chgrp root /etc/sudoers</pre>
+</p>
+<h4>Rationale</h4>
+<p>The ownership of the /etc/sudoers file by the root group is important
+because this file hosts sudo configuration. Protection of this
+file is critical for system security. Assigning the ownership to root
+ensures exclusive control of the sudo configuration.</p>
+</div>
+
+<div id="file_owner_etc_sudoers" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify User Who Owns /etc/sudoers File</h3>
+<div>file_owner_etc_sudoers</div>
+<h4>Description</h4>
+<p> To properly set the owner of <code>/etc/sudoers</code>, run the command:
+<pre>$ sudo chown root /etc/sudoers </pre>
+</p>
+<h4>Rationale</h4>
+<p>The ownership of the /etc/sudoers file by the root user is important
+because this file hosts sudo configuration. Protection of this
+file is critical for system security. Assigning the ownership to root
+ensures exclusive control of the sudo configuration.</p>
+</div>
+
+<div id="file_permissions_etc_sudoers" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Permissions On /etc/sudoers File</h3>
+<div>file_permissions_etc_sudoers</div>
+<h4>Description</h4>
+<p> To properly set the permissions of <code>/etc/sudoers</code>, run the command: <pre>$ sudo chmod 0440 /etc/sudoers</pre></p>
+<h4>Rationale</h4>
+<p>Setting correct permissions on the /etc/sudoers file is important
+because this file hosts sudo configuration. Protection of this
+file is critical for system security. Restricting the permissions
+ensures exclusive control of the sudo configuration.</p>
+</div>
+
+<div id="package_sudo_installed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Install sudo Package</h3>
+<div>package_sudo_installed</div>
+<h4>Description</h4>
+<p>The <code>sudo</code> package can be installed with the following command:
+<pre>
+$ sudo dnf install sudo</pre></p>
+<h4>Rationale</h4>
+<p><tt>sudo</tt> is a program designed to allow a system administrator to give
+limited root privileges to users and log root activity. The basic philosophy
+is to give as few privileges as possible but still allow system users to
+get their work done.</p>
+</div>
+
+<div id="sudo_add_env_reset" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure sudo Runs In A Minimal Environment - sudo env_reset</h3>
+<div>sudo_add_env_reset</div>
+<h4>Description</h4>
+<p>The sudo <tt>env_reset</tt> tag, when specified, will run the command in a minimal environment,
+containing the TERM, PATH, HOME, MAIL, SHELL, LOGNAME, USER and SUDO_* variables.
+On Red Hat Enterprise Linux 9, <tt>env_reset</tt> is enabled by default
+This should be enabled by making sure that the <tt>env_reset</tt> tag exists in
+<tt>/etc/sudoers</tt> configuration file or any sudo configuration snippets
+in <tt>/etc/sudoers.d/</tt>.</p>
+<h4>Rationale</h4>
+<p>Forcing sudo to reset the environment ensures that environment variables are not passed on to the
+command accidentally, preventing leak of potentially sensitive information.</p>
+</div>
+
+<div id="sudo_add_ignore_dot" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure sudo Ignores Commands In Current Dir - sudo ignore_dot</h3>
+<div>sudo_add_ignore_dot</div>
+<h4>Description</h4>
+<p>The sudo <tt>ignore_dot</tt> tag, when specified, will ignore the current directory
+in the PATH environment variable.
+On Red Hat Enterprise Linux 9, <tt>ignore_dot</tt> is enabled by default
+This should be enabled by making sure that the <tt>ignore_dot</tt> tag exists in
+<tt>/etc/sudoers</tt> configuration file or any sudo configuration snippets
+in <tt>/etc/sudoers.d/</tt>.</p>
+<h4>Rationale</h4>
+<p>Ignoring the commands in the user's current directory prevents an attacker from executing commands
+downloaded locally.</p>
+</div>
+
+<div id="sudo_add_noexec" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure Privileged Escalated Commands Cannot Execute Other Commands - sudo NOEXEC</h3>
+<div>sudo_add_noexec</div>
+<h4>Description</h4>
+<p>The sudo <tt>NOEXEC</tt> tag, when specified, prevents user executed
+commands from executing other commands, like a shell for example.
+This should be enabled by making sure that the <tt>NOEXEC</tt> tag exists in
+<tt>/etc/sudoers</tt> configuration file or any sudo configuration snippets
+in <tt>/etc/sudoers.d/</tt>.</p>
+<h4>Rationale</h4>
+<p>Restricting the capability of sudo allowed commands to execute sub-commands
+prevents users from running programs with privileges they wouldn't have otherwise.</p>
+</div>
+
+<div id="sudo_add_passwd_timeout" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure sudo passwd_timeout is appropriate - sudo passwd_timeout</h3>
+<div>sudo_add_passwd_timeout</div>
+<h4>Description</h4>
+<p>The sudo <tt>passwd_timeout</tt> tag sets the amount of time sudo password prompt waits.
+On Red Hat Enterprise Linux 9, the default <tt>passwd_timeout</tt> value is 5 minutes.
+
+The passwd_timeout should be configured by making sure that the
+<tt>passwd_timeout=<tt>$var_sudo_passwd_timeout</tt></tt> tag exists in
+<tt>/etc/sudoers</tt> configuration file or any sudo configuration snippets
+in <tt>/etc/sudoers.d/</tt>.</p>
+<h4>Rationale</h4>
+<p>Reducing the time <tt>sudo</tt> waits for a a password reduces the time the process is exposed.</p>
+</div>
+
+<div id="sudo_add_requiretty" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure Only Users Logged In To Real tty Can Execute Sudo - sudo requiretty</h3>
+<div>sudo_add_requiretty</div>
+<h4>Description</h4>
+<p>The sudo <tt>requiretty</tt> tag, when specified, will only execute sudo
+commands from users logged in to a real tty.
+This should be enabled by making sure that the <tt>requiretty</tt> tag exists in
+<tt>/etc/sudoers</tt> configuration file or any sudo configuration snippets
+in <tt>/etc/sudoers.d/</tt>.</p>
+<h4>Rationale</h4>
+<p>Restricting the use cases in which a user is allowed to execute sudo commands
+reduces the attack surface.</p>
+</div>
+
+<div id="sudo_add_umask" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure sudo umask is appropriate - sudo umask</h3>
+<div>sudo_add_umask</div>
+<h4>Description</h4>
+<p>The sudo <tt>umask</tt> tag, when specified, will be added the to the user's umask in the
+command environment.
+On Red Hat Enterprise Linux 9, the default <tt>umask</tt> value is 0022.
+
+The umask should be configured by making sure that the <tt>umask=<tt>$var_sudo_umask</tt></tt> tag exists in
+<tt>/etc/sudoers</tt> configuration file or any sudo configuration snippets
+in <tt>/etc/sudoers.d/</tt>.</p>
+<h4>Rationale</h4>
+<p>The umask value influences the permissions assigned to files when they are created.
+A misconfigured umask value could result in files with excessive permissions that can be read or
+written to by unauthorized users.</p>
+</div>
+
+<div id="sudo_add_use_pty" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure Only Users Logged In To Real tty Can Execute Sudo - sudo use_pty</h3>
+<div>sudo_add_use_pty</div>
+<h4>Description</h4>
+<p>The sudo <tt>use_pty</tt> tag, when specified, will only execute sudo
+commands from users logged in to a real tty.
+This should be enabled by making sure that the <tt>use_pty</tt> tag exists in
+<tt>/etc/sudoers</tt> configuration file or any sudo configuration snippets
+in <tt>/etc/sudoers.d/</tt>.</p>
+<h4>Rationale</h4>
+<p>Requiring that sudo commands be run in a pseudo-terminal can prevent an attacker from retaining
+access to the user's terminal after the main program has finished executing.</p>
+</div>
+
+<div id="sudo_custom_logfile" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure Sudo Logfile Exists - sudo logfile</h3>
+<div>sudo_custom_logfile</div>
+<h4>Description</h4>
+<p>A custom log sudo file can be configured with the 'logfile' tag. This rule configures
+a sudo custom logfile at the default location suggested by CIS, which uses
+/var/log/sudo.log.</p>
+<h4>Rationale</h4>
+<p>A sudo log file simplifies auditing of sudo commands.</p>
+</div>
+
+<div id="sudo_dedicated_group" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure a dedicated group owns sudo</h3>
+<div>sudo_dedicated_group</div>
+<h4>Description</h4>
+<p>Restrict the execution of privilege escalated commands to a dedicated group of users.
+Ensure the group owner of /usr/bin/sudo is <tt>$var_sudo_dedicated_group</tt>.</p>
+<h4>Rationale</h4>
+<p>Restricting the set of users able to execute commands as privileged user reduces the attack surface.</p>
+</div>
+
+<div id="sudo_remove_no_authenticate" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure Users Re-Authenticate for Privilege Escalation - sudo !authenticate</h3>
+<div>sudo_remove_no_authenticate</div>
+<h4>Description</h4>
+<p>The sudo <tt>!authenticate</tt> option, when specified, allows a user to execute commands using
+sudo without having to authenticate. This should be disabled by making sure that the
+<tt>!authenticate</tt> option does not exist in <tt>/etc/sudoers</tt> configuration file or
+any sudo configuration snippets in <tt>/etc/sudoers.d/</tt>.</p>
+<h4>Rationale</h4>
+<p>Without re-authentication, users may access resources or perform tasks for which they
+do not have authorization.
+<br /><br />
+When operating systems provide the capability to escalate a functional capability, it
+is critical that the user re-authenticate.</p>
+</div>
+
+<div id="sudo_remove_nopasswd" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure Users Re-Authenticate for Privilege Escalation - sudo NOPASSWD</h3>
+<div>sudo_remove_nopasswd</div>
+<h4>Description</h4>
+<p>The sudo <tt>NOPASSWD</tt> tag, when specified, allows a user to execute
+commands using sudo without having to authenticate. This should be disabled
+by making sure that the <tt>NOPASSWD</tt> tag does not exist in
+<tt>/etc/sudoers</tt> configuration file or any sudo configuration snippets
+in <tt>/etc/sudoers.d/</tt>.</p>
+<h4>Rationale</h4>
+<p>Without re-authentication, users may access resources or perform tasks for which they
+do not have authorization.
+<br /><br />
+When operating systems provide the capability to escalate a functional capability, it
+is critical that the user re-authenticate.</p>
+</div>
+
+<div id="sudo_require_authentication" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure Users Re-Authenticate for Privilege Escalation - sudo</h3>
+<div>sudo_require_authentication</div>
+<h4>Description</h4>
+<p>The sudo <tt>NOPASSWD</tt> and <tt>!authenticate</tt> option, when
+specified, allows a user to execute commands using sudo without having to
+authenticate. This should be disabled by making sure that
+<tt>NOPASSWD</tt> and/or <tt>!authenticate</tt> do not exist in
+<tt>/etc/sudoers</tt> configuration file or any sudo configuration snippets
+in <tt>/etc/sudoers.d/</tt>."</p>
+<h4>Rationale</h4>
+<p>Without re-authentication, users may access resources or perform tasks for which they
+do not have authorization.
+<br /><br />
+When operating systems provide the capability to escalate a functional capability, it
+is critical that the user re-authenticate.</p>
+</div>
+
+<div id="sudo_require_reauthentication" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Require Re-Authentication When Using the sudo Command</h3>
+<div>sudo_require_reauthentication</div>
+<h4>Description</h4>
+<p>The sudo <tt>timestamp_timeout</tt> tag sets the amount of time sudo password prompt waits.
+The default <tt>timestamp_timeout</tt> value is 5 minutes.
+The timestamp_timeout should be configured by making sure that the
+<tt>timestamp_timeout</tt> tag exists in
+<tt>/etc/sudoers</tt> configuration file or any sudo configuration snippets
+in <tt>/etc/sudoers.d/</tt>.
+If the value is set to an integer less than 0, the user's time stamp will not expire
+and the user will not have to re-authenticate for privileged actions until the user's session is terminated.</p>
+<h4>Rationale</h4>
+<p>Without re-authentication, users may access resources or perform tasks for which they
+do not have authorization.
+<br /><br />
+When operating systems provide the capability to escalate a functional capability, it
+is critical that the user re-authenticate.</p>
+</div>
+
+<div id="sudo_restrict_others_executable_permission" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure only owner and members of group owner of /usr/bin/sudo can execute it</h3>
+<div>sudo_restrict_others_executable_permission</div>
+<h4>Description</h4>
+<p>Remove the execute permission bit of <tt>/etc/bin/sudo</tt> for the other users.
+
+To properly set the permissions of <code>/usr/bin/sudo</code>, run the command:
+<pre>$ sudo chmod 4110 /usr/bin/sudo</pre></p>
+<h4>Rationale</h4>
+<p>Restricting the set of users able to execute commands as privileged user reduces the attack surface.</p>
+</div>
+
+<div id="sudo_restrict_privilege_elevation_to_authorized" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>The operating system must restrict privilege elevation to authorized personnel</h3>
+<div>sudo_restrict_privilege_elevation_to_authorized</div>
+<h4>Description</h4>
+<p>The sudo command allows a user to execute programs with elevated
+(administrator) privileges. It prompts the user for their password
+and confirms your request to execute a command by checking a file,
+called sudoers.
+Restrict privileged actions by removing the following entries from the sudoers file:
+<tt>ALL ALL=(ALL) ALL</tt>
+<tt>ALL ALL=(ALL:ALL) ALL</tt></p>
+<h4>Rationale</h4>
+<p>If the "sudoers" file is not configured correctly, any user defined
+on the system can initiate privileged actions on the target system.</p>
+</div>
+
+<div id="sudo_vdsm_nopasswd" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Only the VDSM User Can Use sudo NOPASSWD</h3>
+<div>sudo_vdsm_nopasswd</div>
+<h4>Description</h4>
+<p>The sudo <tt>NOPASSWD</tt> tag, when specified, allows a user to execute commands using sudo without having to authenticate. Only the <tt>vdsm</tt> user should have this capability in any sudo configuration snippets in <tt>/etc/sudoers.d/</tt>.</p>
+<h4>Rationale</h4>
+<p>Without re-authentication, users may access resources or perform tasks for which they
+do not have authorization.
+<br /><br />
+When operating systems provide the capability to escalate a functional capability, it
+is critical that the user re-authenticate.</p>
+</div>
+
+<div id="sudoers_default_includedir" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure sudo only includes the default configuration directory</h3>
+<div>sudoers_default_includedir</div>
+<h4>Description</h4>
+<p>Administrators can configure authorized <tt>sudo</tt> users via drop-in files, and it is possible to include
+other directories and configuration files from the file currently being parsed.
+
+Make sure that <tt>/etc/sudoers</tt> only includes drop-in configuration files from <tt>/etc/sudoers.d</tt>,
+or that no drop-in file is included.
+Either the <tt>/etc/sudoers</tt> should contain only one <tt>#includedir</tt> directive pointing to
+<tt>/etc/sudoers.d</tt>, and no file in <tt>/etc/sudoers.d/</tt> should include other files or directories;
+Or the <tt>/etc/sudoers</tt> should not contain any <tt>#include</tt>,
+<tt>@include</tt>, <tt>#includedir</tt> or <tt>@includedir</tt> directives.
+Note that the '#' character doesn't denote a comment in the configuration file.</p>
+<h4>Rationale</h4>
+<p>Some <tt>sudo</tt> configuration options allow users to run programs without re-authenticating.
+Use of these configuration options makes it easier for one compromised account to be used to
+compromise other accounts.</p>
+</div>
+
+<div id="sudoers_explicit_command_args" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Explicit arguments in sudo specifications</h3>
+<div>sudoers_explicit_command_args</div>
+<h4>Description</h4>
+<p>All commands in the sudoers file must strictly specify the arguments allowed to be used for a given user.
+If the command is supposed to be executed only without arguments, pass "" as an argument in the corresponding user specification.</p>
+<h4>Rationale</h4>
+<p>Any argument can modify quite significantly the behavior of a program, whether regarding the
+realized operation (read, write, delete, etc.) or accessed resources (path in a file system tree). To
+avoid any possibility of misuse of a command by a user, the ambiguities must be removed at the
+level of its specification.
+
+For example, on some systems, the kernel messages are only accessible by root.
+If a user nevertheless must have the privileges to read them, the argument of the dmesg command has to be restricted
+in order to prevent the user from flushing the buffer through the -c option:
+<pre>
+user ALL = dmesg ""
+</pre></p>
+</div>
+
+<div id="sudoers_no_command_negation" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Don't define allowed commands in sudoers by means of exclusion</h3>
+<div>sudoers_no_command_negation</div>
+<h4>Description</h4>
+<p>Policies applied by sudo through the sudoers file should not involve negation.
+
+Each user specification in the <code>sudoers</code> file contains a comma-delimited list of command specifications.
+The definition can make use glob patterns, as well as of negations.
+Indirect definition of those commands by means of exclusion of a set of commands is trivial to bypass, so it is not allowed to use such constructs.</p>
+<h4>Rationale</h4>
+<p>Specifying access right using negation is inefficient and can be easily circumvented.
+For example, it is expected that a specification like <pre>
+# To avoid absolutely , this rule can be easily circumvented!
+user ALL = ALL ,!/ bin/sh
+</pre> prevents the execution of the shell
+but that’s not the case: just copy the binary <code>/bin/sh</code> to a different name to make it executable
+again through the rule keyword <code>ALL</code>.</p>
+</div>
+
+<div id="sudoers_no_root_target" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Don't target root user in the sudoers file</h3>
+<div>sudoers_no_root_target</div>
+<h4>Description</h4>
+<p>The targeted users of a user specification should be, as much as possible, non privileged users (i.e.: non-root).
+
+User specifications have to explicitly list the runas spec (i.e. the list of target users that can be impersonated), and <tt>ALL</tt> or <tt>root</tt> should not be used.</p>
+<h4>Rationale</h4>
+<p>It is common that the command to be executed does not require superuser rights (editing a file
+whose the owner is not root, sending a signal to an unprivileged process,etc.). In order to limit
+any attempt of privilege escalation through a command, it is better to apply normal user rights.</p>
+</div>
+
+<div id="sudoers_validate_passwd" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure invoking users password for privilege escalation when using sudo</h3>
+<div>sudoers_validate_passwd</div>
+<h4>Description</h4>
+<p>The sudoers security policy requires that users authenticate themselves before they can use sudo.
+When sudoers requires authentication, it validates the invoking user's credentials.
+The expected output for:
+<pre> sudo cvtsudoers -f sudoers /etc/sudoers | grep -E '^Defaults !?(rootpw|targetpw|runaspw)$' </pre>
+<pre> Defaults !targetpw
+      Defaults !rootpw
+      Defaults !runaspw </pre>
+or if cvtsudoers not supported:
+<pre> sudo find /etc/sudoers /etc/sudoers.d \( \! -name '*~' -a \! -name '*.*' \) -exec grep -E --with-filename '^[[:blank:]]*Defaults[[:blank:]](.*[[:blank:]])?!?\b(rootpw|targetpw|runaspw)' -- {} \; </pre>
+<pre> /etc/sudoers:Defaults !targetpw
+      /etc/sudoers:Defaults !rootpw
+      /etc/sudoers:Defaults !runaspw </pre></p>
+<h4>Rationale</h4>
+<p>If the rootpw, targetpw, or runaspw flags are defined and not disabled, by default the operating system will prompt
+the invoking user for the "root" user password.</p>
+</div>
+
+<div id="file_permissions_sudo" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure That the sudo Binary Has the Correct Permissions</h3>
+<div>file_permissions_sudo</div>
+<h4>Description</h4>
+<p>
+To properly set the permissions of <code>/usr/bin/sudo</code>, run the command:
+<pre>$ sudo chmod 4110 /usr/bin/sudo</pre>
+In order to use this rule, the group owner for /usr/bin/sudo needs to be changed to a
+group other than root to effectively limit access to sudo.</p>
+<h4>Rationale</h4>
+<p>The sudoers program should only be usable by people who have the correct permissions.</p>
+</div>
+
+
+
+
+</body>
+</html>
