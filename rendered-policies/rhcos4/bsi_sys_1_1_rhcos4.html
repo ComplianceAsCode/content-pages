@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Definition of SYS.1.1 General Server (RHCOS) for rhcos4</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Definition of SYS.1.1 General Server (RHCOS) for rhcos4</h1>
+
+
+
+based on <a href="https://www.bsi.bund.de/SharedDocs/Downloads/EN/BSI/Grundschutz/International/bsi_it_gs_comp_2022.pdf">https://www.bsi.bund.de/SharedDocs/Downloads/EN/BSI/Grundschutz/International/bsi_it_gs_comp_2022.pdf</a>
+
+
+<div class="all_controls">
+<div class="one_control">
+  <h2>SYS.1.1.A1: Appropriate Installation</h2>
+  <p>Description: (1) Servers MUST be operated in locations that may only be accessed by authorised persons. (2) Servers MUST therefore be set up and installed in data centres, computer rooms, or lockable server rooms (see the corresponding modules in the INF Infrastructure layer). (3) Servers MUST NOT be used as personal computers (4) IT systems used as workstations MUST NOT be used as servers.</p>
+  Levels: 
+  <ul><li>basic</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>SYS.1.1.A2: User Authentication on Servers</h2>
+  <p>Description: (1) Authentication methods adequate for the protection needs at hand MUST be used when users and services log into servers. (2) This SHOULD be taken into account for administrative access in particular. (3) Central, network-based authentication services SHOULD be used whenever possible.</p>
+  Levels: 
+  <ul><li>basic</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>SYS.1.1.A3: ELIMINATED</h2>
+  <p>Description: This requirement has been eliminated.</p>
+  Levels: 
+  <ul><li>basic</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>SYS.1.1.A4: ELIMINATED</h2>
+  <p>Description: This requirement has been eliminated.</p>
+  Levels: 
+  <ul><li>basic</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>SYS.1.1.A5: Protection of Interfaces</h2>
+  <p>Description: (1) It MUST be ensured that only specified removable storage media and other devices can be connected to servers. All interfaces that are no longer needed must be disabled.</p>
+  Levels: 
+  <ul><li>basic</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/mounting/coreos_nousb_kernel_argument/rule.yml"> coreos_nousb_kernel_argument</a>: Disable Kernel Support for USB via Bootloader Configuration
+      <ul><li>CCE-83443-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-uncommon/kernel_module_firewire-core_disabled/rule.yml"> kernel_module_firewire-core_disabled</a>: Disable IEEE 1394 (FireWire) Support
+      <ul><li>CCE-82517-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/mounting/kernel_module_usb-storage_disabled/rule.yml"> kernel_module_usb-storage_disabled</a>: Disable Modprobe Loading of USB Storage Driver
+      <ul><li>CCE-82719-6</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SYS.1.1.A6: Disabling Unnecessary Services</h2>
+  <p>Description: (1) All unnecessary services and applications — particularly network services — MUST be disabled or uninstalled. (2) All unused functions in firmware MUST also be disabled. (3) On servers, the disk space allotted to both individual users and applications SHOULD be restricted appropriately. (4) The decisions taken in this regard SHOULD be documented in a way that makes it clear which configuration and software equipment was chosen for servers.</p>
+  Levels: 
+  <ul><li>basic</li>
+  </ul>
+  <p>Automated: no</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-wireless/wireless_software/kernel_module_bluetooth_disabled/rule.yml"> kernel_module_bluetooth_disabled</a>: Disable Bluetooth Kernel Module
+      <ul><li>CCE-82515-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-wireless/wireless_software/kernel_module_cfg80211_disabled/rule.yml"> kernel_module_cfg80211_disabled</a>: Disable Kernel cfg80211 Module
+      <ul><li>CCE-85932-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-wireless/wireless_software/kernel_module_iwlmvm_disabled/rule.yml"> kernel_module_iwlmvm_disabled</a>: Disable Kernel iwlmvm Module
+      <ul><li>CCE-85933-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-wireless/wireless_software/kernel_module_iwlwifi_disabled/rule.yml"> kernel_module_iwlwifi_disabled</a>: Disable Kernel iwlwifi Module
+      <ul><li>CCE-85934-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-wireless/wireless_software/kernel_module_mac80211_disabled/rule.yml"> kernel_module_mac80211_disabled</a>: Disable Kernel mac80211 Module
+      <ul><li>CCE-85935-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/disk_partitioning/partition_for_tmp/rule.yml"> partition_for_tmp</a>: Ensure /tmp Located On Separate Partition
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/disk_partitioning/partition_for_usr/rule.yml"> partition_for_usr</a>: Ensure /usr Located On Separate Partition
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/disk_partitioning/partition_for_var/rule.yml"> partition_for_var</a>: Ensure /var Located On Separate Partition
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/disk_partitioning/partition_for_var_log/rule.yml"> partition_for_var_log</a>: Ensure /var/log Located On Separate Partition
+      <ul><li>CCE-82737-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/disk_partitioning/partition_for_var_tmp/rule.yml"> partition_for_var_tmp</a>: Ensure /var/tmp Located On Separate Partition
+      <ul><li>CCE-82734-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-wireless/wireless_software/service_bluetooth_disabled/rule.yml"> service_bluetooth_disabled</a>: Disable Bluetooth Service
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-wireless/wireless_software/wireless_disable_in_bios/rule.yml"> wireless_disable_in_bios</a>: Disable WiFi or Bluetooth in BIOS
+      <ul><li>CCE-82659-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-wireless/wireless_software/wireless_disable_interfaces/rule.yml"> wireless_disable_interfaces</a>: Deactivate Wireless Network Interfaces
+      <ul><li>CCE-82660-2</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SYS.1.1.A7: ELIMINATED</h2>
+  <p>Description: This requirement has been eliminated.</p>
+  Levels: 
+  <ul><li>basic</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>SYS.1.1.A8: ELIMINATED</h2>
+  <p>Description: This requirement has been eliminated.</p>
+  Levels: 
+  <ul><li>basic</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>SYS.1.1.A9: Using Anti-Virus Programs on Servers</h2>
+  <p>Description: (1) Whether virus protection programs can and should be used MUST be checked depending on the operating system installed, the services provided, and other existing protection mechanisms of the server in question. (2) Where available, concrete statements from the relevant operating system modules of the IT-Grundschutz Compendium on whether virus protection is necessary MUST be considered.</p>
+  Levels: 
+  <ul><li>basic</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>SYS.1.1.A10: Logging</h2>
+  <p>Description: (1) In general, all security-relevant system events MUST be logged, including the following at minimum: • (2) System starts and reboots • (3) Successful and failed login attempts (operating system and application software) • (4) Failed authorisation checks • (5) Blocked data flows (violations of ACLs or firewall rules) • (6) Creation of or changes to users, groups, and authorisations • (7) Security-relevant error messages (e.g. hardware defects, exceeded capacity limits) • (8) Warnings from security systems (e.g. virus protection)</p>
+  Levels: 
+  <ul><li>basic</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_dac_actions/audit_rules_dac_modification_chmod/rule.yml"> audit_rules_dac_modification_chmod</a>: Record Events that Modify the System's Discretionary Access Controls - chmod
+      <ul><li>CCE-82556-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_dac_actions/audit_rules_dac_modification_chown/rule.yml"> audit_rules_dac_modification_chown</a>: Record Events that Modify the System's Discretionary Access Controls - chown
+      <ul><li>CCE-82557-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_dac_actions/audit_rules_dac_modification_fchmod/rule.yml"> audit_rules_dac_modification_fchmod</a>: Record Events that Modify the System's Discretionary Access Controls - fchmod
+      <ul><li>CCE-82558-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_dac_actions/audit_rules_dac_modification_fchmodat/rule.yml"> audit_rules_dac_modification_fchmodat</a>: Record Events that Modify the System's Discretionary Access Controls - fchmodat
+      <ul><li>CCE-82559-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_dac_actions/audit_rules_dac_modification_fchown/rule.yml"> audit_rules_dac_modification_fchown</a>: Record Events that Modify the System's Discretionary Access Controls - fchown
+      <ul><li>CCE-82560-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_dac_actions/audit_rules_dac_modification_fchownat/rule.yml"> audit_rules_dac_modification_fchownat</a>: Record Events that Modify the System's Discretionary Access Controls - fchownat
+      <ul><li>CCE-82561-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_dac_actions/audit_rules_dac_modification_fremovexattr/rule.yml"> audit_rules_dac_modification_fremovexattr</a>: Record Events that Modify the System's Discretionary Access Controls - fremovexattr
+      <ul><li>CCE-82562-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_dac_actions/audit_rules_dac_modification_fsetxattr/rule.yml"> audit_rules_dac_modification_fsetxattr</a>: Record Events that Modify the System's Discretionary Access Controls - fsetxattr
+      <ul><li>CCE-82563-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_dac_actions/audit_rules_dac_modification_lchown/rule.yml"> audit_rules_dac_modification_lchown</a>: Record Events that Modify the System's Discretionary Access Controls - lchown
+      <ul><li>CCE-82564-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_dac_actions/audit_rules_dac_modification_lremovexattr/rule.yml"> audit_rules_dac_modification_lremovexattr</a>: Record Events that Modify the System's Discretionary Access Controls - lremovexattr
+      <ul><li>CCE-82565-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_dac_actions/audit_rules_dac_modification_lsetxattr/rule.yml"> audit_rules_dac_modification_lsetxattr</a>: Record Events that Modify the System's Discretionary Access Controls - lsetxattr
+      <ul><li>CCE-82566-1</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_dac_actions/audit_rules_dac_modification_removexattr/rule.yml"> audit_rules_dac_modification_removexattr</a>: Record Events that Modify the System's Discretionary Access Controls - removexattr
+      <ul><li>CCE-82567-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_dac_actions/audit_rules_dac_modification_setxattr/rule.yml"> audit_rules_dac_modification_setxattr</a>: Record Events that Modify the System's Discretionary Access Controls - setxattr
+      <ul><li>CCE-82568-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_execution_selinux_commands/audit_rules_execution_chcon/rule.yml"> audit_rules_execution_chcon</a>: Record Any Attempts to Run chcon
+      <ul><li>CCE-82569-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_execution_acl_commands/audit_rules_execution_setfacl/rule.yml"> audit_rules_execution_setfacl</a>: Record Any Attempts to Run setfacl
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_login_events/audit_rules_login_events_faillock/rule.yml"> audit_rules_login_events_faillock</a>: Record Attempts to Alter Logon and Logout Events - faillock
+      <ul><li>CCE-82583-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_login_events/audit_rules_login_events_lastlog/rule.yml"> audit_rules_login_events_lastlog</a>: Record Attempts to Alter Logon and Logout Events - lastlog
+      <ul><li>CCE-82584-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_privileged_commands/audit_rules_privileged_commands_at/rule.yml"> audit_rules_privileged_commands_at</a>: Ensure auditd Collects Information on the Use of Privileged Commands - at
+      <ul><li>CCE-82590-1</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_privileged_commands/audit_rules_privileged_commands_chage/rule.yml"> audit_rules_privileged_commands_chage</a>: Ensure auditd Collects Information on the Use of Privileged Commands - chage
+      <ul><li>CCE-82591-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_privileged_commands/audit_rules_privileged_commands_chsh/rule.yml"> audit_rules_privileged_commands_chsh</a>: Ensure auditd Collects Information on the Use of Privileged Commands - chsh
+      <ul><li>CCE-82592-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_privileged_commands/audit_rules_privileged_commands_crontab/rule.yml"> audit_rules_privileged_commands_crontab</a>: Ensure auditd Collects Information on the Use of Privileged Commands - crontab
+      <ul><li>CCE-82593-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_privileged_commands/audit_rules_privileged_commands_gpasswd/rule.yml"> audit_rules_privileged_commands_gpasswd</a>: Ensure auditd Collects Information on the Use of Privileged Commands - gpasswd
+      <ul><li>CCE-82594-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_privileged_commands/audit_rules_privileged_commands_mount/rule.yml"> audit_rules_privileged_commands_mount</a>: Ensure auditd Collects Information on the Use of Privileged Commands - mount
+      <ul><li>CCE-82595-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_privileged_commands/audit_rules_privileged_commands_newgidmap/rule.yml"> audit_rules_privileged_commands_newgidmap</a>: Ensure auditd Collects Information on the Use of Privileged Commands - newgidmap
+      <ul><li>CCE-82596-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_privileged_commands/audit_rules_privileged_commands_newgrp/rule.yml"> audit_rules_privileged_commands_newgrp</a>: Ensure auditd Collects Information on the Use of Privileged Commands - newgrp
+      <ul><li>CCE-82597-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_privileged_commands/audit_rules_privileged_commands_newuidmap/rule.yml"> audit_rules_privileged_commands_newuidmap</a>: Ensure auditd Collects Information on the Use of Privileged Commands - newuidmap
+      <ul><li>CCE-82598-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_privileged_commands/audit_rules_privileged_commands_pam_timestamp_check/rule.yml"> audit_rules_privileged_commands_pam_timestamp_check</a>: Ensure auditd Collects Information on the Use of Privileged Commands - pam_timestamp_check
+      <ul><li>CCE-82599-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_privileged_commands/audit_rules_privileged_commands_passwd/rule.yml"> audit_rules_privileged_commands_passwd</a>: Ensure auditd Collects Information on the Use of Privileged Commands - passwd
+      <ul><li>CCE-82600-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_privileged_commands/audit_rules_privileged_commands_postdrop/rule.yml"> audit_rules_privileged_commands_postdrop</a>: Ensure auditd Collects Information on the Use of Privileged Commands - postdrop
+      <ul><li>CCE-82601-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_privileged_commands/audit_rules_privileged_commands_postqueue/rule.yml"> audit_rules_privileged_commands_postqueue</a>: Ensure auditd Collects Information on the Use of Privileged Commands - postqueue
+      <ul><li>CCE-82602-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_privileged_commands/audit_rules_privileged_commands_pt_chown/rule.yml"> audit_rules_privileged_commands_pt_chown</a>: Ensure auditd Collects Information on the Use of Privileged Commands - pt_chown
+      <ul><li>CCE-82603-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_privileged_commands/audit_rules_privileged_commands_ssh_keysign/rule.yml"> audit_rules_privileged_commands_ssh_keysign</a>: Ensure auditd Collects Information on the Use of Privileged Commands - ssh-keysign
+      <ul><li>CCE-82604-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_privileged_commands/audit_rules_privileged_commands_su/rule.yml"> audit_rules_privileged_commands_su</a>: Ensure auditd Collects Information on the Use of Privileged Commands - su
+      <ul><li>CCE-82605-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_privileged_commands/audit_rules_privileged_commands_sudo/rule.yml"> audit_rules_privileged_commands_sudo</a>: Ensure auditd Collects Information on the Use of Privileged Commands - sudo
+      <ul><li>CCE-82606-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_privileged_commands/audit_rules_privileged_commands_sudoedit/rule.yml"> audit_rules_privileged_commands_sudoedit</a>: Ensure auditd Collects Information on the Use of Privileged Commands - sudoedit
+      <ul><li>CCE-82607-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_privileged_commands/audit_rules_privileged_commands_umount/rule.yml"> audit_rules_privileged_commands_umount</a>: Ensure auditd Collects Information on the Use of Privileged Commands - umount
+      <ul><li>CCE-82608-1</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_privileged_commands/audit_rules_privileged_commands_unix_chkpwd/rule.yml"> audit_rules_privileged_commands_unix_chkpwd</a>: Ensure auditd Collects Information on the Use of Privileged Commands - unix_chkpwd
+      <ul><li>CCE-82609-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_privileged_commands/audit_rules_privileged_commands_userhelper/rule.yml"> audit_rules_privileged_commands_userhelper</a>: Ensure auditd Collects Information on the Use of Privileged Commands - userhelper
+      <ul><li>CCE-82610-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_privileged_commands/audit_rules_privileged_commands_usermod/rule.yml"> audit_rules_privileged_commands_usermod</a>: Ensure auditd Collects Information on the Use of Privileged Commands - usermod
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_privileged_commands/audit_rules_privileged_commands_usernetctl/rule.yml"> audit_rules_privileged_commands_usernetctl</a>: Ensure auditd Collects Information on the Use of Privileged Commands - usernetctl
+      <ul><li>CCE-82611-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_rules_session_events/rule.yml"> audit_rules_session_events</a>: Record Attempts to Alter Process and Session Initiation Information
+      <ul><li>CCE-82612-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_rules_suid_auid_privilege_function/rule.yml"> audit_rules_suid_auid_privilege_function</a>: Record Events When Executables Are Run As Another User
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_rules_sysadmin_actions/rule.yml"> audit_rules_sysadmin_actions</a>: Ensure auditd Collects System Administrator Actions
+      <ul><li>CCE-82613-1</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_rules_usergroup_modification_group/rule.yml"> audit_rules_usergroup_modification_group</a>: Record Events that Modify User/Group Information - /etc/group
+      <ul><li>CCE-82654-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_rules_usergroup_modification_gshadow/rule.yml"> audit_rules_usergroup_modification_gshadow</a>: Record Events that Modify User/Group Information - /etc/gshadow
+      <ul><li>CCE-82655-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_rules_usergroup_modification_opasswd/rule.yml"> audit_rules_usergroup_modification_opasswd</a>: Record Events that Modify User/Group Information - /etc/security/opasswd
+      <ul><li>CCE-82656-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_rules_usergroup_modification_passwd/rule.yml"> audit_rules_usergroup_modification_passwd</a>: Record Events that Modify User/Group Information - /etc/passwd
+      <ul><li>CCE-82657-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_rules_usergroup_modification_shadow/rule.yml"> audit_rules_usergroup_modification_shadow</a>: Record Events that Modify User/Group Information - /etc/shadow
+      <ul><li>CCE-82658-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_sudo_log_events/rule.yml"> audit_sudo_log_events</a>: Record Attempts to perform maintenance activities
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/coreos_audit_backlog_limit_kernel_argument/rule.yml"> coreos_audit_backlog_limit_kernel_argument</a>: Extend Audit Backlog Limit for the Audit Daemon
+      <ul><li>CCE-82671-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/coreos_audit_option/rule.yml"> coreos_audit_option</a>: Enable Auditing for Processes Which Start Prior to the Audit Daemon
+      <ul><li>CCE-82670-1</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/package_audit-libs_installed/rule.yml"> package_audit-libs_installed</a>: Ensure the audit-libs package as a part of audit Subsystem is Installed
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/package_audit_installed/rule.yml"> package_audit_installed</a>: Ensure the audit Subsystem is Installed
+      <ul><li>CCE-82669-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/service_auditd_enabled/rule.yml"> service_auditd_enabled</a>: Enable auditd Service
+      <ul><li>CCE-82463-1</li></ul>
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/var_accounts_passwords_pam_faillock_dir.var">var_accounts_passwords_pam_faillock_dir</a> = run</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SYS.1.1.A11: Defining a Security Policy for Servers</h2>
+  <p>Description: (1) Based on the general security policy of the organisation in question, the requirements for servers SHOULD be specified in a separate security policy. (2) This policy SHOULD be known to all administrators and other persons involved in the procurement and operation of servers and be integral to their work. (3) The implementation of the policy's requirements SHOULD be checked at regular intervals. (4) The results SHOULD be appropriately documented.</p>
+  Levels: 
+  <ul><li>standard</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>SYS.1.1.A12: Planning the Use of Servers</h2>
+  <p>Description: Each server system SHOULD be suitably planned. In this process, the following points SHOULD be taken into account at minimum: • Selection of the hardware platform, operating system, and application software • Hardware capacity (performance, memory, bandwidth, etc) • Type and number of communication interfaces • Power consumption, thermal load, space requirements, and structural shape • Administrative access points (see SYS.1.1.A5 Protection of Administration Interfaces) • User access • Logging (see SYS.1.1.A10 Logging). • Updates for operating systems and applications • Integration into system and network management, backups, and protection systems (virus protection, IDS, etc) All decisions taken in the planning phase SHOULD be documented in such a way that they can be understood at any future point in time.</p>
+  Levels: 
+  <ul><li>standard</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>SYS.1.1.A13: Procurement of Servers</h2>
+  <p>Description: Prior to procuring one or more servers, a requirements list SHOULD be drawn up that can be used to evaluate the products available on the market.</p>
+  Levels: 
+  <ul><li>standard</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>SYS.1.1.A14: ELIMINATED</h2>
+  <p>Description: This requirement has been eliminated.</p>
+  Levels: 
+  <ul><li>standard</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>SYS.1.1.A15: Stable and Uninterruptible Power Supply [Building Services]</h2>
+  <p>Description: (1) Every server SHOULD be connected to an uninterruptible power supply (UPS).</p>
+  Levels: 
+  <ul><li>standard</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>SYS.1.1.A16: Secure Basic Configuration of Servers</h2>
+  <p>Description: (1) The basic settings of servers SHOULD be checked and, where necessary, adapted to the specifications of the security policy at hand. (2) Clients SHOULD only be connected to the Internet after the installation and configuration have been completed.</p>
+  Levels: 
+  <ul><li>standard</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>SYS.1.1.A17: ELIMINATED</h2>
+  <p>Description: This requirement has been eliminated.</p>
+  Levels: 
+  <ul><li>standard</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>SYS.1.1.A18: ELIMINATED</h2>
+  <p>Description: This requirement has been eliminated.</p>
+  Levels: 
+  <ul><li>standard</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>SYS.1.1.A19: Configuring Local Packet Filters</h2>
+  <p>Description: (1) Based on a set of rules, existing local packet filters SHOULD be designed to limit incoming and outgoing communications to the necessary communication partners, communication protocols, ports, and interfaces. (2) The identity of remote systems and the integrity of corresponding connections SHOULD be protected cryptographically.</p>
+  Levels: 
+  <ul><li>standard</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>SYS.1.1.A20: ELIMINATED</h2>
+  <p>Description: This requirement has been eliminated.</p>
+  Levels: 
+  <ul><li>standard</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>SYS.1.1.A21: Operational Documentation for Servers</h2>
+  <p>Description: (1) Operational tasks that are carried out on a server SHOULD be clearly documented in terms of what has been done, when, and by whom. (2) In particular, the documentation SHOULD make configuration changes transparent. (3) Security-relevant responsibilities, such as who is authorised to install new hard disks, SHOULD be documented. (4) Everything that can be documented automatically SHOULD be documented automatically. (5) The documentation SHOULD be protected against unauthorised access and loss.</p>
+  Levels: 
+  <ul><li>standard</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>SYS.1.1.A22: Integration into Contingency Planning</h2>
+  <p>Description: (1) Servers SHOULD be taken into account in business continuity management processes. (2) To this end, the contingency requirements for the system in question SHOULD be determined and appropriate contingency procedures implemented—for example, by drawing up recovery plans or securely storing passwords and cryptographic keys.</p>
+  Levels: 
+  <ul><li>standard</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>SYS.1.1.A23: Monitoring Systems and Servers</h2>
+  <p>Description: (1) Server systems SHOULD be integrated into an appropriate system monitoring concept. (2) The status and functionality of these systems and the services operated on them SHOULD be continuously monitored. (3) Error conditions and defined thresholds that are exceeded SHOULD be reported to the operating personnel.</p>
+  Levels: 
+  <ul><li>standard</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>SYS.1.1.A24: Security Checks for Servers</h2>
+  <p>Description: (1) Servers SHOULD be subjected to regular security tests to check their compliance with the applicable security requirements and identify possible vulnerabilities. (2) In particular, these security tests SHOULD be performed on servers with external interfaces. (3) To prevent indirect attacks via infected systems in an organisation’s own network, internal server systems SHOULD also be checked accordingly at defined intervals. (4) Whether the security checks can be realised automatically—by means of suitable scripts, for example—SHOULD be examined.</p>
+  Levels: 
+  <ul><li>standard</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>SYS.1.1.A25: Controlled Decommissioning of a Server</h2>
+  <p>Description: (1) When decommissioning a server, it SHOULD be ensured that no important data that might still be present on the storage media is lost and no sensitive data remains. (2) There SHOULD be an overview of the data stored in each location on the server. (3) Furthermore, it SHOULD be ensured that services offered by the server will be taken over by another server when necessary. (4) A checklist SHOULD be created that is to be completed when decommissioning a server. (5) This checklist SHOULD at least include aspects related to backing up data, migrating services, and subsequently deleting all data in a secure manner.</p>
+  Levels: 
+  <ul><li>standard</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>SYS.1.1.A35: Drawing Up and Maintaining an Operating Manual</h2>
+  <p>Description: (1) An operating manual SHOULD be drawn up. (2) It SHOULD document all the rules, requirements, and settings that are necessary in operating servers. (3) There SHOULD be a specific operating manual for every type of server. (4) Each operating manual SHOULD be updated at regular intervals. (5) Operating manuals SHOULD be protected against unauthorised access. (6) Operating manuals SHOULD be available in emergencies.</p>
+  Levels: 
+  <ul><li>standard</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>SYS.1.1.A37: Encapsulation of Security-Critical Applications and Operating System Components</h2>
+  <p>Description: (1) In order to prevent an attacker from accessing the operating system or other applications and prevent access from the operating system to files that are particularly sensitive, applications and operating system components (such as authentication or certificate verification) SHOULD be specially encapsulated according to their protection needs or isolated from other applications and operating system components. (2) Particular attention SHOULD be paid to security-critical applications that work with data from insecure sources (e.g. web browsers and office communication applications)</p>
+  Levels: 
+  <ul><li>standard</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/grub2_enable_selinux/rule.yml"> grub2_enable_selinux</a>: Ensure SELinux Not Disabled in /etc/default/grub
+      <ul><li>CCE-82666-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/package_libselinux_installed/rule.yml"> package_libselinux_installed</a>: Install libselinux Package
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/selinux_confinement_of_daemons/rule.yml"> selinux_confinement_of_daemons</a>: Ensure No Daemons are Unconfined by SELinux
+      <ul><li>CCE-82688-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/selinux_not_disabled/rule.yml"> selinux_not_disabled</a>: Ensure SELinux is Not Disabled
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/selinux_policytype/rule.yml"> selinux_policytype</a>: Configure SELinux Policy
+      <ul><li>CCE-82532-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/selinux_state/rule.yml"> selinux_state</a>: Ensure SELinux State is Enforcing
+      <ul><li>CCE-82531-5</li></ul>
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/var_selinux_policy_name.var">var_selinux_policy_name</a> = targeted</li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/var_selinux_state.var">var_selinux_state</a> = enforcing</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SYS.1.1.A26: ELIMINATED</h2>
+  <p>Description: This requirement has been eliminated.</p>
+  Levels: 
+  <ul><li>elevated</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>SYS.1.1.A27: Host-Based Attack Detection</h2>
+  <p>Description: (1) Host-based attack detection systems (also referred to as host-based intrusion detection systems, IDS, or intrusion prevention systems, IPS) SHOULD be used to monitor system behaviour for abnormalities and misuse. (2) The IDS/IPS mechanisms used SHOULD be appropriately selected, configured, and thoroughly tested. (3) If an attack has been detected, the operating personnel SHOULD be alerted in an appropriate manner. (4) Using operating system mechanisms or suitable additional products, changes made to system files and configuration settings SHOULD be checked, restricted, and reported.</p>
+  Levels: 
+  <ul><li>elevated</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>SYS.1.1.A28: Increasing Availability Through Redundancy</h2>
+  <p>Description: (1) Server systems with high availability requirements SHOULD be protected adequately against failures. (2) At minimum, suitable redundancies SHOULD be available and maintenance contracts concluded with the respective suppliers. (3) Whether high-availability architectures with automatic failover (across various sites, if necessary) are required in the case of very high requirements SHOULD be checked.</p>
+  Levels: 
+  <ul><li>elevated</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>SYS.1.1.A29: ELIMINATED</h2>
+  <p>Description: This requirement has been eliminated.</p>
+  Levels: 
+  <ul><li>elevated</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>SYS.1.1.A30: One Service per Server</h2>
+  <p>Description: (1) Depending on the threat landscape at hand and the protection needs of services, only one service SHOULD be operated on each server.</p>
+  Levels: 
+  <ul><li>elevated</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>SYS.1.1.A31: Using Execution Control</h2>
+  <p>Description: (1) Execution control SHOULD be used to ensure that only explicitly authorised programs and scripts can be executed. (2) The rules SHOULD be set as restrictively as possible. (3) If explicit specification of paths and hashes is not possible, certificate-based or path rules SHOULD be used as an alternative.</p>
+  Levels: 
+  <ul><li>elevated</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/grub2_enable_selinux/rule.yml"> grub2_enable_selinux</a>: Ensure SELinux Not Disabled in /etc/default/grub
+      <ul><li>CCE-82666-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/package_libselinux_installed/rule.yml"> package_libselinux_installed</a>: Install libselinux Package
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/selinux_confinement_of_daemons/rule.yml"> selinux_confinement_of_daemons</a>: Ensure No Daemons are Unconfined by SELinux
+      <ul><li>CCE-82688-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/selinux_not_disabled/rule.yml"> selinux_not_disabled</a>: Ensure SELinux is Not Disabled
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/selinux_policytype/rule.yml"> selinux_policytype</a>: Configure SELinux Policy
+      <ul><li>CCE-82532-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/selinux_state/rule.yml"> selinux_state</a>: Ensure SELinux State is Enforcing
+      <ul><li>CCE-82531-5</li></ul>
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/var_selinux_policy_name.var">var_selinux_policy_name</a> = targeted</li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/var_selinux_state.var">var_selinux_state</a> = enforcing</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SYS.1.1.A32: ELIMINATED</h2>
+  <p>Description: This requirement has been eliminated.</p>
+  Levels: 
+  <ul><li>elevated</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>SYS.1.1.A33: Active Administration of Root Certificates</h2>
+  <p>Description: (1) As part of the procurement and installation of a server, the root certificates that are required to operate the server SHOULD be documented. (2) Only the previously documented root certificates required for operation SHOULD be present on the server. (3) Regular checks SHOULD be performed as to whether existing root certificates still comply with the respective organisation’s requirements. (4) All certificate stores on the IT system at hand SHOULD be included in these checks.</p>
+  Levels: 
+  <ul><li>elevated</li>
+  </ul>
+  <p>Automated: no</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network_ssl/only_allow_specific_certs/rule.yml"> only_allow_specific_certs</a>: Only Allow specific PKI-established CAs
+      <ul><li>CCE-87849-6</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SYS.1.1.A34: Hard Disk Encryption</h2>
+  <p>Description: (1) In case of increased protection needs, a server's storage media should be encrypted using a product or procedure that is considered secure. (2) This SHOULD also apply to virtual machines containing production data. (3) Trusted Platform Module (TPM) SHOULD NOT be the only form of key protection used. (4) Recovery passwords SHOULD be stored in an appropriate and secure location. (5) In case of very high requirements (e.g. regarding confidentiality), full volume or full disk encryption SHOULD be used.</p>
+  Levels: 
+  <ul><li>elevated</li>
+  </ul>
+  <p>Automated: no</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/disk_partitioning/encrypt_partitions/rule.yml"> encrypt_partitions</a>: Encrypt Partitions
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/bootloader-grub2/grub2_rng_core_default_quality_argument/rule.yml"> grub2_rng_core_default_quality_argument</a>: Configure the confidence in TPM for entropy
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SYS.1.1.A36: Protecting the Boot Process</h2>
+  <p>Description: (1) A server's boot loader and operating system kernel SHOULD be checked by self-controlled key material that is signed upon system start in a trusted chain (secure boot). (2) Unnecessary key material SHOULD be removed.</p>
+  Levels: 
+  <ul><li>elevated</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>SYS.1.1.A38: Hardening of the Host System by Means of a Read-Only File System</h2>
+  <p>Description: The integrity of the host system should be ensured by a read-only file system (an immutable OS).</p>
+  Levels: 
+  <ul><li>elevated</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+</div>  
+
+
+</body>
+</html>

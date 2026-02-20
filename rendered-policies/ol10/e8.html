@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Definition of Australian Cyber Security Centre (ACSC) for ol10</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Definition of Australian Cyber Security Centre (ACSC) for ol10</h1>
+
+
+
+based on <a href="https://www.cyber.gov.au/sites/default/files/2023-11/PROTECT%20-%20Hardening%20Linux%20Workstations%20and%20Servers%20%28November%202023%29.pdf">https://www.cyber.gov.au/sites/default/files/2023-11/PROTECT%20-%20Hardening%20Linux%20Workstations%20and%20Servers%20%28November%202023%29.pdf</a>
+
+
+<div class="all_controls">
+<div class="one_control">
+  <h2>patching: Application and operating system patching</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/updating/dnf-automatic_security_updates_only/rule.yml"> dnf-automatic_security_updates_only</a>: Configure dnf-automatic to Install Only Security Updates
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/updating/ensure_gpgcheck_globally_activated/rule.yml"> ensure_gpgcheck_globally_activated</a>: Ensure gpgcheck Enabled In Main dnf Configuration
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/updating/ensure_gpgcheck_local_packages/rule.yml"> ensure_gpgcheck_local_packages</a>: Ensure gpgcheck Enabled for Local Packages
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/updating/ensure_gpgcheck_never_disabled/rule.yml"> ensure_gpgcheck_never_disabled</a>: Ensure gpgcheck Enabled for All dnf Package Repositories
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/updating/ensure_redhat_gpgkey_installed/rule.yml"> ensure_redhat_gpgkey_installed</a>: Ensure Red Hat GPG Key Installed
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/obsolete/r_services/package_rsh-server_removed/rule.yml"> package_rsh-server_removed</a>: Uninstall rsh-server Package
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/obsolete/r_services/package_rsh_removed/rule.yml"> package_rsh_removed</a>: Uninstall rsh Package
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/system-tools/package_sequoia-sq_installed/rule.yml"> package_sequoia-sq_installed</a>: Install sequoia-sq Package
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/proxy/disabling_squid/package_squid_removed/rule.yml"> package_squid_removed</a>: Uninstall squid Package
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/obsolete/talk/package_talk-server_removed/rule.yml"> package_talk-server_removed</a>: Uninstall talk-server Package
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/obsolete/talk/package_talk_removed/rule.yml"> package_talk_removed</a>: Uninstall talk Package
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/obsolete/telnet/package_telnet-server_removed/rule.yml"> package_telnet-server_removed</a>: Uninstall telnet-server Package
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/obsolete/telnet/package_telnet_removed/rule.yml"> package_telnet_removed</a>: Remove telnet Clients
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/obsolete/nis/package_ypbind_removed/rule.yml"> package_ypbind_removed</a>: Remove NIS Client
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/updating/security_patches_up_to_date/rule.yml"> security_patches_up_to_date</a>: Ensure Software Patches Installed
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/avahi/disable_avahi_group/service_avahi-daemon_disabled/rule.yml"> service_avahi-daemon_disabled</a>: Disable Avahi Server Software
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/proxy/disabling_squid/service_squid_disabled/rule.yml"> service_squid_disabled</a>: Disable Squid
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/obsolete/telnet/service_telnet_disabled/rule.yml"> service_telnet_disabled</a>: Disable telnet Service
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>mfa: Multi-factor authentication</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>restrict_admin: Restricting administrative privileges</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: no</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/root_logins/accounts_no_uid_except_zero/rule.yml"> accounts_no_uid_except_zero</a>: Verify Only Root Has UID 0
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/sudo/sudo_remove_no_authenticate/rule.yml"> sudo_remove_no_authenticate</a>: Ensure Users Re-Authenticate for Privilege Escalation - sudo !authenticate
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/sudo/sudo_remove_nopasswd/rule.yml"> sudo_remove_nopasswd</a>: Ensure Users Re-Authenticate for Privilege Escalation - sudo NOPASSWD
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/sudo/sudo_require_authentication/rule.yml"> sudo_require_authentication</a>: Ensure Users Re-Authenticate for Privilege Escalation - sudo
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>app_control: Application control</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: no</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/fapolicyd/package_fapolicyd_installed/rule.yml"> package_fapolicyd_installed</a>: Install fapolicyd Package
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/fapolicyd/service_fapolicyd_enabled/rule.yml"> service_fapolicyd_enabled</a>: Enable the File Access Policy Service
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>restrict_macros: Restrict Microsoft Office macros</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>app_hardening: User application hardening</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>backups: Regular backups</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>hardening: General hardening</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: no</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_dac_actions/audit_rules_dac_modification_chmod/rule.yml"> audit_rules_dac_modification_chmod</a>: Record Events that Modify the System's Discretionary Access Controls - chmod
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_dac_actions/audit_rules_dac_modification_chown/rule.yml"> audit_rules_dac_modification_chown</a>: Record Events that Modify the System's Discretionary Access Controls - chown
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_execution_selinux_commands/audit_rules_execution_chcon/rule.yml"> audit_rules_execution_chcon</a>: Record Any Attempts to Run chcon
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_execution_selinux_commands/audit_rules_execution_restorecon/rule.yml"> audit_rules_execution_restorecon</a>: Record Any Attempts to Run restorecon
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_execution_selinux_commands/audit_rules_execution_semanage/rule.yml"> audit_rules_execution_semanage</a>: Record Any Attempts to Run semanage
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_execution_selinux_commands/audit_rules_execution_setfiles/rule.yml"> audit_rules_execution_setfiles</a>: Record Any Attempts to Run setfiles
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_execution_selinux_commands/audit_rules_execution_setsebool/rule.yml"> audit_rules_execution_setsebool</a>: Record Any Attempts to Run setsebool
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_execution_selinux_commands/audit_rules_execution_seunshare/rule.yml"> audit_rules_execution_seunshare</a>: Record Any Attempts to Run seunshare
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_kernel_module_loading/audit_rules_kernel_module_loading/rule.yml"> audit_rules_kernel_module_loading</a>: Ensure auditd Collects Information on Kernel Module Loading and Unloading
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_login_events/audit_rules_login_events_faillock/rule.yml"> audit_rules_login_events_faillock</a>: Record Attempts to Alter Logon and Logout Events - faillock
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_login_events/audit_rules_login_events_lastlog/rule.yml"> audit_rules_login_events_lastlog</a>: Record Attempts to Alter Logon and Logout Events - lastlog
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_login_events/audit_rules_login_events_tallylog/rule.yml"> audit_rules_login_events_tallylog</a>: Record Attempts to Alter Logon and Logout Events - tallylog
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_rules_networkconfig_modification/rule.yml"> audit_rules_networkconfig_modification</a>: Record Events that Modify the System's Network Environment
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_rules_sysadmin_actions/rule.yml"> audit_rules_sysadmin_actions</a>: Ensure auditd Collects System Administrator Actions
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_time_rules/audit_rules_time_adjtimex/rule.yml"> audit_rules_time_adjtimex</a>: Record attempts to alter time through adjtimex
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_time_rules/audit_rules_time_clock_settime/rule.yml"> audit_rules_time_clock_settime</a>: Record Attempts to Alter Time Through clock_settime
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_time_rules/audit_rules_time_settimeofday/rule.yml"> audit_rules_time_settimeofday</a>: Record attempts to alter time through settimeofday
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_time_rules/audit_rules_time_stime/rule.yml"> audit_rules_time_stime</a>: Record Attempts to Alter Time Through stime
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_time_rules/audit_rules_time_watch_localtime/rule.yml"> audit_rules_time_watch_localtime</a>: Record Attempts to Alter the localtime File
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_rules_usergroup_modification_group/rule.yml"> audit_rules_usergroup_modification_group</a>: Record Events that Modify User/Group Information - /etc/group
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_rules_usergroup_modification_gshadow/rule.yml"> audit_rules_usergroup_modification_gshadow</a>: Record Events that Modify User/Group Information - /etc/gshadow
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_rules_usergroup_modification_opasswd/rule.yml"> audit_rules_usergroup_modification_opasswd</a>: Record Events that Modify User/Group Information - /etc/security/opasswd
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_rules_usergroup_modification_passwd/rule.yml"> audit_rules_usergroup_modification_passwd</a>: Record Events that Modify User/Group Information - /etc/passwd
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_rules_usergroup_modification_shadow/rule.yml"> audit_rules_usergroup_modification_shadow</a>: Record Events that Modify User/Group Information - /etc/shadow
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/configure_auditd_data_retention/auditd_data_retention_flush/rule.yml"> auditd_data_retention_flush</a>: Configure auditd flush priority
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/configure_auditd_data_retention/auditd_freq/rule.yml"> auditd_freq</a>: Set number of records to cause an explicit flush to audit logs
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/configure_auditd_data_retention/auditd_local_events/rule.yml"> auditd_local_events</a>: Include Local Events in Audit Logs
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/configure_auditd_data_retention/auditd_log_format/rule.yml"> auditd_log_format</a>: Resolve information before writing to audit logs
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/configure_auditd_data_retention/auditd_name_format/rule.yml"> auditd_name_format</a>: Set type of computer node name logging in audit logs
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/configure_auditd_data_retention/auditd_write_logs/rule.yml"> auditd_write_logs</a>: Write Audit Logs to the Disk
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/crypto/configure_crypto_policy/rule.yml"> configure_crypto_policy</a>: Configure System Cryptography Policy
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/crypto/configure_ssh_crypto_policy/rule.yml"> configure_ssh_crypto_policy</a>: Configure SSH to use System Crypto Policy
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/dir_perms_world_writable_sticky_bits/rule.yml"> dir_perms_world_writable_sticky_bits</a>: Verify that All World-Writable Directories Have Sticky Bits Set
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/enable_authselect/rule.yml"> enable_authselect</a>: Enable authselect
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_within_important_dirs/file_ownership_binary_dirs/rule.yml"> file_ownership_binary_dirs</a>: Verify that System Executables Have Root Ownership
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_within_important_dirs/file_ownership_library_dirs/rule.yml"> file_ownership_library_dirs</a>: Verify that Shared Library Files Have Root Ownership
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_within_important_dirs/file_permissions_binary_dirs/rule.yml"> file_permissions_binary_dirs</a>: Verify that System Executables Have Restrictive Permissions
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_within_important_dirs/file_permissions_library_dirs/rule.yml"> file_permissions_library_dirs</a>: Verify that Shared Library Files Have Restrictive Permissions
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/file_permissions_unauthorized_sgid/rule.yml"> file_permissions_unauthorized_sgid</a>: Ensure All SGID Executables Are Authorized
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/file_permissions_unauthorized_suid/rule.yml"> file_permissions_unauthorized_suid</a>: Ensure All SUID Executables Are Authorized
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/file_permissions_unauthorized_world_writable/rule.yml"> file_permissions_unauthorized_world_writable</a>: Ensure No World-Writable Files Exist
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/partitions/mount_option_dev_shm_nodev/rule.yml"> mount_option_dev_shm_nodev</a>: Add nodev Option to /dev/shm
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/partitions/mount_option_dev_shm_noexec/rule.yml"> mount_option_dev_shm_noexec</a>: Add noexec Option to /dev/shm
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/partitions/mount_option_dev_shm_nosuid/rule.yml"> mount_option_dev_shm_nosuid</a>: Add nosuid Option to /dev/shm
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network_sniffer_disabled/rule.yml"> network_sniffer_disabled</a>: Ensure System is Not Acting as a Network Sniffer
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/password_storage/no_empty_passwords/rule.yml"> no_empty_passwords</a>: Prevent Login to Accounts With Empty Password
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-firewalld/firewalld_activation/package_firewalld_installed/rule.yml"> package_firewalld_installed</a>: Install firewalld Package
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/logging/package_rsyslog_installed/rule.yml"> package_rsyslog_installed</a>: Ensure rsyslog is Installed
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/software-integrity/rpm_verification/rpm_verify_hashes/rule.yml"> rpm_verify_hashes</a>: Verify File Hashes with RPM
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/software-integrity/rpm_verification/rpm_verify_ownership/rule.yml"> rpm_verify_ownership</a>: Verify and Correct Ownership with RPM
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/software-integrity/rpm_verification/rpm_verify_permissions/rule.yml"> rpm_verify_permissions</a>: Verify and Correct File Permissions with RPM
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/selinux_policytype/rule.yml"> selinux_policytype</a>: Configure SELinux Policy
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/selinux_state/rule.yml"> selinux_state</a>: Ensure SELinux State is Enforcing
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/service_auditd_enabled/rule.yml"> service_auditd_enabled</a>: Enable auditd Service
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-firewalld/firewalld_activation/service_firewalld_enabled/rule.yml"> service_firewalld_enabled</a>: Verify firewalld Enabled
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/logging/service_rsyslog_enabled/rule.yml"> service_rsyslog_enabled</a>: Enable rsyslog Service
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_disable_empty_passwords/rule.yml"> sshd_disable_empty_passwords</a>: Disable SSH Access via Empty Passwords
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_disable_gssapi_auth/rule.yml"> sshd_disable_gssapi_auth</a>: Disable GSSAPI Authentication
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_disable_rhosts/rule.yml"> sshd_disable_rhosts</a>: Disable SSH Support for .rhosts Files
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_disable_root_login/rule.yml"> sshd_disable_root_login</a>: Disable SSH Root Login
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_disable_user_known_hosts/rule.yml"> sshd_disable_user_known_hosts</a>: Disable SSH Support for User Known Hosts
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_do_not_permit_user_env/rule.yml"> sshd_do_not_permit_user_env</a>: Do Not Allow SSH Environment Options
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_enable_strictmodes/rule.yml"> sshd_enable_strictmodes</a>: Enable Use of Strict Mode Checking
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_print_last_log/rule.yml"> sshd_print_last_log</a>: Enable SSH Print Last Log
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_set_loglevel_info/rule.yml"> sshd_set_loglevel_info</a>: Set LogLevel to INFO
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_use_directory_configuration/rule.yml"> sshd_use_directory_configuration</a>: Distribute the SSH Server configuration to multiple files in a config directory.
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/restrictions/sysctl_kernel_dmesg_restrict/rule.yml"> sysctl_kernel_dmesg_restrict</a>: Restrict Access to Kernel Message Buffer
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/restrictions/enable_execshield_settings/sysctl_kernel_exec_shield/rule.yml"> sysctl_kernel_exec_shield</a>: Enable ExecShield via sysctl
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/restrictions/sysctl_kernel_kexec_load_disabled/rule.yml"> sysctl_kernel_kexec_load_disabled</a>: Disable Kernel Image Loading
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/restrictions/enable_execshield_settings/sysctl_kernel_kptr_restrict/rule.yml"> sysctl_kernel_kptr_restrict</a>: Restrict Exposed Kernel Pointer Addresses Access
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/restrictions/enable_execshield_settings/sysctl_kernel_randomize_va_space/rule.yml"> sysctl_kernel_randomize_va_space</a>: Enable Randomized Layout of Virtual Address Space
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/restrictions/sysctl_kernel_unprivileged_bpf_disabled/rule.yml"> sysctl_kernel_unprivileged_bpf_disabled</a>: Disable Access to Network bpf() Syscall From Unprivileged Processes
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/restrictions/sysctl_kernel_yama_ptrace_scope/rule.yml"> sysctl_kernel_yama_ptrace_scope</a>: Restrict usage of ptrace to descendant processes
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/restrictions/sysctl_net_core_bpf_jit_harden/rule.yml"> sysctl_net_core_bpf_jit_harden</a>: Harden the operation of the BPF just-in-time compiler
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/configure_auditd_data_retention/var_auditd_flush.var">var_auditd_flush</a> = incremental_async</li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/var_authselect_profile.var">var_authselect_profile</a> = sssd</li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/var_selinux_policy_name.var">var_selinux_policy_name</a> = targeted</li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/var_selinux_state.var">var_selinux_state</a> = enforcing</li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/crypto/var_system_crypto_policy.var">var_system_crypto_policy</a> = default_nosha1</li>
+  </ul>
+  
+</div>  
+</div>  
+
+
+</body>
+</html>
