@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Definition of DRAFT Basis System Security Profile SUSE Linux Enterprise 16 for sle16</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Definition of DRAFT Basis System Security Profile SUSE Linux Enterprise 16 for sle16</h1>
+
+
+
+based on <a href="not_publicly_available">not_publicly_available</a>
+
+
+<div class="all_controls">
+<div class="one_control">
+  <h2>SLES-16-16016700: SLE16 system should have system for checking its integrity</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>pcidss4</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/software-integrity/aide/aide_build_database/rule.yml"> aide_build_database</a>: Build and Test AIDE Database
+      <ul><li>CCE-95701-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/software-integrity/aide/aide_periodic_checking_systemd_timer/rule.yml"> aide_periodic_checking_systemd_timer</a>: Configure Systemd Timer Execution of AIDE
+      <ul><li>CCE-95702-7</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLES-16-16016400: Enable NX/XD Support</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>pcidss4</li>
+  </ul>
+  <p>Automated: partially</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/restrictions/enable_nx/bios_enable_execution_restrictions/rule.yml"> bios_enable_execution_restrictions</a>: Enable NX or XD Support in the BIOS
+      <ul><li>CCE-95703-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/restrictions/enable_nx/install_PAE_kernel_on_x86-32/rule.yml"> install_PAE_kernel_on_x86-32</a>: Install PAE Kernel on Supported 32-bit x86 Systems
+      <ul><li>CCE-95708-4</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLES-16-16016500: Enable the selinuxuser_execmod SELinux Boolean in SLE16</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>hipaa</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/selinux-booleans/sebool_selinuxuser_execmod/rule.yml"> sebool_selinuxuser_execmod</a>: Enable the selinuxuser_execmod SELinux Boolean
+      <ul><li>CCE-95715-9</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLES-16-16016505: Enable service for audit logs in SLE16</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>hipaa</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/service_auditd_enabled/rule.yml"> service_auditd_enabled</a>: Enable auditd Service
+      <ul><li>CCE-95716-7</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLES-16-16016510: Enable remote logging functionality in SLE16</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>hipaa</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/logging/rsyslog_sending_messages/rsyslog_remote_loghost/rule.yml"> rsyslog_remote_loghost</a>: Ensure Logs Sent To Remote Host
+      <ul><li>CCE-95714-2</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLES-16-16016515: SLE16 system should capture invalid login access attempts</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>pcidss4</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/display_login_attempts/rule.yml"> display_login_attempts</a>: Ensure PAM Displays Last Logon/Access Notification
+      <ul><li>CCE-95704-3</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLES-16-16016520: SLE16 system should audit syscalls</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>pcidss4</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_rules_enable_syscall_auditing/rule.yml"> audit_rules_enable_syscall_auditing</a>: Remove Default Configuration to Disable Syscall Auditing
+      <ul><li>CCE-96314-0</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLES-16-16016525: SLE16 system should audit renameat2 syscalls</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>pcidss4</li><li>anssi_minimal</li><li>hipaa</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_file_deletion_events/audit_rules_file_deletion_events_renameat2/rule.yml"> audit_rules_file_deletion_events_renameat2</a>: Ensure auditd Collects File Deletion Events by User - renameat2
+      <ul><li>CCE-95936-1</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLES-16-16016530: SLE16 system should audit SELinux settings modifications</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>pcidss4</li><li>anssi_minimal</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_rules_mac_modification_etc_selinux/rule.yml"> audit_rules_mac_modification_etc_selinux</a>: Record Events that Modify the System's Mandatory Access Controls (/etc/selinux)
+      <ul><li>CCE-96212-6</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLES-16-16016535: SLE16 system should record the computer node name in the audit events</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>pcidss4</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/configure_auditd_data_retention/auditd_name_format/rule.yml"> auditd_name_format</a>: Set type of computer node name logging in audit logs
+      <ul><li>CCE-95743-1</li></ul>
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/configure_auditd_data_retention/var_auditd_name_format.var">var_auditd_name_format</a> = fqd</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLES-16-16016540: SLE16 system should audit fchmodat2 syscalls</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>pcidss4</li><li>anssi_minimal</li><li>hipaa</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_dac_actions/audit_rules_dac_modification_fchmodat2/rule.yml"> audit_rules_dac_modification_fchmodat2</a>: Record Events that Modify the System's Discretionary Access Controls - fchmodat2
+      <ul><li>CCE-96210-0</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLES-16-16016545: SLE16 system should audit access to /var/log/audit</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>pcidss4</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/directory_access_var_log_audit/rule.yml"> directory_access_var_log_audit</a>: Record Access Events to Audit Log Directory
+      <ul><li>CCE-96700-0</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLES-16-16016005: SLES 16 must be a vendor-supported release.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>pcidss4</li><li>anssi_minimal</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/certified-vendor/installed_OS_is_vendor_supported/rule.yml"> installed_OS_is_vendor_supported</a>: The Installed Operating System Is Vendor Supported
+      <ul><li>CCE-95709-2</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLES-16-16016010: SLES 16 should restrict serial port root logins</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>hipaa</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/root_logins/restrict_serial_port_logins/rule.yml"> restrict_serial_port_logins</a>: Restrict Serial Port Root Logins
+      <ul><li>CCE-95713-4</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLES-16-16016100: Ensure All Files Are Owned by a Group</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>anssi_minimal</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/file_permissions_ungroupowned/rule.yml"> file_permissions_ungroupowned</a>: Ensure All Files Are Owned by a Group
+      <ul><li>CCE-95705-0</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLES-16-16016105: Ensure All Files Are Owned by a User</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>anssi_minimal</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/no_files_unowned_by_user/rule.yml"> no_files_unowned_by_user</a>: Ensure All Files Are Owned by a User
+      <ul><li>CCE-95710-0</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+</div>  
+
+
+</body>
+</html>

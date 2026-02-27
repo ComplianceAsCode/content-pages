@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'nfs-utils'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'nfs-utils'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>nfs-utils</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<div>None</div>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#package_nfs-utils_removed">package_nfs-utils_removed</a></li>
+
+<li><a href="#service_nfs_disabled">service_nfs_disabled</a></li>
+
+<li><a href="#service_nfslock_disabled">service_nfslock_disabled</a></li>
+
+<li><a href="#service_rpcgssd_disabled">service_rpcgssd_disabled</a></li>
+
+<li><a href="#service_rpcidmapd_disabled">service_rpcidmapd_disabled</a></li>
+
+<li><a href="#service_rpcsvcgssd_disabled">service_rpcsvcgssd_disabled</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="package_nfs-utils_removed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Uninstall nfs-utils Package</h3>
+<div>package_nfs-utils_removed</div>
+<h4>Description</h4>
+<p>The <code>nfs-utils</code> package can be removed with the following command:
+<pre>
+$ sudo yum erase nfs-utils</pre></p>
+<h4>Rationale</h4>
+<p><tt>nfs-utils</tt> provides a daemon for the kernel NFS server and related tools. This
+package also contains the <tt>showmount</tt> program. <tt>showmount</tt> queries the mount
+daemon on a remote host for information about the Network File System (NFS) server on the
+remote host. For example, <tt>showmount</tt> can display the clients which are mounted on
+that host.</p>
+</div>
+
+<div id="service_nfs_disabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable Network File System (nfs)</h3>
+<div>service_nfs_disabled</div>
+<h4>Description</h4>
+<p>The Network File System (NFS) service allows remote hosts to mount
+and interact with shared filesystems on the local system. If the local system
+is not designated as a NFS server then this service should be disabled.
+
+The <code>nfs-server</code> service can be disabled with the following command:
+<pre>$ sudo systemctl mask --now nfs-server.service</pre></p>
+<h4>Rationale</h4>
+<p>Unnecessary services should be disabled to decrease the attack surface of the system.</p>
+</div>
+
+<div id="service_nfslock_disabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable Network File System Lock Service (nfslock)</h3>
+<div>service_nfslock_disabled</div>
+<h4>Description</h4>
+<p>The Network File System Lock (nfslock) service starts the required
+remote procedure call (RPC) processes which allow clients to lock files on the
+server. If the local system is not configured to mount NFS filesystems then
+this service should be disabled.
+
+The <code>nfslock</code> service can be disabled with the following command:
+<pre>$ sudo systemctl mask --now nfslock.service</pre></p>
+<h4>Rationale</h4>
+<p></p>
+</div>
+
+<div id="service_rpcgssd_disabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable Secure RPC Client Service (rpcgssd)</h3>
+<div>service_rpcgssd_disabled</div>
+<h4>Description</h4>
+<p>The rpcgssd service manages RPCSEC GSS contexts required to secure protocols
+that use RPC (most often Kerberos and NFS). The rpcgssd service is the
+client-side of RPCSEC GSS. If the system does not require secure RPC then this
+service should be disabled.
+
+The <code>rpcgssd</code> service can be disabled with the following command:
+<pre>$ sudo systemctl mask --now rpcgssd.service</pre></p>
+<h4>Rationale</h4>
+<p></p>
+</div>
+
+<div id="service_rpcidmapd_disabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable RPC ID Mapping Service (rpcidmapd)</h3>
+<div>service_rpcidmapd_disabled</div>
+<h4>Description</h4>
+<p>The rpcidmapd service is used to map user names and groups to UID
+and GID numbers on NFSv4 mounts. If NFS is not in use on the local system then
+this service should be disabled.
+
+The <code>rpcidmapd</code> service can be disabled with the following command:
+<pre>$ sudo systemctl mask --now rpcidmapd.service</pre></p>
+<h4>Rationale</h4>
+<p></p>
+</div>
+
+<div id="service_rpcsvcgssd_disabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable Secure RPC Server Service (rpcsvcgssd)</h3>
+<div>service_rpcsvcgssd_disabled</div>
+<h4>Description</h4>
+<p>The rpcsvcgssd service manages RPCSEC GSS contexts required to
+secure protocols that use RPC (most often Kerberos and NFS). The rpcsvcgssd
+service is the server-side of RPCSEC GSS. If the system does not require secure
+RPC then this service should be disabled.
+
+The <code>rpcsvcgssd</code> service can be disabled with the following command:
+<pre>$ sudo systemctl mask --now rpcsvcgssd.service</pre></p>
+<h4>Rationale</h4>
+<p>Unnecessary services should be disabled to decrease the attack surface of the system.</p>
+</div>
+
+
+
+
+</body>
+</html>

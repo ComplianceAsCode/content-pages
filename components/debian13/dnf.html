@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'dnf'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'dnf'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>dnf</li>
+
+<li>dnf-automatic</li>
+
+<li>dnf-plugin-subscription-manager</li>
+
+<li>libdnf-plugin-subscription-manager</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<div>None</div>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#clean_components_post_updating">clean_components_post_updating</a></li>
+
+<li><a href="#disable_weak_deps">disable_weak_deps</a></li>
+
+<li><a href="#enable_gpgcheck_for_all_repositories">enable_gpgcheck_for_all_repositories</a></li>
+
+<li><a href="#ensure_gpgcheck_globally_activated">ensure_gpgcheck_globally_activated</a></li>
+
+<li><a href="#ensure_gpgcheck_local_packages">ensure_gpgcheck_local_packages</a></li>
+
+<li><a href="#ensure_gpgcheck_repo_metadata">ensure_gpgcheck_repo_metadata</a></li>
+
+<li><a href="#package_dnf-automatic_installed">package_dnf-automatic_installed</a></li>
+
+<li><a href="#package_dnf-plugin-subscription-manager_installed">package_dnf-plugin-subscription-manager_installed</a></li>
+
+<li><a href="#package_libdnf-plugin-subscription-manager_installed">package_libdnf-plugin-subscription-manager_installed</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="clean_components_post_updating" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure apt_get Removes Previous Package Versions</h3>
+<div>clean_components_post_updating</div>
+<h4>Description</h4>
+<p><tt>apt_get</tt> should be configured to remove previous software components after
+new versions have been installed. To configure <tt>apt_get</tt> to remove the
+
+previous software components after updating, set the <tt>clean_requirements_on_remove</tt>
+
+
+to <tt>1</tt> in <tt></tt>.</p>
+<h4>Rationale</h4>
+<p>Previous versions of software components that are not removed from the information
+system after updates have been installed may be exploited by some adversaries.</p>
+</div>
+
+<div id="disable_weak_deps" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable Installation of Weak Dependencies in DNF</h3>
+<div>disable_weak_deps</div>
+<h4>Description</h4>
+<p>To disable weak dependencies, set the <tt>install_weak_deps</tt> option to <tt>0</tt> in the <tt>/etc/dnf/dnf.conf</tt> file.</p>
+<h4>Rationale</h4>
+<p>Unless a system specifically requires the additional capabilities provides by the weak
+dependencies, it is recommended that the packages are not installed to reduce the
+potential attack surface.</p>
+</div>
+
+<div id="enable_gpgcheck_for_all_repositories" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure gpgcheck Is Enabled for All Package Repositories</h3>
+<div>enable_gpgcheck_for_all_repositories</div>
+<h4>Description</h4>
+<p>To ensure signature checking is enabled for all package repositories, the
+<tt>gpgcheck</tt> option must be enabled for all repos.
+Configure the operating system to verify the signature of packages from
+a repository prior to install by setting the following option in
+the <tt>"/etc/yum.repos.d/[your_repo_name].repo"</tt> file:
+<pre>gpgcheck=1</pre></p>
+<h4>Rationale</h4>
+<p>Changes to any software components can have significant effects on the
+overall security of the operating system. This requirement ensures the
+software has not been tampered with and that it has been provided by
+a trusted vendor.</p>
+</div>
+
+<div id="ensure_gpgcheck_globally_activated" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure gpgcheck Enabled In Main apt_get Configuration</h3>
+<div>ensure_gpgcheck_globally_activated</div>
+<h4>Description</h4>
+<p>The <tt>gpgcheck</tt> option controls whether
+RPM packages' signatures are always checked prior to installation.
+To configure apt_get to check package signatures before installing
+them, ensure the following line appears in <tt></tt> in
+the <tt>[main]</tt> section:
+<pre>gpgcheck=1</pre></p>
+<h4>Rationale</h4>
+<p>Changes to any software components can have significant effects on the
+overall security of the operating system. This requirement ensures the
+software has not been tampered with and that it has been provided by a
+trusted vendor.
+<br />
+Accordingly, patches, service packs, device drivers, or operating system
+components must be signed with a certificate recognized and approved by the
+organization.
+<br />Verifying the authenticity of the software prior to installation
+validates the integrity of the patch or upgrade received from a vendor.
+This ensures the software has not been tampered with and that it has been
+provided by a trusted vendor. Self-signed certificates are disallowed by
+this requirement. Certificates used to verify the software must be from an
+approved Certificate Authority (CA).</p>
+</div>
+
+<div id="ensure_gpgcheck_local_packages" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure gpgcheck Enabled for Local Packages</h3>
+<div>ensure_gpgcheck_local_packages</div>
+<h4>Description</h4>
+<p><tt>apt_get</tt> should be configured to verify the signature(s) of local packages
+prior to installation. To configure <tt>apt_get</tt> to verify signatures of local
+packages, set the <tt>localpkg_gpgcheck</tt> to <tt>1</tt> in <tt></tt>.</p>
+<h4>Rationale</h4>
+<p>Changes to any software components can have significant effects to the overall security
+of the operating system. This requirement ensures the software has not been tampered and
+has been provided by a trusted vendor.
+<br /><br />
+Accordingly, patches, service packs, device drivers, or operating system components must
+be signed with a certificate recognized and approved by the organization.</p>
+</div>
+
+<div id="ensure_gpgcheck_repo_metadata" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure gpgcheck Enabled for Repository Metadata</h3>
+<div>ensure_gpgcheck_repo_metadata</div>
+<h4>Description</h4>
+<p>Verify the operating system prevents the installation of patches,
+service packs, device drivers, or operating system components of
+local packages without verification of the repository metadata.
+Check that <tt>apt_get</tt> verifies the repository
+metadata prior to install with the following command.
+This should be configured by setting <tt>repo_gpgcheck</tt> to <tt>1</tt>
+in <tt></tt>.</p>
+<h4>Rationale</h4>
+<p>Changes to any software components can have significant effects to the
+overall security of the operating system. This requirement ensures the
+software has not been tampered and has been provided by a trusted vendor.
+Accordingly, patches, service packs, device drivers, or operating system
+components must be signed with a certificate recognized and approved by
+the organization. Verifying the authenticity of the software prior to
+installation validates the integrity of the patch or upgrade received from
+a vendor. This ensures the software has not been tampered with and that it
+has been provided by a trusted vendor. Self-signed certificates are
+disallowed by this requirement. The operating system should not have
+to verify the software again. NOTE: For U.S. Military systems, this
+requirement does not mandate DoD certificates for this purpose; however,
+the certificate used to verify the software must be from an approved
+Certificate Authority.</p>
+</div>
+
+<div id="package_dnf-automatic_installed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Install dnf-automatic Package</h3>
+<div>package_dnf-automatic_installed</div>
+<h4>Description</h4>
+<p>The <code>dnf-automatic</code> package can be installed with the following command:
+<pre>
+$ apt-get install dnf-automatic</pre></p>
+<h4>Rationale</h4>
+<p><tt>dnf-automatic</tt> is an alternative command line interface (CLI)
+to <tt>dnf upgrade</tt> suitable for automatic, regular execution.</p>
+</div>
+
+<div id="package_dnf-plugin-subscription-manager_installed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Install dnf-plugin-subscription-manager Package</h3>
+<div>package_dnf-plugin-subscription-manager_installed</div>
+<h4>Description</h4>
+<p>The <code>dnf-plugin-subscription-manager</code> package can be installed with the following command:
+<pre>
+$ apt-get install dnf-plugin-subscription-manager</pre></p>
+<h4>Rationale</h4>
+<p>This package provides plugins to interact with repositories and subscriptions
+from the Red Hat entitlement platform; contains subscription-manager and
+product-id plugins.</p>
+</div>
+
+<div id="package_libdnf-plugin-subscription-manager_installed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Install libdnf-plugin-subscription-manager Package</h3>
+<div>package_libdnf-plugin-subscription-manager_installed</div>
+<h4>Description</h4>
+<p>The <code>libdnf-plugin-subscription-manager</code> package can be installed with the following command:
+<pre>
+$ apt-get install libdnf-plugin-subscription-manager</pre></p>
+<h4>Rationale</h4>
+<p>This package provides plugins to interact with repositories and subscriptions
+from the Red Hat entitlement platform; contains subscription-manager and
+product-id plugins.</p>
+</div>
+
+
+
+
+</body>
+</html>

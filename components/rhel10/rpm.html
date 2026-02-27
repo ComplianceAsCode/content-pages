@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'rpm'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'rpm'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>rpm</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<ul>
+
+<li>rpm_verification</li>
+
+<li>updating</li>
+
+</ul>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#clean_components_post_updating">clean_components_post_updating</a></li>
+
+<li><a href="#disable_weak_deps">disable_weak_deps</a></li>
+
+<li><a href="#dnf-automatic_apply_updates">dnf-automatic_apply_updates</a></li>
+
+<li><a href="#dnf-automatic_security_updates_only">dnf-automatic_security_updates_only</a></li>
+
+<li><a href="#enable_gpgcheck_for_all_repositories">enable_gpgcheck_for_all_repositories</a></li>
+
+<li><a href="#ensure_GPG_keys_are_configured">ensure_GPG_keys_are_configured</a></li>
+
+<li><a href="#ensure_fedora_gpgkey_installed">ensure_fedora_gpgkey_installed</a></li>
+
+<li><a href="#ensure_gpgcheck_globally_activated">ensure_gpgcheck_globally_activated</a></li>
+
+<li><a href="#ensure_gpgcheck_local_packages">ensure_gpgcheck_local_packages</a></li>
+
+<li><a href="#ensure_gpgcheck_never_disabled">ensure_gpgcheck_never_disabled</a></li>
+
+<li><a href="#ensure_gpgcheck_repo_metadata">ensure_gpgcheck_repo_metadata</a></li>
+
+<li><a href="#ensure_oracle_gpgkey_installed">ensure_oracle_gpgkey_installed</a></li>
+
+<li><a href="#ensure_package_repositories_are_configured">ensure_package_repositories_are_configured</a></li>
+
+<li><a href="#ensure_redhat_gpgkey_installed">ensure_redhat_gpgkey_installed</a></li>
+
+<li><a href="#ensure_amazon_gpgkey_installed">ensure_amazon_gpgkey_installed</a></li>
+
+<li><a href="#ensure_suse_gpgkey_installed">ensure_suse_gpgkey_installed</a></li>
+
+<li><a href="#ensure_almalinux_gpgkey_installed">ensure_almalinux_gpgkey_installed</a></li>
+
+<li><a href="#package_dnf-automatic_installed">package_dnf-automatic_installed</a></li>
+
+<li><a href="#package_gnome_software_installed">package_gnome_software_installed</a></li>
+
+<li><a href="#rpm_verify_crypto_policies">rpm_verify_crypto_policies</a></li>
+
+<li><a href="#rpm_verify_hashes">rpm_verify_hashes</a></li>
+
+<li><a href="#rpm_verify_ownership">rpm_verify_ownership</a></li>
+
+<li><a href="#rpm_verify_permissions">rpm_verify_permissions</a></li>
+
+<li><a href="#security_patches_up_to_date">security_patches_up_to_date</a></li>
+
+<li><a href="#timer_dnf-automatic_enabled">timer_dnf-automatic_enabled</a></li>
+
+<li><a href="#ensure_epel_repos_disabled">ensure_epel_repos_disabled</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="clean_components_post_updating" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure dnf Removes Previous Package Versions</h3>
+<div>clean_components_post_updating</div>
+<h4>Description</h4>
+<p><tt>dnf</tt> should be configured to remove previous software components after
+new versions have been installed. To configure <tt>dnf</tt> to remove the
+
+previous software components after updating, set the <tt>clean_requirements_on_remove</tt>
+
+
+to <tt>1</tt> in <tt>/etc/dnf/dnf.conf</tt>.</p>
+<h4>Rationale</h4>
+<p>Previous versions of software components that are not removed from the information
+system after updates have been installed may be exploited by some adversaries.</p>
+</div>
+
+<div id="disable_weak_deps" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable Installation of Weak Dependencies in DNF</h3>
+<div>disable_weak_deps</div>
+<h4>Description</h4>
+<p>To disable weak dependencies, set the <tt>install_weak_deps</tt> option to <tt>0</tt> in the <tt>/etc/dnf/dnf.conf</tt> file.</p>
+<h4>Rationale</h4>
+<p>Unless a system specifically requires the additional capabilities provides by the weak
+dependencies, it is recommended that the packages are not installed to reduce the
+potential attack surface.</p>
+</div>
+
+<div id="dnf-automatic_apply_updates" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure dnf-automatic to Install Available Updates Automatically</h3>
+<div>dnf-automatic_apply_updates</div>
+<h4>Description</h4>
+<p>To ensure that the packages comprising the available updates will be automatically installed by <tt>dnf-automatic</tt>, set <tt>apply_updates</tt> to <tt>yes</tt> under <tt>[commands]</tt> section in <tt>/etc/dnf/automatic.conf</tt>.</p>
+<h4>Rationale</h4>
+<p>Installing software updates is a fundamental mitigation against
+the exploitation of publicly-known vulnerabilities. If the most
+recent security patches and updates are not installed, unauthorized
+users may take advantage of weaknesses in the unpatched software. The
+lack of prompt attention to patching could result in a system compromise.
+The automated installation of updates ensures that recent security patches
+are applied in a timely manner.</p>
+</div>
+
+<div id="dnf-automatic_security_updates_only" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure dnf-automatic to Install Only Security Updates</h3>
+<div>dnf-automatic_security_updates_only</div>
+<h4>Description</h4>
+<p>To configure <tt>dnf-automatic</tt> to install only security updates
+automatically, set <tt>upgrade_type</tt> to <tt>security</tt> under
+<tt>[commands]</tt> section in <tt>/etc/dnf/automatic.conf</tt>.</p>
+<h4>Rationale</h4>
+<p>By default, <tt>dnf-automatic</tt> installs all available updates.
+Reducing the amount of updated packages only to updates that were
+issued as a part of a security advisory increases the system stability.</p>
+</div>
+
+<div id="enable_gpgcheck_for_all_repositories" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure gpgcheck Is Enabled for All Package Repositories</h3>
+<div>enable_gpgcheck_for_all_repositories</div>
+<h4>Description</h4>
+<p>To ensure signature checking is enabled for all package repositories, the
+<tt>gpgcheck</tt> option must be enabled for all repos.
+Configure the operating system to verify the signature of packages from
+a repository prior to install by setting the following option in
+the <tt>"/etc/yum.repos.d/[your_repo_name].repo"</tt> file:
+<pre>gpgcheck=1</pre></p>
+<h4>Rationale</h4>
+<p>Changes to any software components can have significant effects on the
+overall security of the operating system. This requirement ensures the
+software has not been tampered with and that it has been provided by
+a trusted vendor.</p>
+</div>
+
+<div id="ensure_GPG_keys_are_configured" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure GPG keys are configured</h3>
+<div>ensure_GPG_keys_are_configured</div>
+<h4>Description</h4>
+<p>The operation system or installed application can be successfully bootstrapped
+without the GPG key being trusted. However, you cannot install new packages or
+update them until the keys are trusted.
+<br /><br />
+Most packages managers implement GPG key signing to verify package integrity
+during installation.
+<br /><br />
+To verify GPG keys are configured correctly for your package manager,
+one of the following command groups may provide the needed information
+depending on the package manager in use.
+<br /><br />
+In SUSE Linux distributions, the administrators have to follow the next steps: <br />
+1. Log on to the system as a user with administrator rights.<br />
+2. Locate and download package, for example zoom_x86_64.rpm<br />
+3. Locate and download the public key (GPG) from the software download site, for
+example the key for zoom package is package-signing-key-5-12-6.pub<br />
+4. Import the key public key:<br />
+<tt>$ sudo rpm --import package-signing-key-5-12-6.pub</tt><br />
+5. List the keys, for example the command:<br />
+<tt>$ sudo rpm -qa gpg-pubkey*</tt><br />
+will provide:<br />
+<tt>gpg-pubkey-dd79b481-62fe7502</tt><br />
+6. Get more details about the key, via the command:<br />
+<tt>$ sudo rpm -qa gpg-pubkey-dd79b481-62fe7502</tt><br />
+7. Check the GPG key, for example the command:<br />
+<tt>$ sudo rpm -q gpg-pubkey --qf '%{name}-%{version}-%{release} --&gt; %{summary}\n'</tt><br />
+will provide:<br />
+<tt>gpg-pubkey-dd79b481-62fe7502 --&gt; gpg(Zoom Video Communications, Inc. &lt;CryptoOpsCodeSignProd@zoom.us&gt;)</tt><br />
+<br /><br /></p>
+<h4>Rationale</h4>
+<p>It is important to ensure that updates are obtained from a valid source to protect
+against spoofing that could lead to the inadvertent installation of malware on the
+system.</p>
+</div>
+
+<div id="ensure_fedora_gpgkey_installed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure Fedora GPG Key Installed</h3>
+<div>ensure_fedora_gpgkey_installed</div>
+<h4>Description</h4>
+<p>To ensure the system can cryptographically verify base software
+packages come from Fedora (and to connect to the Fedora Network to
+receive them), the Fedora GPG key must properly be installed.
+To install the Fedora GPG key, run one of the commands below, depending on your Fedora version:
+<pre>$ sudo rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-fedora--primary</pre>"
+<pre>$ sudo rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-fedora--primary</pre>"</p>
+<h4>Rationale</h4>
+<p>Changes to software components can have significant effects on the
+overall security of the operating system. This requirement ensures
+the software has not been tampered with and that it has been provided
+by a trusted vendor. The Fedora GPG key is necessary to
+cryptographically verify packages are from Fedora."</p>
+</div>
+
+<div id="ensure_gpgcheck_globally_activated" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure gpgcheck Enabled In Main dnf Configuration</h3>
+<div>ensure_gpgcheck_globally_activated</div>
+<h4>Description</h4>
+<p>The <tt>gpgcheck</tt> option controls whether
+RPM packages' signatures are always checked prior to installation.
+To configure dnf to check package signatures before installing
+them, ensure the following line appears in <tt>/etc/dnf/dnf.conf</tt> in
+the <tt>[main]</tt> section:
+<pre>gpgcheck=1</pre></p>
+<h4>Rationale</h4>
+<p>Changes to any software components can have significant effects on the
+overall security of the operating system. This requirement ensures the
+software has not been tampered with and that it has been provided by a
+trusted vendor.
+<br />
+Accordingly, patches, service packs, device drivers, or operating system
+components must be signed with a certificate recognized and approved by the
+organization.
+<br />Verifying the authenticity of the software prior to installation
+validates the integrity of the patch or upgrade received from a vendor.
+This ensures the software has not been tampered with and that it has been
+provided by a trusted vendor. Self-signed certificates are disallowed by
+this requirement. Certificates used to verify the software must be from an
+approved Certificate Authority (CA).</p>
+</div>
+
+<div id="ensure_gpgcheck_local_packages" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure gpgcheck Enabled for Local Packages</h3>
+<div>ensure_gpgcheck_local_packages</div>
+<h4>Description</h4>
+<p><tt>dnf</tt> should be configured to verify the signature(s) of local packages
+prior to installation. To configure <tt>dnf</tt> to verify signatures of local
+packages, set the <tt>localpkg_gpgcheck</tt> to <tt>1</tt> in <tt>/etc/dnf/dnf.conf</tt>.</p>
+<h4>Rationale</h4>
+<p>Changes to any software components can have significant effects to the overall security
+of the operating system. This requirement ensures the software has not been tampered and
+has been provided by a trusted vendor.
+<br /><br />
+Accordingly, patches, service packs, device drivers, or operating system components must
+be signed with a certificate recognized and approved by the organization.</p>
+</div>
+
+<div id="ensure_gpgcheck_never_disabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure gpgcheck Enabled for All dnf Package Repositories</h3>
+<div>ensure_gpgcheck_never_disabled</div>
+<h4>Description</h4>
+<p>To ensure signature checking is not disabled for
+any repos, remove any lines from files in <tt>/etc/yum.repos.d</tt> of the form:
+<pre>gpgcheck=0</pre></p>
+<h4>Rationale</h4>
+<p>Verifying the authenticity of the software prior to installation validates
+the integrity of the patch or upgrade received from a vendor. This ensures
+the software has not been tampered with and that it has been provided by a
+trusted vendor. Self-signed certificates are disallowed by this
+requirement. Certificates used to verify the software must be from an
+approved Certificate Authority (CA)."</p>
+</div>
+
+<div id="ensure_gpgcheck_repo_metadata" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure gpgcheck Enabled for Repository Metadata</h3>
+<div>ensure_gpgcheck_repo_metadata</div>
+<h4>Description</h4>
+<p>Verify the operating system prevents the installation of patches,
+service packs, device drivers, or operating system components of
+local packages without verification of the repository metadata.
+Check that <tt>dnf</tt> verifies the repository
+metadata prior to install with the following command.
+This should be configured by setting <tt>repo_gpgcheck</tt> to <tt>1</tt>
+in <tt>/etc/dnf/dnf.conf</tt>.</p>
+<h4>Rationale</h4>
+<p>Changes to any software components can have significant effects to the
+overall security of the operating system. This requirement ensures the
+software has not been tampered and has been provided by a trusted vendor.
+Accordingly, patches, service packs, device drivers, or operating system
+components must be signed with a certificate recognized and approved by
+the organization. Verifying the authenticity of the software prior to
+installation validates the integrity of the patch or upgrade received from
+a vendor. This ensures the software has not been tampered with and that it
+has been provided by a trusted vendor. Self-signed certificates are
+disallowed by this requirement. The operating system should not have
+to verify the software again. NOTE: For U.S. Military systems, this
+requirement does not mandate DoD certificates for this purpose; however,
+the certificate used to verify the software must be from an approved
+Certificate Authority.</p>
+</div>
+
+<div id="ensure_oracle_gpgkey_installed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure Oracle Linux GPG Key Installed</h3>
+<div>ensure_oracle_gpgkey_installed</div>
+<h4>Description</h4>
+<p>To ensure the system can cryptographically verify base software
+packages come from Oracle (and to connect to the Unbreakable Linux Network to
+receive them), the Oracle GPG key must properly be installed.
+To install the Oracle GPG key, run:
+<pre>$ sudo uln_register</pre>
+If the system is not connected to the Internet,
+then install the Oracle GPG key from trusted media such as
+the Oracle installation CD-ROM or DVD. Assuming the disc is mounted
+in <tt>/media/cdrom</tt>, use the following command as the root user to import
+it into the keyring:
+<pre>$ sudo rpm --import /media/cdrom/RPM-GPG-KEY-oracle</pre>
+
+Alternatively, the key may be pre-loaded during the Oracle installation. In
+such cases, the key can be installed by running the following command:
+<pre>sudo rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-oracle</pre></p>
+<h4>Rationale</h4>
+<p>Changes to software components can have significant effects on the
+overall security of the operating system. This requirement ensures
+the software has not been tampered with and that it has been provided
+by a trusted vendor. The Oracle GPG key is necessary to
+cryptographically verify packages are from Oracle.</p>
+</div>
+
+<div id="ensure_package_repositories_are_configured" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure package manager repositories are configured</h3>
+<div>ensure_package_repositories_are_configured</div>
+<h4>Description</h4>
+<p>Systems need to have package manager repositories configured to ensure they receive the
+latest patches and updates.</p>
+<h4>Rationale</h4>
+<p>If the system's package repositories are misconfigured important patches may not be
+identified or a rogue repository could introduce compromised software.</p>
+</div>
+
+<div id="ensure_redhat_gpgkey_installed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure Red Hat GPG Key Installed</h3>
+<div>ensure_redhat_gpgkey_installed</div>
+<h4>Description</h4>
+<p>To ensure the system can cryptographically verify base software packages
+come from Red Hat (and to connect to the Red Hat Network to receive them),
+the Red Hat GPG key must properly be installed. To install the Red Hat GPG
+key, run:
+<pre>$ sudo subscription-manager register</pre>
+
+If the system is not connected to the Internet or an RHN Satellite, then
+install the Red Hat GPG key from trusted media such as the Red Hat
+installation CD-ROM or DVD. Assuming the disc is mounted in
+<tt>/media/cdrom</tt>, use the following command as the root user to import
+it into the keyring:
+<pre>$ sudo rpm --import /media/cdrom/RPM-GPG-KEY</pre>
+
+Alternatively, the key may be pre-loaded during the RHEL installation. In
+such cases, the key can be installed by running the following command:
+<pre>sudo rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release</pre></p>
+<h4>Rationale</h4>
+<p>Changes to software components can have significant effects on the overall
+security of the operating system. This requirement ensures the software has
+not been tampered with and that it has been provided by a trusted vendor.
+The Red Hat GPG key is necessary to cryptographically verify packages are
+from Red Hat.</p>
+</div>
+
+<div id="ensure_amazon_gpgkey_installed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure Amazon GPG Key Installed</h3>
+<div>ensure_amazon_gpgkey_installed</div>
+<h4>Description</h4>
+<p>To ensure the system can cryptographically verify base software packages
+come from Amazon (and to connect to the Amazon Network to receive them),
+the Amazon GPG key must properly be installed. To install the Amazon GPG
+key, run:
+<pre>$ sudo rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-amazon-linux-2023</pre></p>
+<h4>Rationale</h4>
+<p>Changes to software components can have significant effects on the overall
+security of the operating system. This requirement ensures the software has
+not been tampered with and that it has been provided by a trusted vendor.
+The Amazon GPG key is necessary to cryptographically verify packages are
+from Amazon.</p>
+</div>
+
+<div id="ensure_suse_gpgkey_installed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure SUSE GPG Key Installed</h3>
+<div>ensure_suse_gpgkey_installed</div>
+<h4>Description</h4>
+<p>To ensure the system can cryptographically verify base software packages
+come from SUSE (and to connect to the SUSE to receive them),
+the SUSE GPG key must properly be installed. To install the SUSE GPG
+key, run:
+<pre>$ sudo zypper install suse-build-key</pre>
+
+If the system is not connected to the Internet or an RHN Satellite, then
+install the SUSE GPG key from trusted media such as the SUSE
+installation CD-ROM or DVD. Assuming the disc is mounted in
+<tt>/media/cdrom</tt>, use the following command as the root user to import
+it into the keyring:
+<pre>$ sudo rpm --import /media/cdrom/content.key</pre> or
+<pre>$ sudo rpm --import /media/cdrom/repodata/repomd.xml.key</pre>
+
+Alternatively, the key may be pre-loaded during the SUSE installation. In
+such cases, one can use the repository cache files to install the key,
+for example by running the following command:
+<pre>sudo rpm --import /var/cache/zypp/raw/Basesystem_Module_15_SP2_x86_64:SLE-Module-Basesystem15-SP2-Pool/repodata/repomd.xml.key</pre></p>
+<h4>Rationale</h4>
+<p>Changes to software components can have significant effects on the overall
+security of the operating system. This requirement ensures the software has
+not been tampered with and that it has been provided by a trusted vendor.
+The SUSE GPG key is necessary to cryptographically verify packages are
+from SUSE.</p>
+</div>
+
+<div id="ensure_almalinux_gpgkey_installed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure AlmaLinux GPG Key Installed</h3>
+<div>ensure_almalinux_gpgkey_installed</div>
+<h4>Description</h4>
+<p>To ensure the system can cryptographically verify base software packages
+come from AlmaLinux (and to connect to the AlmaLinux repositories to 
+receive them), the AlmaLinux GPG key must be properly installed. To install 
+the AlmaLinux GPG key, run:
+<pre>$ sudo rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-AlmaLinux-9</pre></p>
+<h4>Rationale</h4>
+<p>Changes to software components can have significant effects on the overall
+security of the operating system. This requirement ensures the software has
+not been tampered with and that it has been provided by a trusted vendor.
+The AlmaLinux GPG key is necessary to cryptographically verify packages are
+from AlmaLinux.</p>
+</div>
+
+<div id="package_dnf-automatic_installed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Install dnf-automatic Package</h3>
+<div>package_dnf-automatic_installed</div>
+<h4>Description</h4>
+<p>The <code>dnf-automatic</code> package can be installed with the following command:
+<pre>
+$ sudo dnf install dnf-automatic</pre></p>
+<h4>Rationale</h4>
+<p><tt>dnf-automatic</tt> is an alternative command line interface (CLI)
+to <tt>dnf upgrade</tt> suitable for automatic, regular execution.</p>
+</div>
+
+<div id="package_gnome_software_installed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Install GNOME Software</h3>
+<div>package_gnome_software_installed</div>
+<h4>Description</h4>
+<p>The <code>gnome-software</code> package can be installed with the following command:
+<pre>
+$ sudo dnf install gnome-software</pre></p>
+<h4>Rationale</h4>
+<p>The GNOME software package must be installed so that it can be used for software and firmware updates.</p>
+</div>
+
+<div id="rpm_verify_crypto_policies" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify crypto-policies with RPM</h3>
+<div>rpm_verify_crypto_policies</div>
+<h4>Description</h4>
+<p>Without cryptographic integrity protections, system executables and files can be altered by
+unauthorized users without detection. The RPM package management system can check the hashes
+of installed software packages, including many that are important to system security.
+
+If the file was not expected to change, investigate the cause of the change using audit logs
+or other means. The package can then be reinstalled to restore the file. Run the following
+command to determine which package owns the file:
+<pre>$ rpm -qf <i>FILENAME</i></pre>
+
+The package can be reinstalled from a dnf repository using the command:
+<pre>$ sudo dnf reinstall crypto-policies</pre></p>
+<h4>Rationale</h4>
+<p>The crypto-policies package defines the cryptography policies for the system.
+If the files are changed from those shipped with the operating system, 
+It may be possible for Red Hat Enterprise Linux 10 to use cryptographic functions that are not FIPS 140-3 approved.</p>
+</div>
+
+<div id="rpm_verify_hashes" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify File Hashes with RPM</h3>
+<div>rpm_verify_hashes</div>
+<h4>Description</h4>
+<p>Without cryptographic integrity protections, system executables and files can be altered by
+unauthorized users without detection. The RPM package management system can check the hashes
+of installed software packages, including many that are important to system security.
+
+To verify that the cryptographic hash of system files and commands matches vendor values, run
+the following command to list which files on the system have hashes that differ from what is
+expected by the RPM database:
+<pre>$ rpm -Va --noconfig | grep '^..5'</pre>
+
+If the file was not expected to change, investigate the cause of the change using audit logs
+or other means. The package can then be reinstalled to restore the file. Run the following
+command to determine which package owns the file:
+<pre>$ rpm -qf <i>FILENAME</i></pre>
+
+The package can be reinstalled from a dnf repository using the command:
+<pre>$ sudo dnf reinstall <i>PACKAGENAME</i></pre>
+
+Alternatively, the package can be reinstalled from trusted media using the command:
+<pre>$ sudo rpm -Uvh <i>PACKAGENAME</i></pre></p>
+<h4>Rationale</h4>
+<p>The hashes of important files like system executables should match the
+information given by the RPM database. Executables with erroneous hashes could
+be a sign of nefarious activity on the system.</p>
+</div>
+
+<div id="rpm_verify_ownership" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify and Correct Ownership with RPM</h3>
+<div>rpm_verify_ownership</div>
+<h4>Description</h4>
+<p>The RPM package management system can check file ownership permissions of installed software
+packages, including many that are important to system security. After locating a file with
+incorrect permissions, which can be found with:
+<pre>rpm -Va | awk '{ if (substr($0,6,1)=="U" || substr($0,7,1)=="G") print $NF }'</pre>
+run the following command to determine which package owns it:
+<pre>$ rpm -qf <i>FILENAME</i></pre>
+Next, run the following command to reset its permissions to the correct values:
+<pre>$ sudo rpm --restore <i>PACKAGENAME</i></pre></p>
+<h4>Rationale</h4>
+<p>Ownership of binaries and configuration files that is incorrect could allow an unauthorized
+user to gain privileges that they should not have. The ownership set by the vendor should be
+maintained. Any deviations from this baseline should be investigated.</p>
+</div>
+
+<div id="rpm_verify_permissions" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify and Correct File Permissions with RPM</h3>
+<div>rpm_verify_permissions</div>
+<h4>Description</h4>
+<p>The RPM package management system can check file access permissions of installed software
+packages, including many that are important to system security. Verify that the file
+permissions of system files and commands match vendor values. Check the file permissions with
+the following command:
+<pre>$ sudo rpm -Va | awk '{ if (substr($0,2,1)=="M") print $NF }'</pre>
+Output indicates files that do not match vendor defaults.
+
+After locating a file with incorrect permissions, run the following command to determine which
+package owns it:
+<pre>$ rpm -qf <i>FILENAME</i></pre>
+<br />
+Next, run the following command to reset its permissions to the correct values:
+<pre>$ sudo rpm --restore <i>PACKAGENAME</i></pre></p>
+<h4>Rationale</h4>
+<p>Permissions on system binaries and configuration files that are too generous could allow an
+unauthorized user to gain privileges that they should not have. The permissions set by the
+vendor should be maintained. Any deviations from this baseline should be investigated.</p>
+</div>
+
+<div id="security_patches_up_to_date" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure Software Patches Installed</h3>
+<div>security_patches_up_to_date</div>
+<h4>Description</h4>
+<p>
+If the system is joined to the Red Hat Network, a Red Hat Satellite Server,
+or a yum server, run the following command to install updates:
+<pre>$ sudo yum update</pre>
+If the system is not configured to use one of these sources, updates (in the form of RPM packages)
+can be manually downloaded from the Red Hat Network and installed using <tt>rpm</tt>.
+
+<br /><br />
+NOTE: U.S. Defense systems are required to be patched within 30 days or sooner as local policy
+dictates.</p>
+<h4>Rationale</h4>
+<p>Installing software updates is a fundamental mitigation against
+the exploitation of publicly-known vulnerabilities. If the most
+recent security patches and updates are not installed, unauthorized
+users may take advantage of weaknesses in the unpatched software. The
+lack of prompt attention to patching could result in a system compromise.</p>
+</div>
+
+<div id="timer_dnf-automatic_enabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Enable dnf-automatic Timer</h3>
+<div>timer_dnf-automatic_enabled</div>
+<h4>Description</h4>
+<p>
+The <code>dnf-automatic</code> timer can be enabled with the following command:
+<pre>$ sudo systemctl enable dnf-automatic.timer</pre></p>
+<h4>Rationale</h4>
+<p>The <tt>dnf-automatic</tt> is an alternative command line interface (CLI) to <tt>dnf upgrade</tt> with specific facilities to make it suitable to be executed automatically and regularly from systemd timers, cron jobs and similar.
+The tool is controlled by <tt>dnf-automatic.timer</tt> SystemD timer.</p>
+</div>
+
+<div id="ensure_epel_repos_disabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure EPEL Repository is Disabled</h3>
+<div>ensure_epel_repos_disabled</div>
+<h4>Description</h4>
+<p>The system must not have the EPEL (Extra Packages for Enterprise Linux) repository enabled.
+EPEL provides additional packages that are not part of the official RHEL distribution and
+may not meet enterprise security requirements.
+
+Check if any repository files in <tt>/etc/yum.repos.d/</tt> contain enabled EPEL repositories
+by running:
+<pre>$ grep -r "^\[.*epel.*\]" /etc/yum.repos.d/</pre>
+
+If EPEL repositories are found, ensure they are disabled by setting <tt>enabled=0</tt> in
+the repository configuration file.</p>
+<h4>Rationale</h4>
+<p>The EPEL repository is not officially supported by Red Hat and may contain packages that have
+not been vetted for security in an enterprise environment. Using unsupported repositories can
+introduce vulnerabilities, compatibility issues, or packages that do not meet DoD security
+requirements. Only packages from authorized repositories should be installed to maintain
+system integrity and security.</p>
+</div>
+
+
+
+
+</body>
+</html>

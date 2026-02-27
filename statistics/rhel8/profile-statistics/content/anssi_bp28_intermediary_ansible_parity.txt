@@ -1,0 +1,2 @@
+xccdf_org.ssgproject.content_rule_file_permissions_unauthorized_world_writable
+xccdf_org.ssgproject.content_rule_ldap_client_start_tls

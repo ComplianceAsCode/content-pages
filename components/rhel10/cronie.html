@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'cronie'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'cronie'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>cron</li>
+
+<li>cronie</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<ul>
+
+<li>cron_and_at</li>
+
+</ul>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#disable_anacron">disable_anacron</a></li>
+
+<li><a href="#file_at_allow_exists">file_at_allow_exists</a></li>
+
+<li><a href="#file_at_deny_not_exist">file_at_deny_not_exist</a></li>
+
+<li><a href="#file_cron_allow_exists">file_cron_allow_exists</a></li>
+
+<li><a href="#file_cron_deny_not_exist">file_cron_deny_not_exist</a></li>
+
+<li><a href="#file_owner_cron_deny">file_owner_cron_deny</a></li>
+
+<li><a href="#file_groupowner_cron_deny">file_groupowner_cron_deny</a></li>
+
+<li><a href="#file_groupowner_at_allow">file_groupowner_at_allow</a></li>
+
+<li><a href="#file_groupowner_at_deny">file_groupowner_at_deny</a></li>
+
+<li><a href="#file_groupowner_cron_allow">file_groupowner_cron_allow</a></li>
+
+<li><a href="#file_groupowner_cron_d">file_groupowner_cron_d</a></li>
+
+<li><a href="#file_groupowner_cron_daily">file_groupowner_cron_daily</a></li>
+
+<li><a href="#file_groupowner_cron_hourly">file_groupowner_cron_hourly</a></li>
+
+<li><a href="#file_groupowner_cron_monthly">file_groupowner_cron_monthly</a></li>
+
+<li><a href="#file_groupowner_cron_weekly">file_groupowner_cron_weekly</a></li>
+
+<li><a href="#file_groupowner_cron_yearly">file_groupowner_cron_yearly</a></li>
+
+<li><a href="#file_groupowner_crontab">file_groupowner_crontab</a></li>
+
+<li><a href="#file_owner_at_allow">file_owner_at_allow</a></li>
+
+<li><a href="#file_owner_at_deny">file_owner_at_deny</a></li>
+
+<li><a href="#file_owner_cron_allow">file_owner_cron_allow</a></li>
+
+<li><a href="#file_owner_cron_d">file_owner_cron_d</a></li>
+
+<li><a href="#file_owner_cron_daily">file_owner_cron_daily</a></li>
+
+<li><a href="#file_owner_cron_hourly">file_owner_cron_hourly</a></li>
+
+<li><a href="#file_owner_cron_monthly">file_owner_cron_monthly</a></li>
+
+<li><a href="#file_owner_cron_weekly">file_owner_cron_weekly</a></li>
+
+<li><a href="#file_owner_cron_yearly">file_owner_cron_yearly</a></li>
+
+<li><a href="#file_owner_crontab">file_owner_crontab</a></li>
+
+<li><a href="#file_permissions_at_allow">file_permissions_at_allow</a></li>
+
+<li><a href="#file_permissions_at_deny">file_permissions_at_deny</a></li>
+
+<li><a href="#file_permissions_cron_allow">file_permissions_cron_allow</a></li>
+
+<li><a href="#file_permissions_cron_d">file_permissions_cron_d</a></li>
+
+<li><a href="#file_permissions_cron_daily">file_permissions_cron_daily</a></li>
+
+<li><a href="#file_permissions_cron_hourly">file_permissions_cron_hourly</a></li>
+
+<li><a href="#file_permissions_cron_monthly">file_permissions_cron_monthly</a></li>
+
+<li><a href="#file_permissions_cron_weekly">file_permissions_cron_weekly</a></li>
+
+<li><a href="#file_permissions_cron_yearly">file_permissions_cron_yearly</a></li>
+
+<li><a href="#file_permissions_crontab">file_permissions_crontab</a></li>
+
+<li><a href="#package_cron_installed">package_cron_installed</a></li>
+
+<li><a href="#service_atd_disabled">service_atd_disabled</a></li>
+
+<li><a href="#service_cron_enabled">service_cron_enabled</a></li>
+
+<li><a href="#service_crond_enabled">service_crond_enabled</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="disable_anacron" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable anacron Service</h3>
+<div>disable_anacron</div>
+<h4>Description</h4>
+<p>The <tt>cronie-anacron</tt> package, which provides <tt>anacron</tt>
+functionality, is installed by default.
+The <code>cronie-anacron</code> package can be removed with the following command:
+<pre>
+$ sudo dnf remove cronie-anacron</pre></p>
+<h4>Rationale</h4>
+<p>The <tt>anacron</tt> service provides <tt>cron</tt> functionality for systems
+such as laptops and workstations that may be shut down during the normal times
+that <tt>cron</tt> jobs are scheduled to run. On systems which do not require this
+additional functionality, <tt>anacron</tt> could needlessly increase the possible
+attack surface for an intruder.</p>
+</div>
+
+<div id="file_at_allow_exists" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure that /etc/at.allow exists</h3>
+<div>file_at_allow_exists</div>
+<h4>Description</h4>
+<p>The file <tt>/etc/at.allow</tt> should exist and should be used instead
+of <tt>/etc/at.deny</tt>.</p>
+<h4>Rationale</h4>
+<p>Using the at.allow file to control who can run at jobs enforces this who can schedule jobs.
+It is easier to manage an allow list than a deny list. </p>
+</div>
+
+<div id="file_at_deny_not_exist" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure that /etc/at.deny does not exist</h3>
+<div>file_at_deny_not_exist</div>
+<h4>Description</h4>
+<p>The file <tt>/etc/at.deny</tt> should not exist.
+Use <tt>/etc/at.allow</tt> instead.</p>
+<h4>Rationale</h4>
+<p>Access to <tt>at</tt> should be restricted.
+It is easier to manage an allow list than a deny list.</p>
+</div>
+
+<div id="file_cron_allow_exists" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure that /etc/cron.allow exists</h3>
+<div>file_cron_allow_exists</div>
+<h4>Description</h4>
+<p>The file <tt>/etc/cron.allow</tt> should exist and should be used instead
+of <tt>/etc/cron.deny</tt>.</p>
+<h4>Rationale</h4>
+<p>Access to <tt>crontab</tt> should be restricted.
+It is easier to manage an allow list than a deny list.
+Therefore, <tt>/etc/cron.allow</tt> needs to be created and used instead of <tt>/etc/cron.deny</tt>.
+Regardless of the existence of any of these files, the root administrative user is always allowed to setup a crontab.</p>
+</div>
+
+<div id="file_cron_deny_not_exist" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure that /etc/cron.deny does not exist</h3>
+<div>file_cron_deny_not_exist</div>
+<h4>Description</h4>
+<p>The file <tt>/etc/cron.deny</tt> should not exist.
+Use <tt>/etc/cron.allow</tt> instead.</p>
+<h4>Rationale</h4>
+<p>Access to <tt>cron</tt> should be restricted.
+It is easier to manage an allow list than a deny list.</p>
+</div>
+
+<div id="file_owner_cron_deny" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Owner on cron.deny</h3>
+<div>file_owner_cron_deny</div>
+<h4>Description</h4>
+<p>
+To properly set the owner of <code>/etc/cron.deny</code>, run the command:
+
+  <pre>$ sudo chown root /etc/cron.deny </pre>
+  </p>
+<h4>Rationale</h4>
+<p>Service configuration files enable or disable features of their respective services that if configured incorrectly
+can lead to insecure and vulnerable configurations. Therefore, service configuration files should be owned by the
+correct user to prevent unauthorized changes.</p>
+</div>
+
+<div id="file_groupowner_cron_deny" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Group Who Owns cron.deny</h3>
+<div>file_groupowner_cron_deny</div>
+<h4>Description</h4>
+<p>
+To properly set the group owner of <code>/etc/cron.deny</code>, run the command:
+
+  <pre>$ sudo chgrp root /etc/cron.deny</pre>
+  </p>
+<h4>Rationale</h4>
+<p>Service configuration files enable or disable features of their respective services that if configured incorrectly
+can lead to insecure and vulnerable configurations. Therefore, service configuration files should be owned by the
+correct group to prevent unauthorized changes.</p>
+</div>
+
+<div id="file_groupowner_at_allow" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Group Who Owns /etc/at.allow file</h3>
+<div>file_groupowner_at_allow</div>
+<h4>Description</h4>
+<p>If <tt>/etc/at.allow</tt> exists, it must be group-owned by <tt>root</tt>.
+
+To properly set the group owner of <code>/etc/at.allow</code>, run the command:
+
+  <pre>$ sudo chgrp root /etc/at.allow</pre>
+  </p>
+<h4>Rationale</h4>
+<p>If the owner of the at.allow file is not set to root, the possibility exists for an
+unauthorized user to view or edit sensitive information.</p>
+</div>
+
+<div id="file_groupowner_at_deny" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Group Who Owns /etc/at.deny file</h3>
+<div>file_groupowner_at_deny</div>
+<h4>Description</h4>
+<p>If <tt>/etc/at.deny</tt> exists, it must be group-owned by <tt>root</tt>.
+
+To properly set the group owner of <code>/etc/at.deny</code>, run the command:
+
+  <pre>$ sudo chgrp root /etc/at.deny</pre>
+  </p>
+<h4>Rationale</h4>
+<p>If the owner of the at.deny file is not set to root, the possibility exists for an
+unauthorized user to view or edit sensitive information.</p>
+</div>
+
+<div id="file_groupowner_cron_allow" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Group Who Owns /etc/cron.allow file</h3>
+<div>file_groupowner_cron_allow</div>
+<h4>Description</h4>
+<p>If <tt>/etc/cron.allow</tt> exists, it must be group-owned by <tt>root</tt>.
+
+To properly set the group owner of <code>/etc/cron.allow</code>, run the command:
+
+  <pre>$ sudo chgrp root /etc/cron.allow</pre>
+  </p>
+<h4>Rationale</h4>
+<p>If the owner of the cron.allow file is not set to root, the possibility exists for an
+unauthorized user to view or edit sensitive information.</p>
+</div>
+
+<div id="file_groupowner_cron_d" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Group Who Owns cron.d</h3>
+<div>file_groupowner_cron_d</div>
+<h4>Description</h4>
+<p>
+To properly set the group owner of <code>/etc/cron.d</code>, run the command:
+
+  <pre>$ sudo chgrp root /etc/cron.d</pre>
+  </p>
+<h4>Rationale</h4>
+<p>Service configuration files enable or disable features of their respective services that if configured incorrectly
+can lead to insecure and vulnerable configurations. Therefore, service configuration files should be owned by the
+correct group to prevent unauthorized changes.</p>
+</div>
+
+<div id="file_groupowner_cron_daily" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Group Who Owns cron.daily</h3>
+<div>file_groupowner_cron_daily</div>
+<h4>Description</h4>
+<p>
+To properly set the group owner of <code>/etc/cron.daily</code>, run the command:
+
+  <pre>$ sudo chgrp root /etc/cron.daily</pre>
+  </p>
+<h4>Rationale</h4>
+<p>Service configuration files enable or disable features of their respective services that if configured incorrectly
+can lead to insecure and vulnerable configurations. Therefore, service configuration files should be owned by the
+correct group to prevent unauthorized changes.</p>
+</div>
+
+<div id="file_groupowner_cron_hourly" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Group Who Owns cron.hourly</h3>
+<div>file_groupowner_cron_hourly</div>
+<h4>Description</h4>
+<p>
+To properly set the group owner of <code>/etc/cron.hourly</code>, run the command:
+
+  <pre>$ sudo chgrp root /etc/cron.hourly</pre>
+  </p>
+<h4>Rationale</h4>
+<p>Service configuration files enable or disable features of their respective services that if configured incorrectly
+can lead to insecure and vulnerable configurations. Therefore, service configuration files should be owned by the
+correct group to prevent unauthorized changes.</p>
+</div>
+
+<div id="file_groupowner_cron_monthly" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Group Who Owns cron.monthly</h3>
+<div>file_groupowner_cron_monthly</div>
+<h4>Description</h4>
+<p>
+To properly set the group owner of <code>/etc/cron.monthly</code>, run the command:
+
+  <pre>$ sudo chgrp root /etc/cron.monthly</pre>
+  </p>
+<h4>Rationale</h4>
+<p>Service configuration files enable or disable features of their respective services that if configured incorrectly
+can lead to insecure and vulnerable configurations. Therefore, service configuration files should be owned by the
+correct group to prevent unauthorized changes.</p>
+</div>
+
+<div id="file_groupowner_cron_weekly" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Group Who Owns cron.weekly</h3>
+<div>file_groupowner_cron_weekly</div>
+<h4>Description</h4>
+<p>
+To properly set the group owner of <code>/etc/cron.weekly</code>, run the command:
+
+  <pre>$ sudo chgrp root /etc/cron.weekly</pre>
+  </p>
+<h4>Rationale</h4>
+<p>Service configuration files enable or disable features of their respective services that if configured incorrectly
+can lead to insecure and vulnerable configurations. Therefore, service configuration files should be owned by the
+correct group to prevent unauthorized changes.</p>
+</div>
+
+<div id="file_groupowner_cron_yearly" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Group Who Owns cron.yearly</h3>
+<div>file_groupowner_cron_yearly</div>
+<h4>Description</h4>
+<p>
+To properly set the group owner of <code>/etc/cron.yearly</code>, run the command:
+
+  <pre>$ sudo chgrp root /etc/cron.yearly</pre>
+  </p>
+<h4>Rationale</h4>
+<p>Service configuration files enable or disable features of their respective services that if configured incorrectly
+can lead to insecure and vulnerable configurations. Therefore, service configuration files should be owned by the
+correct group to prevent unauthorized changes.</p>
+</div>
+
+<div id="file_groupowner_crontab" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Group Who Owns Crontab</h3>
+<div>file_groupowner_crontab</div>
+<h4>Description</h4>
+<p>
+To properly set the group owner of <code>/etc/crontab</code>, run the command:
+
+  <pre>$ sudo chgrp root /etc/crontab</pre>
+  </p>
+<h4>Rationale</h4>
+<p>Service configuration files enable or disable features of their respective services that if configured incorrectly
+can lead to insecure and vulnerable configurations. Therefore, service configuration files should be owned by the
+correct group to prevent unauthorized changes.</p>
+</div>
+
+<div id="file_owner_at_allow" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify User Who Owns /etc/at.allow file</h3>
+<div>file_owner_at_allow</div>
+<h4>Description</h4>
+<p>If <tt>/etc/at.allow</tt> exists, it must be owned by <tt>root</tt>.
+
+To properly set the owner of <code>/etc/at.allow</code>, run the command:
+
+  <pre>$ sudo chown root /etc/at.allow </pre>
+  </p>
+<h4>Rationale</h4>
+<p>If the owner of the at.allow file is not set to root, the possibility exists for an
+unauthorized user to view or edit sensitive information.</p>
+</div>
+
+<div id="file_owner_at_deny" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify User Who Owns /etc/at.deny file</h3>
+<div>file_owner_at_deny</div>
+<h4>Description</h4>
+<p>If <tt>/etc/at.deny</tt> exists, it must be owned by <tt>root</tt>.
+
+To properly set the owner of <code>/etc/at.deny</code>, run the command:
+
+  <pre>$ sudo chown root /etc/at.deny </pre>
+  </p>
+<h4>Rationale</h4>
+<p>If the owner of the at.deny file is not set to root, the possibility exists for an
+unauthorized user to view or edit sensitive information.</p>
+</div>
+
+<div id="file_owner_cron_allow" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify User Who Owns /etc/cron.allow file</h3>
+<div>file_owner_cron_allow</div>
+<h4>Description</h4>
+<p>If <tt>/etc/cron.allow</tt> exists, it must be owned by <tt>root</tt>.
+
+To properly set the owner of <code>/etc/cron.allow</code>, run the command:
+
+  <pre>$ sudo chown root /etc/cron.allow </pre>
+  </p>
+<h4>Rationale</h4>
+<p>If the owner of the cron.allow file is not set to root, the possibility exists for an
+unauthorized user to view or edit sensitive information.</p>
+</div>
+
+<div id="file_owner_cron_d" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Owner on cron.d</h3>
+<div>file_owner_cron_d</div>
+<h4>Description</h4>
+<p>
+To properly set the owner of <code>/etc/cron.d</code>, run the command:
+
+  <pre>$ sudo chown root /etc/cron.d </pre>
+  </p>
+<h4>Rationale</h4>
+<p>Service configuration files enable or disable features of their respective services that if configured incorrectly
+can lead to insecure and vulnerable configurations. Therefore, service configuration files should be owned by the
+correct user to prevent unauthorized changes.</p>
+</div>
+
+<div id="file_owner_cron_daily" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Owner on cron.daily</h3>
+<div>file_owner_cron_daily</div>
+<h4>Description</h4>
+<p>
+To properly set the owner of <code>/etc/cron.daily</code>, run the command:
+
+  <pre>$ sudo chown root /etc/cron.daily </pre>
+  </p>
+<h4>Rationale</h4>
+<p>Service configuration files enable or disable features of their respective services that if configured incorrectly
+can lead to insecure and vulnerable configurations. Therefore, service configuration files should be owned by the
+correct user to prevent unauthorized changes.</p>
+</div>
+
+<div id="file_owner_cron_hourly" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Owner on cron.hourly</h3>
+<div>file_owner_cron_hourly</div>
+<h4>Description</h4>
+<p>
+To properly set the owner of <code>/etc/cron.hourly</code>, run the command:
+
+  <pre>$ sudo chown root /etc/cron.hourly </pre>
+  </p>
+<h4>Rationale</h4>
+<p>Service configuration files enable or disable features of their respective services that if configured incorrectly
+can lead to insecure and vulnerable configurations. Therefore, service configuration files should be owned by the
+correct user to prevent unauthorized changes.</p>
+</div>
+
+<div id="file_owner_cron_monthly" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Owner on cron.monthly</h3>
+<div>file_owner_cron_monthly</div>
+<h4>Description</h4>
+<p>
+To properly set the owner of <code>/etc/cron.monthly</code>, run the command:
+
+  <pre>$ sudo chown root /etc/cron.monthly </pre>
+  </p>
+<h4>Rationale</h4>
+<p>Service configuration files enable or disable features of their respective services that if configured incorrectly
+can lead to insecure and vulnerable configurations. Therefore, service configuration files should be owned by the
+correct user to prevent unauthorized changes.</p>
+</div>
+
+<div id="file_owner_cron_weekly" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Owner on cron.weekly</h3>
+<div>file_owner_cron_weekly</div>
+<h4>Description</h4>
+<p>
+To properly set the owner of <code>/etc/cron.weekly</code>, run the command:
+
+  <pre>$ sudo chown root /etc/cron.weekly </pre>
+  </p>
+<h4>Rationale</h4>
+<p>Service configuration files enable or disable features of their respective services that if configured incorrectly
+can lead to insecure and vulnerable configurations. Therefore, service configuration files should be owned by the
+correct user to prevent unauthorized changes.</p>
+</div>
+
+<div id="file_owner_cron_yearly" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Owner on cron.yearly</h3>
+<div>file_owner_cron_yearly</div>
+<h4>Description</h4>
+<p>
+To properly set the owner of <code>/etc/cron.yearly</code>, run the command:
+
+  <pre>$ sudo chown root /etc/cron.yearly </pre>
+  </p>
+<h4>Rationale</h4>
+<p>Service configuration files enable or disable features of their respective services that if configured incorrectly
+can lead to insecure and vulnerable configurations. Therefore, service configuration files should be owned by the
+correct user to prevent unauthorized changes.</p>
+</div>
+
+<div id="file_owner_crontab" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Owner on crontab</h3>
+<div>file_owner_crontab</div>
+<h4>Description</h4>
+<p>
+To properly set the owner of <code>/etc/crontab</code>, run the command:
+
+  <pre>$ sudo chown root /etc/crontab </pre>
+  </p>
+<h4>Rationale</h4>
+<p>Service configuration files enable or disable features of their respective services that if configured incorrectly
+can lead to insecure and vulnerable configurations. Therefore, service configuration files should be owned by the
+correct user to prevent unauthorized changes.</p>
+</div>
+
+<div id="file_permissions_at_allow" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Permissions on /etc/at.allow file</h3>
+<div>file_permissions_at_allow</div>
+<h4>Description</h4>
+<p>If <tt>/etc/at.allow</tt> exists, it must have permissions <tt>0640</tt>
+or more restrictive.
+
+
+To properly set the permissions of <code>/etc/at.allow</code>, run the command:
+<pre>$ sudo chmod 0640 /etc/at.allow</pre></p>
+<h4>Rationale</h4>
+<p>If the permissions of the at.allow file are not set to 0640 or more restrictive,
+the possibility exists for an unauthorized user to view or edit sensitive information.</p>
+</div>
+
+<div id="file_permissions_at_deny" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Permissions on /etc/at.deny file</h3>
+<div>file_permissions_at_deny</div>
+<h4>Description</h4>
+<p>If <tt>/etc/at.deny</tt> exists, it must have permissions <tt>0600</tt>
+or more restrictive.
+
+
+To properly set the permissions of <code>/etc/at.deny</code>, run the command:
+<pre>$ sudo chmod 0600 /etc/at.deny</pre></p>
+<h4>Rationale</h4>
+<p>If the permissions of the at.deny file are not set to 0600 or more restrictive,
+the possibility exists for an unauthorized user to view or edit sensitive information.</p>
+</div>
+
+<div id="file_permissions_cron_allow" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Permissions on /etc/cron.allow file</h3>
+<div>file_permissions_cron_allow</div>
+<h4>Description</h4>
+<p>If <tt>/etc/cron.allow</tt> exists, it must have permissions <tt>0640</tt>
+or more restrictive.
+
+
+To properly set the permissions of <code>/etc/cron.allow</code>, run the command:
+<pre>$ sudo chmod 0640 /etc/cron.allow</pre></p>
+<h4>Rationale</h4>
+<p>If the permissions of the cron.allow file are not set to 0640 or more restrictive,
+the possibility exists for an unauthorized user to view or edit sensitive information.</p>
+</div>
+
+<div id="file_permissions_cron_d" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Permissions on cron.d</h3>
+<div>file_permissions_cron_d</div>
+<h4>Description</h4>
+<p>
+To properly set the permissions of <code>/etc/cron.d</code>, run the command:
+<pre>$ sudo chmod 0700 /etc/cron.d</pre></p>
+<h4>Rationale</h4>
+<p>Service configuration files enable or disable features of their respective services that if configured incorrectly
+can lead to insecure and vulnerable configurations. Therefore, service configuration files should have the
+correct access rights to prevent unauthorized changes.</p>
+</div>
+
+<div id="file_permissions_cron_daily" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Permissions on cron.daily</h3>
+<div>file_permissions_cron_daily</div>
+<h4>Description</h4>
+<p>
+To properly set the permissions of <code>/etc/cron.daily</code>, run the command:
+<pre>$ sudo chmod 0700 /etc/cron.daily</pre></p>
+<h4>Rationale</h4>
+<p>Service configuration files enable or disable features of their respective services that if configured incorrectly
+can lead to insecure and vulnerable configurations. Therefore, service configuration files should have the
+correct access rights to prevent unauthorized changes.</p>
+</div>
+
+<div id="file_permissions_cron_hourly" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Permissions on cron.hourly</h3>
+<div>file_permissions_cron_hourly</div>
+<h4>Description</h4>
+<p>
+To properly set the permissions of <code>/etc/cron.hourly</code>, run the command:
+<pre>$ sudo chmod 0700 /etc/cron.hourly</pre></p>
+<h4>Rationale</h4>
+<p>Service configuration files enable or disable features of their respective services that if configured incorrectly
+can lead to insecure and vulnerable configurations. Therefore, service configuration files should have the
+correct access rights to prevent unauthorized changes.</p>
+</div>
+
+<div id="file_permissions_cron_monthly" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Permissions on cron.monthly</h3>
+<div>file_permissions_cron_monthly</div>
+<h4>Description</h4>
+<p>
+To properly set the permissions of <code>/etc/cron.monthly</code>, run the command:
+<pre>$ sudo chmod 0700 /etc/cron.monthly</pre></p>
+<h4>Rationale</h4>
+<p>Service configuration files enable or disable features of their respective services that if configured incorrectly
+can lead to insecure and vulnerable configurations. Therefore, service configuration files should have the
+correct access rights to prevent unauthorized changes.</p>
+</div>
+
+<div id="file_permissions_cron_weekly" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Permissions on cron.weekly</h3>
+<div>file_permissions_cron_weekly</div>
+<h4>Description</h4>
+<p>
+To properly set the permissions of <code>/etc/cron.weekly</code>, run the command:
+<pre>$ sudo chmod 0700 /etc/cron.weekly</pre></p>
+<h4>Rationale</h4>
+<p>Service configuration files enable or disable features of their respective services that if configured incorrectly
+can lead to insecure and vulnerable configurations. Therefore, service configuration files should have the
+correct access rights to prevent unauthorized changes.</p>
+</div>
+
+<div id="file_permissions_cron_yearly" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Permissions on cron.yearly</h3>
+<div>file_permissions_cron_yearly</div>
+<h4>Description</h4>
+<p>
+To properly set the permissions of <code>/etc/cron.yearly</code>, run the command:
+<pre>$ sudo chmod 0700 /etc/cron.yearly</pre></p>
+<h4>Rationale</h4>
+<p>Service configuration files enable or disable features of their respective services that if configured incorrectly
+can lead to insecure and vulnerable configurations. Therefore, service configuration files should have the
+correct access rights to prevent unauthorized changes.</p>
+</div>
+
+<div id="file_permissions_crontab" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Permissions on crontab</h3>
+<div>file_permissions_crontab</div>
+<h4>Description</h4>
+<p>
+To properly set the permissions of <code>/etc/crontab</code>, run the command:
+<pre>$ sudo chmod 0600 /etc/crontab</pre></p>
+<h4>Rationale</h4>
+<p>Service configuration files enable or disable features of their respective services that if configured incorrectly
+can lead to insecure and vulnerable configurations. Therefore, service configuration files should have the
+correct access rights to prevent unauthorized changes.</p>
+</div>
+
+<div id="package_cron_installed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Install the cron service</h3>
+<div>package_cron_installed</div>
+<h4>Description</h4>
+<p>The Cron service should be installed.</p>
+<h4>Rationale</h4>
+<p>The cron service allow periodic job execution, needed for almost all administrative tasks and services (software update, log rotating, etc.). Access to cron service should be restricted to administrative accounts only.</p>
+</div>
+
+<div id="service_atd_disabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable At Service (atd)</h3>
+<div>service_atd_disabled</div>
+<h4>Description</h4>
+<p>The <tt>at</tt> and <tt>batch</tt> commands can be used to
+schedule tasks that are meant to be executed only once. This allows delayed
+execution in a manner similar to cron, except that it is not
+recurring. The daemon <tt>atd</tt> keeps track of tasks scheduled via
+<tt>at</tt> and <tt>batch</tt>, and executes them at the specified time.
+
+The <code>atd</code> service can be disabled with the following command:
+<pre>$ sudo systemctl mask --now atd.service</pre></p>
+<h4>Rationale</h4>
+<p>The <tt>atd</tt> service could be used by an unsophisticated insider to carry
+out activities outside of a normal login session, which could complicate
+accountability. Furthermore, the need to schedule tasks with <tt>at</tt> or
+<tt>batch</tt> is not common.</p>
+</div>
+
+<div id="service_cron_enabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Enable cron Service</h3>
+<div>service_cron_enabled</div>
+<h4>Description</h4>
+<p>The <tt>crond</tt> service is used to execute commands at
+preconfigured times. It is required by almost all systems to perform necessary
+maintenance tasks, such as notifying root of system activity.
+
+The <code>crond</code> service can be enabled with the following command:
+<pre>$ sudo systemctl enable crond.service</pre></p>
+<h4>Rationale</h4>
+<p>Due to its usage for maintenance and security-supporting tasks,
+enabling the cron daemon is essential.</p>
+</div>
+
+<div id="service_crond_enabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Enable cron Service</h3>
+<div>service_crond_enabled</div>
+<h4>Description</h4>
+<p>The <tt>crond</tt> service is used to execute commands at
+preconfigured times. It is required by almost all systems to perform necessary
+maintenance tasks, such as notifying root of system activity.
+
+The <code>crond</code> service can be enabled with the following command:
+<pre>$ sudo systemctl enable crond.service</pre></p>
+<h4>Rationale</h4>
+<p>Due to its usage for maintenance and security-supporting tasks,
+enabling the cron daemon is essential.</p>
+</div>
+
+
+
+
+</body>
+</html>

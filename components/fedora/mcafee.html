@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'mcafee'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'mcafee'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>MFEhiplsm</li>
+
+<li>McAfeeTP</li>
+
+<li>mcafee</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<ul>
+
+<li>mcafee_endpoint_security_software</li>
+
+<li>mcafee_hbss_software</li>
+
+<li>mcafee_security_software</li>
+
+</ul>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#agent_mfetpd_running">agent_mfetpd_running</a></li>
+
+<li><a href="#install_mcafee_antivirus">install_mcafee_antivirus</a></li>
+
+<li><a href="#install_mcafee_cma_rt">install_mcafee_cma_rt</a></li>
+
+<li><a href="#install_mcafee_hbss_accm">install_mcafee_hbss_accm</a></li>
+
+<li><a href="#install_mcafee_hbss_pa">install_mcafee_hbss_pa</a></li>
+
+<li><a href="#mcafee_antivirus_definitions_updated">mcafee_antivirus_definitions_updated</a></li>
+
+<li><a href="#package_MFEhiplsm_installed">package_MFEhiplsm_installed</a></li>
+
+<li><a href="#package_mcafeetp_installed">package_mcafeetp_installed</a></li>
+
+<li><a href="#service_nails_enabled">service_nails_enabled</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="agent_mfetpd_running" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure McAfee Endpoint Security for Linux (ENSL) is running</h3>
+<div>agent_mfetpd_running</div>
+<h4>Description</h4>
+<p>Install McAfee Endpoint Security for Linux antivirus software
+which is provided for systems and uses signatures to search for the
+presence of viruses on the filesystem.</p>
+<h4>Rationale</h4>
+<p>Virus scanning software can be used to detect if a system has been compromised by
+computer viruses, as well as to limit their spread to other systems.</p>
+</div>
+
+<div id="install_mcafee_antivirus" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Install McAfee Virus Scanning Software</h3>
+<div>install_mcafee_antivirus</div>
+<h4>Description</h4>
+<p>Install McAfee VirusScan Enterprise for Linux antivirus software
+which is provided for systems and uses signatures to search for the
+presence of viruses on the filesystem.</p>
+<h4>Rationale</h4>
+<p>Virus scanning software can be used to detect if a system has been compromised by
+computer viruses, as well as to limit their spread to other systems.</p>
+</div>
+
+<div id="install_mcafee_cma_rt" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Install the McAfee Runtime Libraries and Linux Agent</h3>
+<div>install_mcafee_cma_rt</div>
+<h4>Description</h4>
+<p>Install the McAfee Runtime Libraries (MFErt) and Linux Agent (MFEcma).</p>
+<h4>Rationale</h4>
+<p>The McAfee Runtime Libraries (MFErt) and Linux Agent (MFEcma) are dependencies
+for VirusScan Enterprise for Linux (VSEL) and Host-based Security System (HBSS)
+to run.</p>
+</div>
+
+<div id="install_mcafee_hbss_accm" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Install the Asset Configuration Compliance Module (ACCM)</h3>
+<div>install_mcafee_hbss_accm</div>
+<h4>Description</h4>
+<p>Install the Asset Configuration Compliance Module (ACCM).</p>
+<h4>Rationale</h4>
+<p>Without a host-based intrusion detection tool, there is no system-level defense
+when an intruder gains access to a system or network. Additionally, a host-based
+intrusion prevention tool can provide methods to immediately lock out detected
+intrusion attempts.</p>
+</div>
+
+<div id="install_mcafee_hbss_pa" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Install the Policy Auditor (PA) Module</h3>
+<div>install_mcafee_hbss_pa</div>
+<h4>Description</h4>
+<p>Install the Policy Auditor (PA) Module.</p>
+<h4>Rationale</h4>
+<p>Without a host-based intrusion detection tool, there is no system-level defense
+when an intruder gains access to a system or network. Additionally, a host-based
+intrusion prevention tool can provide methods to immediately lock out detected
+intrusion attempts.</p>
+</div>
+
+<div id="mcafee_antivirus_definitions_updated" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Virus Scanning Software Definitions Are Updated</h3>
+<div>mcafee_antivirus_definitions_updated</div>
+<h4>Description</h4>
+<p>Ensure virus definition files are no older than 7 days or their last release.</p>
+<h4>Rationale</h4>
+<p>Virus scanning software can be used to detect if a system has been compromised by
+computer viruses, as well as to limit their spread to other systems.</p>
+</div>
+
+<div id="package_MFEhiplsm_installed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Install the Host Intrusion Prevention System (HIPS) Module</h3>
+<div>package_MFEhiplsm_installed</div>
+<h4>Description</h4>
+<p>Install the McAfee Host Intrusion Prevention System (HIPS) Module if it is absolutely
+necessary. If SELinux is enabled, do not install or enable this module.</p>
+<h4>Rationale</h4>
+<p>Without a host-based intrusion detection tool, there is no system-level defense
+when an intruder gains access to a system or network. Additionally, a host-based
+intrusion prevention tool can provide methods to immediately lock out detected
+intrusion attempts.</p>
+</div>
+
+<div id="package_mcafeetp_installed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Install McAfee Endpoint Security for Linux (ENSL)</h3>
+<div>package_mcafeetp_installed</div>
+<h4>Description</h4>
+<p>Install McAfee Endpoint Security for Linux antivirus software
+which is provided for systems and uses signatures to search for the
+presence of viruses on the filesystem.
+
+The <code>McAfeeTP</code> package can be installed with the following command:
+<pre>
+$ sudo dnf install McAfeeTP</pre></p>
+<h4>Rationale</h4>
+<p>Virus scanning software can be used to detect if a system has been compromised by
+computer viruses, as well as to limit their spread to other systems.</p>
+</div>
+
+<div id="service_nails_enabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Enable nails Service</h3>
+<div>service_nails_enabled</div>
+<h4>Description</h4>
+<p>The <tt>nails</tt> service is used to run McAfee VirusScan Enterprise
+for Linux and McAfee Host-based Security System (HBSS) services.
+
+The <code>nails</code> service can be enabled with the following command:
+<pre>$ sudo systemctl enable nails.service</pre></p>
+<h4>Rationale</h4>
+<p>Virus scanning software can be used to detect if a system has been compromised by
+computer viruses, as well as to limit their spread to other systems.</p>
+</div>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'rsyslog'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'rsyslog'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>rsyslog</li>
+
+<li>rsyslog-gnutls</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<ul>
+
+<li>ensure_rsyslog_log_file_configuration</li>
+
+<li>logging</li>
+
+<li>rsyslog_accepting_remote_messages</li>
+
+<li>rsyslog_sending_messages</li>
+
+</ul>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#disable_logwatch_for_logserver">disable_logwatch_for_logserver</a></li>
+
+<li><a href="#ensure_journald_and_rsyslog_not_active_together">ensure_journald_and_rsyslog_not_active_together</a></li>
+
+<li><a href="#ensure_logrotate_activated">ensure_logrotate_activated</a></li>
+
+<li><a href="#ensure_rtc_utc_configuration">ensure_rtc_utc_configuration</a></li>
+
+<li><a href="#file_groupowner_var_log_syslog">file_groupowner_var_log_syslog</a></li>
+
+<li><a href="#file_owner_var_log_syslog">file_owner_var_log_syslog</a></li>
+
+<li><a href="#journald_compress">journald_compress</a></li>
+
+<li><a href="#journald_forward_to_syslog">journald_forward_to_syslog</a></li>
+
+<li><a href="#journald_storage">journald_storage</a></li>
+
+<li><a href="#logging_services_active">logging_services_active</a></li>
+
+<li><a href="#logwatch_configured_hostlimit">logwatch_configured_hostlimit</a></li>
+
+<li><a href="#logwatch_configured_splithosts">logwatch_configured_splithosts</a></li>
+
+<li><a href="#package_logrotate_installed">package_logrotate_installed</a></li>
+
+<li><a href="#package_rsyslog-gnutls_installed">package_rsyslog-gnutls_installed</a></li>
+
+<li><a href="#package_rsyslog_installed">package_rsyslog_installed</a></li>
+
+<li><a href="#package_syslogng_installed">package_syslogng_installed</a></li>
+
+<li><a href="#package_systemd-journal-remote_installed">package_systemd-journal-remote_installed</a></li>
+
+<li><a href="#rsyslog_accept_remote_messages_tcp">rsyslog_accept_remote_messages_tcp</a></li>
+
+<li><a href="#rsyslog_accept_remote_messages_udp">rsyslog_accept_remote_messages_udp</a></li>
+
+<li><a href="#rsyslog_cron_logging">rsyslog_cron_logging</a></li>
+
+<li><a href="#rsyslog_encrypt_offload_actionsendstreamdriverauthmode">rsyslog_encrypt_offload_actionsendstreamdriverauthmode</a></li>
+
+<li><a href="#rsyslog_encrypt_offload_actionsendstreamdrivermode">rsyslog_encrypt_offload_actionsendstreamdrivermode</a></li>
+
+<li><a href="#rsyslog_encrypt_offload_defaultnetstreamdriver">rsyslog_encrypt_offload_defaultnetstreamdriver</a></li>
+
+<li><a href="#rsyslog_filecreatemode">rsyslog_filecreatemode</a></li>
+
+<li><a href="#rsyslog_files_groupownership">rsyslog_files_groupownership</a></li>
+
+<li><a href="#rsyslog_files_ownership">rsyslog_files_ownership</a></li>
+
+<li><a href="#rsyslog_files_permissions">rsyslog_files_permissions</a></li>
+
+<li><a href="#rsyslog_logging_configured">rsyslog_logging_configured</a></li>
+
+<li><a href="#rsyslog_nolisten">rsyslog_nolisten</a></li>
+
+<li><a href="#rsyslog_remote_access_monitoring">rsyslog_remote_access_monitoring</a></li>
+
+<li><a href="#rsyslog_remote_loghost">rsyslog_remote_loghost</a></li>
+
+<li><a href="#rsyslog_remote_tls">rsyslog_remote_tls</a></li>
+
+<li><a href="#rsyslog_remote_tls_cacert">rsyslog_remote_tls_cacert</a></li>
+
+<li><a href="#service_rsyslog_enabled">service_rsyslog_enabled</a></li>
+
+<li><a href="#service_syslogng_enabled">service_syslogng_enabled</a></li>
+
+<li><a href="#service_systemd-journald_enabled">service_systemd-journald_enabled</a></li>
+
+<li><a href="#service_systemd-journal-upload_enabled">service_systemd-journal-upload_enabled</a></li>
+
+<li><a href="#socket_systemd-journal-remote_disabled">socket_systemd-journal-remote_disabled</a></li>
+
+<li><a href="#systemd_journal_upload_url">systemd_journal_upload_url</a></li>
+
+<li><a href="#systemd_journal_upload_server_tls">systemd_journal_upload_server_tls</a></li>
+
+<li><a href="#timer_logrotate_enabled">timer_logrotate_enabled</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="disable_logwatch_for_logserver" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable Logwatch on Clients if a Logserver Exists</h3>
+<div>disable_logwatch_for_logserver</div>
+<h4>Description</h4>
+<p>Does your site have a central logserver which has been configured to report
+on logs received from all systems? If so:
+<pre>$ sudo rm /etc/cron.daily/0logwatch</pre>
+If no logserver exists, it will be necessary for each system to run
+Logwatch individually. Using a central logserver provides the security and
+reliability benefits discussed earlier, and also makes monitoring logs
+easier and less time-intensive for administrators.</p>
+<h4>Rationale</h4>
+<p></p>
+</div>
+
+<div id="ensure_journald_and_rsyslog_not_active_together" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure journald and rsyslog Are Not Active Together</h3>
+<div>ensure_journald_and_rsyslog_not_active_together</div>
+<h4>Description</h4>
+<p>Ensure that exactly one logging system is active. Running both rsyslog and
+systemd-journald simultaneously can lead to duplicate logging, resource
+contention, and configuration conflicts. Running neither service means no
+logging is occurring, which is also a violation.
+<pre>
+systemctl is-active rsyslog systemd-journald
+</pre>
+The command should return exactly one <tt>active</tt> service. Both services
+should not be active at the same time, and at least one must be active.</p>
+<h4>Rationale</h4>
+<p>Running multiple logging systems concurrently can cause conflicts, resource
+contention, and inconsistent logging behavior. Systems should use either
+rsyslog or systemd-journald, but not both simultaneously. This ensures
+predictable logging behavior and prevents potential issues with log
+duplication or loss.</p>
+</div>
+
+<div id="ensure_logrotate_activated" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure Logrotate Runs Periodically</h3>
+<div>ensure_logrotate_activated</div>
+<h4>Description</h4>
+<p>The <tt>logrotate</tt> utility allows for the automatic rotation of
+log files.  The frequency of rotation is specified in <tt>/etc/logrotate.conf</tt>,
+which triggers a cron task or a timer.  To configure logrotate to run daily, add or correct
+the following line in <tt>/etc/logrotate.conf</tt>:
+<pre># rotate log files <i>frequency</i>
+daily</pre></p>
+<h4>Rationale</h4>
+<p>Log files that are not properly rotated run the risk of growing so large
+that they fill up the /var/log partition. Valuable logging information could be lost
+if the /var/log partition becomes full.</p>
+</div>
+
+<div id="ensure_rtc_utc_configuration" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure real-time clock is set to UTC</h3>
+<div>ensure_rtc_utc_configuration</div>
+<h4>Description</h4>
+<p>Ensure that the system real-time clock (RTC) is set to Coordinated Universal Time (UTC).</p>
+<h4>Rationale</h4>
+<p>If time stamps are not consistently applied and there is no common
+time reference, it is difficult to perform forensic analysis.
+
+Time stamps generated by the operating system include date and time.
+Time is commonly expressed in UTC, a modern continuation of GMT, or
+local time with an offset from UTC.</p>
+</div>
+
+<div id="file_groupowner_var_log_syslog" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Group Who Owns /var/log/syslog File</h3>
+<div>file_groupowner_var_log_syslog</div>
+<h4>Description</h4>
+<p> To properly set the group owner of <code>/var/log/syslog</code>, run the command:
+<pre>$ sudo chgrp adm /var/log/syslog</pre>
+</p>
+<h4>Rationale</h4>
+<p>The <tt>/var/log/syslog</tt> file contains logs of error messages in
+the system and should only be accessed by authorized personnel.</p>
+</div>
+
+<div id="file_owner_var_log_syslog" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify User Who Owns /var/log/syslog File</h3>
+<div>file_owner_var_log_syslog</div>
+<h4>Description</h4>
+<p> To properly set the owner of <code>/var/log/syslog</code>, run the command:
+<pre>$ sudo chown syslog /var/log/syslog </pre>
+</p>
+<h4>Rationale</h4>
+<p>The <tt>/var/log/syslog</tt> file contains logs of error messages in
+the system and should only be accessed by authorized personnel.</p>
+</div>
+
+<div id="journald_compress" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure journald is configured to compress large log files</h3>
+<div>journald_compress</div>
+<h4>Description</h4>
+<p>The journald system can compress large log files to avoid fill the system disk.</p>
+<h4>Rationale</h4>
+<p>Log files that are not properly compressed run the risk of growing so large that they fill up the log partition. Valuable logging information could be lost if the log partition becomes full.</p>
+</div>
+
+<div id="journald_forward_to_syslog" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure journald is configured to send logs to rsyslog</h3>
+<div>journald_forward_to_syslog</div>
+<h4>Description</h4>
+<p>Data from journald may be stored in volatile memory or persisted locally.
+Utilities exist to accept remote export of journald logs.</p>
+<h4>Rationale</h4>
+<p>Storing log data on a remote host protects log integrity from local attacks. If an attacker gains root access on the local system, they could tamper with or remove log data that is stored on the local system.</p>
+</div>
+
+<div id="journald_storage" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure journald is configured to write log files to persistent disk</h3>
+<div>journald_storage</div>
+<h4>Description</h4>
+<p>The journald system may store log files in volatile memory or locally on disk.
+If the logs are only stored in volatile memory they will be lost upon reboot.</p>
+<h4>Rationale</h4>
+<p>Log files contain valuable data and need to be persistent to aid in possible investigations.</p>
+</div>
+
+<div id="logging_services_active" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure One Logging Service Is In Use</h3>
+<div>logging_services_active</div>
+<h4>Description</h4>
+<p>Ensure that a logging system is active and in use.
+<pre>
+systemctl is-active rsyslog systemd-journald
+</pre>
+The command should return at least one <tt>active</tt>.</p>
+<h4>Rationale</h4>
+<p>The system should have one active logging service to avoid conflicts
+and ensure consistency.</p>
+</div>
+
+<div id="logwatch_configured_hostlimit" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure Logwatch HostLimit Line</h3>
+<div>logwatch_configured_hostlimit</div>
+<h4>Description</h4>
+<p>On a central logserver, you want Logwatch to summarize all syslog entries,
+including those which did not originate on the logserver itself. The
+<tt>HostLimit</tt> setting tells Logwatch to report on all hosts, not just
+the one on which it is running.
+<pre> HostLimit = no </pre></p>
+<h4>Rationale</h4>
+<p></p>
+</div>
+
+<div id="logwatch_configured_splithosts" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure Logwatch SplitHosts Line</h3>
+<div>logwatch_configured_splithosts</div>
+<h4>Description</h4>
+<p>If <tt>SplitHosts</tt> is set, Logwatch will separate entries by hostname.
+This makes the report longer but significantly more usable. If it is not
+set, then Logwatch will not report which host generated a given log entry,
+and that information is almost always necessary
+<pre> SplitHosts = yes </pre></p>
+<h4>Rationale</h4>
+<p></p>
+</div>
+
+<div id="package_logrotate_installed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure logrotate is Installed</h3>
+<div>package_logrotate_installed</div>
+<h4>Description</h4>
+<p>logrotate is installed by default. The <code>logrotate</code> package can be installed with the following command: <pre> $ sudo dnf install logrotate</pre></p>
+<h4>Rationale</h4>
+<p>The logrotate package provides the logrotate services.</p>
+</div>
+
+<div id="package_rsyslog-gnutls_installed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure rsyslog-gnutls is installed</h3>
+<div>package_rsyslog-gnutls_installed</div>
+<h4>Description</h4>
+<p>TLS protocol support for rsyslog is installed.
+
+The <code>rsyslog-gnutls</code> package can be installed with the following command:
+<pre>
+$ sudo dnf install rsyslog-gnutls</pre></p>
+<h4>Rationale</h4>
+<p>The rsyslog-gnutls package provides Transport Layer Security (TLS) support
+for the rsyslog daemon, which enables secure remote logging.</p>
+</div>
+
+<div id="package_rsyslog_installed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure rsyslog is Installed</h3>
+<div>package_rsyslog_installed</div>
+<h4>Description</h4>
+<p>Rsyslog is installed by default. The <code>rsyslog</code> package can be installed with the following command: <pre> $ sudo dnf install rsyslog</pre></p>
+<h4>Rationale</h4>
+<p>The rsyslog package provides the rsyslog daemon, which provides
+system logging services.</p>
+</div>
+
+<div id="package_syslogng_installed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure syslog-ng is Installed</h3>
+<div>package_syslogng_installed</div>
+<h4>Description</h4>
+<p>syslog-ng can be installed in replacement of rsyslog.
+The <code>syslog-ng-core</code> package can be installed with the following command:
+<pre>
+$ sudo dnf install syslog-ng-core</pre></p>
+<h4>Rationale</h4>
+<p>The syslog-ng-core package provides the syslog-ng daemon, which provides
+system logging services.</p>
+</div>
+
+<div id="package_systemd-journal-remote_installed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Install systemd-journal-remote Package</h3>
+<div>package_systemd-journal-remote_installed</div>
+<h4>Description</h4>
+<p>Journald (via systemd-journal-remote ) supports the ability to send
+log events it gathers to a remote log host or to receive messages
+from remote hosts, thus enabling centralised log management.</p>
+<h4>Rationale</h4>
+<p>Storing log data on a remote host protects log integrity from local
+attacks. If an attacker gains root access on the local system, they
+could tamper with or remove log data that is stored on the local system.</p>
+</div>
+
+<div id="rsyslog_accept_remote_messages_tcp" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Enable rsyslog to Accept Messages via TCP, if Acting As Log Server</h3>
+<div>rsyslog_accept_remote_messages_tcp</div>
+<h4>Description</h4>
+<p>The <tt>rsyslog</tt> daemon should not accept remote messages
+unless the system acts as a log server.
+If the system needs to act as a central log server, add the following lines to
+<tt>/etc/rsyslog.conf</tt> to enable reception of messages over TCP:
+<pre>$ModLoad imtcp
+$InputTCPServerRun 514</pre></p>
+<h4>Rationale</h4>
+<p>If the system needs to act as a log server, this ensures that it can receive
+messages over a reliable TCP connection.</p>
+</div>
+
+<div id="rsyslog_accept_remote_messages_udp" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Enable rsyslog to Accept Messages via UDP, if Acting As Log Server</h3>
+<div>rsyslog_accept_remote_messages_udp</div>
+<h4>Description</h4>
+<p>The <tt>rsyslog</tt> daemon should not accept remote messages
+unless the system acts as a log server.
+If the system needs to act as a central log server, add the following lines to
+<tt>/etc/rsyslog.conf</tt> to enable reception of messages over UDP:
+<pre>$ModLoad imudp
+$UDPServerRun 514</pre></p>
+<h4>Rationale</h4>
+<p>Many devices, such as switches, routers, and other Unix-like systems, may only support
+the traditional syslog transmission over UDP. If the system must act as a log server,
+this enables it to receive their messages as well.</p>
+</div>
+
+<div id="rsyslog_cron_logging" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure cron Is Logging To Rsyslog</h3>
+<div>rsyslog_cron_logging</div>
+<h4>Description</h4>
+<p>Cron logging must be implemented to spot intrusions or trace
+cron job status. If <tt>cron</tt> is not logging to <tt>rsyslog</tt>, it
+can be implemented by adding the following to the <i>RULES</i> section of
+<tt>/etc/rsyslog.conf</tt>:
+If the legacy syntax is used:
+<pre>cron.*                                                  /var/log/cron</pre>
+If the modern syntax (RainerScript) is used:
+<pre>cron.* action(type="omfile" file="/var/log/cron")</pre></p>
+<h4>Rationale</h4>
+<p>Cron logging can be used to trace the successful or unsuccessful execution
+of cron jobs. It can also be used to spot intrusions into the use of the cron
+facility by unauthorized and malicious users.</p>
+</div>
+
+<div id="rsyslog_encrypt_offload_actionsendstreamdriverauthmode" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure Rsyslog Authenticates Off-Loaded Audit Records</h3>
+<div>rsyslog_encrypt_offload_actionsendstreamdriverauthmode</div>
+<h4>Description</h4>
+<p>Rsyslogd is a system utility providing support for message logging. Support
+for both internet and UNIX domain sockets enables this utility to support both local
+and remote logging.  Couple this utility with <tt>gnutls</tt> (which is a secure communications
+library implementing the SSL, TLS and DTLS protocols), and you have a method to securely
+encrypt and off-load auditing.
+
+When using <tt>rsyslogd</tt> to off-load logs the remote system must be authenticated.
+
+Set the following configuration option in /etc/rsyslog.conf or in a file in /etc/rsyslog.d (using legacy syntax):
+<pre>$ActionSendStreamDriverAuthMode x509/name</pre>
+Alternatively, use the RainerScript syntax:
+<pre>action(type="omfwd" Target="some.example.com" StreamDriverAuthMode="x509/name")</pre></p>
+<h4>Rationale</h4>
+<p>The audit records generated by Rsyslog contain valuable information regarding system
+configuration, user authentication, and other such information. Audit records should be
+protected from unauthorized access.</p>
+</div>
+
+<div id="rsyslog_encrypt_offload_actionsendstreamdrivermode" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure Rsyslog Encrypts Off-Loaded Audit Records</h3>
+<div>rsyslog_encrypt_offload_actionsendstreamdrivermode</div>
+<h4>Description</h4>
+<p>Rsyslogd is a system utility providing support for message logging. Support
+for both internet and UNIX domain sockets enables this utility to support both local
+and remote logging.  Couple this utility with <tt>gnutls</tt> (which is a secure communications
+library implementing the SSL, TLS and DTLS protocols), and you have a method to securely
+encrypt and off-load auditing.
+
+When using <tt>rsyslogd</tt> to off-load logs off a encryption system must be used.
+
+Set the following configuration option in /etc/rsyslog.conf or in a file in /etc/rsyslog.d (using legacy syntax):
+<pre>$ActionSendStreamDriverMode 1</pre>
+
+Alternatively, use the RainerScript syntax:
+<pre>action(type="omfwd" ... StreamDriverMode="1")</pre></p>
+<h4>Rationale</h4>
+<p>The audit records generated by Rsyslog contain valuable information regarding system
+configuration, user authentication, and other such information. Audit records should be
+protected from unauthorized access.</p>
+</div>
+
+<div id="rsyslog_encrypt_offload_defaultnetstreamdriver" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure Rsyslog Encrypts Off-Loaded Audit Records</h3>
+<div>rsyslog_encrypt_offload_defaultnetstreamdriver</div>
+<h4>Description</h4>
+<p>Rsyslogd is a system utility providing support for message logging. Support
+for both internet and UNIX domain sockets enables this utility to support both local
+and remote logging.  Couple this utility with <tt>gnutls</tt> (which is a secure communications
+library implementing the SSL, TLS and DTLS protocols), and you have a method to securely
+encrypt and off-load auditing.
+
+When using <tt>rsyslogd</tt> to off-load logs off an encryption system must be used.
+
+Set the following configuration option in /etc/rsyslog.conf or in a file in /etc/rsyslog.d (using legacy syntax):
+<pre>$DefaultNetstreamDriver gtls</pre>
+
+Alternatively, use the RainerScript syntax:
+<pre>global(DefaultNetstreamDriver="gtls")</pre></p>
+<h4>Rationale</h4>
+<p>The audit records generated by Rsyslog contain valuable information regarding system
+configuration, user authentication, and other such information. Audit records should be
+protected from unauthorized access.</p>
+</div>
+
+<div id="rsyslog_filecreatemode" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure rsyslog Default File Permissions Configured</h3>
+<div>rsyslog_filecreatemode</div>
+<h4>Description</h4>
+<p>rsyslog will create logfiles that do not already exist on the system.
+This settings controls what permissions will be applied to these newly
+created files.</p>
+<h4>Rationale</h4>
+<p>It is important to ensure that log files have the correct permissions
+to ensure that sensitive data is archived and protected.</p>
+</div>
+
+<div id="rsyslog_files_groupownership" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure Log Files Are Owned By Appropriate Group</h3>
+<div>rsyslog_files_groupownership</div>
+<h4>Description</h4>
+<p>The group-owner of all log files written by
+<tt>rsyslog</tt> should be <tt>root</tt>.
+These log files are determined by the second part of each Rule line in
+<tt>/etc/rsyslog.conf</tt> and typically all appear in <tt>/var/log</tt>.
+For each log file <i>LOGFILE</i> referenced in <tt>/etc/rsyslog.conf</tt>,
+run the following command to inspect the file's group owner:
+<pre>$ ls -l <i>LOGFILE</i></pre>
+If the owner is not <tt>root</tt>,
+run the following command to
+correct this:
+<pre>$ sudo chgrp root <i>LOGFILE</i></pre></p>
+<h4>Rationale</h4>
+<p>The log files generated by rsyslog contain valuable information regarding system
+configuration, user authentication, and other such information. Log files should be
+protected from unauthorized access.</p>
+</div>
+
+<div id="rsyslog_files_ownership" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure Log Files Are Owned By Appropriate User</h3>
+<div>rsyslog_files_ownership</div>
+<h4>Description</h4>
+<p>The owner of all log files written by
+<tt>rsyslog</tt> should be
+
+<tt>root</tt>.
+
+These log files are determined by the second part of each Rule line in
+<tt>/etc/rsyslog.conf</tt> and typically all appear in <tt>/var/log</tt>.
+For each log file <i>LOGFILE</i> referenced in <tt>/etc/rsyslog.conf</tt>,
+run the following command to inspect the file's owner:
+<pre>$ ls -l <i>LOGFILE</i></pre>
+If the owner is not
+
+<tt>root</tt>,
+
+run the following command to
+correct this:
+
+<pre>$ sudo chown root <i>LOGFILE</i></pre></p>
+<h4>Rationale</h4>
+<p>The log files generated by rsyslog contain valuable information regarding system
+configuration, user authentication, and other such information. Log files should be
+protected from unauthorized access.</p>
+</div>
+
+<div id="rsyslog_files_permissions" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure System Log Files Have Correct Permissions</h3>
+<div>rsyslog_files_permissions</div>
+<h4>Description</h4>
+<p>The file permissions for all log files written by <tt>rsyslog</tt> should
+be set to 640, or more restrictive. These log files are determined by the
+second part of each Rule line in <tt>/etc/rsyslog.conf</tt> and typically
+all appear in <tt>/var/log</tt>. For each log file <i>LOGFILE</i>
+referenced in <tt>/etc/rsyslog.conf</tt>, run the following command to
+inspect the file's permissions:
+<pre>$ ls -l <i>LOGFILE</i></pre>
+If the permissions are not 640 or more restrictive, run the following
+command to correct this:
+<pre>$ sudo chmod 640 <i>LOGFILE</i></pre>"</p>
+<h4>Rationale</h4>
+<p>Log files can contain valuable information regarding system
+configuration. If the system log files are not protected unauthorized
+users could change the logged data, eliminating their forensic value.</p>
+</div>
+
+<div id="rsyslog_logging_configured" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure logging is configured</h3>
+<div>rsyslog_logging_configured</div>
+<h4>Description</h4>
+<p>The <tt>/etc/rsyslog.conf</tt> and <tt>/etc/rsyslog.d/*.conf</tt> files
+specifies rules for logging and which files are to be used to log certain
+classes of messages.</p>
+<h4>Rationale</h4>
+<p>A great deal of important security-related information is sent via
+rsyslog (e.g., successful and failed su attempts, failed login attempts,
+root login attempts, etc.).</p>
+</div>
+
+<div id="rsyslog_nolisten" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure rsyslog Does Not Accept Remote Messages Unless Acting As Log Server</h3>
+<div>rsyslog_nolisten</div>
+<h4>Description</h4>
+<p>The <tt>rsyslog</tt> daemon should not accept remote messages unless the system acts as a log
+server. To ensure that it is not listening on the network, ensure any of the following lines
+are <i>not</i> found in <tt>rsyslog</tt> configuration files.
+
+If using legacy syntax:
+<pre>$ModLoad imtcp
+$InputTCPServerRun <i>port</i>
+$ModLoad imudp
+$UDPServerRun <i>port</i>
+$ModLoad imrelp
+$InputRELPServerRun <i>port</i></pre>
+
+If using RainerScript syntax:
+<pre>module(load="imtcp")
+module(load="imudp")
+input(type="imtcp" port="514")
+input(type="imudp" port="514")
+</pre></p>
+<h4>Rationale</h4>
+<p>Any process which receives messages from the network incurs some risk of receiving malicious
+messages. This risk can be eliminated for rsyslog by configuring it not to listen on the
+network.</p>
+</div>
+
+<div id="rsyslog_remote_access_monitoring" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure remote access methods are monitored in Rsyslog</h3>
+<div>rsyslog_remote_access_monitoring</div>
+<h4>Description</h4>
+<p>Logging of remote access methods must be implemented to help identify cyber
+attacks and ensure ongoing compliance with remote access policies are being
+audited and upheld. An examples of a remote access method is the use of the
+Remote Desktop Protocol (RDP) from an external, non-organization controlled
+network. The <tt>/etc/rsyslog.conf</tt> or
+<tt>/etc/rsyslog.d/*.conf</tt> file should contain a match for the following
+selectors: <tt>auth.*</tt>, <tt>authpriv.*</tt>, and <tt>daemon.*</tt>. If
+not, use the following as an example configuration:
+<code>
+    auth.*;authpriv.*                              /var/log/secure
+    daemon.*                                       /var/log/messages
+</code></p>
+<h4>Rationale</h4>
+<p>Logging remote access methods can be used to trace the decrease the risks
+associated with remote user access management. It can also be used to spot
+cyber attacks and ensure ongoing compliance with organizational policies
+surrounding the use of remote access methods.</p>
+</div>
+
+<div id="rsyslog_remote_loghost" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure Logs Sent To Remote Host</h3>
+<div>rsyslog_remote_loghost</div>
+<h4>Description</h4>
+<p>To configure rsyslog to send logs to a remote log server,
+open <tt>/etc/rsyslog.conf</tt> and read and understand the last section of the file,
+which describes the multiple directives necessary to activate remote
+logging.
+Along with these other directives, the system can be configured
+to forward its logs to a particular log server by
+adding or correcting one of the following lines,
+substituting <tt><i><tt>$rsyslog_remote_loghost_address</tt></i></tt> appropriately.
+The choice of protocol depends on the environment of the system;
+although TCP and RELP provide more reliable message delivery,
+they may not be supported in all environments.
+<br />
+To use UDP for log message delivery:
+<pre>*.* @<i><tt>$rsyslog_remote_loghost_address</tt></i></pre>
+<br />
+Or in RainerScript:
+<pre>*.* action(type="omfwd" ... target="<i><tt>$rsyslog_remote_loghost_address</tt></i>" protocol="udp")</pre>
+<br />
+To use TCP for log message delivery:
+<pre>*.* @@<i><tt>$rsyslog_remote_loghost_address</tt></i></pre>
+<br />
+Or in RainerScript:
+<pre>*.* action(type="omfwd" ... target="<i><tt>$rsyslog_remote_loghost_address</tt></i>" protocol="tcp")</pre>
+<br />
+To use RELP for log message delivery:
+<pre>*.* :omrelp:<i><tt>$rsyslog_remote_loghost_address</tt></i></pre>
+<br />
+Or in RainerScript:
+<pre>*.* action(type="omfwd" ... target="<i><tt>$rsyslog_remote_loghost_address</tt></i>" protocol="relp")</pre>
+<br />
+There must be a resolvable DNS CNAME or Alias record set to "<tt>$rsyslog_remote_loghost_address</tt>" for logs to be sent correctly to the centralized logging utility.</p>
+<h4>Rationale</h4>
+<p>A log server (loghost) receives syslog messages from one or more
+systems. This data can be used as an additional log source in the event a
+system is compromised and its local logs are suspect. Forwarding log messages
+to a remote loghost also provides system administrators with a centralized
+place to view the status of multiple hosts within the enterprise.</p>
+</div>
+
+<div id="rsyslog_remote_tls" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure TLS for rsyslog remote logging</h3>
+<div>rsyslog_remote_tls</div>
+<h4>Description</h4>
+<p>Configure <tt>rsyslog</tt> to use Transport Layer
+Security (TLS) support for logging to remote server
+for the Forwarding Output Module in <tt>/etc/rsyslog.conf</tt>
+using action. You can use the following command:
+<pre>echo 'action(type="omfwd" protocol="tcp" Target="&lt;remote system>" port="6514"
+    StreamDriver="gtls" StreamDriverMode="1" StreamDriverAuthMode="x509/name" streamdriver.CheckExtendedKeyPurpose="on")' >> /etc/rsyslog.conf
+</pre>
+Replace the <tt>&lt;remote system></tt> in the above command with an IP address or a host name of the remote logging server.</p>
+<h4>Rationale</h4>
+<p>For protection of data being logged, the connection to the
+remote logging server needs to be authenticated and encrypted.</p>
+</div>
+
+<div id="rsyslog_remote_tls_cacert" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure CA certificate for rsyslog remote logging</h3>
+<div>rsyslog_remote_tls_cacert</div>
+<h4>Description</h4>
+<p>Configure CA certificate for <tt>rsyslog</tt> logging
+to remote server using Transport Layer Security (TLS)
+using correct path for the <tt>DefaultNetstreamDriverCAFile</tt>
+global option in <tt>/etc/rsyslog.conf</tt>, for example with the following command:
+<pre>echo 'global(DefaultNetstreamDriverCAFile="/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem")' >> /etc/rsyslog.conf</pre>
+Replace the <tt>/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem</tt> in the above command with the path to the file with CA certificate generated for the purpose of remote logging.</p>
+<h4>Rationale</h4>
+<p>The CA certificate needs to be set or <tt>rsyslog.service</tt>
+fails to start with
+<pre>error: ca certificate is not set, cannot continue</pre></p>
+</div>
+
+<div id="service_rsyslog_enabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Enable rsyslog Service</h3>
+<div>service_rsyslog_enabled</div>
+<h4>Description</h4>
+<p>The <tt>rsyslog</tt> service provides syslog-style logging by default on Red Hat Enterprise Linux 10.
+
+The <code>rsyslog</code> service can be enabled with the following command:
+<pre>$ sudo systemctl enable rsyslog.service</pre></p>
+<h4>Rationale</h4>
+<p>The <tt>rsyslog</tt> service must be running in order to provide
+logging services, which are essential to system administration.</p>
+</div>
+
+<div id="service_syslogng_enabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Enable syslog-ng Service</h3>
+<div>service_syslogng_enabled</div>
+<h4>Description</h4>
+<p>The <tt>syslog-ng</tt> service (in replacement of rsyslog) provides syslog-style logging by default on Debian.
+
+The <code>syslog-ng</code> service can be enabled with the following command:
+<pre>$ sudo systemctl enable syslog-ng.service</pre></p>
+<h4>Rationale</h4>
+<p>The <tt>syslog-ng</tt> service must be running in order to provide
+logging services, which are essential to system administration.</p>
+</div>
+
+<div id="service_systemd-journald_enabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Enable systemd-journald Service</h3>
+<div>service_systemd-journald_enabled</div>
+<h4>Description</h4>
+<p>The <tt>systemd-journald</tt> service is an essential component of
+systemd.
+
+The <code>systemd-journald</code> service can be enabled with the following command:
+<pre>$ sudo systemctl enable systemd-journald.service</pre></p>
+<h4>Rationale</h4>
+<p>In the event of a system failure, Red Hat Enterprise Linux 10 must preserve any information necessary to determine cause of failure and any information necessary to return to operations with least disruption to system processes.</p>
+</div>
+
+<div id="service_systemd-journal-upload_enabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Enable systemd-journal-upload Service</h3>
+<div>service_systemd-journal-upload_enabled</div>
+<h4>Description</h4>
+<p>The <tt>systemd-journal-upload</tt> service is part of the <tt>systemd-journal-remote</tt> package
+and enables centralized logging by uploading local systemd journal entries to a remote log
+server via HTTPS. This service acts as a client that pushes journal data to a remote host
+running the <tt>systemd-journal-remote</tt> receiver service.
+
+The <code>systemd-journal-upload</code> service can be enabled with the following command:
+<pre>$ sudo systemctl enable systemd-journal-upload.service</pre></p>
+<h4>Rationale</h4>
+<p>Centralized logging through <tt>systemd-journal-upload</tt> is essential for security monitoring,
+incident response, and compliance requirements. Storing log data on a remote host protects log
+integrity from local attacks. If an attacker gains root access on the local system, they could
+tamper with or remove log data stored locally to hide their activities. Remote logging ensures
+that audit trails remain intact even if the local system is compromised. Additionally,
+centralized logs facilitate correlation of events across multiple systems, enabling better
+detection of distributed attacks and security incidents.</p>
+</div>
+
+<div id="socket_systemd-journal-remote_disabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable systemd-journal-remote Socket</h3>
+<div>socket_systemd-journal-remote_disabled</div>
+<h4>Description</h4>
+<p>Journald supports the ability to receive messages from remote hosts,
+thus acting as a log server. Clients should not receive data from
+other hosts.
+NOTE:
+    The same package, systemd-journal-remote , is used for both sending
+    logs to remote hosts and receiving incoming logs.
+    With regards to receiving logs, there are two Systemd unit files;
+    systemd-journal-remote.socket and systemd-journal-remote.service.</p>
+<h4>Rationale</h4>
+<p>If a client is configured to also receive data, thus turning it into
+a server, the client system is acting outside it's operational boundary.</p>
+</div>
+
+<div id="systemd_journal_upload_url" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure systemd-journal-upload URL</h3>
+<div>systemd_journal_upload_url</div>
+<h4>Description</h4>
+<p>Red Hat Enterprise Linux 10 must offload rsyslog messages for networked systems in real time and
+offload standalone systems at least weekly</p>
+<h4>Rationale</h4>
+<p>Information stored in one location is vulnerable to accidental or incidental deletion or alteration.
+Offloading is a common process in information systems with limited audit storage capacity</p>
+</div>
+
+<div id="systemd_journal_upload_server_tls" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure systemd-journal-upload TLS parameters: ServerKeyFile, ServerCertificateFile and TrustedCertificateFile</h3>
+<div>systemd_journal_upload_server_tls</div>
+<h4>Description</h4>
+<p>Red Hat Enterprise Linux 10 must offload rsyslog messages for networked systems in real time and
+offload standalone systems at least weekly</p>
+<h4>Rationale</h4>
+<p>Information stored in one location is vulnerable to accidental or incidental deletion or alteration.
+Offloading is a common process in information systems with limited audit storage capacity</p>
+</div>
+
+<div id="timer_logrotate_enabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Enable logrotate Timer</h3>
+<div>timer_logrotate_enabled</div>
+<h4>Description</h4>
+<p>
+The <code>logrotate</code> timer can be enabled with the following command:
+<pre>$ sudo systemctl enable logrotate.timer</pre></p>
+<h4>Rationale</h4>
+<p>Log files that are not properly rotated run the risk of growing so large
+that they fill up the /var/log partition. Valuable logging information could be lost
+if the /var/log partition becomes full.</p>
+</div>
+
+
+
+
+</body>
+</html>

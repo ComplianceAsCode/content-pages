@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'systemd'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'systemd'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>systemd</li>
+
+<li>systemd-journal-remote</li>
+
+<li>systemd-timesyncd</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<ul>
+
+<li>journald</li>
+
+</ul>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#coredump_disable_backtraces">coredump_disable_backtraces</a></li>
+
+<li><a href="#coredump_disable_storage">coredump_disable_storage</a></li>
+
+<li><a href="#dir_permissions_system_journal">dir_permissions_system_journal</a></li>
+
+<li><a href="#dir_owner_system_journal">dir_owner_system_journal</a></li>
+
+<li><a href="#dir_groupowner_system_journal">dir_groupowner_system_journal</a></li>
+
+<li><a href="#disable_ctrlaltdel_burstaction">disable_ctrlaltdel_burstaction</a></li>
+
+<li><a href="#disable_ctrlaltdel_reboot">disable_ctrlaltdel_reboot</a></li>
+
+<li><a href="#ensure_journald_and_rsyslog_not_active_together">ensure_journald_and_rsyslog_not_active_together</a></li>
+
+<li><a href="#file_groupowner_etc_crypttab">file_groupowner_etc_crypttab</a></li>
+
+<li><a href="#file_groupowner_journalctl">file_groupowner_journalctl</a></li>
+
+<li><a href="#file_groupowner_system_journal">file_groupowner_system_journal</a></li>
+
+<li><a href="#file_owner_etc_crypttab">file_owner_etc_crypttab</a></li>
+
+<li><a href="#file_owner_journalctl">file_owner_journalctl</a></li>
+
+<li><a href="#file_owner_system_journal">file_owner_system_journal</a></li>
+
+<li><a href="#file_permissions_etc_crypttab">file_permissions_etc_crypttab</a></li>
+
+<li><a href="#file_permissions_journalctl">file_permissions_journalctl</a></li>
+
+<li><a href="#file_permissions_system_journal">file_permissions_system_journal</a></li>
+
+<li><a href="#journald_compress">journald_compress</a></li>
+
+<li><a href="#journald_forward_to_syslog">journald_forward_to_syslog</a></li>
+
+<li><a href="#journald_disable_forward_to_syslog">journald_disable_forward_to_syslog</a></li>
+
+<li><a href="#journald_storage">journald_storage</a></li>
+
+<li><a href="#logging_services_active">logging_services_active</a></li>
+
+<li><a href="#logind_session_timeout">logind_session_timeout</a></li>
+
+<li><a href="#package_systemd-journal-remote_installed">package_systemd-journal-remote_installed</a></li>
+
+<li><a href="#package_timesyncd_installed">package_timesyncd_installed</a></li>
+
+<li><a href="#package_timesyncd_removed">package_timesyncd_removed</a></li>
+
+<li><a href="#require_emergency_target_auth">require_emergency_target_auth</a></li>
+
+<li><a href="#service_debug-shell_disabled">service_debug-shell_disabled</a></li>
+
+<li><a href="#service_systemd-coredump_disabled">service_systemd-coredump_disabled</a></li>
+
+<li><a href="#service_systemd-journald_enabled">service_systemd-journald_enabled</a></li>
+
+<li><a href="#service_systemd-journal-upload_enabled">service_systemd-journal-upload_enabled</a></li>
+
+<li><a href="#service_timesyncd_configured">service_timesyncd_configured</a></li>
+
+<li><a href="#service_timesyncd_root_distance_configured">service_timesyncd_root_distance_configured</a></li>
+
+<li><a href="#service_timesyncd_enabled">service_timesyncd_enabled</a></li>
+
+<li><a href="#service_timesyncd_disabled">service_timesyncd_disabled</a></li>
+
+<li><a href="#socket_systemd-journal-remote_disabled">socket_systemd-journal-remote_disabled</a></li>
+
+<li><a href="#systemd_tmp_mount_enabled">systemd_tmp_mount_enabled</a></li>
+
+<li><a href="#systemd_journal_upload_server_tls">systemd_journal_upload_server_tls</a></li>
+
+<li><a href="#systemd_journal_upload_url">systemd_journal_upload_url</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="coredump_disable_backtraces" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable core dump backtraces</h3>
+<div>coredump_disable_backtraces</div>
+<h4>Description</h4>
+<p>The <tt>ProcessSizeMax</tt> option in <tt>[Coredump]</tt> section
+of <tt>/etc/systemd/coredump.conf</tt> or in a drop-in file under
+<tt>/etc/systemd/coredump.conf.d/</tt> specifies the maximum size in bytes
+of a core which will be processed. Core dumps exceeding this size may be
+stored, but the backtrace will not be generated.</p>
+<h4>Rationale</h4>
+<p>A core dump includes a memory image taken at the time the operating system
+terminates an application. The memory image could contain sensitive data
+and is generally useful only for developers or system operators trying to
+debug problems.
+
+Enabling core dumps on production systems is not recommended,
+however there may be overriding operational requirements to enable advanced
+debugging. Permitting temporary enablement of core dumps during such situations
+should be reviewed through local needs and policy.</p>
+</div>
+
+<div id="coredump_disable_storage" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable storing core dump</h3>
+<div>coredump_disable_storage</div>
+<h4>Description</h4>
+<p>The <tt>Storage</tt> option in <tt>[Coredump]</tt> section
+of <tt>/etc/systemd/coredump.conf</tt> or a drop-in file in
+<tt>/etc/systemd/coredump.conf.d/*.conf</tt>
+can be set to <tt>none</tt> to disable storing core dumps permanently.</p>
+<h4>Rationale</h4>
+<p>A core dump includes a memory image taken at the time the operating system
+terminates an application. The memory image could contain sensitive data
+and is generally useful only for developers or system operators trying to
+debug problems. Enabling core dumps on production systems is not recommended,
+however there may be overriding operational requirements to enable advanced
+debugging. Permitting temporary enablement of core dumps during such situations
+should be reviewed through local needs and policy.</p>
+</div>
+
+<div id="dir_permissions_system_journal" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Permissions on the system journal directories</h3>
+<div>dir_permissions_system_journal</div>
+<h4>Description</h4>
+<p>Verify the /run/log/journal and /var/log/journal directories have
+permissions set to "2750" or less permissive by using the following command:
+<pre>
+$ sudo find /run/log/journal /var/log/journal  -type d -exec stat -c "%n %a" {} \;
+</pre>
+If any output returned has a permission set greater than "2750", this is a finding.</p>
+<h4>Rationale</h4>
+<p>Any operating system providing too much information in error messages risks
+compromising the data and security of the structure, and content of error messages
+needs to be carefully considered by the organization.</p>
+</div>
+
+<div id="dir_owner_system_journal" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify owner of system journal directories</h3>
+<div>dir_owner_system_journal</div>
+<h4>Description</h4>
+<p>Verify the /run/log/journal and /var/log/journal directories are owned by
+"root" by using the following command:
+<pre>
+$ sudo find /run/log/journal /var/log/journal  -type d -exec stat -c "%n %U" {} \;
+</pre>
+If any output returned is not owned by "root", this is a finding.</p>
+<h4>Rationale</h4>
+<p>Only authorized personnel should be aware of errors and the details of the errors.
+Error messages are an indicator of an organization's operational state or can identify
+the operating system or platform. Additionally, personally identifiable information
+(PII) and operational information must not be revealed through error messages to
+unauthorized personnel or their designated representatives.</p>
+</div>
+
+<div id="dir_groupowner_system_journal" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify group-owner of system journal directories</h3>
+<div>dir_groupowner_system_journal</div>
+<h4>Description</h4>
+<p>Verify the /run/log/journal and /var/log/journal directories are group-owned by
+"systemd-journal" by using the following command:
+<pre>
+$ sudo find /run/log/journal /var/log/journal  -type d -exec stat -c "%n %G" {} \;
+</pre>
+If any output returned is not owned by "systemd-journal", this is a finding.</p>
+<h4>Rationale</h4>
+<p>Only authorized personnel should be aware of errors and the details of the errors.
+Error messages are an indicator of an organization's operational state or can identify
+the operating system or platform. Additionally, personally identifiable information
+(PII) and operational information must not be revealed through error messages to
+unauthorized personnel or their designated representatives.</p>
+</div>
+
+<div id="disable_ctrlaltdel_burstaction" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable Ctrl-Alt-Del Burst Action</h3>
+<div>disable_ctrlaltdel_burstaction</div>
+<h4>Description</h4>
+<p>By default, <tt>SystemD</tt> will reboot the system if the <tt>Ctrl-Alt-Del</tt>
+key sequence is pressed Ctrl-Alt-Delete more than 7 times in 2 seconds.
+<br /><br />
+To configure the system to ignore the <tt>CtrlAltDelBurstAction</tt>
+
+setting, add or modify the following to <tt>/etc/systemd/system.conf</tt>:
+<pre>CtrlAltDelBurstAction=none</pre></p>
+<h4>Rationale</h4>
+<p>A locally logged-in user who presses Ctrl-Alt-Del, when at the console,
+can reboot the system. If accidentally pressed, as could happen in
+the case of mixed OS environment, this can create the risk of short-term
+loss of availability of systems due to unintentional reboot.</p>
+</div>
+
+<div id="disable_ctrlaltdel_reboot" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable Ctrl-Alt-Del Reboot Activation</h3>
+<div>disable_ctrlaltdel_reboot</div>
+<h4>Description</h4>
+<p>By default, <tt>SystemD</tt> will reboot the system if the <tt>Ctrl-Alt-Del</tt>
+key sequence is pressed.
+<br /><br />
+To configure the system to ignore the <tt>Ctrl-Alt-Del</tt> key sequence from the
+
+command line instead of rebooting the system, do either of the following:
+<pre>ln -sf /dev/null /etc/systemd/system/ctrl-alt-del.target</pre>
+or
+<pre>systemctl mask ctrl-alt-del.target</pre>
+<br /><br />
+Do not simply delete the <tt>/usr/lib/systemd/system/ctrl-alt-del.service</tt> file,
+as this file may be restored during future system updates.</p>
+<h4>Rationale</h4>
+<p>A locally logged-in user who presses Ctrl-Alt-Del, when at the console,
+can reboot the system. If accidentally pressed, as could happen in
+the case of mixed OS environment, this can create the risk of short-term
+loss of availability of systems due to unintentional reboot.</p>
+</div>
+
+<div id="ensure_journald_and_rsyslog_not_active_together" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure journald and rsyslog Are Not Active Together</h3>
+<div>ensure_journald_and_rsyslog_not_active_together</div>
+<h4>Description</h4>
+<p>Ensure that exactly one logging system is active. Running both rsyslog and
+systemd-journald simultaneously can lead to duplicate logging, resource
+contention, and configuration conflicts. Running neither service means no
+logging is occurring, which is also a violation.
+<pre>
+systemctl is-active rsyslog systemd-journald
+</pre>
+The command should return exactly one <tt>active</tt> service. Both services
+should not be active at the same time, and at least one must be active.</p>
+<h4>Rationale</h4>
+<p>Running multiple logging systems concurrently can cause conflicts, resource
+contention, and inconsistent logging behavior. Systems should use either
+rsyslog or systemd-journald, but not both simultaneously. This ensures
+predictable logging behavior and prevents potential issues with log
+duplication or loss.</p>
+</div>
+
+<div id="file_groupowner_etc_crypttab" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Group Who Owns /etc/crypttab File</h3>
+<div>file_groupowner_etc_crypttab</div>
+<h4>Description</h4>
+<p> To properly set the group owner of <code>/etc/crypttab</code>, run the command:
+<pre>$ sudo chgrp root /etc/crypttab</pre>
+</p>
+<h4>Rationale</h4>
+<p>The ownership of the /etc/crypttab file by the root group is important
+because this file hosts encrypted block devices configuration. Protection
+of this file is critical for system security. Assigning the ownership to
+root ensures exclusive control of the encrypted block devices
+configuration.</p>
+</div>
+
+<div id="file_groupowner_journalctl" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Groupowner on the journalctl command</h3>
+<div>file_groupowner_journalctl</div>
+<h4>Description</h4>
+<p>Verify that the "journalctl" command is group-owned by "root" by
+using the following command:
+<pre>
+$ sudo find /usr/bin/journalctl -exec stat -c "%n %G" {} \;
+</pre>
+If any output returned is not owned by "root", this is a finding.</p>
+<h4>Rationale</h4>
+<p>Only authorized personnel should be aware of errors and the details of the errors.
+Error messages are an indicator of an organization's operational state or can
+identify the operating system or platform. Additionally, personally identifiable
+information (PII) and operational information must not be revealed through error
+messages to unauthorized personnel or their designated representatives.</p>
+</div>
+
+<div id="file_groupowner_system_journal" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Group Who Owns the system journal</h3>
+<div>file_groupowner_system_journal</div>
+<h4>Description</h4>
+<p>'
+To properly set the group owner of <code>/var/log/journal/.*/system.journal</code>, run the command:
+
+  <pre>$ sudo chgrp systemd-journal /var/log/journal/.*/system.journal</pre>
+  
+'</p>
+<h4>Rationale</h4>
+<p>RHCOS must protect system journal file from any type of unauthorized access by setting file group ownership.</p>
+</div>
+
+<div id="file_owner_etc_crypttab" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify User Who Owns /etc/crypttab File</h3>
+<div>file_owner_etc_crypttab</div>
+<h4>Description</h4>
+<p> To properly set the owner of <code>/etc/crypttab</code>, run the command:
+<pre>$ sudo chown root /etc/crypttab </pre>
+</p>
+<h4>Rationale</h4>
+<p>The ownership of the /etc/crypttab file by the root user is important
+because this file hosts encrypted block devices configuration. Protection
+of this file is critical for system security. Assigning the ownership to
+root ensures exclusive control of the encrypted block devices
+configuration.</p>
+</div>
+
+<div id="file_owner_journalctl" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Owner on the journalctl Command</h3>
+<div>file_owner_journalctl</div>
+<h4>Description</h4>
+<p>Verify that the "journalctl" command is owned by "root" by
+using the following command:
+<pre>
+$ sudo find /usr/bin/journalctl -exec stat -c "%n %U" {} \;
+</pre>
+If any output returned is not owned by "root", this is a finding.</p>
+<h4>Rationale</h4>
+<p>Only authorized personnel should be aware of errors and the details of the errors.
+Error messages are an indicator of an organization's operational state or can
+identify the operating system or platform. Additionally, personally identifiable
+information (PII) and operational information must not be revealed through error
+messages to unauthorized personnel or their designated representatives.</p>
+</div>
+
+<div id="file_owner_system_journal" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Owner on the system journal</h3>
+<div>file_owner_system_journal</div>
+<h4>Description</h4>
+<p>'
+To properly set the owner of <code>/var/log/journal/.*/system.journal</code>, run the command:
+
+  <pre>$ sudo chown root /var/log/journal/.*/system.journal </pre>
+  
+'</p>
+<h4>Rationale</h4>
+<p>RHCOS must protect system  journal file from any type of unauthorized access by setting file ownership</p>
+</div>
+
+<div id="file_permissions_etc_crypttab" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Permissions On /etc/crypttab File</h3>
+<div>file_permissions_etc_crypttab</div>
+<h4>Description</h4>
+<p> To properly set the permissions of <code>/etc/crypttab</code>, run the command: <pre>$ sudo chmod 0600 /etc/crypttab</pre></p>
+<h4>Rationale</h4>
+<p>Setting correct permissions on the /etc/crypttab file is important
+because this file hosts encrypted block devices configuration. Protection
+of this file is critical for system security. Assigning the ownership to
+root ensures exclusive control of the encrypted block devices
+configuration.</p>
+</div>
+
+<div id="file_permissions_journalctl" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Permissions on the journal command</h3>
+<div>file_permissions_journalctl</div>
+<h4>Description</h4>
+<p>Verify that the "journalctl" command has a permission set of "740" by
+using the following command:
+<pre>
+ $ sudo find /usr/bin/journalctl -exec stat -c "%n %a" {} \;
+</pre>
+If "journalctl" is not set to "740", this is a finding.</p>
+<h4>Rationale</h4>
+<p>Any operating system providing too much information in error messages risks
+compromising the data and security of the structure, and content of error messages
+needs to be carefully considered by the organization.</p>
+</div>
+
+<div id="file_permissions_system_journal" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Permissions on the system journal</h3>
+<div>file_permissions_system_journal</div>
+<h4>Description</h4>
+<p>
+To properly set the permissions of <code>/var/log/journal/.*/system.journal</code>, run the command:
+<pre>$ sudo chmod 0640 /var/log/journal/.*/system.journal</pre></p>
+<h4>Rationale</h4>
+<p>RHCOS must protect system  journal file from any type of unauthorized access by setting file permissions.</p>
+</div>
+
+<div id="journald_compress" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure journald is configured to compress large log files</h3>
+<div>journald_compress</div>
+<h4>Description</h4>
+<p>The journald system can compress large log files to avoid fill the system disk.</p>
+<h4>Rationale</h4>
+<p>Log files that are not properly compressed run the risk of growing so large that they fill up the log partition. Valuable logging information could be lost if the log partition becomes full.</p>
+</div>
+
+<div id="journald_forward_to_syslog" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure journald is configured to send logs to rsyslog</h3>
+<div>journald_forward_to_syslog</div>
+<h4>Description</h4>
+<p>Data from journald may be stored in volatile memory or persisted locally.
+Utilities exist to accept remote export of journald logs.</p>
+<h4>Rationale</h4>
+<p>Storing log data on a remote host protects log integrity from local attacks. If an attacker gains root access on the local system, they could tamper with or remove log data that is stored on the local system.</p>
+</div>
+
+<div id="journald_disable_forward_to_syslog" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure journald ForwardToSyslog is disabled</h3>
+<div>journald_disable_forward_to_syslog</div>
+<h4>Description</h4>
+<p>Data from journald should be kept in the confines of the service and not forwarded to other services.</p>
+<h4>Rationale</h4>
+<p>If journald is the method for capturing logs, all logs of the system should be handled by journald and not forwarded to other logging mechanisms.</p>
+</div>
+
+<div id="journald_storage" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure journald is configured to write log files to persistent disk</h3>
+<div>journald_storage</div>
+<h4>Description</h4>
+<p>The journald system may store log files in volatile memory or locally on disk.
+If the logs are only stored in volatile memory they will be lost upon reboot.</p>
+<h4>Rationale</h4>
+<p>Log files contain valuable data and need to be persistent to aid in possible investigations.</p>
+</div>
+
+<div id="logging_services_active" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure One Logging Service Is In Use</h3>
+<div>logging_services_active</div>
+<h4>Description</h4>
+<p>Ensure that a logging system is active and in use.
+<pre>
+systemctl is-active rsyslog systemd-journald
+</pre>
+The command should return at least one <tt>active</tt>.</p>
+<h4>Rationale</h4>
+<p>The system should have one active logging service to avoid conflicts
+and ensure consistency.</p>
+</div>
+
+<div id="logind_session_timeout" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure Logind to terminate idle sessions after certain time of inactivity</h3>
+<div>logind_session_timeout</div>
+<h4>Description</h4>
+<p>To configure <tt>logind</tt> service to terminate inactive user sessions
+after <tt>$var_logind_session_timeout</tt> seconds, edit the file
+<tt>/etc/systemd/logind.conf</tt>. Ensure that there is a section
+<pre>[Login]</pre> which contains the configuration
+<pre>StopIdleSessionSec=<tt>$var_logind_session_timeout</tt></pre>.</p>
+<h4>Rationale</h4>
+<p>Terminating an idle session within a short time period reduces the window of
+opportunity for unauthorized personnel to take control of a management
+session enabled on the console or console port that has been let unattended.</p>
+</div>
+
+<div id="package_systemd-journal-remote_installed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Install systemd-journal-remote Package</h3>
+<div>package_systemd-journal-remote_installed</div>
+<h4>Description</h4>
+<p>Journald (via systemd-journal-remote ) supports the ability to send
+log events it gathers to a remote log host or to receive messages
+from remote hosts, thus enabling centralised log management.</p>
+<h4>Rationale</h4>
+<p>Storing log data on a remote host protects log integrity from local
+attacks. If an attacker gains root access on the local system, they
+could tamper with or remove log data that is stored on the local system.</p>
+</div>
+
+<div id="package_timesyncd_installed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Install the systemd_timesyncd Service</h3>
+<div>package_timesyncd_installed</div>
+<h4>Description</h4>
+<p>The systemd_timesyncd service should be installed.</p>
+<h4>Rationale</h4>
+<p>Time synchronization (using NTP) is required by almost all network and administrative tasks (syslog, cryptographic based services (authentication, etc.), etc.). systemd_timesyncd is a part of the systemd suite and acts as a NTP client.</p>
+</div>
+
+<div id="package_timesyncd_removed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Remove the systemd_timesyncd Service</h3>
+<div>package_timesyncd_removed</div>
+<h4>Description</h4>
+<p>The systemd_timesyncd service should not be installed.</p>
+<h4>Rationale</h4>
+<p>Inaccurate time stamps make it more difficult to correlate events
+and can lead to an inaccurate analysis. Determining the correct
+time a particular event occurred on a system is critical when
+conducting forensic analysis and investigating system events.
+Sources outside the configured acceptable allowance (drift)
+may be inaccurate.
+</p>
+</div>
+
+<div id="require_emergency_target_auth" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Require Authentication for Emergency Systemd Target</h3>
+<div>require_emergency_target_auth</div>
+<h4>Description</h4>
+<p>Emergency mode is intended as a system recovery
+method, providing a single user root access to the system
+during a failed boot sequence.
+<br /><br />
+By default, Emergency mode is protected by requiring a password and is set
+in <tt>/usr/lib/systemd/system/emergency.service</tt>.</p>
+<h4>Rationale</h4>
+<p>This prevents attackers with physical access from trivially bypassing security
+on the machine and gaining root access. Such accesses are further prevented
+by configuring the bootloader password.</p>
+</div>
+
+<div id="service_debug-shell_disabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable debug-shell SystemD Service</h3>
+<div>service_debug-shell_disabled</div>
+<h4>Description</h4>
+<p>SystemD's <tt>debug-shell</tt> service is intended to
+diagnose SystemD related boot issues with various <tt>systemctl</tt>
+commands. Once enabled and following a system reboot, the root shell
+will be available on <tt>tty9</tt> which is access by pressing
+<tt>CTRL-ALT-F9</tt>. The <tt>debug-shell</tt> service should only be used
+for SystemD related issues and should otherwise be disabled.
+<br /><br />
+By default, the <tt>debug-shell</tt> SystemD service is already disabled.
+
+The <code>debug-shell</code> service can be disabled with the following command:
+<pre>$ sudo systemctl mask --now debug-shell.service</pre></p>
+<h4>Rationale</h4>
+<p>This prevents attackers with physical access from trivially bypassing security
+on the machine through valid troubleshooting configurations and gaining root
+access when the system is rebooted.</p>
+</div>
+
+<div id="service_systemd-coredump_disabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable acquiring, saving, and processing core dumps</h3>
+<div>service_systemd-coredump_disabled</div>
+<h4>Description</h4>
+<p>The <tt>systemd-coredump.socket</tt> unit is a socket activation of
+the <tt>systemd-coredump@.service</tt> which processes core dumps.
+By masking the unit, core dump processing is disabled.</p>
+<h4>Rationale</h4>
+<p>A core dump includes a memory image taken at the time the operating system
+terminates an application. The memory image could contain sensitive data
+and is generally useful only for developers trying to debug problems.</p>
+</div>
+
+<div id="service_systemd-journald_enabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Enable systemd-journald Service</h3>
+<div>service_systemd-journald_enabled</div>
+<h4>Description</h4>
+<p>The <tt>systemd-journald</tt> service is an essential component of
+systemd.
+
+The <code>systemd-journald</code> service can be enabled with the following command:
+<pre>$ sudo systemctl enable systemd-journald.service</pre></p>
+<h4>Rationale</h4>
+<p>In the event of a system failure, Red Hat Enterprise Linux 10 must preserve any information necessary to determine cause of failure and any information necessary to return to operations with least disruption to system processes.</p>
+</div>
+
+<div id="service_systemd-journal-upload_enabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Enable systemd-journal-upload Service</h3>
+<div>service_systemd-journal-upload_enabled</div>
+<h4>Description</h4>
+<p>The <tt>systemd-journal-upload</tt> service is part of the <tt>systemd-journal-remote</tt> package
+and enables centralized logging by uploading local systemd journal entries to a remote log
+server via HTTPS. This service acts as a client that pushes journal data to a remote host
+running the <tt>systemd-journal-remote</tt> receiver service.
+
+The <code>systemd-journal-upload</code> service can be enabled with the following command:
+<pre>$ sudo systemctl enable systemd-journal-upload.service</pre></p>
+<h4>Rationale</h4>
+<p>Centralized logging through <tt>systemd-journal-upload</tt> is essential for security monitoring,
+incident response, and compliance requirements. Storing log data on a remote host protects log
+integrity from local attacks. If an attacker gains root access on the local system, they could
+tamper with or remove log data stored locally to hide their activities. Remote logging ensures
+that audit trails remain intact even if the local system is compromised. Additionally,
+centralized logs facilitate correlation of events across multiple systems, enabling better
+detection of distributed attacks and security incidents.</p>
+</div>
+
+<div id="service_timesyncd_configured" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure Systemd Timesyncd Servers</h3>
+<div>service_timesyncd_configured</div>
+<h4>Description</h4>
+<p><tt>systemd-timesyncd</tt> is a daemon that has been added for synchronizing the system clock
+across the network. The <tt>systemd-timesyncd</tt> daemon implements:
+  - Implements an SNTP client
+  - Runs with minimal privileges
+  - Saves the current clock to disk every time a new NTP sync has been acquired
+  - Is hooked up with networkd to only operate when network connectivity is available
+Add or edit server or pool lines to <tt>/etc/systemd/timesyncd.conf</tt> as appropriate:
+<pre>server &lt;remote-server&gt;</pre>
+Multiple servers may be configured.</p>
+<h4>Rationale</h4>
+<p>Configuring <tt>systemd-timesyncd</tt> ensures time synchronization is working properly.</p>
+</div>
+
+<div id="service_timesyncd_root_distance_configured" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure Systemd Timesyncd Root Distance Servers</h3>
+<div>service_timesyncd_root_distance_configured</div>
+<h4>Description</h4>
+<p><tt>systemd-timesyncd</tt> server configuration should have RootDistanceMaxSec is
+listed in accordance with local policy. This setting describes the maximum estimated
+time required for a packet to travel to the server connected.</p>
+<h4>Rationale</h4>
+<p>Configuring <tt>systemd-timesyncd</tt> RootDistanceMaxSec ensures time synchronization
+is using servers that are close enough to the client.</p>
+</div>
+
+<div id="service_timesyncd_enabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Enable systemd_timesyncd Service</h3>
+<div>service_timesyncd_enabled</div>
+<h4>Description</h4>
+<p>
+The <code>systemd_timesyncd</code> service can be enabled with the following command:
+<pre>$ sudo systemctl enable systemd_timesyncd.service</pre></p>
+<h4>Rationale</h4>
+<p>Enabling the <tt>systemd_timesyncd</tt> service ensures that this host
+uses the ntp protocol to fetch time data from a ntp server.
+Synchronizing time is essential for authentication
+services such as Kerberos, but it is also important for maintaining accurate
+logs and auditing possible security breaches.
+<br /><br />
+Additional information on Ubuntu network time protocol is
+available at
+
+    <a xmlns='http://www.w3.org/1999/xhtml' href='https://help.ubuntu.com/lts/serverguide/NTP.html.en'>https://help.ubuntu.com/lts/serverguide/NTP.html.en</a>.</p>
+</div>
+
+<div id="service_timesyncd_disabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable systemd_timesyncd Service</h3>
+<div>service_timesyncd_disabled</div>
+<h4>Description</h4>
+<p>
+The <code>systemd_timesyncd</code> service can be disabled with the following command:
+<pre>$ sudo systemctl mask --now systemd_timesyncd.service</pre></p>
+<h4>Rationale</h4>
+<p>Disabling the <tt>systemd_timesyncd</tt> service ensures that there is
+only single one time service running.
+<br /><br />
+Additional information on Ubuntu network time protocol is
+available at
+
+    <a xmlns='http://www.w3.org/1999/xhtml' href='https://ubuntu.com/server/docs/about-time-synchronisation'>https://ubuntu.com/server/docs/about-time-synchronisation</a>.</p>
+</div>
+
+<div id="socket_systemd-journal-remote_disabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable systemd-journal-remote Socket</h3>
+<div>socket_systemd-journal-remote_disabled</div>
+<h4>Description</h4>
+<p>Journald supports the ability to receive messages from remote hosts,
+thus acting as a log server. Clients should not receive data from
+other hosts.
+NOTE:
+    The same package, systemd-journal-remote , is used for both sending
+    logs to remote hosts and receiving incoming logs.
+    With regards to receiving logs, there are two Systemd unit files;
+    systemd-journal-remote.socket and systemd-journal-remote.service.</p>
+<h4>Rationale</h4>
+<p>If a client is configured to also receive data, thus turning it into
+a server, the client system is acting outside it's operational boundary.</p>
+</div>
+
+<div id="systemd_tmp_mount_enabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure tmp.mount Unit Is Enabled</h3>
+<div>systemd_tmp_mount_enabled</div>
+<h4>Description</h4>
+<p>The <tt>/tmp</tt> directory is a world-writable directory used
+for temporary file storage. This directory is managed by <tt>systemd-tmpfiles</tt>.
+Ensure that the <tt>tmp.mount</tt> systemd unit is enabled.</p>
+<h4>Rationale</h4>
+<p>The <tt>/tmp</tt> directory is used as temporary storage by many programs.
+Placing <tt>/tmp</tt> in a tmpfs filesystem enables the setting of more
+restrictive mount options, which can help protect programs which use it.
+The <tt>tmp.mount</tt> unit configures the tmpfs filesystem and ensures
+the <tt>/tmp</tt> directory is wiped during reboot.</p>
+</div>
+
+<div id="systemd_journal_upload_server_tls" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure systemd-journal-upload TLS parameters: ServerKeyFile, ServerCertificateFile and TrustedCertificateFile</h3>
+<div>systemd_journal_upload_server_tls</div>
+<h4>Description</h4>
+<p>Red Hat Enterprise Linux 10 must offload rsyslog messages for networked systems in real time and
+offload standalone systems at least weekly</p>
+<h4>Rationale</h4>
+<p>Information stored in one location is vulnerable to accidental or incidental deletion or alteration.
+Offloading is a common process in information systems with limited audit storage capacity</p>
+</div>
+
+<div id="systemd_journal_upload_url" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure systemd-journal-upload URL</h3>
+<div>systemd_journal_upload_url</div>
+<h4>Description</h4>
+<p>Red Hat Enterprise Linux 10 must offload rsyslog messages for networked systems in real time and
+offload standalone systems at least weekly</p>
+<h4>Rationale</h4>
+<p>Information stored in one location is vulnerable to accidental or incidental deletion or alteration.
+Offloading is a common process in information systems with limited audit storage capacity</p>
+</div>
+
+
+
+
+</body>
+</html>

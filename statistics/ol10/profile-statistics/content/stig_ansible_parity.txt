@@ -1,0 +1,4 @@
+xccdf_org.ssgproject.content_rule_dnf-automatic_apply_updates
+xccdf_org.ssgproject.content_rule_enable_fips_mode
+xccdf_org.ssgproject.content_rule_file_group_ownership_var_log_audit
+xccdf_org.ssgproject.content_rule_file_ownership_var_log_audit_stig

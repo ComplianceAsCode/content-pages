@@ -1,0 +1,1 @@
+xccdf_org.ssgproject.content_rule_all_apparmor_profiles_enforced

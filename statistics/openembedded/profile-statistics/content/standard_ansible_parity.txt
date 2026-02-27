@@ -1,0 +1,2 @@
+xccdf_org.ssgproject.content_rule_accounts_password_pam_retry
+xccdf_org.ssgproject.content_rule_file_permissions_unauthorized_world_writable

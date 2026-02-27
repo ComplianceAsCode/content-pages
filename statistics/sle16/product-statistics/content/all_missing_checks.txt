@@ -1,0 +1,4 @@
+xccdf_org.ssgproject.content_rule_ensure_suse_gpgkey_installed
+xccdf_org.ssgproject.content_rule_libreswan_approved_tunnels
+xccdf_org.ssgproject.content_rule_mask_nonessential_services
+xccdf_org.ssgproject.content_rule_security_patches_up_to_date

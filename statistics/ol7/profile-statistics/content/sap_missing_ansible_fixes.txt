@@ -1,0 +1,1 @@
+xccdf_org.ssgproject.content_rule_accounts_authorized_local_users_sidadm_orasid

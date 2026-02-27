@@ -1,0 +1,2 @@
+xccdf_org.ssgproject.content_rule_configure_firewalld_ports
+xccdf_org.ssgproject.content_rule_ensure_oracle_gpgkey_installed

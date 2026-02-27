@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'setup'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'setup'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>setup</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<div>None</div>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#file_groupowner_etc_group">file_groupowner_etc_group</a></li>
+
+<li><a href="#file_groupowner_etc_gshadow">file_groupowner_etc_gshadow</a></li>
+
+<li><a href="#file_groupowner_etc_motd">file_groupowner_etc_motd</a></li>
+
+<li><a href="#file_groupowner_etc_passwd">file_groupowner_etc_passwd</a></li>
+
+<li><a href="#file_groupowner_etc_shadow">file_groupowner_etc_shadow</a></li>
+
+<li><a href="#file_owner_etc_group">file_owner_etc_group</a></li>
+
+<li><a href="#file_owner_etc_gshadow">file_owner_etc_gshadow</a></li>
+
+<li><a href="#file_owner_etc_motd">file_owner_etc_motd</a></li>
+
+<li><a href="#file_owner_etc_passwd">file_owner_etc_passwd</a></li>
+
+<li><a href="#file_owner_etc_shadow">file_owner_etc_shadow</a></li>
+
+<li><a href="#file_permissions_etc_group">file_permissions_etc_group</a></li>
+
+<li><a href="#file_permissions_etc_gshadow">file_permissions_etc_gshadow</a></li>
+
+<li><a href="#file_permissions_etc_motd">file_permissions_etc_motd</a></li>
+
+<li><a href="#file_permissions_etc_passwd">file_permissions_etc_passwd</a></li>
+
+<li><a href="#file_permissions_etc_shadow">file_permissions_etc_shadow</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="file_groupowner_etc_group" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Group Who Owns group File</h3>
+<div>file_groupowner_etc_group</div>
+<h4>Description</h4>
+<p> To properly set the group owner of <code>/etc/group</code>, run the command:
+<pre>$ sudo chgrp root /etc/group</pre>
+</p>
+<h4>Rationale</h4>
+<p>The <tt>/etc/group</tt> file contains information regarding groups that are configured
+on the system. Protection of this file is important for system security.</p>
+</div>
+
+<div id="file_groupowner_etc_gshadow" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Group Who Owns gshadow File</h3>
+<div>file_groupowner_etc_gshadow</div>
+<h4>Description</h4>
+<p> To properly set the group owner of <code>/etc/gshadow</code>, run the command:
+<pre>$ sudo chgrp shadow /etc/gshadow</pre>
+</p>
+<h4>Rationale</h4>
+<p>The <tt>/etc/gshadow</tt> file contains group password hashes. Protection of this file
+is critical for system security.</p>
+</div>
+
+<div id="file_groupowner_etc_motd" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Group Ownership of Message of the Day Banner</h3>
+<div>file_groupowner_etc_motd</div>
+<h4>Description</h4>
+<p>
+To properly set the group owner of <code>/etc/motd</code>, run the command:
+
+  <pre>$ sudo chgrp root /etc/motd</pre>
+  </p>
+<h4>Rationale</h4>
+<p>Display of a standardized and approved use notification before granting
+access to the operating system ensures privacy and security notification
+verbiage used is consistent with applicable federal laws, Executive Orders,
+directives, policies, regulations, standards, and guidance.<br />
+Proper group ownership will ensure that only root user can modify the banner.</p>
+</div>
+
+<div id="file_groupowner_etc_passwd" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Group Who Owns passwd File</h3>
+<div>file_groupowner_etc_passwd</div>
+<h4>Description</h4>
+<p> To properly set the group owner of <code>/etc/passwd</code>, run the command:
+<pre>$ sudo chgrp root /etc/passwd</pre>
+</p>
+<h4>Rationale</h4>
+<p>The <tt>/etc/passwd</tt> file contains information about the users that are configured on
+the system. Protection of this file is critical for system security.</p>
+</div>
+
+<div id="file_groupowner_etc_shadow" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Group Who Owns shadow File</h3>
+<div>file_groupowner_etc_shadow</div>
+<h4>Description</h4>
+<p> To properly set the group owner of <code>/etc/shadow</code>, run the command:
+<pre>$ sudo chgrp shadow /etc/shadow</pre>
+</p>
+<h4>Rationale</h4>
+<p>The <tt>/etc/shadow</tt> file stores password hashes. Protection of this file is
+critical for system security.</p>
+</div>
+
+<div id="file_owner_etc_group" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify User Who Owns group File</h3>
+<div>file_owner_etc_group</div>
+<h4>Description</h4>
+<p> To properly set the owner of <code>/etc/group</code>, run the command:
+<pre>$ sudo chown root /etc/group </pre>
+</p>
+<h4>Rationale</h4>
+<p>The <tt>/etc/group</tt> file contains information regarding groups that are configured
+on the system. Protection of this file is important for system security.</p>
+</div>
+
+<div id="file_owner_etc_gshadow" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify User Who Owns gshadow File</h3>
+<div>file_owner_etc_gshadow</div>
+<h4>Description</h4>
+<p> To properly set the owner of <code>/etc/gshadow</code>, run the command:
+<pre>$ sudo chown root /etc/gshadow </pre>
+</p>
+<h4>Rationale</h4>
+<p>The <tt>/etc/gshadow</tt> file contains group password hashes. Protection of this file
+is critical for system security.</p>
+</div>
+
+<div id="file_owner_etc_motd" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify ownership of Message of the Day Banner</h3>
+<div>file_owner_etc_motd</div>
+<h4>Description</h4>
+<p>
+To properly set the owner of <code>/etc/motd</code>, run the command:
+
+  <pre>$ sudo chown root /etc/motd </pre>
+  </p>
+<h4>Rationale</h4>
+<p>Display of a standardized and approved use notification before granting
+access to the operating system ensures privacy and security notification
+verbiage used is consistent with applicable federal laws, Executive Orders,
+directives, policies, regulations, standards, and guidance.<br />
+Proper ownership will ensure that only root user can modify the banner.</p>
+</div>
+
+<div id="file_owner_etc_passwd" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify User Who Owns passwd File</h3>
+<div>file_owner_etc_passwd</div>
+<h4>Description</h4>
+<p> To properly set the owner of <code>/etc/passwd</code>, run the command:
+<pre>$ sudo chown root /etc/passwd </pre>
+</p>
+<h4>Rationale</h4>
+<p>The <tt>/etc/passwd</tt> file contains information about the users that are configured on
+the system. Protection of this file is critical for system security.</p>
+</div>
+
+<div id="file_owner_etc_shadow" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify User Who Owns shadow File</h3>
+<div>file_owner_etc_shadow</div>
+<h4>Description</h4>
+<p> To properly set the owner of <code>/etc/shadow</code>, run the command:
+<pre>$ sudo chown root /etc/shadow </pre>
+</p>
+<h4>Rationale</h4>
+<p>The <tt>/etc/shadow</tt> file contains the list of local
+system accounts and stores password hashes. Protection of this file is
+critical for system security. Failure to give ownership of this file
+to root provides the designated owner with access to sensitive information
+which could weaken the system security posture.</p>
+</div>
+
+<div id="file_permissions_etc_group" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Permissions on group File</h3>
+<div>file_permissions_etc_group</div>
+<h4>Description</h4>
+<p>
+To properly set the permissions of <code>/etc/group</code>, run the command:
+<pre>$ sudo chmod 0644 /etc/group</pre></p>
+<h4>Rationale</h4>
+<p>The <tt>/etc/group</tt> file contains information regarding groups that are configured
+on the system. Protection of this file is important for system security.</p>
+</div>
+
+<div id="file_permissions_etc_gshadow" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Permissions on gshadow File</h3>
+<div>file_permissions_etc_gshadow</div>
+<h4>Description</h4>
+<p>
+To properly set the permissions of <code>/etc/gshadow</code>, run the command:
+<pre>$ sudo chmod 0640 /etc/gshadow</pre></p>
+<h4>Rationale</h4>
+<p>The <tt>/etc/gshadow</tt> file contains group password hashes. Protection of this file
+is critical for system security.</p>
+</div>
+
+<div id="file_permissions_etc_motd" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify permissions on Message of the Day Banner</h3>
+<div>file_permissions_etc_motd</div>
+<h4>Description</h4>
+<p>
+To properly set the permissions of <code>/etc/motd</code>, run the command:
+<pre>$ sudo chmod 0644 /etc/motd</pre></p>
+<h4>Rationale</h4>
+<p>Display of a standardized and approved use notification before granting
+access to the operating system ensures privacy and security notification
+verbiage used is consistent with applicable federal laws, Executive Orders,
+directives, policies, regulations, standards, and guidance.<br />
+Proper permissions will ensure that only root user can modify the banner.</p>
+</div>
+
+<div id="file_permissions_etc_passwd" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Permissions on passwd File</h3>
+<div>file_permissions_etc_passwd</div>
+<h4>Description</h4>
+<p>
+To properly set the permissions of <code>/etc/passwd</code>, run the command:
+<pre>$ sudo chmod 0644 /etc/passwd</pre></p>
+<h4>Rationale</h4>
+<p>If the <tt>/etc/passwd</tt> file is writable by a group-owner or the
+world the risk of its compromise is increased. The file contains the list of
+accounts on the system and associated information, and protection of this file
+is critical for system security.</p>
+</div>
+
+<div id="file_permissions_etc_shadow" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Permissions on shadow File</h3>
+<div>file_permissions_etc_shadow</div>
+<h4>Description</h4>
+<p>
+To properly set the permissions of <code>/etc/shadow</code>, run the command:
+<pre>$ sudo chmod 0640 /etc/shadow</pre></p>
+<h4>Rationale</h4>
+<p>The <tt>/etc/shadow</tt> file contains the list of local
+system accounts and stores password hashes. Protection of this file is
+critical for system security. Failure to give ownership of this file
+to root provides the designated owner with access to sensitive information
+which could weaken the system security posture.</p>
+</div>
+
+
+
+
+</body>
+</html>

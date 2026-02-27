@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'fips'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'fips'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>fips</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<div>None</div>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#aide_use_fips_hashes">aide_use_fips_hashes</a></li>
+
+<li><a href="#enable_dracut_fips_module">enable_dracut_fips_module</a></li>
+
+<li><a href="#enable_fips_mode">enable_fips_mode</a></li>
+
+<li><a href="#etc_system_fips_exists">etc_system_fips_exists</a></li>
+
+<li><a href="#grub2_enable_fips_mode">grub2_enable_fips_mode</a></li>
+
+<li><a href="#is_fips_mode_enabled">is_fips_mode_enabled</a></li>
+
+<li><a href="#package_dracut-fips-aesni_installed">package_dracut-fips-aesni_installed</a></li>
+
+<li><a href="#package_dracut-fips_installed">package_dracut-fips_installed</a></li>
+
+<li><a href="#sebool_fips_mode">sebool_fips_mode</a></li>
+
+<li><a href="#sysctl_crypto_fips_enabled">sysctl_crypto_fips_enabled</a></li>
+
+<li><a href="#system_booted_in_fips_mode">system_booted_in_fips_mode</a></li>
+
+<li><a href="#fips_crypto_policy_symlinks">fips_crypto_policy_symlinks</a></li>
+
+<li><a href="#fips_custom_stig_sub_policy">fips_custom_stig_sub_policy</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="aide_use_fips_hashes" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure AIDE to Use FIPS 140-2 for Validating Hashes</h3>
+<div>aide_use_fips_hashes</div>
+<h4>Description</h4>
+<p>By default, the <tt>sha512</tt> option is added to the <tt>NORMAL</tt> ruleset in AIDE.
+If using a custom ruleset or the <tt>sha512</tt> option is missing, add <tt>sha512</tt>
+to the appropriate ruleset.
+For example, add <tt>sha512</tt> to the following line in <tt>/etc/aide.conf</tt>:
+<pre>NORMAL = FIPSR+sha512</pre>
+AIDE rules can be configured in multiple ways; this is merely one example that is already
+configured by default.</p>
+<h4>Rationale</h4>
+<p>File integrity tools use cryptographic hashes for verifying file contents and directories
+have not been altered. These hashes must be FIPS 140-2 approved cryptographic hashes.</p>
+</div>
+
+<div id="enable_dracut_fips_module" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Enable Dracut FIPS Module</h3>
+<div>enable_dracut_fips_module</div>
+<h4>Description</h4>
+<p>
+Red Hat Enterprise Linux 10 has an installation-time kernel flag that can enable FIPS mode.
+The installer must be booted with <tt>fips=1</tt> for the system to have FIPS mode
+enabled. Enabling FIPS mode on a preexisting system is not supported. If
+this rule fails on an installed system, then this is a permanent
+finding and cannot be fixed.
+
+To enable FIPS, the system requires that the <tt>fips</tt> module is added in <tt>dracut</tt> configuration.
+Check if <tt>/etc/dracut.conf.d/40-fips.conf</tt> contain <tt>add_dracutmodules+=" fips "</tt></p>
+<h4>Rationale</h4>
+<p>Use of weak or untested encryption algorithms undermines the purposes of utilizing encryption to
+protect data. The operating system must implement cryptographic modules adhering to the higher
+standards approved by the federal government since this provides assurance they have been tested
+and validated.</p>
+</div>
+
+<div id="enable_fips_mode" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Enable FIPS Mode</h3>
+<div>enable_fips_mode</div>
+<h4>Description</h4>
+<p>
+Red Hat Enterprise Linux 10 has an installation-time kernel flag that can enable FIPS mode.
+The installer must be booted with <tt>fips=1</tt> for the system to have FIPS mode
+enabled. Enabling FIPS mode on a preexisting system is not supported. If
+this rule fails on an installed system, then this is a permanent
+finding and cannot be fixed.
+
+
+<br />
+To enable FIPS mode at bootable container build time configure <tt>fips=1</tt> kernel argument
+in <tt>/usr/lib/bootc/kargs.d/01-fips.toml</tt>:
+<pre>kargs = ["fips=1"]</pre>
+Then set the cryptographic policy to <tt><tt>$var_system_crypto_policy</tt></tt>:
+<pre>update-crypto-policies --no-reload --set <tt>$var_system_crypto_policy</tt></pre></p>
+<h4>Rationale</h4>
+<p>Use of weak or untested encryption algorithms undermines the purposes of utilizing encryption to
+protect data. The operating system must implement cryptographic modules adhering to the higher
+standards approved by the federal government since this provides assurance they have been tested
+and validated.</p>
+</div>
+
+<div id="etc_system_fips_exists" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure '/etc/system-fips' exists</h3>
+<div>etc_system_fips_exists</div>
+<h4>Description</h4>
+<p>On a system where FIPS mode is enabled, <tt>/etc/system-fips</tt> must exist.
+
+Red Hat Enterprise Linux 10 has an installation-time kernel flag that can enable FIPS mode.
+The installer must be booted with <tt>fips=1</tt> for the system to have FIPS mode
+enabled. Enabling FIPS mode on a preexisting system is not supported. If
+this rule fails on an installed system, then this is a permanent
+finding and cannot be fixed.
+
+
+<br />
+To enable FIPS mode at bootable container build time configure <tt>fips=1</tt> kernel argument
+in <tt>/usr/lib/bootc/kargs.d/01-fips.toml</tt>:
+<pre>kargs = ["fips=1"]</pre>
+Then set the cryptographic policy to <tt><tt>$var_system_crypto_policy</tt></tt>:
+<pre>update-crypto-policies --no-reload --set <tt>$var_system_crypto_policy</tt></pre></p>
+<h4>Rationale</h4>
+<p>Use of weak or untested encryption algorithms undermines the purposes of utilizing encryption to
+protect data. The operating system must implement cryptographic modules adhering to the higher
+standards approved by the federal government since this provides assurance they have been tested
+and validated.</p>
+</div>
+
+<div id="grub2_enable_fips_mode" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Enable FIPS Mode in GRUB2</h3>
+<div>grub2_enable_fips_mode</div>
+<h4>Description</h4>
+<p>
+Red Hat Enterprise Linux 10 has an installation-time kernel flag that can enable FIPS mode.
+The installer must be booted with <tt>fips=1</tt> for the system to have FIPS mode
+enabled. Enabling FIPS mode on a preexisting system is not supported. If
+this rule fails on an installed system, then this is a permanent
+finding and cannot be fixed.
+
+Verifying that the package <tt>dracut-fips</tt> is installed ensures FIPS mode is in
+a good state.
+
+To ensure FIPS mode is enabled, run the following commands:
+<pre>
+
+$ sudo dnf install dracut-fips
+</pre></p>
+<h4>Rationale</h4>
+<p>Use of weak or untested encryption algorithms undermines the purposes of utilizing encryption to
+protect data. The operating system must implement cryptographic modules adhering to the higher
+standards approved by the federal government since this provides assurance they have been tested
+and validated.</p>
+</div>
+
+<div id="is_fips_mode_enabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify '/proc/sys/crypto/fips_enabled' exists</h3>
+<div>is_fips_mode_enabled</div>
+<h4>Description</h4>
+<p>On a system where FIPS 140-2 mode is enabled, <tt>/proc/sys/crypto/fips_enabled</tt> must exist.
+To verify FIPS mode, run the following command:
+<pre>cat /proc/sys/crypto/fips_enabled</pre></p>
+<h4>Rationale</h4>
+<p>Use of weak or untested encryption algorithms undermines the purposes of utilizing encryption to
+protect data. The operating system must implement cryptographic modules adhering to the higher
+standards approved by the federal government since this provides assurance they have been tested
+and validated.</p>
+</div>
+
+<div id="package_dracut-fips-aesni_installed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Install the dracut-fips-aesni Package</h3>
+<div>package_dracut-fips-aesni_installed</div>
+<h4>Description</h4>
+<p>To enable FIPS on system that support the Advanced Encryption Standard (AES) or New
+Instructions (AES-NI) engine, the system requires that the <tt>dracut-fips-aesni</tt>
+package be installed.
+The <code>dracut-fips-aesni</code> package can be installed with the following command:
+<pre>
+$ sudo dnf install dracut-fips-aesni</pre></p>
+<h4>Rationale</h4>
+<p>Use of weak or untested encryption algorithms undermines the purposes of utilizing encryption to
+protect data. The operating system must implement cryptographic modules adhering to the higher
+standards approved by the federal government since this provides assurance they have been tested
+and validated.</p>
+</div>
+
+<div id="package_dracut-fips_installed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Install the dracut-fips Package</h3>
+<div>package_dracut-fips_installed</div>
+<h4>Description</h4>
+<p>To enable FIPS, the system requires that the <tt>dracut-fips</tt>
+package be installed.
+The <code>dracut-fips</code> package can be installed with the following command:
+<pre>
+$ sudo dnf install dracut-fips</pre></p>
+<h4>Rationale</h4>
+<p>Use of weak or untested encryption algorithms undermines the purposes of utilizing encryption to
+protect data. The operating system must implement cryptographic modules adhering to the higher
+standards approved by the federal government since this provides assurance they have been tested
+and validated.</p>
+</div>
+
+<div id="sebool_fips_mode" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Enable the fips_mode SELinux Boolean</h3>
+<div>sebool_fips_mode</div>
+<h4>Description</h4>
+<p>By default, the SELinux boolean <tt>fips_mode</tt> is enabled.
+This allows all SELinux domains to execute in <tt>fips_mode</tt>.
+If this setting is disabled, it should be enabled.
+
+To enable the <code>fips_mode</code> SELinux boolean, run the following command:
+<pre>$ sudo setsebool -P fips_mode on</pre></p>
+<h4>Rationale</h4>
+<p></p>
+</div>
+
+<div id="sysctl_crypto_fips_enabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Set kernel parameter 'crypto.fips_enabled' to 1</h3>
+<div>sysctl_crypto_fips_enabled</div>
+<h4>Description</h4>
+<p>System running in FIPS mode is indicated by kernel parameter
+<tt>'crypto.fips_enabled'</tt>. This parameter should be set to <tt>1</tt> in FIPS mode.
+
+Red Hat Enterprise Linux 10 has an installation-time kernel flag that can enable FIPS mode.
+The installer must be booted with <tt>fips=1</tt> for the system to have FIPS mode
+enabled. Enabling FIPS mode on a preexisting system is not supported. If
+this rule fails on an installed system, then this is a permanent
+finding and cannot be fixed.
+
+
+
+To enable strict FIPS compliance, the fips=1 kernel option needs to be added to the kernel boot
+parameters during system installation so key generation is done with FIPS-approved algorithms
+and continuous monitoring tests in place.</p>
+<h4>Rationale</h4>
+<p>Use of weak or untested encryption algorithms undermines the purposes of utilizing encryption to
+protect data. The operating system must implement cryptographic modules adhering to the higher
+standards approved by the federal government since this provides assurance they have been tested
+and validated.</p>
+</div>
+
+<div id="system_booted_in_fips_mode" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify that the system was booted with fips=1</h3>
+<div>system_booted_in_fips_mode</div>
+<h4>Description</h4>
+<p>On a system where FIPS 140 mode is enabled, the system must be booted with the
+The file <tt>/proc/sys/crypto/fips_enabled</tt> must have the contents of <tt>1</tt>
+
+To verify the system has been booted in FIPS mode, run the following command:
+<pre>
+# cat /proc/sys/crypto/fips_enabled
+1
+</pre></p>
+<h4>Rationale</h4>
+<p>Use of weak or untested encryption algorithms undermines the purposes of utilizing encryption to
+protect data. The operating system must implement cryptographic modules adhering to the higher
+standards approved by the federal government since this provides assurance they have been tested
+and validated.</p>
+</div>
+
+<div id="fips_crypto_policy_symlinks" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>System Wide Crypto Policy Files Must Point to FIPS Policy</h3>
+<div>fips_crypto_policy_symlinks</div>
+<h4>Description</h4>
+<p>All files in /etc/crypto-policies/back-ends/ except for nss.config should be symlinks pointing
+to /usr/share/crypto-policies/FIPS/
+<pre>
+$ stat -c%N /etc/crypto-policies/back-ends/*
+'/etc/crypto-policies/back-ends/bind.config' -> '/usr/share/crypto-policies/FIPS/bind.txt'
+'/etc/crypto-policies/back-ends/gnutls.config' -> '/usr/share/crypto-policies/FIPS/gnutls.txt'
+'/etc/crypto-policies/back-ends/java.config' -> '/usr/share/crypto-policies/FIPS/java.txt'
+'/etc/crypto-policies/back-ends/javasystem.config' -> '/usr/share/crypto-policies/FIPS/javasystem.txt'
+'/etc/crypto-policies/back-ends/krb5.config' -> '/usr/share/crypto-policies/FIPS/krb5.txt'
+'/etc/crypto-policies/back-ends/libreswan.config' -> '/usr/share/crypto-policies/FIPS/libreswan.txt'
+'/etc/crypto-policies/back-ends/libssh.config' -> '/usr/share/crypto-policies/FIPS/libssh.txt'
+'/etc/crypto-policies/back-ends/nss.config'
+'/etc/crypto-policies/back-ends/openssh.config' -> '/usr/share/crypto-policies/FIPS/openssh.txt'
+'/etc/crypto-policies/back-ends/opensshserver.config' -> '/usr/share/crypto-policies/FIPS/opensshserver.txt'
+'/etc/crypto-policies/back-ends/opensslcnf.config' -> '/usr/share/crypto-policies/FIPS/opensslcnf.txt'
+'/etc/crypto-policies/back-ends/openssl.config' -> '/usr/share/crypto-policies/FIPS/openssl.txt'
+'/etc/crypto-policies/back-ends/openssl_fips.config' -> '/usr/share/crypto-policies/FIPS/openssl_fips.txt'
+</pre></p>
+<h4>Rationale</h4>
+<p>Centralized cryptographic policies simplify applying secure ciphers across an operating
+system and the applications that run on that operating system. Use of weak or untested
+encryption algorithms undermines the purposes of using encryption to protect data.</p>
+</div>
+
+<div id="fips_custom_stig_sub_policy" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Implement STIG Sub Crypto Policy</h3>
+<div>fips_custom_stig_sub_policy</div>
+<h4>Description</h4>
+<p>Create a custom cryptographic policy to follow the guidance from DISA.</p>
+<h4>Rationale</h4>
+<p>To follow STIG policy.</p>
+</div>
+
+
+
+
+</body>
+</html>

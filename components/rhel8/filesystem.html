@@ -1,0 +1,3451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'filesystem'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'filesystem'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>filesystem</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<ul>
+
+<li>export_filesystems_read_only</li>
+
+<li>files</li>
+
+<li>partitions</li>
+
+<li>permissions_important_account_files</li>
+
+<li>permissions_local</li>
+
+<li>permissions_var_log_dir</li>
+
+<li>permissions_within_important_dirs</li>
+
+</ul>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#dir_group_ownership_library_dirs">dir_group_ownership_library_dirs</a></li>
+
+<li><a href="#dir_groupownership_binary_dirs">dir_groupownership_binary_dirs</a></li>
+
+<li><a href="#dir_ownership_binary_dirs">dir_ownership_binary_dirs</a></li>
+
+<li><a href="#dir_ownership_library_dirs">dir_ownership_library_dirs</a></li>
+
+<li><a href="#dir_permissions_binary_dirs">dir_permissions_binary_dirs</a></li>
+
+<li><a href="#dir_permissions_library_dirs">dir_permissions_library_dirs</a></li>
+
+<li><a href="#dir_perms_world_writable_root_owned">dir_perms_world_writable_root_owned</a></li>
+
+<li><a href="#dir_perms_world_writable_sticky_bits">dir_perms_world_writable_sticky_bits</a></li>
+
+<li><a href="#dir_perms_world_writable_system_owned">dir_perms_world_writable_system_owned</a></li>
+
+<li><a href="#dir_perms_world_writable_system_owned_group">dir_perms_world_writable_system_owned_group</a></li>
+
+<li><a href="#dir_system_commands_group_root_owned">dir_system_commands_group_root_owned</a></li>
+
+<li><a href="#dir_system_commands_root_owned">dir_system_commands_root_owned</a></li>
+
+<li><a href="#directory_groupowner_etc_sysctld">directory_groupowner_etc_sysctld</a></li>
+
+<li><a href="#directory_owner_etc_sysctld">directory_owner_etc_sysctld</a></li>
+
+<li><a href="#directory_permissions_etc_sysctld">directory_permissions_etc_sysctld</a></li>
+
+<li><a href="#file_etc_security_opasswd">file_etc_security_opasswd</a></li>
+
+<li><a href="#file_groupowner_backup_etc_group">file_groupowner_backup_etc_group</a></li>
+
+<li><a href="#file_groupowner_backup_etc_gshadow">file_groupowner_backup_etc_gshadow</a></li>
+
+<li><a href="#file_groupowner_backup_etc_passwd">file_groupowner_backup_etc_passwd</a></li>
+
+<li><a href="#file_groupowner_backup_etc_shadow">file_groupowner_backup_etc_shadow</a></li>
+
+<li><a href="#file_groupowner_etc_crypttab">file_groupowner_etc_crypttab</a></li>
+
+<li><a href="#file_groupowner_etc_group">file_groupowner_etc_group</a></li>
+
+<li><a href="#file_groupowner_etc_gshadow">file_groupowner_etc_gshadow</a></li>
+
+<li><a href="#file_groupowner_etc_passwd">file_groupowner_etc_passwd</a></li>
+
+<li><a href="#file_groupowner_etc_security_opasswd">file_groupowner_etc_security_opasswd</a></li>
+
+<li><a href="#file_groupowner_etc_security_opasswd_old">file_groupowner_etc_security_opasswd_old</a></li>
+
+<li><a href="#file_groupowner_etc_shadow">file_groupowner_etc_shadow</a></li>
+
+<li><a href="#file_groupowner_etc_shells">file_groupowner_etc_shells</a></li>
+
+<li><a href="#file_groupowner_etc_sysconfig_sshd">file_groupowner_etc_sysconfig_sshd</a></li>
+
+<li><a href="#file_groupowner_systemmap">file_groupowner_systemmap</a></li>
+
+<li><a href="#file_groupowner_var_log">file_groupowner_var_log</a></li>
+
+<li><a href="#file_groupowner_var_log_auth">file_groupowner_var_log_auth</a></li>
+
+<li><a href="#file_groupowner_var_log_cloud_init">file_groupowner_var_log_cloud_init</a></li>
+
+<li><a href="#file_groupowner_var_log_journal">file_groupowner_var_log_journal</a></li>
+
+<li><a href="#file_groupowner_var_log_lastlog">file_groupowner_var_log_lastlog</a></li>
+
+<li><a href="#file_groupowner_var_log_localmessages">file_groupowner_var_log_localmessages</a></li>
+
+<li><a href="#file_groupowner_var_log_messages">file_groupowner_var_log_messages</a></li>
+
+<li><a href="#file_groupowner_var_log_secure">file_groupowner_var_log_secure</a></li>
+
+<li><a href="#file_groupowner_var_log_syslog">file_groupowner_var_log_syslog</a></li>
+
+<li><a href="#file_groupowner_var_log_waagent">file_groupowner_var_log_waagent</a></li>
+
+<li><a href="#file_groupowner_var_log_wbtmp">file_groupowner_var_log_wbtmp</a></li>
+
+<li><a href="#file_groupownership_audit_binaries">file_groupownership_audit_binaries</a></li>
+
+<li><a href="#file_groupownership_system_commands_dirs">file_groupownership_system_commands_dirs</a></li>
+
+<li><a href="#file_groupownerships_var_log">file_groupownerships_var_log</a></li>
+
+<li><a href="#file_groupownerships_var_log_apt">file_groupownerships_var_log_apt</a></li>
+
+<li><a href="#file_groupownerships_var_log_landscape">file_groupownerships_var_log_landscape</a></li>
+
+<li><a href="#file_groupownerships_var_log_gdm">file_groupownerships_var_log_gdm</a></li>
+
+<li><a href="#file_groupownerships_var_log_gdm3">file_groupownerships_var_log_gdm3</a></li>
+
+<li><a href="#file_groupownerships_var_log_sssd">file_groupownerships_var_log_sssd</a></li>
+
+<li><a href="#file_owner_backup_etc_group">file_owner_backup_etc_group</a></li>
+
+<li><a href="#file_owner_backup_etc_gshadow">file_owner_backup_etc_gshadow</a></li>
+
+<li><a href="#file_owner_backup_etc_passwd">file_owner_backup_etc_passwd</a></li>
+
+<li><a href="#file_owner_backup_etc_shadow">file_owner_backup_etc_shadow</a></li>
+
+<li><a href="#file_owner_etc_crypttab">file_owner_etc_crypttab</a></li>
+
+<li><a href="#file_owner_etc_group">file_owner_etc_group</a></li>
+
+<li><a href="#file_owner_etc_gshadow">file_owner_etc_gshadow</a></li>
+
+<li><a href="#file_owner_etc_passwd">file_owner_etc_passwd</a></li>
+
+<li><a href="#file_owner_etc_security_opasswd">file_owner_etc_security_opasswd</a></li>
+
+<li><a href="#file_owner_etc_security_opasswd_old">file_owner_etc_security_opasswd_old</a></li>
+
+<li><a href="#file_owner_etc_shells">file_owner_etc_shells</a></li>
+
+<li><a href="#file_owner_etc_shadow">file_owner_etc_shadow</a></li>
+
+<li><a href="#file_owner_etc_sysconfig_sshd">file_owner_etc_sysconfig_sshd</a></li>
+
+<li><a href="#file_owner_systemmap">file_owner_systemmap</a></li>
+
+<li><a href="#file_owner_var_log">file_owner_var_log</a></li>
+
+<li><a href="#file_owner_var_log_auth">file_owner_var_log_auth</a></li>
+
+<li><a href="#file_owner_var_log_cloud_init">file_owner_var_log_cloud_init</a></li>
+
+<li><a href="#file_owner_var_log_journal">file_owner_var_log_journal</a></li>
+
+<li><a href="#file_owner_var_log_lastlog">file_owner_var_log_lastlog</a></li>
+
+<li><a href="#file_owner_var_log_localmessages">file_owner_var_log_localmessages</a></li>
+
+<li><a href="#file_owner_var_log_messages">file_owner_var_log_messages</a></li>
+
+<li><a href="#file_owner_var_log_secure">file_owner_var_log_secure</a></li>
+
+<li><a href="#file_owner_var_log_syslog">file_owner_var_log_syslog</a></li>
+
+<li><a href="#file_owner_var_log_waagent">file_owner_var_log_waagent</a></li>
+
+<li><a href="#file_owner_var_log_wbtmp">file_owner_var_log_wbtmp</a></li>
+
+<li><a href="#file_ownership_audit_binaries">file_ownership_audit_binaries</a></li>
+
+<li><a href="#file_ownership_binary_dirs">file_ownership_binary_dirs</a></li>
+
+<li><a href="#file_ownership_library_dirs">file_ownership_library_dirs</a></li>
+
+<li><a href="#file_ownerships_var_log">file_ownerships_var_log</a></li>
+
+<li><a href="#file_ownerships_var_log_apt">file_ownerships_var_log_apt</a></li>
+
+<li><a href="#file_ownerships_var_log_landscape">file_ownerships_var_log_landscape</a></li>
+
+<li><a href="#file_ownerships_var_log_gdm">file_ownerships_var_log_gdm</a></li>
+
+<li><a href="#file_ownerships_var_log_gdm3">file_ownerships_var_log_gdm3</a></li>
+
+<li><a href="#file_ownerships_var_log_sssd">file_ownerships_var_log_sssd</a></li>
+
+<li><a href="#file_permissions_audit_binaries">file_permissions_audit_binaries</a></li>
+
+<li><a href="#file_permissions_backup_etc_group">file_permissions_backup_etc_group</a></li>
+
+<li><a href="#file_permissions_backup_etc_gshadow">file_permissions_backup_etc_gshadow</a></li>
+
+<li><a href="#file_permissions_backup_etc_passwd">file_permissions_backup_etc_passwd</a></li>
+
+<li><a href="#file_permissions_backup_etc_shadow">file_permissions_backup_etc_shadow</a></li>
+
+<li><a href="#file_permissions_binary_dirs">file_permissions_binary_dirs</a></li>
+
+<li><a href="#file_permissions_etc_audit_auditd">file_permissions_etc_audit_auditd</a></li>
+
+<li><a href="#file_permissions_etc_audit_rulesd">file_permissions_etc_audit_rulesd</a></li>
+
+<li><a href="#file_permissions_etc_audit_rules">file_permissions_etc_audit_rules</a></li>
+
+<li><a href="#file_permissions_etc_crypttab">file_permissions_etc_crypttab</a></li>
+
+<li><a href="#file_permissions_etc_group">file_permissions_etc_group</a></li>
+
+<li><a href="#file_permissions_etc_gshadow">file_permissions_etc_gshadow</a></li>
+
+<li><a href="#file_permissions_etc_passwd">file_permissions_etc_passwd</a></li>
+
+<li><a href="#file_permissions_etc_security_opasswd">file_permissions_etc_security_opasswd</a></li>
+
+<li><a href="#file_permissions_etc_security_opasswd_old">file_permissions_etc_security_opasswd_old</a></li>
+
+<li><a href="#file_permissions_etc_shadow">file_permissions_etc_shadow</a></li>
+
+<li><a href="#file_permissions_etc_shells">file_permissions_etc_shells</a></li>
+
+<li><a href="#file_permissions_etc_sysconfig_sshd">file_permissions_etc_sysconfig_sshd</a></li>
+
+<li><a href="#file_permissions_library_dirs">file_permissions_library_dirs</a></li>
+
+<li><a href="#file_permissions_local_var_log_messages">file_permissions_local_var_log_messages</a></li>
+
+<li><a href="#file_permissions_system_commands_dirs">file_permissions_system_commands_dirs</a></li>
+
+<li><a href="#file_permissions_systemmap">file_permissions_systemmap</a></li>
+
+<li><a href="#file_permissions_unauthorized_sgid">file_permissions_unauthorized_sgid</a></li>
+
+<li><a href="#file_permissions_unauthorized_suid">file_permissions_unauthorized_suid</a></li>
+
+<li><a href="#file_permissions_unauthorized_world_writable">file_permissions_unauthorized_world_writable</a></li>
+
+<li><a href="#file_permissions_ungroupowned">file_permissions_ungroupowned</a></li>
+
+<li><a href="#file_permissions_var_log">file_permissions_var_log</a></li>
+
+<li><a href="#file_permissions_var_log_stig">file_permissions_var_log_stig</a></li>
+
+<li><a href="#file_permissions_var_log_apt">file_permissions_var_log_apt</a></li>
+
+<li><a href="#file_permissions_var_log_auth">file_permissions_var_log_auth</a></li>
+
+<li><a href="#file_permissions_var_log_cloud-init">file_permissions_var_log_cloud-init</a></li>
+
+<li><a href="#file_permissions_var_log_gdm">file_permissions_var_log_gdm</a></li>
+
+<li><a href="#file_permissions_var_log_gdm3">file_permissions_var_log_gdm3</a></li>
+
+<li><a href="#file_permissions_var_log_lastlog">file_permissions_var_log_lastlog</a></li>
+
+<li><a href="#file_permissions_var_log_localmessages">file_permissions_var_log_localmessages</a></li>
+
+<li><a href="#file_permissions_var_log_messages">file_permissions_var_log_messages</a></li>
+
+<li><a href="#file_permissions_var_log_secure">file_permissions_var_log_secure</a></li>
+
+<li><a href="#file_permissions_var_log_sssd">file_permissions_var_log_sssd</a></li>
+
+<li><a href="#file_permissions_var_log_syslog">file_permissions_var_log_syslog</a></li>
+
+<li><a href="#file_permissions_var_log_waagent">file_permissions_var_log_waagent</a></li>
+
+<li><a href="#file_permissions_var_log_wbtmp">file_permissions_var_log_wbtmp</a></li>
+
+<li><a href="#mount_option_boot_efi_nosuid">mount_option_boot_efi_nosuid</a></li>
+
+<li><a href="#mount_option_boot_noauto">mount_option_boot_noauto</a></li>
+
+<li><a href="#mount_option_boot_nodev">mount_option_boot_nodev</a></li>
+
+<li><a href="#mount_option_boot_noexec">mount_option_boot_noexec</a></li>
+
+<li><a href="#mount_option_boot_nosuid">mount_option_boot_nosuid</a></li>
+
+<li><a href="#mount_option_dev_shm_nodev">mount_option_dev_shm_nodev</a></li>
+
+<li><a href="#mount_option_dev_shm_noexec">mount_option_dev_shm_noexec</a></li>
+
+<li><a href="#mount_option_dev_shm_nosuid">mount_option_dev_shm_nosuid</a></li>
+
+<li><a href="#mount_option_home_grpquota">mount_option_home_grpquota</a></li>
+
+<li><a href="#mount_option_home_nodev">mount_option_home_nodev</a></li>
+
+<li><a href="#mount_option_home_noexec">mount_option_home_noexec</a></li>
+
+<li><a href="#mount_option_home_nosuid">mount_option_home_nosuid</a></li>
+
+<li><a href="#mount_option_home_usrquota">mount_option_home_usrquota</a></li>
+
+<li><a href="#mount_option_krb_sec_remote_filesystems">mount_option_krb_sec_remote_filesystems</a></li>
+
+<li><a href="#mount_option_nodev_nonroot_local_partitions">mount_option_nodev_nonroot_local_partitions</a></li>
+
+<li><a href="#mount_option_nodev_remote_filesystems">mount_option_nodev_remote_filesystems</a></li>
+
+<li><a href="#mount_option_nodev_removable_partitions">mount_option_nodev_removable_partitions</a></li>
+
+<li><a href="#mount_option_noexec_remote_filesystems">mount_option_noexec_remote_filesystems</a></li>
+
+<li><a href="#mount_option_noexec_removable_partitions">mount_option_noexec_removable_partitions</a></li>
+
+<li><a href="#mount_option_nosuid_remote_filesystems">mount_option_nosuid_remote_filesystems</a></li>
+
+<li><a href="#mount_option_nosuid_removable_partitions">mount_option_nosuid_removable_partitions</a></li>
+
+<li><a href="#mount_option_opt_nosuid">mount_option_opt_nosuid</a></li>
+
+<li><a href="#mount_option_proc_hidepid">mount_option_proc_hidepid</a></li>
+
+<li><a href="#mount_option_srv_nosuid">mount_option_srv_nosuid</a></li>
+
+<li><a href="#mount_option_tmp_nodev">mount_option_tmp_nodev</a></li>
+
+<li><a href="#mount_option_tmp_noexec">mount_option_tmp_noexec</a></li>
+
+<li><a href="#mount_option_tmp_nosuid">mount_option_tmp_nosuid</a></li>
+
+<li><a href="#mount_option_var_log_audit_nodev">mount_option_var_log_audit_nodev</a></li>
+
+<li><a href="#mount_option_var_log_audit_noexec">mount_option_var_log_audit_noexec</a></li>
+
+<li><a href="#mount_option_var_log_audit_nosuid">mount_option_var_log_audit_nosuid</a></li>
+
+<li><a href="#mount_option_var_log_nodev">mount_option_var_log_nodev</a></li>
+
+<li><a href="#mount_option_var_log_noexec">mount_option_var_log_noexec</a></li>
+
+<li><a href="#mount_option_var_log_nosuid">mount_option_var_log_nosuid</a></li>
+
+<li><a href="#mount_option_var_nodev">mount_option_var_nodev</a></li>
+
+<li><a href="#mount_option_var_noexec">mount_option_var_noexec</a></li>
+
+<li><a href="#mount_option_var_nosuid">mount_option_var_nosuid</a></li>
+
+<li><a href="#mount_option_var_tmp_bind">mount_option_var_tmp_bind</a></li>
+
+<li><a href="#mount_option_var_tmp_nodev">mount_option_var_tmp_nodev</a></li>
+
+<li><a href="#mount_option_var_tmp_noexec">mount_option_var_tmp_noexec</a></li>
+
+<li><a href="#mount_option_var_tmp_nosuid">mount_option_var_tmp_nosuid</a></li>
+
+<li><a href="#no_files_or_dirs_unowned_by_user">no_files_or_dirs_unowned_by_user</a></li>
+
+<li><a href="#no_files_or_dirs_ungroupowned">no_files_or_dirs_ungroupowned</a></li>
+
+<li><a href="#no_files_unowned_by_user">no_files_unowned_by_user</a></li>
+
+<li><a href="#partition_for_boot">partition_for_boot</a></li>
+
+<li><a href="#partition_for_dev_shm">partition_for_dev_shm</a></li>
+
+<li><a href="#partition_for_home">partition_for_home</a></li>
+
+<li><a href="#partition_for_opt">partition_for_opt</a></li>
+
+<li><a href="#partition_for_srv">partition_for_srv</a></li>
+
+<li><a href="#partition_for_tmp">partition_for_tmp</a></li>
+
+<li><a href="#partition_for_usr">partition_for_usr</a></li>
+
+<li><a href="#partition_for_var">partition_for_var</a></li>
+
+<li><a href="#partition_for_var_log">partition_for_var_log</a></li>
+
+<li><a href="#partition_for_var_log_audit">partition_for_var_log_audit</a></li>
+
+<li><a href="#partition_for_var_tmp">partition_for_var_tmp</a></li>
+
+<li><a href="#permissions_local_audit_binaries">permissions_local_audit_binaries</a></li>
+
+<li><a href="#permissions_local_var_log">permissions_local_var_log</a></li>
+
+<li><a href="#permissions_local_var_log_audit">permissions_local_var_log_audit</a></li>
+
+<li><a href="#root_permissions_syslibrary_files">root_permissions_syslibrary_files</a></li>
+
+<li><a href="#run_chkstat">run_chkstat</a></li>
+
+<li><a href="#sysctl_fs_protected_fifos">sysctl_fs_protected_fifos</a></li>
+
+<li><a href="#sysctl_fs_protected_hardlinks">sysctl_fs_protected_hardlinks</a></li>
+
+<li><a href="#sysctl_fs_protected_regular">sysctl_fs_protected_regular</a></li>
+
+<li><a href="#sysctl_fs_protected_symlinks">sysctl_fs_protected_symlinks</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="dir_group_ownership_library_dirs" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify that Shared Library Directories Have Root Group Ownership</h3>
+<div>dir_group_ownership_library_dirs</div>
+<h4>Description</h4>
+<p>System-wide shared library files, which are linked to executables
+during process load time or run time, are stored in the following directories
+by default:
+<pre>/lib
+/lib64
+/usr/lib
+/usr/lib64
+</pre>
+Kernel modules, which can be added to the kernel during runtime, are also
+stored in <tt>/lib/modules</tt>. All files in these directories should be
+group-owned by the <tt>root</tt> user. If the  directories, is found to be owned
+by a user other than root correct its
+ownership with the following command:
+<pre>$ sudo chgrp root <i>DIR</i></pre></p>
+<h4>Rationale</h4>
+<p>Files from shared library directories are loaded into the address
+space of processes (including privileged ones) or of the kernel itself at
+runtime. Proper ownership of library directories is necessary to protect
+the integrity of the system.</p>
+</div>
+
+<div id="dir_groupownership_binary_dirs" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify that system commands directories are group owned by root</h3>
+<div>dir_groupownership_binary_dirs</div>
+<h4>Description</h4>
+<p>System commands files are stored in the following directories by default:
+<pre>/bin
+/sbin
+/usr/bin
+/usr/sbin
+/usr/local/bin
+/usr/local/sbin
+</pre>
+All these directories should be owned by the <tt>root</tt> group.
+If the directory is found to be owned by a group other than root correct
+its ownership with the following command:
+<pre>$ sudo chgrp root <i>DIR</i></pre></p>
+<h4>Rationale</h4>
+<p>If the operating system allows any user to make changes to software
+libraries, then those changes might be implemented without undergoing the
+appropriate testing and approvals that are part of a robust change management
+process.
+This requirement applies to operating systems with software libraries
+that are accessible and configurable, as in the case of interpreted languages.
+Software libraries also include privileged programs which execute with
+escalated privileges. Only qualified and authorized individuals must be
+allowed to obtain access to information system components for purposes
+of initiating changes, including upgrades and modifications.</p>
+</div>
+
+<div id="dir_ownership_binary_dirs" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify that System Executable Have Root Ownership</h3>
+<div>dir_ownership_binary_dirs</div>
+<h4>Description</h4>
+<p><pre>/bin
+/sbin
+/usr/bin
+/usr/sbin
+/usr/local/bin
+/usr/local/sbin</pre>
+All these directories should be owned by the <tt>root</tt> user.
+If any directory <i>DIR</i> in these directories is found
+to be owned by a user other than root, correct its ownership with the
+following command:
+<pre>$ sudo chown root <i>DIR</i></pre></p>
+<h4>Rationale</h4>
+<p>System binaries are executed by privileged users as well as system services,
+and restrictive permissions are necessary to ensure that their
+execution of these programs cannot be co-opted.</p>
+</div>
+
+<div id="dir_ownership_library_dirs" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify that Shared Library Directories Have Root Ownership</h3>
+<div>dir_ownership_library_dirs</div>
+<h4>Description</h4>
+<p>System-wide shared library files, which are linked to executables
+during process load time or run time, are stored in the following directories
+by default:
+<pre>/lib
+/lib64
+/usr/lib
+/usr/lib64
+</pre>
+Kernel modules, which can be added to the kernel during runtime, are also
+stored in <tt>/lib/modules</tt>. All files in these directories should be
+owned by the <tt>root</tt> user. If the  directories, is found to be owned
+by a user other than root correct its
+ownership with the following command:
+<pre>$ sudo chown root <i>DIR</i></pre></p>
+<h4>Rationale</h4>
+<p>Files from shared library directories are loaded into the address
+space of processes (including privileged ones) or of the kernel itself at
+runtime. Proper ownership of library directories is necessary to protect
+the integrity of the system.</p>
+</div>
+
+<div id="dir_permissions_binary_dirs" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify that System Executable Directories Have Restrictive Permissions</h3>
+<div>dir_permissions_binary_dirs</div>
+<h4>Description</h4>
+<p>System executables are stored in the following directories by default:
+<pre>/bin
+/sbin
+/usr/bin
+/usr/sbin
+/usr/local/bin
+/usr/local/sbin</pre>
+These directories should not be group-writable or world-writable.
+If any directory <i>DIR</i> in these directories is found to be
+group-writable or world-writable, correct its permission with the
+following command:
+<pre>$ sudo chmod go-w <i>DIR</i></pre></p>
+<h4>Rationale</h4>
+<p>System binaries are executed by privileged users, as well as system services,
+and restrictive permissions are necessary to ensure execution of these programs
+cannot be co-opted.</p>
+</div>
+
+<div id="dir_permissions_library_dirs" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify that Shared Library Directories Have Restrictive Permissions</h3>
+<div>dir_permissions_library_dirs</div>
+<h4>Description</h4>
+<p>System-wide shared library directories, which contain are linked to executables
+during process load time or run time, are stored in the following directories
+by default:
+<pre>/lib
+/lib64
+/usr/lib
+/usr/lib64
+</pre>
+Kernel modules, which can be added to the kernel during runtime, are
+stored in <tt>/lib/modules</tt>. All sub-directories in these directories
+should not be group-writable or world-writable. If any file in these
+directories is found to be group-writable or world-writable, correct
+its permission with the following command:
+<pre>$ sudo chmod go-w <i>DIR</i></pre></p>
+<h4>Rationale</h4>
+<p>If the operating system were to allow any user to make changes to software libraries,
+then those changes might be implemented without undergoing the appropriate testing
+and approvals that are part of a robust change management process.
+
+This requirement applies to operating systems with software libraries that are accessible
+and configurable, as in the case of interpreted languages. Software libraries also include
+privileged programs which execute with escalated privileges. Only qualified and authorized
+individuals must be allowed to obtain access to information system components for purposes
+of initiating changes, including upgrades and modifications.</p>
+</div>
+
+<div id="dir_perms_world_writable_root_owned" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure All World-Writable Directories Are Owned by root User</h3>
+<div>dir_perms_world_writable_root_owned</div>
+<h4>Description</h4>
+<p>All directories in local partitions which are world-writable should be owned by root.
+If any world-writable directories are not owned by root, this should be investigated.
+Following this, the files should be deleted or assigned to root user.</p>
+<h4>Rationale</h4>
+<p>Allowing a user account to own a world-writable directory is undesirable because it allows the
+owner of that directory to remove or replace any files that may be placed in the directory by
+other users.</p>
+</div>
+
+<div id="dir_perms_world_writable_sticky_bits" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify that All World-Writable Directories Have Sticky Bits Set</h3>
+<div>dir_perms_world_writable_sticky_bits</div>
+<h4>Description</h4>
+<p>When the so-called 'sticky bit' is set on a directory, only the owner of a given file may
+remove that file from the directory. Without the sticky bit, any user with write access to a
+directory may remove any file in the directory. Setting the sticky bit prevents users from
+removing each other's files. In cases where there is no reason for a directory to be
+world-writable, a better solution is to remove that permission rather than to set the sticky
+bit. However, if a directory is used by a particular application, consult that application's
+documentation instead of blindly changing modes.
+<br />
+To set the sticky bit on a world-writable directory <i>DIR</i>, run the following command:
+<pre>$ sudo chmod +t <i>DIR</i></pre></p>
+<h4>Rationale</h4>
+<p>Failing to set the sticky bit on public directories allows unauthorized users to delete files
+in the directory structure.
+<br /><br />
+The only authorized public directories are those temporary directories supplied with the
+system, or those designed to be temporary file repositories. The setting is normally reserved
+for directories used by the system, by users for temporary file storage (such as <tt>/tmp</tt>),
+and for directories requiring global read/write access.</p>
+</div>
+
+<div id="dir_perms_world_writable_system_owned" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure All World-Writable Directories Are Owned by a System Account</h3>
+<div>dir_perms_world_writable_system_owned</div>
+<h4>Description</h4>
+<p>All directories in local partitions which are world-writable should be owned by root or
+another system account. If any world-writable directories are not owned by a system account,
+this should be investigated. Following this, the files should be deleted or assigned to an
+appropriate owner.</p>
+<h4>Rationale</h4>
+<p>Allowing a user account to own a world-writable directory is undesirable because it allows the
+owner of that directory to remove or replace any files that may be placed in the directory by
+other users.</p>
+</div>
+
+<div id="dir_perms_world_writable_system_owned_group" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure All World-Writable Directories Are Group Owned by a System Account</h3>
+<div>dir_perms_world_writable_system_owned_group</div>
+<h4>Description</h4>
+<p>All directories in local partitions which are
+world-writable should be group owned by root or another
+system account. If any world-writable directories are not
+group owned by a system account, this should be investigated.
+Following this, the files should be deleted or assigned to an
+appropriate group.</p>
+<h4>Rationale</h4>
+<p>Allowing a user account to group own a world-writable directory is
+undesirable because it allows the owner of that directory to remove
+or replace any files that may be placed in the directory by other
+users.</p>
+</div>
+
+<div id="dir_system_commands_group_root_owned" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify that system commands directories have root as a group owner</h3>
+<div>dir_system_commands_group_root_owned</div>
+<h4>Description</h4>
+<p>System commands are stored in the following directories:
+by default:
+<pre>/bin 
+/sbin 
+/usr/bin 
+/usr/sbin 
+/usr/local/bin 
+/usr/local/sbin
+</pre>
+All these directories should have <tt>root</tt> user as a group owner. 
+If any system command directory is not group owned by a user other than root 
+correct its ownership with the following command:
+<pre>$ sudo chgrp root <i>DIR</i></pre></p>
+<h4>Rationale</h4>
+<p>If the operating system were to allow any user to make changes to 
+software libraries, then those changes might be implemented without 
+undergoing the appropriate testing and approvals that are part of a 
+robust change management process.
+
+This requirement applies to operating systems with software libraries
+that are accessible and configurable, as in the case of interpreted languages. 
+Software libraries also include privileged programs which execute with escalated 
+privileges. Only qualified and authorized individuals must be allowed to obtain 
+access to information system components for purposes of initiating changes, 
+including upgrades and modifications.</p>
+</div>
+
+<div id="dir_system_commands_root_owned" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify that system commands directories have root ownership</h3>
+<div>dir_system_commands_root_owned</div>
+<h4>Description</h4>
+<p>System commands are stored in the following directories by default:
+<pre>/bin 
+/sbin 
+/usr/bin 
+/usr/sbin 
+/usr/local/bin 
+/usr/local/sbin
+</pre>
+All these directories should be owned by the <tt>root</tt> user. 
+If any system command directory is not owned by a user other than root 
+correct its ownership with the following command:
+<pre>$ sudo chown root <i>DIR</i></pre></p>
+<h4>Rationale</h4>
+<p>If the operating system were to allow any user to make changes to 
+software libraries, then those changes might be implemented without 
+undergoing the appropriate testing and approvals that are part of a 
+robust change management process.
+
+This requirement applies to operating systems with software libraries
+that are accessible and configurable, as in the case of interpreted languages. 
+Software libraries also include privileged programs which execute with escalated 
+privileges. Only qualified and authorized individuals must be allowed to obtain 
+access to information system components for purposes of initiating changes, 
+including upgrades and modifications.</p>
+</div>
+
+<div id="directory_groupowner_etc_sysctld" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Group Who Owns /etc/sysctl.d Directory</h3>
+<div>directory_groupowner_etc_sysctld</div>
+<h4>Description</h4>
+<p> To properly set the group owner of <code>/etc/sysctl.d</code>, run the command:
+<pre>$ sudo chgrp root /etc/sysctl.d</pre>
+</p>
+<h4>Rationale</h4>
+<p>The ownership of the /etc/sysctl.d directory by the root group is important
+because this directory hosts kernel configuration. Protection of this
+directory is critical for system security. Assigning the ownership to root
+ensures exclusive control of the kernel configuration.</p>
+</div>
+
+<div id="directory_owner_etc_sysctld" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify User Who Owns /etc/sysctl.d Directory</h3>
+<div>directory_owner_etc_sysctld</div>
+<h4>Description</h4>
+<p> To properly set the owner of <code>/etc/sysctl.d</code>, run the command:
+<pre>$ sudo chown root /etc/sysctl.d </pre>
+</p>
+<h4>Rationale</h4>
+<p>The ownership of the /etc/sysctl.d directory by the root user is important
+because this directory hosts kernel configuration. Protection of this
+directory is critical for system security. Assigning the ownership to root
+ensures exclusive control of the kernel configuration.</p>
+</div>
+
+<div id="directory_permissions_etc_sysctld" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Permissions On /etc/sysctl.d Directory</h3>
+<div>directory_permissions_etc_sysctld</div>
+<h4>Description</h4>
+<p> To properly set the permissions of <code>/etc/sysctl.d</code>, run the command: <pre>$ sudo chmod 0755 /etc/sysctl.d</pre></p>
+<h4>Rationale</h4>
+<p>Setting correct permissions on the /etc/sysctl.d directory is important
+because this directory hosts kernel configuration. Protection of this
+directory is critical for system security. Restricting the permissions
+ensures exclusive control of the kernel configuration.</p>
+</div>
+
+<div id="file_etc_security_opasswd" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Permissions and Ownership of Old Passwords File</h3>
+<div>file_etc_security_opasswd</div>
+<h4>Description</h4>
+<p> To properly set the owner of <code>/etc/security/opasswd</code>, run the command:
+<pre>$ sudo chown root /etc/security/opasswd </pre>
+
+
+To properly set the group owner of <code>/etc/security/opasswd</code>, run the command:
+<pre>$ sudo chgrp root /etc/security/opasswd</pre>
+
+
+To properly set the permissions of <code>/etc/security/opasswd</code>, run the command: <pre>$ sudo chmod 0600 /etc/security/opasswd</pre></p>
+<h4>Rationale</h4>
+<p>The <tt>/etc/security/opasswd</tt> file stores old passwords to prevent
+password reuse. Protection of this file is critical for system security.</p>
+</div>
+
+<div id="file_groupowner_backup_etc_group" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Group Who Owns Backup group File</h3>
+<div>file_groupowner_backup_etc_group</div>
+<h4>Description</h4>
+<p> To properly set the group owner of <code>/etc/group-</code>, run the command:
+<pre>$ sudo chgrp root /etc/group-</pre>
+</p>
+<h4>Rationale</h4>
+<p>The <tt>/etc/group-</tt> file is a backup file of <tt>/etc/group</tt>, and as such,
+it contains information regarding groups that are configured on the system.
+Protection of this file is important for system security.</p>
+</div>
+
+<div id="file_groupowner_backup_etc_gshadow" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Group Who Owns Backup gshadow File</h3>
+<div>file_groupowner_backup_etc_gshadow</div>
+<h4>Description</h4>
+<p> To properly set the group owner of <code>/etc/gshadow-</code>, run the command:
+<pre>$ sudo chgrp root /etc/gshadow-</pre>
+</p>
+<h4>Rationale</h4>
+<p>The <tt>/etc/gshadow-</tt> file is a backup of <tt>/etc/gshadow</tt>, and as such,
+it contains group password hashes. Protection of this file is critical for system security.</p>
+</div>
+
+<div id="file_groupowner_backup_etc_passwd" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Group Who Owns Backup passwd File</h3>
+<div>file_groupowner_backup_etc_passwd</div>
+<h4>Description</h4>
+<p> To properly set the group owner of <code>/etc/passwd-</code>, run the command:
+<pre>$ sudo chgrp root /etc/passwd-</pre>
+</p>
+<h4>Rationale</h4>
+<p>The <tt>/etc/passwd-</tt> file is a backup file of <tt>/etc/passwd</tt>, and as such,
+it contains information about the users that are configured on the system.
+Protection of this file is critical for system security.</p>
+</div>
+
+<div id="file_groupowner_backup_etc_shadow" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify User Who Owns Backup shadow File</h3>
+<div>file_groupowner_backup_etc_shadow</div>
+<h4>Description</h4>
+<p> To properly set the group owner of <code>/etc/shadow-</code>, run the command:
+<pre>$ sudo chgrp root /etc/shadow-</pre>
+</p>
+<h4>Rationale</h4>
+<p>The <tt>/etc/shadow-</tt> file is a backup file of <tt>/etc/shadow</tt>, and as such,
+it contains the list of local system accounts and password hashes.
+Protection of this file is critical for system security.</p>
+</div>
+
+<div id="file_groupowner_etc_crypttab" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Group Who Owns /etc/crypttab File</h3>
+<div>file_groupowner_etc_crypttab</div>
+<h4>Description</h4>
+<p> To properly set the group owner of <code>/etc/crypttab</code>, run the command:
+<pre>$ sudo chgrp root /etc/crypttab</pre>
+</p>
+<h4>Rationale</h4>
+<p>The ownership of the /etc/crypttab file by the root group is important
+because this file hosts encrypted block devices configuration. Protection
+of this file is critical for system security. Assigning the ownership to
+root ensures exclusive control of the encrypted block devices
+configuration.</p>
+</div>
+
+<div id="file_groupowner_etc_group" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Group Who Owns group File</h3>
+<div>file_groupowner_etc_group</div>
+<h4>Description</h4>
+<p> To properly set the group owner of <code>/etc/group</code>, run the command:
+<pre>$ sudo chgrp root /etc/group</pre>
+</p>
+<h4>Rationale</h4>
+<p>The <tt>/etc/group</tt> file contains information regarding groups that are configured
+on the system. Protection of this file is important for system security.</p>
+</div>
+
+<div id="file_groupowner_etc_gshadow" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Group Who Owns gshadow File</h3>
+<div>file_groupowner_etc_gshadow</div>
+<h4>Description</h4>
+<p> To properly set the group owner of <code>/etc/gshadow</code>, run the command:
+<pre>$ sudo chgrp root /etc/gshadow</pre>
+</p>
+<h4>Rationale</h4>
+<p>The <tt>/etc/gshadow</tt> file contains group password hashes. Protection of this file
+is critical for system security.</p>
+</div>
+
+<div id="file_groupowner_etc_passwd" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Group Who Owns passwd File</h3>
+<div>file_groupowner_etc_passwd</div>
+<h4>Description</h4>
+<p> To properly set the group owner of <code>/etc/passwd</code>, run the command:
+<pre>$ sudo chgrp root /etc/passwd</pre>
+</p>
+<h4>Rationale</h4>
+<p>The <tt>/etc/passwd</tt> file contains information about the users that are configured on
+the system. Protection of this file is critical for system security.</p>
+</div>
+
+<div id="file_groupowner_etc_security_opasswd" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Group Who Owns /etc/security/opasswd File</h3>
+<div>file_groupowner_etc_security_opasswd</div>
+<h4>Description</h4>
+<p> To properly set the group owner of <code>/etc/security/opasswd</code>, run the command:
+<pre>$ sudo chgrp root /etc/security/opasswd</pre>
+</p>
+<h4>Rationale</h4>
+<p>The <tt>/etc/security/opasswd</tt> file stores old passwords to prevent
+password reuse. Protection of this file is critical for system security.</p>
+</div>
+
+<div id="file_groupowner_etc_security_opasswd_old" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Group Who Owns /etc/security/opasswd.old File</h3>
+<div>file_groupowner_etc_security_opasswd_old</div>
+<h4>Description</h4>
+<p> To properly set the group owner of <code>/etc/security/opasswd.old</code>, run the command:
+<pre>$ sudo chgrp root /etc/security/opasswd.old</pre>
+</p>
+<h4>Rationale</h4>
+<p>The <tt>/etc/security/opasswd.old</tt> file stores backups of old passwords to prevent
+password reuse. Protection of this file is critical for system security.</p>
+</div>
+
+<div id="file_groupowner_etc_shadow" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Group Who Owns shadow File</h3>
+<div>file_groupowner_etc_shadow</div>
+<h4>Description</h4>
+<p> To properly set the group owner of <code>/etc/shadow</code>, run the command:
+<pre>$ sudo chgrp root /etc/shadow</pre>
+</p>
+<h4>Rationale</h4>
+<p>The <tt>/etc/shadow</tt> file stores password hashes. Protection of this file is
+critical for system security.</p>
+</div>
+
+<div id="file_groupowner_etc_shells" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Group Who Owns /etc/shells File</h3>
+<div>file_groupowner_etc_shells</div>
+<h4>Description</h4>
+<p>
+To properly set the group owner of <code>/etc/shells</code>, run the command:
+
+  <pre>$ sudo chgrp root /etc/shells</pre>
+  </p>
+<h4>Rationale</h4>
+<p>The <tt>/etc/shells</tt> file contains the list of full pathnames to shells on the system.
+Since this file is used by many system programs this file should be protected.</p>
+</div>
+
+<div id="file_groupowner_etc_sysconfig_sshd" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Group Who Owns /etc/sysconfig/sshd File</h3>
+<div>file_groupowner_etc_sysconfig_sshd</div>
+<h4>Description</h4>
+<p> To properly set the group owner of <code>/etc/sysconfig/sshd</code>, run the command:
+<pre>$ sudo chgrp root /etc/sysconfig/sshd</pre>
+</p>
+<h4>Rationale</h4>
+<p>The <tt>/etc/sysconfig/sshd</tt> file contains configuration options for the SSH daemon.
+Protection of this file is important for system security. The file should be owned by the root
+group to prevent unauthorized changes.</p>
+</div>
+
+<div id="file_groupowner_systemmap" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Group Who Owns System.map Files</h3>
+<div>file_groupowner_systemmap</div>
+<h4>Description</h4>
+<p>The System.map files are symbol map files generated during the compilation of the Linux
+kernel. They contain the mapping between kernel symbols and their corresponding memory
+addresses. These files must be group-owned by root.
+
+
+To properly set the group owner of <code>/boot/System.map*</code>, run the command:
+
+  <pre>$ sudo chgrp root /boot/System.map*</pre>
+  </p>
+<h4>Rationale</h4>
+<p>The purpose of <tt>System.map</tt> files is primarily for debugging and profiling the kernel.
+Unrestricted access to these files might disclose information useful to attackers and
+malicious software leading to more sophisticated exploitation.</p>
+</div>
+
+<div id="file_groupowner_var_log" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Group Who Owns /var/log Directory</h3>
+<div>file_groupowner_var_log</div>
+<h4>Description</h4>
+<p> To properly set the group owner of <code>/var/log</code>, run the command:
+<pre>$ sudo chgrp root /var/log</pre>
+</p>
+<h4>Rationale</h4>
+<p>The <tt>/var/log</tt> directory contains files with logs of error
+messages in the system and should only be accessed by authorized
+personnel.</p>
+</div>
+
+<div id="file_groupowner_var_log_auth" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Group Who Owns /var/log/auth.log File</h3>
+<div>file_groupowner_var_log_auth</div>
+<h4>Description</h4>
+<p> To properly set the group owner of <code>/var/log/auth.log</code>, run the command:
+<pre>$ sudo chgrp adm /var/log/auth.log</pre> or
+<pre>$ sudo chgrp root /var/log/auth.log</pre>
+</p>
+<h4>Rationale</h4>
+<p>The <tt>/var/log/auth.log</tt> file contains records information about user
+login attempts and authentication processes and should only be accessed by
+authorized personnel.</p>
+</div>
+
+<div id="file_groupowner_var_log_cloud_init" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Group Who Owns /var/log/cloud-init.log* File</h3>
+<div>file_groupowner_var_log_cloud_init</div>
+<h4>Description</h4>
+<p> To properly set the group owner of <code>/var/log/cloud-init.log*</code>, run the command:
+<pre>$ sudo chgrp adm /var/log/cloud-init.log*</pre> or
+<pre>$ sudo chgrp root /var/log/cloud-init.log*</pre>
+</p>
+<h4>Rationale</h4>
+<p>The <tt>/var/log/cloud-init.log*</tt> file contains detailed debugging information that
+helps users troubleshoot cloud-init and should only be accessed by authorized personnel.</p>
+</div>
+
+<div id="file_groupowner_var_log_journal" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Group Who Owns /var/log/*.journal(~) File</h3>
+<div>file_groupowner_var_log_journal</div>
+<h4>Description</h4>
+<p> To properly set the group owner of <code>/var/log/*.journal(~)</code>, run the command:
+<pre>$ sudo chgrp systemd-journal /var/log/*.journal(~)</pre> or
+<pre>$ sudo chgrp root /var/log/*.journal(~)</pre>
+</p>
+<h4>Rationale</h4>
+<p>The <tt>/var/log/*.journal(~)</tt> files are system logs managed by the "systemd" service.</p>
+</div>
+
+<div id="file_groupowner_var_log_lastlog" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Group Who Owns /var/log/lastlog File</h3>
+<div>file_groupowner_var_log_lastlog</div>
+<h4>Description</h4>
+<p> To properly set the group owner of <code>/var/log/lastlog</code>, run the command:
+<pre>$ sudo chgrp utmp /var/log/lastlog</pre> or
+<pre>$ sudo chgrp root /var/log/lastlog</pre>
+</p>
+<h4>Rationale</h4>
+<p>The <tt>/var/log/lastlog</tt> file contains logs of reports the most recent login of all users
+and should only be accessed by authorized personnel.</p>
+</div>
+
+<div id="file_groupowner_var_log_localmessages" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Group Who Owns /var/log/localmessages* File</h3>
+<div>file_groupowner_var_log_localmessages</div>
+<h4>Description</h4>
+<p> To properly set the group owner of <code>/var/log/localmessages*</code>, run the command:
+<pre>$ sudo chgrp adm /var/log/localmessages*</pre> or
+<pre>$ sudo chgrp root /var/log/localmessages*</pre>
+</p>
+<h4>Rationale</h4>
+<p>The <tt>/var/log/localmessages*</tt> file contains log messages from certain boot scripts,
+including the DHCP client, and should only be accessed by authorized personnel.</p>
+</div>
+
+<div id="file_groupowner_var_log_messages" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Group Who Owns /var/log/messages File</h3>
+<div>file_groupowner_var_log_messages</div>
+<h4>Description</h4>
+<p> To properly set the group owner of <code>/var/log/messages</code>, run the command:
+<pre>$ sudo chgrp root /var/log/messages</pre>
+</p>
+<h4>Rationale</h4>
+<p>The <tt>/var/log/messages</tt> file contains logs of error messages in
+the system and should only be accessed by authorized personnel.</p>
+</div>
+
+<div id="file_groupowner_var_log_secure" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Group Who Owns /var/log/secure File</h3>
+<div>file_groupowner_var_log_secure</div>
+<h4>Description</h4>
+<p> To properly set the group owner of <code>/var/log/secure</code>, run the command:
+<pre>$ sudo chgrp adm /var/log/secure</pre> or
+<pre>$ sudo chgrp root /var/log/secure</pre>
+</p>
+<h4>Rationale</h4>
+<p>The <tt>/var/log/secure</tt> file contains information related to authentication
+and authorization privileges and should only be accessed by authorized personnel.</p>
+</div>
+
+<div id="file_groupowner_var_log_syslog" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Group Who Owns /var/log/syslog File</h3>
+<div>file_groupowner_var_log_syslog</div>
+<h4>Description</h4>
+<p> To properly set the group owner of <code>/var/log/syslog</code>, run the command:
+<pre>$ sudo chgrp adm /var/log/syslog</pre>
+</p>
+<h4>Rationale</h4>
+<p>The <tt>/var/log/syslog</tt> file contains logs of error messages in
+the system and should only be accessed by authorized personnel.</p>
+</div>
+
+<div id="file_groupowner_var_log_waagent" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Group Who Owns /var/log/waagent.log File</h3>
+<div>file_groupowner_var_log_waagent</div>
+<h4>Description</h4>
+<p> To properly set the group owner of <code>/var/log/waagent.log</code>, run the command:
+<pre>$ sudo chgrp adm /var/log/waagent.log</pre> or
+<pre>$ sudo chgrp root /var/log/waagent.log</pre>
+</p>
+<h4>Rationale</h4>
+<p>The <tt>/var/log/waagent.log</tt> file contains Azure Linux Guest Agent records
+events that can be used for troubleshooting and should only be accessed by authorized personnel.</p>
+</div>
+
+<div id="file_groupowner_var_log_wbtmp" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Group Who Owns /var/log/(b|w)tmp(.*|-*) File</h3>
+<div>file_groupowner_var_log_wbtmp</div>
+<h4>Description</h4>
+<p> To properly set the group owner of <code>/var/log/(b|w)tmp(.*|-*)</code>, run the command:
+<pre>$ sudo chgrp utmp /var/log/(b|w)tmp(.*|-*)</pre> or
+<pre>$ sudo chgrp root /var/log/(b|w)tmp(.*|-*)</pre>
+</p>
+<h4>Rationale</h4>
+<p>The <tt>/var/log/(b|w)tmp(.*|-*)</tt> file contains logs of reports the most recent login of all users
+and should only be accessed by authorized personnel.</p>
+</div>
+
+<div id="file_groupownership_audit_binaries" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify that audit tools are owned by group root</h3>
+<div>file_groupownership_audit_binaries</div>
+<h4>Description</h4>
+<p>The Red Hat Enterprise Linux 8 operating system audit tools must have the proper
+ownership configured to protected against unauthorized access.
+
+Verify it by running the following command:
+<pre>$ stat -c "%n %G" /sbin/auditctl /sbin/aureport /sbin/ausearch /sbin/autrace /sbin/auditd /sbin/augenrules /sbin/audisp-syslog
+
+/sbin/auditctl root
+
+/sbin/aureport root
+
+/sbin/ausearch root
+
+/sbin/autrace root
+
+/sbin/auditd root
+
+/sbin/augenrules root
+
+/sbin/audisp-syslog root
+
+</pre>
+
+Audit tools needed to successfully view and manipulate audit information
+system activity and records. Audit tools include custom queries and report
+generators</p>
+<h4>Rationale</h4>
+<p>Protecting audit information also includes identifying and protecting the
+tools used to view and manipulate log data. Therefore, protecting audit
+tools is necessary to prevent unauthorized operation on audit information.
+
+Operating systems providing tools to interface with audit information
+will leverage user permissions and roles identifying the user accessing the
+tools and the corresponding rights the user enjoys to make access decisions
+regarding the access to audit tools.</p>
+</div>
+
+<div id="file_groupownership_system_commands_dirs" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify that system commands files are group owned by root or a system account</h3>
+<div>file_groupownership_system_commands_dirs</div>
+<h4>Description</h4>
+<p>System commands files are stored in the following directories by default:
+<pre>/bin
+/sbin
+/usr/bin
+/usr/sbin
+/usr/local/bin
+/usr/local/sbin
+</pre>
+All files in these directories should be owned by the <tt>root</tt> group,
+or a system account.
+If the directory, or any file in these directories, is found to be owned
+by a group other than root or a a system account correct its ownership
+with the following command:
+<pre>$ sudo chgrp root <i>FILE</i></pre></p>
+<h4>Rationale</h4>
+<p>If the operating system allows any user to make changes to software
+libraries, then those changes might be implemented without undergoing the
+appropriate testing and approvals that are part of a robust change management
+process.
+This requirement applies to operating systems with software libraries
+that are accessible and configurable, as in the case of interpreted languages.
+Software libraries also include privileged programs which execute with
+escalated privileges. Only qualified and authorized individuals must be
+allowed to obtain access to information system components for purposes
+of initiating changes, including upgrades and modifications.</p>
+</div>
+
+<div id="file_groupownerships_var_log" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify ownership of log files</h3>
+<div>file_groupownerships_var_log</div>
+<h4>Description</h4>
+<p>Any operating system providing too much information in error messages
+risks compromising the data and security of the structure, and content
+of error messages needs to be carefully considered by the organization.
+
+Organizations carefully consider the structure/content of error messages.
+The extent to which information systems are able to identify and handle
+error conditions is guided by organizational policy and operational
+requirements. Information that could be exploited by adversaries includes,
+for example, erroneous logon attempts with passwords entered by mistake
+as the username, mission/business information that can be derived from
+(if not stated explicitly by) information recorded, and personal
+information, such as account numbers, social security numbers, and credit
+card numbers.</p>
+<h4>Rationale</h4>
+<p>The Red Hat Enterprise Linux 8 must generate error messages that provide information
+necessary for corrective actions without revealing information that could
+be exploited by adversaries.</p>
+</div>
+
+<div id="file_groupownerships_var_log_apt" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Groupownership of Files in /var/log/apt</h3>
+<div>file_groupownerships_var_log_apt</div>
+<h4>Description</h4>
+<p> To properly set the group owner of <code>/var/log/apt/*</code>, run the command:
+<pre>$ sudo chgrp adm /var/log/apt/*</pre> or
+<pre>$ sudo chgrp root /var/log/apt/*</pre>
+</p>
+<h4>Rationale</h4>
+<p>The <tt>/var/log/apt</tt> directory contains information about APT
+and should only be accessed by authorized personnel.</p>
+</div>
+
+<div id="file_groupownerships_var_log_landscape" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Groupownership of Files in /var/log/landscape</h3>
+<div>file_groupownerships_var_log_landscape</div>
+<h4>Description</h4>
+<p> To properly set the group owner of <code>/var/log/landscape/*</code>, run the command:
+<pre>$ sudo chgrp root /var/log/landscape/*</pre> or
+<pre>$ sudo chgrp landscape /var/log/landscape/*</pre>
+</p>
+<h4>Rationale</h4>
+<p>The <tt>/var/log/landscape</tt> directory contains information about
+the landscape-client and should only be accessed by authorized personnel.</p>
+</div>
+
+<div id="file_groupownerships_var_log_gdm" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Groupownership of Files in /var/log/gdm</h3>
+<div>file_groupownerships_var_log_gdm</div>
+<h4>Description</h4>
+<p> To properly set the group owner of <code>/var/log/gdm/*</code>, run the command:
+<pre>$ sudo chgrp gdm /var/log/gdm/*</pre> or
+<pre>$ sudo chgrp root /var/log/gdm/*</pre>
+</p>
+<h4>Rationale</h4>
+<p>The <tt>/var/log/gdm</tt> directory contains information about the GDM daemon
+and should only be accessed by authorized personnel.</p>
+</div>
+
+<div id="file_groupownerships_var_log_gdm3" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Groupownership of Files in /var/log/gdm3</h3>
+<div>file_groupownerships_var_log_gdm3</div>
+<h4>Description</h4>
+<p> To properly set the group owner of <code>/var/log/gdm3/*</code>, run the command:
+<pre>$ sudo chgrp gdm /var/log/gdm3/*</pre> or
+<pre>$ sudo chgrp gdm3 /var/log/gdm3/*</pre> or
+<pre>$ sudo chgrp root /var/log/gdm3/*</pre>
+</p>
+<h4>Rationale</h4>
+<p>The <tt>/var/log/gdm3</tt> directory contains information about the GDM daemon
+and should only be accessed by authorized personnel.</p>
+</div>
+
+<div id="file_groupownerships_var_log_sssd" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Grouponwership of Files in /var/log/sssd</h3>
+<div>file_groupownerships_var_log_sssd</div>
+<h4>Description</h4>
+<p> To properly set the group owner of <code>/var/log/sssd/*</code>, run the command:
+<pre>$ sudo chgrp sssd /var/log/sssd/*</pre> or
+<pre>$ sudo chgrp root /var/log/sssd/*</pre>
+</p>
+<h4>Rationale</h4>
+<p>The <tt>/var/log/sssd</tt> directory contains debug logs for the System
+Security Services Daemon (SSSD) and should only be accessed by authorized personnel.</p>
+</div>
+
+<div id="file_owner_backup_etc_group" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify User Who Owns Backup group File</h3>
+<div>file_owner_backup_etc_group</div>
+<h4>Description</h4>
+<p> To properly set the owner of <code>/etc/group-</code>, run the command:
+<pre>$ sudo chown root /etc/group- </pre>
+</p>
+<h4>Rationale</h4>
+<p>The <tt>/etc/group-</tt> file is a backup file of <tt>/etc/group</tt>, and as such,
+it contains information regarding groups that are configured on the system.
+Protection of this file is important for system security.</p>
+</div>
+
+<div id="file_owner_backup_etc_gshadow" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify User Who Owns Backup gshadow File</h3>
+<div>file_owner_backup_etc_gshadow</div>
+<h4>Description</h4>
+<p> To properly set the owner of <code>/etc/gshadow-</code>, run the command:
+<pre>$ sudo chown root /etc/gshadow- </pre>
+</p>
+<h4>Rationale</h4>
+<p>The <tt>/etc/gshadow-</tt> file is a backup of <tt>/etc/gshadow</tt>, and as such,
+it contains group password hashes. Protection of this file is critical for system security.</p>
+</div>
+
+<div id="file_owner_backup_etc_passwd" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify User Who Owns Backup passwd File</h3>
+<div>file_owner_backup_etc_passwd</div>
+<h4>Description</h4>
+<p> To properly set the owner of <code>/etc/passwd-</code>, run the command:
+<pre>$ sudo chown root /etc/passwd- </pre>
+</p>
+<h4>Rationale</h4>
+<p>The <tt>/etc/passwd-</tt> file is a backup file of <tt>/etc/passwd</tt>, and as such,
+it contains information about the users that are configured on the system.
+Protection of this file is critical for system security.</p>
+</div>
+
+<div id="file_owner_backup_etc_shadow" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Group Who Owns Backup shadow File</h3>
+<div>file_owner_backup_etc_shadow</div>
+<h4>Description</h4>
+<p> To properly set the owner of <code>/etc/shadow-</code>, run the command:
+<pre>$ sudo chown root /etc/shadow- </pre>
+</p>
+<h4>Rationale</h4>
+<p>The <tt>/etc/shadow-</tt> file is a backup file of <tt>/etc/shadow</tt>, and as such,
+it contains the list of local system accounts and password hashes.
+Protection of this file is critical for system security.</p>
+</div>
+
+<div id="file_owner_etc_crypttab" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify User Who Owns /etc/crypttab File</h3>
+<div>file_owner_etc_crypttab</div>
+<h4>Description</h4>
+<p> To properly set the owner of <code>/etc/crypttab</code>, run the command:
+<pre>$ sudo chown root /etc/crypttab </pre>
+</p>
+<h4>Rationale</h4>
+<p>The ownership of the /etc/crypttab file by the root user is important
+because this file hosts encrypted block devices configuration. Protection
+of this file is critical for system security. Assigning the ownership to
+root ensures exclusive control of the encrypted block devices
+configuration.</p>
+</div>
+
+<div id="file_owner_etc_group" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify User Who Owns group File</h3>
+<div>file_owner_etc_group</div>
+<h4>Description</h4>
+<p> To properly set the owner of <code>/etc/group</code>, run the command:
+<pre>$ sudo chown root /etc/group </pre>
+</p>
+<h4>Rationale</h4>
+<p>The <tt>/etc/group</tt> file contains information regarding groups that are configured
+on the system. Protection of this file is important for system security.</p>
+</div>
+
+<div id="file_owner_etc_gshadow" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify User Who Owns gshadow File</h3>
+<div>file_owner_etc_gshadow</div>
+<h4>Description</h4>
+<p> To properly set the owner of <code>/etc/gshadow</code>, run the command:
+<pre>$ sudo chown root /etc/gshadow </pre>
+</p>
+<h4>Rationale</h4>
+<p>The <tt>/etc/gshadow</tt> file contains group password hashes. Protection of this file
+is critical for system security.</p>
+</div>
+
+<div id="file_owner_etc_passwd" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify User Who Owns passwd File</h3>
+<div>file_owner_etc_passwd</div>
+<h4>Description</h4>
+<p> To properly set the owner of <code>/etc/passwd</code>, run the command:
+<pre>$ sudo chown root /etc/passwd </pre>
+</p>
+<h4>Rationale</h4>
+<p>The <tt>/etc/passwd</tt> file contains information about the users that are configured on
+the system. Protection of this file is critical for system security.</p>
+</div>
+
+<div id="file_owner_etc_security_opasswd" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify User Who Owns /etc/security/opasswd File</h3>
+<div>file_owner_etc_security_opasswd</div>
+<h4>Description</h4>
+<p> To properly set the owner of <code>/etc/security/opasswd</code>, run the command:
+<pre>$ sudo chown root /etc/security/opasswd </pre>
+</p>
+<h4>Rationale</h4>
+<p>The <tt>/etc/security/opasswd</tt> file stores old passwords to prevent
+password reuse. Protection of this file is critical for system security.</p>
+</div>
+
+<div id="file_owner_etc_security_opasswd_old" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify User Who Owns /etc/security/opasswd.old File</h3>
+<div>file_owner_etc_security_opasswd_old</div>
+<h4>Description</h4>
+<p> To properly set the owner of <code>/etc/security/opasswd.old</code>, run the command:
+<pre>$ sudo chown root /etc/security/opasswd.old </pre>
+</p>
+<h4>Rationale</h4>
+<p>The <tt>/etc/security/opasswd.old</tt> file stores backups of old passwords to prevent
+password reuse. Protection of this file is critical for system security.</p>
+</div>
+
+<div id="file_owner_etc_shells" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Who Owns /etc/shells File</h3>
+<div>file_owner_etc_shells</div>
+<h4>Description</h4>
+<p>
+To properly set the owner of <code>/etc/shells</code>, run the command:
+
+  <pre>$ sudo chown root /etc/shells </pre>
+  </p>
+<h4>Rationale</h4>
+<p>The <tt>/etc/shells</tt> file contains the list of full pathnames to shells on the system.
+Since this file is used by many system programs this file should be protected.</p>
+</div>
+
+<div id="file_owner_etc_shadow" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify User Who Owns shadow File</h3>
+<div>file_owner_etc_shadow</div>
+<h4>Description</h4>
+<p> To properly set the owner of <code>/etc/shadow</code>, run the command:
+<pre>$ sudo chown root /etc/shadow </pre>
+</p>
+<h4>Rationale</h4>
+<p>The <tt>/etc/shadow</tt> file contains the list of local
+system accounts and stores password hashes. Protection of this file is
+critical for system security. Failure to give ownership of this file
+to root provides the designated owner with access to sensitive information
+which could weaken the system security posture.</p>
+</div>
+
+<div id="file_owner_etc_sysconfig_sshd" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify User Who Owns /etc/sysconfig/sshd File</h3>
+<div>file_owner_etc_sysconfig_sshd</div>
+<h4>Description</h4>
+<p> To properly set the owner of <code>/etc/sysconfig/sshd</code>, run the command:
+<pre>$ sudo chown root /etc/sysconfig/sshd </pre>
+</p>
+<h4>Rationale</h4>
+<p>The <tt>/etc/sysconfig/sshd</tt> file contains configuration options for the SSH daemon.
+Protection of this file is important for system security. The file should be owned by root
+to prevent unauthorized changes.</p>
+</div>
+
+<div id="file_owner_systemmap" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify User Who Owns System.map Files</h3>
+<div>file_owner_systemmap</div>
+<h4>Description</h4>
+<p>The System.map files are symbol map files generated during the compilation of the Linux
+kernel. They contain the mapping between kernel symbols and their corresponding memory
+addresses. These files must be owned by root.
+
+
+To properly set the owner of <code>/boot/System.map*</code>, run the command:
+
+  <pre>$ sudo chown root /boot/System.map* </pre>
+  </p>
+<h4>Rationale</h4>
+<p>The purpose of <tt>System.map</tt> files is primarily for debugging and profiling the kernel.
+Unrestricted access to these files might disclose information useful to attackers and
+malicious software leading to more sophisticated exploitation.</p>
+</div>
+
+<div id="file_owner_var_log" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify User Who Owns /var/log Directory</h3>
+<div>file_owner_var_log</div>
+<h4>Description</h4>
+<p> To properly set the owner of <code>/var/log</code>, run the command:
+<pre>$ sudo chown root /var/log </pre>
+</p>
+<h4>Rationale</h4>
+<p>The <tt>/var/log</tt> directory contains files with logs of error
+messages in the system and should only be accessed by authorized
+personnel.</p>
+</div>
+
+<div id="file_owner_var_log_auth" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify User Who Owns /var/log/auth.log File</h3>
+<div>file_owner_var_log_auth</div>
+<h4>Description</h4>
+<p> To properly set the owner of <code>/var/log/auth.log</code>, run the command:
+<pre>$ sudo chown syslog /var/log/auth.log </pre> or
+<pre>$ sudo chown root /var/log/auth.log </pre>
+</p>
+<h4>Rationale</h4>
+<p>The <tt>/var/log/auth.log</tt> file contains records information about user
+login attempts and authentication processes and should only be accessed by
+authorized personnel.</p>
+</div>
+
+<div id="file_owner_var_log_cloud_init" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify User Who Owns /var/log/cloud-init.log File</h3>
+<div>file_owner_var_log_cloud_init</div>
+<h4>Description</h4>
+<p> To properly set the owner of <code>/var/log/cloud-init.log</code>, run the command:
+<pre>$ sudo chown syslog /var/log/cloud-init.log </pre> or
+<pre>$ sudo chown root /var/log/cloud-init.log </pre>
+</p>
+<h4>Rationale</h4>
+<p>The <tt>/var/log/cloud-init.log</tt> file contains detailed debugging information that
+helps users troubleshoot cloud-init and should only be accessed by authorized personnel.</p>
+</div>
+
+<div id="file_owner_var_log_journal" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify User Who Owns /var/log/*.journal(~) Files</h3>
+<div>file_owner_var_log_journal</div>
+<h4>Description</h4>
+<p> To properly set the owner of <code>/var/log/*.journal(~)</code>, run the command:
+<pre>$ sudo chown root /var/log/*.journal(~) </pre>
+</p>
+<h4>Rationale</h4>
+<p>The <tt>/var/log/*.journal(~)</tt> files are system logs managed by the "systemd" service.</p>
+</div>
+
+<div id="file_owner_var_log_lastlog" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify User Who Owns /var/log/lastlog File</h3>
+<div>file_owner_var_log_lastlog</div>
+<h4>Description</h4>
+<p> To properly set the owner of <code>/var/log/lastlog</code>, run the command:
+<pre>$ sudo chown root /var/log/lastlog </pre>
+</p>
+<h4>Rationale</h4>
+<p>The <tt>/var/log/lastlog</tt> file contains logs of reports the most recent login of all users
+and should only be accessed by authorized personnel.</p>
+</div>
+
+<div id="file_owner_var_log_localmessages" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify User Who Owns /var/log/localmessages File</h3>
+<div>file_owner_var_log_localmessages</div>
+<h4>Description</h4>
+<p> To properly set the owner of <code>/var/log/localmessages</code>, run the command:
+<pre>$ sudo chown syslog /var/log/localmessages </pre> or
+<pre>$ sudo chown root /var/log/localmessages </pre>
+</p>
+<h4>Rationale</h4>
+<p>The <tt>/var/log/localmessages</tt> file contains log messages from certain boot scripts,
+including the DHCP client, and should only be accessed by authorized personnel.</p>
+</div>
+
+<div id="file_owner_var_log_messages" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify User Who Owns /var/log/messages File</h3>
+<div>file_owner_var_log_messages</div>
+<h4>Description</h4>
+<p> To properly set the owner of <code>/var/log/messages</code>, run the command:
+<pre>$ sudo chown root /var/log/messages </pre>
+</p>
+<h4>Rationale</h4>
+<p>The <tt>/var/log/messages</tt> file contains logs of error messages in
+the system and should only be accessed by authorized personnel.</p>
+</div>
+
+<div id="file_owner_var_log_secure" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify User Who Owns /var/log/secure File</h3>
+<div>file_owner_var_log_secure</div>
+<h4>Description</h4>
+<p> To properly set the owner of <code>/var/log/secure</code>, run the command:
+<pre>$ sudo chown syslog /var/log/secure </pre> or
+<pre>$ sudo chown root /var/log/secure </pre>
+</p>
+<h4>Rationale</h4>
+<p>The <tt>/var/log/secure</tt> file contains information related to authentication
+and authorization privileges and should only be accessed by authorized personnel.</p>
+</div>
+
+<div id="file_owner_var_log_syslog" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify User Who Owns /var/log/syslog File</h3>
+<div>file_owner_var_log_syslog</div>
+<h4>Description</h4>
+<p> To properly set the owner of <code>/var/log/syslog</code>, run the command:
+<pre>$ sudo chown syslog /var/log/syslog </pre>
+</p>
+<h4>Rationale</h4>
+<p>The <tt>/var/log/syslog</tt> file contains logs of error messages in
+the system and should only be accessed by authorized personnel.</p>
+</div>
+
+<div id="file_owner_var_log_waagent" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify User Who Owns /var/log/waagent.log File</h3>
+<div>file_owner_var_log_waagent</div>
+<h4>Description</h4>
+<p> To properly set the owner of <code>/var/log/waagent.log</code>, run the command:
+<pre>$ sudo chown syslog /var/log/waagent.log </pre> or
+<pre>$ sudo chown root /var/log/waagent.log </pre>
+</p>
+<h4>Rationale</h4>
+<p>The <tt>/var/log/waagent.log</tt> file contains Azure Linux Guest Agent records
+events that can be used for troubleshooting and should only be accessed by authorized personnel.</p>
+</div>
+
+<div id="file_owner_var_log_wbtmp" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify User Who Owns /var/log/(b|w)tmp(.*|-*) File</h3>
+<div>file_owner_var_log_wbtmp</div>
+<h4>Description</h4>
+<p> To properly set the owner of <code>/var/log/(b|w)tmp(.*|-*)</code>, run the command:
+<pre>$ sudo chown root /var/log/(b|w)tmp(.*|-*) </pre>
+</p>
+<h4>Rationale</h4>
+<p>The <tt>/var/log/(b|w)tmp(.*|-*)</tt> file contains logs of reports the most recent login of all users
+and should only be accessed by authorized personnel.</p>
+</div>
+
+<div id="file_ownership_audit_binaries" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify that audit tools are owned by root</h3>
+<div>file_ownership_audit_binaries</div>
+<h4>Description</h4>
+<p>The Red Hat Enterprise Linux 8 operating system audit tools must have the proper
+ownership configured to protected against unauthorized access.
+
+Verify it by running the following command:
+<pre>$ stat -c "%n %U" /sbin/auditctl /sbin/aureport /sbin/ausearch /sbin/autrace /sbin/auditd /sbin/augenrules /sbin/audisp-syslog
+
+/sbin/auditctl root
+
+/sbin/aureport root
+
+/sbin/ausearch root
+
+/sbin/autrace root
+
+/sbin/auditd root
+
+/sbin/augenrules root
+
+/sbin/audisp-syslog root
+
+</pre>
+
+Audit tools needed to successfully view and manipulate audit information
+system activity and records. Audit tools include custom queries and report
+generators</p>
+<h4>Rationale</h4>
+<p>Protecting audit information also includes identifying and protecting the
+tools used to view and manipulate log data. Therefore, protecting audit
+tools is necessary to prevent unauthorized operation on audit information.
+
+Operating systems providing tools to interface with audit information
+will leverage user permissions and roles identifying the user accessing the
+tools and the corresponding rights the user enjoys to make access decisions
+regarding the access to audit tools.</p>
+</div>
+
+<div id="file_ownership_binary_dirs" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify that System Executables Have Root Ownership</h3>
+<div>file_ownership_binary_dirs</div>
+<h4>Description</h4>
+<p>System executables are stored in the following directories by default:
+<pre>/bin
+/sbin
+/usr/bin
+/usr/libexec
+/usr/local/bin
+/usr/local/sbin
+/usr/sbin</pre>
+All files in these directories should be owned by the <tt>root</tt> user.
+If any file <i>FILE</i> in these directories is found
+to be owned by a user other than root, correct its ownership with the
+following command:
+<pre>$ sudo chown root <i>FILE</i></pre></p>
+<h4>Rationale</h4>
+<p>System binaries are executed by privileged users as well as system services,
+and restrictive permissions are necessary to ensure that their
+execution of these programs cannot be co-opted.</p>
+</div>
+
+<div id="file_ownership_library_dirs" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify that Shared Library Files Have Root Ownership</h3>
+<div>file_ownership_library_dirs</div>
+<h4>Description</h4>
+<p>System-wide shared library files, which are linked to executables
+during process load time or run time, are stored in the following directories
+by default:
+<pre>/lib
+/lib64
+/usr/lib
+/usr/lib64
+</pre>
+Kernel modules, which can be added to the kernel during runtime, are also
+stored in <tt>/lib/modules</tt>. All files in these directories should be
+owned by the <tt>root</tt> user. If the directory, or any file in these
+directories, is found to be owned by a user other than root correct its
+ownership with the following command:
+<pre>$ sudo chown root <i>FILE</i></pre></p>
+<h4>Rationale</h4>
+<p>Files from shared library directories are loaded into the address
+space of processes (including privileged ones) or of the kernel itself at
+runtime. Proper ownership is necessary to protect the integrity of the system.</p>
+</div>
+
+<div id="file_ownerships_var_log" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify ownership of log files</h3>
+<div>file_ownerships_var_log</div>
+<h4>Description</h4>
+<p>Any operating system providing too much information in error messages
+risks compromising the data and security of the structure, and content
+of error messages needs to be carefully considered by the organization.
+
+Organizations carefully consider the structure/content of error messages.
+The extent to which information systems are able to identify and handle
+error conditions is guided by organizational policy and operational
+requirements. Information that could be exploited by adversaries includes,
+for example, erroneous logon attempts with passwords entered by mistake
+as the username, mission/business information that can be derived from
+(if not stated explicitly by) information recorded, and personal
+information, such as account numbers, social security numbers, and credit
+card numbers.</p>
+<h4>Rationale</h4>
+<p>The Red Hat Enterprise Linux 8 must generate error messages that provide information
+necessary for corrective actions without revealing information that could
+be exploited by adversaries.</p>
+</div>
+
+<div id="file_ownerships_var_log_apt" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Ownership of Files in /var/log/apt</h3>
+<div>file_ownerships_var_log_apt</div>
+<h4>Description</h4>
+<p> To properly set the owner of <code>/var/log/apt/*</code>, run the command:
+<pre>$ sudo chown root /var/log/apt/* </pre>
+</p>
+<h4>Rationale</h4>
+<p>The <tt>/var/log/apt</tt> directory contains information about APT
+and should only be accessed by authorized personnel.</p>
+</div>
+
+<div id="file_ownerships_var_log_landscape" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Ownership of Files in /var/log/landscape</h3>
+<div>file_ownerships_var_log_landscape</div>
+<h4>Description</h4>
+<p> To properly set the owner of <code>/var/log/landscape/*</code>, run the command:
+<pre>$ sudo chown root /var/log/landscape/* </pre> or
+<pre>$ sudo chown landscape /var/log/landscape/* </pre>
+</p>
+<h4>Rationale</h4>
+<p>The <tt>/var/log/landscape</tt> directory contains information about
+the landscape-client and should only be accessed by authorized personnel.</p>
+</div>
+
+<div id="file_ownerships_var_log_gdm" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Ownership of Files in /var/log/gdm</h3>
+<div>file_ownerships_var_log_gdm</div>
+<h4>Description</h4>
+<p> To properly set the owner of <code>/var/log/gdm/*</code>, run the command:
+<pre>$ sudo chown root /var/log/gdm/* </pre>
+</p>
+<h4>Rationale</h4>
+<p>The <tt>/var/log/gdm</tt> directory contains information about the GDM daemon
+and should only be accessed by authorized personnel.</p>
+</div>
+
+<div id="file_ownerships_var_log_gdm3" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Ownership of Files in /var/log/gdm3</h3>
+<div>file_ownerships_var_log_gdm3</div>
+<h4>Description</h4>
+<p> To properly set the owner of <code>/var/log/gdm3/*</code>, run the command:
+<pre>$ sudo chown root /var/log/gdm3/* </pre>
+</p>
+<h4>Rationale</h4>
+<p>The <tt>/var/log/gdm3</tt> directory contains information about the GDM daemon
+and should only be accessed by authorized personnel.</p>
+</div>
+
+<div id="file_ownerships_var_log_sssd" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Ownership of Files in /var/log/sssd</h3>
+<div>file_ownerships_var_log_sssd</div>
+<h4>Description</h4>
+<p> To properly set the owner of <code>/var/log/sssd/*</code>, run the command:
+<pre>$ sudo chown sssd /var/log/sssd/* </pre> or
+<pre>$ sudo chown root /var/log/sssd/* </pre>
+</p>
+<h4>Rationale</h4>
+<p>The <tt>/var/log/sssd</tt> directory contains debug logs for the System
+Security Services Daemon (SSSD) and should only be accessed by authorized personnel.</p>
+</div>
+
+<div id="file_permissions_audit_binaries" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify that audit tools Have Mode 0755 or less</h3>
+<div>file_permissions_audit_binaries</div>
+<h4>Description</h4>
+<p>The Red Hat Enterprise Linux 8 operating system audit tools must have the proper
+permissions configured to protected against unauthorized access.
+
+Verify it by running the following command:
+<pre>$ stat -c "%n %a" /sbin/auditctl /sbin/aureport /sbin/ausearch /sbin/autrace /sbin/auditd /sbin/augenrules /sbin/audisp-syslog
+
+/sbin/auditctl 755
+
+/sbin/aureport 755
+
+/sbin/ausearch 755
+
+/sbin/autrace 755
+
+/sbin/auditd 755
+
+/sbin/augenrules 755
+
+/sbin/audisp-syslog 755
+
+</pre>
+
+Audit tools needed to successfully view and manipulate audit information
+system activity and records. Audit tools include custom queries and report
+generators</p>
+<h4>Rationale</h4>
+<p>Protecting audit information also includes identifying and protecting the
+tools used to view and manipulate log data. Therefore, protecting audit
+tools is necessary to prevent unauthorized operation on audit information.
+
+Operating systems providing tools to interface with audit information
+will leverage user permissions and roles identifying the user accessing the
+tools and the corresponding rights the user enjoys to make access decisions
+regarding the access to audit tools.</p>
+</div>
+
+<div id="file_permissions_backup_etc_group" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Permissions on Backup group File</h3>
+<div>file_permissions_backup_etc_group</div>
+<h4>Description</h4>
+<p>
+To properly set the permissions of <code>/etc/group-</code>, run the command:
+<pre>$ sudo chmod 0644 /etc/group-</pre></p>
+<h4>Rationale</h4>
+<p>The <tt>/etc/group-</tt> file is a backup file of <tt>/etc/group</tt>, and as such,
+it contains information regarding groups that are configured on the system.
+Protection of this file is important for system security.</p>
+</div>
+
+<div id="file_permissions_backup_etc_gshadow" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Permissions on Backup gshadow File</h3>
+<div>file_permissions_backup_etc_gshadow</div>
+<h4>Description</h4>
+<p>
+To properly set the permissions of <code>/etc/gshadow-</code>, run the command:
+<pre>$ sudo chmod 0000 /etc/gshadow-</pre></p>
+<h4>Rationale</h4>
+<p>The <tt>/etc/gshadow-</tt> file is a backup of <tt>/etc/gshadow</tt>, and as such,
+it contains group password hashes. Protection of this file is critical for system security.</p>
+</div>
+
+<div id="file_permissions_backup_etc_passwd" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Permissions on Backup passwd File</h3>
+<div>file_permissions_backup_etc_passwd</div>
+<h4>Description</h4>
+<p>
+To properly set the permissions of <code>/etc/passwd-</code>, run the command:
+<pre>$ sudo chmod 0644 /etc/passwd-</pre></p>
+<h4>Rationale</h4>
+<p>The <tt>/etc/passwd-</tt> file is a backup file of <tt>/etc/passwd</tt>, and as such,
+it contains information about the users that are configured on the system.
+Protection of this file is critical for system security.</p>
+</div>
+
+<div id="file_permissions_backup_etc_shadow" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Permissions on Backup shadow File</h3>
+<div>file_permissions_backup_etc_shadow</div>
+<h4>Description</h4>
+<p>
+To properly set the permissions of <code>/etc/shadow-</code>, run the command:
+<pre>$ sudo chmod 0000 /etc/shadow-</pre></p>
+<h4>Rationale</h4>
+<p>The <tt>/etc/shadow-</tt> file is a backup file of <tt>/etc/shadow</tt>, and as such,
+it contains the list of local system accounts and password hashes.
+Protection of this file is critical for system security.</p>
+</div>
+
+<div id="file_permissions_binary_dirs" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify that System Executables Have Restrictive Permissions</h3>
+<div>file_permissions_binary_dirs</div>
+<h4>Description</h4>
+<p>System executables are stored in the following directories by default:
+<pre>/bin
+/sbin
+/usr/bin
+/usr/libexec
+/usr/local/bin
+/usr/local/sbin
+/usr/sbin</pre>
+All files in these directories should not be group-writable or world-writable.
+If any file <i>FILE</i> in these directories is found
+to be group-writable or world-writable, correct its permission with the
+following command:
+<pre>$ sudo chmod go-w <i>FILE</i></pre></p>
+<h4>Rationale</h4>
+<p>System binaries are executed by privileged users, as well as system services,
+and restrictive permissions are necessary to ensure execution of these programs
+cannot be co-opted.</p>
+</div>
+
+<div id="file_permissions_etc_audit_auditd" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Permissions on /etc/audit/auditd.conf</h3>
+<div>file_permissions_etc_audit_auditd</div>
+<h4>Description</h4>
+<p>
+To properly set the permissions of <code>/etc/audit/auditd.conf</code>, run the command:
+<pre>$ sudo chmod 0640 /etc/audit/auditd.conf</pre></p>
+<h4>Rationale</h4>
+<p>Without the capability to restrict the roles and individuals that can select which events
+are audited, unauthorized personnel may be able to prevent the auditing of critical
+events. Misconfigured audits may degrade the system's performance by overwhelming
+the audit log. Misconfigured audits may also make it more difficult to establish,
+correlate, and investigate the events relating to an incident or identify
+those responsible for one.</p>
+</div>
+
+<div id="file_permissions_etc_audit_rulesd" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Permissions on /etc/audit/rules.d/*.rules</h3>
+<div>file_permissions_etc_audit_rulesd</div>
+<h4>Description</h4>
+<p>
+To properly set the permissions of <code>/etc/audit/rules.d/*.rules</code>, run the command:
+<pre>$ sudo chmod 0600 /etc/audit/rules.d/*.rules</pre></p>
+<h4>Rationale</h4>
+<p>Without the capability to restrict the roles and individuals that can select which events
+are audited, unauthorized personnel may be able to prevent the auditing of critical
+events. Misconfigured audits may degrade the system's performance by overwhelming
+the audit log. Misconfigured audits may also make it more difficult to establish,
+correlate, and investigate the events relating to an incident or identify
+those responsible for one.</p>
+</div>
+
+<div id="file_permissions_etc_audit_rules" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Permissions on /etc/audit/audit.rules</h3>
+<div>file_permissions_etc_audit_rules</div>
+<h4>Description</h4>
+<p>
+To properly set the permissions of <code>/etc/audit/audit.rules</code>, run the command:
+<pre>$ sudo chmod 0640 /etc/audit/audit.rules</pre></p>
+<h4>Rationale</h4>
+<p>Without the capability to restrict the roles and individuals that can select which events
+are audited, unauthorized personnel may be able to prevent the auditing of critical
+events. Misconfigured audits may degrade the system's performance by overwhelming
+the audit log. Misconfigured audits may also make it more difficult to establish,
+correlate, and investigate the events relating to an incident or identify
+those responsible for one.</p>
+</div>
+
+<div id="file_permissions_etc_crypttab" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Permissions On /etc/crypttab File</h3>
+<div>file_permissions_etc_crypttab</div>
+<h4>Description</h4>
+<p> To properly set the permissions of <code>/etc/crypttab</code>, run the command: <pre>$ sudo chmod 0600 /etc/crypttab</pre></p>
+<h4>Rationale</h4>
+<p>Setting correct permissions on the /etc/crypttab file is important
+because this file hosts encrypted block devices configuration. Protection
+of this file is critical for system security. Assigning the ownership to
+root ensures exclusive control of the encrypted block devices
+configuration.</p>
+</div>
+
+<div id="file_permissions_etc_group" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Permissions on group File</h3>
+<div>file_permissions_etc_group</div>
+<h4>Description</h4>
+<p>
+To properly set the permissions of <code>/etc/group</code>, run the command:
+<pre>$ sudo chmod 0644 /etc/group</pre></p>
+<h4>Rationale</h4>
+<p>The <tt>/etc/group</tt> file contains information regarding groups that are configured
+on the system. Protection of this file is important for system security.</p>
+</div>
+
+<div id="file_permissions_etc_gshadow" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Permissions on gshadow File</h3>
+<div>file_permissions_etc_gshadow</div>
+<h4>Description</h4>
+<p>
+To properly set the permissions of <code>/etc/gshadow</code>, run the command:
+<pre>$ sudo chmod 0000 /etc/gshadow</pre></p>
+<h4>Rationale</h4>
+<p>The <tt>/etc/gshadow</tt> file contains group password hashes. Protection of this file
+is critical for system security.</p>
+</div>
+
+<div id="file_permissions_etc_passwd" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Permissions on passwd File</h3>
+<div>file_permissions_etc_passwd</div>
+<h4>Description</h4>
+<p>
+To properly set the permissions of <code>/etc/passwd</code>, run the command:
+<pre>$ sudo chmod 0644 /etc/passwd</pre></p>
+<h4>Rationale</h4>
+<p>If the <tt>/etc/passwd</tt> file is writable by a group-owner or the
+world the risk of its compromise is increased. The file contains the list of
+accounts on the system and associated information, and protection of this file
+is critical for system security.</p>
+</div>
+
+<div id="file_permissions_etc_security_opasswd" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Permissions on /etc/security/opasswd File</h3>
+<div>file_permissions_etc_security_opasswd</div>
+<h4>Description</h4>
+<p>
+To properly set the permissions of <code>/etc/security/opasswd</code>, run the command:
+<pre>$ sudo chmod 0600 /etc/security/opasswd</pre></p>
+<h4>Rationale</h4>
+<p>The <tt>/etc/security/opasswd</tt> file stores old passwords to prevent
+password reuse. Protection of this file is critical for system security.</p>
+</div>
+
+<div id="file_permissions_etc_security_opasswd_old" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Permissions on /etc/security/opasswd.old File</h3>
+<div>file_permissions_etc_security_opasswd_old</div>
+<h4>Description</h4>
+<p>
+To properly set the permissions of <code>/etc/security/opasswd.old</code>, run the command:
+<pre>$ sudo chmod 0600 /etc/security/opasswd.old</pre></p>
+<h4>Rationale</h4>
+<p>The <tt>/etc/security/opasswd.old</tt> file stores backups of old passwords to prevent
+password reuse. Protection of this file is critical for system security.</p>
+</div>
+
+<div id="file_permissions_etc_shadow" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Permissions on shadow File</h3>
+<div>file_permissions_etc_shadow</div>
+<h4>Description</h4>
+<p>
+To properly set the permissions of <code>/etc/shadow</code>, run the command:
+<pre>$ sudo chmod 0000 /etc/shadow</pre></p>
+<h4>Rationale</h4>
+<p>The <tt>/etc/shadow</tt> file contains the list of local
+system accounts and stores password hashes. Protection of this file is
+critical for system security. Failure to give ownership of this file
+to root provides the designated owner with access to sensitive information
+which could weaken the system security posture.</p>
+</div>
+
+<div id="file_permissions_etc_shells" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Permissions on /etc/shells File</h3>
+<div>file_permissions_etc_shells</div>
+<h4>Description</h4>
+<p>
+To properly set the permissions of <code>/etc/shells</code>, run the command:
+<pre>$ sudo chmod 0644 /etc/shells</pre></p>
+<h4>Rationale</h4>
+<p>The <tt>/etc/shells</tt> file contains the list of full pathnames to shells on the system.
+Since this file is used by many system programs this file should be protected.</p>
+</div>
+
+<div id="file_permissions_etc_sysconfig_sshd" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Permissions on /etc/sysconfig/sshd File</h3>
+<div>file_permissions_etc_sysconfig_sshd</div>
+<h4>Description</h4>
+<p>
+To properly set the permissions of <code>/etc/sysconfig/sshd</code>, run the command:
+<pre>$ sudo chmod 0640 /etc/sysconfig/sshd</pre></p>
+<h4>Rationale</h4>
+<p>The <tt>/etc/sysconfig/sshd</tt> file contains configuration options for the SSH daemon.
+Protection of this file is important for system security. The file should have mode 0640
+or more restrictive to prevent unauthorized access and modifications.</p>
+</div>
+
+<div id="file_permissions_library_dirs" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify that Shared Library Files Have Restrictive Permissions</h3>
+<div>file_permissions_library_dirs</div>
+<h4>Description</h4>
+<p>System-wide shared library files, which are linked to executables
+during process load time or run time, are stored in the following directories
+by default:
+<pre>/lib
+/lib64
+/usr/lib
+/usr/lib64
+</pre>
+Kernel modules, which can be added to the kernel during runtime, are
+stored in <tt>/lib/modules</tt>. All files in these directories
+should not be group-writable or world-writable. If any file in these
+directories is found to be group-writable or world-writable, correct
+its permission with the following command:
+<pre>$ sudo chmod go-w <i>FILE</i></pre></p>
+<h4>Rationale</h4>
+<p>Files from shared library directories are loaded into the address
+space of processes (including privileged ones) or of the kernel itself at
+runtime. Restrictive permissions are necessary to protect the integrity of the system.</p>
+</div>
+
+<div id="file_permissions_local_var_log_messages" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify that local /var/log/messages is not world-readable</h3>
+<div>file_permissions_local_var_log_messages</div>
+<h4>Description</h4>
+<p>Files containing sensitive information should be protected by restrictive
+permissions. Most of the time, there is no need that these files need to be read by any non-root user
+
+To properly set the permissions of <code>/var/log/messages</code>, run the command:
+<pre>$ sudo chmod 0640 /var/log/messages</pre>
+
+Check that "permissions.local" file contains the correct permissions rules with the following command:
+
+<pre># grep -i messages /etc/permissions.local
+
+/var/log/messages root:root 640</pre></p>
+<h4>Rationale</h4>
+<p>The <tt>/var/log/messages</tt> file contains system error messages. Only
+authorized personnel should be aware of errors and the details of the
+errors. Error messages are an indicator of an organization's operational
+state or can identify the SUSE operating system or platform. Additionally,
+Personally Identifiable Information (PII) and operational information must
+not be revealed through error messages to unauthorized personnel or their
+designated representatives.</p>
+</div>
+
+<div id="file_permissions_system_commands_dirs" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify that system commands are protected from unauthorized access</h3>
+<div>file_permissions_system_commands_dirs</div>
+<h4>Description</h4>
+<p>System commands are stored in the following directories by default:
+<pre>/bin
+/sbin
+/usr/bin
+/usr/sbin
+/usr/local/bin
+/usr/local/sbin</pre>
+All files in these directories should not be group-writable or world-writable.
+If any file <i>FILE</i> in these directories is found
+to be group-writable or world-writable, correct its permission with the
+following command:
+<pre>$ sudo chmod 755 <i>FILE</i></pre></p>
+<h4>Rationale</h4>
+<p>System binaries are executed by privileged users, as well as system services,
+and restrictive permissions are necessary to ensure execution of these programs
+cannot be co-opted.</p>
+</div>
+
+<div id="file_permissions_systemmap" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Permissions on System.map Files</h3>
+<div>file_permissions_systemmap</div>
+<h4>Description</h4>
+<p>The System.map files are symbol map files generated during the compilation of the Linux
+kernel. They contain the mapping between kernel symbols and their corresponding memory
+addresses. In general, there is no need for non-root users to read these files.
+
+
+To properly set the permissions of <code>/boot/System.map*</code>, run the command:
+<pre>$ sudo chmod 0600 /boot/System.map*</pre></p>
+<h4>Rationale</h4>
+<p>The purpose of <tt>System.map</tt> files is primarily for debugging and profiling the kernel.
+Unrestricted access to these files might disclose information useful to attackers and
+malicious software leading to more sophisticated exploitation.</p>
+</div>
+
+<div id="file_permissions_unauthorized_sgid" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure All SGID Executables Are Authorized</h3>
+<div>file_permissions_unauthorized_sgid</div>
+<h4>Description</h4>
+<p>The SGID (set group id) bit should be set only on files that were installed via authorized
+means. A straightforward means of identifying unauthorized SGID files is determine if any were
+not installed as part of an RPM package, which is cryptographically verified. Investigate the
+origin of any unpackaged SGID files. This configuration check considers authorized SGID files
+those which were installed via RPM. It is assumed that when an individual has sudo access to
+install an RPM and all packages are signed with an organizationally-recognized GPG key, the
+software should be considered an approved package on the system. Any SGID file not deployed
+through an RPM will be flagged for further review.</p>
+<h4>Rationale</h4>
+<p>Executable files with the SGID permission run with the privileges of the owner of the file.
+SGID files of uncertain provenance could allow for unprivileged users to elevate privileges.
+The presence of these files should be strictly controlled on the system.</p>
+</div>
+
+<div id="file_permissions_unauthorized_suid" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure All SUID Executables Are Authorized</h3>
+<div>file_permissions_unauthorized_suid</div>
+<h4>Description</h4>
+<p>The SUID (set user id) bit should be set only on files that were installed via authorized
+means. A straightforward means of identifying unauthorized SUID files is determine if any were
+not installed as part of an RPM package, which is cryptographically verified. Investigate the
+origin of any unpackaged SUID files. This configuration check considers authorized SUID files
+those which were installed via RPM. It is assumed that when an individual has sudo access to
+install an RPM and all packages are signed with an organizationally-recognized GPG key, the
+software should be considered an approved package on the system. Any SUID file not deployed
+through an RPM will be flagged for further review.</p>
+<h4>Rationale</h4>
+<p>Executable files with the SUID permission run with the privileges of the owner of the file.
+SUID files of uncertain provenance could allow for unprivileged users to elevate privileges.
+The presence of these files should be strictly controlled on the system.</p>
+</div>
+
+<div id="file_permissions_unauthorized_world_writable" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure No World-Writable Files Exist</h3>
+<div>file_permissions_unauthorized_world_writable</div>
+<h4>Description</h4>
+<p>It is generally a good idea to remove global (other) write access to a file when it is
+discovered. However, check with documentation for specific applications before making changes.
+Also, monitor for recurring world-writable files, as these may be symptoms of a misconfigured
+application or user account. Finally, this applies to real files and not virtual files that
+are a part of pseudo file systems such as <tt>sysfs</tt> or <tt>procfs</tt>.</p>
+<h4>Rationale</h4>
+<p>Data in world-writable files can be modified by any user on the system. In almost all
+circumstances, files can be configured using a combination of user and group permissions to
+support whatever legitimate access is needed without the risk caused by world-writable files.</p>
+</div>
+
+<div id="file_permissions_ungroupowned" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure All Files Are Owned by a Group</h3>
+<div>file_permissions_ungroupowned</div>
+<h4>Description</h4>
+<p>If any file is not group-owned by a valid defined group, the cause of the lack of
+group-ownership must be investigated. Following this, those files should be deleted or
+assigned to an appropriate group. The groups need to be defined in <tt>/etc/group</tt>
+or in <tt>/usr/lib/group</tt> if <tt>nss-altfiles</tt> are configured to be used
+in <tt>/etc/nsswitch.conf</tt>.
+
+Locate the mount points related to local devices by the following command:
+<pre>$ findmnt -n -l -k -it $(awk '/nodev/ { print $2 }' /proc/filesystems | paste -sd,)</pre>
+
+For all mount points listed by the previous command, it is necessary to search for files which
+do not belong to a valid group using the following command:
+<pre>$ sudo find <i>MOUNTPOINT</i> -xdev -nogroup 2&gt;/dev/null</pre></p>
+<h4>Rationale</h4>
+<p>Unowned files do not directly imply a security problem, but they are generally a sign that
+something is amiss. They may be caused by an intruder, by incorrect software installation or
+draft software removal, or by failure to remove all files belonging to a deleted account, or
+other similar cases. The files should be repaired so they will not cause problems when
+accounts are created in the future, and the cause should be discovered and addressed.</p>
+</div>
+
+<div id="file_permissions_var_log" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Permissions on /var/log Directory</h3>
+<div>file_permissions_var_log</div>
+<h4>Description</h4>
+<p>
+To properly set the permissions of <code>/var/log</code>, run the command:
+<pre>$ sudo chmod 0755 /var/log</pre></p>
+<h4>Rationale</h4>
+<p>The <tt>/var/log</tt> directory contains files with logs of error
+messages in the system and should only be accessed by authorized
+personnel.</p>
+</div>
+
+<div id="file_permissions_var_log_stig" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify permissions of log files</h3>
+<div>file_permissions_var_log_stig</div>
+<h4>Description</h4>
+<p>Any operating system providing too much information in error messages
+risks compromising the data and security of the structure, and content
+of error messages needs to be carefully considered by the organization.
+
+Organizations carefully consider the structure/content of error messages.
+The extent to which information systems are able to identify and handle
+error conditions is guided by organizational policy and operational
+requirements. Information that could be exploited by adversaries includes,
+for example, erroneous logon attempts with passwords entered by mistake
+as the username, mission/business information that can be derived from
+(if not stated explicitly by) information recorded, and personal
+information, such as account numbers, social security numbers, and credit
+card numbers.</p>
+<h4>Rationale</h4>
+<p>The Red Hat Enterprise Linux 8 must generate error messages that provide information
+necessary for corrective actions without revealing information that could
+be exploited by adversaries.</p>
+</div>
+
+<div id="file_permissions_var_log_apt" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Permissions on files in the /var/log/apt/.* directory</h3>
+<div>file_permissions_var_log_apt</div>
+<h4>Description</h4>
+<p>
+To properly set the permissions of <code>/var/log/apt/.*</code>, run the command:
+<pre>$ sudo chmod 0644 /var/log/apt/.*</pre></p>
+<h4>Rationale</h4>
+<p>The <tt>/var/log/apt</tt> directory contains information about APT
+and should only be accessed by authorized personnel.</p>
+</div>
+
+<div id="file_permissions_var_log_auth" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Permissions on /var/log/auth.log File</h3>
+<div>file_permissions_var_log_auth</div>
+<h4>Description</h4>
+<p>
+To properly set the permissions of <code>/var/log/auth.log</code>, run the command:
+<pre>$ sudo chmod 0640 /var/log/auth.log</pre></p>
+<h4>Rationale</h4>
+<p>The <tt>/var/log/auth.log</tt> file contains records information about user
+login attempts and authentication processes and should only be accessed by
+authorized personnel.</p>
+</div>
+
+<div id="file_permissions_var_log_cloud-init" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Permissions on /var/log/cloud-init.log(.*) Files</h3>
+<div>file_permissions_var_log_cloud-init</div>
+<h4>Description</h4>
+<p>
+To properly set the permissions of <code>/var/log/cloud-init.log</code>, run the command:
+<pre>$ sudo chmod 0644 /var/log/cloud-init.log</pre></p>
+<h4>Rationale</h4>
+<p>The <tt>/var/log/cloud-init.log</tt> file contains detailed debugging information that
+helps users troubleshoot cloud-init and should only be accessed by authorized personnel.</p>
+</div>
+
+<div id="file_permissions_var_log_gdm" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Permissions of Files in /var/log/gdm</h3>
+<div>file_permissions_var_log_gdm</div>
+<h4>Description</h4>
+<p>
+To properly set the permissions of <code>/var/log/gdm/*</code>, run the command:
+<pre>$ sudo chmod 0660 /var/log/gdm/*</pre></p>
+<h4>Rationale</h4>
+<p>The <tt>/var/log/gdm</tt> directory contains information about the GDM daemon
+and should only be accessed by authorized personnel.</p>
+</div>
+
+<div id="file_permissions_var_log_gdm3" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Permissions of Files in /var/log/gdm3</h3>
+<div>file_permissions_var_log_gdm3</div>
+<h4>Description</h4>
+<p>
+To properly set the permissions of <code>/var/log/gdm3/*</code>, run the command:
+<pre>$ sudo chmod 0660 /var/log/gdm3/*</pre></p>
+<h4>Rationale</h4>
+<p>The <tt>/var/log/gdm3</tt> directory contains information about the GDM daemon
+and should only be accessed by authorized personnel.</p>
+</div>
+
+<div id="file_permissions_var_log_lastlog" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Permissions on /var/log/lastlog(.*) Files</h3>
+<div>file_permissions_var_log_lastlog</div>
+<h4>Description</h4>
+<p>
+To properly set the permissions of <code>/var/log/lastlog</code>, run the command:
+<pre>$ sudo chmod 0664 /var/log/lastlog</pre></p>
+<h4>Rationale</h4>
+<p>The <tt>/var/log/lastlog</tt> file contains logs of reports the most recent login of all users
+and should only be accessed by authorized personnel.</p>
+</div>
+
+<div id="file_permissions_var_log_localmessages" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Permissions on /var/log/localmessages(.*) Files</h3>
+<div>file_permissions_var_log_localmessages</div>
+<h4>Description</h4>
+<p>
+To properly set the permissions of <code>/var/log/localmessages</code>, run the command:
+<pre>$ sudo chmod 0644 /var/log/localmessages</pre></p>
+<h4>Rationale</h4>
+<p>The <tt>/var/log/localmessages</tt> file contains log messages from certain boot scripts,
+including the DHCP client, and should only be accessed by authorized personnel.</p>
+</div>
+
+<div id="file_permissions_var_log_messages" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Permissions on /var/log/messages File</h3>
+<div>file_permissions_var_log_messages</div>
+<h4>Description</h4>
+<p>
+To properly set the permissions of <code>/var/log/messages</code>, run the command:
+<pre>$ sudo chmod 0600 /var/log/messages</pre></p>
+<h4>Rationale</h4>
+<p>The <tt>/var/log/messages</tt> file contains logs of error messages in
+the system and should only be accessed by authorized personnel.</p>
+</div>
+
+<div id="file_permissions_var_log_secure" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Permissions on /var/log/secure File</h3>
+<div>file_permissions_var_log_secure</div>
+<h4>Description</h4>
+<p>
+To properly set the permissions of <code>/var/log/secure</code>, run the command:
+<pre>$ sudo chmod 0640 /var/log/secure</pre></p>
+<h4>Rationale</h4>
+<p>The <tt>/var/log/secure</tt> file contains information related to authentication
+and authorization privileges and should only be accessed by authorized personnel.</p>
+</div>
+
+<div id="file_permissions_var_log_sssd" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Permissions of Files in /var/log/sssd</h3>
+<div>file_permissions_var_log_sssd</div>
+<h4>Description</h4>
+<p>
+To properly set the permissions of <code>/var/log/sssd/*</code>, run the command:
+<pre>$ sudo chmod 0660 /var/log/sssd/*</pre></p>
+<h4>Rationale</h4>
+<p>The <tt>/var/log/sssd</tt> directory contains debug logs for the System
+Security Services Daemon (SSSD) and should only be accessed by authorized personnel.</p>
+</div>
+
+<div id="file_permissions_var_log_syslog" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Permissions on /var/log/syslog File</h3>
+<div>file_permissions_var_log_syslog</div>
+<h4>Description</h4>
+<p>
+To properly set the permissions of <code>/var/log/syslog</code>, run the command:
+<pre>$ sudo chmod 0640 /var/log/syslog</pre></p>
+<h4>Rationale</h4>
+<p>The <tt>/var/log/syslog</tt> file contains logs of error messages in
+the system and should only be accessed by authorized personnel.</p>
+</div>
+
+<div id="file_permissions_var_log_waagent" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Permissions on /var/log/waagent.log(.*) Files</h3>
+<div>file_permissions_var_log_waagent</div>
+<h4>Description</h4>
+<p>
+To properly set the permissions of <code>/var/log/waagent.log</code>, run the command:
+<pre>$ sudo chmod 0644 /var/log/waagent.log</pre></p>
+<h4>Rationale</h4>
+<p>The <tt>/var/log/waagent.log</tt> file contains Azure Linux Guest Agent records
+events that can be used for troubleshooting and should only be accessed by authorized personnel.</p>
+</div>
+
+<div id="file_permissions_var_log_wbtmp" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Permissions on /var/log/wtmp(.*) Files</h3>
+<div>file_permissions_var_log_wbtmp</div>
+<h4>Description</h4>
+<p>
+To properly set the permissions of <code>/var/log/(b|w)tmp(.*|-*)</code>, run the command:
+<pre>$ sudo chmod 0664 /var/log/(b|w)tmp(.*|-*)</pre></p>
+<h4>Rationale</h4>
+<p>The <tt>/var/log/(b|w)tmp(.*|-*)</tt> files contains logs of reports the most recent login of all users
+and should only be accessed by authorized personnel.</p>
+</div>
+
+<div id="mount_option_boot_efi_nosuid" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Add nosuid Option to /boot/efi</h3>
+<div>mount_option_boot_efi_nosuid</div>
+<h4>Description</h4>
+<p>The <tt>nosuid</tt> mount option can be used to prevent
+execution of setuid programs in <tt>/boot/efi</tt>. The SUID and SGID permissions
+should not be required on the boot partition.
+Add the <code>nosuid</code> option to the fourth column of
+<tt>/etc/fstab</tt> for the line which controls mounting of
+<code>/boot/efi</code>.</p>
+<h4>Rationale</h4>
+<p>The presence of SUID and SGID executables should be tightly controlled. Users
+should not be able to execute SUID or SGID binaries from boot partitions.</p>
+</div>
+
+<div id="mount_option_boot_noauto" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Add noauto Option to /boot</h3>
+<div>mount_option_boot_noauto</div>
+<h4>Description</h4>
+<p>The <tt>noauto</tt> mount option is used to prevent automatic mounting of th
+<tt>/boot</tt> partition. 
+Add the <code>noauto</code> option to the fourth column of
+<tt>/etc/fstab</tt> for the line which controls mounting of
+<code>/boot</code>.</p>
+<h4>Rationale</h4>
+<p>The <tt>/boot</tt> partition contains the kernel and the bootloader. Access
+to the partition after the boot process finishes should not be needed. Files
+contained within this partition can be analysed and gained information can
+be used for exploit creation.</p>
+</div>
+
+<div id="mount_option_boot_nodev" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Add nodev Option to /boot</h3>
+<div>mount_option_boot_nodev</div>
+<h4>Description</h4>
+<p>The <tt>nodev</tt> mount option can be used to prevent device files from
+being created in <tt>/boot</tt>.
+Legitimate character and block devices should exist only in
+the <tt>/dev</tt> directory on the root partition or within chroot
+jails built for system services.
+Add the <code>nodev</code> option to the fourth column of
+<tt>/etc/fstab</tt> for the line which controls mounting of
+<code>/boot</code>.</p>
+<h4>Rationale</h4>
+<p>The only legitimate location for device files is the <tt>/dev</tt> directory
+located on the root partition. The only exception to this is chroot jails.</p>
+</div>
+
+<div id="mount_option_boot_noexec" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Add noexec Option to /boot</h3>
+<div>mount_option_boot_noexec</div>
+<h4>Description</h4>
+<p>The <tt>noexec</tt> mount option can be used to prevent binaries from being
+executed out of <tt>/boot</tt>.
+Add the <code>noexec</code> option to the fourth column of
+<tt>/etc/fstab</tt> for the line which controls mounting of
+<code>/boot</code>.</p>
+<h4>Rationale</h4>
+<p>The <tt>/boot</tt> partition contains the kernel and the bootloader. No
+binaries should be executed from this partition after the booting process
+finishes.</p>
+</div>
+
+<div id="mount_option_boot_nosuid" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Add nosuid Option to /boot</h3>
+<div>mount_option_boot_nosuid</div>
+<h4>Description</h4>
+<p>The <tt>nosuid</tt> mount option can be used to prevent
+execution of setuid programs in <tt>/boot</tt>. The SUID and SGID permissions
+should not be required on the boot partition.
+Add the <code>nosuid</code> option to the fourth column of
+<tt>/etc/fstab</tt> for the line which controls mounting of
+<code>/boot</code>.</p>
+<h4>Rationale</h4>
+<p>The presence of SUID and SGID executables should be tightly controlled. Users
+should not be able to execute SUID or SGID binaries from boot partitions.</p>
+</div>
+
+<div id="mount_option_dev_shm_nodev" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Add nodev Option to /dev/shm</h3>
+<div>mount_option_dev_shm_nodev</div>
+<h4>Description</h4>
+<p>The <tt>nodev</tt> mount option can be used to prevent creation of device
+files in <tt>/dev/shm</tt>. Legitimate character and block devices should
+not exist within temporary directories like <tt>/dev/shm</tt>.
+Add the <code>nodev</code> option to the fourth column of
+<tt>/etc/fstab</tt> for the line which controls mounting of
+<code>/dev/shm</code>.</p>
+<h4>Rationale</h4>
+<p>The only legitimate location for device files is the <tt>/dev</tt> directory
+located on the root partition. The only exception to this is chroot jails.</p>
+</div>
+
+<div id="mount_option_dev_shm_noexec" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Add noexec Option to /dev/shm</h3>
+<div>mount_option_dev_shm_noexec</div>
+<h4>Description</h4>
+<p>The <tt>noexec</tt> mount option can be used to prevent binaries
+from being executed out of <tt>/dev/shm</tt>.
+It can be dangerous to allow the execution of binaries
+from world-writable temporary storage directories such as <tt>/dev/shm</tt>.
+Add the <code>noexec</code> option to the fourth column of
+<tt>/etc/fstab</tt> for the line which controls mounting of
+<code>/dev/shm</code>.</p>
+<h4>Rationale</h4>
+<p>Allowing users to execute binaries from world-writable directories
+such as <tt>/dev/shm</tt> can expose the system to potential compromise.</p>
+</div>
+
+<div id="mount_option_dev_shm_nosuid" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Add nosuid Option to /dev/shm</h3>
+<div>mount_option_dev_shm_nosuid</div>
+<h4>Description</h4>
+<p>The <tt>nosuid</tt> mount option can be used to prevent execution
+of setuid programs in <tt>/dev/shm</tt>.  The SUID and SGID permissions should not
+be required in these world-writable directories.
+Add the <code>nosuid</code> option to the fourth column of
+<tt>/etc/fstab</tt> for the line which controls mounting of
+<code>/dev/shm</code>.</p>
+<h4>Rationale</h4>
+<p>The presence of SUID and SGID executables should be tightly controlled. Users
+should not be able to execute SUID or SGID binaries from temporary storage partitions.</p>
+</div>
+
+<div id="mount_option_home_grpquota" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Add grpquota Option to /home</h3>
+<div>mount_option_home_grpquota</div>
+<h4>Description</h4>
+<p>The <tt>grpquota</tt> mount option allows for the filesystem to have disk quotas configured.
+Add the <code>grpquota</code> option to the fourth column of
+<tt>/etc/fstab</tt> for the line which controls mounting of
+<code>/home</code>.</p>
+<h4>Rationale</h4>
+<p>To ensure the availability of disk space on /home, it is important to limit the impact a
+single user or group can cause for other users (or the wider system) by intentionally or
+accidentally filling up the partition. Quotas can also be applied to inodes for filesystems
+where inode exhaustion is a concern.</p>
+</div>
+
+<div id="mount_option_home_nodev" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Add nodev Option to /home</h3>
+<div>mount_option_home_nodev</div>
+<h4>Description</h4>
+<p>The <tt>nodev</tt> mount option can be used to prevent device files from
+being created in <tt>/home</tt>.
+Legitimate character and block devices should exist only in
+the <tt>/dev</tt> directory on the root partition or within chroot
+jails built for system services.
+Add the <code>nodev</code> option to the fourth column of
+<tt>/etc/fstab</tt> for the line which controls mounting of
+<code>/home</code>.</p>
+<h4>Rationale</h4>
+<p>The only legitimate location for device files is the <tt>/dev</tt> directory
+located on the root partition. The only exception to this is chroot jails.</p>
+</div>
+
+<div id="mount_option_home_noexec" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Add noexec Option to /home</h3>
+<div>mount_option_home_noexec</div>
+<h4>Description</h4>
+<p>The <tt>noexec</tt> mount option can be used to prevent binaries from being
+executed out of <tt>/home</tt>.
+Add the <code>noexec</code> option to the fourth column of
+<tt>/etc/fstab</tt> for the line which controls mounting of
+<code>/home</code>.</p>
+<h4>Rationale</h4>
+<p>The <tt>/home</tt> directory contains data of individual users. Binaries in
+this directory should not be considered as trusted and users should not be
+able to execute them.</p>
+</div>
+
+<div id="mount_option_home_nosuid" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Add nosuid Option to /home</h3>
+<div>mount_option_home_nosuid</div>
+<h4>Description</h4>
+<p>The <tt>nosuid</tt> mount option can be used to prevent
+execution of setuid programs in <tt>/home</tt>. The SUID and SGID permissions
+should not be required in these user data directories.
+Add the <code>nosuid</code> option to the fourth column of
+<tt>/etc/fstab</tt> for the line which controls mounting of
+<code>/home</code>.</p>
+<h4>Rationale</h4>
+<p>The presence of SUID and SGID executables should be tightly controlled. Users
+should not be able to execute SUID or SGID binaries from user home directory partitions.</p>
+</div>
+
+<div id="mount_option_home_usrquota" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Add usrquota Option to /home</h3>
+<div>mount_option_home_usrquota</div>
+<h4>Description</h4>
+<p>The <tt>usrquota</tt> mount option allows for the filesystem to have disk quotas configured.
+Add the <code>usrquota</code> option to the fourth column of
+<tt>/etc/fstab</tt> for the line which controls mounting of
+<code>/home</code>.</p>
+<h4>Rationale</h4>
+<p>To ensure the availability of disk space on /home, it is important to limit the impact a
+single user or group can cause for other users (or the wider system) by intentionally or
+accidentally filling up the partition. Quotas can also be applied to inodes for filesystems
+where inode exhaustion is a concern.</p>
+</div>
+
+<div id="mount_option_krb_sec_remote_filesystems" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Mount Remote Filesystems with Kerberos Security</h3>
+<div>mount_option_krb_sec_remote_filesystems</div>
+<h4>Description</h4>
+<p>Add the <code>sec=krb5:krb5i:krb5p</code> option to the fourth column of <tt>/etc/fstab</tt> for the line which controls mounting of
+any NFS mounts.</p>
+<h4>Rationale</h4>
+<p>When an NFS server is configured to use AUTH_SYS a selected userid and groupid are used to handle
+requests from the remote user. The userid and groupid could mistakenly or maliciously be set
+incorrectly. The AUTH_GSS method of authentication uses certificates on the server and client
+systems to more securely authenticate the remote mount request.</p>
+</div>
+
+<div id="mount_option_nodev_nonroot_local_partitions" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Add nodev Option to Non-Root Local Partitions</h3>
+<div>mount_option_nodev_nonroot_local_partitions</div>
+<h4>Description</h4>
+<p>The <tt>nodev</tt> mount option prevents files from being interpreted as
+character or block devices. Legitimate character and block devices should
+exist only in the <tt>/dev</tt> directory on the root partition or within
+chroot jails built for system services.
+Add the <code>nodev</code> option to the fourth column of
+<tt>/etc/fstab</tt> for the line which controls mounting of
+
+    any non-root local partitions.</p>
+<h4>Rationale</h4>
+<p>The <tt>nodev</tt> mount option prevents files from being
+interpreted as character or block devices. The only legitimate location
+for device files is the <tt>/dev</tt> directory located on the root partition.
+The only exception to this is chroot jails, for which it is not advised
+to set <tt>nodev</tt> on these filesystems.</p>
+</div>
+
+<div id="mount_option_nodev_remote_filesystems" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Mount Remote Filesystems with nodev</h3>
+<div>mount_option_nodev_remote_filesystems</div>
+<h4>Description</h4>
+<p>Add the <code>nodev</code> option to the fourth column of <tt>/etc/fstab</tt> for the line which controls mounting of
+any NFS mounts.</p>
+<h4>Rationale</h4>
+<p>Legitimate device files should only exist in the /dev directory. NFS mounts
+should not present device files to users.</p>
+</div>
+
+<div id="mount_option_nodev_removable_partitions" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Add nodev Option to Removable Media Partitions</h3>
+<div>mount_option_nodev_removable_partitions</div>
+<h4>Description</h4>
+<p>The <tt>nodev</tt> mount option prevents files from being
+interpreted as character or block devices.
+Legitimate character and block devices should exist only in
+the <tt>/dev</tt> directory on the root partition or within chroot
+jails built for system services.
+Add the <code>nodev</code> option to the fourth column of
+<tt>/etc/fstab</tt> for the line which controls mounting of
+
+    any removable media partitions.</p>
+<h4>Rationale</h4>
+<p>The only legitimate location for device files is the <tt>/dev</tt> directory
+located on the root partition. An exception to this is chroot jails, and it is
+not advised to set <tt>nodev</tt> on partitions which contain their root
+filesystems.</p>
+</div>
+
+<div id="mount_option_noexec_remote_filesystems" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Mount Remote Filesystems with noexec</h3>
+<div>mount_option_noexec_remote_filesystems</div>
+<h4>Description</h4>
+<p>Add the <code>noexec</code> option to the fourth column of <tt>/etc/fstab</tt> for the line which controls mounting of
+any NFS mounts.</p>
+<h4>Rationale</h4>
+<p>The noexec mount option causes the system not to execute binary files. This option must be used
+for mounting any file system not containing approved binary files as they may be incompatible. Executing
+files from untrusted file systems increases the opportunity for unprivileged users to attain unauthorized
+administrative access.</p>
+</div>
+
+<div id="mount_option_noexec_removable_partitions" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Add noexec Option to Removable Media Partitions</h3>
+<div>mount_option_noexec_removable_partitions</div>
+<h4>Description</h4>
+<p>The <tt>noexec</tt> mount option prevents the direct execution of binaries
+on the mounted filesystem. Preventing the direct execution of binaries from
+removable media (such as a USB key) provides a defense against malicious
+software that may be present on such untrusted media.
+Add the <code>noexec</code> option to the fourth column of
+<tt>/etc/fstab</tt> for the line which controls mounting of
+
+    any removable media partitions.</p>
+<h4>Rationale</h4>
+<p>Allowing users to execute binaries from removable media such as USB keys exposes
+the system to potential compromise.</p>
+</div>
+
+<div id="mount_option_nosuid_remote_filesystems" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Mount Remote Filesystems with nosuid</h3>
+<div>mount_option_nosuid_remote_filesystems</div>
+<h4>Description</h4>
+<p>Add the <code>nosuid</code> option to the fourth column of <tt>/etc/fstab</tt> for the line which controls mounting of
+any NFS mounts.</p>
+<h4>Rationale</h4>
+<p>NFS mounts should not present suid binaries to users. Only vendor-supplied suid executables
+should be installed to their default location on the local filesystem.</p>
+</div>
+
+<div id="mount_option_nosuid_removable_partitions" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Add nosuid Option to Removable Media Partitions</h3>
+<div>mount_option_nosuid_removable_partitions</div>
+<h4>Description</h4>
+<p>The <tt>nosuid</tt> mount option prevents set-user-identifier (SUID)
+and set-group-identifier (SGID) permissions from taking effect. These permissions
+allow users to execute binaries with the same permissions as the owner and group
+of the file respectively. Users should not be allowed to introduce SUID and SGID
+files into the system via partitions mounted from removable media.
+Add the <code>nosuid</code> option to the fourth column of
+<tt>/etc/fstab</tt> for the line which controls mounting of
+
+    any removable media partitions.</p>
+<h4>Rationale</h4>
+<p>The presence of SUID and SGID executables should be tightly controlled. Allowing
+users to introduce SUID or SGID binaries from partitions mounted off of
+removable media would allow them to introduce their own highly-privileged programs.</p>
+</div>
+
+<div id="mount_option_opt_nosuid" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Add nosuid Option to /opt</h3>
+<div>mount_option_opt_nosuid</div>
+<h4>Description</h4>
+<p>The <tt>nosuid</tt> mount option can be used to prevent
+execution of setuid programs in <tt>/opt</tt>. The SUID and SGID permissions
+should not be required in this directory.
+Add the <code>nosuid</code> option to the fourth column of
+<tt>/etc/fstab</tt> for the line which controls mounting of
+<code>/opt</code>.</p>
+<h4>Rationale</h4>
+<p>The presence of SUID and SGID executables should be tightly controlled. The
+<tt>/opt</tt> directory contains additional software packages. Users should
+not be able to execute SUID or SGID binaries from this directory.</p>
+</div>
+
+<div id="mount_option_proc_hidepid" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Add hidepid Option to /proc</h3>
+<div>mount_option_proc_hidepid</div>
+<h4>Description</h4>
+<p>The <tt>hidepid</tt> mount option is applicable to <tt>/proc</tt> and is used to
+control who can access the information in <tt>/proc/[pid]</tt> directories.
+The option can have one of the following values:
+<pre>
+0: Everybody may access all /proc/[pid] directories.
+1: Users may not access files and subdirectories inside any /proc/[pid] directories
+   but their own. The /proc/[pid] directories themselves remain visible.
+2: Same as for mode 1, but in addition the /proc/[pid] directories belonging to other
+   users become invisible.
+</pre>
+For example, if you choose the value 2:
+Add the <code>hidepid=2</code> option to the fourth column of
+<tt>/etc/fstab</tt> for the line which controls mounting of
+<code>/proc</code>.</p>
+<h4>Rationale</h4>
+<p>Users should not be able to see and access directories within /proc, which are not
+related to their own processes in a system. Otherwise, sensitive information from
+other users could be seem.</p>
+</div>
+
+<div id="mount_option_srv_nosuid" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Add nosuid Option to /srv</h3>
+<div>mount_option_srv_nosuid</div>
+<h4>Description</h4>
+<p>The <tt>nosuid</tt> mount option can be used to prevent
+execution of setuid programs in <tt>/srv</tt>. The SUID and SGID permissions
+should not be required in this directory.
+Add the <code>nosuid</code> option to the fourth column of
+<tt>/etc/fstab</tt> for the line which controls mounting of
+<code>/srv</code>.</p>
+<h4>Rationale</h4>
+<p>The presence of SUID and SGID executables should be tightly controlled. The
+<tt>/srv</tt> directory contains files served by various network services such as FTP. Users should
+not be able to execute SUID or SGID binaries from this directory.</p>
+</div>
+
+<div id="mount_option_tmp_nodev" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Add nodev Option to /tmp</h3>
+<div>mount_option_tmp_nodev</div>
+<h4>Description</h4>
+<p>The <tt>nodev</tt> mount option can be used to prevent device files from
+being created in <tt>/tmp</tt>. Legitimate character and block devices
+should not exist within temporary directories like <tt>/tmp</tt>.
+Add the <code>nodev</code> option to the fourth column of
+<tt>/etc/fstab</tt> for the line which controls mounting of
+<code>/tmp</code>.</p>
+<h4>Rationale</h4>
+<p>The only legitimate location for device files is the <tt>/dev</tt> directory
+located on the root partition. The only exception to this is chroot jails.</p>
+</div>
+
+<div id="mount_option_tmp_noexec" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Add noexec Option to /tmp</h3>
+<div>mount_option_tmp_noexec</div>
+<h4>Description</h4>
+<p>The <tt>noexec</tt> mount option can be used to prevent binaries
+from being executed out of <tt>/tmp</tt>.
+Add the <code>noexec</code> option to the fourth column of
+<tt>/etc/fstab</tt> for the line which controls mounting of
+<code>/tmp</code>.</p>
+<h4>Rationale</h4>
+<p>Allowing users to execute binaries from world-writable directories
+such as <tt>/tmp</tt> should never be necessary in normal operation and
+can expose the system to potential compromise.</p>
+</div>
+
+<div id="mount_option_tmp_nosuid" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Add nosuid Option to /tmp</h3>
+<div>mount_option_tmp_nosuid</div>
+<h4>Description</h4>
+<p>The <tt>nosuid</tt> mount option can be used to prevent
+execution of setuid programs in <tt>/tmp</tt>. The SUID and SGID permissions
+should not be required in these world-writable directories.
+Add the <code>nosuid</code> option to the fourth column of
+<tt>/etc/fstab</tt> for the line which controls mounting of
+<code>/tmp</code>.</p>
+<h4>Rationale</h4>
+<p>The presence of SUID and SGID executables should be tightly controlled. Users
+should not be able to execute SUID or SGID binaries from temporary storage partitions.</p>
+</div>
+
+<div id="mount_option_var_log_audit_nodev" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Add nodev Option to /var/log/audit</h3>
+<div>mount_option_var_log_audit_nodev</div>
+<h4>Description</h4>
+<p>The <tt>nodev</tt> mount option can be used to prevent device files from
+being created in <tt>/var/log/audit</tt>.
+Legitimate character and block devices should exist only in
+the <tt>/dev</tt> directory on the root partition or within chroot
+jails built for system services.
+Add the <code>nodev</code> option to the fourth column of
+<tt>/etc/fstab</tt> for the line which controls mounting of
+<code>/var/log/audit</code>.</p>
+<h4>Rationale</h4>
+<p>The only legitimate location for device files is the <tt>/dev</tt> directory
+located on the root partition. The only exception to this is chroot jails.</p>
+</div>
+
+<div id="mount_option_var_log_audit_noexec" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Add noexec Option to /var/log/audit</h3>
+<div>mount_option_var_log_audit_noexec</div>
+<h4>Description</h4>
+<p>The <tt>noexec</tt> mount option can be used to prevent binaries
+from being executed out of <tt>/var/log/audit</tt>.
+Add the <code>noexec</code> option to the fourth column of
+<tt>/etc/fstab</tt> for the line which controls mounting of
+<code>/var/log/audit</code>.</p>
+<h4>Rationale</h4>
+<p>Allowing users to execute binaries from directories containing audit log files
+such as <tt>/var/log/audit</tt> should never be necessary in normal operation and
+can expose the system to potential compromise.</p>
+</div>
+
+<div id="mount_option_var_log_audit_nosuid" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Add nosuid Option to /var/log/audit</h3>
+<div>mount_option_var_log_audit_nosuid</div>
+<h4>Description</h4>
+<p>The <tt>nosuid</tt> mount option can be used to prevent
+execution of setuid programs in <tt>/var/log/audit</tt>. The SUID and SGID permissions
+should not be required in directories containing audit log files.
+Add the <code>nosuid</code> option to the fourth column of
+<tt>/etc/fstab</tt> for the line which controls mounting of
+<code>/var/log/audit</code>.</p>
+<h4>Rationale</h4>
+<p>The presence of SUID and SGID executables should be tightly controlled. Users
+should not be able to execute SUID or SGID binaries from partitions
+designated for audit log files.</p>
+</div>
+
+<div id="mount_option_var_log_nodev" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Add nodev Option to /var/log</h3>
+<div>mount_option_var_log_nodev</div>
+<h4>Description</h4>
+<p>The <tt>nodev</tt> mount option can be used to prevent device files from
+being created in <tt>/var/log</tt>.
+Legitimate character and block devices should exist only in
+the <tt>/dev</tt> directory on the root partition or within chroot
+jails built for system services.
+Add the <code>nodev</code> option to the fourth column of
+<tt>/etc/fstab</tt> for the line which controls mounting of
+<code>/var/log</code>.</p>
+<h4>Rationale</h4>
+<p>The only legitimate location for device files is the <tt>/dev</tt> directory
+located on the root partition. The only exception to this is chroot jails.</p>
+</div>
+
+<div id="mount_option_var_log_noexec" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Add noexec Option to /var/log</h3>
+<div>mount_option_var_log_noexec</div>
+<h4>Description</h4>
+<p>The <tt>noexec</tt> mount option can be used to prevent binaries
+from being executed out of <tt>/var/log</tt>.
+Add the <code>noexec</code> option to the fourth column of
+<tt>/etc/fstab</tt> for the line which controls mounting of
+<code>/var/log</code>.</p>
+<h4>Rationale</h4>
+<p>Allowing users to execute binaries from directories containing log files
+such as <tt>/var/log</tt> should never be necessary in normal operation and
+can expose the system to potential compromise.</p>
+</div>
+
+<div id="mount_option_var_log_nosuid" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Add nosuid Option to /var/log</h3>
+<div>mount_option_var_log_nosuid</div>
+<h4>Description</h4>
+<p>The <tt>nosuid</tt> mount option can be used to prevent
+execution of setuid programs in <tt>/var/log</tt>. The SUID and SGID permissions
+should not be required in directories containing log files.
+Add the <code>nosuid</code> option to the fourth column of
+<tt>/etc/fstab</tt> for the line which controls mounting of
+<code>/var/log</code>.</p>
+<h4>Rationale</h4>
+<p>The presence of SUID and SGID executables should be tightly controlled. Users
+should not be able to execute SUID or SGID binaries from partitions
+designated for log files.</p>
+</div>
+
+<div id="mount_option_var_nodev" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Add nodev Option to /var</h3>
+<div>mount_option_var_nodev</div>
+<h4>Description</h4>
+<p>The <tt>nodev</tt> mount option can be used to prevent device files from
+being created in <tt>/var</tt>.
+Legitimate character and block devices should exist only in
+the <tt>/dev</tt> directory on the root partition or within chroot
+jails built for system services.
+Add the <code>nodev</code> option to the fourth column of
+<tt>/etc/fstab</tt> for the line which controls mounting of
+<code>/var</code>.</p>
+<h4>Rationale</h4>
+<p>The only legitimate location for device files is the <tt>/dev</tt> directory
+located on the root partition. The only exception to this is chroot jails.</p>
+</div>
+
+<div id="mount_option_var_noexec" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Add noexec Option to /var</h3>
+<div>mount_option_var_noexec</div>
+<h4>Description</h4>
+<p>The <tt>noexec</tt> mount option can be used to prevent binaries from being
+executed out of <tt>/var</tt>.
+Add the <code>noexec</code> option to the fourth column of
+<tt>/etc/fstab</tt> for the line which controls mounting of
+<code>/var</code>.</p>
+<h4>Rationale</h4>
+<p>The <tt>/var</tt> directory contains variable system data such as logs,
+mails and caches. No binaries should be executed from this directory.</p>
+</div>
+
+<div id="mount_option_var_nosuid" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Add nosuid Option to /var</h3>
+<div>mount_option_var_nosuid</div>
+<h4>Description</h4>
+<p>The <tt>nosuid</tt> mount option can be used to prevent
+execution of setuid programs in <tt>/var</tt>. The SUID and SGID permissions
+should not be required for this directory.
+Add the <code>nosuid</code> option to the fourth column of
+<tt>/etc/fstab</tt> for the line which controls mounting of
+<code>/var</code>.</p>
+<h4>Rationale</h4>
+<p>The presence of SUID and SGID executables should be tightly controlled.</p>
+</div>
+
+<div id="mount_option_var_tmp_bind" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Bind Mount /var/tmp To /tmp</h3>
+<div>mount_option_var_tmp_bind</div>
+<h4>Description</h4>
+<p>The <tt>/var/tmp</tt> directory is a world-writable directory. Bind-mount
+it to <tt>/tmp</tt> in order to consolidate temporary storage into one
+location protected by the same techniques as <tt>/tmp</tt>. To do so, edit
+<tt>/etc/fstab</tt> and add the following line:
+<pre>/tmp     /var/tmp     none     rw,nodev,noexec,nosuid,bind     0 0</pre>
+See the <tt>mount(8)</tt> man page for further explanation of bind mounting.</p>
+<h4>Rationale</h4>
+<p>Having multiple locations for temporary storage is not required. Unless absolutely
+necessary to meet requirements, the storage location <tt>/var/tmp</tt> should be bind mounted to
+<tt>/tmp</tt> and thus share the same protections.</p>
+</div>
+
+<div id="mount_option_var_tmp_nodev" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Add nodev Option to /var/tmp</h3>
+<div>mount_option_var_tmp_nodev</div>
+<h4>Description</h4>
+<p>The <tt>nodev</tt> mount option can be used to prevent device files from
+being created in <tt>/var/tmp</tt>. Legitimate character and block devices
+should not exist within temporary directories like <tt>/var/tmp</tt>.
+Add the <code>nodev</code> option to the fourth column of
+<tt>/etc/fstab</tt> for the line which controls mounting of
+<code>/var/tmp</code>.</p>
+<h4>Rationale</h4>
+<p>The only legitimate location for device files is the <tt>/dev</tt> directory
+located on the root partition. The only exception to this is chroot jails.</p>
+</div>
+
+<div id="mount_option_var_tmp_noexec" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Add noexec Option to /var/tmp</h3>
+<div>mount_option_var_tmp_noexec</div>
+<h4>Description</h4>
+<p>The <tt>noexec</tt> mount option can be used to prevent binaries
+from being executed out of <tt>/var/tmp</tt>.
+Add the <code>noexec</code> option to the fourth column of
+<tt>/etc/fstab</tt> for the line which controls mounting of
+<code>/var/tmp</code>.</p>
+<h4>Rationale</h4>
+<p>Allowing users to execute binaries from world-writable directories
+such as <tt>/var/tmp</tt> should never be necessary in normal operation and
+can expose the system to potential compromise.</p>
+</div>
+
+<div id="mount_option_var_tmp_nosuid" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Add nosuid Option to /var/tmp</h3>
+<div>mount_option_var_tmp_nosuid</div>
+<h4>Description</h4>
+<p>The <tt>nosuid</tt> mount option can be used to prevent
+execution of setuid programs in <tt>/var/tmp</tt>. The SUID and SGID permissions
+should not be required in these world-writable directories.
+Add the <code>nosuid</code> option to the fourth column of
+<tt>/etc/fstab</tt> for the line which controls mounting of
+<code>/var/tmp</code>.</p>
+<h4>Rationale</h4>
+<p>The presence of SUID and SGID executables should be tightly controlled. Users
+should not be able to execute SUID or SGID binaries from temporary storage partitions.</p>
+</div>
+
+<div id="no_files_or_dirs_unowned_by_user" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure All Files And Directories Are Owned by a User</h3>
+<div>no_files_or_dirs_unowned_by_user</div>
+<h4>Description</h4>
+<p>If any files or directories are not owned by a user, then the cause of their lack of ownership should be
+investigated. Following this, the files should be deleted or assigned to an appropriate user.
+
+Locate the mount points related to local devices by the following command:
+<pre>$ findmnt -n -l -k -it $(awk '/nodev/ { print $2 }' /proc/filesystems | paste -sd,)</pre>
+
+For all mount points listed by the previous command, it is necessary to search for files and directories which
+do not belong to a valid user using the following command:
+<pre>$ sudo find <i>MOUNTPOINT</i> -xdev -nouser 2&gt;/dev/null</pre></p>
+<h4>Rationale</h4>
+<p>Unowned files and directories do not directly imply a security problem, but they are generally a sign that
+something is amiss. They may be caused by an intruder, by incorrect software installation or
+draft software removal, or by failure to remove all files belonging to a deleted account, or
+other similar cases. The files and directories should be repaired so they will not cause problems when
+accounts are created in the future, and the cause should be discovered and addressed.</p>
+</div>
+
+<div id="no_files_or_dirs_ungroupowned" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure All Files And Directories Are Owned by a Group</h3>
+<div>no_files_or_dirs_ungroupowned</div>
+<h4>Description</h4>
+<p>If any files or directories are not group-owned by a valid defined group, the cause of the lack of
+group-ownership must be investigated. Following this, those files should be deleted or
+assigned to an appropriate group. The groups need to be defined in <tt>/etc/group</tt>
+or in <tt>/usr/lib/group</tt> if <tt>nss-altfiles</tt> are configured to be used
+in <tt>/etc/nsswitch.conf</tt>.
+
+Locate the mount points related to local devices by the following command:
+<pre>$ findmnt -n -l -k -it $(awk '/nodev/ { print $2 }' /proc/filesystems | paste -sd,)</pre>
+
+For all mount points listed by the previous command, it is necessary to search for files and directories which
+do not belong to a valid group using the following command:
+<pre>$ sudo find <i>MOUNTPOINT</i> -xdev -nogroup 2&gt;/dev/null</pre></p>
+<h4>Rationale</h4>
+<p>Unowned files and directories do not directly imply a security problem, but they are generally a sign that
+something is amiss. They may be caused by an intruder, by incorrect software installation or
+draft software removal, or by failure to remove all files belonging to a deleted account, or
+other similar cases. The files and directories should be repaired so they will not cause problems when
+accounts are created in the future, and the cause should be discovered and addressed.</p>
+</div>
+
+<div id="no_files_unowned_by_user" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure All Files Are Owned by a User</h3>
+<div>no_files_unowned_by_user</div>
+<h4>Description</h4>
+<p>If any files are not owned by a user, then the cause of their lack of ownership should be
+investigated. Following this, the files should be deleted or assigned to an appropriate user.
+
+Locate the mount points related to local devices by the following command:
+<pre>$ findmnt -n -l -k -it $(awk '/nodev/ { print $2 }' /proc/filesystems | paste -sd,)</pre>
+
+For all mount points listed by the previous command, it is necessary to search for files which
+do not belong to a valid user using the following command:
+<pre>$ sudo find <i>MOUNTPOINT</i> -xdev -nouser 2&gt;/dev/null</pre></p>
+<h4>Rationale</h4>
+<p>Unowned files do not directly imply a security problem, but they are generally a sign that
+something is amiss. They may be caused by an intruder, by incorrect software installation or
+draft software removal, or by failure to remove all files belonging to a deleted account, or
+other similar cases. The files should be repaired so they will not cause problems when
+accounts are created in the future, and the cause should be discovered and addressed.</p>
+</div>
+
+<div id="partition_for_boot" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure /boot Located On Separate Partition</h3>
+<div>partition_for_boot</div>
+<h4>Description</h4>
+<p>It is recommended that the <tt>/boot</tt> directory resides on a separate
+partition. This makes it easier to apply restrictions e.g. through the
+<tt>noexec</tt> mount option. Eventually, the <tt>/boot</tt> partition can
+be configured not to be mounted automatically with the <tt>noauto</tt> mount
+option.</p>
+<h4>Rationale</h4>
+<p>The <tt>/boot</tt> partition contains the kernel and bootloader files.
+Access to this partition should be restricted.</p>
+</div>
+
+<div id="partition_for_dev_shm" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure /dev/shm is configured</h3>
+<div>partition_for_dev_shm</div>
+<h4>Description</h4>
+<p>The <tt>/dev/shm</tt> is a traditional shared memory concept.
+One program will create a memory portion, which other processes
+(if permitted) can access. If <tt>/dev/shm</tt> is not configured,
+tmpfs will be mounted to /dev/shm by systemd.</p>
+<h4>Rationale</h4>
+<p>Any user can upload and execute files inside the <tt>/dev/shm</tt> similar to
+the <tt>/tmp</tt> partition. Configuring <tt>/dev/shm</tt> allows an administrator
+to set the noexec option on the mount, making /dev/shm useless for an attacker to
+install executable code. It would also prevent an attacker from establishing a
+hardlink to a system setuid program and wait for it to be updated. Once the program
+was updated, the hardlink would be broken and the attacker would have his own copy
+of the program. If the program happened to have a security vulnerability, the attacker
+could continue to exploit the known flaw.</p>
+</div>
+
+<div id="partition_for_home" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure /home Located On Separate Partition</h3>
+<div>partition_for_home</div>
+<h4>Description</h4>
+<p>If user home directories will be stored locally, create a separate partition
+for <tt>/home</tt> at installation time (or migrate it later using LVM). If
+<tt>/home</tt> will be mounted from another system such as an NFS server, then
+creating a separate partition is not necessary at installation time, and the
+mountpoint can instead be configured later.</p>
+<h4>Rationale</h4>
+<p>Ensuring that <tt>/home</tt> is mounted on its own partition enables the
+setting of more restrictive mount options, and also helps ensure that
+users cannot trivially fill partitions used for log or audit data storage.</p>
+</div>
+
+<div id="partition_for_opt" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure /opt Located On Separate Partition</h3>
+<div>partition_for_opt</div>
+<h4>Description</h4>
+<p>It is recommended that the <tt>/opt</tt> directory resides on a separate
+partition.</p>
+<h4>Rationale</h4>
+<p>The <tt>/opt</tt> partition contains additional software, usually installed
+outside the packaging system. Putting this directory on a separate partition
+makes it easier to apply restrictions e.g. through the <tt>nosuid</tt> mount
+option.</p>
+</div>
+
+<div id="partition_for_srv" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure /srv Located On Separate Partition</h3>
+<div>partition_for_srv</div>
+<h4>Description</h4>
+<p>If a file server (FTP, TFTP...) is hosted locally, create a separate partition
+for <tt>/srv</tt> at installation time (or migrate it later using LVM). If
+<tt>/srv</tt> will be mounted from another system such as an NFS server, then
+creating a separate partition is not necessary at installation time, and the
+mountpoint can instead be configured later.</p>
+<h4>Rationale</h4>
+<p>Srv deserves files for local network file server such as FTP. Ensuring
+that <tt>/srv</tt> is mounted on its own partition enables the setting of
+more restrictive mount options, and also helps ensure that
+users cannot trivially fill partitions used for log or audit data storage.</p>
+</div>
+
+<div id="partition_for_tmp" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure /tmp Located On Separate Partition</h3>
+<div>partition_for_tmp</div>
+<h4>Description</h4>
+<p>The <tt>/tmp</tt> directory is a world-writable directory used
+for temporary file storage. Ensure it has its own partition or
+logical volume at installation time, or migrate it using LVM.</p>
+<h4>Rationale</h4>
+<p>The <tt>/tmp</tt> partition is used as temporary storage by many programs.
+Placing <tt>/tmp</tt> in its own partition enables the setting of more
+restrictive mount options, which can help protect programs which use it.</p>
+</div>
+
+<div id="partition_for_usr" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure /usr Located On Separate Partition</h3>
+<div>partition_for_usr</div>
+<h4>Description</h4>
+<p>It is recommended that the <tt>/usr</tt> directory resides on a separate
+partition.</p>
+<h4>Rationale</h4>
+<p>The <tt>/usr</tt> partition contains system software, utilities and files.
+Putting it on a separate partition allows limiting its size and applying
+restrictions through mount options.</p>
+</div>
+
+<div id="partition_for_var" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure /var Located On Separate Partition</h3>
+<div>partition_for_var</div>
+<h4>Description</h4>
+<p>The <tt>/var</tt> directory is used by daemons and other system
+services to store frequently-changing data. Ensure that <tt>/var</tt> has its own partition
+or logical volume at installation time, or migrate it using LVM.</p>
+<h4>Rationale</h4>
+<p>Ensuring that <tt>/var</tt> is mounted on its own partition enables the
+setting of more restrictive mount options. This helps protect
+system services such as daemons or other programs which use it.
+It is not uncommon for the <tt>/var</tt> directory to contain
+world-writable directories installed by other software packages.</p>
+</div>
+
+<div id="partition_for_var_log" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure /var/log Located On Separate Partition</h3>
+<div>partition_for_var_log</div>
+<h4>Description</h4>
+<p>System logs are stored in the <tt>/var/log</tt> directory.
+
+Ensure that <code>/var/log</code> has its own partition or logical
+volume at installation time, or migrate it using LVM.</p>
+<h4>Rationale</h4>
+<p>Placing <tt>/var/log</tt> in its own partition
+enables better separation between log files
+and other files in <tt>/var/</tt>.</p>
+</div>
+
+<div id="partition_for_var_log_audit" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure /var/log/audit Located On Separate Partition</h3>
+<div>partition_for_var_log_audit</div>
+<h4>Description</h4>
+<p>Audit logs are stored in the <tt>/var/log/audit</tt> directory.
+
+Ensure that <code>/var/log/audit</code> has its own partition or logical
+volume at installation time, or migrate it using LVM.
+Make absolutely certain that it is large enough to store all
+audit logs that will be created by the auditing daemon.</p>
+<h4>Rationale</h4>
+<p>Placing <tt>/var/log/audit</tt> in its own partition
+enables better separation between audit files
+and other files, and helps ensure that
+auditing cannot be halted due to the partition running out
+of space.</p>
+</div>
+
+<div id="partition_for_var_tmp" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure /var/tmp Located On Separate Partition</h3>
+<div>partition_for_var_tmp</div>
+<h4>Description</h4>
+<p>The <tt>/var/tmp</tt> directory is a world-writable directory used
+for temporary file storage. Ensure it has its own partition or
+logical volume at installation time, or migrate it using LVM.</p>
+<h4>Rationale</h4>
+<p>The <tt>/var/tmp</tt> partition is used as temporary storage by many programs.
+Placing <tt>/var/tmp</tt> in its own partition enables the setting of more
+restrictive mount options, which can help protect programs which use it.</p>
+</div>
+
+<div id="permissions_local_audit_binaries" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Permissions of Local Logs of audit Tools</h3>
+<div>permissions_local_audit_binaries</div>
+<h4>Description</h4>
+<p>The SUSE operating system audit tools must have the proper permissions
+configured to protect against unauthorized access.
+
+Check that "permissions.local" file contains the correct permissions rules
+with the following command:
+
+<pre>grep "^/usr/sbin/au" /etc/permissions.local
+
+/usr/sbin/audispd root:root 0750
+/usr/sbin/auditctl root:root 0750
+/usr/sbin/auditd root:root 0750
+/usr/sbin/ausearch root:root 0755
+/usr/sbin/aureport root:root 0755
+/usr/sbin/autrace root:root 0750
+/usr/sbin/augenrules root:root 0750
+</pre>
+
+Audit tools include but are not limited to vendor-provided and open-source
+audit tools needed to successfully view and manipulate audit information
+system activity and records. Audit tools include custom queries and report
+generators.</p>
+<h4>Rationale</h4>
+<p>Protecting audit information also includes identifying and protecting the
+tools used to view and manipulate log data. Therefore, protecting audit
+tools is necessary to prevent unauthorized operation on audit information.
+
+SUSE operating systems providing tools to interface with audit information
+will leverage user permissions and roles identifying the user accessing the
+tools and the corresponding rights the user enjoys to make access decisions
+regarding the access to audit tools.</p>
+</div>
+
+<div id="permissions_local_var_log" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify permissions of log files</h3>
+<div>permissions_local_var_log</div>
+<h4>Description</h4>
+<p>Any operating system providing too much information in error messages
+risks compromising the data and security of the structure, and content
+of error messages needs to be carefully considered by the organization.
+
+Organizations carefully consider the structure/content of error messages.
+The extent to which information systems are able to identify and handle
+error conditions is guided by organizational policy and operational
+requirements. Information that could be exploited by adversaries includes,
+for example, erroneous logon attempts with passwords entered by mistake
+as the username, mission/business information that can be derived from
+(if not stated explicitly by) information recorded, and personal
+information, such as account numbers, social security numbers, and credit
+card numbers.</p>
+<h4>Rationale</h4>
+<p>The Red Hat Enterprise Linux 8 must generate error messages that provide information
+necessary for corrective actions without revealing information that could
+be exploited by adversaries.</p>
+</div>
+
+<div id="permissions_local_var_log_audit" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify that Local Logs of the audit Daemon are not World-Readable</h3>
+<div>permissions_local_var_log_audit</div>
+<h4>Description</h4>
+<p>Files containing sensitive information should be protected by restrictive
+permissions. Most of the time, there is no need that these files need to be
+read by any non-root user.
+
+Check that "permissions.local" file contains the correct permissions rules with the following command:
+
+<pre># grep -i audit /etc/permissions.local
+
+/var/log/audit/ root:root 600
+/var/log/audit/audit.log root:root 600
+/etc/audit/audit.rules root:root 640
+/etc/audit/rules.d/audit.rules root:root 640</pre></p>
+<h4>Rationale</h4>
+<p>Without the capability to restrict which roles and individuals can select
+which events are audited, unauthorized personnel may be able to prevent the
+auditing of critical events. Misconfigured audits may degrade the system's
+performance by overwhelming the audit log. Misconfigured audits may also
+make it more difficult to establish, correlate, and investigate the events
+relating to an incident or identify those responsible for one.</p>
+</div>
+
+<div id="root_permissions_syslibrary_files" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify the system-wide library files in directories
+"/lib", "/lib64", "/usr/lib/" and "/usr/lib64" are group-owned by root.</h3>
+<div>root_permissions_syslibrary_files</div>
+<h4>Description</h4>
+<p>System-wide library files are stored in the following directories
+by default:
+<pre>/lib
+/lib64
+/usr/lib
+/usr/lib64
+</pre>
+All system-wide shared library files should be protected from unauthorised
+access. If any of these files is not group-owned by root,
+correct its group-owner with the following command:
+<pre>$ sudo chgrp root <i>FILE</i></pre></p>
+<h4>Rationale</h4>
+<p>If the operating system were to allow any user to make changes to software libraries,
+then those changes might be implemented without undergoing the appropriate testing and
+approvals that are part of a robust change management process.
+
+This requirement applies to operating systems with software libraries that are
+accessible and configurable, as in the case of interpreted languages. Software libraries
+also include privileged programs which execute with escalated privileges. Only qualified
+and authorized individuals must be allowed to obtain access to information system components
+for purposes of initiating changes, including upgrades and modifications.</p>
+</div>
+
+<div id="run_chkstat" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>OS commands and libraries must have the proper permissions to protect from unauthorized access</h3>
+<div>run_chkstat</div>
+<h4>Description</h4>
+<p>Verify that the SUSE operating system prevents unauthorized users from
+accessing system command and library files.
+
+Check that all of the audit information files and folders have the correct
+permissions with the following command:
+<pre># sudo chkstat --warn --system</pre>
+
+Set the correct permissions with the following command:
+
+<pre># sudo chkstat --set --system</pre></p>
+<h4>Rationale</h4>
+<p>If the SUSE operating system were to allow any user to make changes to
+software libraries, those changes might be implemented without undergoing
+the appropriate testing and approvals that are part of a robust change
+management process.
+
+This requirement applies to SUSE operating systems with software libraries
+that are accessible and configurable, as in the case of interpreted
+languages. Software libraries also include privileged programs that execute
+with escalated privileges. Only qualified and authorized individuals must
+be allowed to obtain access to information system components to initiate
+changes, including upgrades and modifications.</p>
+</div>
+
+<div id="sysctl_fs_protected_fifos" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Enable Kernel Parameter to Enforce DAC on FIFOs</h3>
+<div>sysctl_fs_protected_fifos</div>
+<h4>Description</h4>
+<p>To set the runtime status of the <code>fs.protected_fifos</code> kernel parameter, run the following command: <pre>$ sudo sysctl -w fs.protected_fifos=2</pre>
+To make sure that the setting is persistent, add the following line to a file in the directory <tt>/etc/sysctl.d</tt>: <pre>fs.protected_fifos = 2</pre></p>
+<h4>Rationale</h4>
+<p>This parameter is available since Linux Kernel 4.19 and allows to prohibit opening
+FIFOs that are not owned by the user in world and group writeable sticky directories.
+It avoids unintentional writes to an attacker-controlled FIFO where a program expects
+to create the regular file.</p>
+</div>
+
+<div id="sysctl_fs_protected_hardlinks" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Enable Kernel Parameter to Enforce DAC on Hardlinks</h3>
+<div>sysctl_fs_protected_hardlinks</div>
+<h4>Description</h4>
+<p>To set the runtime status of the <code>fs.protected_hardlinks</code> kernel parameter, run the following command: <pre>$ sudo sysctl -w fs.protected_hardlinks=1</pre>
+To make sure that the setting is persistent, add the following line to a file in the directory <tt>/etc/sysctl.d</tt>: <pre>fs.protected_hardlinks = 1</pre></p>
+<h4>Rationale</h4>
+<p>By enabling this kernel parameter, users can no longer create soft or hard links to
+files which they do not own. Disallowing such hardlinks mitigate vulnerabilities
+based on insecure file system accessed by privileged programs, avoiding an
+exploitation vector exploiting unsafe use of <tt>open()</tt> or <tt>creat()</tt>.</p>
+</div>
+
+<div id="sysctl_fs_protected_regular" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Enable Kernel Parameter to Enforce DAC on Regular files</h3>
+<div>sysctl_fs_protected_regular</div>
+<h4>Description</h4>
+<p>To set the runtime status of the <code>fs.protected_regular</code> kernel parameter, run the following command: <pre>$ sudo sysctl -w fs.protected_regular=2</pre>
+To make sure that the setting is persistent, add the following line to a file in the directory <tt>/etc/sysctl.d</tt>: <pre>fs.protected_regular = 2</pre></p>
+<h4>Rationale</h4>
+<p>This parameter is available since Linux Kernel 4.19 and allows to prohibit opening
+"regular" files that are not owned by the user in world and group writeable sticky
+directories. It avoids writes to an attacker-controlled regular file, for example,
+when a program expects to create the regular file.</p>
+</div>
+
+<div id="sysctl_fs_protected_symlinks" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Enable Kernel Parameter to Enforce DAC on Symlinks</h3>
+<div>sysctl_fs_protected_symlinks</div>
+<h4>Description</h4>
+<p>To set the runtime status of the <code>fs.protected_symlinks</code> kernel parameter, run the following command: <pre>$ sudo sysctl -w fs.protected_symlinks=1</pre>
+To make sure that the setting is persistent, add the following line to a file in the directory <tt>/etc/sysctl.d</tt>: <pre>fs.protected_symlinks = 1</pre></p>
+<h4>Rationale</h4>
+<p>By enabling this kernel parameter, symbolic links are permitted to be followed
+only when outside a sticky world-writable directory, or when the UID of the
+link and follower match, or when the directory owner matches the symlink's owner.
+Disallowing such symlinks helps mitigate vulnerabilities based on insecure file system
+accessed by privileged programs, avoiding an exploitation vector exploiting unsafe use of
+<tt>open()</tt> or <tt>creat()</tt>.</p>
+</div>
+
+
+
+
+</body>
+</html>

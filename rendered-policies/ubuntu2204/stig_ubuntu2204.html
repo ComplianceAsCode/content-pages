@@ -1,0 +1,2802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Definition of Canonical Ubuntu 22.04 LTS Security Technical Implementation Guide (STIG) for ubuntu2204</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Definition of Canonical Ubuntu 22.04 LTS Security Technical Implementation Guide (STIG) for ubuntu2204</h1>
+
+
+
+based on <a href="https://www.cyber.mil/stigs/downloads/">https://www.cyber.mil/stigs/downloads/</a>
+
+
+<div class="all_controls">
+<div class="one_control">
+  <h2>UBTU-22-211000: Ubuntu 22.04 LTS must be a vendor-supported release.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>high</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/certified-vendor/installed_OS_is_vendor_supported/rule.yml"> installed_OS_is_vendor_supported</a>: The Installed Operating System Is Vendor Supported
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-211015: Ubuntu 22.04 LTS must disable the x86 Ctrl-Alt-Delete key sequence.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>high</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-physical/disable_ctrlaltdel_reboot/rule.yml"> disable_ctrlaltdel_reboot</a>: Disable Ctrl-Alt-Del Reboot Activation
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-212010: Ubuntu 22.04 LTS, when booted, must require authentication upon booting into single-user and maintenance modes.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>high</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/bootloader-grub2/non-uefi/grub2_password/rule.yml"> grub2_password</a>: Set Boot Loader Password in grub2
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/bootloader-grub2/uefi/grub2_uefi_password/rule.yml"> grub2_uefi_password</a>: Set the UEFI Boot Loader Password
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-212015: Ubuntu 22.04 LTS must initiate session audits at system startup.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/grub2_audit_argument/rule.yml"> grub2_audit_argument</a>: Enable Auditing for Processes Which Start Prior to the Audit Daemon
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-213010: Ubuntu 22.04 LTS must restrict access to the kernel message buffer.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>low</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/restrictions/sysctl_kernel_dmesg_restrict/rule.yml"> sysctl_kernel_dmesg_restrict</a>: Restrict Access to Kernel Message Buffer
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-213015: Ubuntu 22.04 LTS must disable kernel core dumps so that it can fail to a secure state if system initialization fails, shutdown fails or aborts fail.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/base/service_kdump_disabled/rule.yml"> service_kdump_disabled</a>: Disable KDump Kernel Crash Analyzer (kdump)
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-213020: Ubuntu 22.04 LTS must implement address space layout randomization to protect its memory from unauthorized code execution.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/restrictions/enable_execshield_settings/sysctl_kernel_randomize_va_space/rule.yml"> sysctl_kernel_randomize_va_space</a>: Enable Randomized Layout of Virtual Address Space
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-213025: Ubuntu 22.04 LTS must implement nonexecutable data to protect its memory from unauthorized code execution.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/restrictions/enable_nx/bios_enable_execution_restrictions/rule.yml"> bios_enable_execution_restrictions</a>: Enable NX or XD Support in the BIOS
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-214010: Ubuntu 22.04 LTS must be configured so that the Advance Package Tool (APT) prevents the installation of patches, service packs, device drivers, or operating system components without verification they have been digitally signed using a certificate that is recognized and approved by the organization.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>low</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/apt/apt_conf_disallow_unauthenticated/rule.yml"> apt_conf_disallow_unauthenticated</a>: Disable unauthenticated repositories in APT configuration
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-214015: Ubuntu 22.04 LTS must be configured so that the Advance Package Tool (APT) removes all software components after updated versions have been installed.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/updating/clean_components_post_updating/rule.yml"> clean_components_post_updating</a>: Ensure apt_get Removes Previous Package Versions
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-215010: Ubuntu 22.04 LTS must have the "libpam-pwquality" package installed.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/package_pam_pwquality_installed/rule.yml"> package_pam_pwquality_installed</a>: Install pam_pwquality Package
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-215015: Ubuntu 22.04 LTS must have the "chrony" package installed.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>low</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ntp/package_chrony_installed/rule.yml"> package_chrony_installed</a>: The Chrony package is installed
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-215020: Ubuntu 22.04 LTS must not have the "systemd-timesyncd" package installed.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>low</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ntp/package_timesyncd_removed/rule.yml"> package_timesyncd_removed</a>: Remove the systemd_timesyncd Service
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-215025: Ubuntu 22.04 LTS must not have the "ntp" package installed.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>low</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ntp/package_ntp_removed/rule.yml"> package_ntp_removed</a>: Remove the ntp service
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-215030: Ubuntu 22.04 LTS must not have the "rsh-server" package installed.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>high</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/obsolete/r_services/package_rsh-server_removed/rule.yml"> package_rsh-server_removed</a>: Uninstall rsh-server Package
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-215035: Ubuntu 22.04 LTS must not have the "telnet" package installed.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>high</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/deprecated/package_telnetd_removed/rule.yml"> package_telnetd_removed</a>: Uninstall the telnet server
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-215040: Ubuntu 22.04 LTS must not have the "nfs-kernel-server" package installed.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/nfs_and_rpc/package_nfs-common_removed/rule.yml"> package_nfs-common_removed</a>: Uninstall nfs-common Package
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/nfs_and_rpc/package_nfs-kernel-server_removed/rule.yml"> package_nfs-kernel-server_removed</a>: Uninstall nfs-kernel-server Package
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-231010: Ubuntu 22.04 LTS must implement cryptographic mechanisms to prevent unauthorized disclosure and modification of all information that requires protection at rest.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/disk_partitioning/encrypt_partitions/rule.yml"> encrypt_partitions</a>: Encrypt Partitions
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-232010: Ubuntu 22.04 LTS must have directories that contain system commands set to a mode of "755" or less permissive.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_within_important_dirs/dir_permissions_binary_dirs/rule.yml"> dir_permissions_binary_dirs</a>: Verify that System Executable Directories Have Restrictive Permissions
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-232015: Ubuntu 22.04 LTS must have system commands set to a mode of "755" or less permissive.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_within_important_dirs/file_permissions_binary_dirs/rule.yml"> file_permissions_binary_dirs</a>: Verify that System Executables Have Restrictive Permissions
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-232020: Ubuntu 22.04 LTS library files must have mode "755" or less permissive.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_within_important_dirs/file_permissions_library_dirs/rule.yml"> file_permissions_library_dirs</a>: Verify that Shared Library Files Have Restrictive Permissions
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-232025: Ubuntu 22.04 LTS must configure the "/var/log" directory to have mode "755" or less permissive.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_var_log_dir/file_permissions_var_log/rule.yml"> file_permissions_var_log</a>: Verify Permissions on /var/log Directory
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-232026: Ubuntu 22.04 LTS must generate error messages that provide information necessary for corrective actions without revealing information that could be exploited by adversaries.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_local_var_log/rule.yml"> permissions_local_var_log</a>: Verify permissions of log files
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-232027: Ubuntu 22.04 LTS must generate system journal entries without revealing information that could be exploited by adversaries.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/logging/journald/dir_permissions_system_journal/rule.yml"> dir_permissions_system_journal</a>: Verify Permissions on the system journal directories
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/logging/journald/file_permissions_system_journal/rule.yml"> file_permissions_system_journal</a>: Verify Permissions on the system journal
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-232030: Ubuntu 22.04 LTS must configure "/var/log/syslog" file with mode "640" or less permissive.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_var_log_dir/file_permissions_var_log_syslog/rule.yml"> file_permissions_var_log_syslog</a>: Verify Permissions on /var/log/syslog File
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-232035: Ubuntu 22.04 LTS must configure audit tools with a mode of "755" or less permissive.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/file_permissions_auditd/file_permissions_audit_binaries/rule.yml"> file_permissions_audit_binaries</a>: Verify that audit tools Have Mode 0755 or less
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-232040: Ubuntu 22.04 LTS must have directories that contain system commands owned by "root".</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_within_important_dirs/dir_ownership_binary_dirs/rule.yml"> dir_ownership_binary_dirs</a>: Verify that System Executable Have Root Ownership
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-232045: Ubuntu 22.04 LTS must have directories that contain system commands group-owned by "root".</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_within_important_dirs/dir_groupownership_binary_dirs/rule.yml"> dir_groupownership_binary_dirs</a>: Verify that system commands directories are group owned by root
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-232050: Ubuntu 22.04 LTS must have system commands owned by "root" or a system account.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_within_important_dirs/file_ownership_binary_dirs/rule.yml"> file_ownership_binary_dirs</a>: Verify that System Executables Have Root Ownership
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-232055: Ubuntu 22.04 LTS must have system commands group-owned by "root" or a system account.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_within_important_dirs/file_groupownership_system_commands_dirs/rule.yml"> file_groupownership_system_commands_dirs</a>: Verify that system commands files are group owned by root or a system account
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-232060: Ubuntu 22.04 LTS library directories must be owned by "root".</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_within_important_dirs/dir_ownership_library_dirs/rule.yml"> dir_ownership_library_dirs</a>: Verify that Shared Library Directories Have Root Ownership
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-232065: Ubuntu 22.04 LTS library directories must be group-owned by "root".</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_within_important_dirs/dir_group_ownership_library_dirs/rule.yml"> dir_group_ownership_library_dirs</a>: Verify that Shared Library Directories Have Root Group Ownership
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-232070: Ubuntu 22.04 LTS library files must be owned by "root".</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_within_important_dirs/file_ownership_library_dirs/rule.yml"> file_ownership_library_dirs</a>: Verify that Shared Library Files Have Root Ownership
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-232075: Ubuntu 22.04 LTS library files must be group-owned by "root".</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_within_important_dirs/root_permissions_syslibrary_files/rule.yml"> root_permissions_syslibrary_files</a>: Verify the system-wide library files in directories
+"/lib", "/lib64", "/usr/lib/" and "/usr/lib64" are group-owned by root or a required system account.
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-232080: Ubuntu 22.04 LTS must configure the directories used by the system journal to be owned by "root".</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/logging/journald/dir_owner_system_journal/rule.yml"> dir_owner_system_journal</a>: Verify owner of system journal directories
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-232085: Ubuntu 22.04 LTS must configure the directories used by the system journal to be group-owned by "systemd-journal".</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/logging/journald/dir_groupowner_system_journal/rule.yml"> dir_groupowner_system_journal</a>: Verify group-owner of system journal directories
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-232090: Ubuntu 22.04 LTS must configure the files used by the system journal to be owned by "root".</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/logging/journald/file_owner_system_journal/rule.yml"> file_owner_system_journal</a>: Verify Owner on the system journal
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-232095: Ubuntu 22.04 LTS must configure the files used by the system journal to be group-owned by "systemd-journal".</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/logging/journald/file_groupowner_system_journal/rule.yml"> file_groupowner_system_journal</a>: Verify Group Who Owns the system journal
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-232100: Ubuntu 22.04 LTS must be configured so that the "journalctl" command is owned by "root".</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/logging/journald/file_owner_journalctl/rule.yml"> file_owner_journalctl</a>: Verify Owner on the journalctl Command
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-232105: Ubuntu 22.04 LTS must be configured so that the "journalctl" command is group-owned by "root".</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/logging/journald/file_groupowner_journalctl/rule.yml"> file_groupowner_journalctl</a>: Verify Groupowner on the journalctl command
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-232110: Ubuntu 22.04 LTS must configure audit tools to be owned by "root".</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/file_permissions_auditd/file_ownership_audit_binaries/rule.yml"> file_ownership_audit_binaries</a>: Verify that audit tools are owned by root
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-232120: Ubuntu 22.04 LTS must configure the "/var/log" directory to be owned by "root".</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_var_log_dir/file_owner_var_log/rule.yml"> file_owner_var_log</a>: Verify User Who Owns /var/log Directory
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-232125: Ubuntu 22.04 LTS must configure the "/var/log" directory to be group-owned by "syslog".</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_var_log_dir/file_groupowner_var_log/rule.yml"> file_groupowner_var_log</a>: Verify Group Who Owns /var/log Directory
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-232130: Ubuntu 22.04 LTS must configure "/var/log/syslog" file to be owned by "syslog".</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_var_log_dir/file_owner_var_log_syslog/rule.yml"> file_owner_var_log_syslog</a>: Verify User Who Owns /var/log/syslog File
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-232135: Ubuntu 22.04 LTS must configure the "/var/log/syslog" file to be group-owned by "adm".</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_var_log_dir/file_groupowner_var_log_syslog/rule.yml"> file_groupowner_var_log_syslog</a>: Verify Group Who Owns /var/log/syslog File
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-232140: Ubuntu 22.04 LTS must be configured so that the "journalctl" command is not accessible by unauthorized users.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/logging/journald/file_permissions_journalctl/rule.yml"> file_permissions_journalctl</a>: Verify Permissions on the journal command
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-232145: Ubuntu 22.04 LTS must set a sticky bit on all public directories to prevent unauthorized and unintended information transferred via shared system resources.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/dir_perms_world_writable_sticky_bits/rule.yml"> dir_perms_world_writable_sticky_bits</a>: Verify that All World-Writable Directories Have Sticky Bits Set
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-251010: Ubuntu 22.04 LTS must have an application firewall installed in order to control remote access methods.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-ufw/package_ufw_installed/rule.yml"> package_ufw_installed</a>: Install ufw Package
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-251015: Ubuntu 22.04 LTS must enable and run the Uncomplicated Firewall (ufw).</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-ufw/check_ufw_active/rule.yml"> check_ufw_active</a>: Verify ufw Active
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-251020: Ubuntu 22.04 LTS must have an application firewall enabled.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-ufw/service_ufw_enabled/rule.yml"> service_ufw_enabled</a>: Verify ufw Enabled
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-251025: Ubuntu 22.04 LTS must configure the Uncomplicated Firewall (ufw) to rate-limit impacted network interfaces.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-ufw/ufw_rate_limit/rule.yml"> ufw_rate_limit</a>: ufw Must rate-limit network interfaces
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-251030: Ubuntu 22.04 LTS must be configured to prohibit or restrict the use of functions, ports, protocols, and/or services, as defined in the PPSM CAL and vulnerability assessments.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-ufw/ufw_only_required_services/rule.yml"> ufw_only_required_services</a>: Only Allow Authorized Network Services in ufw
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-252010: Ubuntu 22.04 LTS must, for networked systems, compare internal information system clocks at least every 24 hours with a server synchronized to one of the redundant United States Naval Observatory (USNO) time servers, or a time server designated for the appropriate DOD network (NIPRNet/SIPRNet), and/or the Global Positioning System (GPS).</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>low</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ntp/chronyd_or_ntpd_set_maxpoll/rule.yml"> chronyd_or_ntpd_set_maxpoll</a>: Configure Time Service Maxpoll Interval
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ntp/var_time_service_set_maxpoll.var">var_time_service_set_maxpoll</a> = 18_hours</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-252015: Ubuntu 22.04 LTS must synchronize internal information system clocks to the authoritative time source when the time difference is greater than one second.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>low</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ntp/chronyd_sync_clock/rule.yml"> chronyd_sync_clock</a>: Synchronize internal information system clocks
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-252020: Ubuntu 22.04 LTS must record time stamps for audit records that can be mapped to Coordinated Universal Time (UTC).</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>low</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/logging/ensure_rtc_utc_configuration/rule.yml"> ensure_rtc_utc_configuration</a>: Ensure real-time clock is set to UTC
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-253010: Ubuntu 22.04 LTS must be configured to use TCP syncookies.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-kernel/network_host_and_router_parameters/sysctl_net_ipv4_tcp_syncookies/rule.yml"> sysctl_net_ipv4_tcp_syncookies</a>: Enable Kernel Parameter to Use TCP Syncookies on Network Interfaces
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-254010: Ubuntu 22.04 LTS must have the "SSSD" package installed.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/package_nss_sss_installed/rule.yml"> package_nss_sss_installed</a>: Install nss-sss Package
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/package_pam_sss_installed/rule.yml"> package_pam_sss_installed</a>: Install pam-sss Package
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/sssd/package_sssd_installed/rule.yml"> package_sssd_installed</a>: Install the SSSD Package
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-254015: Ubuntu 22.04 LTS must use the "SSSD" package for multifactor authentication services.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/sssd/service_sssd_enabled/rule.yml"> service_sssd_enabled</a>: Enable the SSSD Service
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-254020: Ubuntu 22.04 LTS must ensure SSSD performs certificate path validation, including revocation checking, against a trusted anchor for PKI-based authentication.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/sssd/sssd_certification_path_trust_anchor/rule.yml"> sssd_certification_path_trust_anchor</a>: Certificate trust path in SSSD
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/sssd/sssd_enable_pam_services/rule.yml"> sssd_enable_pam_services</a>: Configure PAM in SSSD Services
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/sssd/sssd_enable_smartcards/rule.yml"> sssd_enable_smartcards</a>: Enable Smartcards in SSSD
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-254030: Ubuntu 22.04 LTS must map the authenticated identity to the user or group account for PKI-based authentication.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/sssd/sssd_enable_user_cert/rule.yml"> sssd_enable_user_cert</a>: Enable Certificates Mapping in SSSD
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-255010: Ubuntu 22.04 LTS must have SSH installed.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>high</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/package_openssh-server_installed/rule.yml"> package_openssh-server_installed</a>: Install the OpenSSH Server Package
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-255015: Ubuntu 22.04 LTS must use SSH to protect the confidentiality and integrity of transmitted information.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>high</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/service_sshd_enabled/rule.yml"> service_sshd_enabled</a>: Enable the OpenSSH Service
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-255020: Ubuntu 22.04 LTS must display the Standard Mandatory DOD Notice and Consent Banner before granting any local or remote connection to the system.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-banners/banner_etc_issue_net/rule.yml"> banner_etc_issue_net</a>: Modify the System Login Banner for Remote Connections
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-banners/remote_login_banner_text.var">remote_login_banner_text</a> = dod_banners</li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_enable_warning_banner_net/rule.yml"> sshd_enable_warning_banner_net</a>: Enable SSH Warning Banner
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-255025: Ubuntu 22.04 LTS must not allow unattended or automatic login via SSH.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>high</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_disable_empty_passwords/rule.yml"> sshd_disable_empty_passwords</a>: Disable SSH Access via Empty Passwords
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_do_not_permit_user_env/rule.yml"> sshd_do_not_permit_user_env</a>: Do Not Allow SSH Environment Options
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-255030: Ubuntu 22.04 LTS must be configured so that all network connections associated with SSH traffic terminate after becoming unresponsive.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_set_keepalive/rule.yml"> sshd_set_keepalive</a>: Set SSH Client Alive Count Max
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/var_sshd_set_keepalive.var">var_sshd_set_keepalive</a> = 1</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-255035: Ubuntu 22.04 LTS must be configured so that all network connections associated with SSH traffic are terminated after 10 minutes of becoming unresponsive.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/sshd_idle_timeout_value.var">sshd_idle_timeout_value</a> = 10_minutes</li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_set_idle_timeout/rule.yml"> sshd_set_idle_timeout</a>: Set SSH Client Alive Interval
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-255040: Ubuntu 22.04 LTS must be configured so that remote X connections are disabled, unless to fulfill documented and validated mission requirements.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>high</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_disable_x11_forwarding/rule.yml"> sshd_disable_x11_forwarding</a>: Disable X11 Forwarding
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-255045: Ubuntu 22.04 LTS SSH daemon must prevent remote hosts from connecting to the proxy display.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_x11_use_localhost/rule.yml"> sshd_x11_use_localhost</a>: Prevent remote hosts from connecting to the proxy display
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-255050: Ubuntu 22.04 LTS must configure the SSH daemon to use FIPS 140-3-approved ciphers to prevent the unauthorized disclosure of information and/or detect changes to information during transmission.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_use_approved_ciphers_ordered_stig/rule.yml"> sshd_use_approved_ciphers_ordered_stig</a>: Use Only FIPS 140-2 Validated Ciphers
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-255055: Ubuntu 22.04 LTS must configure the SSH daemon to use Message Authentication Codes (MACs) employing FIPS 140-3-approved cryptographic hashes to prevent the unauthorized disclosure of information and/or detect changes to information during transmission.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_use_approved_macs_ordered_stig/rule.yml"> sshd_use_approved_macs_ordered_stig</a>: Use Only FIPS 140-2 Validated MACs
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-255060: Ubuntu 22.04 LTS SSH server must be configured to use only FIPS-validated key exchange algorithms.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_use_approved_kex_ordered_stig/rule.yml"> sshd_use_approved_kex_ordered_stig</a>: Use Only FIPS 140-2 Validated Key Exchange Algorithms
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-255065: Ubuntu 22.04 LTS must use strong authenticators in establishing nonlocal maintenance and diagnostic sessions.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_enable_pam/rule.yml"> sshd_enable_pam</a>: Enable PAM
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-271010: Ubuntu 22.04 LTS must enable the graphical user logon banner to display the Standard Mandatory DOD Notice and Consent Banner before granting local access to the system via a graphical user logon.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-banners/gui_login_banner/dconf_gnome_banner_enabled/rule.yml"> dconf_gnome_banner_enabled</a>: Enable GNOME3 Login Warning Banner
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-271015: Ubuntu 22.04 LTS must display the Standard Mandatory DOD Notice and Consent Banner before granting local access to the system via a graphical user logon.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-banners/gui_login_banner/dconf_gnome_login_banner_text/rule.yml"> dconf_gnome_login_banner_text</a>: Set the GNOME3 Login Warning Banner Text
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-banners/login_banner_text.var">login_banner_text</a> = dod_banners</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-271020: Ubuntu 22.04 LTS must retain a user's session lock until that user reestablishes access using established identification and authentication procedures.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/gnome/gnome_screen_locking/dconf_gnome_screensaver_lock_enabled/rule.yml"> dconf_gnome_screensaver_lock_enabled</a>: Enable GNOME3 Screensaver Lock After Idle Period
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-271025: Ubuntu 22.04 LTS must initiate a graphical session lock after 15 minutes of inactivity.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/gnome/gnome_screen_locking/dconf_gnome_screensaver_idle_delay/rule.yml"> dconf_gnome_screensaver_idle_delay</a>: Set GNOME3 Screensaver Inactivity Timeout
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/gnome/gnome_screen_locking/dconf_gnome_screensaver_lock_delay/rule.yml"> dconf_gnome_screensaver_lock_delay</a>: Set GNOME3 Screensaver Lock Delay After Activation Period
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/gnome/gnome_screen_locking/inactivity_timeout_value.var">inactivity_timeout_value</a> = 15_minutes</li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/gnome/gnome_screen_locking/var_screensaver_lock_delay.var">var_screensaver_lock_delay</a> = immediate</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-271030: Ubuntu 22.04 LTS must disable the x86 Ctrl-Alt-Delete key sequence if a graphical user interface is installed.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>high</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/gnome/gnome_system_settings/dconf_gnome_disable_ctrlaltdel_reboot/rule.yml"> dconf_gnome_disable_ctrlaltdel_reboot</a>: Disable Ctrl-Alt-Del Reboot Key Sequence in GNOME3
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-291010: Ubuntu 22.04 LTS must disable automatic mounting of Universal Serial Bus (USB) mass storage driver.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/mounting/kernel_module_usb-storage_disabled/rule.yml"> kernel_module_usb-storage_disabled</a>: Disable Modprobe Loading of USB Storage Driver
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-291015: Ubuntu 22.04 LTS must disable all wireless network adapters.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-wireless/wireless_software/wireless_disable_interfaces/rule.yml"> wireless_disable_interfaces</a>: Deactivate Wireless Network Interfaces
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-411010: Ubuntu 22.04 LTS must prevent direct login into the root account.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/root_logins/prevent_direct_root_logins/rule.yml"> prevent_direct_root_logins</a>: Direct root Logins Are Not Allowed
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-411015: Ubuntu 22.04 LTS must uniquely identify interactive users.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/password_storage/no_duplicate_uids/rule.yml"> no_duplicate_uids</a>: Ensure no duplicate UIDs exist
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-411025: Ubuntu 22.04 LTS must enforce 24 hours/one day as the minimum password lifetime. Passwords for new users must have a 24 hours/one day minimum password lifetime restriction.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/password_expiration/accounts_minimum_age_login_defs/rule.yml"> accounts_minimum_age_login_defs</a>: Set Password Minimum Age
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/password_expiration/var_accounts_minimum_age_login_defs.var">var_accounts_minimum_age_login_defs</a> = 1</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-411030: Ubuntu 22.04 LTS must enforce a 60-day maximum password lifetime restriction. Passwords for new users must have a 60-day maximum password lifetime restriction.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/password_expiration/accounts_maximum_age_login_defs/rule.yml"> accounts_maximum_age_login_defs</a>: Set Password Maximum Age
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/password_expiration/var_accounts_maximum_age_login_defs.var">var_accounts_maximum_age_login_defs</a> = 60</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-411035: Ubuntu 22.04 LTS must disable account identifiers (individuals, groups, roles, and devices) after 35 days of inactivity.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/account_expiration/account_disable_post_pw_expiration/rule.yml"> account_disable_post_pw_expiration</a>: Set Account Expiration Following Inactivity
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-411040: Ubuntu 22.04 LTS must automatically expire temporary accounts within 72 hours.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/account_expiration/account_temp_expire_date/rule.yml"> account_temp_expire_date</a>: Assign Expiration Date to Temporary Accounts
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-411045: Ubuntu 22.04 LTS must automatically lock an account until the locked account is released by an administrator when three unsuccessful logon attempts have been made.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>low</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_faillock_audit/rule.yml"> accounts_passwords_pam_faillock_audit</a>: Account Lockouts Must Be Logged
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_faillock_deny/rule.yml"> accounts_passwords_pam_faillock_deny</a>: Lock Accounts After Failed Password Attempts
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_faillock_interval/rule.yml"> accounts_passwords_pam_faillock_interval</a>: Set Interval For Counting Failed Password Attempts
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_faillock_silent/rule.yml"> accounts_passwords_pam_faillock_silent</a>: Do Not Show System Messages When Unsuccessful Logon Attempts Occur
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_faillock_unlock_time/rule.yml"> accounts_passwords_pam_faillock_unlock_time</a>: Set Lockout Time for Failed Password Attempts
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/var_accounts_passwords_pam_faillock_deny.var">var_accounts_passwords_pam_faillock_deny</a> = 3</li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/var_accounts_passwords_pam_faillock_fail_interval.var">var_accounts_passwords_pam_faillock_fail_interval</a> = 900</li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/var_accounts_passwords_pam_faillock_unlock_time.var">var_accounts_passwords_pam_faillock_unlock_time</a> = never</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-412010: Ubuntu 22.04 LTS must enforce a delay of at least four seconds between logon prompts following a failed logon attempt.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>low</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_faildelay_delay/rule.yml"> accounts_passwords_pam_faildelay_delay</a>: Enforce Delay After Failed Logon Attempts
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/var_password_pam_delay.var">var_password_pam_delay</a> = 4000000</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-412020: Ubuntu 22.04 LTS must limit the number of concurrent sessions to ten for all accounts and/or account types.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>low</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-session/accounts_max_concurrent_login_sessions/rule.yml"> accounts_max_concurrent_login_sessions</a>: Limit the Number of Concurrent Login Sessions Allowed Per User
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-session/var_accounts_max_concurrent_login_sessions.var">var_accounts_max_concurrent_login_sessions</a> = 10</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-412025: Ubuntu 22.04 LTS must allow users to directly initiate a session lock for all connection types.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-physical/screen_locking/console_screen_locking/vlock_installed/rule.yml"> vlock_installed</a>: Check that vlock is installed to allow session locking
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-412030: Ubuntu 22.04 LTS must automatically exit interactive command shell user sessions after 15 minutes of inactivity.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-session/accounts_tmout/rule.yml"> accounts_tmout</a>: Set Interactive Session Timeout
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-session/var_accounts_tmout.var">var_accounts_tmout</a> = 15_min</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-412035: Ubuntu 22.04 LTS default filesystem permissions must be defined in such a way that all authenticated users can read and modify only their own files.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-session/user_umask/accounts_umask_etc_login_defs/rule.yml"> accounts_umask_etc_login_defs</a>: Ensure the Default Umask is Set Correctly in login.defs
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-session/user_umask/var_accounts_user_umask.var">var_accounts_user_umask</a> = 077</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-431010: Ubuntu 22.04 LTS must have the "apparmor" package installed.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/apparmor/package_apparmor_installed/rule.yml"> package_apparmor_installed</a>: Ensure AppArmor is installed
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-431015: Ubuntu 22.04 LTS must be configured to use AppArmor.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/apparmor/apparmor_configured/rule.yml"> apparmor_configured</a>: Ensure AppArmor is Active and Configured
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-432010: Ubuntu 22.04 LTS must require users to reauthenticate for privilege escalation or when changing roles.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/sudo/sudo_remove_no_authenticate/rule.yml"> sudo_remove_no_authenticate</a>: Ensure Users Re-Authenticate for Privilege Escalation - sudo !authenticate
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-432011: Ubuntu 22.04 LTS must require users to provide a password for privilege escalation.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/sudo/sudo_remove_nopasswd/rule.yml"> sudo_remove_nopasswd</a>: Ensure Users Re-Authenticate for Privilege Escalation - sudo NOPASSWD
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-432015: Ubuntu 22.04 LTS must ensure only users who need access to security functions are part of sudo group.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>high</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/password_storage/ensure_sudo_group_restricted/rule.yml"> ensure_sudo_group_restricted</a>: Ensure sudo group has only necessary members
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-611010: Ubuntu 22.04 LTS must enforce password complexity by requiring at least one uppercase character be used.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_ucredit/rule.yml"> accounts_password_pam_ucredit</a>: Ensure PAM Enforces Password Requirements - Minimum Uppercase Characters
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/var_password_pam_ucredit.var">var_password_pam_ucredit</a> = 1</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-611015: Ubuntu 22.04 LTS must enforce password complexity by requiring at least one lowercase character be used.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_lcredit/rule.yml"> accounts_password_pam_lcredit</a>: Ensure PAM Enforces Password Requirements - Minimum Lowercase Characters
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/var_password_pam_lcredit.var">var_password_pam_lcredit</a> = 1</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-611020: Ubuntu 22.04 LTS must enforce password complexity by requiring that at least one numeric character be used.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_dcredit/rule.yml"> accounts_password_pam_dcredit</a>: Ensure PAM Enforces Password Requirements - Minimum Digit Characters
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/var_password_pam_dcredit.var">var_password_pam_dcredit</a> = 1</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-611025: Ubuntu 22.04 LTS must enforce password complexity by requiring that at least one special character be used.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_ocredit/rule.yml"> accounts_password_pam_ocredit</a>: Ensure PAM Enforces Password Requirements - Minimum Special Characters
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/var_password_pam_ocredit.var">var_password_pam_ocredit</a> = 1</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-611030: Ubuntu 22.04 LTS must prevent the use of dictionary words for passwords.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_dictcheck/rule.yml"> accounts_password_pam_dictcheck</a>: Ensure PAM Enforces Password Requirements - Prevent the Use of Dictionary Words
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/var_password_pam_dictcheck.var">var_password_pam_dictcheck</a> = 1</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-611035: Ubuntu 22.04 LTS must enforce a minimum 15-character password length.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_minlen/rule.yml"> accounts_password_pam_minlen</a>: Ensure PAM Enforces Password Requirements - Minimum Length
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/var_password_pam_minlen.var">var_password_pam_minlen</a> = 15</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-611040: Ubuntu 22.04 LTS must require the change of at least eight characters when passwords are changed.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_difok/rule.yml"> accounts_password_pam_difok</a>: Ensure PAM Enforces Password Requirements - Minimum Different Characters
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/var_password_pam_difok.var">var_password_pam_difok</a> = 8</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-611045: Ubuntu 22.04 LTS must be configured so that when passwords are changed or new passwords are established, pwquality must be used.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_enforcing/rule.yml"> accounts_password_pam_enforcing</a>: Ensure PAM Enforces Password Requirements - Enforcing
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_retry/rule.yml"> accounts_password_pam_retry</a>: Ensure PAM Enforces Password Requirements - Authentication Retry Prompts Permitted Per-Session
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/var_password_pam_retry.var">var_password_pam_retry</a> = 3</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-611055: Ubuntu 22.04 LTS must store only encrypted representations of passwords.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/password_storage/accounts_password_pam_unix_rounds_password_auth/rule.yml"> accounts_password_pam_unix_rounds_password_auth</a>: Set number of Password Hashing Rounds - password-auth
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/set_password_hashing_algorithm/set_password_hashing_algorithm_auth_stig/rule.yml"> set_password_hashing_algorithm_auth_stig</a>: Set Password Hashing Algorithm for PAM
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/password_storage/var_password_pam_unix_rounds.var">var_password_pam_unix_rounds</a> = 100000</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-611060: Ubuntu 22.04 LTS must not allow accounts configured with blank or null passwords.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>high</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/password_storage/no_empty_passwords/rule.yml"> no_empty_passwords</a>: Prevent Login to Accounts With Empty Password
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-611065: Ubuntu 22.04 LTS must not have accounts configured with blank or null passwords.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>high</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/password_storage/no_empty_passwords_etc_shadow/rule.yml"> no_empty_passwords_etc_shadow</a>: Ensure There Are No Accounts With Blank or Null Passwords
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-611070: Ubuntu 22.04 LTS must encrypt all stored passwords with a FIPS 140-3-approved cryptographic hashing algorithm.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/set_password_hashing_algorithm/set_password_hashing_algorithm_logindefs/rule.yml"> set_password_hashing_algorithm_logindefs</a>: Set Password Hashing Algorithm in /etc/login.defs
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-612010: Ubuntu 22.04 LTS must implement multifactor authentication for remote access to privileged accounts in such a way that one of the factors is provided by a device separate from the system gaining access.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-physical/screen_locking/smart_card_login/install_smartcard_packages/rule.yml"> install_smartcard_packages</a>: Install Smart Card Packages For Multifactor Authentication
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-612015: Ubuntu 22.04 LTS must accept personal identity verification (PIV) credentials.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-physical/screen_locking/smart_card_login/package_opensc_installed/rule.yml"> package_opensc_installed</a>: Install the opensc Package For Multifactor Authentication
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-612020: Ubuntu 22.04 LTS must implement smart card logins for multifactor authentication for local and network access to privileged and nonprivileged accounts.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-physical/screen_locking/smart_card_login/smartcard_pam_enabled/rule.yml"> smartcard_pam_enabled</a>: Enable Smart Card Logins in PAM
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_enable_pubkey_auth/rule.yml"> sshd_enable_pubkey_auth</a>: Enable Public Key Authentication
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-612025: Ubuntu 22.04 LTS must electronically verify personal identity verification (PIV) credentials.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-physical/screen_locking/smart_card_login/smartcard_configure_cert_checking/rule.yml"> smartcard_configure_cert_checking</a>: Configure Smart Card Certificate Status Checking
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-612030: Ubuntu 22.04 LTS, for PKI-based authentication, must validate certificates by constructing a certification path (which includes status information) to an accepted trust anchor.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-physical/screen_locking/smart_card_login/smartcard_configure_ca/rule.yml"> smartcard_configure_ca</a>: Configure Smart Card Certificate Authority Validation
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-612035: Ubuntu 22.04 LTS for PKI-based authentication, must implement a local cache of revocation data in case of the inability to access revocation information via the network.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-physical/screen_locking/smart_card_login/smartcard_configure_crl/rule.yml"> smartcard_configure_crl</a>: Configure Smart Card Local Cache of Revocation Data
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-612040: Ubuntu 22.04 LTS must map the authenticated identity to the user or group account for PKI-based authentication.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>high</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-physical/screen_locking/smart_card_login/verify_use_mappers/rule.yml"> verify_use_mappers</a>: Verify that 'use_mappers' is set to 'pwent' in PAM
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-631010: Ubuntu 22.04 LTS must use DOD PKI-established certificate authorities for verification of the establishment of protected sessions.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network_ssl/only_allow_dod_certs/rule.yml"> only_allow_dod_certs</a>: Only Allow DoD PKI-established CAs
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-631015: Ubuntu 22.04 LTS must be configured such that Pluggable Authentication Module (PAM) prohibits the use of cached authentications after one day.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>low</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/sssd/sssd_offline_cred_expiration/rule.yml"> sssd_offline_cred_expiration</a>: Configure SSSD to Expire Offline Credentials
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-651010: Ubuntu 22.04 LTS must use a file integrity tool to verify correct operation of all security functions.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/software-integrity/aide/package_aide_installed/rule.yml"> package_aide_installed</a>: Install AIDE
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-651015: Ubuntu 22.04 LTS must configure AIDE to perform file integrity checking on the file system.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/software-integrity/aide/aide_build_database/rule.yml"> aide_build_database</a>: Build and Test AIDE Database
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-651020: Ubuntu 22.04 LTS must notify designated personnel if baseline configurations are changed in an unauthorized manner. The file integrity tool must notify the system administrator when changes to the baseline configuration or anomalies in the operation of any security functions are discovered.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/software-integrity/aide/aide_disable_silentreports/rule.yml"> aide_disable_silentreports</a>: Configure AIDE To Notify Personnel if Baseline Configurations Are Altered
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-651025: Ubuntu 22.04 LTS must be configured so that the script that runs each 30 days or less to check file integrity is the default.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/software-integrity/aide/aide_periodic_cron_checking/rule.yml"> aide_periodic_cron_checking</a>: Configure Periodic Execution of AIDE
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-651030: Ubuntu 22.04 LTS must use cryptographic mechanisms to protect the integrity of audit tools.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/software-integrity/aide/aide_check_audit_tools/rule.yml"> aide_check_audit_tools</a>: Configure AIDE to Verify the Audit Tools
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-651035: Ubuntu 22.04 LTS must have a crontab script running weekly to offload audit events of standalone systems.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>low</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/configure_auditd_data_retention/auditd_offload_logs/rule.yml"> auditd_offload_logs</a>: Offload audit Logs to External Media
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-652010: Ubuntu 22.04 LTS must be configured to preserve log records from failure events.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/logging/service_rsyslog_enabled/rule.yml"> service_rsyslog_enabled</a>: Enable rsyslog Service
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-652015: Ubuntu 22.04 LTS must monitor remote access methods.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/logging/ensure_rsyslog_log_file_configuration/rsyslog_remote_access_monitoring/rule.yml"> rsyslog_remote_access_monitoring</a>: Ensure remote access methods are monitored in Rsyslog
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-653010: Ubuntu 22.04 LTS must have the "auditd" package installed.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/package_audit_installed/rule.yml"> package_audit_installed</a>: Ensure the audit Subsystem is Installed
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-653015: Ubuntu 22.04 LTS must produce audit records and reports containing information to establish when, where, what type, the source, and the outcome for all DOD-defined auditable events and actions in near real time.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/service_auditd_enabled/rule.yml"> service_auditd_enabled</a>: Enable auditd Service
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-653020: Ubuntu 22.04 LTS audit event multiplexor must be configured to offload audit logs onto a different system from the system being audited.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>low</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/configure_auditd_data_retention/auditd_audispd_configure_remote_server/rule.yml"> auditd_audispd_configure_remote_server</a>: Configure audispd Plugin To Send Logs To Remote Server
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/package_audit-audispd-plugins_installed/rule.yml"> package_audit-audispd-plugins_installed</a>: Ensure the default plugins for the audit dispatcher are Installed
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-653025: Ubuntu 22.04 LTS must alert the information system security officer (ISSO) and system administrator (SA) in the event of an audit processing failure.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>low</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/configure_auditd_data_retention/auditd_data_retention_action_mail_acct/rule.yml"> auditd_data_retention_action_mail_acct</a>: Configure auditd mail_acct Action on Low Disk Space
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/configure_auditd_data_retention/var_auditd_action_mail_acct.var">var_auditd_action_mail_acct</a> = root</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-653030: Ubuntu 22.04 LTS must shut down by default upon audit failure.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/configure_auditd_data_retention/auditd_data_disk_full_action/rule.yml"> auditd_data_disk_full_action</a>: Configure auditd Disk Full Action when Disk Space Is Full
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/configure_auditd_data_retention/var_auditd_disk_full_action.var">var_auditd_disk_full_action</a> = halt</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-653035: Ubuntu 22.04 LTS must allocate audit record storage capacity to store at least one weeks' worth of audit records, when audit records are not immediately sent to a central audit record storage facility.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>low</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/configure_auditd_data_retention/auditd_audispd_configure_sufficiently_large_partition/rule.yml"> auditd_audispd_configure_sufficiently_large_partition</a>: Configure a Sufficiently Large Partition for Audit Logs
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-653040: Ubuntu 22.04 LTS must immediately notify the system administrator (SA) and information system security officer (ISSO) when the audit record storage volume reaches 25 percent remaining of the allocated capacity.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>low</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/configure_auditd_data_retention/auditd_data_retention_space_left_action/rule.yml"> auditd_data_retention_space_left_action</a>: Configure auditd space_left Action on Low Disk Space
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/configure_auditd_data_retention/auditd_data_retention_space_left_percentage/rule.yml"> auditd_data_retention_space_left_percentage</a>: Configure auditd space_left on Low Disk Space
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/configure_auditd_data_retention/var_auditd_space_left_action.var">var_auditd_space_left_action</a> = email</li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/configure_auditd_data_retention/var_auditd_space_left_percentage.var">var_auditd_space_left_percentage</a> = 25pc</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-653045: Ubuntu 22.04 LTS must be configured so that audit log files are not read- or write-accessible by unauthorized users.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/file_permissions_var_log_audit_stig/rule.yml"> file_permissions_var_log_audit_stig</a>: System Audit Logs Must Have Mode 0600 or Less Permissive
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-653050: Ubuntu 22.04 LTS must be configured to permit only authorized users ownership of the audit log files.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/file_ownership_var_log_audit_stig/rule.yml"> file_ownership_var_log_audit_stig</a>: System Audit Logs Must Be Owned By Root
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-653055: Ubuntu 22.04 LTS must permit only authorized groups ownership of the audit log files.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/file_group_ownership_var_log_audit_stig/rule.yml"> file_group_ownership_var_log_audit_stig</a>: System Audit Logs Must Be Group Owned By Root
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-653060: Ubuntu 22.04 LTS must be configured so that the audit log directory is not write-accessible by unauthorized users.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/directory_permissions_var_log_audit/rule.yml"> directory_permissions_var_log_audit</a>: System Audit Logs Must Have Mode 0750 or Less Permissive
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-653065: Ubuntu 22.04 LTS must be configured so that audit configuration files are not write-accessible by unauthorized users.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/file_permissions_auditd/file_permissions_etc_audit_auditd/rule.yml"> file_permissions_etc_audit_auditd</a>: Verify Permissions on /etc/audit/auditd.conf
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/file_permissions_auditd/file_permissions_etc_audit_rules/rule.yml"> file_permissions_etc_audit_rules</a>: Verify Permissions on /etc/audit/audit.rules
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/file_permissions_auditd/file_permissions_etc_audit_rulesd/rule.yml"> file_permissions_etc_audit_rulesd</a>: Verify Permissions on /etc/audit/rules.d/*.rules
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-653070: Ubuntu 22.04 LTS must permit only authorized accounts to own the audit configuration files.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/file_ownership_audit_configuration/rule.yml"> file_ownership_audit_configuration</a>: Audit Configuration Files Must Be Owned By Root
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-653075: Ubuntu 22.04 LTS must permit only authorized groups to own the audit configuration files.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/file_groupownership_audit_configuration/rule.yml"> file_groupownership_audit_configuration</a>: Audit Configuration Files Must Be Owned By Group root
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-654010: Ubuntu 22.04 LTS must generate audit records for successful/unsuccessful uses of the apparmor_parser command.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_privileged_commands/audit_rules_privileged_commands_apparmor_parser/rule.yml"> audit_rules_privileged_commands_apparmor_parser</a>: Record Any Attempts to Run apparmor_parser
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-654015: Ubuntu 22.04 LTS must generate audit records for successful/unsuccessful uses of the chacl command.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_execution_acl_commands/audit_rules_execution_chacl/rule.yml"> audit_rules_execution_chacl</a>: Record Any Attempts to Run chacl
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-654020: Ubuntu 22.04 LTS must generate audit records for successful/unsuccessful uses of the chage command.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_privileged_commands/audit_rules_privileged_commands_chage/rule.yml"> audit_rules_privileged_commands_chage</a>: Ensure auditd Collects Information on the Use of Privileged Commands - chage
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-654025: Ubuntu 22.04 LTS must generate audit records for successful/unsuccessful uses of the chcon command.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_execution_selinux_commands/audit_rules_execution_chcon/rule.yml"> audit_rules_execution_chcon</a>: Record Any Attempts to Run chcon
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-654030: Ubuntu 22.04 LTS must generate audit records for successful/unsuccessful uses of the chfn command.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_privileged_commands/audit_rules_privileged_commands_chfn/rule.yml"> audit_rules_privileged_commands_chfn</a>: Ensure auditd Collects Information on the Use of Privileged Commands - chfn
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-654035: Ubuntu 22.04 LTS must generate audit records for successful/unsuccessful uses of the chsh command.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_privileged_commands/audit_rules_privileged_commands_chsh/rule.yml"> audit_rules_privileged_commands_chsh</a>: Ensure auditd Collects Information on the Use of Privileged Commands - chsh
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-654040: Ubuntu 22.04 LTS must generate audit records for successful/unsuccessful uses of the crontab command.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_privileged_commands/audit_rules_privileged_commands_crontab/rule.yml"> audit_rules_privileged_commands_crontab</a>: Ensure auditd Collects Information on the Use of Privileged Commands - crontab
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-654041: Ubuntu 22.04 LTS must audit any script or executable called by cron as root or by any privileged user.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_rules_etc_cron_d/rule.yml"> audit_rules_etc_cron_d</a>: Ensure auditd Collects Changes to Cron Jobs - /etc/cron.d/
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_rules_var_spool_cron/rule.yml"> audit_rules_var_spool_cron</a>: Ensure auditd Collects Changes to Cron Jobs - /var/spool/cron
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-654045: Ubuntu 22.04 LTS must generate audit records for successful/unsuccessful attempts to use the fdisk command.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_privileged_commands/audit_rules_privileged_commands_fdisk/rule.yml"> audit_rules_privileged_commands_fdisk</a>: Ensure auditd Collects Information on the Use of Privileged Commands - fdisk
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-654050: Ubuntu 22.04 LTS must generate audit records for successful/unsuccessful uses of the gpasswd command.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_privileged_commands/audit_rules_privileged_commands_gpasswd/rule.yml"> audit_rules_privileged_commands_gpasswd</a>: Ensure auditd Collects Information on the Use of Privileged Commands - gpasswd
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-654055: Ubuntu 22.04 LTS must generate audit records for successful/unsuccessful attempts to use the kmod command.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_privileged_commands/audit_rules_privileged_commands_kmod/rule.yml"> audit_rules_privileged_commands_kmod</a>: Ensure auditd Collects Information on the Use of Privileged Commands - kmod
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-654060: Ubuntu 22.04 LTS must generate audit records for successful/unsuccessful attempts to use modprobe command.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_privileged_commands/audit_rules_privileged_commands_modprobe/rule.yml"> audit_rules_privileged_commands_modprobe</a>: Ensure auditd Collects Information on the Use of Privileged Commands - modprobe
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-654065: Ubuntu 22.04 LTS must generate audit records for successful/unsuccessful uses of the mount command.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_privileged_commands/audit_rules_privileged_commands_mount/rule.yml"> audit_rules_privileged_commands_mount</a>: Ensure auditd Collects Information on the Use of Privileged Commands - mount
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-654070: Ubuntu 22.04 LTS must generate audit records for successful/unsuccessful uses of the newgrp command.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_privileged_commands/audit_rules_privileged_commands_newgrp/rule.yml"> audit_rules_privileged_commands_newgrp</a>: Ensure auditd Collects Information on the Use of Privileged Commands - newgrp
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-654075: Ubuntu 22.04 LTS must generate audit records for successful/unsuccessful uses of the pam_timestamp_check command.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_privileged_commands/audit_rules_privileged_commands_pam_timestamp_check/rule.yml"> audit_rules_privileged_commands_pam_timestamp_check</a>: Ensure auditd Collects Information on the Use of Privileged Commands - pam_timestamp_check
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-654080: Ubuntu 22.04 LTS must generate audit records for successful/unsuccessful uses of the passwd command.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_privileged_commands/audit_rules_privileged_commands_passwd/rule.yml"> audit_rules_privileged_commands_passwd</a>: Ensure auditd Collects Information on the Use of Privileged Commands - passwd
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-654085: Ubuntu 22.04 LTS must generate audit records for successful/unsuccessful uses of the setfacl command.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_execution_acl_commands/audit_rules_execution_setfacl/rule.yml"> audit_rules_execution_setfacl</a>: Record Any Attempts to Run setfacl
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-654090: Ubuntu 22.04 LTS must generate audit records for successful/unsuccessful uses of the ssh-agent command.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_privileged_commands/audit_rules_privileged_commands_ssh_agent/rule.yml"> audit_rules_privileged_commands_ssh_agent</a>: Record Any Attempts to Run ssh-agent
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-654095: Ubuntu 22.04 LTS must generate audit records for successful/unsuccessful uses of the ssh-keysign command.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_privileged_commands/audit_rules_privileged_commands_ssh_keysign/rule.yml"> audit_rules_privileged_commands_ssh_keysign</a>: Ensure auditd Collects Information on the Use of Privileged Commands - ssh-keysign
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-654100: Ubuntu 22.04 LTS must generate audit records for successful/unsuccessful uses of the su command.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_privileged_commands/audit_rules_privileged_commands_su/rule.yml"> audit_rules_privileged_commands_su</a>: Ensure auditd Collects Information on the Use of Privileged Commands - su
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-654105: Ubuntu 22.04 LTS must generate audit records for successful/unsuccessful uses of the sudo command.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_privileged_commands/audit_rules_privileged_commands_sudo/rule.yml"> audit_rules_privileged_commands_sudo</a>: Ensure auditd Collects Information on the Use of Privileged Commands - sudo
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-654110: Ubuntu 22.04 LTS must generate audit records for successful/unsuccessful uses of the sudoedit command.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_privileged_commands/audit_rules_privileged_commands_sudoedit/rule.yml"> audit_rules_privileged_commands_sudoedit</a>: Ensure auditd Collects Information on the Use of Privileged Commands - sudoedit
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-654115: Ubuntu 22.04 LTS must generate audit records for successful/unsuccessful uses of the umount command.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_privileged_commands/audit_rules_privileged_commands_umount/rule.yml"> audit_rules_privileged_commands_umount</a>: Ensure auditd Collects Information on the Use of Privileged Commands - umount
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-654120: Ubuntu 22.04 LTS must generate audit records for successful/unsuccessful uses of the unix_update command.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_privileged_commands/audit_rules_privileged_commands_unix_update/rule.yml"> audit_rules_privileged_commands_unix_update</a>: Ensure auditd Collects Information on the Use of Privileged Commands - unix_update
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-654125: Ubuntu 22.04 LTS must generate audit records for successful/unsuccessful uses of the usermod command.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_privileged_commands/audit_rules_privileged_commands_usermod/rule.yml"> audit_rules_privileged_commands_usermod</a>: Ensure auditd Collects Information on the Use of Privileged Commands - usermod
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-654130: Ubuntu 22.04 LTS must generate audit records for all account creations, modifications, disabling, and termination events that affect /etc/group.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_rules_usergroup_modification_group/rule.yml"> audit_rules_usergroup_modification_group</a>: Record Events that Modify User/Group Information - /etc/group
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-654135: Ubuntu 22.04 LTS must generate audit records for all account creations, modifications, disabling, and termination events that affect /etc/gshadow.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_rules_usergroup_modification_gshadow/rule.yml"> audit_rules_usergroup_modification_gshadow</a>: Record Events that Modify User/Group Information - /etc/gshadow
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-654140: Ubuntu 22.04 LTS must generate audit records for all account creations, modifications, disabling, and termination events that affect /etc/opasswd.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_rules_usergroup_modification_opasswd/rule.yml"> audit_rules_usergroup_modification_opasswd</a>: Record Events that Modify User/Group Information - /etc/security/opasswd
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-654145: Ubuntu 22.04 LTS must generate audit records for all account creations, modifications, disabling, and termination events that affect /etc/passwd.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_rules_usergroup_modification_passwd/rule.yml"> audit_rules_usergroup_modification_passwd</a>: Record Events that Modify User/Group Information - /etc/passwd
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-654150: Ubuntu 22.04 LTS must generate audit records for all account creations, modifications, disabling, and termination events that affect /etc/shadow.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_rules_usergroup_modification_shadow/rule.yml"> audit_rules_usergroup_modification_shadow</a>: Record Events that Modify User/Group Information - /etc/shadow
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-654155: Ubuntu 22.04 LTS must generate audit records for successful/unsuccessful uses of the chmod, fchmod, and fchmodat system calls.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_dac_actions/audit_rules_dac_modification_chmod/rule.yml"> audit_rules_dac_modification_chmod</a>: Record Events that Modify the System's Discretionary Access Controls - chmod
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_dac_actions/audit_rules_dac_modification_fchmod/rule.yml"> audit_rules_dac_modification_fchmod</a>: Record Events that Modify the System's Discretionary Access Controls - fchmod
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_dac_actions/audit_rules_dac_modification_fchmodat/rule.yml"> audit_rules_dac_modification_fchmodat</a>: Record Events that Modify the System's Discretionary Access Controls - fchmodat
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-654160: Ubuntu 22.04 LTS must generate audit records for successful/unsuccessful uses of the chown, fchown, fchownat, and lchown system calls.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_dac_actions/audit_rules_dac_modification_chown/rule.yml"> audit_rules_dac_modification_chown</a>: Record Events that Modify the System's Discretionary Access Controls - chown
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_dac_actions/audit_rules_dac_modification_fchown/rule.yml"> audit_rules_dac_modification_fchown</a>: Record Events that Modify the System's Discretionary Access Controls - fchown
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_dac_actions/audit_rules_dac_modification_fchownat/rule.yml"> audit_rules_dac_modification_fchownat</a>: Record Events that Modify the System's Discretionary Access Controls - fchownat
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_dac_actions/audit_rules_dac_modification_lchown/rule.yml"> audit_rules_dac_modification_lchown</a>: Record Events that Modify the System's Discretionary Access Controls - lchown
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-654165: Ubuntu 22.04 LTS must generate audit records for successful/unsuccessful uses of the creat, open, openat, open_by_handle_at, truncate, and ftruncate system calls.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_file_modification/audit_rules_unsuccessful_file_modification_creat/rule.yml"> audit_rules_unsuccessful_file_modification_creat</a>: Record Unsuccessful Access Attempts to Files - creat
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_file_modification/audit_rules_unsuccessful_file_modification_ftruncate/rule.yml"> audit_rules_unsuccessful_file_modification_ftruncate</a>: Record Unsuccessful Access Attempts to Files - ftruncate
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_file_modification/audit_rules_unsuccessful_file_modification_open/rule.yml"> audit_rules_unsuccessful_file_modification_open</a>: Record Unsuccessful Access Attempts to Files - open
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_file_modification/audit_rules_unsuccessful_file_modification_open_by_handle_at/rule.yml"> audit_rules_unsuccessful_file_modification_open_by_handle_at</a>: Record Unsuccessful Access Attempts to Files - open_by_handle_at
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_file_modification/audit_rules_unsuccessful_file_modification_openat/rule.yml"> audit_rules_unsuccessful_file_modification_openat</a>: Record Unsuccessful Access Attempts to Files - openat
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_file_modification/audit_rules_unsuccessful_file_modification_truncate/rule.yml"> audit_rules_unsuccessful_file_modification_truncate</a>: Record Unsuccessful Access Attempts to Files - truncate
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-654170: Ubuntu 22.04 LTS must generate audit records for successful/unsuccessful uses of the delete_module system call.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_kernel_module_loading/audit_rules_kernel_module_loading_delete/rule.yml"> audit_rules_kernel_module_loading_delete</a>: Ensure auditd Collects Information on Kernel Module Unloading - delete_module
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-654175: Ubuntu 22.04 LTS must generate audit records for successful/unsuccessful uses of the init_module and finit_module system calls.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_kernel_module_loading/audit_rules_kernel_module_loading_finit/rule.yml"> audit_rules_kernel_module_loading_finit</a>: Ensure auditd Collects Information on Kernel Module Loading and Unloading - finit_module
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_kernel_module_loading/audit_rules_kernel_module_loading_init/rule.yml"> audit_rules_kernel_module_loading_init</a>: Ensure auditd Collects Information on Kernel Module Loading - init_module
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-654180: Ubuntu 22.04 LTS must generate audit records for any use of the setxattr, fsetxattr, lsetxattr, removexattr, fremovexattr, and lremovexattr system calls.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_dac_actions/audit_rules_dac_modification_fremovexattr/rule.yml"> audit_rules_dac_modification_fremovexattr</a>: Record Events that Modify the System's Discretionary Access Controls - fremovexattr
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_dac_actions/audit_rules_dac_modification_fsetxattr/rule.yml"> audit_rules_dac_modification_fsetxattr</a>: Record Events that Modify the System's Discretionary Access Controls - fsetxattr
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_dac_actions/audit_rules_dac_modification_lremovexattr/rule.yml"> audit_rules_dac_modification_lremovexattr</a>: Record Events that Modify the System's Discretionary Access Controls - lremovexattr
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_dac_actions/audit_rules_dac_modification_lsetxattr/rule.yml"> audit_rules_dac_modification_lsetxattr</a>: Record Events that Modify the System's Discretionary Access Controls - lsetxattr
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_dac_actions/audit_rules_dac_modification_removexattr/rule.yml"> audit_rules_dac_modification_removexattr</a>: Record Events that Modify the System's Discretionary Access Controls - removexattr
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_dac_actions/audit_rules_dac_modification_setxattr/rule.yml"> audit_rules_dac_modification_setxattr</a>: Record Events that Modify the System's Discretionary Access Controls - setxattr
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-654185: Ubuntu 22.04 LTS must generate audit records for any successful/unsuccessful use of unlink, unlinkat, rename, renameat, and rmdir system calls.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_file_deletion_events/audit_rules_file_deletion_events_rename/rule.yml"> audit_rules_file_deletion_events_rename</a>: Ensure auditd Collects File Deletion Events by User - rename
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_file_deletion_events/audit_rules_file_deletion_events_renameat/rule.yml"> audit_rules_file_deletion_events_renameat</a>: Ensure auditd Collects File Deletion Events by User - renameat
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_file_deletion_events/audit_rules_file_deletion_events_rmdir/rule.yml"> audit_rules_file_deletion_events_rmdir</a>: Ensure auditd Collects File Deletion Events by User - rmdir
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_file_deletion_events/audit_rules_file_deletion_events_unlink/rule.yml"> audit_rules_file_deletion_events_unlink</a>: Ensure auditd Collects File Deletion Events by User - unlink
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_file_deletion_events/audit_rules_file_deletion_events_unlinkat/rule.yml"> audit_rules_file_deletion_events_unlinkat</a>: Ensure auditd Collects File Deletion Events by User - unlinkat
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-654190: Ubuntu 22.04 LTS must generate audit records for all events that affect the systemd journal files.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_rules_var_log_journal/rule.yml"> audit_rules_var_log_journal</a>: Ensure auditd Collects records for events that affect "/var/log/journal"
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-654195: Ubuntu 22.04 LTS must generate audit records for the /var/log/btmp file.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_rules_session_events_btmp/rule.yml"> audit_rules_session_events_btmp</a>: Record Attempts to Alter Process and Session Initiation Information btmp
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-654200: Ubuntu 22.04 LTS must generate audit records for the /var/log/wtmp file.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_rules_session_events_wtmp/rule.yml"> audit_rules_session_events_wtmp</a>: Record Attempts to Alter Process and Session Initiation Information wtmp
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-654205: Ubuntu 22.04 LTS must generate audit records for the /var/run/utmp file.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_rules_session_events_utmp/rule.yml"> audit_rules_session_events_utmp</a>: Record Attempts to Alter Process and Session Initiation Information utmp
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-654210: Ubuntu 22.04 LTS must generate audit records for the use and modification of faillog file.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_login_events/audit_rules_login_events_faillog/rule.yml"> audit_rules_login_events_faillog</a>: Record Attempts to Alter Logon and Logout Events - faillog
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-654215: Ubuntu 22.04 LTS must generate audit records for the use and modification of the lastlog file.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_login_events/audit_rules_login_events_lastlog/rule.yml"> audit_rules_login_events_lastlog</a>: Record Attempts to Alter Logon and Logout Events - lastlog
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-654220: Ubuntu 22.04 LTS must generate audit records when successful/unsuccessful attempts to modify the /etc/sudoers file occur.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_rules_sudoers/rule.yml"> audit_rules_sudoers</a>: Ensure auditd Collects System Administrator Actions - /etc/sudoers
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-654224: The operating system must restrict privilege elevation to authorized personnel.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/sudo/sudo_restrict_privilege_elevation_to_authorized/rule.yml"> sudo_restrict_privilege_elevation_to_authorized</a>: The operating system must restrict privilege elevation to authorized personnel
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-654225: Ubuntu 22.04 LTS must generate audit records when successful/unsuccessful attempts to modify the /etc/sudoers.d directory occur.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_rules_sudoers_d/rule.yml"> audit_rules_sudoers_d</a>: Ensure auditd Collects System Administrator Actions - /etc/sudoers.d/
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-654230: Ubuntu 22.04 LTS must prevent all software from executing at higher privilege levels than users executing the software and the audit system must be configured to audit the execution of privileged functions.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_rules_suid_privilege_function/rule.yml"> audit_rules_suid_privilege_function</a>: Record Events When Privileged Executables Are Run
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-654235: Ubuntu 22.04 LTS must generate audit records for privileged activities, nonlocal maintenance, diagnostic sessions and other system-level access.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_sudo_log_events/rule.yml"> audit_sudo_log_events</a>: Record Attempts to perform maintenance activities
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>UBTU-22-671010: Ubuntu 22.04 LTS must implement NIST FIPS-validated cryptography to protect classified information and for the following: To provision digital signatures, to generate cryptographic hashes, and to protect unclassified information requiring confidentiality and cryptographic protection in accordance with applicable federal laws, Executive Orders, directives, policies, regulations, and standards.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>high</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/fips/is_fips_mode_enabled/rule.yml"> is_fips_mode_enabled</a>: Verify '/proc/sys/crypto/fips_enabled' exists
+    </li>
+  </ul>
+  
+</div>  
+</div>  
+
+
+</body>
+</html>

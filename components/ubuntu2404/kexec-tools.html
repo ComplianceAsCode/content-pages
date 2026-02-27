@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'kexec-tools'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'kexec-tools'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>kexec-tools</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<div>None</div>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#service_kdump_disabled">service_kdump_disabled</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="service_kdump_disabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable KDump Kernel Crash Analyzer (kdump)</h3>
+<div>service_kdump_disabled</div>
+<h4>Description</h4>
+<p>The <tt>kdump-tools</tt> service provides a kernel crash dump analyzer. It uses the <tt>kexec</tt>
+system call to boot a secondary kernel ("capture" kernel) following a system
+crash, which can load information from the crashed kernel for analysis.
+
+The <code>kdump-tools</code> service can be disabled with the following command:
+<pre>$ sudo systemctl mask --now kdump-tools.service</pre></p>
+<h4>Rationale</h4>
+<p>Kernel core dumps may contain the full contents of system memory at the
+time of the crash. Kernel core dumps consume a considerable amount of disk
+space and may result in denial of service by exhausting the available space
+on the target file system partition. Unless the system is used for kernel
+development or testing, there is little need to run the kdump service.</p>
+</div>
+
+
+
+
+</body>
+</html>

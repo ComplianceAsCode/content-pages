@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'kbd'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'kbd'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>kbd</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<div>None</div>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#vlock_installed">vlock_installed</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="vlock_installed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Check that vlock is installed to allow session locking</h3>
+<div>vlock_installed</div>
+<h4>Description</h4>
+<p>The Debian 13 operating system must have vlock installed to allow for session locking.
+
+
+The <code>kbd</code> package can be installed with the following command:
+<pre>
+$ apt-get install kbd</pre></p>
+<h4>Rationale</h4>
+<p>A session lock is a temporary action taken when a user stops work and
+moves away from the immediate physical vicinity of the information
+system but does not want to log out because of the temporary nature of
+the absence.
+
+The session lock is implemented at the point where session activity can
+be determined.
+
+Regardless of where the session lock is determined and implemented,
+once invoked, the session lock must remain in place until the user
+reauthenticates. No other activity aside from reauthentication must
+unlock the system.</p>
+</div>
+
+
+
+
+</body>
+</html>

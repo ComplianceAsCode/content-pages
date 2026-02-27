@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'libreswan'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'libreswan'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>libreswan</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<ul>
+
+<li>network-ipsec</li>
+
+</ul>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#directory_groupowner_etc_ipsecd">directory_groupowner_etc_ipsecd</a></li>
+
+<li><a href="#directory_owner_etc_ipsecd">directory_owner_etc_ipsecd</a></li>
+
+<li><a href="#directory_permissions_etc_ipsecd">directory_permissions_etc_ipsecd</a></li>
+
+<li><a href="#file_groupowner_etc_ipsec_conf">file_groupowner_etc_ipsec_conf</a></li>
+
+<li><a href="#file_groupowner_etc_ipsec_secrets">file_groupowner_etc_ipsec_secrets</a></li>
+
+<li><a href="#file_owner_etc_ipsec_conf">file_owner_etc_ipsec_conf</a></li>
+
+<li><a href="#file_owner_etc_ipsec_secrets">file_owner_etc_ipsec_secrets</a></li>
+
+<li><a href="#file_permissions_etc_ipsec_conf">file_permissions_etc_ipsec_conf</a></li>
+
+<li><a href="#file_permissions_etc_ipsec_secrets">file_permissions_etc_ipsec_secrets</a></li>
+
+<li><a href="#libreswan_approved_tunnels">libreswan_approved_tunnels</a></li>
+
+<li><a href="#package_libreswan_installed">package_libreswan_installed</a></li>
+
+<li><a href="#package_strongswan_installed">package_strongswan_installed</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="directory_groupowner_etc_ipsecd" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Group Who Owns /etc/ipsec.d Directory</h3>
+<div>directory_groupowner_etc_ipsecd</div>
+<h4>Description</h4>
+<p> To properly set the group owner of <code>/etc/ipsec.d</code>, run the command:
+<pre>$ sudo chgrp root /etc/ipsec.d</pre>
+</p>
+<h4>Rationale</h4>
+<p>The ownership of the /etc/ipsec.d directory by the root group is important
+because this directory hosts Libreswan configuration. Protection of this
+file is critical for system security. Assigning the ownership to root
+ensures exclusive control of the Libreswan configuration.</p>
+</div>
+
+<div id="directory_owner_etc_ipsecd" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify User Who Owns /etc/ipsec.d Directory</h3>
+<div>directory_owner_etc_ipsecd</div>
+<h4>Description</h4>
+<p> To properly set the owner of <code>/etc/ipsec.d</code>, run the command:
+<pre>$ sudo chown root /etc/ipsec.d </pre>
+</p>
+<h4>Rationale</h4>
+<p>The ownership of the /etc/ipsec.d directory by the root user is important
+because this directory hosts Libreswan configuration. Protection of this
+file is critical for system security. Assigning the ownership to root
+ensures exclusive control of the Libreswan configuration.</p>
+</div>
+
+<div id="directory_permissions_etc_ipsecd" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Permissions On /etc/ipsec.d Directory</h3>
+<div>directory_permissions_etc_ipsecd</div>
+<h4>Description</h4>
+<p> To properly set the permissions of <code>/etc/ipsec.d</code>, run the command: <pre>$ sudo chmod 0700 /etc/ipsec.d</pre></p>
+<h4>Rationale</h4>
+<p>Setting correct permissions on the /etc/ipsec.d directory is important
+because this directory hosts Libreswan configuration. Protection of this
+directory is critical for system security. Restricting the permissions
+ensures exclusive control of the Libreswan configuration.</p>
+</div>
+
+<div id="file_groupowner_etc_ipsec_conf" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Group Who Owns /etc/ipsec.conf File</h3>
+<div>file_groupowner_etc_ipsec_conf</div>
+<h4>Description</h4>
+<p> To properly set the group owner of <code>/etc/ipsec.conf</code>, run the command:
+<pre>$ sudo chgrp root /etc/ipsec.conf</pre>
+</p>
+<h4>Rationale</h4>
+<p>The ownership of the /etc/ipsec.conf file by the root group is important
+because this file hosts Libreswan configuration. Protection of this
+file is critical for system security. Assigning the ownership to root
+ensures exclusive control of the Libreswan configuration.</p>
+</div>
+
+<div id="file_groupowner_etc_ipsec_secrets" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Group Who Owns /etc/ipsec.secrets File</h3>
+<div>file_groupowner_etc_ipsec_secrets</div>
+<h4>Description</h4>
+<p> To properly set the group owner of <code>/etc/ipsec.secrets</code>, run the command:
+<pre>$ sudo chgrp root /etc/ipsec.secrets</pre>
+</p>
+<h4>Rationale</h4>
+<p>The ownership of the /etc/ipsec.secrets file by the root group is important
+because this file hosts Libreswan configuration. Protection of this
+file is critical for system security. Assigning the ownership to root
+ensures exclusive control of the Libreswan configuration.</p>
+</div>
+
+<div id="file_owner_etc_ipsec_conf" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify User Who Owns /etc/ipsec.conf File</h3>
+<div>file_owner_etc_ipsec_conf</div>
+<h4>Description</h4>
+<p> To properly set the owner of <code>/etc/ipsec.conf</code>, run the command:
+<pre>$ sudo chown root /etc/ipsec.conf </pre>
+</p>
+<h4>Rationale</h4>
+<p>The ownership of the /etc/ipsec.conf file by the root user is important
+because this file hosts Libreswan configuration. Protection of this
+file is critical for system security. Assigning the ownership to root
+ensures exclusive control of the Libreswan configuration.</p>
+</div>
+
+<div id="file_owner_etc_ipsec_secrets" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify User Who Owns /etc/ipsec.secrets File</h3>
+<div>file_owner_etc_ipsec_secrets</div>
+<h4>Description</h4>
+<p> To properly set the owner of <code>/etc/ipsec.secrets</code>, run the command:
+<pre>$ sudo chown root /etc/ipsec.secrets </pre>
+</p>
+<h4>Rationale</h4>
+<p>The ownership of the /etc/ipsec.secrets file by the root user is important
+because this file hosts Libreswan configuration. Protection of this
+file is critical for system security. Assigning the ownership to root
+ensures exclusive control of the Libreswan configuration.</p>
+</div>
+
+<div id="file_permissions_etc_ipsec_conf" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Permissions On /etc/ipsec.conf File</h3>
+<div>file_permissions_etc_ipsec_conf</div>
+<h4>Description</h4>
+<p> To properly set the permissions of <code>/etc/ipsec.conf</code>, run the command: <pre>$ sudo chmod 0644 /etc/ipsec.conf</pre></p>
+<h4>Rationale</h4>
+<p>Setting correct permissions on the /etc/ipsec.conf file is important
+because this file hosts Libreswan configuration. Protection of this
+file is critical for system security. Restricting the permissions
+ensures exclusive control of the Libreswan configuration.</p>
+</div>
+
+<div id="file_permissions_etc_ipsec_secrets" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Permissions On /etc/ipsec.secrets File</h3>
+<div>file_permissions_etc_ipsec_secrets</div>
+<h4>Description</h4>
+<p> To properly set the permissions of <code>/etc/ipsec.secrets</code>, run the command: <pre>$ sudo chmod 0644 /etc/ipsec.secrets</pre></p>
+<h4>Rationale</h4>
+<p>Setting correct permissions on the /etc/ipsec.secrets file is important
+because this file hosts Libreswan configuration. Protection of this
+file is critical for system security. Restricting the permissions
+ensures exclusive control of the Libreswan configuration.</p>
+</div>
+
+<div id="libreswan_approved_tunnels" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Any Configured IPSec Tunnel Connections</h3>
+<div>libreswan_approved_tunnels</div>
+<h4>Description</h4>
+<p>Libreswan provides an implementation of IPsec
+and IKE, which permits the creation of secure tunnels over
+untrusted networks. As such, IPsec can be used to circumvent certain
+network requirements such as filtering. Verify that if any IPsec connection
+
+(<tt>conn</tt>) configured in <tt>/etc/ipsec.conf</tt> and <tt>/etc/ipsec.d</tt>
+
+exists is an approved organizational connection.</p>
+<h4>Rationale</h4>
+<p>IP tunneling mechanisms can be used to bypass network filtering.</p>
+</div>
+
+<div id="package_libreswan_installed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Install libreswan Package</h3>
+<div>package_libreswan_installed</div>
+<h4>Description</h4>
+<p>The libreswan package provides an implementation of IPsec
+and IKE, which permits the creation of secure tunnels over
+untrusted networks. The <code>libreswan</code> package can be installed with the following command:
+<pre>
+$ sudo dnf install libreswan</pre></p>
+<h4>Rationale</h4>
+<p>Providing the ability for remote users or systems
+to initiate a secure VPN connection protects information when it is
+transmitted over a wide area network.</p>
+</div>
+
+<div id="package_strongswan_installed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Install strongswan Package</h3>
+<div>package_strongswan_installed</div>
+<h4>Description</h4>
+<p>The Strongswan package provides an implementation of IPsec
+and IKE, which permits the creation of secure tunnels over
+untrusted networks. The <code>strongswan</code> package can be installed with the following command:
+<pre>
+$ sudo dnf install strongswan</pre></p>
+<h4>Rationale</h4>
+<p>Providing the ability for remote users or systems
+to initiate a secure VPN connection protects information when it is
+transmitted over a wide area network.</p>
+</div>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,2257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Definition of Configuration Recommendations of a GNU/Linux System for sle15</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Definition of Configuration Recommendations of a GNU/Linux System for sle15</h1>
+
+
+
+based on <a href="https://cyber.gouv.fr/sites/default/files/document/linux_configuration-en-v2.pdf">https://cyber.gouv.fr/sites/default/files/document/linux_configuration-en-v2.pdf</a>
+
+
+<div class="all_controls">
+<div class="one_control">
+  <h2>R1: Hardware Support</h2>
+  <p>Description: It is recommended to apply the configuration recommendations for Hardware support mentioned in ANSSI DAT-24.</p>
+  Levels: 
+  <ul><li>enhanced</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/bootloader-grub2/grub2_nosmap_argument_absent/rule.yml"> grub2_nosmap_argument_absent</a>: Ensure SMAP is not disabled during boot
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/bootloader-grub2/grub2_nosmep_argument_absent/rule.yml"> grub2_nosmep_argument_absent</a>: Ensure SMEP is not disabled during boot
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/restrictions/enable_nx/install_PAE_kernel_on_x86-32/rule.yml"> install_PAE_kernel_on_x86-32</a>: Install PAE Kernel on Supported 32-bit x86 Systems
+      <ul><li>CCE-91255-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/fips/package_dracut-fips-aesni_installed/rule.yml"> package_dracut-fips-aesni_installed</a>: Install the dracut-fips-aesni Package
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/prefer_64bit_os/rule.yml"> prefer_64bit_os</a>: Prefer to use a 64-bit Operating System when supported
+      <ul><li>CCE-91195-8</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>R2: Hardware configuration</h2>
+  <p>Description: It is recommended to apply the configuration recommendations for BIOS/UEFI mentioned in ANSSI DAT-24.</p>
+  Levels: 
+  <ul><li>intermediary</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>R3: UEFI Secure boot activation</h2>
+  <p>Description: It is recommended to apply UEFI Secure Boot configuration of the distribution.</p>
+  Levels: 
+  <ul><li>intermediary</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>R4: Replacing of preloaded keys</h2>
+  <p>Description: It is recommended to replace the UEFI preloaded keys with new keys used to sign; the bootloader and Linux kernel, or; the image of the Linux kernel in EFI format.</p>
+  Levels: 
+  <ul><li>high</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>R5: Boot loader password</h2>
+  <p>Description: A password protecting the boot loader must exist. This password must prevent any user from changing their configuration options.</p>
+  Levels: 
+  <ul><li>intermediary</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/bootloader-grub2/non-uefi/grub2_password/rule.yml"> grub2_password</a>: Set Boot Loader Password in grub2
+      <ul><li>CCE-83274-1</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/bootloader-grub2/uefi/grub2_uefi_password/rule.yml"> grub2_uefi_password</a>: Set the UEFI Boot Loader Password
+      <ul><li>CCE-83275-8</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>R6: Protecting kernel command line parameters</h2>
+  <p>Description: It is recommended that UEFI Secure Boot is used to protect the Linux Kernel command line parameters during boot.</p>
+  Levels: 
+  <ul><li>high</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>R7: IOMMU Configuration Guidelines</h2>
+  <p>Description: The iommu = force directive must be added to the list of kernel parameters during startup in addition to those already present in the configuration files of the bootloader (/boot/grub/menu.lst or /etc/default/grub).</p>
+  Levels: 
+  <ul><li>enhanced</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/bootloader-grub2/grub2_enable_iommu_force/rule.yml"> grub2_enable_iommu_force</a>: IOMMU configuration directive
+      <ul><li>CCE-91217-0</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>R8: Memory configuration options</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>intermediary</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/bootloader-grub2/grub2_l1tf_argument/rule.yml"> grub2_l1tf_argument</a>: Configure L1 Terminal Fault mitigations
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/bootloader-grub2/grub2_mce_argument/rule.yml"> grub2_mce_argument</a>: Force kernel panic on uncorrected MCEs
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/bootloader-grub2/grub2_mds_argument/rule.yml"> grub2_mds_argument</a>: Configure Microarchitectural Data Sampling mitigation
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/bootloader-grub2/grub2_page_alloc_shuffle_argument/rule.yml"> grub2_page_alloc_shuffle_argument</a>: Enable randomization of the page allocator
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/restrictions/poisoning/grub2_page_poison_argument/rule.yml"> grub2_page_poison_argument</a>: Enable page allocator poisoning
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/bootloader-grub2/grub2_pti_argument/rule.yml"> grub2_pti_argument</a>: Enable Kernel Page-Table Isolation (KPTI)
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/bootloader-grub2/grub2_rng_core_default_quality_argument/rule.yml"> grub2_rng_core_default_quality_argument</a>: Configure the confidence in TPM for entropy
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/bootloader-grub2/grub2_slab_nomerge_argument/rule.yml"> grub2_slab_nomerge_argument</a>: Disable merging of slabs with similar size
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/restrictions/poisoning/grub2_slub_debug_argument/rule.yml"> grub2_slub_debug_argument</a>: Enable SLUB/SLAB allocator poisoning
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/bootloader-grub2/grub2_spec_store_bypass_disable_argument/rule.yml"> grub2_spec_store_bypass_disable_argument</a>: Configure Speculative Store Bypass Mitigation
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/bootloader-grub2/grub2_spectre_v2_argument/rule.yml"> grub2_spectre_v2_argument</a>: Enforce Spectre v2 mitigation
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/restrictions/sysctl_vm_mmap_min_addr/rule.yml"> sysctl_vm_mmap_min_addr</a>: Prevent applications from mapping low portion of virtual memory
+      <ul><li>CCE-91263-4</li></ul>
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/bootloader-grub2/var_l1tf_options.var">var_l1tf_options</a> = full_force</li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/bootloader-grub2/var_mds_options.var">var_mds_options</a> = full_nosmt</li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/bootloader-grub2/var_rng_core_default_quality.var">var_rng_core_default_quality</a> = 500</li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/restrictions/poisoning/var_slub_debug_options.var">var_slub_debug_options</a> = FZP</li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/bootloader-grub2/var_spec_store_bypass_disable_options.var">var_spec_store_bypass_disable_options</a> = seccomp</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>R9: Kernel configuration options</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>intermediary</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/restrictions/sysctl_kernel_dmesg_restrict/rule.yml"> sysctl_kernel_dmesg_restrict</a>: Restrict Access to Kernel Message Buffer
+      <ul><li>CCE-91448-1</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/restrictions/enable_execshield_settings/sysctl_kernel_kptr_restrict/rule.yml"> sysctl_kernel_kptr_restrict</a>: Restrict Exposed Kernel Pointer Addresses Access
+      <ul><li>CCE-83299-8</li></ul>
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/restrictions/enable_execshield_settings/sysctl_kernel_kptr_restrict_value.var">sysctl_kernel_kptr_restrict_value</a> = 2</li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/restrictions/sysctl_kernel_panic_on_oops/rule.yml"> sysctl_kernel_panic_on_oops</a>: Kernel panic on oops
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/restrictions/sysctl_kernel_perf_cpu_time_max_percent/rule.yml"> sysctl_kernel_perf_cpu_time_max_percent</a>: Limit CPU consumption of the Perf system
+      <ul><li>CCE-91257-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/restrictions/sysctl_kernel_perf_event_max_sample_rate/rule.yml"> sysctl_kernel_perf_event_max_sample_rate</a>: Limit sampling frequency of the Perf system
+      <ul><li>CCE-91259-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/restrictions/sysctl_kernel_perf_event_paranoid/rule.yml"> sysctl_kernel_perf_event_paranoid</a>: Disallow kernel profiling by unprivileged users
+      <ul><li>CCE-91258-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/restrictions/sysctl_kernel_pid_max/rule.yml"> sysctl_kernel_pid_max</a>: Configure maximum number of process identifiers
+      <ul><li>CCE-91260-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/restrictions/enable_execshield_settings/sysctl_kernel_randomize_va_space/rule.yml"> sysctl_kernel_randomize_va_space</a>: Enable Randomized Layout of Virtual Address Space
+      <ul><li>CCE-83300-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/restrictions/sysctl_kernel_sysrq/rule.yml"> sysctl_kernel_sysrq</a>: Disallow magic SysRq key
+      <ul><li>CCE-91261-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/restrictions/sysctl_kernel_unprivileged_bpf_disabled/rule.yml"> sysctl_kernel_unprivileged_bpf_disabled</a>: Disable Access to Network bpf() Syscall From Unprivileged Processes
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>R10: Disabling the loading of kernel modules</h2>
+  <p>Description: The loading of the kernel modules can be blocked by the activation of the sysctl kernel.modules_disabled: Prohibition of loading modules (except those already loaded to this point) kernel.modules_disabled = 1</p>
+  Levels: 
+  <ul><li>enhanced</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/restrictions/sysctl_kernel_modules_disabled/rule.yml"> sysctl_kernel_modules_disabled</a>: Disable loading and unloading of kernel modules
+      <ul><li>CCE-91256-8</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>R11: Yama module sysctl configuration</h2>
+  <p>Description: It is recommended to load the Yama security module at startup (by example passing the security = yama argument to the kernel) and configure the sysctl kernel.yama.ptrace_scope to a value of at least 1.</p>
+  Levels: 
+  <ul><li>intermediary</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/restrictions/sysctl_kernel_yama_ptrace_scope/rule.yml"> sysctl_kernel_yama_ptrace_scope</a>: Restrict usage of ptrace to descendant processes
+      <ul><li>CCE-91262-6</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>R12: IPv4 configuration options</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>intermediary</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/restrictions/sysctl_net_core_bpf_jit_harden/rule.yml"> sysctl_net_core_bpf_jit_harden</a>: Harden the operation of the BPF just-in-time compiler
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-kernel/network_host_and_router_parameters/sysctl_net_ipv4_conf_all_accept_local/rule.yml"> sysctl_net_ipv4_conf_all_accept_local</a>: Disable Accepting Packets Routed Between Local Interfaces
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-kernel/network_host_and_router_parameters/sysctl_net_ipv4_conf_all_accept_redirects/rule.yml"> sysctl_net_ipv4_conf_all_accept_redirects</a>: Disable Accepting ICMP Redirects for All IPv4 Interfaces
+      <ul><li>CCE-85651-8</li></ul>
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-kernel/network_host_and_router_parameters/sysctl_net_ipv4_conf_all_accept_redirects_value.var">sysctl_net_ipv4_conf_all_accept_redirects_value</a> = disabled</li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-kernel/network_host_and_router_parameters/sysctl_net_ipv4_conf_all_accept_source_route/rule.yml"> sysctl_net_ipv4_conf_all_accept_source_route</a>: Disable Kernel Parameter for Accepting Source-Routed Packets on all IPv4 Interfaces
+      <ul><li>CCE-85648-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-kernel/network_host_and_router_parameters/sysctl_net_ipv4_conf_all_arp_filter/rule.yml"> sysctl_net_ipv4_conf_all_arp_filter</a>: Configure ARP filtering for All IPv4 Interfaces
+      <ul><li>CCE-92609-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-kernel/network_host_and_router_parameters/sysctl_net_ipv4_conf_all_arp_ignore/rule.yml"> sysctl_net_ipv4_conf_all_arp_ignore</a>: Configure Response Mode of ARP Requests for All IPv4 Interfaces
+      <ul><li>CCE-92610-5</li></ul>
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-kernel/network_host_and_router_parameters/sysctl_net_ipv4_conf_all_arp_ignore_value.var">sysctl_net_ipv4_conf_all_arp_ignore_value</a> = 2</li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-kernel/network_host_and_router_parameters/sysctl_net_ipv4_conf_all_drop_gratuitous_arp/rule.yml"> sysctl_net_ipv4_conf_all_drop_gratuitous_arp</a>: Drop Gratuitous ARP frames on All IPv4 Interfaces
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-kernel/network_host_and_router_parameters/sysctl_net_ipv4_conf_all_route_localnet/rule.yml"> sysctl_net_ipv4_conf_all_route_localnet</a>: Prevent Routing External Traffic to Local Loopback on All IPv4 Interfaces
+      <ul><li>CCE-92611-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-kernel/network_host_and_router_parameters/sysctl_net_ipv4_conf_all_rp_filter/rule.yml"> sysctl_net_ipv4_conf_all_rp_filter</a>: Enable Kernel Parameter to Use Reverse Path Filtering on all IPv4 Interfaces
+      <ul><li>CCE-91218-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-kernel/network_host_and_router_parameters/sysctl_net_ipv4_conf_all_secure_redirects/rule.yml"> sysctl_net_ipv4_conf_all_secure_redirects</a>: Disable Kernel Parameter for Accepting Secure ICMP Redirects on all IPv4 Interfaces
+      <ul><li>CCE-91220-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-kernel/network_host_parameters/sysctl_net_ipv4_conf_all_send_redirects/rule.yml"> sysctl_net_ipv4_conf_all_send_redirects</a>: Disable Kernel Parameter for Sending ICMP Redirects on all IPv4 Interfaces
+      <ul><li>CCE-85655-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-kernel/network_host_and_router_parameters/sysctl_net_ipv4_conf_all_shared_media/rule.yml"> sysctl_net_ipv4_conf_all_shared_media</a>: Configure Sending and Accepting Shared Media Redirects for All IPv4 Interfaces
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-kernel/network_host_and_router_parameters/sysctl_net_ipv4_conf_all_shared_media_value.var">sysctl_net_ipv4_conf_all_shared_media_value</a> = disabled</li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-kernel/network_host_and_router_parameters/sysctl_net_ipv4_conf_default_accept_redirects/rule.yml"> sysctl_net_ipv4_conf_default_accept_redirects</a>: Disable Kernel Parameter for Accepting ICMP Redirects by Default on IPv4 Interfaces
+      <ul><li>CCE-85652-6</li></ul>
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-kernel/network_host_and_router_parameters/sysctl_net_ipv4_conf_default_accept_redirects_value.var">sysctl_net_ipv4_conf_default_accept_redirects_value</a> = disabled</li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-kernel/network_host_and_router_parameters/sysctl_net_ipv4_conf_default_accept_source_route/rule.yml"> sysctl_net_ipv4_conf_default_accept_source_route</a>: Disable Kernel Parameter for Accepting Source-Routed Packets on IPv4 Interfaces by Default
+      <ul><li>CCE-85650-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-kernel/network_host_and_router_parameters/sysctl_net_ipv4_conf_default_rp_filter/rule.yml"> sysctl_net_ipv4_conf_default_rp_filter</a>: Enable Kernel Parameter to Use Reverse Path Filtering on all IPv4 Interfaces by Default
+      <ul><li>CCE-91219-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-kernel/network_host_and_router_parameters/sysctl_net_ipv4_conf_default_secure_redirects/rule.yml"> sysctl_net_ipv4_conf_default_secure_redirects</a>: Configure Kernel Parameter for Accepting Secure Redirects By Default
+      <ul><li>CCE-91221-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-kernel/network_host_parameters/sysctl_net_ipv4_conf_default_send_redirects/rule.yml"> sysctl_net_ipv4_conf_default_send_redirects</a>: Disable Kernel Parameter for Sending ICMP Redirects on all IPv4 Interfaces by Default
+      <ul><li>CCE-85654-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-kernel/network_host_and_router_parameters/sysctl_net_ipv4_conf_default_shared_media/rule.yml"> sysctl_net_ipv4_conf_default_shared_media</a>: Configure Sending and Accepting Shared Media Redirects by Default
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-kernel/network_host_and_router_parameters/sysctl_net_ipv4_conf_default_shared_media_value.var">sysctl_net_ipv4_conf_default_shared_media_value</a> = disabled</li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-kernel/network_host_and_router_parameters/sysctl_net_ipv4_icmp_ignore_bogus_error_responses/rule.yml"> sysctl_net_ipv4_icmp_ignore_bogus_error_responses</a>: Enable Kernel Parameter to Ignore Bogus ICMP Error Responses on IPv4 Interfaces
+      <ul><li>CCE-91224-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-kernel/network_host_parameters/sysctl_net_ipv4_ip_forward/rule.yml"> sysctl_net_ipv4_ip_forward</a>: Disable Kernel Parameter for IP Forwarding on IPv4 Interfaces
+      <ul><li>CCE-85709-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-kernel/network_host_and_router_parameters/sysctl_net_ipv4_ip_local_port_range/rule.yml"> sysctl_net_ipv4_ip_local_port_range</a>: Set Kernel Parameter to Increase Local Port Range
+      <ul><li>CCE-91225-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-kernel/network_host_and_router_parameters/sysctl_net_ipv4_tcp_rfc1337/rule.yml"> sysctl_net_ipv4_tcp_rfc1337</a>: Enable Kernel Parameter to Use TCP RFC 1337 on IPv4 Interfaces
+      <ul><li>CCE-91223-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-kernel/network_host_and_router_parameters/sysctl_net_ipv4_tcp_syncookies/rule.yml"> sysctl_net_ipv4_tcp_syncookies</a>: Enable Kernel Parameter to Use TCP Syncookies on Network Interfaces
+      <ul><li>CCE-83283-2</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>R13: Disabling IPv6</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>intermediary</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-ipv6/configuring_ipv6/sysctl_net_ipv6_conf_all_accept_ra_defrtr/rule.yml"> sysctl_net_ipv6_conf_all_accept_ra_defrtr</a>: Configure Accepting Default Router in Router Advertisements on All IPv6 Interfaces
+      <ul><li>CCE-91202-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-ipv6/configuring_ipv6/sysctl_net_ipv6_conf_all_accept_ra_pinfo/rule.yml"> sysctl_net_ipv6_conf_all_accept_ra_pinfo</a>: Configure Accepting Prefix Information in Router Advertisements on All IPv6 Interfaces
+      <ul><li>CCE-91203-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-ipv6/configuring_ipv6/sysctl_net_ipv6_conf_all_accept_ra_rtr_pref/rule.yml"> sysctl_net_ipv6_conf_all_accept_ra_rtr_pref</a>: Configure Accepting Router Preference in Router Advertisements on All IPv6 Interfaces
+      <ul><li>CCE-91204-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-ipv6/configuring_ipv6/sysctl_net_ipv6_conf_all_accept_redirects/rule.yml"> sysctl_net_ipv6_conf_all_accept_redirects</a>: Disable Accepting ICMP Redirects for All IPv6 Interfaces
+      <ul><li>CCE-85708-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-ipv6/configuring_ipv6/sysctl_net_ipv6_conf_all_accept_source_route/rule.yml"> sysctl_net_ipv6_conf_all_accept_source_route</a>: Disable Kernel Parameter for Accepting Source-Routed Packets on all IPv6 Interfaces
+      <ul><li>CCE-85649-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-ipv6/configuring_ipv6/sysctl_net_ipv6_conf_all_autoconf/rule.yml"> sysctl_net_ipv6_conf_all_autoconf</a>: Configure Auto Configuration on All IPv6 Interfaces
+      <ul><li>CCE-91205-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-ipv6/configuring_ipv6/sysctl_net_ipv6_conf_all_max_addresses/rule.yml"> sysctl_net_ipv6_conf_all_max_addresses</a>: Configure Maximum Number of Autoconfigured Addresses on All IPv6 Interfaces
+      <ul><li>CCE-91206-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-ipv6/configuring_ipv6/sysctl_net_ipv6_conf_all_router_solicitations/rule.yml"> sysctl_net_ipv6_conf_all_router_solicitations</a>: Configure Denying Router Solicitations on All IPv6 Interfaces
+      <ul><li>CCE-91207-1</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-ipv6/configuring_ipv6/sysctl_net_ipv6_conf_default_accept_ra_defrtr/rule.yml"> sysctl_net_ipv6_conf_default_accept_ra_defrtr</a>: Configure Accepting Default Router in Router Advertisements on All IPv6 Interfaces By Default
+      <ul><li>CCE-91208-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-ipv6/configuring_ipv6/sysctl_net_ipv6_conf_default_accept_ra_pinfo/rule.yml"> sysctl_net_ipv6_conf_default_accept_ra_pinfo</a>: Configure Accepting Prefix Information in Router Advertisements on All IPv6 Interfaces By Default
+      <ul><li>CCE-91209-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-ipv6/configuring_ipv6/sysctl_net_ipv6_conf_default_accept_ra_rtr_pref/rule.yml"> sysctl_net_ipv6_conf_default_accept_ra_rtr_pref</a>: Configure Accepting Router Preference in Router Advertisements on All IPv6 Interfaces By Default
+      <ul><li>CCE-91210-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-ipv6/configuring_ipv6/sysctl_net_ipv6_conf_default_accept_redirects/rule.yml"> sysctl_net_ipv6_conf_default_accept_redirects</a>: Disable Kernel Parameter for Accepting ICMP Redirects by Default on IPv6 Interfaces
+      <ul><li>CCE-85722-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-ipv6/configuring_ipv6/sysctl_net_ipv6_conf_default_accept_source_route/rule.yml"> sysctl_net_ipv6_conf_default_accept_source_route</a>: Disable Kernel Parameter for Accepting Source-Routed Packets on IPv6 Interfaces by Default
+      <ul><li>CCE-85653-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-ipv6/configuring_ipv6/sysctl_net_ipv6_conf_default_autoconf/rule.yml"> sysctl_net_ipv6_conf_default_autoconf</a>: Configure Auto Configuration on All IPv6 Interfaces By Default
+      <ul><li>CCE-91211-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-ipv6/configuring_ipv6/sysctl_net_ipv6_conf_default_max_addresses/rule.yml"> sysctl_net_ipv6_conf_default_max_addresses</a>: Configure Maximum Number of Autoconfigured Addresses on All IPv6 Interfaces By Default
+      <ul><li>CCE-91212-1</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-ipv6/configuring_ipv6/sysctl_net_ipv6_conf_default_router_solicitations/rule.yml"> sysctl_net_ipv6_conf_default_router_solicitations</a>: Configure Denying Router Solicitations on All IPv6 Interfaces By Default
+      <ul><li>CCE-91213-9</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>R14: File system configuration options</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>intermediary</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/sysctl_fs_protected_fifos/rule.yml"> sysctl_fs_protected_fifos</a>: Enable Kernel Parameter to Enforce DAC on FIFOs
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/sysctl_fs_protected_hardlinks/rule.yml"> sysctl_fs_protected_hardlinks</a>: Enable Kernel Parameter to Enforce DAC on Hardlinks
+      <ul><li>CCE-91252-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/sysctl_fs_protected_regular/rule.yml"> sysctl_fs_protected_regular</a>: Enable Kernel Parameter to Enforce DAC on Regular files
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/sysctl_fs_protected_symlinks/rule.yml"> sysctl_fs_protected_symlinks</a>: Enable Kernel Parameter to Enforce DAC on Symlinks
+      <ul><li>CCE-91253-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/restrictions/coredumps/sysctl_fs_suid_dumpable/rule.yml"> sysctl_fs_suid_dumpable</a>: Disable Core Dumps for SUID programs
+      <ul><li>CCE-91447-3</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>R15: Compile options for memory management</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>high</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/kernel_build_config/kernel_config_acpi_custom_method/rule.yml"> kernel_config_acpi_custom_method</a>: Do not allow ACPI methods to be inserted/replaced at run time
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/kernel_build_config/kernel_config_compat_vdso/rule.yml"> kernel_config_compat_vdso</a>: Disable the 32-bit vDSO
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/kernel_build_config/kernel_config_debug_fs/rule.yml"> kernel_config_debug_fs</a>: Disable kernel debugfs
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/kernel_build_config/kernel_config_debug_wx/rule.yml"> kernel_config_debug_wx</a>: Warn on W+X mappings found at boot
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/kernel_build_config/kernel_config_devkmem/rule.yml"> kernel_config_devkmem</a>: Disable /dev/kmem virtual device support
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/kernel_build_config/kernel_config_fortify_source/rule.yml"> kernel_config_fortify_source</a>: Harden common str/mem functions against buffer overflows
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/kernel_build_config/kernel_config_hardened_usercopy/rule.yml"> kernel_config_hardened_usercopy</a>: Harden memory copies between kernel and userspace
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/kernel_build_config/kernel_config_hardened_usercopy_fallback/rule.yml"> kernel_config_hardened_usercopy_fallback</a>: Do not allow usercopy whitelist violations to fallback to object size
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/kernel_build_config/kernel_config_legacy_vsyscall_emulate/rule.yml"> kernel_config_legacy_vsyscall_emulate</a>: Disable vsyscall emulation
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/kernel_build_config/kernel_config_legacy_vsyscall_none/rule.yml"> kernel_config_legacy_vsyscall_none</a>: Disable vsyscall mapping
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/kernel_build_config/kernel_config_legacy_vsyscall_xonly/rule.yml"> kernel_config_legacy_vsyscall_xonly</a>: Disable vsyscall emulate execution only
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/kernel_build_config/kernel_config_proc_kcore/rule.yml"> kernel_config_proc_kcore</a>: Disable support for /proc/kkcore
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/kernel_build_config/kernel_config_refcount_full/rule.yml"> kernel_config_refcount_full</a>: Perform full reference count validation
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/kernel_build_config/kernel_config_retpoline/rule.yml"> kernel_config_retpoline</a>: Avoid speculative indirect branches in kernel
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/kernel_build_config/kernel_config_sched_stack_end_check/rule.yml"> kernel_config_sched_stack_end_check</a>: Detect stack corruption on calls to schedule()
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/kernel_build_config/kernel_config_security_dmesg_restrict/rule.yml"> kernel_config_security_dmesg_restrict</a>: Restrict unprivileged access to the kernel syslog
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/kernel_build_config/kernel_config_stackprotector/rule.yml"> kernel_config_stackprotector</a>: Stack Protector buffer overflow detection
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/kernel_build_config/kernel_config_stackprotector_strong/rule.yml"> kernel_config_stackprotector_strong</a>: Strong Stack Protector
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/kernel_build_config/kernel_config_strict_kernel_rwx/rule.yml"> kernel_config_strict_kernel_rwx</a>: Make the kernel text and rodata read-only
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/kernel_build_config/kernel_config_vmap_stack/rule.yml"> kernel_config_vmap_stack</a>: User a virtually-mapped stack
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/kernel_build_config/kernel_config_x86_vsyscall_emulation/rule.yml"> kernel_config_x86_vsyscall_emulation</a>: Disable x86 vsyscall emulation
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>R16: Compile options for kernel data structures</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>high</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/kernel_build_config/kernel_config_bug_on_data_corruption/rule.yml"> kernel_config_bug_on_data_corruption</a>: Trigger a kernel BUG when data corruption is detected
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/kernel_build_config/kernel_config_debug_credentials/rule.yml"> kernel_config_debug_credentials</a>: Enable checks on credential management
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/kernel_build_config/kernel_config_debug_list/rule.yml"> kernel_config_debug_list</a>: Enable checks on linked list manipulation
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/kernel_build_config/kernel_config_debug_notifiers/rule.yml"> kernel_config_debug_notifiers</a>: Enable checks on notifier call chains
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/kernel_build_config/kernel_config_debug_sg/rule.yml"> kernel_config_debug_sg</a>: Enable checks on scatter-gather (SG) table operations
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>R17: Compile options for the memory allocator</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>high</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/kernel_build_config/kernel_config_compat_brk/rule.yml"> kernel_config_compat_brk</a>: Disable compatibility with brk()
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/kernel_build_config/kernel_config_page_poisoning/rule.yml"> kernel_config_page_poisoning</a>: Enable poison of pages after freeing
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/kernel_build_config/kernel_config_page_poisoning_no_sanity/rule.yml"> kernel_config_page_poisoning_no_sanity</a>: Enable poison without sanity check
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/kernel_build_config/kernel_config_page_poisoning_zero/rule.yml"> kernel_config_page_poisoning_zero</a>: Use zero for poisoning instead of debugging value
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/kernel_build_config/kernel_config_slab_freelist_hardened/rule.yml"> kernel_config_slab_freelist_hardened</a>: Harden slab freelist metadata
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/kernel_build_config/kernel_config_slab_freelist_random/rule.yml"> kernel_config_slab_freelist_random</a>: Randomize slab freelist
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/kernel_build_config/kernel_config_slab_merge_default/rule.yml"> kernel_config_slab_merge_default</a>: Disallow merge of slab caches
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/kernel_build_config/kernel_config_slub_debug/rule.yml"> kernel_config_slub_debug</a>: Enable SLUB debugging support
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>R18: Compile options for the management of kernel module</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>high</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/kernel_build_config/kernel_config_module_sig/rule.yml"> kernel_config_module_sig</a>: Enable module signature verification
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/kernel_build_config/kernel_config_module_sig_all/rule.yml"> kernel_config_module_sig_all</a>: Enable automatic signing of all modules
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/kernel_build_config/kernel_config_module_sig_force/rule.yml"> kernel_config_module_sig_force</a>: Require modules to be validly signed
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/kernel_build_config/kernel_config_module_sig_hash/rule.yml"> kernel_config_module_sig_hash</a>: Specify the hash to use when signing modules
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/kernel_build_config/kernel_config_module_sig_key/rule.yml"> kernel_config_module_sig_key</a>: Specify module signing key to use
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/kernel_build_config/kernel_config_module_sig_sha512/rule.yml"> kernel_config_module_sig_sha512</a>: Sign kernel modules with SHA-512
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/kernel_build_config/kernel_config_strict_module_rwx/rule.yml"> kernel_config_strict_module_rwx</a>: Make the module text and rodata read-only
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>R19: Compile options for abnormal situations</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>high</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/kernel_build_config/kernel_config_bug/rule.yml"> kernel_config_bug</a>: Enable support for BUG()
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/kernel_build_config/kernel_config_panic_on_oops/rule.yml"> kernel_config_panic_on_oops</a>: Kernel panic oops
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/kernel_build_config/kernel_config_panic_timeout/rule.yml"> kernel_config_panic_timeout</a>: Kernel panic timeout
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>R20: Compile options for kernel security functions</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>high</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/kernel_build_config/kernel_config_seccomp/rule.yml"> kernel_config_seccomp</a>: Enable seccomp to safely compute untrusted bytecode
+      <ul><li>CCE-92567-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/kernel_build_config/kernel_config_seccomp_filter/rule.yml"> kernel_config_seccomp_filter</a>: Enable use of Berkeley Packet Filter with seccomp
+      <ul><li>CCE-92568-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/kernel_build_config/kernel_config_security/rule.yml"> kernel_config_security</a>: Enable different security models
+      <ul><li>CCE-92570-1</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/kernel_build_config/kernel_config_security_writable_hooks/rule.yml"> kernel_config_security_writable_hooks</a>: Disable mutable hooks
+      <ul><li>CCE-92571-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/kernel_build_config/kernel_config_security_yama/rule.yml"> kernel_config_security_yama</a>: Enable Yama support
+      <ul><li>CCE-92572-7</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>R21: Compile options for the compiler plugins</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>high</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/kernel_build_config/gcc_plugin/kernel_config_gcc_plugin_latent_entropy/rule.yml"> kernel_config_gcc_plugin_latent_entropy</a>: Generate some entropy during boot and runtime
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/kernel_build_config/gcc_plugin/kernel_config_gcc_plugin_randstruct/rule.yml"> kernel_config_gcc_plugin_randstruct</a>: Randomize layout of sensitive kernel structures
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/kernel_build_config/gcc_plugin/kernel_config_gcc_plugin_stackleak/rule.yml"> kernel_config_gcc_plugin_stackleak</a>: Poison kernel stack before returning from syscalls
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/kernel_build_config/gcc_plugin/kernel_config_gcc_plugin_structleak/rule.yml"> kernel_config_gcc_plugin_structleak</a>: Force initialization of variables containing userspace addresses
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/kernel_build_config/gcc_plugin/kernel_config_gcc_plugin_structleak_byref_all/rule.yml"> kernel_config_gcc_plugin_structleak_byref_all</a>: zero-init everything passed by reference
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>R22: Compile options for the IP stack</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>high</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/kernel_build_config/kernel_config_syn_cookies/rule.yml"> kernel_config_syn_cookies</a>: Enable TCP/IP syncookie support
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>R23: Compile options for various kernel behaviors</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>high</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/kernel_build_config/kernel_config_binfmt_misc/rule.yml"> kernel_config_binfmt_misc</a>: Disable kernel support for MISC binaries
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/kernel_build_config/kernel_config_hibernation/rule.yml"> kernel_config_hibernation</a>: Disable hibernation
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/kernel_build_config/kernel_config_kexec/rule.yml"> kernel_config_kexec</a>: Disable kexec system call
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/kernel_build_config/kernel_config_legacy_ptys/rule.yml"> kernel_config_legacy_ptys</a>: Disable legacy (BSD) PTY support
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>R24: Compile options for 32-bit architectures</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>high</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>R25: Compile options for x86_64 architectures</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>high</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/kernel_build_config/kernel_config_default_mmap_min_addr/rule.yml"> kernel_config_default_mmap_min_addr</a>: Configure Low Address Space To Protect From User Allocation
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/kernel_build_config/kernel_config_ia32_emulation/rule.yml"> kernel_config_ia32_emulation</a>: Disable IA32 emulation
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/kernel_build_config/kernel_config_modify_ldt_syscall/rule.yml"> kernel_config_modify_ldt_syscall</a>: Disable the LDT (local descriptor table)
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/kernel_build_config/kernel_config_page_table_isolation/rule.yml"> kernel_config_page_table_isolation</a>: Remove the kernel mapping in user mode
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/kernel_build_config/kernel_config_randomize_base/rule.yml"> kernel_config_randomize_base</a>: Randomize the address of the kernel image (KASLR)
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/kernel_build_config/kernel_config_randomize_memory/rule.yml"> kernel_config_randomize_memory</a>: Randomize the kernel memory sections
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>R26: Compile options for ARM architectures</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>high</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>R27: Compile options for ARM 64 architectures</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>high</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/kernel_build_config/kernel_config_arm64_sw_ttbr0_pan/rule.yml"> kernel_config_arm64_sw_ttbr0_pan</a>: Emulate Privileged Access Never (PAN)
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/kernel_build_config/kernel_config_default_mmap_min_addr/rule.yml"> kernel_config_default_mmap_min_addr</a>: Configure Low Address Space To Protect From User Allocation
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/kernel_build_config/kernel_config_randomize_base/rule.yml"> kernel_config_randomize_base</a>: Randomize the address of the kernel image (KASLR)
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/kernel_build_config/kernel_config_unmap_kernel_at_el0/rule.yml"> kernel_config_unmap_kernel_at_el0</a>: Unmap kernel when running in userspace (aka KAISER)
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>R28: Partitioning type</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>intermediary</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/partitions/mount_option_boot_noexec/rule.yml"> mount_option_boot_noexec</a>: Add noexec Option to /boot
+      <ul><li>CCE-91234-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/partitions/mount_option_boot_nosuid/rule.yml"> mount_option_boot_nosuid</a>: Add nosuid Option to /boot
+      <ul><li>CCE-91235-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/partitions/mount_option_home_noexec/rule.yml"> mount_option_home_noexec</a>: Add noexec Option to /home
+      <ul><li>CCE-91236-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/partitions/mount_option_home_nosuid/rule.yml"> mount_option_home_nosuid</a>: Add nosuid Option to /home
+      <ul><li>CCE-85633-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/partitions/mount_option_nodev_nonroot_local_partitions/rule.yml"> mount_option_nodev_nonroot_local_partitions</a>: Add nodev Option to Non-Root Local Partitions
+      <ul><li>CCE-91237-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/partitions/mount_option_opt_nosuid/rule.yml"> mount_option_opt_nosuid</a>: Add nosuid Option to /opt
+      <ul><li>CCE-91270-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/partitions/mount_option_srv_nosuid/rule.yml"> mount_option_srv_nosuid</a>: Add nosuid Option to /srv
+      <ul><li>CCE-91271-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/partitions/mount_option_tmp_noexec/rule.yml"> mount_option_tmp_noexec</a>: Add noexec Option to /tmp
+      <ul><li>CCE-91272-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/partitions/mount_option_tmp_nosuid/rule.yml"> mount_option_tmp_nosuid</a>: Add nosuid Option to /tmp
+      <ul><li>CCE-91273-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/partitions/mount_option_var_log_noexec/rule.yml"> mount_option_var_log_noexec</a>: Add noexec Option to /var/log
+      <ul><li>CCE-91274-1</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/partitions/mount_option_var_log_nosuid/rule.yml"> mount_option_var_log_nosuid</a>: Add nosuid Option to /var/log
+      <ul><li>CCE-91275-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/partitions/mount_option_var_noexec/rule.yml"> mount_option_var_noexec</a>: Add noexec Option to /var
+      <ul><li>CCE-91276-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/partitions/mount_option_var_nosuid/rule.yml"> mount_option_var_nosuid</a>: Add nosuid Option to /var
+      <ul><li>CCE-91277-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/partitions/mount_option_var_tmp_noexec/rule.yml"> mount_option_var_tmp_noexec</a>: Add noexec Option to /var/tmp
+      <ul><li>CCE-91278-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/partitions/mount_option_var_tmp_nosuid/rule.yml"> mount_option_var_tmp_nosuid</a>: Add nosuid Option to /var/tmp
+      <ul><li>CCE-91279-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/disk_partitioning/partition_for_boot/rule.yml"> partition_for_boot</a>: Ensure /boot Located On Separate Partition
+      <ul><li>CCE-91176-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/disk_partitioning/partition_for_home/rule.yml"> partition_for_home</a>: Ensure /home Located On Separate Partition
+      <ul><li>CCE-85639-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/disk_partitioning/partition_for_opt/rule.yml"> partition_for_opt</a>: Ensure /opt Located On Separate Partition
+      <ul><li>CCE-91177-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/disk_partitioning/partition_for_srv/rule.yml"> partition_for_srv</a>: Ensure /srv Located On Separate Partition
+      <ul><li>CCE-91178-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/disk_partitioning/partition_for_usr/rule.yml"> partition_for_usr</a>: Ensure /usr Located On Separate Partition
+      <ul><li>CCE-91180-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/disk_partitioning/partition_for_var/rule.yml"> partition_for_var</a>: Ensure /var Located On Separate Partition
+      <ul><li>CCE-85640-1</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/disk_partitioning/partition_for_var_log/rule.yml"> partition_for_var_log</a>: Ensure /var/log Located On Separate Partition
+      <ul><li>CCE-91181-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/disk_partitioning/partition_for_var_tmp/rule.yml"> partition_for_var_tmp</a>: Ensure /var/tmp Located On Separate Partition
+      <ul><li>CCE-91182-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/disk_partitioning/systemd_tmp_mount_enabled/rule.yml"> systemd_tmp_mount_enabled</a>: Ensure tmp.mount Unit Is Enabled
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>R29: Access Restrictions on /boot</h2>
+  <p>Description: When possible, it is recommended not to automatically mount the /boot partition. In any case, access to the /boot folder should only be allowed for the root user.</p>
+  Levels: 
+  <ul><li>enhanced</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/bootloader-grub2/uefi/file_groupowner_efi_grub2_cfg/rule.yml"> file_groupowner_efi_grub2_cfg</a>: Verify the UEFI Boot Loader grub.cfg Group Ownership
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/bootloader-grub2/uefi/file_groupowner_efi_user_cfg/rule.yml"> file_groupowner_efi_user_cfg</a>: Verify /boot/grub2/user.cfg Group Ownership
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/bootloader-grub2/non-uefi/file_groupowner_grub2_cfg/rule.yml"> file_groupowner_grub2_cfg</a>: Verify /boot/grub2/grub.cfg Group Ownership
+      <ul><li>CCE-85849-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/file_groupowner_systemmap/rule.yml"> file_groupowner_systemmap</a>: Verify Group Who Owns System.map Files
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/bootloader-grub2/non-uefi/file_groupowner_user_cfg/rule.yml"> file_groupowner_user_cfg</a>: Verify /boot/grub2/user.cfg Group Ownership
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/bootloader-grub2/uefi/file_owner_efi_grub2_cfg/rule.yml"> file_owner_efi_grub2_cfg</a>: Verify the UEFI Boot Loader grub.cfg User Ownership
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/bootloader-grub2/uefi/file_owner_efi_user_cfg/rule.yml"> file_owner_efi_user_cfg</a>: Verify /boot/grub2/user.cfg User Ownership
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/bootloader-grub2/non-uefi/file_owner_grub2_cfg/rule.yml"> file_owner_grub2_cfg</a>: Verify /boot/grub2/grub.cfg User Ownership
+      <ul><li>CCE-85848-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/file_owner_systemmap/rule.yml"> file_owner_systemmap</a>: Verify User Who Owns System.map Files
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/bootloader-grub2/non-uefi/file_owner_user_cfg/rule.yml"> file_owner_user_cfg</a>: Verify /boot/grub2/user.cfg User Ownership
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/bootloader-grub2/uefi/file_permissions_efi_grub2_cfg/rule.yml"> file_permissions_efi_grub2_cfg</a>: Verify the UEFI Boot Loader grub.cfg Permissions
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/bootloader-grub2/uefi/file_permissions_efi_user_cfg/rule.yml"> file_permissions_efi_user_cfg</a>: Verify /boot/grub2/user.cfg Permissions
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/bootloader-grub2/non-uefi/file_permissions_grub2_cfg/rule.yml"> file_permissions_grub2_cfg</a>: Verify /boot/grub2/grub.cfg Permissions
+      <ul><li>CCE-91426-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/file_permissions_systemmap/rule.yml"> file_permissions_systemmap</a>: Verify Permissions on System.map Files
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/bootloader-grub2/non-uefi/file_permissions_user_cfg/rule.yml"> file_permissions_user_cfg</a>: Verify /boot/grub2/user.cfg Permissions
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>R30: Removal of unused user accounts</h2>
+  <p>Description: Unused user accounts must be deleted from the system.</p>
+  Levels: 
+  <ul><li>minimal</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>R31: User password strength</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>minimal</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/password_expiration/accounts_password_minlen_login_defs/rule.yml"> accounts_password_minlen_login_defs</a>: Set Password Minimum Length in login.defs
+      <ul><li>CCE-91168-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_dcredit/rule.yml"> accounts_password_pam_dcredit</a>: Ensure PAM Enforces Password Requirements - Minimum Digit Characters
+      <ul><li>CCE-85784-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_lcredit/rule.yml"> accounts_password_pam_lcredit</a>: Ensure PAM Enforces Password Requirements - Minimum Lowercase Characters
+      <ul><li>CCE-85840-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_minlen/rule.yml"> accounts_password_pam_minlen</a>: Ensure PAM Enforces Password Requirements - Minimum Length
+      <ul><li>CCE-85785-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_ocredit/rule.yml"> accounts_password_pam_ocredit</a>: Ensure PAM Enforces Password Requirements - Minimum Special Characters
+      <ul><li>CCE-91157-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_ucredit/rule.yml"> accounts_password_pam_ucredit</a>: Ensure PAM Enforces Password Requirements - Minimum Uppercase Characters
+      <ul><li>CCE-85786-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_password_pam_unix_remember/rule.yml"> accounts_password_pam_unix_remember</a>: Limit Password Reuse
+      <ul><li>CCE-85678-1</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/password_expiration/accounts_password_set_max_life_root/rule.yml"> accounts_password_set_max_life_root</a>: Set Root Account Password Maximum Age
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_faillock_deny/rule.yml"> accounts_passwords_pam_faillock_deny</a>: Lock Accounts After Failed Password Attempts
+      <ul><li>CCE-85842-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_faillock_deny_root/rule.yml"> accounts_passwords_pam_faillock_deny_root</a>: Configure the root Account for Failed Password Attempts
+      <ul><li>CCE-91171-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_faillock_interval/rule.yml"> accounts_passwords_pam_faillock_interval</a>: Set Interval For Counting Failed Password Attempts
+      <ul><li>CCE-91169-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_faillock_unlock_time/rule.yml"> accounts_passwords_pam_faillock_unlock_time</a>: Set Lockout Time for Failed Password Attempts
+      <ul><li>CCE-85841-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_tally2/rule.yml"> accounts_passwords_pam_tally2</a>: Set Deny For Failed Password Attempts
+      <ul><li>CCE-85554-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_tally2_deny_root/rule.yml"> accounts_passwords_pam_tally2_deny_root</a>: Configure the root Account lock for Failed Password Attempts via pam_tally2
+      <ul><li>CCE-91281-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_tally2_unlock_time/rule.yml"> accounts_passwords_pam_tally2_unlock_time</a>: Set Lockout Time for Failed Password Attempts using pam_tally2
+      <ul><li>CCE-91282-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pamcracklib/cracklib_accounts_password_pam_dcredit/rule.yml"> cracklib_accounts_password_pam_dcredit</a>: Set Password Strength Minimum Digit Characters
+      <ul><li>CCE-85564-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pamcracklib/cracklib_accounts_password_pam_lcredit/rule.yml"> cracklib_accounts_password_pam_lcredit</a>: Set Password Strength Minimum Lowercase Characters
+      <ul><li>CCE-85676-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pamcracklib/cracklib_accounts_password_pam_minlen/rule.yml"> cracklib_accounts_password_pam_minlen</a>: Set Password Minimum Length
+      <ul><li>CCE-85573-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pamcracklib/cracklib_accounts_password_pam_ocredit/rule.yml"> cracklib_accounts_password_pam_ocredit</a>: Set Password Strength Minimum Special Characters
+      <ul><li>CCE-85574-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pamcracklib/cracklib_accounts_password_pam_ucredit/rule.yml"> cracklib_accounts_password_pam_ucredit</a>: Set Password Strength Minimum Uppercase Characters
+      <ul><li>CCE-85675-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/enable_authselect/rule.yml"> enable_authselect</a>: Enable authselect
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/password_expiration/var_accounts_maximum_age_root.var">var_accounts_maximum_age_root</a> = 365</li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/password_expiration/var_accounts_password_minlen_login_defs.var">var_accounts_password_minlen_login_defs</a> = 15</li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/var_accounts_passwords_pam_faillock_deny.var">var_accounts_passwords_pam_faillock_deny</a> = 3</li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/var_accounts_passwords_pam_faillock_fail_interval.var">var_accounts_passwords_pam_faillock_fail_interval</a> = 900</li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/var_accounts_passwords_pam_faillock_unlock_time.var">var_accounts_passwords_pam_faillock_unlock_time</a> = 900</li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/var_accounts_passwords_pam_tally2_unlock_time.var">var_accounts_passwords_pam_tally2_unlock_time</a> = 1800</li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/var_password_pam_dcredit.var">var_password_pam_dcredit</a> = 1</li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/var_password_pam_lcredit.var">var_password_pam_lcredit</a> = 1</li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/var_password_pam_minlen.var">var_password_pam_minlen</a> = 15</li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/var_password_pam_ocredit.var">var_password_pam_ocredit</a> = 1</li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/var_password_pam_tally2.var">var_password_pam_tally2</a> = 5</li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/var_password_pam_ucredit.var">var_password_pam_ucredit</a> = 1</li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/var_password_pam_unix_remember.var">var_password_pam_unix_remember</a> = 2</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>R32: Configuring a timeout on local user sessions</h2>
+  <p>Description: Local user sessions (console TTY, graphical session) must be locked after a certain period of inactivity.</p>
+  Levels: 
+  <ul><li>intermediary</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-session/accounts_tmout/rule.yml"> accounts_tmout</a>: Set Interactive Session Timeout
+      <ul><li>CCE-83269-1</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-physical/logind_session_timeout/rule.yml"> logind_session_timeout</a>: Configure Logind to terminate idle sessions after certain time of inactivity
+      <ul><li>CCE-92692-3</li></ul>
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-session/var_accounts_tmout.var">var_accounts_tmout</a> = 10_min</li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-physical/var_logind_session_timeout.var">var_logind_session_timeout</a> = 10_minutes</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>R33: Use of dedicated administration accounts</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>intermediary</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_privileged_commands/audit_rules_privileged_commands_sudo/rule.yml"> audit_rules_privileged_commands_sudo</a>: Ensure auditd Collects Information on the Use of Privileged Commands - sudo
+      <ul><li>CCE-85603-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/root_logins/no_direct_root_logins/rule.yml"> no_direct_root_logins</a>: Direct root Logins Not Allowed
+      <ul><li>CCE-91427-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/package_audit_installed/rule.yml"> package_audit_installed</a>: Ensure the audit Subsystem is Installed
+      <ul><li>CCE-85612-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/sudo/package_sudo_installed/rule.yml"> package_sudo_installed</a>: Install sudo Package
+      <ul><li>CCE-91183-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/service_auditd_enabled/rule.yml"> service_auditd_enabled</a>: Enable auditd Service
+      <ul><li>CCE-85581-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_disable_root_login/rule.yml"> sshd_disable_root_login</a>: Disable SSH Root Login
+      <ul><li>CCE-85557-7</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>R34: Deactivation of service accounts</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>intermediary</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>R35: Uniqueness and exclusivity of system service accounts</h2>
+  <p>Description: Each service must have its own system account and be dedicated to it exclusively.</p>
+  Levels: 
+  <ul><li>intermediary</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>R36: Changing the default value of UMASK</h2>
+  <p>Description: The default value of UMASK for the shells must be set to 0077 in order to allow read and write access to its owner only. This value can be defined in the configuration file /etc/profile that most shells (bash, dash, ksh…) will use. The default value of UMASK for services must be determined for each service, but in most cases, it should be set to 0027 (or more restrictive). This allows read access to its owner and its group, and a full access to its owner. For services such as systemd, this value can be defined directly in the configuration file of the service with the directive UMask=0027.</p>
+  Levels: 
+  <ul><li>enhanced</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-session/user_umask/accounts_umask_etc_bashrc/rule.yml"> accounts_umask_etc_bashrc</a>: Ensure the Default Bash Umask is Set Correctly
+      <ul><li>CCE-91215-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-session/user_umask/accounts_umask_etc_login_defs/rule.yml"> accounts_umask_etc_login_defs</a>: Ensure the Default Umask is Set Correctly in login.defs
+      <ul><li>CCE-85659-1</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-session/user_umask/accounts_umask_etc_profile/rule.yml"> accounts_umask_etc_profile</a>: Ensure the Default Umask is Set Correctly in /etc/profile
+      <ul><li>CCE-91216-2</li></ul>
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-session/user_umask/var_accounts_user_umask.var">var_accounts_user_umask</a> = 077</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>R37: Using access control features</h2>
+  <p>Description: It is recommended to use the mandatory access control (MAC) features in addition to the traditional Unix user model (DAC), or possibly combine them with partitioning mechanisms.</p>
+  Levels: 
+  <ul><li>enhanced</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/selinux_state/rule.yml"> selinux_state</a>: Ensure SELinux State is Enforcing
+      <ul><li>CCE-91446-5</li></ul>
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/var_selinux_state.var">var_selinux_state</a> = enforcing</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>R38: Group dedicated to the use of sudo</h2>
+  <p>Description: A group dedicated to the use of sudo must be created, and only members of this group are allowed to execute sudo.</p>
+  Levels: 
+  <ul><li>enhanced</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/sudo/file_permissions_sudo/rule.yml"> file_permissions_sudo</a>: Ensure That the sudo Binary Has the Correct Permissions
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/sudo/sudo_dedicated_group/rule.yml"> sudo_dedicated_group</a>: Ensure a dedicated group owns sudo
+      <ul><li>CCE-91191-7</li></ul>
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/sudo/var_sudo_dedicated_group.var">var_sudo_dedicated_group</a> = sudogrp</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>R39: Sudo configuration guidelines</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>intermediary</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/sudo/sudo_add_env_reset/rule.yml"> sudo_add_env_reset</a>: Ensure sudo Runs In A Minimal Environment - sudo env_reset
+      <ul><li>CCE-91184-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/sudo/sudo_add_ignore_dot/rule.yml"> sudo_add_ignore_dot</a>: Ensure sudo Ignores Commands In Current Dir - sudo ignore_dot
+      <ul><li>CCE-91185-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/sudo/sudo_add_noexec/rule.yml"> sudo_add_noexec</a>: Ensure Privileged Escalated Commands Cannot Execute Other Commands - sudo NOEXEC
+      <ul><li>CCE-91186-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/sudo/sudo_add_requiretty/rule.yml"> sudo_add_requiretty</a>: Ensure Only Users Logged In To Real tty Can Execute Sudo - sudo requiretty
+      <ul><li>CCE-91188-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/sudo/sudo_add_umask/rule.yml"> sudo_add_umask</a>: Ensure sudo umask is appropriate - sudo umask
+      <ul><li>CCE-91189-1</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/sudo/sudo_add_use_pty/rule.yml"> sudo_add_use_pty</a>: Ensure Only Users Logged In To Real tty Can Execute Sudo - sudo use_pty
+      <ul><li>CCE-91190-9</li></ul>
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/sudo/var_sudo_umask.var">var_sudo_umask</a> = 0077</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>R40: Privileges of target sudo users</h2>
+  <p>Description: The targeted users of a rule should be, as much as possible, non privileged users.</p>
+  Levels: 
+  <ul><li>intermediary</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/sudo/sudoers_no_root_target/rule.yml"> sudoers_no_root_target</a>: Don't target root user in the sudoers file
+      <ul><li>CCE-91194-1</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>R41: Limiting the number of commands requiring the use of the EXEC option</h2>
+  <p>Description: The commands requiring the execution of sub-processes (EXEC tag) must be explicitly listed and their use should be reduced to a strict minimum.</p>
+  Levels: 
+  <ul><li>enhanced</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>R42: Good use of negation in a sudoers file</h2>
+  <p>Description: The sudoers configuration rules should not involve negation.</p>
+  Levels: 
+  <ul><li>intermediary</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/sudo/sudoers_no_command_negation/rule.yml"> sudoers_no_command_negation</a>: Don't define allowed commands in sudoers by means of exclusion
+      <ul><li>CCE-91193-3</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>R43: Explicit arguments in sudo specifications</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>intermediary</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/sudo/sudoers_explicit_command_args/rule.yml"> sudoers_explicit_command_args</a>: Explicit arguments in sudo specifications
+      <ul><li>CCE-91192-5</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>R44: Editing files with sudo</h2>
+  <p>Description: A file requiring sudo to be edited, must be edited through the sudoedit command.</p>
+  Levels: 
+  <ul><li>intermediary</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>R45: Enable AppArmor security profiles</h2>
+  <p>Description: All AppArmor security profiles on the system must be enabled by default.</p>
+  Levels: 
+  <ul><li>enhanced</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/apparmor/all_apparmor_profiles_enforced/rule.yml"> all_apparmor_profiles_enforced</a>: Enforce all AppArmor Profiles
+      <ul><li>CCE-92536-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/apparmor/apparmor_configured/rule.yml"> apparmor_configured</a>: Ensure AppArmor is Active and Configured
+      <ul><li>CCE-85752-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/apparmor/grub2_enable_apparmor/rule.yml"> grub2_enable_apparmor</a>: Ensure AppArmor is enabled in the bootloader configuration
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/apparmor/package_apparmor_installed/rule.yml"> package_apparmor_installed</a>: Ensure AppArmor is installed
+      <ul><li>CCE-92594-1</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/apparmor/package_pam_apparmor_installed/rule.yml"> package_pam_apparmor_installed</a>: Install the pam_apparmor Package
+      <ul><li>CCE-85765-6</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>R46: Activate SELinux with the Targeted Policy</h2>
+  <p>Description: It is recommended to enable the targeted policy when the distribution supports it and that it does not operate another security module than SELinux.</p>
+  Levels: 
+  <ul><li>high</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/selinux_policytype/rule.yml"> selinux_policytype</a>: Configure SELinux Policy
+      <ul><li>CCE-91445-7</li></ul>
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/var_selinux_policy_name.var">var_selinux_policy_name</a> = targeted</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>R47: Containment of unprivileged interactive users</h2>
+  <p>Description: Interactive non-privileged users of a system must be confined by associating them with a SELinux confined user.</p>
+  Levels: 
+  <ul><li>high</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>R48: Setting SELinux booleans</h2>
+  <p>Description: It is recommended to set the following Booleans: allow_execheap to off, forbids processes to make their heap executable; allow_execmem to off, forbids processes to have both write and execute rights on memory pages; allow_execstack to off, forbids processes to make their stack executable; secure_mode_insmod to on, prohibits dynamic loading of modules by any process; ssh_sysadm_login to off, forbids SSH logins to connect directly in sysadmin role.</p>
+  Levels: 
+  <ul><li>high</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/selinux-booleans/sebool_deny_execmem/rule.yml"> sebool_deny_execmem</a>: Configure the deny_execmem SELinux Boolean
+      <ul><li>CCE-91265-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/selinux-booleans/sebool_secure_mode_insmod/rule.yml"> sebool_secure_mode_insmod</a>: Configure the secure_mode_insmod SELinux Boolean
+      <ul><li>CCE-91266-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/selinux-booleans/sebool_selinuxuser_execheap/rule.yml"> sebool_selinuxuser_execheap</a>: Disable the selinuxuser_execheap SELinux Boolean
+      <ul><li>CCE-91424-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/selinux-booleans/sebool_selinuxuser_execstack/rule.yml"> sebool_selinuxuser_execstack</a>: Disable the selinuxuser_execstack SELinux Boolean
+      <ul><li>CCE-91422-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/selinux-booleans/sebool_ssh_sysadm_login/rule.yml"> sebool_ssh_sysadm_login</a>: Disable the ssh_sysadm_login SELinux Boolean
+      <ul><li>CCE-91264-2</li></ul>
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/selinux-booleans/var_deny_execmem.var">var_deny_execmem</a> = on</li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/selinux-booleans/var_secure_mode_insmod.var">var_secure_mode_insmod</a> = on</li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/selinux-booleans/var_selinuxuser_execheap.var">var_selinuxuser_execheap</a> = off</li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/selinux-booleans/var_selinuxuser_execstack.var">var_selinuxuser_execstack</a> = off</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>R49: Uninstalling SELinux Policy Debugging Tools</h2>
+  <p>Description: SELinux policy manipulation and debugging tools should not be installed on a machine in production.</p>
+  Levels: 
+  <ul><li>high</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/package_setroubleshoot-plugins_removed/rule.yml"> package_setroubleshoot-plugins_removed</a>: Uninstall setroubleshoot-plugins Package
+      <ul><li>CCE-91269-1</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/package_setroubleshoot-server_removed/rule.yml"> package_setroubleshoot-server_removed</a>: Uninstall setroubleshoot-server Package
+      <ul><li>CCE-91267-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/package_setroubleshoot_removed/rule.yml"> package_setroubleshoot_removed</a>: Uninstall setroubleshoot Package
+      <ul><li>CCE-91268-3</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>R50: Rights to access sensitive files and directories</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>intermediary</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-session/accounts_user_dot_group_ownership/rule.yml"> accounts_user_dot_group_ownership</a>: User Initialization Files Must Be Group-Owned By The Primary Group
+      <ul><li>CCE-91408-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-session/accounts_user_dot_user_ownership/rule.yml"> accounts_user_dot_user_ownership</a>: User Initialization Files Must Be Owned By the Primary User
+      <ul><li>CCE-91409-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-session/accounts_users_home_files_groupownership/rule.yml"> accounts_users_home_files_groupownership</a>: All User Files and Directories In The Home Directory Must Be Group-Owned By The Primary Group
+      <ul><li>CCE-91405-1</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-session/accounts_users_home_files_ownership/rule.yml"> accounts_users_home_files_ownership</a>: All User Files and Directories In The Home Directory Must Have a Valid Owner
+      <ul><li>CCE-91406-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-session/accounts_users_home_files_permissions/rule.yml"> accounts_users_home_files_permissions</a>: All User Files and Directories In The Home Directory Must Have Mode 0750 Or Less Permissive
+      <ul><li>CCE-91403-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/dir_system_commands_group_root_owned/rule.yml"> dir_system_commands_group_root_owned</a>: Verify that system commands directories have root as a group owner
+      <ul><li>CCE-85743-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/dir_system_commands_root_owned/rule.yml"> dir_system_commands_root_owned</a>: Verify that system commands directories have root ownership
+      <ul><li>CCE-85741-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-ipsec/directory_groupowner_etc_ipsecd/rule.yml"> directory_groupowner_etc_ipsecd</a>: Verify Group Who Owns /etc/ipsec.d Directory
+      <ul><li>CCE-92499-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-iptables/directory_groupowner_etc_iptables/rule.yml"> directory_groupowner_etc_iptables</a>: Verify Group Who Owns /etc/iptables Directory
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-nftables/directory_groupowner_etc_nftables/rule.yml"> directory_groupowner_etc_nftables</a>: Verify Group Who Owns /etc/nftables Directory
+      <ul><li>CCE-92500-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/directory_groupowner_etc_selinux/rule.yml"> directory_groupowner_etc_selinux</a>: Verify Group Who Owns /etc/selinux Directory
+      <ul><li>CCE-92501-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/sudo/directory_groupowner_etc_sudoersd/rule.yml"> directory_groupowner_etc_sudoersd</a>: Verify Group Who Owns /etc/sudoers.d Directory
+      <ul><li>CCE-92503-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_within_important_dirs/directory_groupowner_etc_sysctld/rule.yml"> directory_groupowner_etc_sysctld</a>: Verify Group Who Owns /etc/sysctl.d Directory
+      <ul><li>CCE-92506-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-ipsec/directory_owner_etc_ipsecd/rule.yml"> directory_owner_etc_ipsecd</a>: Verify User Who Owns /etc/ipsec.d Directory
+      <ul><li>CCE-92508-1</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-iptables/directory_owner_etc_iptables/rule.yml"> directory_owner_etc_iptables</a>: Verify User Who Owns /etc/iptables Directory
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-nftables/directory_owner_etc_nftables/rule.yml"> directory_owner_etc_nftables</a>: Verify User Who Owns /etc/nftables Directory
+      <ul><li>CCE-92509-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/directory_owner_etc_selinux/rule.yml"> directory_owner_etc_selinux</a>: Verify User Who Owns /etc/selinux Directory
+      <ul><li>CCE-92510-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/sudo/directory_owner_etc_sudoersd/rule.yml"> directory_owner_etc_sudoersd</a>: Verify User Who Owns /etc/sudoers.d Directory
+      <ul><li>CCE-92512-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_within_important_dirs/directory_owner_etc_sysctld/rule.yml"> directory_owner_etc_sysctld</a>: Verify User Who Owns /etc/sysctl.d Directory
+      <ul><li>CCE-92513-1</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-ipsec/directory_permissions_etc_ipsecd/rule.yml"> directory_permissions_etc_ipsecd</a>: Verify Permissions On /etc/ipsec.d Directory
+      <ul><li>CCE-92517-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-iptables/directory_permissions_etc_iptables/rule.yml"> directory_permissions_etc_iptables</a>: Verify Permissions On /etc/iptables Directory
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-nftables/directory_permissions_etc_nftables/rule.yml"> directory_permissions_etc_nftables</a>: Verify Permissions On /etc/nftables Directory
+      <ul><li>CCE-92521-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/directory_permissions_etc_selinux/rule.yml"> directory_permissions_etc_selinux</a>: Verify Permissions On /etc/selinux Directory
+      <ul><li>CCE-92524-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/sudo/directory_permissions_etc_sudoersd/rule.yml"> directory_permissions_etc_sudoersd</a>: Verify Permissions On /etc/sudoers.d Directory
+      <ul><li>CCE-92525-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_within_important_dirs/directory_permissions_etc_sysctld/rule.yml"> directory_permissions_etc_sysctld</a>: Verify Permissions On /etc/sysctl.d Directory
+      <ul><li>CCE-92527-1</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ntp/file_groupowner_etc_chrony_keys/rule.yml"> file_groupowner_etc_chrony_keys</a>: Verify Group Who Owns /etc/chrony.keys File
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/file_groupowner_etc_crypttab/rule.yml"> file_groupowner_etc_crypttab</a>: Verify Group Who Owns /etc/crypttab File
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_important_account_files/file_groupowner_etc_group/rule.yml"> file_groupowner_etc_group</a>: Verify Group Who Owns group File
+      <ul><li>CCE-85801-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_important_account_files/file_groupowner_etc_gshadow/rule.yml"> file_groupowner_etc_gshadow</a>: Verify Group Who Owns gshadow File
+      <ul><li>CCE-91348-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-ipsec/file_groupowner_etc_ipsec_conf/rule.yml"> file_groupowner_etc_ipsec_conf</a>: Verify Group Who Owns /etc/ipsec.conf File
+      <ul><li>CCE-92535-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-ipsec/file_groupowner_etc_ipsec_secrets/rule.yml"> file_groupowner_etc_ipsec_secrets</a>: Verify Group Who Owns /etc/ipsec.secrets File
+      <ul><li>CCE-92537-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_important_account_files/file_groupowner_etc_passwd/rule.yml"> file_groupowner_etc_passwd</a>: Verify Group Who Owns passwd File
+      <ul><li>CCE-85809-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/file_groupowner_etc_sestatus_conf/rule.yml"> file_groupowner_etc_sestatus_conf</a>: Verify Group Who Owns /etc/sestatus.conf File
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_important_account_files/file_groupowner_etc_shadow/rule.yml"> file_groupowner_etc_shadow</a>: Verify Group Who Owns shadow File
+      <ul><li>CCE-85808-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_important_account_files/file_groupowner_etc_shells/rule.yml"> file_groupowner_etc_shells</a>: Verify Group Who Owns /etc/shells File
+      <ul><li>CCE-92541-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/sudo/file_groupowner_etc_sudoers/rule.yml"> file_groupowner_etc_sudoers</a>: Verify Group Who Owns /etc/sudoers File
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/file_groupowner_sshd_config/rule.yml"> file_groupowner_sshd_config</a>: Verify Group Who Owns SSH Server config file
+      <ul><li>CCE-91392-1</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/file_groupownership_sshd_private_key/rule.yml"> file_groupownership_sshd_private_key</a>: Verify Group Ownership on SSH Server Private *_key Key Files
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/file_groupownership_sshd_pub_key/rule.yml"> file_groupownership_sshd_pub_key</a>: Verify Group Ownership on SSH Server Public *.pub Key Files
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_within_important_dirs/file_groupownership_system_commands_dirs/rule.yml"> file_groupownership_system_commands_dirs</a>: Verify that system commands files are group owned by root or a system account
+      <ul><li>CCE-85742-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ntp/file_owner_etc_chrony_keys/rule.yml"> file_owner_etc_chrony_keys</a>: Verify User Who Owns /etc/chrony.keys File
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/file_owner_etc_crypttab/rule.yml"> file_owner_etc_crypttab</a>: Verify User Who Owns /etc/crypttab File
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_important_account_files/file_owner_etc_group/rule.yml"> file_owner_etc_group</a>: Verify User Who Owns group File
+      <ul><li>CCE-85802-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_important_account_files/file_owner_etc_gshadow/rule.yml"> file_owner_etc_gshadow</a>: Verify User Who Owns gshadow File
+      <ul><li>CCE-91230-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-ipsec/file_owner_etc_ipsec_conf/rule.yml"> file_owner_etc_ipsec_conf</a>: Verify User Who Owns /etc/ipsec.conf File
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-ipsec/file_owner_etc_ipsec_secrets/rule.yml"> file_owner_etc_ipsec_secrets</a>: Verify User Who Owns /etc/ipsec.secrets File
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_important_account_files/file_owner_etc_passwd/rule.yml"> file_owner_etc_passwd</a>: Verify User Who Owns passwd File
+      <ul><li>CCE-85806-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/file_owner_etc_sestatus_conf/rule.yml"> file_owner_etc_sestatus_conf</a>: Verify User Who Owns /etc/sestatus.conf File
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_important_account_files/file_owner_etc_shadow/rule.yml"> file_owner_etc_shadow</a>: Verify User Who Owns shadow File
+      <ul><li>CCE-85807-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_important_account_files/file_owner_etc_shells/rule.yml"> file_owner_etc_shells</a>: Verify Who Owns /etc/shells File
+      <ul><li>CCE-92547-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/sudo/file_owner_etc_sudoers/rule.yml"> file_owner_etc_sudoers</a>: Verify User Who Owns /etc/sudoers File
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/file_owner_sshd_config/rule.yml"> file_owner_sshd_config</a>: Verify Owner on SSH Server config file
+      <ul><li>CCE-91393-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_within_important_dirs/file_ownership_binary_dirs/rule.yml"> file_ownership_binary_dirs</a>: Verify that System Executables Have Root Ownership
+      <ul><li>CCE-85730-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/file_ownership_sshd_private_key/rule.yml"> file_ownership_sshd_private_key</a>: Verify Ownership on SSH Server Private *_key Key Files
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/file_ownership_sshd_pub_key/rule.yml"> file_ownership_sshd_pub_key</a>: Verify Ownership on SSH Server Public *.pub Key Files
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-session/file_permission_user_init_files/rule.yml"> file_permission_user_init_files</a>: Ensure All User Initialization Files Have Mode 0740 Or Less Permissive
+      <ul><li>CCE-85630-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_within_important_dirs/file_permissions_binary_dirs/rule.yml"> file_permissions_binary_dirs</a>: Verify that System Executables Have Restrictive Permissions
+      <ul><li>CCE-85729-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ntp/file_permissions_etc_chrony_keys/rule.yml"> file_permissions_etc_chrony_keys</a>: Verify Permissions On /etc/chrony.keys File
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/file_permissions_etc_crypttab/rule.yml"> file_permissions_etc_crypttab</a>: Verify Permissions On /etc/crypttab File
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_important_account_files/file_permissions_etc_group/rule.yml"> file_permissions_etc_group</a>: Verify Permissions on group File
+      <ul><li>CCE-85803-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_important_account_files/file_permissions_etc_gshadow/rule.yml"> file_permissions_etc_gshadow</a>: Verify Permissions on gshadow File
+      <ul><li>CCE-91231-1</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-ipsec/file_permissions_etc_ipsec_conf/rule.yml"> file_permissions_etc_ipsec_conf</a>: Verify Permissions On /etc/ipsec.conf File
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-ipsec/file_permissions_etc_ipsec_secrets/rule.yml"> file_permissions_etc_ipsec_secrets</a>: Verify Permissions On /etc/ipsec.secrets File
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_important_account_files/file_permissions_etc_passwd/rule.yml"> file_permissions_etc_passwd</a>: Verify Permissions on passwd File
+      <ul><li>CCE-85805-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/file_permissions_etc_sestatus_conf/rule.yml"> file_permissions_etc_sestatus_conf</a>: Verify Permissions On /etc/sestatus.conf File
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_important_account_files/file_permissions_etc_shadow/rule.yml"> file_permissions_etc_shadow</a>: Verify Permissions on shadow File
+      <ul><li>CCE-85804-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_important_account_files/file_permissions_etc_shells/rule.yml"> file_permissions_etc_shells</a>: Verify Permissions on /etc/shells File
+      <ul><li>CCE-92562-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/sudo/file_permissions_etc_sudoers/rule.yml"> file_permissions_etc_sudoers</a>: Verify Permissions On /etc/sudoers File
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/file_permissions_sshd_config/rule.yml"> file_permissions_sshd_config</a>: Verify Permissions on SSH Server config file
+      <ul><li>CCE-91306-1</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/file_permissions_sshd_private_key/rule.yml"> file_permissions_sshd_private_key</a>: Verify Permissions on SSH Server Private *_key Key Files
+      <ul><li>CCE-85644-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/file_permissions_sshd_pub_key/rule.yml"> file_permissions_sshd_pub_key</a>: Verify Permissions on SSH Server Public *.pub Key Files
+      <ul><li>CCE-85643-5</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>R51: Sensitive and trusted files</h2>
+  <p>Description: All sensitive files and those contributing to the authentication mechanisms must be set up as soon as the system is installed. If default secrets are preconfigured, they must be replaced during, or immediately after, the installation phase of the system.</p>
+  Levels: 
+  <ul><li>enhanced</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>R52: Securing access for named sockets and pipes</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>intermediary</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>R53: Files or directories without a known user or group</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>minimal</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/file_permissions_ungroupowned/rule.yml"> file_permissions_ungroupowned</a>: Ensure All Files Are Owned by a Group
+      <ul><li>CCE-85658-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/no_files_unowned_by_user/rule.yml"> no_files_unowned_by_user</a>: Ensure All Files Are Owned by a User
+      <ul><li>CCE-85657-5</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>R54: Sticky bit and write access rights</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>minimal</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/dir_perms_world_writable_root_owned/rule.yml"> dir_perms_world_writable_root_owned</a>: Ensure All World-Writable Directories Are Owned by root User
+      <ul><li>CCE-91239-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/dir_perms_world_writable_sticky_bits/rule.yml"> dir_perms_world_writable_sticky_bits</a>: Verify that All World-Writable Directories Have Sticky Bits Set
+      <ul><li>CCE-83282-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/file_permissions_unauthorized_world_writable/rule.yml"> file_permissions_unauthorized_world_writable</a>: Ensure No World-Writable Files Exist
+      <ul><li>CCE-91233-7</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>R55: Temporary directories dedicated to accounts</h2>
+  <p>Description: Each user or service account must have its own temporary directory and dispose of it exclusively.</p>
+  Levels: 
+  <ul><li>intermediary</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-session/accounts_polyinstantiated_tmp/rule.yml"> accounts_polyinstantiated_tmp</a>: Configure Polyinstantiation of /tmp Directories
+      <ul><li>CCE-91197-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-session/accounts_polyinstantiated_var_tmp/rule.yml"> accounts_polyinstantiated_var_tmp</a>: Configure Polyinstantiation of /var/tmp Directories
+      <ul><li>CCE-91198-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/enable_pam_namespace/rule.yml"> enable_pam_namespace</a>: Set Up a Private Namespace in PAM Configuration
+      <ul><li>CCE-91196-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/selinux-booleans/sebool_polyinstantiation_enabled/rule.yml"> sebool_polyinstantiation_enabled</a>: Configure the polyinstantiation_enabled SELinux Boolean
+      <ul><li>CCE-91238-6</li></ul>
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/selinux-booleans/var_polyinstantiation_enabled.var">var_polyinstantiation_enabled</a> = on</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>R56: Executables with setuid and setgid bits</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>minimal</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/file_permissions_unauthorized_sgid/rule.yml"> file_permissions_unauthorized_sgid</a>: Ensure All SGID Executables Are Authorized
+      <ul><li>CCE-91175-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/file_permissions_unauthorized_suid/rule.yml"> file_permissions_unauthorized_suid</a>: Ensure All SUID Executables Are Authorized
+      <ul><li>CCE-91174-3</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>R57: Executable with special rights setuid root and setgid root</h2>
+  <p>Description: The executables with setuid executables root and setgid root special rights should be as few as possible. When only administrators are expected to execute them, these special rights should be removed and prefer them commands like su or sudo, which can be monitored</p>
+  Levels: 
+  <ul><li>enhanced</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>R58: Installation of packages reduced to the bare necessities</h2>
+  <p>Description: The selection of packages installed should be as small as possible, limiting itself to select only what is required.</p>
+  Levels: 
+  <ul><li>minimal</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>R59: Official package repositories</h2>
+  <p>Description: Only up-to-date official repositories of the distribution must be used.</p>
+  Levels: 
+  <ul><li>minimal</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/updating/ensure_almalinux_gpgkey_installed/rule.yml"> ensure_almalinux_gpgkey_installed</a>: Ensure AlmaLinux GPG Key Installed
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/updating/ensure_gpgcheck_globally_activated/rule.yml"> ensure_gpgcheck_globally_activated</a>: Ensure gpgcheck Enabled In Main zypper Configuration
+      <ul><li>CCE-83290-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/updating/ensure_gpgcheck_local_packages/rule.yml"> ensure_gpgcheck_local_packages</a>: Ensure gpgcheck Enabled for Local Packages
+      <ul><li>CCE-91167-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/updating/ensure_gpgcheck_never_disabled/rule.yml"> ensure_gpgcheck_never_disabled</a>: Ensure gpgcheck Enabled for All zypper Package Repositories
+      <ul><li>CCE-85797-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/updating/ensure_oracle_gpgkey_installed/rule.yml"> ensure_oracle_gpgkey_installed</a>: Ensure Oracle Linux GPG Key Installed
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/updating/ensure_redhat_gpgkey_installed/rule.yml"> ensure_redhat_gpgkey_installed</a>: Ensure Red Hat GPG Key Installed
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/system-tools/package_sequoia-sq_installed/rule.yml"> package_sequoia-sq_installed</a>: Install sequoia-sq Package
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>R60: Hardened package repositories</h2>
+  <p>Description: When the distribution provides several types of repositories, preference should be given to those containing packages subject to additional hardening measures. Between two packages providing the same service, those subject to hardening (at compilation, installation, or default configuration) must be preferred.</p>
+  Levels: 
+  <ul><li>enhanced</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>R61: Regular updates</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>minimal</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/updating/dnf-automatic_apply_updates/rule.yml"> dnf-automatic_apply_updates</a>: Configure dnf-automatic to Install Available Updates Automatically
+      <ul><li>CCE-91165-1</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/updating/dnf-automatic_security_updates_only/rule.yml"> dnf-automatic_security_updates_only</a>: Configure dnf-automatic to Install Only Security Updates
+      <ul><li>CCE-91166-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/updating/package_dnf-automatic_installed/rule.yml"> package_dnf-automatic_installed</a>: Install dnf-automatic Package
+      <ul><li>CCE-91163-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/updating/security_patches_up_to_date/rule.yml"> security_patches_up_to_date</a>: Ensure Software Patches Installed
+      <ul><li>CCE-83261-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/updating/timer_dnf-automatic_enabled/rule.yml"> timer_dnf-automatic_enabled</a>: Enable dnf-automatic Timer
+      <ul><li>CCE-91164-4</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>R62: Minimization of installed services</h2>
+  <p>Description: Only the components strictly necessary to the service provided by the system should be installed. Those whose presence can not be justified should be disabled, removed or deleted.</p>
+  Levels: 
+  <ul><li>minimal</li>
+  </ul>
+  <p>Automated: no</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/dhcp/disabling_dhcp_server/package_dhcp_removed/rule.yml"> package_dhcp_removed</a>: Uninstall DHCP Server Package
+      <ul><li>CCE-85759-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/dhcp/disabling_dhcp_server/package_kea_removed/rule.yml"> package_kea_removed</a>: Uninstall kea Package
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/obsolete/r_services/package_rsh-server_removed/rule.yml"> package_rsh-server_removed</a>: Uninstall rsh-server Package
+      <ul><li>CCE-91425-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/obsolete/r_services/package_rsh_removed/rule.yml"> package_rsh_removed</a>: Uninstall rsh Package
+      <ul><li>CCE-85760-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/mail/package_sendmail_removed/rule.yml"> package_sendmail_removed</a>: Uninstall Sendmail Package
+      <ul><li>CCE-85761-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/obsolete/talk/package_talk-server_removed/rule.yml"> package_talk-server_removed</a>: Uninstall talk-server Package
+      <ul><li>CCE-91433-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/obsolete/talk/package_talk_removed/rule.yml"> package_talk_removed</a>: Uninstall talk Package
+      <ul><li>CCE-91432-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/obsolete/telnet/package_telnet-server_removed/rule.yml"> package_telnet-server_removed</a>: Uninstall telnet-server Package
+      <ul><li>CCE-83273-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/obsolete/telnet/package_telnet_removed/rule.yml"> package_telnet_removed</a>: Remove telnet Clients
+      <ul><li>CCE-91434-1</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/obsolete/tftp/package_tftp-server_removed/rule.yml"> package_tftp-server_removed</a>: Uninstall tftp-server Package
+      <ul><li>CCE-91227-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/obsolete/tftp/package_tftp_removed/rule.yml"> package_tftp_removed</a>: Remove tftp Daemon
+      <ul><li>CCE-91158-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/obsolete/inetd_and_xinetd/package_xinetd_removed/rule.yml"> package_xinetd_removed</a>: Uninstall xinetd Package
+      <ul><li>CCE-91436-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/obsolete/nis/package_ypbind_removed/rule.yml"> package_ypbind_removed</a>: Remove NIS Client
+      <ul><li>CCE-91159-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/obsolete/nis/package_ypserv_removed/rule.yml"> package_ypserv_removed</a>: Uninstall ypserv Package
+      <ul><li>CCE-91160-2</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>R63: Minimization of services configuration</h2>
+  <p>Description: Services are often installed with default configurations that enable features potentially problematic from a security point of view. The features configured at the level of launched services should be limited to the strict minimum.</p>
+  Levels: 
+  <ul><li>intermediary</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>R64: Least privilege for the services</h2>
+  <p>Description: The deployed services must have their access restricted to the system strict minimum, especially when it comes to files, processes or network.</p>
+  Levels: 
+  <ul><li>enhanced</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/selinux_policytype/rule.yml"> selinux_policytype</a>: Configure SELinux Policy
+      <ul><li>CCE-91445-7</li></ul>
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/var_selinux_policy_name.var">var_selinux_policy_name</a> = targeted</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>R65: Services partitioning</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>enhanced</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>R66: Virtualization components hardening</h2>
+  <p>Description: Each component supporting the virtualization must be hardened, especially by applying technical measures to counter the exploit attempts.</p>
+  Levels: 
+  <ul><li>high</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>R67: Secure remote authentication with PAM</h2>
+  <p>Description: When authentication takes place through a remote application (network),
+the authentication protocol used by PAM must be secure (flow encryption,
+remote server authentication, anti-replay mechanisms, ...).</p>
+  Levels: 
+  <ul><li>intermediary</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ldap/openldap_client/ldap_client_start_tls/rule.yml"> ldap_client_start_tls</a>: Configure LDAP Client to Use TLS For All Transactions
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ldap/openldap_client/ldap_client_tls_cacertpath/rule.yml"> ldap_client_tls_cacertpath</a>: Configure Certificate Directives for LDAP Use of TLS
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/sssd/package_sssd_installed/rule.yml"> package_sssd_installed</a>: Install the SSSD Package
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/sssd/service_sssd_enabled/rule.yml"> service_sssd_enabled</a>: Enable the SSSD Service
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/sssd/sssd_enable_pam_services/rule.yml"> sssd_enable_pam_services</a>: Configure PAM in SSSD Services
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/sssd/sssd-ldap/sssd_ldap_configure_tls_reqcert/rule.yml"> sssd_ldap_configure_tls_reqcert</a>: Configure SSSD LDAP Backend Client to Demand a Valid Certificate from the Server
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/sssd/sssd-ldap/sssd_ldap_start_tls/rule.yml"> sssd_ldap_start_tls</a>: Configure SSSD LDAP Backend to Use TLS For All Transactions
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>R68: Protecting stored passwords</h2>
+  <p>Description: Any password must be protected by cryptographic mechanisms.</p>
+  Levels: 
+  <ul><li>minimal</li>
+  </ul>
+  <p>Automated: no</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_minclass/rule.yml"> accounts_password_pam_minclass</a>: Ensure PAM Enforces Password Requirements - Minimum Different Categories
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_minlen/rule.yml"> accounts_password_pam_minlen</a>: Ensure PAM Enforces Password Requirements - Minimum Length
+      <ul><li>CCE-85785-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_retry/rule.yml"> accounts_password_pam_retry</a>: Ensure PAM Enforces Password Requirements - Authentication Retry Prompts Permitted Per-Session
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/password_storage/accounts_password_pam_unix_rounds_password_auth/rule.yml"> accounts_password_pam_unix_rounds_password_auth</a>: Set number of Password Hashing Rounds - password-auth
+      <ul><li>CCE-91173-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/password_storage/accounts_password_pam_unix_rounds_system_auth/rule.yml"> accounts_password_pam_unix_rounds_system_auth</a>: Set number of Password Hashing Rounds - system-auth
+      <ul><li>CCE-91172-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/set_password_hashing_algorithm/set_password_hashing_algorithm_systemauth/rule.yml"> set_password_hashing_algorithm_systemauth</a>: Set PAM Password Hashing Algorithm - system-auth
+      <ul><li>CCE-85565-0</li></ul>
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/var_password_hashing_algorithm.var">var_password_hashing_algorithm</a> = yescrypt</li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/var_password_hashing_algorithm_pam.var">var_password_hashing_algorithm_pam</a> = sha512</li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/var_password_pam_minclass.var">var_password_pam_minclass</a> = 4</li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/password_storage/var_password_pam_unix_rounds.var">var_password_pam_unix_rounds</a> = 11</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>R69: Securing access to remote user databases</h2>
+  <p>Description: When the user databases are stored on a remote network service, NSS must
+be configured to establish a secure link that allows, at minimum, to
+authenticate the server and protect the communication channel.</p>
+  Levels: 
+  <ul><li>intermediary</li>
+  </ul>
+  <p>Automated: no</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/obsolete/nis/no_nis_in_nsswitch/rule.yml"> no_nis_in_nsswitch</a>: Name Service Switch does not use NIS
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>R70: Separation of System Accounts and Directory Administrator</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>intermediary</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>R71: Implement a logging system</h2>
+  <p>Description: The configuration of the service must be performed according to the 'Security Recommendations for the architecture of a logging system' (DAT-PA-012 v2.0) accessible on the ANSSI website (https://www.ssi.gouv.fr/journalisation).</p>
+  Levels: 
+  <ul><li>enhanced</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ntp/chronyd_configure_pool_and_server/rule.yml"> chronyd_configure_pool_and_server</a>: Chrony Configure Pool and Server
+      <ul><li>CCE-92526-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ntp/chronyd_specify_remote_server/rule.yml"> chronyd_specify_remote_server</a>: A remote time server for Chrony is configured
+      <ul><li>CCE-85833-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/logging/log_rotation/ensure_logrotate_activated/rule.yml"> ensure_logrotate_activated</a>: Ensure Logrotate Runs Periodically
+      <ul><li>CCE-85850-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ntp/package_chrony_installed/rule.yml"> package_chrony_installed</a>: The Chrony package is installed
+      <ul><li>CCE-91229-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/logging/log_rotation/package_logrotate_installed/rule.yml"> package_logrotate_installed</a>: Ensure logrotate is Installed
+      <ul><li>CCE-92561-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/logging/package_rsyslog-gnutls_installed/rule.yml"> package_rsyslog-gnutls_installed</a>: Ensure rsyslog-gnutls is installed
+      <ul><li>CCE-91199-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/disk_partitioning/partition_for_var_log_audit/rule.yml"> partition_for_var_log_audit</a>: Ensure /var/log/audit Located On Separate Partition
+      <ul><li>CCE-85618-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/logging/ensure_rsyslog_log_file_configuration/rsyslog_files_groupownership/rule.yml"> rsyslog_files_groupownership</a>: Ensure Log Files Are Owned By Appropriate Group
+      <ul><li>CCE-85838-1</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/logging/ensure_rsyslog_log_file_configuration/rsyslog_files_ownership/rule.yml"> rsyslog_files_ownership</a>: Ensure Log Files Are Owned By Appropriate User
+      <ul><li>CCE-85839-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/logging/ensure_rsyslog_log_file_configuration/rsyslog_files_permissions/rule.yml"> rsyslog_files_permissions</a>: Ensure System Log Files Have Correct Permissions
+      <ul><li>CCE-85837-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/logging/rsyslog_sending_messages/rsyslog_remote_loghost/rule.yml"> rsyslog_remote_loghost</a>: Ensure Logs Sent To Remote Host
+      <ul><li>CCE-85552-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/logging/rsyslog_sending_messages/rsyslog_remote_tls/rule.yml"> rsyslog_remote_tls</a>: Configure TLS for rsyslog remote logging
+      <ul><li>CCE-91200-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/logging/rsyslog_sending_messages/rsyslog_remote_tls_cacert/rule.yml"> rsyslog_remote_tls_cacert</a>: Configure CA certificate for rsyslog remote logging
+      <ul><li>CCE-91201-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ntp/service_chronyd_enabled/rule.yml"> service_chronyd_enabled</a>: The Chronyd service is enabled
+      <ul><li>CCE-92601-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ntp/service_chronyd_or_ntpd_enabled/rule.yml"> service_chronyd_or_ntpd_enabled</a>: Enable the NTP Daemon
+      <ul><li>CCE-85835-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/logging/log_rotation/timer_logrotate_enabled/rule.yml"> timer_logrotate_enabled</a>: Enable logrotate Timer
+      <ul><li>CCE-92585-9</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>R72: Service Activity Logs</h2>
+  <p>Description: Each service must have a dedicated event logging journal on the system. This log must only be accessible by the syslog server, and must not be readable, editable or deletable by the service directly.</p>
+  Levels: 
+  <ul><li>enhanced</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>R73: Logging activity by auditd</h2>
+  <p>Description: The logging of the system activity must be done through the auditd service.</p>
+  Levels: 
+  <ul><li>enhanced</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_dac_actions/audit_rules_dac_modification_chmod/rule.yml"> audit_rules_dac_modification_chmod</a>: Record Events that Modify the System's Discretionary Access Controls - chmod
+      <ul><li>CCE-85693-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_dac_actions/audit_rules_dac_modification_chown/rule.yml"> audit_rules_dac_modification_chown</a>: Record Events that Modify the System's Discretionary Access Controls - chown
+      <ul><li>CCE-85690-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_dac_actions/audit_rules_dac_modification_fchmod/rule.yml"> audit_rules_dac_modification_fchmod</a>: Record Events that Modify the System's Discretionary Access Controls - fchmod
+      <ul><li>CCE-85694-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_dac_actions/audit_rules_dac_modification_fchmodat/rule.yml"> audit_rules_dac_modification_fchmodat</a>: Record Events that Modify the System's Discretionary Access Controls - fchmodat
+      <ul><li>CCE-85695-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_dac_actions/audit_rules_dac_modification_fchmodat2/rule.yml"> audit_rules_dac_modification_fchmodat2</a>: Record Events that Modify the System's Discretionary Access Controls - fchmodat2
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_dac_actions/audit_rules_dac_modification_fchown/rule.yml"> audit_rules_dac_modification_fchown</a>: Record Events that Modify the System's Discretionary Access Controls - fchown
+      <ul><li>CCE-85721-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_dac_actions/audit_rules_dac_modification_fchownat/rule.yml"> audit_rules_dac_modification_fchownat</a>: Record Events that Modify the System's Discretionary Access Controls - fchownat
+      <ul><li>CCE-85692-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_dac_actions/audit_rules_dac_modification_fremovexattr/rule.yml"> audit_rules_dac_modification_fremovexattr</a>: Record Events that Modify the System's Discretionary Access Controls - fremovexattr
+      <ul><li>CCE-85686-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_dac_actions/audit_rules_dac_modification_fsetxattr/rule.yml"> audit_rules_dac_modification_fsetxattr</a>: Record Events that Modify the System's Discretionary Access Controls - fsetxattr
+      <ul><li>CCE-85688-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_dac_actions/audit_rules_dac_modification_lchown/rule.yml"> audit_rules_dac_modification_lchown</a>: Record Events that Modify the System's Discretionary Access Controls - lchown
+      <ul><li>CCE-85691-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_dac_actions/audit_rules_dac_modification_lremovexattr/rule.yml"> audit_rules_dac_modification_lremovexattr</a>: Record Events that Modify the System's Discretionary Access Controls - lremovexattr
+      <ul><li>CCE-85685-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_dac_actions/audit_rules_dac_modification_lsetxattr/rule.yml"> audit_rules_dac_modification_lsetxattr</a>: Record Events that Modify the System's Discretionary Access Controls - lsetxattr
+      <ul><li>CCE-85689-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_dac_actions/audit_rules_dac_modification_removexattr/rule.yml"> audit_rules_dac_modification_removexattr</a>: Record Events that Modify the System's Discretionary Access Controls - removexattr
+      <ul><li>CCE-85684-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_dac_actions/audit_rules_dac_modification_setxattr/rule.yml"> audit_rules_dac_modification_setxattr</a>: Record Events that Modify the System's Discretionary Access Controls - setxattr
+      <ul><li>CCE-85687-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_dac_actions/audit_rules_dac_modification_umount2/rule.yml"> audit_rules_dac_modification_umount2</a>: Record Events that Modify the System's Discretionary Access Controls - umount2
+      <ul><li>CCE-91250-1</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_file_deletion_events/audit_rules_file_deletion_events_rename/rule.yml"> audit_rules_file_deletion_events_rename</a>: Ensure auditd Collects File Deletion Events by User - rename
+      <ul><li>CCE-85768-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_file_deletion_events/audit_rules_file_deletion_events_renameat/rule.yml"> audit_rules_file_deletion_events_renameat</a>: Ensure auditd Collects File Deletion Events by User - renameat
+      <ul><li>CCE-85769-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_file_deletion_events/audit_rules_file_deletion_events_renameat2/rule.yml"> audit_rules_file_deletion_events_renameat2</a>: Ensure auditd Collects File Deletion Events by User - renameat2
+      <ul><li>CCE-92695-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_file_deletion_events/audit_rules_file_deletion_events_rmdir/rule.yml"> audit_rules_file_deletion_events_rmdir</a>: Ensure auditd Collects File Deletion Events by User - rmdir
+      <ul><li>CCE-85770-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_file_deletion_events/audit_rules_file_deletion_events_unlink/rule.yml"> audit_rules_file_deletion_events_unlink</a>: Ensure auditd Collects File Deletion Events by User - unlink
+      <ul><li>CCE-85771-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_file_deletion_events/audit_rules_file_deletion_events_unlinkat/rule.yml"> audit_rules_file_deletion_events_unlinkat</a>: Ensure auditd Collects File Deletion Events by User - unlinkat
+      <ul><li>CCE-85772-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_rules_immutable/rule.yml"> audit_rules_immutable</a>: Make the auditd Configuration Immutable
+      <ul><li>CCE-85831-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_kernel_module_loading/audit_rules_kernel_module_loading_delete/rule.yml"> audit_rules_kernel_module_loading_delete</a>: Ensure auditd Collects Information on Kernel Module Unloading - delete_module
+      <ul><li>CCE-85748-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_kernel_module_loading/audit_rules_kernel_module_loading_finit/rule.yml"> audit_rules_kernel_module_loading_finit</a>: Ensure auditd Collects Information on Kernel Module Loading and Unloading - finit_module
+      <ul><li>CCE-85749-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_kernel_module_loading/audit_rules_kernel_module_loading_init/rule.yml"> audit_rules_kernel_module_loading_init</a>: Ensure auditd Collects Information on Kernel Module Loading - init_module
+      <ul><li>CCE-85750-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_login_events/audit_rules_login_events_faillock/rule.yml"> audit_rules_login_events_faillock</a>: Record Attempts to Alter Logon and Logout Events - faillock
+      <ul><li>CCE-91449-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_login_events/audit_rules_login_events_lastlog/rule.yml"> audit_rules_login_events_lastlog</a>: Record Attempts to Alter Logon and Logout Events - lastlog
+      <ul><li>CCE-85598-1</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_rules_mac_modification/rule.yml"> audit_rules_mac_modification</a>: Record Events that Modify the System's Mandatory Access Controls
+      <ul><li>CCE-85830-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_rules_mac_modification_etc_selinux/rule.yml"> audit_rules_mac_modification_etc_selinux</a>: Record Events that Modify the System's Mandatory Access Controls (/etc/selinux)
+      <ul><li>CCE-92694-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_rules_media_export/rule.yml"> audit_rules_media_export</a>: Ensure auditd Collects Information on Exporting to Media (successful)
+      <ul><li>CCE-85718-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_rules_networkconfig_modification/rule.yml"> audit_rules_networkconfig_modification</a>: Record Events that Modify the System's Network Environment
+      <ul><li>CCE-85828-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_privileged_commands/audit_rules_privileged_commands/rule.yml"> audit_rules_privileged_commands</a>: Ensure auditd Collects Information on the Use of Privileged Commands
+      <ul><li>CCE-91251-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_privileged_commands/audit_rules_privileged_commands_insmod/rule.yml"> audit_rules_privileged_commands_insmod</a>: Ensure auditd Collects Information on the Use of Privileged Commands - insmod
+      <ul><li>CCE-85744-1</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_privileged_commands/audit_rules_privileged_commands_kmod/rule.yml"> audit_rules_privileged_commands_kmod</a>: Ensure auditd Collects Information on the Use of Privileged Commands - kmod
+      <ul><li>CCE-85591-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_privileged_commands/audit_rules_privileged_commands_modprobe/rule.yml"> audit_rules_privileged_commands_modprobe</a>: Ensure auditd Collects Information on the Use of Privileged Commands - modprobe
+      <ul><li>CCE-85731-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_privileged_commands/audit_rules_privileged_commands_rmmod/rule.yml"> audit_rules_privileged_commands_rmmod</a>: Ensure auditd Collects Information on the Use of Privileged Commands - rmmod
+      <ul><li>CCE-85732-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_rules_session_events_btmp/rule.yml"> audit_rules_session_events_btmp</a>: Record Attempts to Alter Process and Session Initiation Information btmp
+      <ul><li>CCE-85758-1</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_rules_session_events_utmp/rule.yml"> audit_rules_session_events_utmp</a>: Record Attempts to Alter Process and Session Initiation Information utmp
+      <ul><li>CCE-85714-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_rules_session_events_wtmp/rule.yml"> audit_rules_session_events_wtmp</a>: Record Attempts to Alter Process and Session Initiation Information wtmp
+      <ul><li>CCE-85757-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_rules_sysadmin_actions/rule.yml"> audit_rules_sysadmin_actions</a>: Ensure auditd Collects System Administrator Actions
+      <ul><li>CCE-85679-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_time_rules/audit_rules_time_adjtimex/rule.yml"> audit_rules_time_adjtimex</a>: Record attempts to alter time through adjtimex
+      <ul><li>CCE-85814-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_time_rules/audit_rules_time_clock_settime/rule.yml"> audit_rules_time_clock_settime</a>: Record Attempts to Alter Time Through clock_settime
+      <ul><li>CCE-85816-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_time_rules/audit_rules_time_stime/rule.yml"> audit_rules_time_stime</a>: Record Attempts to Alter Time Through stime
+      <ul><li>CCE-85815-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_time_rules/audit_rules_time_watch_localtime/rule.yml"> audit_rules_time_watch_localtime</a>: Record Attempts to Alter the localtime File
+      <ul><li>CCE-85812-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_file_modification/audit_rules_unsuccessful_file_modification_creat/rule.yml"> audit_rules_unsuccessful_file_modification_creat</a>: Record Unsuccessful Access Attempts to Files - creat
+      <ul><li>CCE-85681-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_file_modification/audit_rules_unsuccessful_file_modification_ftruncate/rule.yml"> audit_rules_unsuccessful_file_modification_ftruncate</a>: Record Unsuccessful Access Attempts to Files - ftruncate
+      <ul><li>CCE-85696-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_file_modification/audit_rules_unsuccessful_file_modification_open/rule.yml"> audit_rules_unsuccessful_file_modification_open</a>: Record Unsuccessful Access Attempts to Files - open
+      <ul><li>CCE-85680-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_file_modification/audit_rules_unsuccessful_file_modification_openat/rule.yml"> audit_rules_unsuccessful_file_modification_openat</a>: Record Unsuccessful Access Attempts to Files - openat
+      <ul><li>CCE-85682-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_file_modification/audit_rules_unsuccessful_file_modification_truncate/rule.yml"> audit_rules_unsuccessful_file_modification_truncate</a>: Record Unsuccessful Access Attempts to Files - truncate
+      <ul><li>CCE-85608-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_rules_usergroup_modification_group/rule.yml"> audit_rules_usergroup_modification_group</a>: Record Events that Modify User/Group Information - /etc/group
+      <ul><li>CCE-85578-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_rules_usergroup_modification_gshadow/rule.yml"> audit_rules_usergroup_modification_gshadow</a>: Record Events that Modify User/Group Information - /etc/gshadow
+      <ul><li>CCE-85580-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_rules_usergroup_modification_opasswd/rule.yml"> audit_rules_usergroup_modification_opasswd</a>: Record Events that Modify User/Group Information - /etc/security/opasswd
+      <ul><li>CCE-85728-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_rules_usergroup_modification_passwd/rule.yml"> audit_rules_usergroup_modification_passwd</a>: Record Events that Modify User/Group Information - /etc/passwd
+      <ul><li>CCE-85577-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_rules_usergroup_modification_shadow/rule.yml"> audit_rules_usergroup_modification_shadow</a>: Record Events that Modify User/Group Information - /etc/shadow
+      <ul><li>CCE-85579-1</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_sudo_log_events/rule.yml"> audit_sudo_log_events</a>: Record Attempts to perform maintenance activities
+      <ul><li>CCE-92551-1</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/package_audit_installed/rule.yml"> package_audit_installed</a>: Ensure the audit Subsystem is Installed
+      <ul><li>CCE-85612-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/service_auditd_enabled/rule.yml"> service_auditd_enabled</a>: Enable auditd Service
+      <ul><li>CCE-85581-7</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>R74: Configuring the local messaging service</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>intermediary</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/mail/postfix_client/postfix_network_listening_disabled/rule.yml"> postfix_network_listening_disabled</a>: Disable Postfix Network Listening
+      <ul><li>CCE-91280-8</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>R75: Messaging Aliases for Service Accounts</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>intermediary</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/mail/postfix_client/postfix_client_configure_mail_alias/rule.yml"> postfix_client_configure_mail_alias</a>: Configure System to Forward All Mail For The Root Account
+      <ul><li>CCE-85605-4</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>R76: Sealing and integrity of files</h2>
+  <p>Description: Any file that is not transient (such as temporary files, databases, etc.) must be monitored by a sealing program. This includes: directories containing executables, libraries, configuration files, as well as any files that may contain sensitive elements (cryptographic keys, passwords, confidential data).</p>
+  Levels: 
+  <ul><li>high</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/software-integrity/aide/aide_build_database/rule.yml"> aide_build_database</a>: Build and Test AIDE Database
+      <ul><li>CCE-85787-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/software-integrity/aide/aide_periodic_checking_systemd_timer/rule.yml"> aide_periodic_checking_systemd_timer</a>: Configure Systemd Timer Execution of AIDE
+      <ul><li>CCE-92516-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/software-integrity/aide/aide_periodic_cron_checking/rule.yml"> aide_periodic_cron_checking</a>: Configure Periodic Execution of AIDE
+      <ul><li>CCE-85671-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/software-integrity/aide/aide_scan_notification/rule.yml"> aide_scan_notification</a>: Configure Notification of Post-AIDE Scan Details
+      <ul><li>CCE-91214-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/software-integrity/aide/aide_verify_acls/rule.yml"> aide_verify_acls</a>: Configure AIDE to Verify Access Control Lists (ACLs)
+      <ul><li>CCE-85623-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/software-integrity/aide/aide_verify_ext_attributes/rule.yml"> aide_verify_ext_attributes</a>: Configure AIDE to Verify Extended Attributes
+      <ul><li>CCE-85624-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/software-integrity/aide/package_aide_installed/rule.yml"> package_aide_installed</a>: Install AIDE
+      <ul><li>CCE-83289-9</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>R77: Protection of the seals database</h2>
+  <p>Description: The sealing database must be protected from malicious access by cryptographic signature mechanisms (with the key used for the signature not locally stored in clear), or possibly stored on a separate machine of the one on which the sealing is done. Check section "Database and config signing in AIDE manual" https://aide.github.io/doc/#signing</p>
+  Levels: 
+  <ul><li>high</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>R78: Network services partitioning</h2>
+  <p>Description: Network services should as much as possible be hosted on isolated environments. This avoids having other potentially affected services if one of them gets compromised under the same environment.</p>
+  Levels: 
+  <ul><li>enhanced</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>R79: Hardening and monitoring of exposed services</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>intermediary</li>
+  </ul>
+  <p>Automated: no</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/software-integrity/aide/aide_build_database/rule.yml"> aide_build_database</a>: Build and Test AIDE Database
+      <ul><li>CCE-85787-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/software-integrity/aide/package_aide_installed/rule.yml"> package_aide_installed</a>: Install AIDE
+      <ul><li>CCE-83289-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/selinux_state/rule.yml"> selinux_state</a>: Ensure SELinux State is Enforcing
+      <ul><li>CCE-91446-5</li></ul>
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/var_selinux_state.var">var_selinux_state</a> = enforcing</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>R80: Minimization of network services</h2>
+  <p>Description: All network services must be listening on the correct network intefaces.</p>
+  Levels: 
+  <ul><li>minimal</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+</div>  
+
+
+</body>
+</html>

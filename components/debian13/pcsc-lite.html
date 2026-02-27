@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'pcsc-lite'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'pcsc-lite'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>pcsc-lite</li>
+
+<li>pcsc-lite-ccid</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<div>None</div>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#package_pcsc-lite_installed">package_pcsc-lite_installed</a></li>
+
+<li><a href="#package_pcsc-lite-ccid_installed">package_pcsc-lite-ccid_installed</a></li>
+
+<li><a href="#service_pcscd_enabled">service_pcscd_enabled</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="package_pcsc-lite_installed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Install the pcsc-lite package</h3>
+<div>package_pcsc-lite_installed</div>
+<h4>Description</h4>
+<p>The <code>pcsc-lite</code> package can be installed with the following command:
+<pre>
+$ apt-get install pcsc-lite</pre></p>
+<h4>Rationale</h4>
+<p>The pcsc-lite package must be installed if it is to be available for
+multifactor authentication using smartcards.</p>
+</div>
+
+<div id="package_pcsc-lite-ccid_installed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Install the pcsc-lite-ccid package</h3>
+<div>package_pcsc-lite-ccid_installed</div>
+<h4>Description</h4>
+<p>The <code>pcsc-lite-ccid</code> package can be installed with the following command:
+<pre>
+$ apt-get install pcsc-lite-ccid</pre></p>
+<h4>Rationale</h4>
+<p>The pcsc-lite-ccid package must be installed if it is to be available for
+multifactor authentication using smartcards.</p>
+</div>
+
+<div id="service_pcscd_enabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Enable the pcscd Service</h3>
+<div>service_pcscd_enabled</div>
+<h4>Description</h4>
+<p>
+The <code>pcscd</code> service can be enabled with the following command:
+<pre>$ sudo systemctl enable pcscd.service</pre></p>
+<h4>Rationale</h4>
+<p>Using an authentication device, such as a CAC or token that is separate from
+the information system, ensures that even if the information system is
+compromised, that compromise will not affect credentials stored on the
+authentication device.
+<br /><br />
+Multifactor solutions that require devices separate from
+information systems gaining access include, for example, hardware tokens
+providing time-based or challenge-response authenticators and smart cards
+or similar secure authentication devices issued by an organization or identity provider.</p>
+</div>
+
+
+
+
+</body>
+</html>

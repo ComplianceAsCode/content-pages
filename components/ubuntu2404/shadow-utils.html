@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'shadow-utils'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'shadow-utils'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>shadow-utils</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<div>None</div>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#account_disable_post_pw_expiration">account_disable_post_pw_expiration</a></li>
+
+<li><a href="#accounts_authorized_local_users">accounts_authorized_local_users</a></li>
+
+<li><a href="#accounts_have_homedir_login_defs">accounts_have_homedir_login_defs</a></li>
+
+<li><a href="#accounts_logon_fail_delay">accounts_logon_fail_delay</a></li>
+
+<li><a href="#accounts_maximum_age_login_defs">accounts_maximum_age_login_defs</a></li>
+
+<li><a href="#accounts_minimum_age_login_defs">accounts_minimum_age_login_defs</a></li>
+
+<li><a href="#accounts_password_minlen_login_defs">accounts_password_minlen_login_defs</a></li>
+
+<li><a href="#accounts_password_warn_age_login_defs">accounts_password_warn_age_login_defs</a></li>
+
+<li><a href="#accounts_umask_etc_login_defs">accounts_umask_etc_login_defs</a></li>
+
+<li><a href="#file_groupownership_lastlog">file_groupownership_lastlog</a></li>
+
+<li><a href="#file_ownership_lastlog">file_ownership_lastlog</a></li>
+
+<li><a href="#file_permissions_lastlog">file_permissions_lastlog</a></li>
+
+<li><a href="#gid_passwd_group_same">gid_passwd_group_same</a></li>
+
+<li><a href="#no_empty_passwords_etc_shadow">no_empty_passwords_etc_shadow</a></li>
+
+<li><a href="#set_password_hashing_algorithm_logindefs">set_password_hashing_algorithm_logindefs</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="account_disable_post_pw_expiration" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Set Account Expiration Following Inactivity</h3>
+<div>account_disable_post_pw_expiration</div>
+<h4>Description</h4>
+<p>To specify the number of days after a password expires (which
+signifies inactivity) until an account is permanently disabled, add or correct
+the following line in <tt>/etc/default/useradd</tt>:
+<pre>INACTIVE=<i><tt>$var_account_disable_post_pw_expiration</tt></i></pre>
+If a password is currently on the verge of expiration, then
+<tt><tt>$var_account_disable_post_pw_expiration</tt></tt>
+day(s) remain(s) until the account is automatically
+disabled. However, if the password will not expire for another 60 days, then 60
+days plus <tt><tt>$var_account_disable_post_pw_expiration</tt></tt> day(s) could
+elapse until the account would be automatically disabled. See the
+<tt>useradd</tt> man page for more information.</p>
+<h4>Rationale</h4>
+<p>Inactive identifiers pose a risk to systems and applications because attackers may exploit an inactive identifier and potentially obtain undetected access to the system.
+Disabling inactive accounts ensures that accounts which may not have been responsibly removed are not available to attackers who may have compromised their credentials.
+Owners of inactive accounts will not notice if unauthorized access to their user account has been obtained.</p>
+</div>
+
+<div id="accounts_authorized_local_users" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Only Authorized Local User Accounts Exist on Operating System</h3>
+<div>accounts_authorized_local_users</div>
+<h4>Description</h4>
+<p>Enterprise Application tends to use the server or virtual machine exclusively.
+Besides the default operating system user, there should be only authorized local
+users required by the installed software groups and applications that exist on
+the operating system. The authorized user list can be customized in the refine
+value variable <tt>var_accounts_authorized_local_users_regex</tt>.
+OVAL regular expression is used for the user list.
+Configure the system so all accounts on the system are assigned to an active system,
+application, or user account. Remove accounts that do not support approved system
+activities or that allow for a normal user to perform administrative-level actions.
+To remove unauthorized system accounts, use the following command:
+<pre>$ sudo userdel <i>unauthorized_user</i></pre></p>
+<h4>Rationale</h4>
+<p>Accounts providing no operational purpose provide additional opportunities for
+system compromise. Unnecessary accounts include user accounts for individuals not
+requiring access to the system and application accounts for applications not installed
+on the system.</p>
+</div>
+
+<div id="accounts_have_homedir_login_defs" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure Home Directories are Created for New Users</h3>
+<div>accounts_have_homedir_login_defs</div>
+<h4>Description</h4>
+<p>All local interactive user accounts, upon creation, should be assigned a home directory.
+<br /><br />
+Configure the operating system to assign home directories to all new local interactive users by setting the <tt>CREATE_HOME</tt>
+parameter in <tt>/etc/login.defs</tt> to <tt>yes</tt> as follows:
+<br /><br />
+<pre>CREATE_HOME yes</pre></p>
+<h4>Rationale</h4>
+<p>If local interactive users are not assigned a valid home directory, there is no place
+for the storage and control of files they should own.</p>
+</div>
+
+<div id="accounts_logon_fail_delay" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure the Logon Failure Delay is Set Correctly in login.defs</h3>
+<div>accounts_logon_fail_delay</div>
+<h4>Description</h4>
+<p>To ensure the logon failure delay controlled by <tt>/etc/login.defs</tt> is set properly,
+add or correct the <tt>FAIL_DELAY</tt> setting in <tt>/etc/login.defs</tt> to read as follows:
+<pre>FAIL_DELAY <tt>$var_accounts_fail_delay</tt></pre></p>
+<h4>Rationale</h4>
+<p>Increasing the time between a failed authentication attempt and re-prompting to
+enter credentials helps to slow a single-threaded brute force attack.</p>
+</div>
+
+<div id="accounts_maximum_age_login_defs" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Set Password Maximum Age</h3>
+<div>accounts_maximum_age_login_defs</div>
+<h4>Description</h4>
+<p>To specify password maximum age for new accounts,
+edit the file <tt>/etc/login.defs</tt>
+and add or correct the following line:
+<pre>PASS_MAX_DAYS <tt>$var_accounts_maximum_age_login_defs</tt></pre>
+The profile requirement is <tt><tt>$var_accounts_maximum_age_login_defs</tt></tt>.</p>
+<h4>Rationale</h4>
+<p>Any password, no matter how complex, can eventually be cracked. Therefore, passwords
+need to be changed periodically. If the operating system does not limit the lifetime
+of passwords and force users to change their passwords, there is the risk that the
+operating system passwords could be compromised.
+<br /><br />
+Setting the password maximum age ensures users are required to
+periodically change their passwords. Requiring shorter password lifetimes
+increases the risk of users writing down the password in a convenient
+location subject to physical compromise.</p>
+</div>
+
+<div id="accounts_minimum_age_login_defs" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Set Password Minimum Age</h3>
+<div>accounts_minimum_age_login_defs</div>
+<h4>Description</h4>
+<p>To specify password minimum age for new accounts,
+edit the file <tt>/etc/login.defs</tt>
+and add or correct the following line:
+<pre>PASS_MIN_DAYS <tt>$var_accounts_minimum_age_login_defs</tt></pre>
+A value of 1 day is considered sufficient for many
+environments.
+The profile requirement is <tt><tt>$var_accounts_minimum_age_login_defs</tt></tt>.</p>
+<h4>Rationale</h4>
+<p>Enforcing a minimum password lifetime helps to prevent repeated password
+changes to defeat the password reuse or history enforcement requirement. If
+users are allowed to immediately and continually change their password,
+then the password could be repeatedly changed in a short period of time to
+defeat the organization's policy regarding password reuse.
+<br /><br />
+Setting the minimum password age protects against users cycling back to a
+favorite password after satisfying the password reuse requirement.</p>
+</div>
+
+<div id="accounts_password_minlen_login_defs" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Set Password Minimum Length in login.defs</h3>
+<div>accounts_password_minlen_login_defs</div>
+<h4>Description</h4>
+<p>To specify password length requirements for new accounts, edit the file
+<tt>/etc/login.defs</tt> and add or correct the following line:
+<pre>PASS_MIN_LEN <tt>$var_accounts_password_minlen_login_defs</tt></pre>
+<br /><br />
+The profile requirement is
+<tt><tt>$var_accounts_password_minlen_login_defs</tt></tt>.
+If a program consults <tt>/etc/login.defs</tt> and also another PAM module
+(such as <tt>pam_pwquality</tt>) during a password change operation, then
+the most restrictive must be satisfied. See PAM section for more
+information about enforcing password quality requirements.</p>
+<h4>Rationale</h4>
+<p>Requiring a minimum password length makes password
+cracking attacks more difficult by ensuring a larger
+search space. However, any security benefit from an onerous requirement
+must be carefully weighed against usability problems, support costs, or counterproductive
+behavior that may result.</p>
+</div>
+
+<div id="accounts_password_warn_age_login_defs" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Set Password Warning Age</h3>
+<div>accounts_password_warn_age_login_defs</div>
+<h4>Description</h4>
+<p>To specify how many days prior to password
+expiration that a warning will be issued to users,
+edit the file <tt>/etc/login.defs</tt> and add or correct
+ the following line:
+<pre>PASS_WARN_AGE <tt>$var_accounts_password_warn_age_login_defs</tt></pre>
+The profile requirement is <tt><tt>$var_accounts_password_warn_age_login_defs</tt></tt>.</p>
+<h4>Rationale</h4>
+<p>Setting the password warning age enables users to
+make the change at a practical time.</p>
+</div>
+
+<div id="accounts_umask_etc_login_defs" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure the Default Umask is Set Correctly in login.defs</h3>
+<div>accounts_umask_etc_login_defs</div>
+<h4>Description</h4>
+<p>To ensure the default umask controlled by <tt>/etc/login.defs</tt> is set properly,
+add or correct the <tt>UMASK</tt> setting in <tt>/etc/login.defs</tt> to read as follows:
+<pre>UMASK <tt>$var_accounts_user_umask</tt></pre></p>
+<h4>Rationale</h4>
+<p>The umask value influences the permissions assigned to files when they are created.
+A misconfigured umask value could result in files with excessive permissions that can be read and
+written to by unauthorized users.</p>
+</div>
+
+<div id="file_groupownership_lastlog" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Group Who Owns lastlog Command</h3>
+<div>file_groupownership_lastlog</div>
+<h4>Description</h4>
+<p>
+To properly set the group owner of <code>/var/log/lastlog</code>, run the command:
+
+  <pre>$ sudo chgrp root /var/log/lastlog</pre>
+  </p>
+<h4>Rationale</h4>
+<p>Unauthorized disclosure of the contents of the /var/log/lastlog file can reveal system data to
+attackers, thus compromising its confidentiality.</p>
+</div>
+
+<div id="file_ownership_lastlog" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Owner on lastlog Command</h3>
+<div>file_ownership_lastlog</div>
+<h4>Description</h4>
+<p>
+To properly set the owner of <code>/usr/bin/lastlog</code>, run the command:
+
+  <pre>$ sudo chown root /usr/bin/lastlog </pre>
+  </p>
+<h4>Rationale</h4>
+<p>Unauthorized disclosure of the contents of the /var/log/lastlog file can reveal system data to
+attackers, thus compromising its confidentiality.</p>
+</div>
+
+<div id="file_permissions_lastlog" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Permissions on lastlog Command</h3>
+<div>file_permissions_lastlog</div>
+<h4>Description</h4>
+<p>
+To properly set the permissions of <code>/usr/bin/lastlog</code>, run the command:
+<pre>$ sudo chmod 0750 /usr/bin/lastlog</pre></p>
+<h4>Rationale</h4>
+<p>Unauthorized disclosure of the contents of the /var/log/lastlog file can reveal system data to
+attackers, thus compromising its confidentiality.</p>
+</div>
+
+<div id="gid_passwd_group_same" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>All GIDs referenced in /etc/passwd must be defined in /etc/group</h3>
+<div>gid_passwd_group_same</div>
+<h4>Description</h4>
+<p>Add a group to the system for each GID referenced without a corresponding group.</p>
+<h4>Rationale</h4>
+<p>If a user is assigned the Group Identifier (GID) of a group not existing on the system, and a group
+with the Group Identifier (GID) is subsequently created, the user may have unintended rights to
+any files associated with the group.</p>
+</div>
+
+<div id="no_empty_passwords_etc_shadow" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure There Are No Accounts With Blank or Null Passwords</h3>
+<div>no_empty_passwords_etc_shadow</div>
+<h4>Description</h4>
+<p>Check the "/etc/shadow" file for blank passwords with the
+following command:
+<pre>$ sudo awk -F: '!$2 {print $1}' /etc/shadow</pre>
+If the command returns any results, this is a finding.
+Configure all accounts on the system to have a password or lock
+the account with the following commands:
+Perform a password reset:
+<pre>$ sudo passwd [username]</pre>
+Lock an account:
+<pre>$ sudo passwd -l [username]</pre></p>
+<h4>Rationale</h4>
+<p>If an account has an empty password, anyone could log in and
+run commands with the privileges of that account. Accounts with
+empty passwords should never be used in operational environments.</p>
+</div>
+
+<div id="set_password_hashing_algorithm_logindefs" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Set Password Hashing Algorithm in /etc/login.defs</h3>
+<div>set_password_hashing_algorithm_logindefs</div>
+<h4>Description</h4>
+<p>In <tt>/etc/login.defs</tt>, add or update the following line to ensure the system will use
+<tt>$var_password_hashing_algorithm</tt> as the hashing algorithm:
+<pre>ENCRYPT_METHOD <tt>$var_password_hashing_algorithm</tt></pre></p>
+<h4>Rationale</h4>
+<p>Passwords need to be protected at all times, and encryption is the standard method for
+protecting passwords. If passwords are not encrypted, they can be plainly read
+(i.e., clear text) and easily compromised. Passwords that are encrypted with a weak algorithm
+are no more protected than if they are kept in plain text.
+<br /><br />
+Using a stronger hashing algorithm makes password cracking attacks more difficult.</p>
+</div>
+
+
+
+
+</body>
+</html>

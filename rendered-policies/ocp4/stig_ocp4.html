@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Definition of Red Hat OpenShift Container Platform 4.12 Security Technical Implementation Guide for ocp4</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Definition of Red Hat OpenShift Container Platform 4.12 Security Technical Implementation Guide for ocp4</h1>
+
+
+
+based on <a href="https://www.cyber.mil/stigs/downloads/">https://www.cyber.mil/stigs/downloads/</a>
+
+
+<div class="all_controls">
+<div class="one_control">
+  <h2>CNTR-OS-000010: OpenShift must use TLS 1.2 or greater for secure container image transport from trusted sources.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/registry/ocp_insecure_allowed_registries_for_import/rule.yml"> ocp_insecure_allowed_registries_for_import</a>: Check configured allowed registries for import uses secure protocol
+      <ul><li>CCE-86235-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/registry/ocp_insecure_registries/rule.yml"> ocp_insecure_registries</a>: Check if any insecure registry sources is configured
+      <ul><li>CCE-86123-7</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-000020: OpenShift must use TLS 1.2 or greater for secure communication.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/api-server/api_server_tls_security_profile/rule.yml"> api_server_tls_security_profile</a>: Ensure APIServer is configured with secure tlsSecurityProfile
+      <ul><li>CCE-86232-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/networking/ingress_controller_tls_security_profile/rule.yml"> ingress_controller_tls_security_profile</a>: Ensure IngressController is configured to use secure tlsSecurityProfile
+      <ul><li>CCE-86234-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/kubelet/kubelet_configure_tls_min_version/rule.yml"> kubelet_configure_tls_min_version</a>: Ensure Kubelet is configured with allowed TLS versions
+      <ul><li>CCE-86623-6</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-000030: OpenShift must use a centralized user management solution to support account management functions.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/authentication/idp_is_configured/rule.yml"> idp_is_configured</a>: Configure An Identity Provider
+      <ul><li>CCE-84088-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/general/kubeadmin_removed/rule.yml"> kubeadmin_removed</a>: Ensure that the kubeadmin secret has been removed
+      <ul><li>CCE-90387-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/authentication/ocp_idp_no_htpasswd/rule.yml"> ocp_idp_no_htpasswd</a>: Do Not Use htpasswd-based IdP
+      <ul><li>CCE-84209-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/authentication/ocp_no_ldap_insecure/rule.yml"> ocp_no_ldap_insecure</a>: Only Use LDAP-based IdPs with TLS
+      <ul><li>CCE-83699-9</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-000040: The kubeadmin account must be disabled.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/authentication/idp_is_configured/rule.yml"> idp_is_configured</a>: Configure An Identity Provider
+      <ul><li>CCE-84088-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/general/kubeadmin_removed/rule.yml"> kubeadmin_removed</a>: Ensure that the kubeadmin secret has been removed
+      <ul><li>CCE-90387-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/authentication/ocp_idp_no_htpasswd/rule.yml"> ocp_idp_no_htpasswd</a>: Do Not Use htpasswd-based IdP
+      <ul><li>CCE-84209-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/authentication/ocp_no_ldap_insecure/rule.yml"> ocp_no_ldap_insecure</a>: Only Use LDAP-based IdPs with TLS
+      <ul><li>CCE-83699-9</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-000050: OpenShift must automatically audit account creation.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-000060: OpenShift must automatically audit account modification.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-000070: OpenShift must generate audit rules to capture account related actions.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-000080: Open Shift must automatically audit account removal actions.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-000090: OpenShift RBAC access controls must be enforced.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>high</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/rbac/rbac_least_privilege/rule.yml"> rbac_least_privilege</a>: Ensure that the RBAC setup follows the principle of least privilege
+      <ul><li>CCE-90678-4</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-000100: OpenShift must enforce network policy on the namespace for controlling the flow of information within the container platform based on organization-defined information flow control policies.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/networking/configure_network_policies/rule.yml"> configure_network_policies</a>: Ensure that the CNI in use supports Network Policies
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/networking/configure_network_policies_namespaces/rule.yml"> configure_network_policies_namespaces</a>: Ensure that application Namespaces have Network Policies defined.
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-000110: OpenShift must enforce approved authorizations for controlling the flow of information within the container platform based on organization-defined information flow control policies.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/networking/project_config_and_template_network_policy/rule.yml"> project_config_and_template_network_policy</a>: Ensure that project templates autocreate Network Policies
+      <ul><li>CCE-86070-0</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-000130: OpenShift must display the Standard Mandatory DOD Notice and Consent Banner before granting access to platform components.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>low</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/general/classification_banner/rule.yml"> classification_banner</a>: Enable Classification Banner on OpenShift Console
+      <ul><li>CCE-84197-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/general/oauth_login_template_set/rule.yml"> oauth_login_template_set</a>: Ensure that the OpenShift OAuth login template is set
+      <ul><li>CCE-84198-1</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/general/oauth_provider_selection_set/rule.yml"> oauth_provider_selection_set</a>: Ensure that the OpenShift OAuth provider selection is set
+      <ul><li>CCE-90666-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/general/openshift_motd_exists/rule.yml"> openshift_motd_exists</a>: Ensure that the OpenShift MOTD is set
+      <ul><li>CCE-84200-5</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-000150: OpenShift must generate audit records for all DOD-defined auditable events within all components in the platform.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/logging/audit_profile_set/rule.yml"> audit_profile_set</a>: Ensure that the cluster's audit profile is properly set
+      <ul><li>CCE-83577-7</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-000160: OpenShift must generate audit records when successful/unsuccessful attempts to access privileges occur.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-000170: Red Hat Enterprise Linux CoreOS (RHCOS) must initiate session audits at system startup.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>high</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/api-server/audit_log_forwarding_enabled/rule.yml"> audit_log_forwarding_enabled</a>: Ensure that Audit Log Forwarding Is Enabled
+      <ul><li>CCE-84076-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/logging/cluster_logging_operator_exist/rule.yml"> cluster_logging_operator_exist</a>: Ensure that OpenShift Logging Operator is scanning the cluster
+      <ul><li>CCE-85918-1</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-000180: All audit records must identify what type of event has occurred within OpenShift.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-000190: OpenShift audit records must have a date and time association with all events.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-000200: All audit records must generate the event results within OpenShift.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/logging/audit_error_alert_exists/rule.yml"> audit_error_alert_exists</a>: Ensure that Audit Log Errors Emit Alerts
+      <ul><li>CCE-90744-4</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-000210: OpenShift must take appropriate action upon an audit failure.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/logging/audit_error_alert_exists/rule.yml"> audit_error_alert_exists</a>: Ensure that Audit Log Errors Emit Alerts
+      <ul><li>CCE-90744-4</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-000220: OpenShift components must provide the ability to send audit logs to a central enterprise repository for review and analysis.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/api-server/audit_log_forwarding_enabled/rule.yml"> audit_log_forwarding_enabled</a>: Ensure that Audit Log Forwarding Is Enabled
+      <ul><li>CCE-84076-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/logging/cluster_logging_operator_exist/rule.yml"> cluster_logging_operator_exist</a>: Ensure that OpenShift Logging Operator is scanning the cluster
+      <ul><li>CCE-85918-1</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-000230: OpenShift must use internal system clocks to generate audit record time stamps.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-000240: The Red Hat Enterprise Linux CoreOS (RHCOS) chrony Daemon must use multiple NTP servers to generate audit record time stamps.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-000250: OpenShift must protect audit logs from any type of unauthorized access.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/general/file_owner_groupowner_permissions_pod_logs/rule.yml"> file_owner_groupowner_permissions_pod_logs</a>: Kubernetes Pod Logs Must Be Owned and Group Owned By Root and have permissions 755
+      <ul><li>CCE-88593-9</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-000260: OpenShift must protect system journal file from any type of unauthorized access by setting file permissions.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/general/file_owner_groupowner_permissions_pod_logs/rule.yml"> file_owner_groupowner_permissions_pod_logs</a>: Kubernetes Pod Logs Must Be Owned and Group Owned By Root and have permissions 755
+      <ul><li>CCE-88593-9</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-000270: OpenShift must protect system journal file from any type of unauthorized access by setting owner permissions.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/general/file_owner_groupowner_permissions_pod_logs/rule.yml"> file_owner_groupowner_permissions_pod_logs</a>: Kubernetes Pod Logs Must Be Owned and Group Owned By Root and have permissions 755
+      <ul><li>CCE-88593-9</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-000280: OpenShift must protect log directory from any type of unauthorized access by setting file permissions.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/general/file_owner_groupowner_permissions_pod_logs/rule.yml"> file_owner_groupowner_permissions_pod_logs</a>: Kubernetes Pod Logs Must Be Owned and Group Owned By Root and have permissions 755
+      <ul><li>CCE-88593-9</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-000290: OpenShift must protect log directory from any type of unauthorized access by setting owner permissions.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/general/file_owner_groupowner_permissions_pod_logs/rule.yml"> file_owner_groupowner_permissions_pod_logs</a>: Kubernetes Pod Logs Must Be Owned and Group Owned By Root and have permissions 755
+      <ul><li>CCE-88593-9</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-000300: OpenShift must protect pod log files from any type of unauthorized access by setting owner permissions.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/general/file_owner_groupowner_permissions_pod_logs/rule.yml"> file_owner_groupowner_permissions_pod_logs</a>: Kubernetes Pod Logs Must Be Owned and Group Owned By Root and have permissions 755
+      <ul><li>CCE-88593-9</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-000310: OpenShift must protect audit information from unauthorized modification.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-000320: OpenShift must prevent unauthorized changes to logon UIDs.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/rbac/rbac_logging_view/rule.yml"> rbac_logging_view</a>: Ensure that the ClusterLogging and ClusterLoggingForwarder resources are protected from unauthorized access
+      <ul><li>CCE-90648-7</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-000330: OpenShift must protect audit tools from unauthorized access.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/rbac/rbac_logging_del/rule.yml"> rbac_logging_del</a>: Ensure that the ClusterLogging and ClusterLoggingForwarder resources are protected from unauthorized deletion
+      <ul><li>CCE-90433-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/rbac/rbac_logging_mod/rule.yml"> rbac_logging_mod</a>: Ensure that the ClusterLogging and ClusterLoggingForwarder resources are protected from unauthorized modification
+      <ul><li>CCE-90717-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/rbac/rbac_logging_view/rule.yml"> rbac_logging_view</a>: Ensure that the ClusterLogging and ClusterLoggingForwarder resources are protected from unauthorized access
+      <ul><li>CCE-90648-7</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-000340: OpenShift must use FIPS-validated cryptographic mechanisms to protect the integrity of log information.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/logging/audit_log_forwarding_uses_tls/rule.yml"> audit_log_forwarding_uses_tls</a>: Ensure that Audit Log Forwarding Uses TLS
+      <ul><li>CCE-90688-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/integrity/crypto/fips_mode_enabled_on_all_nodes/rule.yml"> fips_mode_enabled_on_all_nodes</a>: Ensure that FIPS mode is enabled on all cluster nodes
+      <ul><li>CCE-85860-5</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-000360: OpenShift must verify container images.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/integrity/reject_unsigned_images_by_default/rule.yml"> reject_unsigned_images_by_default</a>: Ensure the Container Runtime rejects unsigned images by default
+      <ul><li>CCE-90254-4</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-000380: OpenShift must contain only container images for those capabilities being offered by the container platform.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-000390: OpenShift runtime must enforce ports, protocols, and services that adhere to the PPSM CAL.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-000400: OpenShift must disable root and terminate network connections.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>high</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/authentication/oauth_or_oauthclient_inactivity_timeout/rule.yml"> oauth_or_oauthclient_inactivity_timeout</a>: Configure OAuth tokens to expire after a set period of inactivity
+      <ul><li>CCE-83702-1</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-000430: OpenShift must use multifactor authentication for network access to accounts.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-000440: OpenShift must use FIPS-validated SHA-1 or higher hash function to provide replay-resistant authentication mechanisms for network access to privileged accounts.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/authentication/idp_is_configured/rule.yml"> idp_is_configured</a>: Configure An Identity Provider
+      <ul><li>CCE-84088-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/general/kubeadmin_removed/rule.yml"> kubeadmin_removed</a>: Ensure that the kubeadmin secret has been removed
+      <ul><li>CCE-90387-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/authentication/ocp_idp_no_htpasswd/rule.yml"> ocp_idp_no_htpasswd</a>: Do Not Use htpasswd-based IdP
+      <ul><li>CCE-84209-6</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-000460: OpenShift must use FIPS validated LDAP or OpenIDConnect.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>high</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-000490: OpenShift must terminate all network connections associated with a communications session at the end of the session, or as follows: for in-band management sessions (privileged sessions), the session must be terminated after 10 minutes of inactivity.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/authentication/oauth_or_oauthclient_inactivity_timeout/rule.yml"> oauth_or_oauthclient_inactivity_timeout</a>: Configure OAuth tokens to expire after a set period of inactivity
+      <ul><li>CCE-83702-1</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-000500: OpenShift must separate user functionality (including user interface services) from information system management functionality.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-000510: OpenShift must protect authenticity of communications sessions with the use of FIPS-validated 140-2 or 140-3 validated cryptography.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>high</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/logging/audit_log_forwarding_uses_tls/rule.yml"> audit_log_forwarding_uses_tls</a>: Ensure that Audit Log Forwarding Uses TLS
+      <ul><li>CCE-90688-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/integrity/crypto/fips_mode_enabled_on_all_nodes/rule.yml"> fips_mode_enabled_on_all_nodes</a>: Ensure that FIPS mode is enabled on all cluster nodes
+      <ul><li>CCE-85860-5</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-000540: OpenShift runtime must isolate security functions from nonsecurity functions.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-000560: OpenShift must prevent unauthorized and unintended information transfer via shared system resources and enable page poisoning.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-000570: OpenShift must disable virtual syscalls.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-000580: OpenShift must enable poisoning of SLUB/SLAB objects.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-000590: OpenShift must set the sticky bit for world-writable directories.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-000600: OpenShift must restrict access to the kernel buffer.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-000610: OpenShift must prevent kernel profiling.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-000620: OpenShift must restrict individuals the ability to launch organizational-defined Denial-of-Service (DOS) attacks against other information systems by setting a default Resource Quota.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/general/project_config_and_template_resource_quota/rule.yml"> project_config_and_template_resource_quota</a>: Ensure that project templates autocreate Resource Quotas
+      <ul><li>CCE-90734-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/general/resource_requests_quota_per_project/rule.yml"> resource_requests_quota_per_project</a>: Ensure workloads use resource requests and limits per namespace
+      <ul><li>CCE-90582-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/networking/routes_rate_limit/rule.yml"> routes_rate_limit</a>: Ensure that all Routes has rate limit enabled
+      <ul><li>CCE-90779-0</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-000630: OpenShift must restrict individuals the ability to launch organizational-defined Denial-of-Service (DOS) attacks against other information systems by rate-limiting.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/general/project_config_and_template_resource_quota/rule.yml"> project_config_and_template_resource_quota</a>: Ensure that project templates autocreate Resource Quotas
+      <ul><li>CCE-90734-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/general/resource_requests_quota_per_project/rule.yml"> resource_requests_quota_per_project</a>: Ensure workloads use resource requests and limits per namespace
+      <ul><li>CCE-90582-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/networking/routes_rate_limit/rule.yml"> routes_rate_limit</a>: Ensure that all Routes has rate limit enabled
+      <ul><li>CCE-90779-0</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-000650: OpenShift must display an explicit logout message indicating the reliable termination of authenticated communication sessions.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>low</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/general/oauth_logout_url_set/rule.yml"> oauth_logout_url_set</a>: Ensure that the OpenShift OAuth logout URL is set
+      <ul><li>CCE-90780-8</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-000660: Container images instantiated by OpenShift must execute using least privileges.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>high</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/scc/scc_limit_host_dir_volume_plugin/rule.yml"> scc_limit_host_dir_volume_plugin</a>: Limit Containers Ability to use the HostDir volume plugin
+      <ul><li>CCE-86255-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/scc/scc_limit_host_ports/rule.yml"> scc_limit_host_ports</a>: Limit Containers Ability to bind to privileged ports
+      <ul><li>CCE-86205-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/scc/scc_limit_ipc_namespace/rule.yml"> scc_limit_ipc_namespace</a>: Limit Access to the Host IPC Namespace
+      <ul><li>CCE-84042-1</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/scc/scc_limit_network_namespace/rule.yml"> scc_limit_network_namespace</a>: Limit Access to the Host Network Namespace
+      <ul><li>CCE-83492-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/scc/scc_limit_privileged_containers/rule.yml"> scc_limit_privileged_containers</a>: Limit Privileged Container Use
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/scc/scc_limit_process_id_namespace/rule.yml"> scc_limit_process_id_namespace</a>: Limit Access to the Host Process ID Namespace
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/scc/scc_limit_root_containers/rule.yml"> scc_limit_root_containers</a>: Limit Container Running As Root User
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-000670: Red Hat Enterprise Linux CoreOS (RHCOS) must allocate audit record storage capacity to store at least one weeks' worth of audit records, when audit records are not immediately sent to a central audit record storage facility.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>low</li>
+  </ul>
+  <p>Automated: yes</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-000690: OpenShift must configure Alert Manger Receivers to notify SA and ISSO of all audit failure events requiring real-time alerts.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-000720: OpenShift must enforce access restrictions and support auditing of the enforcement actions.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-000740: OpenShift must prevent the installation of patches, service packs, device drivers, or operating system components without verification they have been digitally signed using a certificate that is recognized and approved by the organization.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/integrity/cluster_version_operator_exists/rule.yml"> cluster_version_operator_exists</a>: Ensure that Cluster Version Operator is deployed
+      <ul><li>CCE-90670-1</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/integrity/cluster_version_operator_verify_integrity/rule.yml"> cluster_version_operator_verify_integrity</a>: Ensure that Cluster Version Operator verifies integrity
+      <ul><li>CCE-90671-9</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-000760: OpenShift must set server token max age no greater than eight hours.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/authentication/oauth_or_oauthclient_token_maxage/rule.yml"> oauth_or_oauthclient_token_maxage</a>: Configure OAuth tokens to expire after a set period of inactivity
+      <ul><li>CCE-84162-7</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-000770: Vulnerability scanning applications must implement privileged access authorization to all OpenShift components, containers, and container images for selected organization-defined vulnerability scanning activities.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-000780: OpenShift keystore must implement encryption to prevent unauthorized disclosure of information at rest within the container platform.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/api-server/api_server_encryption_provider_cipher/rule.yml"> api_server_encryption_provider_cipher</a>: Configure the Encryption Provider Cipher
+      <ul><li>CCE-83585-0</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-000800: OpenShift must protect against or limit the effects of all types of Denial-of-Service (DoS) attacks by employing organization-defined security safeguards by including a default resource quota.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/general/project_config_and_template_resource_quota/rule.yml"> project_config_and_template_resource_quota</a>: Ensure that project templates autocreate Resource Quotas
+      <ul><li>CCE-90734-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/general/resource_requests_quota_per_project/rule.yml"> resource_requests_quota_per_project</a>: Ensure workloads use resource requests and limits per namespace
+      <ul><li>CCE-90582-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/networking/routes_rate_limit/rule.yml"> routes_rate_limit</a>: Ensure that all Routes has rate limit enabled
+      <ul><li>CCE-90779-0</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-000810: OpenShift must protect against or limit the effects of all types of Denial-of-Service (DoS) attacks by defining resource quotas on a namespace.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/general/project_config_and_template_resource_quota/rule.yml"> project_config_and_template_resource_quota</a>: Ensure that project templates autocreate Resource Quotas
+      <ul><li>CCE-90734-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/general/resource_requests_quota_per_project/rule.yml"> resource_requests_quota_per_project</a>: Ensure workloads use resource requests and limits per namespace
+      <ul><li>CCE-90582-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/networking/routes_rate_limit/rule.yml"> routes_rate_limit</a>: Ensure that all Routes has rate limit enabled
+      <ul><li>CCE-90779-0</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-000820: OpenShift must protect the confidentiality and integrity of transmitted information.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-000860: Red Hat Enterprise Linux CoreOS (RHCOS) must implement nonexecutable data to protect its memory from unauthorized code execution.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/general/resource_requests_quota_per_project/rule.yml"> resource_requests_quota_per_project</a>: Ensure workloads use resource requests and limits per namespace
+      <ul><li>CCE-90582-8</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-000870: Red Hat Enterprise Linux CoreOS (RHCOS) must implement ASLR (Address Space Layout Randomization) from unauthorized code execution.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/general/resource_requests_quota_per_project/rule.yml"> resource_requests_quota_per_project</a>: Ensure workloads use resource requests and limits per namespace
+      <ul><li>CCE-90582-8</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-000880: OpenShift must remove old components after updated versions have been installed.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/registry/image_pruner_active/rule.yml"> image_pruner_active</a>: Configure ImagePruner so that images that are no longer needed are automatically removed
+      <ul><li>CCE-86480-1</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-000890: OpenShift must contain the latest images with most recent updates and execute within the container platform runtime as authorized by IAVM, CTOs, DTMs, and STIGs.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/registry/imagestream_sets_schedule/rule.yml"> imagestream_sets_schedule</a>: All configured ImageStreams are configured to periodically check for updates
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/registry/ocp_allowed_registries/rule.yml"> ocp_allowed_registries</a>: Allowed registries are configured
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/registry/ocp_allowed_registries_for_import/rule.yml"> ocp_allowed_registries_for_import</a>: Allowed registries for import are configured
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-000900: OpenShift runtime must have updates installed within the period directed by an authoritative source (e.g., IAVM, CTOs, DTMs, and STIGs).</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/registry/imagestream_sets_schedule/rule.yml"> imagestream_sets_schedule</a>: All configured ImageStreams are configured to periodically check for updates
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/registry/ocp_allowed_registries/rule.yml"> ocp_allowed_registries</a>: Allowed registries are configured
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/registry/ocp_allowed_registries_for_import/rule.yml"> ocp_allowed_registries_for_import</a>: Allowed registries for import are configured
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-000910: The Compliance Operator must be configured.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/risk-assessment/scansettingbinding_exists/rule.yml"> scansettingbinding_exists</a>: Ensure that Compliance Operator is scanning the cluster
+      <ul><li>CCE-83697-3</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-000920: OpenShift must perform verification of the correct operation of security functions: upon startup and/or restart; upon command by a user with privileged access; and/or every 30 days.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/risk-assessment/scansettings_have_schedule/rule.yml"> scansettings_have_schedule</a>: Ensure that Compliance Operator scans are running periodically
+      <ul><li>CCE-90762-6</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-000930: OpenShift must generate audit records when successful/unsuccessful attempts to modify privileges occur.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-000940: OpenShift must generate audit records when successful/unsuccessful attempts to modify security objects occur.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-000950: OpenShift must generate audit records when successful/unsuccessful attempts to delete privileges occur.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-000960: OpenShift must generate audit records when successful/unsuccessful attempts to delete security objects occur.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-000970: OpenShift must generate audit records when successful/unsuccessful logon attempts occur.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-000980: Red Hat Enterprise Linux CoreOS (RHCOS) must be configured to audit the loading and unloading of dynamic kernel modules.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-000990: OpenShift audit records must record user access start and end times.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-001000: OpenShift must generate audit records when concurrent logons from different workstations and systems occur.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-001010: Red Hat Enterprise Linux CoreOS (RHCOS) must disable SSHD service.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>high</li>
+  </ul>
+  <p>Automated: yes</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-001020: Red Hat Enterprise Linux CoreOS (RHCOS) must disable USB Storage kernel module.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-001030: Red Hat Enterprise Linux CoreOS (RHCOS) must use USBGuard for hosts that include a USB Controller.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-001060: OpenShift must continuously scan components, containers, and images for vulnerabilities.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/risk-assessment/container_security_operator_exists/rule.yml"> container_security_operator_exists</a>: Make sure the Container Security Operator is installed
+      <ul><li>CCE-90613-1</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>CNTR-OS-001080: OpenShift must use FIPS-validated SHA-2 or higher hash function for digital signature generation and verification (nonlegacy use).</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/integrity/crypto/fips_mode_enabled_on_all_nodes/rule.yml"> fips_mode_enabled_on_all_nodes</a>: Ensure that FIPS mode is enabled on all cluster nodes
+      <ul><li>CCE-85860-5</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+</div>  
+
+
+</body>
+</html>

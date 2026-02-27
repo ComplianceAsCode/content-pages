@@ -1,0 +1,3224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Definition of SUSE Linux Enterprise Micro (SLEM) 5 Security Technical Implementation Guide for slmicro6</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Definition of SUSE Linux Enterprise Micro (SLEM) 5 Security Technical Implementation Guide for slmicro6</h1>
+
+
+
+based on <a href="https://www.cyber.mil/stigs/downloads/">https://www.cyber.mil/stigs/downloads/</a>
+
+
+<div class="all_controls">
+<div class="one_control">
+  <h2>SLEM-05-211010: SLEM 5 must be a vendor-supported release.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>high</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/certified-vendor/installed_OS_is_vendor_supported/rule.yml"> installed_OS_is_vendor_supported</a>: The Installed Operating System Is Vendor Supported
+      <ul><li>CCE-95035-2</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-211015: SLEM 5 must implement an endpoint security tool.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-211020: SLEM 5 must display the Standard Mandatory DOD Notice and Consent Banner before granting any local or remote connection to the system.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-banners/banner_etc_issue/rule.yml"> banner_etc_issue</a>: Modify the System Login Banner
+      <ul><li>CCE-94665-7</li></ul>
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-banners/login_banner_text.var">login_banner_text</a> = dod_banners</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-211025: SLEM 5 must disable the x86 Ctrl-Alt-Delete key sequence.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>high</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-physical/disable_ctrlaltdel_reboot/rule.yml"> disable_ctrlaltdel_reboot</a>: Disable Ctrl-Alt-Del Reboot Activation
+      <ul><li>CCE-95054-3</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-212010: SLEM 5 with a basic input/output system (BIOS) must require authentication upon booting into single-user and maintenance modes.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>high</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/bootloader-grub2/non-uefi/grub2_password/rule.yml"> grub2_password</a>: Set Boot Loader Password in grub2
+      <ul><li>CCE-94664-0</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-212015: SLEM 5 with Unified Extensible Firmware Interface (UEFI) implemented must require authentication upon booting into single-user mode and maintenance.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>high</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/bootloader-grub2/uefi/grub2_uefi_password/rule.yml"> grub2_uefi_password</a>: Set the UEFI Boot Loader Password
+      <ul><li>CCE-94671-5</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-213010: SLEM 5 must restrict access to the kernel message buffer.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/restrictions/sysctl_kernel_dmesg_restrict/rule.yml"> sysctl_kernel_dmesg_restrict</a>: Restrict Access to Kernel Message Buffer
+      <ul><li>CCE-94683-0</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-213015: SLEM 5 kernel core dumps must be disabled unless needed.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/base/service_kdump_disabled/rule.yml"> service_kdump_disabled</a>: Disable KDump Kernel Crash Analyzer (kdump)
+      <ul><li>CCE-95065-9</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-213020: Address space layout randomization (ASLR) must be implemented by SLEM 5 to protect memory from unauthorized code execution.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/restrictions/enable_execshield_settings/sysctl_kernel_randomize_va_space/rule.yml"> sysctl_kernel_randomize_va_space</a>: Enable Randomized Layout of Virtual Address Space
+      <ul><li>CCE-94728-3</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-213025: SLEM 5 must implement kptr-restrict to prevent the leaking of internal kernel addresses.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/restrictions/enable_execshield_settings/sysctl_kernel_kptr_restrict/rule.yml"> sysctl_kernel_kptr_restrict</a>: Restrict Exposed Kernel Pointer Addresses Access
+      <ul><li>CCE-94727-5</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-214010: Vendor-packaged SLEM 5 security patches and updates must be installed and up to date.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/updating/security_patches_up_to_date/rule.yml"> security_patches_up_to_date</a>: Ensure Software Patches Installed
+      <ul><li>CCE-95036-0</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-214015: The SLEM 5 tool zypper must have gpgcheck enabled.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>high</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/updating/ensure_gpgcheck_globally_activated/rule.yml"> ensure_gpgcheck_globally_activated</a>: Ensure gpgcheck Enabled In Main zypper Configuration
+      <ul><li>CCE-94715-0</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-214020: SLEM 5 must remove all outdated software components after updated versions have been installed.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/updating/clean_components_post_updating/rule.yml"> clean_components_post_updating</a>: Ensure zypper Removes Previous Package Versions
+      <ul><li>CCE-94729-1</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-215010: SLEM 5 must use vlock to allow for session locking.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-physical/screen_locking/console_screen_locking/vlock_installed/rule.yml"> vlock_installed</a>: Check that vlock is installed to allow session locking
+      <ul><li>CCE-94630-1</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-215015: SLEM 5 must not have the telnet-server package installed.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>high</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/obsolete/telnet/package_telnet-server_removed/rule.yml"> package_telnet-server_removed</a>: Uninstall telnet-server Package
+      <ul><li>CCE-94643-4</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-231010: A separate file system must be used for SLEM 5 user home directories (such as /home or an equivalent).</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/disk_partitioning/partition_for_home/rule.yml"> partition_for_home</a>: Ensure /home Located On Separate Partition
+      <ul><li>CCE-95066-7</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-231015: SLEM 5 must use a separate file system for /var.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/disk_partitioning/partition_for_var/rule.yml"> partition_for_var</a>: Ensure /var Located On Separate Partition
+      <ul><li>CCE-95067-5</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-231020: SLEM 5 must use a separate file system for the system audit data path.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/disk_partitioning/partition_for_var_log_audit/rule.yml"> partition_for_var_log_audit</a>: Ensure /var/log/audit Located On Separate Partition
+      <ul><li>CCE-95048-5</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-231025: SLEM 5 file systems that are being imported via Network File System (NFS) must be mounted to prevent files with the setuid and setgid bit set from being executed.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/nfs_and_rpc/nfs_configuring_clients/mounting_remote_filesystems/mount_option_nosuid_remote_filesystems/rule.yml"> mount_option_nosuid_remote_filesystems</a>: Mount Remote Filesystems with nosuid
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-231030: SLEM 5 file systems that are being imported via Network File System (NFS) must be mounted to prevent binary files from being executed.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/nfs_and_rpc/nfs_configuring_clients/mounting_remote_filesystems/mount_option_noexec_remote_filesystems/rule.yml"> mount_option_noexec_remote_filesystems</a>: Mount Remote Filesystems with noexec
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-231035: SLEM 5 file systems that are used with removable media must be mounted to prevent files with the setuid and setgid bit set from being executed.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/partitions/mount_option_nosuid_removable_partitions/rule.yml"> mount_option_nosuid_removable_partitions</a>: Add nosuid Option to Removable Media Partitions
+      <ul><li>CCE-95063-4</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-231040: All SLEM 5 persistent disk partitions must implement cryptographic mechanisms to prevent unauthorized disclosure or modification of all information that requires at-rest protection.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>high</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/disk_partitioning/encrypt_partitions/rule.yml"> encrypt_partitions</a>: Encrypt Partitions
+      <ul><li>CCE-94686-3</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-231045: SLEM 5 file systems that contain user home directories must be mounted to prevent files with the setuid and setgid bit set from being executed.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/partitions/mount_option_home_nosuid/rule.yml"> mount_option_home_nosuid</a>: Add nosuid Option to /home
+      <ul><li>CCE-95062-6</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-231050: SLEM 5 must disable the file system automounter unless required.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/mounting/service_autofs_disabled/rule.yml"> service_autofs_disabled</a>: Disable the Automounter
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-232010: SLEM 5 must have directories that contain system commands set to a mode of 755 or less permissive.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_within_important_dirs/dir_permissions_binary_dirs/rule.yml"> dir_permissions_binary_dirs</a>: Verify that System Executable Directories Have Restrictive Permissions
+      <ul><li>CCE-95100-4</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-232015: SLEM 5 must have system commands set to a mode of 755 or less permissive.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_within_important_dirs/file_permissions_binary_dirs/rule.yml"> file_permissions_binary_dirs</a>: Verify that System Executables Have Restrictive Permissions
+      <ul><li>CCE-94696-2</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-232020: SLEM 5 library directories must have mode 755 or less permissive.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_within_important_dirs/dir_permissions_library_dirs/rule.yml"> dir_permissions_library_dirs</a>: Verify that Shared Library Directories Have Restrictive Permissions
+      <ul><li>CCE-94691-3</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-232025: SLEM 5 library files must have mode 755 or less permissive.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_within_important_dirs/file_permissions_library_dirs/rule.yml"> file_permissions_library_dirs</a>: Verify that Shared Library Files Have Restrictive Permissions
+      <ul><li>CCE-94690-5</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-232030: All SLEM 5 local interactive user home directories must have mode 750 or less permissive.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-session/file_permissions_home_directories/rule.yml"> file_permissions_home_directories</a>: All Interactive User Home Directories Must Have mode 0750 Or Less Permissive
+      <ul><li>CCE-95057-6</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-232035: All SLEM 5 local initialization files must have mode 740 or less permissive.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-session/file_permission_user_init_files/rule.yml"> file_permission_user_init_files</a>: Ensure All User Initialization Files Have Mode 0740 Or Less Permissive
+      <ul><li>CCE-95059-2</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-232040: SLEM 5 SSH daemon public host key files must have mode 644 or less permissive.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/file_permissions_sshd_pub_key/rule.yml"> file_permissions_sshd_pub_key</a>: Verify Permissions on SSH Server Public *.pub Key Files
+      <ul><li>CCE-95069-1</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-232045: SLEM 5 SSH daemon private host key files must have mode 640 or less permissive.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/file_permissions_sshd_private_key/rule.yml"> file_permissions_sshd_private_key</a>: Verify Permissions on SSH Server Private *_key Key Files
+      <ul><li>CCE-95070-9</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-232050: SLEM 5 library files must be owned by root.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_within_important_dirs/file_ownership_library_dirs/rule.yml"> file_ownership_library_dirs</a>: Verify that Shared Library Files Have Root Ownership
+      <ul><li>CCE-94692-1</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-232055: SLEM 5 library files must be group-owned by root.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_within_important_dirs/root_permissions_syslibrary_files/rule.yml"> root_permissions_syslibrary_files</a>: Verify the system-wide library files in directories
+"/lib", "/lib64", "/usr/lib/" and "/usr/lib64" are group-owned by root.
+      <ul><li>CCE-94694-7</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-232060: SLEM 5 library directories must be owned by root.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_within_important_dirs/dir_ownership_library_dirs/rule.yml"> dir_ownership_library_dirs</a>: Verify that Shared Library Directories Have Root Ownership
+      <ul><li>CCE-94693-9</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-232065: SLEM 5 library directories must be group-owned by root.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_within_important_dirs/dir_group_ownership_library_dirs/rule.yml"> dir_group_ownership_library_dirs</a>: Verify that Shared Library Directories Have Root Group Ownership
+      <ul><li>CCE-94695-4</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-232070: SLEM 5 must have system commands owned by root.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_within_important_dirs/file_ownership_binary_dirs/rule.yml"> file_ownership_binary_dirs</a>: Verify that System Executables Have Root Ownership
+      <ul><li>CCE-94697-0</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-232075: SLEM 5 must have system commands group-owned by root or a system account.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_within_important_dirs/file_groupownership_system_commands_dirs/rule.yml"> file_groupownership_system_commands_dirs</a>: Verify that system commands files are group owned by root or a system account
+      <ul><li>CCE-94699-6</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-232080: SLEM 5 must have directories that contain system commands owned by root.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/dir_system_commands_root_owned/rule.yml"> dir_system_commands_root_owned</a>: Verify that system commands directories have root ownership
+      <ul><li>CCE-94698-8</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-232085: SLEM 5 must have directories that contain system commands group-owned by root.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/dir_system_commands_group_root_owned/rule.yml"> dir_system_commands_group_root_owned</a>: Verify that system commands directories have root as a group owner
+      <ul><li>CCE-94700-2</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-232090: All SLEM 5 files and directories must have a valid owner.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/no_files_unowned_by_user/rule.yml"> no_files_unowned_by_user</a>: Ensure All Files Are Owned by a User
+      <ul><li>CCE-95087-3</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-232095: All SLEM 5 files and directories must have a valid group owner.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/file_permissions_ungroupowned/rule.yml"> file_permissions_ungroupowned</a>: Ensure All Files Are Owned by a Group
+      <ul><li>CCE-95088-1</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-232100: All SLEM 5 local interactive user home directories must be group-owned by the home directory owner's primary group.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-session/file_groupownership_home_directories/rule.yml"> file_groupownership_home_directories</a>: All Interactive User Home Directories Must Be Group-Owned By The Primary Group
+      <ul><li>CCE-95058-4</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-232105: All SLEM 5 world-writable directories must be group-owned by root, sys, bin, or an application group.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/dir_perms_world_writable_system_owned_group/rule.yml"> dir_perms_world_writable_system_owned_group</a>: Ensure All World-Writable Directories Are Group Owned by a System Account
+      <ul><li>CCE-95064-2</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-232110: The sticky bit must be set on all SLEM 5 world-writable directories.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/dir_perms_world_writable_sticky_bits/rule.yml"> dir_perms_world_writable_sticky_bits</a>: Verify that All World-Writable Directories Have Sticky Bits Set
+      <ul><li>CCE-94682-2</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-232115: SLEM 5 must prevent unauthorized users from accessing system error messages.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/permissions_local/file_permissions_local_var_log_messages/rule.yml"> file_permissions_local_var_log_messages</a>: Verify that local /var/log/messages is not world-readable
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-232120: SLEM 5 must generate error messages that provide information necessary for corrective actions without revealing information that could be exploited by adversaries.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_local_var_log/rule.yml"> permissions_local_var_log</a>: Verify permissions of log files
+      <ul><li>CCE-94687-1</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-251010: SLEM 5 must be configured to prohibit or restrict the use of functions, ports, protocols, and/or services as defined in the Ports, Protocols, and Services Management (PPSM) Category Assignments List (CAL) and vulnerability assessments.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-firewalld/firewalld_activation/service_firewalld_enabled/rule.yml"> service_firewalld_enabled</a>: Verify firewalld Enabled
+      <ul><li>CCE-94672-3</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-252010: SLEM 5 clock must, for networked systems, be synchronized to an authoritative DOD time source at least every 24 hours.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ntp/chronyd_or_ntpd_set_maxpoll/rule.yml"> chronyd_or_ntpd_set_maxpoll</a>: Configure Time Service Maxpoll Interval
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ntp/chronyd_specify_remote_server/rule.yml"> chronyd_specify_remote_server</a>: A remote time server for Chrony is configured
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ntp/var_multiple_time_servers.var">var_multiple_time_servers</a> = stig</li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ntp/var_time_service_set_maxpoll.var">var_time_service_set_maxpoll</a> = 18_hours</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-252015: SLEM 5 must not have network interfaces in promiscuous mode unless approved and documented.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network_sniffer_disabled/rule.yml"> network_sniffer_disabled</a>: Ensure System is Not Acting as a Network Sniffer
+      <ul><li>CCE-95086-5</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-253010: SLEM 5 must not forward Internet Protocol version 4 (IPv4) source-routed packets.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-kernel/network_host_and_router_parameters/sysctl_net_ipv4_conf_all_accept_source_route/rule.yml"> sysctl_net_ipv4_conf_all_accept_source_route</a>: Disable Kernel Parameter for Accepting Source-Routed Packets on all IPv4 Interfaces
+      <ul><li>CCE-95073-3</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-253015: SLEM 5 must not forward Internet Protocol version 4 (IPv4) source-routed packets by default.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-kernel/network_host_and_router_parameters/sysctl_net_ipv4_conf_default_accept_source_route/rule.yml"> sysctl_net_ipv4_conf_default_accept_source_route</a>: Disable Kernel Parameter for Accepting Source-Routed Packets on IPv4 Interfaces by Default
+      <ul><li>CCE-95075-8</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-253020: SLEM 5 must prevent Internet Protocol version 4 (IPv4) Internet Control Message Protocol (ICMP) redirect messages from being accepted.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-kernel/network_host_and_router_parameters/sysctl_net_ipv4_conf_all_accept_redirects/rule.yml"> sysctl_net_ipv4_conf_all_accept_redirects</a>: Disable Accepting ICMP Redirects for All IPv4 Interfaces
+      <ul><li>CCE-95077-4</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-253025: SLEM 5 must not allow interfaces to accept Internet Protocol version 4 (IPv4) Internet Control Message Protocol (ICMP) redirect messages by default.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-kernel/network_host_and_router_parameters/sysctl_net_ipv4_conf_default_accept_redirects/rule.yml"> sysctl_net_ipv4_conf_default_accept_redirects</a>: Disable Kernel Parameter for Accepting ICMP Redirects by Default on IPv4 Interfaces
+      <ul><li>CCE-95078-2</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-253030: SLEM 5 must not send Internet Protocol version 4 (IPv4) Internet Control Message Protocol (ICMP) redirects.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-kernel/network_host_parameters/sysctl_net_ipv4_conf_all_send_redirects/rule.yml"> sysctl_net_ipv4_conf_all_send_redirects</a>: Disable Kernel Parameter for Sending ICMP Redirects on all IPv4 Interfaces
+      <ul><li>CCE-95082-4</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-253035: SLEM 5 must not allow interfaces to send Internet Protocol version 4 (IPv4) Internet Control Message Protocol (ICMP) redirect messages by default.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-kernel/network_host_parameters/sysctl_net_ipv4_conf_default_send_redirects/rule.yml"> sysctl_net_ipv4_conf_default_send_redirects</a>: Disable Kernel Parameter for Sending ICMP Redirects on all IPv4 Interfaces by Default
+      <ul><li>CCE-95081-6</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-253040: SLEM 5 must not be performing Internet Protocol version 4 (IPv4) packet forwarding unless the system is a router.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-kernel/network_host_parameters/sysctl_net_ipv4_ip_forward/rule.yml"> sysctl_net_ipv4_ip_forward</a>: Disable Kernel Parameter for IP Forwarding on IPv4 Interfaces
+      <ul><li>CCE-95083-2</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-253045: SLEM 5 must be configured to use TCP syncookies.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-kernel/network_host_and_router_parameters/sysctl_net_ipv4_tcp_syncookies/rule.yml"> sysctl_net_ipv4_tcp_syncookies</a>: Enable Kernel Parameter to Use TCP Syncookies on Network Interfaces
+      <ul><li>CCE-94684-8</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-254010: SLEM 5 must not forward Internet Protocol version 6 (IPv6) source-routed packets.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-ipv6/configuring_ipv6/sysctl_net_ipv6_conf_all_accept_source_route/rule.yml"> sysctl_net_ipv6_conf_all_accept_source_route</a>: Disable Kernel Parameter for Accepting Source-Routed Packets on all IPv6 Interfaces
+      <ul><li>CCE-95074-1</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-254015: SLEM 5 must not forward Internet Protocol version 6 (IPv6) source-routed packets by default.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-ipv6/configuring_ipv6/sysctl_net_ipv6_conf_default_accept_source_route/rule.yml"> sysctl_net_ipv6_conf_default_accept_source_route</a>: Disable Kernel Parameter for Accepting Source-Routed Packets on IPv6 Interfaces by Default
+      <ul><li>CCE-95076-6</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-254020: SLEM 5 must prevent Internet Protocol version 6 (IPv6) Internet Control Message Protocol (ICMP) redirect messages from being accepted.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-ipv6/configuring_ipv6/sysctl_net_ipv6_conf_all_accept_redirects/rule.yml"> sysctl_net_ipv6_conf_all_accept_redirects</a>: Disable Accepting ICMP Redirects for All IPv6 Interfaces
+      <ul><li>CCE-95079-0</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-254025: SLEM 5 must not allow interfaces to accept Internet Protocol version 6 (IPv6) Internet Control Message Protocol (ICMP) redirect messages by default.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-ipv6/configuring_ipv6/sysctl_net_ipv6_conf_default_accept_redirects/rule.yml"> sysctl_net_ipv6_conf_default_accept_redirects</a>: Disable Kernel Parameter for Accepting ICMP Redirects by Default on IPv6 Interfaces
+      <ul><li>CCE-95080-8</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-254030: SLEM 5 must not be performing Internet Protocol version 6 (IPv6) packet forwarding unless the system is a router.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-ipv6/configuring_ipv6/sysctl_net_ipv6_conf_all_forwarding/rule.yml"> sysctl_net_ipv6_conf_all_forwarding</a>: Disable Kernel Parameter for IPv6 Forwarding
+      <ul><li>CCE-95084-0</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-254035: SLEM 5 must not be performing Internet Protocol version 6 (IPv6) packet forwarding by default unless the system is a router.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-ipv6/configuring_ipv6/sysctl_net_ipv6_conf_default_forwarding/rule.yml"> sysctl_net_ipv6_conf_default_forwarding</a>: Disable Kernel Parameter for IPv6 Forwarding by default
+      <ul><li>CCE-95085-7</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-255010: SLEM 5 must have SSH installed to protect the confidentiality and integrity of transmitted information.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>high</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/package_openssh-server_installed/rule.yml"> package_openssh-server_installed</a>: Install the OpenSSH Server Package
+      <ul><li>CCE-94725-9</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-255015: SLEM 5 must use SSH to protect the confidentiality and integrity of transmitted information.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>high</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/service_sshd_enabled/rule.yml"> service_sshd_enabled</a>: Enable the OpenSSH Service
+      <ul><li>CCE-94726-7</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-255020: SLEM 5 must display the Standard Mandatory DOD Notice and Consent Banner before granting access via SSH.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_enable_warning_banner/rule.yml"> sshd_enable_warning_banner</a>: Enable SSH Warning Banner
+      <ul><li>CCE-94626-9</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-255025: SLEM 5 must not allow unattended or automatic logon via SSH.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>high</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_disable_empty_passwords/rule.yml"> sshd_disable_empty_passwords</a>: Disable SSH Access via Empty Passwords
+      <ul><li>CCE-95091-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_do_not_permit_user_env/rule.yml"> sshd_do_not_permit_user_env</a>: Do Not Allow SSH Environment Options
+      <ul><li>CCE-95090-7</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-255030: SLEM 5 must be configured so that all network connections associated with SSH traffic terminate after becoming unresponsive.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_set_keepalive/rule.yml"> sshd_set_keepalive</a>: Set SSH Client Alive Count Max
+      <ul><li>CCE-94685-5</li></ul>
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/var_sshd_set_keepalive.var">var_sshd_set_keepalive</a> = 1</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-255035: SLEM 5 must be configured so that all network connections associated with SSH traffic are terminated after 10 minutes of becoming unresponsive.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/sshd_idle_timeout_value.var">sshd_idle_timeout_value</a> = 10_minutes</li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_set_idle_timeout/rule.yml"> sshd_set_idle_timeout</a>: Set SSH Client Alive Interval
+      <ul><li>CCE-94681-4</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-255040: SLEM 5 SSH daemon must disable forwarded remote X connections for interactive users, unless to fulfill documented and validated mission requirements.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_disable_x11_forwarding/rule.yml"> sshd_disable_x11_forwarding</a>: Disable X11 Forwarding
+      <ul><li>CCE-95072-5</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-255045: SLEM 5 must implement DOD-approved encryption to protect the confidentiality of SSH remote connections.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>high</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_use_approved_ciphers/rule.yml"> sshd_use_approved_ciphers</a>: Use Only FIPS 140-2 Validated Ciphers
+      <ul><li>CCE-94647-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_use_approved_ciphers_ordered_stig/rule.yml"> sshd_use_approved_ciphers_ordered_stig</a>: Use Only FIPS 140-2 Validated Ciphers
+      <ul><li>CCE-94646-7</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-255050: SLEM 5 SSH daemon must be configured to only use Message Authentication Codes (MACs) employing FIPS 140-2/140-3 approved cryptographic hash algorithms.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>high</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_use_approved_macs/rule.yml"> sshd_use_approved_macs</a>: Use Only FIPS 140-2 Validated MACs
+      <ul><li>CCE-94680-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_use_approved_macs_ordered_stig/rule.yml"> sshd_use_approved_macs_ordered_stig</a>: Use Only FIPS 140-2 Validated MACs
+      <ul><li>CCE-94679-8</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-255055: SLEM 5 SSH server must be configured to use only FIPS 140-2/140-3 validated key exchange algorithms.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>high</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_use_approved_kex_ordered_stig/rule.yml"> sshd_use_approved_kex_ordered_stig</a>: Use Only FIPS 140-2 Validated Key Exchange Algorithms
+      <ul><li>CCE-94688-9</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-255060: SLEM 5 must deny direct logons to the root account using remote access via SSH.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_disable_root_login/rule.yml"> sshd_disable_root_login</a>: Disable SSH Root Login
+      <ul><li>CCE-94674-9</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-255065: SLEM 5 must log SSH connection attempts and failures to the server.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_set_loglevel_verbose/rule.yml"> sshd_set_loglevel_verbose</a>: Set SSH Daemon LogLevel to VERBOSE
+      <ul><li>CCE-94627-7</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-255070: SLEM 5 must display the date and time of the last successful account logon upon an SSH logon.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_print_last_log/rule.yml"> sshd_print_last_log</a>: Enable SSH Print Last Log
+      <ul><li>CCE-95045-1</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-255075: SLEM 5 SSH daemon must be configured to not allow authentication using known hosts authentication.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_disable_user_known_hosts/rule.yml"> sshd_disable_user_known_hosts</a>: Disable SSH Support for User Known Hosts
+      <ul><li>CCE-95068-3</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-255080: SLEM 5 SSH daemon must perform strict mode checking of home directory configuration files.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_enable_strictmodes/rule.yml"> sshd_enable_strictmodes</a>: Enable Use of Strict Mode Checking
+      <ul><li>CCE-95071-7</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-255085: SLEM 5, for PKI-based authentication, must enforce authorized access to the corresponding private key.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: no</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_private_keys_have_passcode/rule.yml"> ssh_private_keys_have_passcode</a>: OpenSSH Service Must Use Passcode for Their Private Keys
+      <ul><li>CCE-94668-1</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-255090: There must be no .shosts files on SLEM 5.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>high</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/obsolete/r_services/no_user_host_based_files/rule.yml"> no_user_host_based_files</a>: Remove User Host-Based Authentication Files
+      <ul><li>CCE-95049-3</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-255095: There must be no shosts.equiv files on SLEM 5.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>high</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/obsolete/r_services/no_host_based_files/rule.yml"> no_host_based_files</a>: Remove Host-Based Authentication Files
+      <ul><li>CCE-95051-9</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-272010: SLEM 5 must not allow unattended or automatic logon via the graphical user interface (GUI).</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>high</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/gnome/gnome_login_screen/gnome_gdm_disable_unattended_automatic_login/rule.yml"> gnome_gdm_disable_unattended_automatic_login</a>: Disable GDM Unattended or Automatic Login
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-291010: SLEM 5 wireless network adapters must be disabled unless approved and documented.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-wireless/wireless_software/wireless_disable_interfaces/rule.yml"> wireless_disable_interfaces</a>: Deactivate Wireless Network Interfaces
+      <ul><li>CCE-94703-6</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-291015: SLEM 5 must disable the USB mass storage kernel module.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/mounting/kernel_module_usb-storage_disabled/rule.yml"> kernel_module_usb-storage_disabled</a>: Disable Modprobe Loading of USB Storage Driver
+      <ul><li>CCE-94722-6</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-411010: All SLEM 5 local interactive user accounts, upon creation, must be assigned a home directory.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-session/accounts_have_homedir_login_defs/rule.yml"> accounts_have_homedir_login_defs</a>: Ensure Home Directories are Created for New Users
+      <ul><li>CCE-95044-4</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-411015: SLEM 5 default permissions must be defined in such a way that all authenticated users can only read and modify their own files.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-session/user_umask/accounts_umask_etc_login_defs/rule.yml"> accounts_umask_etc_login_defs</a>: Ensure the Default Umask is Set Correctly in login.defs
+      <ul><li>CCE-95089-9</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-411020: SLEM 5 shadow password suite must be configured to enforce a delay of at least five seconds between logon prompts following a failed logon attempt.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-session/accounts_logon_fail_delay/rule.yml"> accounts_logon_fail_delay</a>: Ensure the Logon Failure Delay is Set Correctly in login.defs
+      <ul><li>CCE-95034-5</li></ul>
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-session/var_accounts_fail_delay.var">var_accounts_fail_delay</a> = 5</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-411025: All SLEM 5 local interactive users must have a home directory assigned in the /etc/passwd file.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-session/accounts_user_interactive_home_directory_defined/rule.yml"> accounts_user_interactive_home_directory_defined</a>: All Interactive Users Must Have A Home Directory Defined
+      <ul><li>CCE-95055-0</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-411030: All SLEM 5 local interactive user home directories defined in the /etc/passwd file must exist.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-session/accounts_user_interactive_home_directory_exists/rule.yml"> accounts_user_interactive_home_directory_exists</a>: All Interactive Users Home Directories Must Exist
+      <ul><li>CCE-95056-8</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-411035: All SLEM 5 local interactive user initialization files executable search paths must contain only paths that resolve to the users' home directory.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-session/accounts_user_home_paths_only/rule.yml"> accounts_user_home_paths_only</a>: Ensure that Users Path Contains Only Local Directories
+      <ul><li>CCE-95060-0</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-411040: All SLEM 5 local initialization files must not execute world-writable programs.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-session/accounts_user_dot_no_world_writable_programs/rule.yml"> accounts_user_dot_no_world_writable_programs</a>: User Initialization Files Must Not Run World-Writable Programs
+      <ul><li>CCE-95061-8</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-411045: SLEM 5 must automatically expire temporary accounts within 72 hours.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/account_expiration/account_temp_expire_date/rule.yml"> account_temp_expire_date</a>: Assign Expiration Date to Temporary Accounts
+      <ul><li>CCE-94678-0</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-411050: SLEM 5 must never automatically remove or disable emergency administrator accounts.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/account_expiration/account_emergency_admin/rule.yml"> account_emergency_admin</a>: Never Automatically Remove or Disable Emergency Administrator Accounts
+      <ul><li>CCE-94677-2</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-411055: SLEM 5 must not have unnecessary accounts.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/accounts_authorized_local_users/rule.yml"> accounts_authorized_local_users</a>: Only Authorized Local User Accounts Exist on Operating System
+      <ul><li>CCE-95038-6</li></ul>
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/var_accounts_authorized_local_users_regex.var">var_accounts_authorized_local_users_regex</a> = slmicro5</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-411060: SLEM 5 must not have unnecessary account capabilities.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/root_logins/no_shelllogin_for_systemaccounts/rule.yml"> no_shelllogin_for_systemaccounts</a>: Ensure that System Accounts Do Not Run a Shell Upon Login
+      <ul><li>CCE-95039-4</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-411065: SLEM 5 root account must be the only account with unrestricted access to the system.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>high</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/root_logins/accounts_no_uid_except_zero/rule.yml"> accounts_no_uid_except_zero</a>: Verify Only Root Has UID 0
+      <ul><li>CCE-95041-0</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-411070: SLEM 5 must disable account identifiers (individuals, groups, roles, and devices) after 35 days of inactivity after password expiration.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/account_expiration/account_disable_post_pw_expiration/rule.yml"> account_disable_post_pw_expiration</a>: Set Account Expiration Following Inactivity
+      <ul><li>CCE-94675-6</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-411075: SLEM 5 must not have duplicate User IDs (UIDs) for interactive users.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/account_unique_id/rule.yml"> account_unique_id</a>: Ensure All Accounts on the System Have Unique User IDs
+      <ul><li>CCE-94673-1</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-412015: SLEM 5 must initiate a session lock after a 15-minute period of inactivity.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-session/accounts_tmout/rule.yml"> accounts_tmout</a>: Set Interactive Session Timeout
+      <ul><li>CCE-94645-9</li></ul>
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-session/var_accounts_tmout.var">var_accounts_tmout</a> = 15_min</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-412020: SLEM 5 must lock an account after three consecutive invalid access attempts.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_tally2/rule.yml"> accounts_passwords_pam_tally2</a>: Set Deny For Failed Password Attempts
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/var_password_pam_tally2.var">var_password_pam_tally2</a> = 3</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-412025: SLEM 5 must enforce a delay of at least five seconds between logon prompts following a failed logon attempt via pluggable authentication modules (PAM).</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_faildelay_delay/rule.yml"> accounts_passwords_pam_faildelay_delay</a>: Enforce Delay After Failed Logon Attempts
+      <ul><li>CCE-94742-4</li></ul>
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/var_password_pam_delay.var">var_password_pam_delay</a> = 4000000</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-412035: SLEM 5 must limit the number of concurrent sessions to 10 for all accounts and/or account types.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>low</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-session/accounts_max_concurrent_login_sessions/rule.yml"> accounts_max_concurrent_login_sessions</a>: Limit the Number of Concurrent Login Sessions Allowed Per User
+      <ul><li>CCE-94644-2</li></ul>
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-session/var_accounts_max_concurrent_login_sessions.var">var_accounts_max_concurrent_login_sessions</a> = 10</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-431010: SLEM 5 must have policycoreutils package installed.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>low</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/package_policycoreutils_installed/rule.yml"> package_policycoreutils_installed</a>: Install policycoreutils Package
+      <ul><li>CCE-95093-1</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-431015: SLEM 5 must use a Linux Security Module configured to enforce limits on system services.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>high</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/selinux_state/rule.yml"> selinux_state</a>: Ensure SELinux State is Enforcing
+      <ul><li>CCE-95092-3</li></ul>
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/var_selinux_state.var">var_selinux_state</a> = enforcing</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-431020: SLEM 5 must enable the SELinux targeted policy.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/selinux_policytype/rule.yml"> selinux_policytype</a>: Configure SELinux Policy
+      <ul><li>CCE-95094-9</li></ul>
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/var_selinux_policy_name.var">var_selinux_policy_name</a> = targeted</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-431025: SLEM 5 must prevent nonprivileged users from executing privileged functions, including disabling, circumventing, or altering implemented security safeguards/countermeasures.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: no</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/selinux_user_login_roles/rule.yml"> selinux_user_login_roles</a>: Map System Users To The Appropriate SELinux Role
+      <ul><li>CCE-95099-8</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-432010: SLEM 5 must use the invoking user's password for privilege escalation when using "sudo".</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/sudo/sudoers_validate_passwd/rule.yml"> sudoers_validate_passwd</a>: Ensure invoking users password for privilege escalation when using sudo
+      <ul><li>CCE-95043-6</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-432015: SLEM 5 must reauthenticate users when changing authenticators, roles, or escalating privileges.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/sudo/sudo_remove_no_authenticate/rule.yml"> sudo_remove_no_authenticate</a>: Ensure Users Re-Authenticate for Privilege Escalation - sudo !authenticate
+      <ul><li>CCE-94718-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/sudo/sudo_remove_nopasswd/rule.yml"> sudo_remove_nopasswd</a>: Ensure Users Re-Authenticate for Privilege Escalation - sudo NOPASSWD
+      <ul><li>CCE-94717-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/sudo/sudo_require_authentication/rule.yml"> sudo_require_authentication</a>: Ensure Users Re-Authenticate for Privilege Escalation - sudo
+      <ul><li>CCE-94716-8</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-432020: SLEM 5 must require reauthentication when using the "sudo" command.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/sudo/sudo_require_reauthentication/rule.yml"> sudo_require_reauthentication</a>: Require Re-Authentication When Using the sudo Command
+      <ul><li>CCE-94719-2</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-432025: SLEM 5 must restrict privilege elevation to authorized personnel.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/sudo/sudo_restrict_privilege_elevation_to_authorized/rule.yml"> sudo_restrict_privilege_elevation_to_authorized</a>: The operating system must restrict privilege elevation to authorized personnel
+      <ul><li>CCE-95042-8</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-432030: SLEM 5 must specify the default "include" directory for the /etc/sudoers file.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/sudo/sudoers_default_includedir/rule.yml"> sudoers_default_includedir</a>: Ensure sudo only includes the default configuration directory
+      <ul><li>CCE-95040-2</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-611010: SLEM 5 must enforce passwords that contain at least one uppercase character.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pamcracklib/cracklib_accounts_password_pam_ucredit/rule.yml"> cracklib_accounts_password_pam_ucredit</a>: Set Password Strength Minimum Uppercase Characters
+      <ul><li>CCE-94637-6</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-611015: SLEM 5 must enforce passwords that contain at least one lowercase character.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pamcracklib/cracklib_accounts_password_pam_lcredit/rule.yml"> cracklib_accounts_password_pam_lcredit</a>: Set Password Strength Minimum Lowercase Characters
+      <ul><li>CCE-94638-4</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-611020: SLEM 5 must enforce passwords that contain at least one numeric character.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pamcracklib/cracklib_accounts_password_pam_dcredit/rule.yml"> cracklib_accounts_password_pam_dcredit</a>: Set Password Strength Minimum Digit Characters
+      <ul><li>CCE-94639-2</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-611025: SLEM 5 must enforce passwords that contain at least one special character.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pamcracklib/cracklib_accounts_password_pam_ocredit/rule.yml"> cracklib_accounts_password_pam_ocredit</a>: Set Password Strength Minimum Special Characters
+      <ul><li>CCE-94701-0</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-611030: SLEM 5 must prevent the use of dictionary words for passwords.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pamcracklib/cracklib_accounts_password_pam_retry/rule.yml"> cracklib_accounts_password_pam_retry</a>: Set Password Retry Limit
+      <ul><li>CCE-94741-6</li></ul>
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/var_password_pam_retry.var">var_password_pam_retry</a> = 3</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-611035: SLEM 5 must employ passwords with a minimum of 15 characters.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pamcracklib/cracklib_accounts_password_pam_minlen/rule.yml"> cracklib_accounts_password_pam_minlen</a>: Set Password Minimum Length
+      <ul><li>CCE-94642-6</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-611040: SLEM 5 must require the change of at least eight of the total number of characters when passwords are changed.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pamcracklib/cracklib_accounts_password_pam_difok/rule.yml"> cracklib_accounts_password_pam_difok</a>: Set Password Strength Minimum Different Characters
+      <ul><li>CCE-94640-0</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-611045: SLEM 5 must not allow passwords to be reused for a minimum of five generations.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_password_pam_pwhistory_remember/rule.yml"> accounts_password_pam_pwhistory_remember</a>: Limit Password Reuse
+      <ul><li>CCE-94641-8</li></ul>
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/var_password_pam_remember.var">var_password_pam_remember</a> = 5</li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/var_password_pam_remember_control_flag.var">var_password_pam_remember_control_flag</a> = requisite</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-611050: SLEM 5 must configure the Linux Pluggable Authentication Modules (PAM) to only store encrypted representations of passwords.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/set_password_hashing_algorithm/set_password_hashing_algorithm_systemauth/rule.yml"> set_password_hashing_algorithm_systemauth</a>: Set PAM Password Hashing Algorithm - system-auth
+      <ul><li>CCE-94659-0</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-611055: SLEM 5 must not be configured to allow blank or null passwords.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>high</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/password_storage/no_empty_passwords/rule.yml"> no_empty_passwords</a>: Prevent Login to Accounts With Empty Password
+      <ul><li>CCE-95047-7</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-611060: SLEM 5 must not have accounts configured with blank or null passwords.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>high</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/password_storage/no_empty_passwords_etc_shadow/rule.yml"> no_empty_passwords_etc_shadow</a>: Ensure There Are No Accounts With Blank or Null Passwords
+      <ul><li>CCE-95046-9</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-611065: SLEM 5 must employ user passwords with a minimum lifetime of 24 hours (one day).</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/password_expiration/accounts_password_set_min_life_existing/rule.yml"> accounts_password_set_min_life_existing</a>: Set Existing Passwords Minimum Age
+      <ul><li>CCE-94661-6</li></ul>
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/password_expiration/var_accounts_minimum_age_login_defs.var">var_accounts_minimum_age_login_defs</a> = 1</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-611070: SLEM 5 must employ user passwords with a maximum lifetime of 60 days.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/password_expiration/accounts_password_set_max_life_existing/rule.yml"> accounts_password_set_max_life_existing</a>: Set Existing Passwords Maximum Age
+      <ul><li>CCE-94662-4</li></ul>
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/password_expiration/var_accounts_maximum_age_login_defs.var">var_accounts_maximum_age_login_defs</a> = 60</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-611075: SLEM 5 must employ a password history file.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_important_account_files/file_etc_security_opasswd/rule.yml"> file_etc_security_opasswd</a>: Verify Permissions and Ownership of Old Passwords File
+      <ul><li>CCE-94663-2</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-611080: SLEM 5 must employ FIPS 140-2/140-3-approved cryptographic hashing algorithms for system authentication.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>high</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/password_storage/accounts_password_all_shadowed_sha512/rule.yml"> accounts_password_all_shadowed_sha512</a>: Verify All Account Password Hashes are Shadowed with SHA512
+      <ul><li>CCE-94676-4</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-611085: SLEM 5 shadow password suite must be configured to use a sufficient number of hashing rounds.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>high</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/set_password_hashing_algorithm/set_password_hashing_min_rounds_logindefs/rule.yml"> set_password_hashing_min_rounds_logindefs</a>: Set Password Hashing Rounds in /usr/etc/login.defs
+      <ul><li>CCE-94660-8</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-611090: SLEM 5 must employ FIPS 140-2/140-3 approved cryptographic hashing algorithm for system authentication (login.defs).</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/set_password_hashing_algorithm/set_password_hashing_algorithm_logindefs/rule.yml"> set_password_hashing_algorithm_logindefs</a>: Set Password Hashing Algorithm in /usr/etc/login.defs
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/var_password_hashing_algorithm.var">var_password_hashing_algorithm</a> = SHA512</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-611095: SLEM 5 must be configured to create or update passwords with a minimum lifetime of 24 hours (one day).</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/password_expiration/accounts_minimum_age_login_defs/rule.yml"> accounts_minimum_age_login_defs</a>: Set Password Minimum Age
+      <ul><li>CCE-94669-9</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-611100: SLEM 5 must be configured to create or update passwords with a maximum lifetime of 60 days.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/password_expiration/accounts_maximum_age_login_defs/rule.yml"> accounts_maximum_age_login_defs</a>: Set Password Maximum Age
+      <ul><li>CCE-94670-7</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-612010: SLEM 5 must have the packages required for multifactor authentication to be installed.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-physical/screen_locking/smart_card_login/install_smartcard_packages/rule.yml"> install_smartcard_packages</a>: Install Smart Card Packages For Multifactor Authentication
+      <ul><li>CCE-94720-0</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-612015: SLEM 5 must implement multifactor authentication for access to privileged accounts via pluggable authentication modules (PAM).</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-physical/screen_locking/smart_card_login/smartcard_pam_enabled/rule.yml"> smartcard_pam_enabled</a>: Enable Smart Card Logins in PAM
+      <ul><li>CCE-94658-2</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-612020: SLEM 5 must implement certificate status checking for multifactor authentication.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-physical/screen_locking/smart_card_login/smartcard_configure_cert_checking/rule.yml"> smartcard_configure_cert_checking</a>: Configure Smart Card Certificate Status Checking
+      <ul><li>CCE-94721-8</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-631010: If Network Security Services (NSS) is being used by SLEM 5 it must prohibit the use of cached authentications after one day.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/sssd/sssd_memcache_timeout/rule.yml"> sssd_memcache_timeout</a>: Configure SSSD's Memory Cache to Expire
+      <ul><li>CCE-94723-4</li></ul>
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/sssd/var_sssd_memcache_timeout.var">var_sssd_memcache_timeout</a> = 1_day</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-631015: SLEM 5 must configure the Linux Pluggable Authentication Modules (PAM) to prohibit the use of cached offline authentications after one day.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/sssd/sssd_offline_cred_expiration/rule.yml"> sssd_offline_cred_expiration</a>: Configure SSSD to Expire Offline Credentials
+      <ul><li>CCE-94724-2</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-631020: SLEM 5, for PKI-based authentication, must validate certificates by constructing a certification path (which includes status information) to an accepted trust anchor.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-physical/screen_locking/smart_card_login/smartcard_configure_ca/rule.yml"> smartcard_configure_ca</a>: Configure Smart Card Certificate Authority Validation
+      <ul><li>CCE-94667-3</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-631025: SLEM 5 must be configured to not overwrite Pluggable Authentication Modules (PAM) configuration on package changes.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/pam_disable_automatic_configuration/rule.yml"> pam_disable_automatic_configuration</a>: The PAM configuration should not be changed automatically
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-651010: SLEM 5 must use a file integrity tool to verify correct operation of all security functions.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/software-integrity/aide/aide_build_database/rule.yml"> aide_build_database</a>: Build and Test AIDE Database
+      <ul><li>CCE-94713-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/software-integrity/aide/package_aide_installed/rule.yml"> package_aide_installed</a>: Install AIDE
+      <ul><li>CCE-94712-7</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-651015: SLEM 5 file integrity tool must be configured to verify Access Control Lists (ACLs).</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/software-integrity/aide/aide_verify_acls/rule.yml"> aide_verify_acls</a>: Configure AIDE to Verify Access Control Lists (ACLs)
+      <ul><li>CCE-95052-7</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-651020: SLEM 5 file integrity tool must be configured to verify extended attributes.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/software-integrity/aide/aide_verify_ext_attributes/rule.yml"> aide_verify_ext_attributes</a>: Configure AIDE to Verify Extended Attributes
+      <ul><li>CCE-95053-5</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-651025: SLEM 5 file integrity tool must be configured to protect the integrity of the audit tools.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/software-integrity/aide/aide_check_audit_tools/rule.yml"> aide_check_audit_tools</a>: Configure AIDE to Verify the Audit Tools
+      <ul><li>CCE-94702-8</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-651030: Advanced Intrusion Detection Environment (AIDE) must verify the baseline SLEM 5 configuration at least weekly.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/software-integrity/aide/aide_periodic_checking_systemd_timer/rule.yml"> aide_periodic_checking_systemd_timer</a>: Configure Systemd Timer Execution of AIDE
+      <ul><li>CCE-94714-3</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-651035: SLEM 5 must notify the system administrator (SA) when Advanced Intrusion Detection Environment (AIDE) discovers anomalies in the operation of any security functions.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/software-integrity/aide/aide_scan_notification/rule.yml"> aide_scan_notification</a>: Configure Notification of Post-AIDE Scan Details
+      <ul><li>CCE-94730-9</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-652010: SLEM 5 must offload rsyslog messages for networked systems in real time and offload standalone systems at least weekly.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: no</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/logging/journald/package_systemd-journal-remote_installed/rule.yml"> package_systemd-journal-remote_installed</a>: Install systemd-journal-remote Package
+      <ul><li>CCE-94738-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/logging/journald/service_systemd-journal-upload_enabled/rule.yml"> service_systemd-journal-upload_enabled</a>: Enable systemd-journal-upload Service
+      <ul><li>CCE-94735-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/logging/journald/systemd_journal_upload_server_tls/rule.yml"> systemd_journal_upload_server_tls</a>: Configure systemd-journal-upload TLS parameters: ServerKeyFile, ServerCertificateFile and TrustedCertificateFile
+      <ul><li>CCE-94737-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/logging/journald/systemd_journal_upload_url/rule.yml"> systemd_journal_upload_url</a>: Configure systemd-journal-upload URL
+      <ul><li>CCE-94736-6</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-653010: SLEM 5 must have the auditing package installed.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/package_audit_installed/rule.yml"> package_audit_installed</a>: Ensure the audit Subsystem is Installed
+      <ul><li>CCE-94705-1</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-653015: SLEM 5 audit records must contain information to establish what type of events occurred, the source of events, where events occurred, and the outcome of events.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/service_auditd_enabled/rule.yml"> service_auditd_enabled</a>: Enable auditd Service
+      <ul><li>CCE-94631-9</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-653020: The audit-audispd-plugins package must be installed on SLEM 5.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/package_audit-audispd-plugins_installed/rule.yml"> package_audit-audispd-plugins_installed</a>: Ensure the default plugins for the audit dispatcher are Installed
+      <ul><li>CCE-94707-7</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-653025: SLEM 5 must allocate audit record storage capacity to store at least one week of audit records when audit records are not immediately sent to a central audit record storage facility.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/configure_auditd_data_retention/auditd_audispd_configure_sufficiently_large_partition/rule.yml"> auditd_audispd_configure_sufficiently_large_partition</a>: Configure a Sufficiently Large Partition for Audit Logs
+      <ul><li>CCE-94706-9</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-653030: SLEM 5 auditd service must notify the system administrator (SA) and information system security officer (ISSO) immediately when audit storage capacity is 75 percent full.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/configure_auditd_data_retention/auditd_data_retention_space_left_action/rule.yml"> auditd_data_retention_space_left_action</a>: Configure auditd space_left Action on Low Disk Space
+      <ul><li>CCE-94711-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/configure_auditd_data_retention/auditd_data_retention_space_left_percentage/rule.yml"> auditd_data_retention_space_left_percentage</a>: Configure auditd space_left on Low Disk Space
+      <ul><li>CCE-94710-1</li></ul>
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/configure_auditd_data_retention/var_auditd_space_left_action.var">var_auditd_space_left_action</a> = email</li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/configure_auditd_data_retention/var_auditd_space_left_percentage.var">var_auditd_space_left_percentage</a> = 25pc</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-653035: SLEM 5 audit system must take appropriate action when the audit storage volume is full.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/configure_auditd_data_retention/auditd_data_disk_full_action/rule.yml"> auditd_data_disk_full_action</a>: Configure auditd Disk Full Action when Disk Space Is Full
+      <ul><li>CCE-94657-4</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-653040: SLEM 5 must offload audit records onto a different system or media from the system being audited.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/configure_auditd_data_retention/auditd_audispd_network_failure_action/rule.yml"> auditd_audispd_network_failure_action</a>: Configure audispd's Plugin network_failure_action On Network Failure
+      <ul><li>CCE-94739-0</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-653045: Audispd must take appropriate action when SLEM 5 audit storage is full.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/configure_auditd_data_retention/auditd_audispd_disk_full_action/rule.yml"> auditd_audispd_disk_full_action</a>: Configure audispd's Plugin disk_full_action When Disk Is Full
+      <ul><li>CCE-94740-8</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-653050: SLEM 5 must protect audit rules from unauthorized modification.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/permissions_local/permissions_local_var_log_audit/rule.yml"> permissions_local_var_log_audit</a>: Verify that Local Logs of the audit Daemon are not World-Readable
+      <ul><li>CCE-94666-5</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-653055: SLEM 5 audit tools must have the proper permissions configured to protect against unauthorized access.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/permissions_local/permissions_local_audit_binaries/rule.yml"> permissions_local_audit_binaries</a>: Verify Permissions of Local Logs of audit Tools
+      <ul><li>CCE-94689-7</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-653060: SLEM 5 audit tools must have the proper permissions applied to protect against unauthorized access.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-653065: SLEM 5 audit event multiplexor must be configured to use Kerberos.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>low</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/configure_auditd_data_retention/auditd_audispd_encrypt_sent_records/rule.yml"> auditd_audispd_encrypt_sent_records</a>: Encrypt Audit Records Sent With audispd Plugin
+      <ul><li>CCE-94708-5</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-653070: Audispd must offload audit records onto a different system or media from SLEM 5 being audited.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/configure_auditd_data_retention/auditd_audispd_configure_remote_server/rule.yml"> auditd_audispd_configure_remote_server</a>: Configure audispd Plugin To Send Logs To Remote Server
+      <ul><li>CCE-94709-3</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-653075: The information system security officer (ISSO) and system administrator (SA), at a minimum, must have mail aliases to be notified of a SLEM 5 audit processing failure.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/mail/postfix_client/postfix_client_configure_mail_alias/rule.yml"> postfix_client_configure_mail_alias</a>: Configure System to Forward All Mail For The Root Account
+      <ul><li>CCE-94656-6</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-653080: The information system security officer (ISSO) and system administrator (SA), at a minimum, must be alerted of a SLEM 5 audit processing failure event.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/configure_auditd_data_retention/auditd_data_retention_action_mail_acct/rule.yml"> auditd_data_retention_action_mail_acct</a>: Configure auditd mail_acct Action on Low Disk Space
+      <ul><li>CCE-94655-8</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-654010: SLEM 5 must generate audit records for all uses of the "chacl" command.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_execution_acl_commands/audit_rules_execution_chacl/rule.yml"> audit_rules_execution_chacl</a>: Record Any Attempts to Run chacl
+      <ul><li>CCE-94619-4</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-654015: SLEM 5 must generate audit records for all uses of the "chage" command.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_privileged_commands/audit_rules_privileged_commands_chage/rule.yml"> audit_rules_privileged_commands_chage</a>: Ensure auditd Collects Information on the Use of Privileged Commands - chage
+      <ul><li>CCE-94611-1</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-654020: SLEM 5 must generate audit records for all uses of the "chcon" command.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_execution_selinux_commands/audit_rules_execution_chcon/rule.yml"> audit_rules_execution_chcon</a>: Record Any Attempts to Run chcon
+      <ul><li>CCE-94620-2</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-654025: SLEM 5 must generate audit records for all uses of the "chfn" command.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_privileged_commands/audit_rules_privileged_commands_chfn/rule.yml"> audit_rules_privileged_commands_chfn</a>: Ensure auditd Collects Information on the Use of Privileged Commands - chfn
+      <ul><li>CCE-94614-5</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-654030: SLEM 5 must generate audit records for all uses of the "chmod" command.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_execution_acl_commands/audit_rules_execution_chmod/rule.yml"> audit_rules_execution_chmod</a>: Record Any Attempts to Run chmod
+      <ul><li>CCE-94617-8</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-654035: SLEM 5 must generate audit records for a uses of the "chsh" command.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_privileged_commands/audit_rules_privileged_commands_chsh/rule.yml"> audit_rules_privileged_commands_chsh</a>: Ensure auditd Collects Information on the Use of Privileged Commands - chsh
+      <ul><li>CCE-94609-5</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-654040: SLEM 5 must generate audit records for all uses of the "crontab" command.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_privileged_commands/audit_rules_privileged_commands_crontab/rule.yml"> audit_rules_privileged_commands_crontab</a>: Ensure auditd Collects Information on the Use of Privileged Commands - crontab
+      <ul><li>CCE-94612-9</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-654045: SLEM 5 must generate audit records for all uses of the "gpasswd" command.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_privileged_commands/audit_rules_privileged_commands_gpasswd/rule.yml"> audit_rules_privileged_commands_gpasswd</a>: Ensure auditd Collects Information on the Use of Privileged Commands - gpasswd
+      <ul><li>CCE-94607-9</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-654050: SLEM 5 must generate audit records for all uses of the "insmod" command.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_privileged_commands/audit_rules_privileged_commands_insmod/rule.yml"> audit_rules_privileged_commands_insmod</a>: Ensure auditd Collects Information on the Use of Privileged Commands - insmod
+      <ul><li>CCE-94650-9</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-654055: SLEM 5 must generate audit records for all uses of the "kmod" command.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_privileged_commands/audit_rules_privileged_commands_kmod/rule.yml"> audit_rules_privileged_commands_kmod</a>: Ensure auditd Collects Information on the Use of Privileged Commands - kmod
+      <ul><li>CCE-94616-0</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-654060: SLEM 5 must generate audit records for all uses of the "modprobe" command.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_privileged_commands/audit_rules_privileged_commands_modprobe/rule.yml"> audit_rules_privileged_commands_modprobe</a>: Ensure auditd Collects Information on the Use of Privileged Commands - modprobe
+      <ul><li>CCE-94652-5</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-654065: SLEM 5 must generate audit records for all uses of the "newgrp" command.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_privileged_commands/audit_rules_privileged_commands_newgrp/rule.yml"> audit_rules_privileged_commands_newgrp</a>: Ensure auditd Collects Information on the Use of Privileged Commands - newgrp
+      <ul><li>CCE-94608-7</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-654070: SLEM 5 must generate audit records for all uses of the "pam_timestamp_check" command.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_privileged_commands/audit_rules_privileged_commands_pam_timestamp_check/rule.yml"> audit_rules_privileged_commands_pam_timestamp_check</a>: Ensure auditd Collects Information on the Use of Privileged Commands - pam_timestamp_check
+      <ul><li>CCE-94623-6</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-654075: SLEM 5 must generate audit records for all uses of the "passwd" command.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_privileged_commands/audit_rules_privileged_commands_passwd/rule.yml"> audit_rules_privileged_commands_passwd</a>: Ensure auditd Collects Information on the Use of Privileged Commands - passwd
+      <ul><li>CCE-94606-1</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-654080: SLEM 5 must generate audit records for all uses of the "rm" command.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_execution_selinux_commands/audit_rules_execution_rm/rule.yml"> audit_rules_execution_rm</a>: Record Any Attempts to Run rm
+      <ul><li>CCE-94621-0</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-654085: SLEM 5 must generate audit records for all uses of the "rmmod" command.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_privileged_commands/audit_rules_privileged_commands_rmmod/rule.yml"> audit_rules_privileged_commands_rmmod</a>: Ensure auditd Collects Information on the Use of Privileged Commands - rmmod
+      <ul><li>CCE-94651-7</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-654090: SLEM 5 must generate audit records for all uses of the "setfacl" command.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_execution_acl_commands/audit_rules_execution_setfacl/rule.yml"> audit_rules_execution_setfacl</a>: Record Any Attempts to Run setfacl
+      <ul><li>CCE-94618-6</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-654095: SLEM 5 must generate audit records for all uses of the "ssh-agent" command.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_privileged_commands/audit_rules_privileged_commands_ssh_agent/rule.yml"> audit_rules_privileged_commands_ssh_agent</a>: Record Any Attempts to Run ssh-agent
+      <ul><li>CCE-94615-2</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-654100: SLEM 5 must generate audit records for all uses of the "ssh-keysign" command.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_privileged_commands/audit_rules_privileged_commands_ssh_keysign/rule.yml"> audit_rules_privileged_commands_ssh_keysign</a>: Ensure auditd Collects Information on the Use of Privileged Commands - ssh-keysign
+      <ul><li>CCE-94605-3</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-654105: SLEM 5 must generate audit records for all uses of the "su" command.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_privileged_commands/audit_rules_privileged_commands_su/rule.yml"> audit_rules_privileged_commands_su</a>: Ensure auditd Collects Information on the Use of Privileged Commands - su
+      <ul><li>CCE-94624-4</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-654110: SLEM 5 must generate audit records for all uses of the "sudo" command.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_privileged_commands/audit_rules_privileged_commands_sudo/rule.yml"> audit_rules_privileged_commands_sudo</a>: Ensure auditd Collects Information on the Use of Privileged Commands - sudo
+      <ul><li>CCE-94625-1</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-654115: SLEM 5 must generate audit records for all uses of the "sudoedit" command.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_privileged_commands/audit_rules_privileged_commands_sudoedit/rule.yml"> audit_rules_privileged_commands_sudoedit</a>: Ensure auditd Collects Information on the Use of Privileged Commands - sudoedit
+      <ul><li>CCE-94613-7</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-654120: SLEM 5 must generate audit records for all uses of the "unix_chkpwd" or "unix2_chkpwd" commands.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_privileged_commands/audit_rules_privileged_commands_unix_chkpwd/rule.yml"> audit_rules_privileged_commands_unix_chkpwd</a>: Ensure auditd Collects Information on the Use of Privileged Commands - unix_chkpwd
+      <ul><li>CCE-94610-3</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-654125: SLEM 5 must generate audit records for all uses of the "usermod" command.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_privileged_commands/audit_rules_privileged_commands_usermod/rule.yml"> audit_rules_privileged_commands_usermod</a>: Ensure auditd Collects Information on the Use of Privileged Commands - usermod
+      <ul><li>CCE-94622-8</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-654130: SLEM 5 must generate audit records for all account creations, modifications, disabling, and termination events that affect /etc/group.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_rules_usergroup_modification_group/rule.yml"> audit_rules_usergroup_modification_group</a>: Record Events that Modify User/Group Information - /etc/group
+      <ul><li>CCE-94602-0</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-654135: SLEM 5 must generate audit records for all account creations, modifications, disabling, and termination events that affect /etc/security/opasswd.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_rules_usergroup_modification_opasswd/rule.yml"> audit_rules_usergroup_modification_opasswd</a>: Record Events that Modify User/Group Information - /etc/security/opasswd
+      <ul><li>CCE-94604-6</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-654140: SLEM 5 must generate audit records for all account creations, modifications, disabling, and termination events that affect /etc/passwd.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_rules_usergroup_modification_passwd/rule.yml"> audit_rules_usergroup_modification_passwd</a>: Record Events that Modify User/Group Information - /etc/passwd
+      <ul><li>CCE-94601-2</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-654145: SLEM 5 must generate audit records for all account creations, modifications, disabling, and termination events that affect /etc/shadow.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_rules_usergroup_modification_shadow/rule.yml"> audit_rules_usergroup_modification_shadow</a>: Record Events that Modify User/Group Information - /etc/shadow
+      <ul><li>CCE-94603-8</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-654150: SLEM 5 must generate audit records for all uses of the "chmod", "fchmod" and "fchmodat" system calls.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_dac_actions/audit_rules_dac_modification_fchmod/rule.yml"> audit_rules_dac_modification_fchmod</a>: Record Events that Modify the System's Discretionary Access Controls - fchmod
+      <ul><li>CCE-94634-3</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-654155: SLEM 5 must generate audit records for all uses of the "chown", "fchown", "fchownat", and "lchown" system calls.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_dac_actions/audit_rules_dac_modification_lchown/rule.yml"> audit_rules_dac_modification_lchown</a>: Record Events that Modify the System's Discretionary Access Controls - lchown
+      <ul><li>CCE-94633-5</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-654160: SLEM 5 must generate audit records for all uses of the "creat", "open", "openat", "open_by_handle_at", "truncate", and "ftruncate" system calls.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_file_modification/audit_rules_unsuccessful_file_modification_open/rule.yml"> audit_rules_unsuccessful_file_modification_open</a>: Record Unsuccessful Access Attempts to Files - open
+      <ul><li>CCE-94649-1</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-654165: SLEM 5 must generate audit records for all uses of the "delete_module" system call.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_kernel_module_loading/audit_rules_kernel_module_loading_delete/rule.yml"> audit_rules_kernel_module_loading_delete</a>: Ensure auditd Collects Information on Kernel Module Unloading - delete_module
+      <ul><li>CCE-94653-3</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-654170: SLEM 5 must generate audit records for all uses of the "init_module" and "finit_module" system calls.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_kernel_module_loading/audit_rules_kernel_module_loading_finit/rule.yml"> audit_rules_kernel_module_loading_finit</a>: Ensure auditd Collects Information on Kernel Module Loading and Unloading - finit_module
+      <ul><li>CCE-94654-1</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-654175: SLEM 5 must generate audit records for all uses of the "mount" system call.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_rules_media_export/rule.yml"> audit_rules_media_export</a>: Ensure auditd Collects Information on Exporting to Media (successful)
+      <ul><li>CCE-94635-0</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-654180: SLEM 5 must generate audit records for all uses of the "setxattr", "fsetxattr", "lsetxattr", "removexattr", "fremovexattr", and "lremovexattr" system calls.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_dac_actions/audit_rules_dac_modification_fremovexattr/rule.yml"> audit_rules_dac_modification_fremovexattr</a>: Record Events that Modify the System's Discretionary Access Controls - fremovexattr
+      <ul><li>CCE-94632-7</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-654185: SLEM 5 must generate audit records for all uses of the "umount" system call.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_dac_actions/audit_rules_dac_modification_umount2/rule.yml"> audit_rules_dac_modification_umount2</a>: Record Events that Modify the System's Discretionary Access Controls - umount2
+      <ul><li>CCE-94636-8</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-654190: SLEM 5 must generate audit records for all uses of the "unlink", "unlinkat", "rename", "renameat", and "rmdir" system calls.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_file_modification/audit_rules_unsuccessful_file_modification_rename/rule.yml"> audit_rules_unsuccessful_file_modification_rename</a>: Record Unsuccessful Delete Attempts to Files - rename
+      <ul><li>CCE-94731-7</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-654195: SLEM 5 must generate audit records for all uses of privileged functions.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_rules_suid_privilege_function/rule.yml"> audit_rules_suid_privilege_function</a>: Record Events When Privileged Executables Are Run
+      <ul><li>CCE-94704-4</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-654200: SLEM 5 must generate audit records for all modifications to the "lastlog" file.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_login_events/audit_rules_login_events_lastlog/rule.yml"> audit_rules_login_events_lastlog</a>: Record Attempts to Alter Logon and Logout Events - lastlog
+      <ul><li>CCE-94629-3</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-654205: SLEM 5 must generate audit records for all modifications to the "tallylog" file must generate an audit record.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_login_events/audit_rules_login_events_tallylog/rule.yml"> audit_rules_login_events_tallylog</a>: Record Attempts to Alter Logon and Logout Events - tallylog
+      <ul><li>CCE-94628-5</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-654210: SLEM 5 must audit all uses of the sudoers file and all files in the "/etc/sudoers.d/" directory.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_rules_sysadmin_actions/rule.yml"> audit_rules_sysadmin_actions</a>: Ensure auditd Collects System Administrator Actions
+      <ul><li>CCE-94648-3</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-654215: Successful/unsuccessful uses of "setfiles" in SLEM 5 must generate an audit record.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_execution_selinux_commands/audit_rules_execution_setfiles/rule.yml"> audit_rules_execution_setfiles</a>: Record Any Attempts to Run setfiles
+      <ul><li>CCE-95097-2</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-654220: Successful/unsuccessful uses of "semanage" in SLEM 5 must generate an audit record.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_execution_selinux_commands/audit_rules_execution_semanage/rule.yml"> audit_rules_execution_semanage</a>: Record Any Attempts to Run semanage
+      <ul><li>CCE-95095-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/package_policycoreutils-python-utils_installed/rule.yml"> package_policycoreutils-python-utils_installed</a>: Install policycoreutils-python-utils package
+      <ul><li>CCE-95096-4</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-654225: Successful/unsuccessful uses of "setsebool" in SLEM 5 must generate an audit record.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_execution_selinux_commands/audit_rules_execution_setsebool/rule.yml"> audit_rules_execution_setsebool</a>: Record Any Attempts to Run setsebool
+      <ul><li>CCE-95098-0</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-654230: SLEM 5 must generate audit records for the "/run/utmp file".</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_rules_session_events_utmp/rule.yml"> audit_rules_session_events_utmp</a>: Record Attempts to Alter Process and Session Initiation Information utmp
+      <ul><li>CCE-94732-5</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-654235: SLEM 5 must generate audit records for the "/var/log/btmp" file.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_rules_session_events_btmp/rule.yml"> audit_rules_session_events_btmp</a>: Record Attempts to Alter Process and Session Initiation Information btmp
+      <ul><li>CCE-94734-1</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-654240: SLEM 5 must generate audit records for the "/var/log/wtmp" file.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_rules_session_events_wtmp/rule.yml"> audit_rules_session_events_wtmp</a>: Record Attempts to Alter Process and Session Initiation Information wtmp
+      <ul><li>CCE-94733-3</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-654245: SLEM 5 must not disable syscall auditing.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>medium</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_rules_enable_syscall_auditing/rule.yml"> audit_rules_enable_syscall_auditing</a>: Remove Default Configuration to Disable Syscall Auditing
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SLEM-05-671010: FIPS 140-2/140-3 mode must be enabled on SLEM 5.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>high</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/fips/is_fips_mode_enabled/rule.yml"> is_fips_mode_enabled</a>: Verify '/proc/sys/crypto/fips_enabled' exists
+      <ul><li>CCE-94743-2</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+</div>  
+
+
+</body>
+</html>

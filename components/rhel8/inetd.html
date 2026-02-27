@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'inetd'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'inetd'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>inetd</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<ul>
+
+<li>inetd_and_xinetd</li>
+
+</ul>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#configure_etc_hosts_deny">configure_etc_hosts_deny</a></li>
+
+<li><a href="#file_groupowner_etc_hosts_allow">file_groupowner_etc_hosts_allow</a></li>
+
+<li><a href="#file_groupowner_etc_hosts_deny">file_groupowner_etc_hosts_deny</a></li>
+
+<li><a href="#file_owner_etc_hosts_allow">file_owner_etc_hosts_allow</a></li>
+
+<li><a href="#file_owner_etc_hosts_deny">file_owner_etc_hosts_deny</a></li>
+
+<li><a href="#file_permissions_etc_hosts_allow">file_permissions_etc_hosts_allow</a></li>
+
+<li><a href="#file_permissions_etc_hosts_deny">file_permissions_etc_hosts_deny</a></li>
+
+<li><a href="#package_tcp_wrappers_installed">package_tcp_wrappers_installed</a></li>
+
+<li><a href="#package_tcp_wrappers_removed">package_tcp_wrappers_removed</a></li>
+
+<li><a href="#package_xinetd_removed">package_xinetd_removed</a></li>
+
+<li><a href="#service_xinetd_disabled">service_xinetd_disabled</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="configure_etc_hosts_deny" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure /etc/hosts.deny is configured</h3>
+<div>configure_etc_hosts_deny</div>
+<h4>Description</h4>
+<p>The file <tt>/etc/hosts.deny</tt> together with <tt>/etc/hosts.allow</tt> provides a
+simple access control mechanism for network services supporting TCP wrappers.
+The following line in the file ensures that access to services supporting this mechanism is denied to any clients
+not mentioned in <tt>/etc/hosts.allow</tt>:
+<pre>ALL: ALL</pre>
+It is advised to inspect available network services which might be affected by modification of file mentioned above prior to performing the remediation of this rule.
+If there exist services which might be affected and access to them should not be blocked,
+modify the <tt>/etc/hosts.allow</tt> file appropriately before performing the remediation.</p>
+<h4>Rationale</h4>
+<p>Correct configuration in <tt>/etc/hosts.deny</tt> ensures that no explicitly mentioned clients will be able to connect to services supporting this access control mechanism.</p>
+</div>
+
+<div id="file_groupowner_etc_hosts_allow" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Group Ownership of /etc/hosts.allow</h3>
+<div>file_groupowner_etc_hosts_allow</div>
+<h4>Description</h4>
+<p>
+To properly set the group owner of <code>/etc/hosts.allow</code>, run the command:
+
+  <pre>$ sudo chgrp root /etc/hosts.allow</pre>
+  </p>
+<h4>Rationale</h4>
+<p>The <tt>/etc/hosts.allow</tt> file is used to control access of clients to daemons in the
+server. Insecure groupownership of this file could allow users to grant clients unrestricted
+access or no access at all to services in the server.</p>
+</div>
+
+<div id="file_groupowner_etc_hosts_deny" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Group Ownership of /etc/hosts.deny</h3>
+<div>file_groupowner_etc_hosts_deny</div>
+<h4>Description</h4>
+<p>
+To properly set the group owner of <code>/etc/hosts.deny</code>, run the command:
+
+  <pre>$ sudo chgrp root /etc/hosts.deny</pre>
+  </p>
+<h4>Rationale</h4>
+<p>The <tt>/etc/hosts.deny</tt> file is used to control access of clients to daemons in the
+server. Insecure groupownership of this file could allow users to grant clients unrestricted
+access or no access at all to services in the server.</p>
+</div>
+
+<div id="file_owner_etc_hosts_allow" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Ownership of /etc/hosts.allow</h3>
+<div>file_owner_etc_hosts_allow</div>
+<h4>Description</h4>
+<p>
+To properly set the owner of <code>/etc/hosts.allow</code>, run the command:
+
+  <pre>$ sudo chown root /etc/hosts.allow </pre>
+  </p>
+<h4>Rationale</h4>
+<p>The <tt>/etc/hosts.allow</tt> file is used to control access of clients to daemons in the
+server. Insecure groupownership of this file could allow users to grant clients unrestricted
+access or no access at all to services in the server.</p>
+</div>
+
+<div id="file_owner_etc_hosts_deny" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Ownership of /etc/hosts.deny</h3>
+<div>file_owner_etc_hosts_deny</div>
+<h4>Description</h4>
+<p>
+To properly set the owner of <code>/etc/hosts.deny</code>, run the command:
+
+  <pre>$ sudo chown root /etc/hosts.deny </pre>
+  </p>
+<h4>Rationale</h4>
+<p>The <tt>/etc/hosts.deny</tt> file is used to control access of clients to daemons in the
+server. Insecure groupownership of this file could allow users to grant clients unrestricted
+access or no access at all to services in the server.</p>
+</div>
+
+<div id="file_permissions_etc_hosts_allow" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Permissions on /etc/hosts.allow</h3>
+<div>file_permissions_etc_hosts_allow</div>
+<h4>Description</h4>
+<p>
+To properly set the permissions of <code>/etc/hosts.allow</code>, run the command:
+<pre>$ sudo chmod 0644 /etc/hosts.allow</pre></p>
+<h4>Rationale</h4>
+<p>The <tt>/etc/hosts.allow</tt> file is used to control access of clients to daemons in the
+server. Insecure groupownership of this file could allow users to grant clients unrestricted
+access or no access at all to services in the server.</p>
+</div>
+
+<div id="file_permissions_etc_hosts_deny" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Permissions on /etc/hosts.deny</h3>
+<div>file_permissions_etc_hosts_deny</div>
+<h4>Description</h4>
+<p>
+To properly set the permissions of <code>/etc/hosts.deny</code>, run the command:
+<pre>$ sudo chmod 0644 /etc/hosts.deny</pre></p>
+<h4>Rationale</h4>
+<p>The <tt>/etc/hosts.deny</tt> file is used to control access of clients to daemons in the
+server. Insecure groupownership of this file could allow users to grant clients unrestricted
+access or no access at all to services in the server.</p>
+</div>
+
+<div id="package_tcp_wrappers_installed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Install tcp_wrappers Package</h3>
+<div>package_tcp_wrappers_installed</div>
+<h4>Description</h4>
+<p>When network services are using the <tt>xinetd</tt> service, the
+<tt>tcp_wrappers</tt> package should be installed.
+The <code>tcp_wrappers</code> package can be installed with the following command:
+<pre>
+$ sudo yum install tcp_wrappers</pre></p>
+<h4>Rationale</h4>
+<p>Access control methods provide the ability to enhance system security posture
+by restricting services and known good IP addresses and address ranges. This
+prevents connections from unknown hosts and protocols.</p>
+</div>
+
+<div id="package_tcp_wrappers_removed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Uninstall tcpd Package</h3>
+<div>package_tcp_wrappers_removed</div>
+<h4>Description</h4>
+<p>The <code>tcpd</code> package can be removed with the following command:
+<pre>
+$ sudo yum erase tcpd</pre></p>
+<h4>Rationale</h4>
+<p>Administrators can use TCP wrapper library and daemon for host
+control over network services. In these implementations,
+<tt>xinetd</tt> runs <tt>tcpd</tt> program, which first looks
+at the incoming connection as well as the access control lists
+in the /etc/hosts.allow and /etc/hosts.deny files.
+Removing the <tt>xinetd</tt> package decreases the risk of the
+xinetd service's accidental (or intentional) activation. The
+removal of <tt>tcpd</tt> package will support this protective
+measure in addition.</p>
+</div>
+
+<div id="package_xinetd_removed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Uninstall xinetd Package</h3>
+<div>package_xinetd_removed</div>
+<h4>Description</h4>
+<p>The <code>xinetd</code> package can be removed with the following command:
+<pre>
+$ sudo yum erase xinetd</pre></p>
+<h4>Rationale</h4>
+<p>Removing the <tt>xinetd</tt> package decreases the risk of the
+xinetd service's accidental (or intentional) activation.</p>
+</div>
+
+<div id="service_xinetd_disabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable xinetd Service</h3>
+<div>service_xinetd_disabled</div>
+<h4>Description</h4>
+<p>
+The <code>xinetd</code> service can be disabled with the following command:
+<pre>$ sudo systemctl mask --now xinetd.service</pre></p>
+<h4>Rationale</h4>
+<p>The xinetd service provides a dedicated listener service for some programs,
+which is no longer necessary for commonly-used network services. Disabling
+it ensures that these uncommon services are not running, and also prevents
+attacks against xinetd itself.</p>
+</div>
+
+
+
+
+</body>
+</html>

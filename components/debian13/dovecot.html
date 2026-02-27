@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'dovecot'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'dovecot'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>dovecot</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<ul>
+
+<li>configure_dovecot</li>
+
+<li>disabling_dovecot</li>
+
+<li>dovecot_allow_imap_access</li>
+
+<li>dovecot_enabling_ssl</li>
+
+<li>dovecot_support_necessary_protocols</li>
+
+</ul>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#dovecot_configure_ssl_cert">dovecot_configure_ssl_cert</a></li>
+
+<li><a href="#dovecot_configure_ssl_key">dovecot_configure_ssl_key</a></li>
+
+<li><a href="#dovecot_disable_plaintext_auth">dovecot_disable_plaintext_auth</a></li>
+
+<li><a href="#dovecot_enable_ssl">dovecot_enable_ssl</a></li>
+
+<li><a href="#package_dovecot_removed">package_dovecot_removed</a></li>
+
+<li><a href="#service_dovecot_disabled">service_dovecot_disabled</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="dovecot_configure_ssl_cert" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure Dovecot to Use the SSL Certificate file</h3>
+<div>dovecot_configure_ssl_cert</div>
+<h4>Description</h4>
+<p>This option tells Dovecot where to find the mail server's SSL
+Certificate.
+<br /><br />
+Edit <tt>/etc/dovecot/conf.d/10-ssl.conf</tt> and add or correct the
+following line (<i>note: the path below is the default path set by the
+Dovecot installation. If you are using a different path, ensure you
+reference the appropriate file</i>):
+<pre>ssl_cert = &lt;/etc/pki/dovecot/certs/dovecot.pem</pre>"</p>
+<h4>Rationale</h4>
+<p>SSL certificates are used by the client to authenticate the identity of the
+server, as well as to encrypt credentials and message traffic. Not using
+SSL to encrypt mail server traffic could allow unauthorized access to
+credentials and mail messages since they are sent in plain text over the
+network.</p>
+</div>
+
+<div id="dovecot_configure_ssl_key" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure Dovecot to Use the SSL Key file</h3>
+<div>dovecot_configure_ssl_key</div>
+<h4>Description</h4>
+<p>This option tells Dovecot where to find the mail server's SSL Key.
+<br /><br />
+Edit <tt>/etc/dovecot/conf.d/10-ssl.conf</tt> and add or correct the
+following line (<i>note: the path below is the default path set by the
+Dovecot installation. If you are using a different path, ensure you
+reference the appropriate file</i>):
+<pre>ssl_key = &lt;/etc/pki/dovecot/private/dovecot.pem</pre></p>
+<h4>Rationale</h4>
+<p>SSL certificates are used by the client to authenticate the identity of the
+server, as well as to encrypt credentials and message traffic. Not using
+SSL to encrypt mail server traffic could allow unauthorized access to
+credentials and mail messages since they are sent in plain text over the
+network.</p>
+</div>
+
+<div id="dovecot_disable_plaintext_auth" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable Plaintext Authentication</h3>
+<div>dovecot_disable_plaintext_auth</div>
+<h4>Description</h4>
+<p>To prevent Dovecot from attempting plaintext authentication of clients,
+edit <tt>/etc/dovecot/conf.d/10-auth.conf</tt> and add\or correct the
+following line:
+<pre>disable_plaintext_auth = yes</pre></p>
+<h4>Rationale</h4>
+<p>Using plain text authentication to the mail server could allow an attacker
+access to credentials by monitoring network traffic.</p>
+</div>
+
+<div id="dovecot_enable_ssl" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Enable the SSL flag in /etc/dovecot.conf</h3>
+<div>dovecot_enable_ssl</div>
+<h4>Description</h4>
+<p>To allow clients to make encrypted connections the <tt>ssl</tt>
+flag in Dovecot's configuration file needs to be set to <tt>yes</tt>.
+<br /><br />
+Edit <tt>/etc/dovecot/conf.d/10-ssl.conf</tt> and add or correct the following line:
+<pre>ssl = yes</pre></p>
+<h4>Rationale</h4>
+<p>SSL encrypt network traffic between the Dovecot server and its clients 
+protecting user credentials, mail as it is downloaded, and clients may use
+SSL certificates to authenticate the server, preventing another system from
+impersonating the server.</p>
+</div>
+
+<div id="package_dovecot_removed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Uninstall dovecot Package</h3>
+<div>package_dovecot_removed</div>
+<h4>Description</h4>
+<p>
+The <code>dovecot</code> package can be removed with the following command:
+<pre>
+$ apt-get remove dovecot</pre></p>
+<h4>Rationale</h4>
+<p>If there is no need to make the Dovecot software available,
+removing it provides a safeguard against its activation.</p>
+</div>
+
+<div id="service_dovecot_disabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable Dovecot Service</h3>
+<div>service_dovecot_disabled</div>
+<h4>Description</h4>
+<p>
+The <code>dovecot</code> service can be disabled with the following command:
+<pre>$ sudo systemctl mask --now dovecot.service</pre></p>
+<h4>Rationale</h4>
+<p>Running an IMAP or POP3 server provides a network-based
+avenue of attack, and should be disabled if not needed.</p>
+</div>
+
+
+
+
+</body>
+</html>

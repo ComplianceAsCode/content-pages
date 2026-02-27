@@ -1,0 +1,1845 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'httpd'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'httpd'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>httpd</li>
+
+<li>httpd-core</li>
+
+<li>httpd-filesystem</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<ul>
+
+<li>disabling_httpd</li>
+
+<li>http</li>
+
+<li>httpd_basic_authentication</li>
+
+<li>httpd_chroot</li>
+
+<li>httpd_configure_os_protect_web_server</li>
+
+<li>httpd_configure_perl_securely</li>
+
+<li>httpd_configure_php_securely</li>
+
+<li>httpd_core_modules</li>
+
+<li>httpd_deploy_mod_security</li>
+
+<li>httpd_deploy_mod_ssl</li>
+
+<li>httpd_directory_restrictions</li>
+
+<li>httpd_minimal_modules_installed</li>
+
+<li>httpd_minimize_config_files_included</li>
+
+<li>httpd_minimize_loadable_modules</li>
+
+<li>httpd_modules_improve_security</li>
+
+<li>httpd_optional_components</li>
+
+<li>httpd_restrict_file_dir_access</li>
+
+<li>httpd_restrict_info_leakage</li>
+
+<li>httpd_secure_content</li>
+
+<li>httpd_use_dos_protection_modules</li>
+
+<li>installing_httpd</li>
+
+<li>securing_httpd</li>
+
+</ul>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#dir_perms_etc_httpd_conf">dir_perms_etc_httpd_conf</a></li>
+
+<li><a href="#dir_perms_var_log_httpd">dir_perms_var_log_httpd</a></li>
+
+<li><a href="#file_permissions_httpd_server_conf_d_files">file_permissions_httpd_server_conf_d_files</a></li>
+
+<li><a href="#file_permissions_httpd_server_conf_files">file_permissions_httpd_server_conf_files</a></li>
+
+<li><a href="#file_permissions_httpd_server_modules_files">file_permissions_httpd_server_modules_files</a></li>
+
+<li><a href="#http_configure_log_file_ownership">http_configure_log_file_ownership</a></li>
+
+<li><a href="#httpd_anonymous_content_sharing">httpd_anonymous_content_sharing</a></li>
+
+<li><a href="#httpd_antivirus_scan_uploads">httpd_antivirus_scan_uploads</a></li>
+
+<li><a href="#httpd_cache_support">httpd_cache_support</a></li>
+
+<li><a href="#httpd_cgi_support">httpd_cgi_support</a></li>
+
+<li><a href="#httpd_configure_banner_page">httpd_configure_banner_page</a></li>
+
+<li><a href="#httpd_configure_documentroot">httpd_configure_documentroot</a></li>
+
+<li><a href="#httpd_configure_firewall">httpd_configure_firewall</a></li>
+
+<li><a href="#httpd_configure_log_format">httpd_configure_log_format</a></li>
+
+<li><a href="#httpd_configure_max_keepalive_requests">httpd_configure_max_keepalive_requests</a></li>
+
+<li><a href="#httpd_configure_perl_taint">httpd_configure_perl_taint</a></li>
+
+<li><a href="#httpd_configure_remote_session_encryption">httpd_configure_remote_session_encryption</a></li>
+
+<li><a href="#httpd_configure_script_permissions">httpd_configure_script_permissions</a></li>
+
+<li><a href="#httpd_configure_tls">httpd_configure_tls</a></li>
+
+<li><a href="#httpd_configure_valid_server_cert">httpd_configure_valid_server_cert</a></li>
+
+<li><a href="#httpd_digest_authentication">httpd_digest_authentication</a></li>
+
+<li><a href="#httpd_disable_anonymous_ftp_access">httpd_disable_anonymous_ftp_access</a></li>
+
+<li><a href="#httpd_disable_content_symlinks">httpd_disable_content_symlinks</a></li>
+
+<li><a href="#httpd_disable_mime_types">httpd_disable_mime_types</a></li>
+
+<li><a href="#httpd_enable_error_logging">httpd_enable_error_logging</a></li>
+
+<li><a href="#httpd_enable_log_config">httpd_enable_log_config</a></li>
+
+<li><a href="#httpd_enable_loglevel">httpd_enable_loglevel</a></li>
+
+<li><a href="#httpd_enable_system_logging">httpd_enable_system_logging</a></li>
+
+<li><a href="#httpd_encrypt_file_uploads">httpd_encrypt_file_uploads</a></li>
+
+<li><a href="#httpd_entrust_passwords">httpd_entrust_passwords</a></li>
+
+<li><a href="#httpd_ignore_htaccess_files">httpd_ignore_htaccess_files</a></li>
+
+<li><a href="#httpd_install_mod_security">httpd_install_mod_security</a></li>
+
+<li><a href="#httpd_install_mod_ssl">httpd_install_mod_ssl</a></li>
+
+<li><a href="#httpd_ldap_support">httpd_ldap_support</a></li>
+
+<li><a href="#httpd_limit_available_methods">httpd_limit_available_methods</a></li>
+
+<li><a href="#httpd_limit_java_files">httpd_limit_java_files</a></li>
+
+<li><a href="#httpd_mime_magic">httpd_mime_magic</a></li>
+
+<li><a href="#httpd_mod_rewrite">httpd_mod_rewrite</a></li>
+
+<li><a href="#httpd_nipr_accredited_dmz">httpd_nipr_accredited_dmz</a></li>
+
+<li><a href="#httpd_no_compilers_in_prod">httpd_no_compilers_in_prod</a></li>
+
+<li><a href="#httpd_private_server_on_separate_subnet">httpd_private_server_on_separate_subnet</a></li>
+
+<li><a href="#httpd_proxy_support">httpd_proxy_support</a></li>
+
+<li><a href="#httpd_public_resources_not_shared">httpd_public_resources_not_shared</a></li>
+
+<li><a href="#httpd_remove_backups">httpd_remove_backups</a></li>
+
+<li><a href="#httpd_remove_robots_file">httpd_remove_robots_file</a></li>
+
+<li><a href="#httpd_require_client_certs">httpd_require_client_certs</a></li>
+
+<li><a href="#httpd_restrict_critical_directories">httpd_restrict_critical_directories</a></li>
+
+<li><a href="#httpd_restrict_root_directory">httpd_restrict_root_directory</a></li>
+
+<li><a href="#httpd_restrict_web_directory">httpd_restrict_web_directory</a></li>
+
+<li><a href="#httpd_server_activity_status">httpd_server_activity_status</a></li>
+
+<li><a href="#httpd_server_configuration_display">httpd_server_configuration_display</a></li>
+
+<li><a href="#httpd_server_side_includes">httpd_server_side_includes</a></li>
+
+<li><a href="#httpd_serversignature_off">httpd_serversignature_off</a></li>
+
+<li><a href="#httpd_servertokens_prod">httpd_servertokens_prod</a></li>
+
+<li><a href="#httpd_url_correction">httpd_url_correction</a></li>
+
+<li><a href="#httpd_webdav">httpd_webdav</a></li>
+
+<li><a href="#package_httpd_removed">package_httpd_removed</a></li>
+
+<li><a href="#package_nginx_removed">package_nginx_removed</a></li>
+
+<li><a href="#partition_for_web_content">partition_for_web_content</a></li>
+
+<li><a href="#sebool_httpd_anon_write">sebool_httpd_anon_write</a></li>
+
+<li><a href="#sebool_httpd_builtin_scripting">sebool_httpd_builtin_scripting</a></li>
+
+<li><a href="#sebool_httpd_can_check_spam">sebool_httpd_can_check_spam</a></li>
+
+<li><a href="#sebool_httpd_can_connect_ftp">sebool_httpd_can_connect_ftp</a></li>
+
+<li><a href="#sebool_httpd_can_connect_ldap">sebool_httpd_can_connect_ldap</a></li>
+
+<li><a href="#sebool_httpd_can_connect_mythtv">sebool_httpd_can_connect_mythtv</a></li>
+
+<li><a href="#sebool_httpd_can_connect_zabbix">sebool_httpd_can_connect_zabbix</a></li>
+
+<li><a href="#sebool_httpd_can_network_connect">sebool_httpd_can_network_connect</a></li>
+
+<li><a href="#sebool_httpd_can_network_connect_cobbler">sebool_httpd_can_network_connect_cobbler</a></li>
+
+<li><a href="#sebool_httpd_can_network_connect_db">sebool_httpd_can_network_connect_db</a></li>
+
+<li><a href="#sebool_httpd_can_network_memcache">sebool_httpd_can_network_memcache</a></li>
+
+<li><a href="#sebool_httpd_can_network_relay">sebool_httpd_can_network_relay</a></li>
+
+<li><a href="#sebool_httpd_can_sendmail">sebool_httpd_can_sendmail</a></li>
+
+<li><a href="#sebool_httpd_dbus_avahi">sebool_httpd_dbus_avahi</a></li>
+
+<li><a href="#sebool_httpd_dbus_sssd">sebool_httpd_dbus_sssd</a></li>
+
+<li><a href="#sebool_httpd_dontaudit_search_dirs">sebool_httpd_dontaudit_search_dirs</a></li>
+
+<li><a href="#sebool_httpd_enable_cgi">sebool_httpd_enable_cgi</a></li>
+
+<li><a href="#sebool_httpd_enable_ftp_server">sebool_httpd_enable_ftp_server</a></li>
+
+<li><a href="#sebool_httpd_enable_homedirs">sebool_httpd_enable_homedirs</a></li>
+
+<li><a href="#sebool_httpd_execmem">sebool_httpd_execmem</a></li>
+
+<li><a href="#sebool_httpd_graceful_shutdown">sebool_httpd_graceful_shutdown</a></li>
+
+<li><a href="#sebool_httpd_manage_ipa">sebool_httpd_manage_ipa</a></li>
+
+<li><a href="#sebool_httpd_mod_auth_ntlm_winbind">sebool_httpd_mod_auth_ntlm_winbind</a></li>
+
+<li><a href="#sebool_httpd_mod_auth_pam">sebool_httpd_mod_auth_pam</a></li>
+
+<li><a href="#sebool_httpd_read_user_content">sebool_httpd_read_user_content</a></li>
+
+<li><a href="#sebool_httpd_run_ipa">sebool_httpd_run_ipa</a></li>
+
+<li><a href="#sebool_httpd_run_preupgrade">sebool_httpd_run_preupgrade</a></li>
+
+<li><a href="#sebool_httpd_run_stickshift">sebool_httpd_run_stickshift</a></li>
+
+<li><a href="#sebool_httpd_serve_cobbler_files">sebool_httpd_serve_cobbler_files</a></li>
+
+<li><a href="#sebool_httpd_setrlimit">sebool_httpd_setrlimit</a></li>
+
+<li><a href="#sebool_httpd_ssi_exec">sebool_httpd_ssi_exec</a></li>
+
+<li><a href="#sebool_httpd_sys_script_anon_write">sebool_httpd_sys_script_anon_write</a></li>
+
+<li><a href="#sebool_httpd_tmp_exec">sebool_httpd_tmp_exec</a></li>
+
+<li><a href="#sebool_httpd_tty_comm">sebool_httpd_tty_comm</a></li>
+
+<li><a href="#sebool_httpd_unified">sebool_httpd_unified</a></li>
+
+<li><a href="#sebool_httpd_use_cifs">sebool_httpd_use_cifs</a></li>
+
+<li><a href="#sebool_httpd_use_fusefs">sebool_httpd_use_fusefs</a></li>
+
+<li><a href="#sebool_httpd_use_gpg">sebool_httpd_use_gpg</a></li>
+
+<li><a href="#sebool_httpd_use_nfs">sebool_httpd_use_nfs</a></li>
+
+<li><a href="#sebool_httpd_use_openstack">sebool_httpd_use_openstack</a></li>
+
+<li><a href="#sebool_httpd_use_sasl">sebool_httpd_use_sasl</a></li>
+
+<li><a href="#sebool_httpd_verify_dns">sebool_httpd_verify_dns</a></li>
+
+<li><a href="#service_httpd_disabled">service_httpd_disabled</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="dir_perms_etc_httpd_conf" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Set Permissions on the /etc/httpd/conf/ Directory</h3>
+<div>dir_perms_etc_httpd_conf</div>
+<h4>Description</h4>
+<p> To properly set the permissions of <code>/etc/http/conf</code>, run the command: <pre>$ sudo chmod 0750 /etc/http/conf</pre></p>
+<h4>Rationale</h4>
+<p>Access to the web server's configuration files may allow an unauthorized user or attacker
+to access information about the web server or alter the server's configuration files.</p>
+</div>
+
+<div id="dir_perms_var_log_httpd" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Set Permissions on the /var/log/httpd/ Directory</h3>
+<div>dir_perms_var_log_httpd</div>
+<h4>Description</h4>
+<p>Ensure that the permissions on the web server log directory is set to 700:
+<pre>$ sudo chmod 700 /var/log/httpd/</pre>
+This is its default setting.</p>
+<h4>Rationale</h4>
+<p>A major tool in exploring the web site use, attempted use, unusual conditions,
+and problems are the access and error logs. In the event of a security incident,
+these logs can provide the SA and the web manager with valuable information. To
+ensure the integrity of the log files and protect the SA and the web manager
+from a conflict of interest related to the maintenance of these files, only the
+members of the Auditors group will be granted permissions to move, copy, and
+delete these files in the course of their duties related to the archiving of
+these files.</p>
+</div>
+
+<div id="file_permissions_httpd_server_conf_d_files" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Set Permissions on All Configuration Files Inside /etc/httpd/conf.d/</h3>
+<div>file_permissions_httpd_server_conf_d_files</div>
+<h4>Description</h4>
+<p> To properly set the permissions of <code>/etc/http/conf.d/*</code>, run the command: <pre>$ sudo chmod 0640 /etc/http/conf.d/*</pre></p>
+<h4>Rationale</h4>
+<p>Access to the web server's configuration files may allow an unauthorized user or attacker
+to access information about the web server or to alter the server's configuration files.</p>
+</div>
+
+<div id="file_permissions_httpd_server_conf_files" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Set Permissions on All Configuration Files Inside /etc/httpd/conf/</h3>
+<div>file_permissions_httpd_server_conf_files</div>
+<h4>Description</h4>
+<p> To properly set the permissions of <code>/etc/http/conf/*</code>, run the command: <pre>$ sudo chmod 0640 /etc/http/conf/*</pre></p>
+<h4>Rationale</h4>
+<p>Access to the web server's configuration files may allow an unauthorized user or attacker
+to access information about the web server or to alter the server's configuration files.</p>
+</div>
+
+<div id="file_permissions_httpd_server_modules_files" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Set Permissions on All Configuration Files Inside /etc/httpd/conf.modules.d/</h3>
+<div>file_permissions_httpd_server_modules_files</div>
+<h4>Description</h4>
+<p> To properly set the permissions of <code>/etc/http/conf.modules.d/*</code>, run the command: <pre>$ sudo chmod 0640 /etc/http/conf.modules.d/*</pre></p>
+<h4>Rationale</h4>
+<p>Access to the web server's configuration files may allow an unauthorized user or attacker
+to access information about the web server or to alter the server's configuration files.</p>
+</div>
+
+<div id="http_configure_log_file_ownership" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>HTTPD Log Files Must Be Owned By Root</h3>
+<div>http_configure_log_file_ownership</div>
+<h4>Description</h4>
+<p>All <tt>httpd</tt> logs must be owned by root user and group. By default,
+the path for httpd logs is <tt>/var/log/httpd/</tt>
+
+To properly set the owner of <code>/var/log/httpd</code>, run the command:
+
+  <pre>$ sudo chown root /var/log/httpd </pre>
+  
+
+
+To properly set the owner of <code>/var/log/httpd/*</code>, run the command:
+
+  <pre>$ sudo chown root /var/log/httpd/* </pre>
+  </p>
+<h4>Rationale</h4>
+<p>A major tool in exploring the web site use, attempted use, unusual conditions,
+and problems are the access and error logs. In the event of a security incident,
+these logs can provide the SA and the web administrator with valuable
+information. Because of the information that is captured in the logs, it is
+critical that only authorized individuals have access to the logs.</p>
+</div>
+
+<div id="httpd_anonymous_content_sharing" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Web Content Directories Must Not Be Shared Anonymously</h3>
+<div>httpd_anonymous_content_sharing</div>
+<h4>Description</h4>
+<p>Web content directories should not be shared anonymously over remote filesystems
+such as <tt>nfs</tt> and <tt>smb</tt>. Remove the shares from the applicable
+directories.</p>
+<h4>Rationale</h4>
+<p>Sharing web content is a security risk when a web server is involved. Users
+accessing the share anonymously could experience privileged access to the
+content of such directories. Network sharable directories expose those
+directories and their contents to unnecessary access. Any unnecessary exposure
+increases the risk that someone could exploit that access and either compromises
+the web content or cause web server performance problems.</p>
+</div>
+
+<div id="httpd_antivirus_scan_uploads" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Scan All Uploaded Content for Malicious Software</h3>
+<div>httpd_antivirus_scan_uploads</div>
+<h4>Description</h4>
+<p>Install anti-virus software on the system and set it to automatically scan new
+files that are introduced to the web server.</p>
+<h4>Rationale</h4>
+<p>Remote web authors should not be able to upload files to the Document Root
+directory structure without virus checking and checking for malicious or mobile
+code. A remote web user, whose agency has a Memorandum of Agreement (MOA) with
+the hosting agency and has submitted a DoD form 2875 (System Authorization
+Access Request (SAAR)) or an equivalent document, will be allowed to post files
+to a temporary location on the server. All posted files to this temporary
+location will be scanned for viruses and content checked for malicious or mobile
+code. Only files free of viruses and malicious or mobile code will be posted to
+the appropriate DocumentRoot directory.</p>
+</div>
+
+<div id="httpd_cache_support" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable Cache Support</h3>
+<div>httpd_cache_support</div>
+<h4>Description</h4>
+<p>The <tt>cache</tt> module allows <tt>httpd</tt> to cache data, optimizing access to
+frequently accessed content. However, it introduces potential security flaws
+such as the possibility of circumventing <tt>Allow</tt> and
+<tt>Deny</tt> directives.
+<br /><br /> If this functionality is
+unnecessary, comment out the module:
+<pre>#LoadModule cache_module modules/mod_cache.so</pre>
+If caching is required, it should not be enabled for any limited-access content.</p>
+<h4>Rationale</h4>
+<p>Minimizing the number of loadable modules available to the web server reduces risk
+by limiting the capabilities allowed by the web server.</p>
+</div>
+
+<div id="httpd_cgi_support" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable CGI Support</h3>
+<div>httpd_cgi_support</div>
+<h4>Description</h4>
+<p>The <tt>cgi</tt> module allows HTML to interact with the CGI web programming language.
+<br /><br />
+If this functionality is unnecessary, comment out the module:
+<pre>#LoadModule cgi_module modules/mod_cgi.so</pre>
+
+If the web server requires the use of CGI, enable <tt>mod_cgi</tt>.</p>
+<h4>Rationale</h4>
+<p>Minimizing the number of loadable modules available to the web server reduces risk
+by limiting the capabilities allowed by the web server.</p>
+</div>
+
+<div id="httpd_configure_banner_page" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure A Banner Page For Each Website</h3>
+<div>httpd_configure_banner_page</div>
+<h4>Description</h4>
+<p>Configure a login banner for each website when authentication is required for
+user access.</p>
+<h4>Rationale</h4>
+<p>A consent banner will be in place to make prospective entrants aware that the
+website they are about to enter is a DoD web site and their activity is subject
+to monitoring. The document, DoDI 8500.01, establishes the policy on the use of
+DoD information systems. It requires the use of a standard Notice and Consent
+Banner and standard text to be included in user agreements. The requirement for
+the banner is for websites with security and access controls. These are
+restricted and not publicly accessible. If the website does not require
+authentication/authorization for use, then the banner does not need to be
+present. A manual check of the document root directory for a banner page file
+(such as banner.html) or navigation to the website via a browser can be used to
+confirm the information provided from interviewing the web staff.</p>
+</div>
+
+<div id="httpd_configure_documentroot" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Each Web Content Directory Must Contain An index.html File</h3>
+<div>httpd_configure_documentroot</div>
+<h4>Description</h4>
+<p>Every <tt>DocumentRoot</tt> that is configured should have an
+<tt>index.html</tt> file that exists. Add an <tt>index.html</tt> file to every
+configured <tt>DocumentRoot</tt>.</p>
+<h4>Rationale</h4>
+<p>The goal is to completely control the web users experience in navigating any
+portion of the web document root directories. Ensuring all web content
+directories have at least the equivalent of an index.html file is a significant
+factor to accomplish this end. Also, enumeration techniques, such as URL
+parameter manipulation, rely upon being able to obtain information about the web
+server's directory structure by locating directories with default pages. This
+practice helps ensure that the anonymous web user will not obtain directory
+browsing information or an error message that reveals the server type and
+version.</p>
+</div>
+
+<div id="httpd_configure_firewall" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure firewall to Allow Access to the Web Server</h3>
+<div>httpd_configure_firewall</div>
+<h4>Description</h4>
+<p>By default, <tt>iptables</tt>
+blocks access to the ports used by the web server.
+To configure <tt>iptables</tt> to allow port 80 traffic, one must edit
+<tt>/etc/sysconfig/iptables</tt> and
+<tt>/etc/sysconfig/ip6tables</tt> (if IPv6 is in use).
+Add the following line, ensuring that it appears before the final LOG and DROP lines for the INPUT chain:
+<pre>-A INPUT -m state --state NEW -p tcp --dport 80 -j ACCEPT</pre>
+To configure <tt>iptables</tt> to allow port 443 traffic, one must edit
+<tt>/etc/sysconfig/iptables</tt> and
+<tt>/etc/sysconfig/ip6tables</tt> (if IPv6 is in use).
+Add the following line, ensuring that it appears before the final LOG and DROP lines for the INPUT chain:
+<pre>-A INPUT -m state --state NEW -p tcp --dport 443 -j ACCEPT</pre></p>
+<h4>Rationale</h4>
+<p>Failure to properly manage and restricts ports, protocols, and services (PPS)
+can result in compromise of enclave boundary protections and/or functionality
+of the AIS.</p>
+</div>
+
+<div id="httpd_configure_log_format" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure Error Log Format</h3>
+<div>httpd_configure_log_format</div>
+<h4>Description</h4>
+<p><tt>LogFormat</tt> should be enabled and set to the following in
+<tt>/etc/httpd/conf/httpd.conf</tt>:
+<pre>LogFormat "a %A %h %H %l %m %s %t %u %U \"%{Referer}i\" \"%{User-Agent}i\"" combined</pre></p>
+<h4>Rationale</h4>
+<p>The server error logs are invaluable because they can also be used to identify
+potential problems and enable proactive remediation. Log data can reveal
+anomalous behavior such as "not found" or "unauthorized" errors that may
+be an evidence of attack attempts. Failure to enable error logging can
+significantly reduce the ability of Web Administrators to detect or remediate
+problems. The LogFormat directive defines the format and information to be
+included in the access log entries.</p>
+</div>
+
+<div id="httpd_configure_max_keepalive_requests" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure The Number of Allowed Simultaneous Requests</h3>
+<div>httpd_configure_max_keepalive_requests</div>
+<h4>Description</h4>
+<p>The <tt>MaxKeepAliveRequests</tt> directive should be set and configured to
+<tt>$var_max_keepalive_requests</tt> or greater by setting the following
+in <tt>/etc/httpd/conf/httpd.conf</tt>:
+<pre>MaxKeepAliveRequests <tt>$var_max_keepalive_requests</tt></pre></p>
+<h4>Rationale</h4>
+<p>Resource exhaustion can occur when an unlimited number of concurrent requests
+are allowed on a web site, facilitating a denial of service attack. Mitigating
+this kind of attack will include limiting the number of concurrent HTTP/HTTPS
+requests per IP address and may include, where feasible, limiting parameter
+values associated with keepalive, (i.e., a parameter used to limit the amount of
+time a connection may be inactive).</p>
+</div>
+
+<div id="httpd_configure_perl_taint" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure HTTP PERL Scripts To Use TAINT Option</h3>
+<div>httpd_configure_perl_taint</div>
+<h4>Description</h4>
+<p>If the <tt>mod_perl</tt> module is installed, enable Perl Taint checking in
+<tt>/etc/httpd/conf/httpd.conf</tt>. To enable Perl Taint
+checking, add or uncomment the following to <tt>/etc/httpd/conf.d/perl.conf</tt>:
+<pre>PerlSwitches -T</pre></p>
+<h4>Rationale</h4>
+<p>PERL (Practical Extraction and Report Language) is an interpreted language
+optimized for scanning arbitrary text files, extracting information from those
+text files, and printing reports based on that information. The language is
+often used in shell scripting and is intended to be practical, easy to use, and
+efficient means of generating interactive web pages for the user. Unfortunately,
+many widely available freeware PERL programs (scripts) are extremely insecure.
+This is most readily accomplished by a malicious user substituting input to a
+PERL script during a POST or a GET operation.
+<br /><br />
+Consequently, the founders of
+PERL have developed a mechanism named TAINT that protects the system from
+malicious input sent from outside the program. When the data is tainted, it
+cannot be used in programs or functions such as eval(), system(), exec(), pipes,
+or popen(). The script will exit with a warning message.</p>
+</div>
+
+<div id="httpd_configure_remote_session_encryption" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure Remote Administrative Access Is Encrypted</h3>
+<div>httpd_configure_remote_session_encryption</div>
+<h4>Description</h4>
+<p>Ensure that the SSH server service is enabled.
+
+The <code>sshd</code> service can be enabled with the following command:
+<pre>$ sudo systemctl enable sshd.service</pre></p>
+<h4>Rationale</h4>
+<p>Logging into a web server remotely using an unencrypted protocol or service
+when performing updates and maintenance is a major risk. Data, such as user
+account, is transmitted in plaintext and can easily be compromised. When
+performing remote administrative tasks, a protocol or service that encrypts the
+communication channel must be used.
+<br /><br />
+An alternative to remote administration of
+the web server is to perform web server administration locally at the console.
+Local administration at the console implies physical access to the server.</p>
+</div>
+
+<div id="httpd_configure_script_permissions" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Remove Write Permissions From Filesystem Paths And Server Scripts</h3>
+<div>httpd_configure_script_permissions</div>
+<h4>Description</h4>
+<p>Configure permissions for each instance of <tt>Alias</tt>,
+<tt>ScriptAlias</tt>, and <tt>ScriptAliasMatch</tt> that exist.
+<pre>$ sudo find <i>DIR</i> -type d -exec chmod 755 {} \;
+$ sudo find <i>DIR</i> -type f -exec chmod 555 {} \;</pre>
+Where <i>DIR</i> matches the paths from <tt>Alias</tt>,
+<tt>ScriptAlias</tt>, and <tt>ScriptAliasMatch</tt>.</p>
+<h4>Rationale</h4>
+<p>Excessive permissions for the anonymous web user account are one of the most
+common faults contributing to the compromise of a web server. If this user is
+able to upload and execute files on the web server, the organization or owner of
+the server will no longer have control of the asset.</p>
+</div>
+
+<div id="httpd_configure_tls" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Enable Transport Layer Security (TLS) Encryption</h3>
+<div>httpd_configure_tls</div>
+<h4>Description</h4>
+<p>Disable old SSL and TLS version and enable the latest TLS encryption by setting
+the following in <tt>/etc/httpd/conf.modules.d/ssl.conf</tt>:
+<pre>SSLProtocol all -SSLv2 -SSLv3 -TLSv1 -TLSv1.1</pre>
+Make sure to also set <tt>SSLEngine</tt> to <tt>on</tt> in
+<tt>/etc/httpd/conf.modules.d/ssl.conf</tt> like the following:
+<pre>SSLEngine on</pre></p>
+<h4>Rationale</h4>
+<p>Transport Layer Security (TLS) encryption is a required security setting for a
+private web server. Encryption of private information is essential to ensuring
+data confidentiality. If private information is not encrypted, it can be
+intercepted and easily read by an unauthorized party. A web server must
+use a FIPS 140-2 approved TLS version, and all non-FIPS-approved SSL versions
+must be disabled.</p>
+</div>
+
+<div id="httpd_configure_valid_server_cert" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure A Valid Server Certificate</h3>
+<div>httpd_configure_valid_server_cert</div>
+<h4>Description</h4>
+<p>Configure the web site to use a valid organizationally defined certificate.
+For DoD, this is a DoD server certificate issued by the DoD CA.</p>
+<h4>Rationale</h4>
+<p>This check verifies that DoD is a hosted web site's CA. The certificate is
+actually a DoD-issued server certificate used by the organization being
+reviewed. This is used to verify the authenticity of the web site to the user.
+If the certificate is not for the server (Certificate belongs to), if the
+certificate is not issued by DoD (Certificate was issued by), or if the current
+date is not included in the valid date (Certificate is valid from), then there
+is no assurance that the use of the certificate is valid. The entire purpose of
+using a certificate is, therefore, compromised.</p>
+</div>
+
+<div id="httpd_digest_authentication" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable HTTP Digest Authentication</h3>
+<div>httpd_digest_authentication</div>
+<h4>Description</h4>
+<p>The <tt>auth_digest</tt> module provides encrypted authentication sessions.
+If this functionality is unnecessary, comment out the related module:
+<pre>#LoadModule auth_digest_module modules/mod_auth_digest.so</pre></p>
+<h4>Rationale</h4>
+<p>Minimizing the number of loadable modules available to the web server reduces risk
+by limiting the capabilities allowed by the web server.</p>
+</div>
+
+<div id="httpd_disable_anonymous_ftp_access" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable Anonymous FTP Access</h3>
+<div>httpd_disable_anonymous_ftp_access</div>
+<h4>Description</h4>
+<p>If any directories that contain dynamic scripts can be accessed via FTP by
+any group or user that does not require access, remove permissions to such
+directories that allow anonymous access. Also, ensure that any such
+access employs an encrypted connection.</p>
+<h4>Rationale</h4>
+<p>The directories containing the CGI scripts, such as PERL, must not be
+accessible to anonymous users via FTP. This applies to all directories that
+contain scripts that can dynamically produce web pages in an interactive manner
+(i.e., scripts based upon user-provided input). Such scripts contain information
+that could be used to compromise a web service, access system resources, or
+deface a web site.</p>
+</div>
+
+<div id="httpd_disable_content_symlinks" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable Web Content Symbolic Links</h3>
+<div>httpd_disable_content_symlinks</div>
+<h4>Description</h4>
+<p>For each <tt>&lt;Directory&gt;</tt> instance, remove the following:
+<pre>FollowSymLinks</pre>
+If symbolic links are allowed, the following can be added for each
+<tt>&lt;Directory&gt;</tt> instance:
+<pre>Options SymLinksIfOwnerMatchDisable</pre></p>
+<h4>Rationale</h4>
+<p>A symbolic link allows a file or a directory to be referenced using a symbolic
+name raising a potential hazard if symbolic linkage is made to a sensitive area.
+When web scripts are executed and symbolic links are allowed, the web user could
+be allowed to access locations on the web server that are outside the scope of
+the web document root or home directory.</p>
+</div>
+
+<div id="httpd_disable_mime_types" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>MIME types for csh or sh shell programs must be disabled</h3>
+<div>httpd_disable_mime_types</div>
+<h4>Description</h4>
+<p>Users must not be allowed to access the shell programs.</p>
+<h4>Rationale</h4>
+<p>Shell programs might execute shell escapes and could then perform
+unauthorized activities that could damage the security posture of the web
+server. A shell is a program that serves as the basic interface between the
+user and the operating system. In this regard, there are shells that are
+security risks in the context of a web server and shells that are
+unauthorized.</p>
+</div>
+
+<div id="httpd_enable_error_logging" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Enable HTTPD Error Logging</h3>
+<div>httpd_enable_error_logging</div>
+<h4>Description</h4>
+<p><tt>ErrorLog</tt> should be enabled and set to the following in
+<tt>/etc/httpd/conf/httpd.conf</tt>:
+<pre>ErrorLog "logs/error_log"</pre></p>
+<h4>Rationale</h4>
+<p>The server error logs are invaluable because they can also be used to identify
+potential problems and enable proactive remediation. Log data can reveal
+anomalous behavior such as "not found" or "unauthorized" errors that may
+be an evidence of attack attempts. Failure to enable error logging can
+significantly reduce the ability of Web Administrators to detect or remediate
+problems.</p>
+</div>
+
+<div id="httpd_enable_log_config" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Enable log_config_module For HTTPD Logging</h3>
+<div>httpd_enable_log_config</div>
+<h4>Description</h4>
+<p>The <tt>log_config_module</tt> should exist and be configured in
+the <tt>/etc/httpd/conf/httpd.conf</tt> file by adding the following module to
+configure logging:
+<pre>log_config_module</pre></p>
+<h4>Rationale</h4>
+<p>A major tool in exploring the web site use, attempted use, unusual conditions,
+and problems are reported in the access and error logs. In the event of a
+security incident, these logs can provide the SA and the web manager with
+valuable information. Without these log files, SAs and web managers are
+seriously hindered in their efforts to respond appropriately to suspicious or
+criminal actions targeted at the web site.</p>
+</div>
+
+<div id="httpd_enable_loglevel" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Enable HTTPD LogLevel</h3>
+<div>httpd_enable_loglevel</div>
+<h4>Description</h4>
+<p><tt>LogLevel</tt> should be enabled and set to <tt>$var_httpd_loglevel</tt>.
+Add or edit the following in <tt>/etc/httpd/conf/httpd.conf</tt>:
+<pre>LogLevel <tt>$var_httpd_loglevel</tt></pre></p>
+<h4>Rationale</h4>
+<p>The server error logs are invaluable because they can also be used to identify
+potential problems and enable proactive remediation. Log data can reveal
+anomalous behavior such as "not found" or "unauthorized" errors that may
+be an evidence of attack attempts. Failure to enable error logging can
+significantly reduce the ability of Web Administrators to detect or remediate
+problems. While the ErrorLog directive configures the error log file name, the
+LogLevel directive is used to configure the severity level for the error logs.
+The log level values are the standard syslog levels: emerg, alert, crit, error,
+warn, notice, info and debug.</p>
+</div>
+
+<div id="httpd_enable_system_logging" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Enable HTTPD System Logging</h3>
+<div>httpd_enable_system_logging</div>
+<h4>Description</h4>
+<p><tt>CustomLog</tt> should be enabled and set to the following in
+<tt>/etc/httpd/conf/httpd.conf</tt>:
+<pre>CustomLog "logs/access_log" combined</pre></p>
+<h4>Rationale</h4>
+<p>The server error logs are invaluable because they can also be used to identify
+potential problems and enable proactive remediation. Log data can reveal
+anomalous behavior such as "not found" or "unauthorized" errors that may
+be an evidence of attack attempts. Failure to enable error logging can
+significantly reduce the ability of Web Administrators to detect or remediate
+problems. The CustomLog directive specifies the log file, syslog facility, or
+piped logging utility.</p>
+</div>
+
+<div id="httpd_encrypt_file_uploads" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Encrypt All File Uploads</h3>
+<div>httpd_encrypt_file_uploads</div>
+<h4>Description</h4>
+<p>Use only secure encrypted logons and connections for uploading files to the web
+site.</p>
+<h4>Rationale</h4>
+<p>Logging in to a web server via an unencrypted protocol or service, to upload
+documents to the web site, is a risk if proper encryption is not utilized to
+protect the data being transmitted. An encrypted protocol or service must be
+used for remote access to web administration tasks.</p>
+</div>
+
+<div id="httpd_entrust_passwords" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>The web server password(s) must be entrusted to the SA or Web Manager</h3>
+<div>httpd_entrust_passwords</div>
+<h4>Description</h4>
+<p>Normally, a service account is established for the web server. This is
+because a privileged account is not desirable and the server is designed to
+run for long uninterrupted periods of time. The SA or Web Manager will need
+password access to the web server to restart the service in the event or an
+emergency as the web server is not to restart automatically after an
+unscheduled interruption.</p>
+<h4>Rationale</h4>
+<p>If the password is not entrusted to an SA or web manager the ability to
+ensure the availability of the web server is compromised.</p>
+</div>
+
+<div id="httpd_ignore_htaccess_files" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ignore HTTPD .htaccess Files</h3>
+<div>httpd_ignore_htaccess_files</div>
+<h4>Description</h4>
+<p>Set <tt>AllowOverride</tt> to <tt>none</tt> for each instant of
+<tt>&lt;Directory&gt;</tt>.</p>
+<h4>Rationale</h4>
+<p>CGI scripts represents one of the most common and exploitable means of
+compromising a web server. By definition, CGI are executable by the operating
+system of the host server. While access control is provided via the web service,
+the execution of CGI programs is not otherwise limited unless the SA or Web
+Manager takes specific measures. CGI programs can access and alter data files,
+launch other programs and use the network. CGI programs can be written in any
+available programming language. C, PERL, PHP, Javascript, VBScript and shell
+(sh, ksh, bash) are popular choices.</p>
+</div>
+
+<div id="httpd_install_mod_security" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Install mod_security</h3>
+<div>httpd_install_mod_security</div>
+<h4>Description</h4>
+<p>Install the <tt>security</tt> module:
+The <code>mod_security</code> package can be installed with the following command:
+<pre>
+$ sudo dnf install mod_security</pre></p>
+<h4>Rationale</h4>
+<p><tt>mod_security</tt> provides an additional level of protection for the web server by
+enabling the administrator to implement content access policies and filters at the
+application layer.</p>
+</div>
+
+<div id="httpd_install_mod_ssl" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Install mod_ssl</h3>
+<div>httpd_install_mod_ssl</div>
+<h4>Description</h4>
+<p>Install the <tt>mod_ssl</tt> module:
+The <code>mod_ssl</code> package can be installed with the following command:
+<pre>
+$ sudo dnf install mod_ssl</pre></p>
+<h4>Rationale</h4>
+<p><tt>mod_ssl</tt> provides encryption capabilities for the <tt>httpd</tt> Web server. Unencrypted
+content is transmitted in plain text which could be passively monitored and accessed by
+unauthorized parties.</p>
+</div>
+
+<div id="httpd_ldap_support" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable LDAP Support</h3>
+<div>httpd_ldap_support</div>
+<h4>Description</h4>
+<p>The <tt>ldap</tt> module provides HTTP authentication via an LDAP directory.
+If its functionality is unnecessary, comment out the related modules:
+<pre>#LoadModule ldap_module modules/mod_ldap.so
+#LoadModule authnz_ldap_module modules/mod_authnz_ldap.so</pre>
+If LDAP is to be used, SSL encryption should be used as well.</p>
+<h4>Rationale</h4>
+<p>Minimizing the number of loadable modules available to the web server reduces risk
+by limiting the capabilities allowed by the web server.</p>
+</div>
+
+<div id="httpd_limit_available_methods" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Limit Available Methods</h3>
+<div>httpd_limit_available_methods</div>
+<h4>Description</h4>
+<p>Web server methods are defined in section 9 of RFC 2616 (
+    <a xmlns='http://www.w3.org/1999/xhtml' href='http://www.ietf.org/rfc/rfc2616.txt'>http://www.ietf.org/rfc/rfc2616.txt</a>).
+If a web server does not require the implementation of all available methods,
+they should be disabled.
+<br /><br />
+Note: <tt>GET</tt> and <tt>POST</tt> are the most common methods. A majority of the others
+are limited to the WebDAV protocol.
+<pre>&lt;Directory /var/www/html&gt;
+# ...
+   # Only allow specific methods (this command is case-sensitive!)
+   &lt;LimitExcept GET POST&gt;
+      Order allow,deny
+   &lt;/LimitExcept&gt;
+# ...
+&lt;/Directory&gt;</pre></p>
+<h4>Rationale</h4>
+<p>Minimizing the number of available methods to the web client reduces risk
+by limiting the capabilities allowed by the web server.</p>
+</div>
+
+<div id="httpd_limit_java_files" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Remove .java And .jpp Files</h3>
+<div>httpd_limit_java_files</div>
+<h4>Description</h4>
+<p><tt>.java</tt> and <tt>.jpp</tt> files should not exist and should be removed
+from the web server.</p>
+<h4>Rationale</h4>
+<p>From the source code in a .java or a .jpp file, the Java compiler produces a
+binary file with an extension of .class. The .java or .jpp file would,
+therefore, reveal sensitive information regarding an application's logic and
+permissions to resources on the server. By contrast, the .class file, because it
+is intended to be machine independent, is referred to as bytecode. Bytecodes are
+run by the Java Virtual Machine (JVM), or the Java Runtime Environment (JRE),
+via a browser configured to permit Java code.</p>
+</div>
+
+<div id="httpd_mime_magic" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable MIME Magic</h3>
+<div>httpd_mime_magic</div>
+<h4>Description</h4>
+<p>The <tt>mime_magic</tt> module provides a second layer of MIME support that in most configurations
+is likely extraneous. If its functionality is unnecessary, comment out the related module:
+<pre>#LoadModule mime_magic_module modules/mod_mime_magic.so</pre></p>
+<h4>Rationale</h4>
+<p>Minimizing the number of loadable modules available to the web server reduces risk
+by limiting the capabilities allowed by the web server.</p>
+</div>
+
+<div id="httpd_mod_rewrite" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable HTTP mod_rewrite</h3>
+<div>httpd_mod_rewrite</div>
+<h4>Description</h4>
+<p>The <tt>mod_rewrite</tt> module is very powerful and can protect against
+certain classes of web attacks. However, it is also very complex and has a
+significant history of vulnerabilities itself. If its functionality is
+unnecessary, comment out the related module:
+<pre>#LoadModule rewrite_module modules/mod_rewrite.so</pre></p>
+<h4>Rationale</h4>
+<p>Minimizing the number of loadable modules available to the web server reduces risk
+by limiting the capabilities allowed by the web server.</p>
+</div>
+
+<div id="httpd_nipr_accredited_dmz" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>A public web server, if hosted on the NIPRNet, must be isolated in an accredited DoD DMZ extension</h3>
+<div>httpd_nipr_accredited_dmz</div>
+<h4>Description</h4>
+<p>To minimize exposure of private assets to unnecessary risk by attackers,
+public web servers must be isolated from internal systems.
+
+Logically relocate public web servers to be isolated from internal
+systems. In addition, ensure the public web server does not have
+trusted connections with assets outside the confines of the
+demilitarizez done (DMZ) other than application and/or database servers
+that are a part of the same system as the web server.</p>
+<h4>Rationale</h4>
+<p>Public web servers are by nature more vulnerabile to attack from publicly
+based sources, such as the public Internet. Once compromised, a public
+server might be used as a base for further attack on private resources,
+unless additional layers of protection are implemented. Public web servers
+must be located in a DoD DMZ Extension, if hosted on the NIPRNet, with
+carefully controlled access. Failure to isolate resources in this way
+increase risk that private assets are exposed to attacks from public
+sources. An improperly located public web server is a potential
+threat to the entire network.</p>
+</div>
+
+<div id="httpd_no_compilers_in_prod" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Installation of a compiler on production web server is prohibited</h3>
+<div>httpd_no_compilers_in_prod</div>
+<h4>Description</h4>
+<p>The presence of a compiler on a production server facilitates the malicious
+user's task of creating custom versions of programs and installing Trojan
+Horses or viruses.</p>
+<h4>Rationale</h4>
+<p>An attacker's code could be uploaded and compiled on the server
+under attack.</p>
+</div>
+
+<div id="httpd_private_server_on_separate_subnet" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>A private web server must be located on a separate controlled access subnet</h3>
+<div>httpd_private_server_on_separate_subnet</div>
+<h4>Description</h4>
+<p>Private web servers, which host sites that serve controlled access data,
+must be protected from outside threats in addition to insider threats.
+
+Isolate the private web server from the public DMZ and separate it from the
+internal general population LAN.</p>
+<h4>Rationale</h4>
+<p>Insider threat may be accidental or intentional but, in either case, can
+cause a disruption in service of the web server. To protect the private
+web server from these threats, it must be located on a separate controlled
+access subnet and must not be part of the public DMZ that houses the public
+web servers. it also cannot be located inside the enclave as part of the
+local general population LAN.</p>
+</div>
+
+<div id="httpd_proxy_support" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable Proxy Support</h3>
+<div>httpd_proxy_support</div>
+<h4>Description</h4>
+<p>The <tt>proxy</tt> module provides proxying support, allowing <tt>httpd</tt> to forward requests and
+serve as a gateway for other servers. If its functionality is unnecessary, comment out the module:
+<pre>#LoadModule proxy_module modules/mod_proxy.so</pre>
+
+If proxy support is needed, load <tt>mod_proxy</tt> and the appropriate proxy protocol handler
+module (one of <tt>mod_proxy_http</tt>, <tt>mod_proxy_ftp</tt>, or <tt>mod_proxy_connect</tt>). Additionally,
+make certain that a server is secure before enabling proxying, as open proxy servers
+are a security risk. <tt>mod_proxy_balancer</tt> enables load balancing, but requires that
+<tt>mod status</tt> be enabled.</p>
+<h4>Rationale</h4>
+<p>Minimizing the number of loadable modules available to the web server reduces risk
+by limiting the capabilities allowed by the web server.</p>
+</div>
+
+<div id="httpd_public_resources_not_shared" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Public web server resources must not be shared with private assets</h3>
+<div>httpd_public_resources_not_shared</div>
+<h4>Description</h4>
+<p>It is important to segregate public web server resources from private
+resources located behind a DMZ in order to protect private
+assets.</p>
+<h4>Rationale</h4>
+<p>When folders, drives, or other resources are directly shared between the
+public web server and private servers the intent of data and resource
+segregation can be compromised.
+
+In addition to the requirements of the DoD Internet-NIPRNet DMZ STIG that
+isolates inbound traffic from external network to the internal network,
+resources such as printers, files, and folders/directories will not be
+shared between public web servers and assets located within the internal
+network.</p>
+</div>
+
+<div id="httpd_remove_backups" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Backup interactive scripts on the production web server are prohibited</h3>
+<div>httpd_remove_backups</div>
+<h4>Description</h4>
+<p>Copies of backup files will not execute on the server, but they can be
+read by the anonymous user if special precautions are not taken.</p>
+<h4>Rationale</h4>
+<p>Such backup copies contain the same sensitive information as the actual
+scripts being executed and, as such, are useful to malicious users.
+Techniques and systems exist today that search web servers for such files
+and are able to exploit the information contained in them.
+
+Backup copies of files are automatically created by some text editors such
+such as emacs and VIM. Editors may write a backup file with an extension
+~ added to the name of the original file. The edit plus editor will
+create a .bak file. Of course, this would imply the presence and use of
+development tools on the web server, which is a finding under WG130. Having
+backup scripts on the web server provides one more opportunity for
+malicious persons to view these scripts and use the information found in
+them.</p>
+</div>
+
+<div id="httpd_remove_robots_file" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>The robots.txt Files Must Not Exist</h3>
+<div>httpd_remove_robots_file</div>
+<h4>Description</h4>
+<p>Remove any <tt>robots.txt</tt> files that may exist with any web content.
+Other methods must be employed if there is information on the web site that
+needs protection from search engines and public view. Inspect all instances of
+<tt>DocumentRoot</tt> and <tt>Alias</tt> and remove any <tt>robots.txt</tt> file.
+<pre>$ sudo rm -f path/to/robots.txt</pre></p>
+<h4>Rationale</h4>
+<p>Search engines are constantly at work on the Internet. Search engines are
+augmented by agents, often referred to as spiders or bots, which endeavor to
+capture and catalog web-site content. In turn, these search engines make the
+content they obtain and catalog available to any public web user.
+<br /><br />
+To request
+that a well behaved search engine not crawl and catalog a site, the web site may
+contain a file called robots.txt. This file contains directories and files that
+the web server SA desires not be crawled or cataloged, but this file can also be
+used, by an attacker or poorly coded search engine, as a directory and file
+index to a site. This information may be used to reduce an attacker's time
+searching and traversing the web site to find files that might be relevant. If
+information on the web site needs to be protected from search engines and public
+view, other methods must be used.</p>
+</div>
+
+<div id="httpd_require_client_certs" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Require Client Certificates</h3>
+<div>httpd_require_client_certs</div>
+<h4>Description</h4>
+<p><tt>SSLVerifyClient</tt> should be set and configured to <tt>require</tt> by
+setting the following in <tt>/etc/httpd/conf/httpd.conf</tt>:
+<pre>SSLVerifyClient require</pre></p>
+<h4>Rationale</h4>
+<p>Web sites requiring authentication must utilize PKI as an
+authentication mechanism for web users. Information systems residing behind web
+servers requiring authorization based on individual identity must use the
+identity provided by certificate-based authentication to support access control
+decisions.</p>
+</div>
+
+<div id="httpd_restrict_critical_directories" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Restrict Other Critical Directories</h3>
+<div>httpd_restrict_critical_directories</div>
+<h4>Description</h4>
+<p>All accessible web directories should be configured with similarly restrictive settings.
+The <tt>Options</tt> directive should be limited to necessary functionality and the <tt>AllowOverride</tt>
+directive should be used only if needed. The <tt>Order</tt> and <tt>Deny</tt> access control tags
+should be used to deny access by default, allowing access only where necessary.</p>
+<h4>Rationale</h4>
+<p>Directories accessible from a web client should be configured with the least amount of
+access possible in order to avoid unauthorized access to restricted content or server information.</p>
+</div>
+
+<div id="httpd_restrict_root_directory" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Restrict Root Directory</h3>
+<div>httpd_restrict_root_directory</div>
+<h4>Description</h4>
+<p>The <tt>httpd</tt> root directory should always have the most restrictive configuration enabled.
+<pre>&lt;Directory / &gt;
+   Options None
+   AllowOverride None
+   Order allow,deny
+&lt;/Directory&gt;</pre></p>
+<h4>Rationale</h4>
+<p>The Web Server's root directory content should be protected from unauthorized access
+by web clients.</p>
+</div>
+
+<div id="httpd_restrict_web_directory" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Restrict Web Directory</h3>
+<div>httpd_restrict_web_directory</div>
+<h4>Description</h4>
+<p>The default configuration for the web (<tt>/var/www/html</tt>) Directory allows directory
+indexing (<tt>Indexes</tt>) and the following of symbolic links (<tt>FollowSymLinks</tt>).
+Neither of these is recommended.
+<br /><br />
+The <tt>/var/www/html</tt> directory hierarchy should not be viewable via the web, and
+symlinks should only be followed if the owner of the symlink also owns the linked file.
+<br /><br />
+Ensure that this policy is adhered to by altering the related section of the configuration:
+<pre>&lt;Directory "/var/www/html"&gt;
+#  ...
+   Options SymLinksIfOwnerMatch
+#  ...
+&lt;/Directory&gt;</pre></p>
+<h4>Rationale</h4>
+<p>Access to the web server's directory hierarchy could allow access to unauthorized files
+by web clients. Following symbolic links could also allow such access.</p>
+</div>
+
+<div id="httpd_server_activity_status" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable Server Activity Status</h3>
+<div>httpd_server_activity_status</div>
+<h4>Description</h4>
+<p>The <tt>status</tt> module provides real-time access to statistics on the internal operation of
+the web server. This may constitute an unnecessary information leak and should be disabled
+unless necessary. To do so, comment out the related module:
+<pre>#LoadModule status_module modules/mod_status.so</pre>
+If there is a critical need for this module, ensure that access to the status
+page is properly restricted to a limited set of hosts in the status handler
+configuration.</p>
+<h4>Rationale</h4>
+<p>Minimizing the number of loadable modules available to the web server reduces risk
+by limiting the capabilities allowed by the web server.</p>
+</div>
+
+<div id="httpd_server_configuration_display" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable Web Server Configuration Display</h3>
+<div>httpd_server_configuration_display</div>
+<h4>Description</h4>
+<p>The <tt>info</tt> module creates a web page illustrating the configuration of the web server. This
+can create an unnecessary security leak and should be disabled.
+If its functionality is unnecessary, comment out the module:
+<pre>#LoadModule info_module modules/mod_info.so</pre>
+If there is a critical need for this module, use the <tt>Location</tt> directive to provide
+an access control list to restrict access to the information.</p>
+<h4>Rationale</h4>
+<p>Minimizing the number of loadable modules available to the web server reduces risk
+by limiting the capabilities allowed by the web server.</p>
+</div>
+
+<div id="httpd_server_side_includes" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable Server Side Includes</h3>
+<div>httpd_server_side_includes</div>
+<h4>Description</h4>
+<p>Server Side Includes provide a method of dynamically generating web pages through the
+insertion of server-side code. However, the technology is also deprecated and
+introduces significant security concerns.
+If this functionality is unnecessary, comment out the related module:
+<pre>#LoadModule include_module modules/mod_include.so</pre>
+If there is a critical need for Server Side Includes, they should be enabled with the
+option <tt>IncludesNoExec</tt> to prevent arbitrary code execution. Additionally, user
+supplied data should be encoded to prevent cross-site scripting vulnerabilities.</p>
+<h4>Rationale</h4>
+<p>Minimizing the number of loadable modules available to the web server reduces risk
+by limiting the capabilities allowed by the web server.</p>
+</div>
+
+<div id="httpd_serversignature_off" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Set httpd ServerSignature Directive to Off</h3>
+<div>httpd_serversignature_off</div>
+<h4>Description</h4>
+<p><tt>ServerSignature Off</tt> restricts <tt>httpd</tt> from displaying server version number
+on error pages.
+<br /><br />
+Add or correct the following directive in <tt>/etc/httpd/conf/httpd.conf</tt>:
+<pre>ServerSignature Off</pre></p>
+<h4>Rationale</h4>
+<p>Information disclosed to clients about the configuration of the web server and system could be used
+to plan an attack on the given system. This information disclosure should be restricted to a minimum.</p>
+</div>
+
+<div id="httpd_servertokens_prod" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Set httpd ServerTokens Directive to Prod</h3>
+<div>httpd_servertokens_prod</div>
+<h4>Description</h4>
+<p><tt>ServerTokens Prod</tt> restricts information in page headers, returning only the word "Apache."
+<br /><br />
+Add or correct the following directive in <tt>/etc/httpd/conf/httpd.conf</tt>:
+<pre>ServerTokens Prod</pre></p>
+<h4>Rationale</h4>
+<p>Information disclosed to clients about the configuration of the web server and system could be used
+to plan an attack on the given system. This information disclosure should be restricted to a minimum.</p>
+</div>
+
+<div id="httpd_url_correction" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable URL Correction on Misspelled Entries</h3>
+<div>httpd_url_correction</div>
+<h4>Description</h4>
+<p>The <tt>speling</tt> module attempts to find a document match by allowing one misspelling in an
+otherwise failed request. If this functionality is unnecessary, comment out the module:
+<pre>#LoadModule speling_module modules/mod_speling.so</pre>
+This functionality weakens server security by making site enumeration easier.</p>
+<h4>Rationale</h4>
+<p>Minimizing the number of loadable modules available to the web server reduces risk
+by limiting the capabilities allowed by the web server.</p>
+</div>
+
+<div id="httpd_webdav" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable WebDAV (Distributed Authoring and Versioning)</h3>
+<div>httpd_webdav</div>
+<h4>Description</h4>
+<p>WebDAV is an extension of the HTTP protocol that provides distributed and
+collaborative access to web content. If its functionality is unnecessary,
+comment out the related modules:
+<pre>#LoadModule dav_module modules/mod_dav.so
+#LoadModule dav_fs_module modules/mod_dav_fs.so</pre>
+If there is a critical need for WebDAV, extra care should be taken in its configuration.
+Since DAV access allows remote clients to manipulate server files, any location on the
+server that is DAV enabled should be protected by access controls.</p>
+<h4>Rationale</h4>
+<p>Minimizing the number of loadable modules available to the web server, reduces risk
+by limiting the capabilities allowed by the web server.</p>
+</div>
+
+<div id="package_httpd_removed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Uninstall httpd Package</h3>
+<div>package_httpd_removed</div>
+<h4>Description</h4>
+<p>The <code>httpd</code> package can be removed with the following command:
+<pre>
+$ sudo dnf remove httpd</pre></p>
+<h4>Rationale</h4>
+<p>If there is no need to make the web server software available,
+removing it provides a safeguard against its activation.</p>
+</div>
+
+<div id="package_nginx_removed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Uninstall nginx Package</h3>
+<div>package_nginx_removed</div>
+<h4>Description</h4>
+<p>The <code>nginx</code> package can be removed with the following command:
+<pre>
+$ sudo dnf remove nginx</pre></p>
+<h4>Rationale</h4>
+<p>If there is no need to make the web server software available,
+removing it provides a safeguard against its activation.</p>
+</div>
+
+<div id="partition_for_web_content" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure Web Content Located on Separate partition</h3>
+<div>partition_for_web_content</div>
+<h4>Description</h4>
+<p>The <tt>DocumentRoot</tt> directory is used for storing web content and data.
+Ensure that the <tt>DocumentRoot</tt> directory exists on a separate logical
+volume at installation time, or migrate it using LVM.</p>
+<h4>Rationale</h4>
+<p>Application partitioning enables an additional security measure by securing
+user traffic under one security context, while managing system and application
+files under another. Web content is can be to an anonymous web user. For such
+an account to have access to system files of any type is a major security risk
+that is avoidable and desirable. Failure to partition the system files from the
+web site documents increases risk of attack via directory traversal, or impede
+web site availability due to drive space exhaustion.</p>
+</div>
+
+<div id="sebool_httpd_anon_write" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable the httpd_anon_write SELinux Boolean</h3>
+<div>sebool_httpd_anon_write</div>
+<h4>Description</h4>
+<p>By default, the SELinux boolean <tt>httpd_anon_write</tt> is disabled.
+If this setting is enabled, it should be disabled.
+
+To disable the <code>httpd_anon_write</code> SELinux boolean, run the following command:
+<pre>$ sudo setsebool -P httpd_anon_write off</pre></p>
+<h4>Rationale</h4>
+<p></p>
+</div>
+
+<div id="sebool_httpd_builtin_scripting" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure the httpd_builtin_scripting SELinux Boolean</h3>
+<div>sebool_httpd_builtin_scripting</div>
+<h4>Description</h4>
+<p>By default, the SELinux boolean <tt>httpd_builtin_scripting</tt> is enabled.
+This setting should be disabled if <tt>httpd</tt> is not running <tt>php</tt>
+or some similarly scripting language.
+
+To disable the <code>httpd_builtin_scripting</code> SELinux boolean, run the following command:
+<pre>$ sudo setsebool -P httpd_builtin_scripting off</pre></p>
+<h4>Rationale</h4>
+<p></p>
+</div>
+
+<div id="sebool_httpd_can_check_spam" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable the httpd_can_check_spam SELinux Boolean</h3>
+<div>sebool_httpd_can_check_spam</div>
+<h4>Description</h4>
+<p>By default, the SELinux boolean <tt>httpd_can_check_spam</tt> is disabled.
+If this setting is enabled, it should be disabled.
+
+To disable the <code>httpd_can_check_spam</code> SELinux boolean, run the following command:
+<pre>$ sudo setsebool -P httpd_can_check_spam off</pre></p>
+<h4>Rationale</h4>
+<p></p>
+</div>
+
+<div id="sebool_httpd_can_connect_ftp" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable the httpd_can_connect_ftp SELinux Boolean</h3>
+<div>sebool_httpd_can_connect_ftp</div>
+<h4>Description</h4>
+<p>By default, the SELinux boolean <tt>httpd_can_connect_ftp</tt> is disabled.
+If this setting is enabled, it should be disabled.
+
+To disable the <code>httpd_can_connect_ftp</code> SELinux boolean, run the following command:
+<pre>$ sudo setsebool -P httpd_can_connect_ftp off</pre></p>
+<h4>Rationale</h4>
+<p></p>
+</div>
+
+<div id="sebool_httpd_can_connect_ldap" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable the httpd_can_connect_ldap SELinux Boolean</h3>
+<div>sebool_httpd_can_connect_ldap</div>
+<h4>Description</h4>
+<p>By default, the SELinux boolean <tt>httpd_can_connect_ldap</tt> is disabled.
+If this setting is enabled, it should be disabled.
+
+To disable the <code>httpd_can_connect_ldap</code> SELinux boolean, run the following command:
+<pre>$ sudo setsebool -P httpd_can_connect_ldap off</pre></p>
+<h4>Rationale</h4>
+<p></p>
+</div>
+
+<div id="sebool_httpd_can_connect_mythtv" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable the httpd_can_connect_mythtv SELinux Boolean</h3>
+<div>sebool_httpd_can_connect_mythtv</div>
+<h4>Description</h4>
+<p>By default, the SELinux boolean <tt>httpd_can_connect_mythtv</tt> is disabled.
+If this setting is enabled, it should be disabled.
+
+To disable the <code>httpd_can_connect_mythtv</code> SELinux boolean, run the following command:
+<pre>$ sudo setsebool -P httpd_can_connect_mythtv off</pre></p>
+<h4>Rationale</h4>
+<p></p>
+</div>
+
+<div id="sebool_httpd_can_connect_zabbix" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable the httpd_can_connect_zabbix SELinux Boolean</h3>
+<div>sebool_httpd_can_connect_zabbix</div>
+<h4>Description</h4>
+<p>By default, the SELinux boolean <tt>httpd_can_connect_zabbix</tt> is disabled.
+If this setting is enabled, it should be disabled.
+
+To disable the <code>httpd_can_connect_zabbix</code> SELinux boolean, run the following command:
+<pre>$ sudo setsebool -P httpd_can_connect_zabbix off</pre></p>
+<h4>Rationale</h4>
+<p></p>
+</div>
+
+<div id="sebool_httpd_can_network_connect" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable the httpd_can_network_connect SELinux Boolean</h3>
+<div>sebool_httpd_can_network_connect</div>
+<h4>Description</h4>
+<p>By default, the SELinux boolean <tt>httpd_can_network_connect</tt> is disabled.
+If this setting is enabled, it should be disabled.
+
+To disable the <code>httpd_can_network_connect</code> SELinux boolean, run the following command:
+<pre>$ sudo setsebool -P httpd_can_network_connect off</pre></p>
+<h4>Rationale</h4>
+<p></p>
+</div>
+
+<div id="sebool_httpd_can_network_connect_cobbler" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable the httpd_can_network_connect_cobbler SELinux Boolean</h3>
+<div>sebool_httpd_can_network_connect_cobbler</div>
+<h4>Description</h4>
+<p>By default, the SELinux boolean <tt>httpd_can_network_connect_cobbler</tt> is disabled.
+If this setting is enabled, it should be disabled.
+
+To disable the <code>httpd_can_network_connect_cobbler</code> SELinux boolean, run the following command:
+<pre>$ sudo setsebool -P httpd_can_network_connect_cobbler off</pre></p>
+<h4>Rationale</h4>
+<p></p>
+</div>
+
+<div id="sebool_httpd_can_network_connect_db" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable the httpd_can_network_connect_db SELinux Boolean</h3>
+<div>sebool_httpd_can_network_connect_db</div>
+<h4>Description</h4>
+<p>By default, the SELinux boolean <tt>httpd_can_network_connect_db</tt> is disabled.
+If this setting is enabled, it should be disabled.
+
+To disable the <code>httpd_can_network_connect_db</code> SELinux boolean, run the following command:
+<pre>$ sudo setsebool -P httpd_can_network_connect_db off</pre></p>
+<h4>Rationale</h4>
+<p></p>
+</div>
+
+<div id="sebool_httpd_can_network_memcache" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable the httpd_can_network_memcache SELinux Boolean</h3>
+<div>sebool_httpd_can_network_memcache</div>
+<h4>Description</h4>
+<p>By default, the SELinux boolean <tt>httpd_can_network_memcache</tt> is disabled.
+If this setting is enabled, it should be disabled.
+
+To disable the <code>httpd_can_network_memcache</code> SELinux boolean, run the following command:
+<pre>$ sudo setsebool -P httpd_can_network_memcache off</pre></p>
+<h4>Rationale</h4>
+<p></p>
+</div>
+
+<div id="sebool_httpd_can_network_relay" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable the httpd_can_network_relay SELinux Boolean</h3>
+<div>sebool_httpd_can_network_relay</div>
+<h4>Description</h4>
+<p>By default, the SELinux boolean <tt>httpd_can_network_relay</tt> is disabled.
+If this setting is enabled, it should be disabled.
+
+To disable the <code>httpd_can_network_relay</code> SELinux boolean, run the following command:
+<pre>$ sudo setsebool -P httpd_can_network_relay off</pre></p>
+<h4>Rationale</h4>
+<p></p>
+</div>
+
+<div id="sebool_httpd_can_sendmail" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable the httpd_can_sendmail SELinux Boolean</h3>
+<div>sebool_httpd_can_sendmail</div>
+<h4>Description</h4>
+<p>By default, the SELinux boolean <tt>httpd_can_sendmail</tt> is disabled.
+If this setting is enabled, it should be disabled.
+
+To disable the <code>httpd_can_sendmail</code> SELinux boolean, run the following command:
+<pre>$ sudo setsebool -P httpd_can_sendmail off</pre></p>
+<h4>Rationale</h4>
+<p></p>
+</div>
+
+<div id="sebool_httpd_dbus_avahi" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable the httpd_dbus_avahi SELinux Boolean</h3>
+<div>sebool_httpd_dbus_avahi</div>
+<h4>Description</h4>
+<p>By default, the SELinux boolean <tt>httpd_dbus_avahi</tt> is disabled.
+If this setting is enabled, it should be disabled.
+
+To disable the <code>httpd_dbus_avahi</code> SELinux boolean, run the following command:
+<pre>$ sudo setsebool -P httpd_dbus_avahi off</pre></p>
+<h4>Rationale</h4>
+<p></p>
+</div>
+
+<div id="sebool_httpd_dbus_sssd" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable the httpd_dbus_sssd SELinux Boolean</h3>
+<div>sebool_httpd_dbus_sssd</div>
+<h4>Description</h4>
+<p>By default, the SELinux boolean <tt>httpd_dbus_sssd</tt> is disabled.
+If this setting is enabled, it should be disabled.
+
+To disable the <code>httpd_dbus_sssd</code> SELinux boolean, run the following command:
+<pre>$ sudo setsebool -P httpd_dbus_sssd off</pre></p>
+<h4>Rationale</h4>
+<p></p>
+</div>
+
+<div id="sebool_httpd_dontaudit_search_dirs" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable the httpd_dontaudit_search_dirs SELinux Boolean</h3>
+<div>sebool_httpd_dontaudit_search_dirs</div>
+<h4>Description</h4>
+<p>By default, the SELinux boolean <tt>httpd_dontaudit_search_dirs</tt> is disabled.
+If this setting is enabled, it should be disabled.
+
+To disable the <code>httpd_dontaudit_search_dirs</code> SELinux boolean, run the following command:
+<pre>$ sudo setsebool -P httpd_dontaudit_search_dirs off</pre></p>
+<h4>Rationale</h4>
+<p></p>
+</div>
+
+<div id="sebool_httpd_enable_cgi" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure the httpd_enable_cgi SELinux Boolean</h3>
+<div>sebool_httpd_enable_cgi</div>
+<h4>Description</h4>
+<p>By default, the SELinux boolean <tt>httpd_enable_cgi</tt> is enabled.
+This setting should be disabled unless <tt>httpd</tt> is used with <tt>CGI</tt>
+scripting.
+
+To disable the <code>httpd_enable_cgi</code> SELinux boolean, run the following command:
+<pre>$ sudo setsebool -P httpd_enable_cgi off</pre></p>
+<h4>Rationale</h4>
+<p></p>
+</div>
+
+<div id="sebool_httpd_enable_ftp_server" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable the httpd_enable_ftp_server SELinux Boolean</h3>
+<div>sebool_httpd_enable_ftp_server</div>
+<h4>Description</h4>
+<p>By default, the SELinux boolean <tt>httpd_enable_ftp_server</tt> is disabled.
+If this setting is enabled, it should be disabled.
+
+To disable the <code>httpd_enable_ftp_server</code> SELinux boolean, run the following command:
+<pre>$ sudo setsebool -P httpd_enable_ftp_server off</pre></p>
+<h4>Rationale</h4>
+<p></p>
+</div>
+
+<div id="sebool_httpd_enable_homedirs" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable the httpd_enable_homedirs SELinux Boolean</h3>
+<div>sebool_httpd_enable_homedirs</div>
+<h4>Description</h4>
+<p>By default, the SELinux boolean <tt>httpd_enable_homedirs</tt> is disabled.
+If this setting is enabled, it should be disabled.
+
+To disable the <code>httpd_enable_homedirs</code> SELinux boolean, run the following command:
+<pre>$ sudo setsebool -P httpd_enable_homedirs off</pre></p>
+<h4>Rationale</h4>
+<p></p>
+</div>
+
+<div id="sebool_httpd_execmem" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable the httpd_execmem SELinux Boolean</h3>
+<div>sebool_httpd_execmem</div>
+<h4>Description</h4>
+<p>By default, the SELinux boolean <tt>httpd_execmem</tt> is disabled.
+If this setting is enabled, it should be disabled.
+
+To disable the <code>httpd_execmem</code> SELinux boolean, run the following command:
+<pre>$ sudo setsebool -P httpd_execmem off</pre></p>
+<h4>Rationale</h4>
+<p></p>
+</div>
+
+<div id="sebool_httpd_graceful_shutdown" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Enable the httpd_graceful_shutdown SELinux Boolean</h3>
+<div>sebool_httpd_graceful_shutdown</div>
+<h4>Description</h4>
+<p>By default, the SELinux boolean <tt>httpd_graceful_shutdown</tt> is enabled.
+If this setting is disabled, it should be enabled.
+
+To enable the <code>httpd_graceful_shutdown</code> SELinux boolean, run the following command:
+<pre>$ sudo setsebool -P httpd_graceful_shutdown on</pre></p>
+<h4>Rationale</h4>
+<p></p>
+</div>
+
+<div id="sebool_httpd_manage_ipa" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable the httpd_manage_ipa SELinux Boolean</h3>
+<div>sebool_httpd_manage_ipa</div>
+<h4>Description</h4>
+<p>By default, the SELinux boolean <tt>httpd_manage_ipa</tt> is disabled.
+If this setting is enabled, it should be disabled.
+
+To disable the <code>httpd_manage_ipa</code> SELinux boolean, run the following command:
+<pre>$ sudo setsebool -P httpd_manage_ipa off</pre></p>
+<h4>Rationale</h4>
+<p></p>
+</div>
+
+<div id="sebool_httpd_mod_auth_ntlm_winbind" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable the httpd_mod_auth_ntlm_winbind SELinux Boolean</h3>
+<div>sebool_httpd_mod_auth_ntlm_winbind</div>
+<h4>Description</h4>
+<p>By default, the SELinux boolean <tt>httpd_mod_auth_ntlm_winbind</tt> is disabled.
+If this setting is enabled, it should be disabled.
+
+To disable the <code>httpd_mod_auth_ntlm_winbind</code> SELinux boolean, run the following command:
+<pre>$ sudo setsebool -P httpd_mod_auth_ntlm_winbind off</pre></p>
+<h4>Rationale</h4>
+<p></p>
+</div>
+
+<div id="sebool_httpd_mod_auth_pam" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable the httpd_mod_auth_pam SELinux Boolean</h3>
+<div>sebool_httpd_mod_auth_pam</div>
+<h4>Description</h4>
+<p>By default, the SELinux boolean <tt>httpd_mod_auth_pam</tt> is disabled.
+If this setting is enabled, it should be disabled.
+
+To disable the <code>httpd_mod_auth_pam</code> SELinux boolean, run the following command:
+<pre>$ sudo setsebool -P httpd_mod_auth_pam off</pre></p>
+<h4>Rationale</h4>
+<p></p>
+</div>
+
+<div id="sebool_httpd_read_user_content" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable the httpd_read_user_content SELinux Boolean</h3>
+<div>sebool_httpd_read_user_content</div>
+<h4>Description</h4>
+<p>By default, the SELinux boolean <tt>httpd_read_user_content</tt> is disabled.
+If this setting is enabled, it should be disabled.
+
+To disable the <code>httpd_read_user_content</code> SELinux boolean, run the following command:
+<pre>$ sudo setsebool -P httpd_read_user_content off</pre></p>
+<h4>Rationale</h4>
+<p></p>
+</div>
+
+<div id="sebool_httpd_run_ipa" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable the httpd_run_ipa SELinux Boolean</h3>
+<div>sebool_httpd_run_ipa</div>
+<h4>Description</h4>
+<p>By default, the SELinux boolean <tt>httpd_run_ipa</tt> is disabled.
+If this setting is enabled, it should be disabled.
+
+To disable the <code>httpd_run_ipa</code> SELinux boolean, run the following command:
+<pre>$ sudo setsebool -P httpd_run_ipa off</pre></p>
+<h4>Rationale</h4>
+<p></p>
+</div>
+
+<div id="sebool_httpd_run_preupgrade" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable the httpd_run_preupgrade SELinux Boolean</h3>
+<div>sebool_httpd_run_preupgrade</div>
+<h4>Description</h4>
+<p>By default, the SELinux boolean <tt>httpd_run_preupgrade</tt> is disabled.
+If this setting is enabled, it should be disabled.
+
+To disable the <code>httpd_run_preupgrade</code> SELinux boolean, run the following command:
+<pre>$ sudo setsebool -P httpd_run_preupgrade off</pre></p>
+<h4>Rationale</h4>
+<p></p>
+</div>
+
+<div id="sebool_httpd_run_stickshift" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable the httpd_run_stickshift SELinux Boolean</h3>
+<div>sebool_httpd_run_stickshift</div>
+<h4>Description</h4>
+<p>By default, the SELinux boolean <tt>httpd_run_stickshift</tt> is disabled.
+If this setting is enabled, it should be disabled.
+
+To disable the <code>httpd_run_stickshift</code> SELinux boolean, run the following command:
+<pre>$ sudo setsebool -P httpd_run_stickshift off</pre></p>
+<h4>Rationale</h4>
+<p></p>
+</div>
+
+<div id="sebool_httpd_serve_cobbler_files" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable the httpd_serve_cobbler_files SELinux Boolean</h3>
+<div>sebool_httpd_serve_cobbler_files</div>
+<h4>Description</h4>
+<p>By default, the SELinux boolean <tt>httpd_serve_cobbler_files</tt> is disabled.
+If this setting is enabled, it should be disabled.
+
+To disable the <code>httpd_serve_cobbler_files</code> SELinux boolean, run the following command:
+<pre>$ sudo setsebool -P httpd_serve_cobbler_files off</pre></p>
+<h4>Rationale</h4>
+<p></p>
+</div>
+
+<div id="sebool_httpd_setrlimit" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable the httpd_setrlimit SELinux Boolean</h3>
+<div>sebool_httpd_setrlimit</div>
+<h4>Description</h4>
+<p>By default, the SELinux boolean <tt>httpd_setrlimit</tt> is disabled.
+If this setting is enabled, it should be disabled.
+
+To disable the <code>httpd_setrlimit</code> SELinux boolean, run the following command:
+<pre>$ sudo setsebool -P httpd_setrlimit off</pre></p>
+<h4>Rationale</h4>
+<p></p>
+</div>
+
+<div id="sebool_httpd_ssi_exec" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable the httpd_ssi_exec SELinux Boolean</h3>
+<div>sebool_httpd_ssi_exec</div>
+<h4>Description</h4>
+<p>By default, the SELinux boolean <tt>httpd_ssi_exec</tt> is disabled.
+If this setting is enabled, it should be disabled.
+
+To disable the <code>httpd_ssi_exec</code> SELinux boolean, run the following command:
+<pre>$ sudo setsebool -P httpd_ssi_exec off</pre></p>
+<h4>Rationale</h4>
+<p></p>
+</div>
+
+<div id="sebool_httpd_sys_script_anon_write" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable the httpd_sys_script_anon_write SELinux Boolean</h3>
+<div>sebool_httpd_sys_script_anon_write</div>
+<h4>Description</h4>
+<p>By default, the SELinux boolean <tt>httpd_sys_script_anon_write</tt> is disabled.
+If this setting is enabled, it should be disabled.
+
+To disable the <code>httpd_sys_script_anon_write</code> SELinux boolean, run the following command:
+<pre>$ sudo setsebool -P httpd_sys_script_anon_write off</pre></p>
+<h4>Rationale</h4>
+<p></p>
+</div>
+
+<div id="sebool_httpd_tmp_exec" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable the httpd_tmp_exec SELinux Boolean</h3>
+<div>sebool_httpd_tmp_exec</div>
+<h4>Description</h4>
+<p>By default, the SELinux boolean <tt>httpd_tmp_exec</tt> is disabled.
+If this setting is enabled, it should be disabled.
+
+To disable the <code>httpd_tmp_exec</code> SELinux boolean, run the following command:
+<pre>$ sudo setsebool -P httpd_tmp_exec off</pre></p>
+<h4>Rationale</h4>
+<p></p>
+</div>
+
+<div id="sebool_httpd_tty_comm" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable the httpd_tty_comm SELinux Boolean</h3>
+<div>sebool_httpd_tty_comm</div>
+<h4>Description</h4>
+<p>By default, the SELinux boolean <tt>httpd_tty_comm</tt> is disabled.
+If this setting is enabled, it should be disabled.
+
+To disable the <code>httpd_tty_comm</code> SELinux boolean, run the following command:
+<pre>$ sudo setsebool -P httpd_tty_comm off</pre></p>
+<h4>Rationale</h4>
+<p></p>
+</div>
+
+<div id="sebool_httpd_unified" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable the httpd_unified SELinux Boolean</h3>
+<div>sebool_httpd_unified</div>
+<h4>Description</h4>
+<p>By default, the SELinux boolean <tt>httpd_unified</tt> is disabled.
+If this setting is enabled, it should be disabled.
+
+To disable the <code>httpd_unified</code> SELinux boolean, run the following command:
+<pre>$ sudo setsebool -P httpd_unified off</pre></p>
+<h4>Rationale</h4>
+<p></p>
+</div>
+
+<div id="sebool_httpd_use_cifs" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable the httpd_use_cifs SELinux Boolean</h3>
+<div>sebool_httpd_use_cifs</div>
+<h4>Description</h4>
+<p>By default, the SELinux boolean <tt>httpd_use_cifs</tt> is disabled.
+If this setting is enabled, it should be disabled.
+
+To disable the <code>httpd_use_cifs</code> SELinux boolean, run the following command:
+<pre>$ sudo setsebool -P httpd_use_cifs off</pre></p>
+<h4>Rationale</h4>
+<p></p>
+</div>
+
+<div id="sebool_httpd_use_fusefs" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable the httpd_use_fusefs SELinux Boolean</h3>
+<div>sebool_httpd_use_fusefs</div>
+<h4>Description</h4>
+<p>By default, the SELinux boolean <tt>httpd_use_fusefs</tt> is disabled.
+If this setting is enabled, it should be disabled.
+
+To disable the <code>httpd_use_fusefs</code> SELinux boolean, run the following command:
+<pre>$ sudo setsebool -P httpd_use_fusefs off</pre></p>
+<h4>Rationale</h4>
+<p></p>
+</div>
+
+<div id="sebool_httpd_use_gpg" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable the httpd_use_gpg SELinux Boolean</h3>
+<div>sebool_httpd_use_gpg</div>
+<h4>Description</h4>
+<p>By default, the SELinux boolean <tt>httpd_use_gpg</tt> is disabled.
+If this setting is enabled, it should be disabled.
+
+To disable the <code>httpd_use_gpg</code> SELinux boolean, run the following command:
+<pre>$ sudo setsebool -P httpd_use_gpg off</pre></p>
+<h4>Rationale</h4>
+<p></p>
+</div>
+
+<div id="sebool_httpd_use_nfs" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable the httpd_use_nfs SELinux Boolean</h3>
+<div>sebool_httpd_use_nfs</div>
+<h4>Description</h4>
+<p>By default, the SELinux boolean <tt>httpd_use_nfs</tt> is disabled.
+If this setting is enabled, it should be disabled.
+
+To disable the <code>httpd_use_nfs</code> SELinux boolean, run the following command:
+<pre>$ sudo setsebool -P httpd_use_nfs off</pre></p>
+<h4>Rationale</h4>
+<p></p>
+</div>
+
+<div id="sebool_httpd_use_openstack" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable the httpd_use_openstack SELinux Boolean</h3>
+<div>sebool_httpd_use_openstack</div>
+<h4>Description</h4>
+<p>By default, the SELinux boolean <tt>httpd_use_openstack</tt> is disabled.
+If this setting is enabled, it should be disabled.
+
+To disable the <code>httpd_use_openstack</code> SELinux boolean, run the following command:
+<pre>$ sudo setsebool -P httpd_use_openstack off</pre></p>
+<h4>Rationale</h4>
+<p></p>
+</div>
+
+<div id="sebool_httpd_use_sasl" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable the httpd_use_sasl SELinux Boolean</h3>
+<div>sebool_httpd_use_sasl</div>
+<h4>Description</h4>
+<p>By default, the SELinux boolean <tt>httpd_use_sasl</tt> is disabled.
+If this setting is enabled, it should be disabled.
+
+To disable the <code>httpd_use_sasl</code> SELinux boolean, run the following command:
+<pre>$ sudo setsebool -P httpd_use_sasl off</pre></p>
+<h4>Rationale</h4>
+<p></p>
+</div>
+
+<div id="sebool_httpd_verify_dns" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable the httpd_verify_dns SELinux Boolean</h3>
+<div>sebool_httpd_verify_dns</div>
+<h4>Description</h4>
+<p>By default, the SELinux boolean <tt>httpd_verify_dns</tt> is disabled.
+If this setting is enabled, it should be disabled.
+
+To disable the <code>httpd_verify_dns</code> SELinux boolean, run the following command:
+<pre>$ sudo setsebool -P httpd_verify_dns off</pre></p>
+<h4>Rationale</h4>
+<p></p>
+</div>
+
+<div id="service_httpd_disabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable httpd Service</h3>
+<div>service_httpd_disabled</div>
+<h4>Description</h4>
+<p>
+The <code>httpd</code> service can be disabled with the following command:
+<pre>$ sudo systemctl mask --now httpd.service</pre></p>
+<h4>Rationale</h4>
+<p>Running web server software provides a network-based avenue
+of attack, and should be disabled if not needed.</p>
+</div>
+
+
+
+
+</body>
+</html>

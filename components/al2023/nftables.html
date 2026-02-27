@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'nftables'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'nftables'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>nftables</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<ul>
+
+<li>network-nftables</li>
+
+</ul>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#directory_groupowner_etc_nftables">directory_groupowner_etc_nftables</a></li>
+
+<li><a href="#directory_owner_etc_nftables">directory_owner_etc_nftables</a></li>
+
+<li><a href="#directory_permissions_etc_nftables">directory_permissions_etc_nftables</a></li>
+
+<li><a href="#nftables_ensure_default_deny_policy">nftables_ensure_default_deny_policy</a></li>
+
+<li><a href="#nftables_rules_permanent">nftables_rules_permanent</a></li>
+
+<li><a href="#package_nftables_installed">package_nftables_installed</a></li>
+
+<li><a href="#package_nftables_removed">package_nftables_removed</a></li>
+
+<li><a href="#service_nftables_disabled">service_nftables_disabled</a></li>
+
+<li><a href="#service_nftables_enabled">service_nftables_enabled</a></li>
+
+<li><a href="#set_nftables_base_chain">set_nftables_base_chain</a></li>
+
+<li><a href="#set_nftables_loopback_traffic">set_nftables_loopback_traffic</a></li>
+
+<li><a href="#set_nftables_new_connections">set_nftables_new_connections</a></li>
+
+<li><a href="#set_nftables_table">set_nftables_table</a></li>
+
+<li><a href="#firewall_single_service_active">firewall_single_service_active</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="directory_groupowner_etc_nftables" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Group Who Owns /etc/nftables Directory</h3>
+<div>directory_groupowner_etc_nftables</div>
+<h4>Description</h4>
+<p> To properly set the group owner of <code>/etc/nftables</code>, run the command:
+<pre>$ sudo chgrp root /etc/nftables</pre>
+</p>
+<h4>Rationale</h4>
+<p>The ownership of the /etc/nftables directory by the root group is important
+because this directory hosts nftables configuration. Protection of this
+directory is critical for system security. Assigning the ownership to root
+ensures exclusive control of the nftables configuration.</p>
+</div>
+
+<div id="directory_owner_etc_nftables" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify User Who Owns /etc/nftables Directory</h3>
+<div>directory_owner_etc_nftables</div>
+<h4>Description</h4>
+<p> To properly set the owner of <code>/etc/nftables</code>, run the command:
+<pre>$ sudo chown root /etc/nftables </pre>
+</p>
+<h4>Rationale</h4>
+<p>The ownership of the /etc/nftables directory by the root user is important
+because this directory hosts nftables configuration. Protection of this
+directory is critical for system security. Assigning the ownership to root
+ensures exclusive control of the nftables configuration.</p>
+</div>
+
+<div id="directory_permissions_etc_nftables" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Permissions On /etc/nftables Directory</h3>
+<div>directory_permissions_etc_nftables</div>
+<h4>Description</h4>
+<p> To properly set the permissions of <code>/etc/nftables</code>, run the command: <pre>$ sudo chmod 0700 /etc/nftables</pre></p>
+<h4>Rationale</h4>
+<p>Setting correct permissions on the /etc/nftables directory is important
+because this directory hosts nftables configuration. Protection of this
+directory is critical for system security. Restricting the permissions
+ensures exclusive control of the nftables configuration.</p>
+</div>
+
+<div id="nftables_ensure_default_deny_policy" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure nftables Default Deny Firewall Policy</h3>
+<div>nftables_ensure_default_deny_policy</div>
+<h4>Description</h4>
+<p>Base chain policy is the default verdict that will be applied to packets reaching the end of
+the chain. There are two policies: accept (Default) and drop. If the policy is set to accept,
+the firewall will accept any packet that is not configured to be denied and the packet will
+continue traversing the network stack.
+
+Run the following commands and verify that base chains contain a policy of DROP.
+<pre>
+$ nft list ruleset | grep 'hook input'
+type filter hook input priority 0; policy drop;
+$ nft list ruleset | grep 'hook forward'
+type filter hook forward priority 0; policy drop;
+$ nft list ruleset | grep 'hook output'
+type filter hook output priority 0; policy drop;
+</pre></p>
+<h4>Rationale</h4>
+<p>It is easier to allow acceptable usage than to block unacceptable usage.
+</p>
+</div>
+
+<div id="nftables_rules_permanent" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure nftables Rules are Permanent</h3>
+<div>nftables_rules_permanent</div>
+<h4>Description</h4>
+<p>nftables is a subsystem of the Linux kernel providing filtering and classification of
+network packets/datagrams/frames. The nftables service reads the
+<tt>$var_nftables_master_config_file</tt> file for a nftables file or files to
+include in the nftables ruleset. A nftables ruleset containing the input, forward, and output
+base chains allow network traffic to be filtered.</p>
+<h4>Rationale</h4>
+<p>Changes made to nftables ruleset only affect the live system, you will also need to configure
+the nftables ruleset to apply on boot</p>
+</div>
+
+<div id="package_nftables_installed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Install nftables Package</h3>
+<div>package_nftables_installed</div>
+<h4>Description</h4>
+<p>nftables provides a new in-kernel packet classification framework that is based on a
+network-specific Virtual Machine (VM) and a new nft userspace command line tool.
+nftables reuses the existing Netfilter subsystems such as the existing hook infrastructure,
+the connection tracking system, NAT, userspace queuing and logging subsystem.
+The <code>nftables</code> package can be installed with the following command:
+<pre>
+$ sudo dnf install nftables</pre></p>
+<h4>Rationale</h4>
+<p><tt>nftables</tt> is a subsystem of the Linux kernel that can protect against threats
+originating from within a corporate network to include malicious mobile code and poorly
+configured software on a host.</p>
+</div>
+
+<div id="package_nftables_removed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Uninstall nftables package</h3>
+<div>package_nftables_removed</div>
+<h4>Description</h4>
+<p>nftables is a subsystem of the Linux kernel providing filtering and classification of network
+packets/datagrams/frames and is the successor to iptables.
+The <code>nftables</code> package can be removed with the following command:
+<pre>
+$ sudo dnf remove nftables</pre></p>
+<h4>Rationale</h4>
+<p>Running both <tt>firewalld</tt> and <tt>nftables</tt> may lead to conflict.</p>
+</div>
+
+<div id="service_nftables_disabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify nftables Service is Disabled</h3>
+<div>service_nftables_disabled</div>
+<h4>Description</h4>
+<p>nftables is a subsystem of the Linux kernel providing filtering and classification of network
+packets/datagrams/frames and is the successor to iptables.
+The <code>nftables</code> service can be disabled with the following command:
+<pre>systemctl disable nftables</pre></p>
+<h4>Rationale</h4>
+<p>Running both <tt>firewalld</tt> and <tt>nftables</tt> may lead to conflict. <tt>nftables</tt>
+is actually one of the backends for <tt>firewalld</tt> management tools.</p>
+</div>
+
+<div id="service_nftables_enabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify nftables Service is Enabled</h3>
+<div>service_nftables_enabled</div>
+<h4>Description</h4>
+<p>The nftables service allows for the loading of nftables rulesets during boot,
+or starting on the nftables service
+
+The <code>nftables</code> service can be enabled with the following command:
+<pre>$ sudo systemctl enable nftables.service</pre></p>
+<h4>Rationale</h4>
+<p>The nftables service restores the nftables rules from the rules files referenced
+in the <tt>/etc/sysconfig/nftables.conf</tt> file during boot or the starting of
+the nftables service</p>
+</div>
+
+<div id="set_nftables_base_chain" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure Base Chains Exist for Nftables</h3>
+<div>set_nftables_base_chain</div>
+<h4>Description</h4>
+<p>Tables in nftables hold chains. Each table only has one address family and only applies
+to packets of this family. Tables can have one of six families.
+Chains are containers for rules. They exist in two kinds, base chains and regular chains.
+A base chain is an entry point for packets from the networking stack, a regular chain may
+be used as jump target and is used for better rule organization.</p>
+<h4>Rationale</h4>
+<p>If a base chain doesn't exist with a hook for input, forward, and delete, packets that would
+flow through those chains will not be touched by nftables.</p>
+</div>
+
+<div id="set_nftables_loopback_traffic" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Set nftables Configuration for Loopback Traffic</h3>
+<div>set_nftables_loopback_traffic</div>
+<h4>Description</h4>
+<p>Configure the loopback interface to accept traffic.
+Configure all other interfaces to deny traffic to the loopback
+network.</p>
+<h4>Rationale</h4>
+<p>Loopback traffic is generated between processes on machine and is
+typically critical to operation of the system. The loopback interface
+is the only place that loopback network traffic should be seen,
+all other interfaces should ignore traffic on this network as an
+anti-spoofing measure.</p>
+</div>
+
+<div id="set_nftables_new_connections" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure all outbound and established connections are configured for nftables</h3>
+<div>set_nftables_new_connections</div>
+<h4>Description</h4>
+<p>Configure the nftables firewall rules for new outbound and established connections</p>
+<h4>Rationale</h4>
+<p>If rules are not in place for new outbound and established connections, all packets
+will be dropped by the default policy preventing network usage.</p>
+</div>
+
+<div id="set_nftables_table" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure a Table Exists for Nftables</h3>
+<div>set_nftables_table</div>
+<h4>Description</h4>
+<p>Tables in nftables hold chains. Each table only has one address family and only applies
+to packets of this family. Tables can have one of six families.</p>
+<h4>Rationale</h4>
+<p>Nftables doesn't have any default tables. Without a table being built, nftables will not
+filter network traffic.</p>
+</div>
+
+<div id="firewall_single_service_active" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure Only One Firewall Service is Active</h3>
+<div>firewall_single_service_active</div>
+<h4>Description</h4>
+<p>The system must have exactly one active firewall service running to avoid conflicts
+and ensure consistent packet filtering. Only one of the following services should
+be enabled and active at any time:
+<ul>
+    <li>ufw - Uncomplicated Firewall (Ubuntu/Debian default)</li>
+    <li>iptables - Classic Linux firewall</li>
+    <li>nftables - Next Generation Firewall replacement for iptables</li>
+</ul>
+Having zero active firewalls leaves the system vulnerable, while having multiple
+active firewalls can lead to rule conflicts and security gaps.</p>
+<h4>Rationale</h4>
+<p>Running multiple firewall services simultaneously can lead to conflicts in rule
+processing, unpredictable behavior, and potential security gaps. A single
+firewall service ensures consistent and predictable packet filtering.
+
+Having no active firewall service leaves the system exposed to network-based
+attacks and unauthorized access.</p>
+</div>
+
+
+
+
+</body>
+</html>
