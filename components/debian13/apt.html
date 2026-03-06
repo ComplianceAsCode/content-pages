@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'apt'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'apt'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>apt</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<ul>
+
+<li>apt</li>
+
+</ul>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#apt_conf_disallow_unauthenticated">apt_conf_disallow_unauthenticated</a></li>
+
+<li><a href="#apt_sources_list_official">apt_sources_list_official</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="apt_conf_disallow_unauthenticated" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable unauthenticated repositories in APT configuration</h3>
+<div>apt_conf_disallow_unauthenticated</div>
+<h4>Description</h4>
+<p>Unauthenticated repositories should not be used for updates.</p>
+<h4>Rationale</h4>
+<p>Repositories hosts all packages that will be installed on the system during update.
+    If a repository is not authenticated, the associated packages can't be trusted,
+    and then should not be installed locally.</p>
+</div>
+
+<div id="apt_sources_list_official" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure that official distribution repositories are used</h3>
+<div>apt_sources_list_official</div>
+<h4>Description</h4>
+<p>Check that official Debian repositories, including security repository, are configured in apt.</p>
+<h4>Rationale</h4>
+<p>The Debian distribution deliver DSA (Debian Security Announce), through the official
+    Debian security repository, to correct various vulnerabilities impacting the Debian
+    packages. Using the official repositories is the best way to ensure that the Debian
+    updates are integrated soon enough.</p>
+</div>
+
+
+
+
+</body>
+</html>

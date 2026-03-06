@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'crypto-policies'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'crypto-policies'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>crypto-policies</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<ul>
+
+<li>crypto</li>
+
+</ul>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#configure_bind_crypto_policy">configure_bind_crypto_policy</a></li>
+
+<li><a href="#configure_crypto_policy">configure_crypto_policy</a></li>
+
+<li><a href="#configure_gnutls_tls_crypto_policy">configure_gnutls_tls_crypto_policy</a></li>
+
+<li><a href="#configure_kerberos_crypto_policy">configure_kerberos_crypto_policy</a></li>
+
+<li><a href="#configure_libreswan_crypto_policy">configure_libreswan_crypto_policy</a></li>
+
+<li><a href="#configure_openssl_crypto_policy">configure_openssl_crypto_policy</a></li>
+
+<li><a href="#configure_openssl_tls_crypto_policy">configure_openssl_tls_crypto_policy</a></li>
+
+<li><a href="#configure_ssh_crypto_policy">configure_ssh_crypto_policy</a></li>
+
+<li><a href="#configure_custom_crypto_policy_cis">configure_custom_crypto_policy_cis</a></li>
+
+<li><a href="#harden_openssl_crypto_policy">harden_openssl_crypto_policy</a></li>
+
+<li><a href="#harden_ssh_client_crypto_policy">harden_ssh_client_crypto_policy</a></li>
+
+<li><a href="#harden_sshd_ciphers_openssh_conf_crypto_policy">harden_sshd_ciphers_openssh_conf_crypto_policy</a></li>
+
+<li><a href="#harden_sshd_ciphers_opensshserver_conf_crypto_policy">harden_sshd_ciphers_opensshserver_conf_crypto_policy</a></li>
+
+<li><a href="#harden_sshd_crypto_policy">harden_sshd_crypto_policy</a></li>
+
+<li><a href="#harden_sshd_macs_openssh_conf_crypto_policy">harden_sshd_macs_openssh_conf_crypto_policy</a></li>
+
+<li><a href="#harden_sshd_macs_opensshserver_conf_crypto_policy">harden_sshd_macs_opensshserver_conf_crypto_policy</a></li>
+
+<li><a href="#openssl_use_strong_entropy">openssl_use_strong_entropy</a></li>
+
+<li><a href="#package_crypto-policies_installed">package_crypto-policies_installed</a></li>
+
+<li><a href="#fips_crypto_subpolicy">fips_crypto_subpolicy</a></li>
+
+<li><a href="#fips_crypto_policy_symlinks">fips_crypto_policy_symlinks</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="configure_bind_crypto_policy" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure BIND to use System Crypto Policy</h3>
+<div>configure_bind_crypto_policy</div>
+<h4>Description</h4>
+<p>Crypto Policies provide a centralized control over crypto algorithms usage of many packages.
+BIND is supported by crypto policy, but the BIND configuration may be
+set up to ignore it.
+
+To check that Crypto Policies settings are configured correctly, ensure that the <tt>/etc/named.conf</tt>
+includes the appropriate configuration:
+In the <tt>options</tt> section of <tt>/etc/named.conf</tt>, make sure that the following line
+is not commented out or superseded by later includes:
+<tt>include "/etc/crypto-policies/back-ends/bind.config";</tt></p>
+<h4>Rationale</h4>
+<p>Overriding the system crypto policy makes the behavior of the BIND service violate expectations,
+and makes system configuration more fragmented.</p>
+</div>
+
+<div id="configure_crypto_policy" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure System Cryptography Policy</h3>
+<div>configure_crypto_policy</div>
+<h4>Description</h4>
+<p>To configure the system cryptography policy to use ciphers only from the <tt><tt>$var_system_crypto_policy</tt></tt>
+policy, run the following command:
+<pre>$ sudo update-crypto-policies --set <tt>$var_system_crypto_policy</tt></pre>
+The rule checks if settings for selected crypto policy are configured as expected. Configuration files in the <tt>/etc/crypto-policies/back-ends</tt> are either symlinks to correct files provided by Crypto-policies package or they are regular files in case crypto policy customizations are applied.
+Crypto policies may be customized by crypto policy modules, in which case it is delimited from the base policy using a colon.</p>
+<h4>Rationale</h4>
+<p>Centralized cryptographic policies simplify applying secure ciphers across an operating system and
+the applications that run on that operating system. Use of weak or untested encryption algorithms
+undermines the purposes of utilizing encryption to protect data.</p>
+</div>
+
+<div id="configure_gnutls_tls_crypto_policy" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure GnuTLS library to use DoD-approved TLS Encryption</h3>
+<div>configure_gnutls_tls_crypto_policy</div>
+<h4>Description</h4>
+<p>Crypto Policies provide a centralized control over crypto algorithms usage of many packages.
+GnuTLS is supported by system crypto policy, but the GnuTLS configuration may be
+set up to ignore it.
+
+To check that Crypto Policies settings are configured correctly, ensure that
+<tt>/etc/crypto-policies/back-ends/gnutls.config</tt> contains the following
+line and is not commented out:
+<tt>+VERS-ALL:-VERS-DTLS0.9:-VERS-TLS1.1:-VERS-TLS1.0:-VERS-SSL3.0:-VERS-DTLS1.0</tt>
+
+These keywords are order-independent, so the line can be in any order. GnuTLS will then prefer the highest version.</p>
+<h4>Rationale</h4>
+<p>Overriding the system crypto policy makes the behavior of the GnuTLS
+library violate expectations, and makes system configuration more
+fragmented.</p>
+</div>
+
+<div id="configure_kerberos_crypto_policy" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure Kerberos to use System Crypto Policy</h3>
+<div>configure_kerberos_crypto_policy</div>
+<h4>Description</h4>
+<p>Crypto Policies provide a centralized control over crypto algorithms usage of many packages.
+Kerberos is supported by crypto policy, but it's configuration may be
+set up to ignore it.
+To check that Crypto Policies settings for Kerberos are configured correctly, examine that there is a symlink at
+/etc/krb5.conf.d/crypto-policies targeting /etc/cypto-policies/back-ends/krb5.config.
+If the symlink exists, Kerberos is configured to use the system-wide crypto policy settings.</p>
+<h4>Rationale</h4>
+<p>Overriding the system crypto policy makes the behavior of Kerberos violate expectations,
+and makes system configuration more fragmented.</p>
+</div>
+
+<div id="configure_libreswan_crypto_policy" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure Libreswan to use System Crypto Policy</h3>
+<div>configure_libreswan_crypto_policy</div>
+<h4>Description</h4>
+<p>Crypto Policies provide a centralized control over crypto algorithms usage of many packages.
+Libreswan is supported by system crypto policy, but the Libreswan configuration may be
+set up to ignore it.
+
+To check that Crypto Policies settings are configured correctly, ensure that the <tt>/etc/ipsec.conf</tt>
+includes the appropriate configuration file.
+In <tt>/etc/ipsec.conf</tt>, make sure that the following line
+is not commented out or superseded by later includes:
+<tt>include /etc/crypto-policies/back-ends/libreswan.config</tt></p>
+<h4>Rationale</h4>
+<p>Overriding the system crypto policy makes the behavior of the Libreswan
+service violate expectations, and makes system configuration more
+fragmented.</p>
+</div>
+
+<div id="configure_openssl_crypto_policy" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure OpenSSL library to use System Crypto Policy</h3>
+<div>configure_openssl_crypto_policy</div>
+<h4>Description</h4>
+<p>Crypto Policies provide a centralized control over crypto algorithms usage of many packages.
+OpenSSL is supported by crypto policy, but the OpenSSL configuration may be
+set up to ignore it.
+To check that Crypto Policies settings are configured correctly, you have to examine the OpenSSL config file
+available under <tt>/etc/pki/tls/openssl.cnf</tt>.
+This file has the <tt>ini</tt> format, and it enables crypto policy support
+if there is a <tt>[ crypto_policy ]</tt> section that contains the <tt>.include /etc/crypto-policies/back-ends/opensslcnf.config</tt> directive.</p>
+<h4>Rationale</h4>
+<p>Overriding the system crypto policy makes the behavior of the Java runtime violates expectations,
+and makes system configuration more fragmented.</p>
+</div>
+
+<div id="configure_openssl_tls_crypto_policy" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure OpenSSL library to use TLS Encryption</h3>
+<div>configure_openssl_tls_crypto_policy</div>
+<h4>Description</h4>
+<p>Crypto Policies are means of enforcing certain cryptographic settings for
+selected applications including OpenSSL. OpenSSL is by default configured to
+modify its configuration based on currently configured Crypto Policy.
+Editing the Crypto Policy back-end is not recommended.
+
+Check the crypto-policies(7) man page and choose a policy that configures TLS
+protocol to version 1.2 or higher, for example DEFAULT, FUTURE or FIPS policy.
+Or create and apply a custom policy that restricts minimum TLS version to 1.2.
+
+For example for versions prior to crypto-policies-20210617-1.gitc776d3e.el8.noarch
+this is expected:
+
+<pre>$ sudo grep -i MinProtocol /etc/crypto-policies/back-ends/opensslcnf.config
+
+MinProtocol = TLSv1.2
+</pre>
+
+Or for version crypto-policies-20210617-1.gitc776d3e.el8.noarch and newer this is
+expected:
+
+<pre>$ sudo grep -i MinProtocol /etc/crypto-policies/back-ends/opensslcnf.config
+
+TLS.MinProtocol = TLSv1.2
+DTLS.MinProtocol = DTLSv1.2</pre></p>
+<h4>Rationale</h4>
+<p>Without cryptographic integrity protections, information can be altered by
+unauthorized users without detection.</p>
+</div>
+
+<div id="configure_ssh_crypto_policy" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure SSH to use System Crypto Policy</h3>
+<div>configure_ssh_crypto_policy</div>
+<h4>Description</h4>
+<p>Crypto Policies provide a centralized control over crypto algorithms usage of many packages.
+SSH is supported by crypto policy, but the SSH configuration may be
+set up to ignore it.
+To check that Crypto Policies settings are configured correctly, ensure that
+the <tt>CRYPTO_POLICY</tt> variable is either commented or not set at all
+in the <tt>/etc/sysconfig/sshd</tt>.</p>
+<h4>Rationale</h4>
+<p>Overriding the system crypto policy makes the behavior of the SSH service violate expectations,
+and makes system configuration more fragmented.</p>
+</div>
+
+<div id="configure_custom_crypto_policy_cis" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Implement Custom Crypto Policy Modules for CIS Benchmark</h3>
+<div>configure_custom_crypto_policy_cis</div>
+<h4>Description</h4>
+<p>Create a custom crypto policy module to enforce the use of strong ciphers and MACs in SSHD, disable CBC mode ciphers in SSHD and disable the use of weak MACs globally.
+
+
+Add the following line to the file <tt>/etc/crypto-policies/policies/modules/NO-SSHCBC.pmod</tt>:
+<pre>
+cipher@SSH = -*-CBC
+</pre>
+
+
+Add the following line to the file <tt>/etc/crypto-policies/policies/modules/NO-SSHWEAKCIPHERS.pmod</tt>:
+<pre>
+cipher@SSH = -3DES-CBC -AES-128-CBC -AES-192-CBC -AES-256-CBC
+</pre>
+
+
+Add the following line to the file <tt>/etc/crypto-policies/policies/modules/NO-SSHWEAKMACS.pmod</tt>:
+<pre>
+mac@SSH = -HMAC-MD5* -UMAC-64* -UMAC-128* -HMAC-SHA1*
+</pre>
+
+
+Add the following line to the file <tt>/etc/crypto-policies/policies/modules/NO-WEAKMAC.pmod</tt>:
+<pre>
+mac = -*-128*
+</pre>
+
+Then, set the system wide crypto policy to use the custom policy.
+<pre>
+$ sudo update-crypto-policies --set DEFAULT:NO-SSHCBC:NO-SSHWEAKCIPHERS:NO-SSHWEAKMACS:NO-WEAKMAC
+</pre></p>
+<h4>Rationale</h4>
+<p>CBC mode ciphers are vulnerable to certain attacks, such as the BEAST attack.
+Disabling CBC mode ciphers helps protect against these attacks and ensures that only
+strong, proven cryptographic algorithms are used to protect SSH communications.
+Weak ciphers that are used for authentication to the cryptographic module cannot be
+relied upon to provide confidentiality or integrity, and system data may be compromised.
+Message Authentication Codes (MACs) are cryptographic mechanisms used to verify the
+integrity and authenticity of data transmitted over SSH connections. Weak MACs that
+are used for authentication to the cryptographic module cannot be relied upon to
+provide integrity, and system data may be compromised. Implementing a custom crypto
+policy that disables weak MAC algorithms helps ensure that only strong, proven
+cryptographic algorithms are used to protect SSH communications.</p>
+</div>
+
+<div id="harden_openssl_crypto_policy" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Harden OpenSSL Crypto Policy</h3>
+<div>harden_openssl_crypto_policy</div>
+<h4>Description</h4>
+<p>Crypto Policies are means of enforcing certain cryptographic settings for
+selected applications including OpenSSL. OpenSSL is by default configured to
+modify its configuration based on currently configured Crypto Policy.
+However, in certain cases it might be needed to override the Crypto Policy
+specific to OpenSSL and leave rest of the Crypto Policy intact. This can
+be done by dropping a file named <tt>opensslcnf-xxx.config</tt>, replacing
+<tt>xxx</tt> with arbitrary identifier, into
+<tt>/etc/crypto-policies/local.d</tt>. This has to be followed by running
+<tt>update-crypto-policies</tt> so that changes are applied. Changes are
+propagated into <tt>/etc/crypto-policies/back-ends/opensslcnf.config</tt>.
+This rule checks if this file contains predefined <tt>Ciphersuites</tt>
+variable configured with predefined value.</p>
+<h4>Rationale</h4>
+<p>The Common Criteria requirements specify that certain parameters for OpenSSL
+are configured e.g. cipher suites. Currently particular requirements
+specified by CC are stricter compared to any existing Crypto Policy.</p>
+</div>
+
+<div id="harden_ssh_client_crypto_policy" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Harden SSH client Crypto Policy</h3>
+<div>harden_ssh_client_crypto_policy</div>
+<h4>Description</h4>
+<p>Crypto Policies are means of enforcing certain cryptographic settings for selected applications including OpenSSH client.
+To override the system wide crypto policy for Openssh client, place a file in the <tt>/etc/ssh/ssh_config.d/</tt> so that it is loaded before the <tt>05-redhat.conf</tt>. In this case it is file named <tt>02-ospp.conf</tt> containing parameters which need to be changed with respect to the crypto policy.
+This rule checks if the file exists and if it contains required parameters and values which modify the Crypto Policy.
+During the parsing process, as soon as Openssh client parses some configuration option and its value, it remembers it and ignores any subsequent overrides. The customization mechanism provided by crypto policies appends eventual customizations at the end of the system wide crypto policy. Therefore, if the crypto policy customization overrides some parameter which is already configured in the system wide crypto policy, the SSH client will not honor that customized parameter.</p>
+<h4>Rationale</h4>
+<p>The Common Criteria requirements specify how certain parameters for OpenSSH Client are configured. Particular parameters are RekeyLimit, GSSAPIAuthentication, Ciphers, PubkeyAcceptedKeyTypes, MACs and KexAlgorithms. Currently particular requirements specified by CC are stricter compared to any existing Crypto Policy.</p>
+</div>
+
+<div id="harden_sshd_ciphers_openssh_conf_crypto_policy" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure SSH Client to Use FIPS 140 Validated Ciphers: openssh.config</h3>
+<div>harden_sshd_ciphers_openssh_conf_crypto_policy</div>
+<h4>Description</h4>
+<p>Crypto Policies provide a centralized control over crypto algorithms usage of many packages.
+OpenSSH is supported by system crypto policy, but the OpenSSH configuration may be
+set up incorrectly.
+
+To check that Crypto Policies settings for ciphers are configured correctly, ensure that
+<tt>/etc/crypto-policies/back-ends/openssh.config</tt> contains the following
+line and is not commented out:
+<pre>Ciphers <tt>$sshd_approved_ciphers</tt></pre></p>
+<h4>Rationale</h4>
+<p>Overriding the system crypto policy makes the behavior of the OpenSSH client
+violate expectations, and makes system configuration more fragmented. By
+specifying a cipher list with the order of ciphers being in a “strongest to
+weakest” orientation, the system will automatically attempt to use the
+strongest cipher for securing SSH connections.</p>
+</div>
+
+<div id="harden_sshd_ciphers_opensshserver_conf_crypto_policy" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure SSH Server to Use FIPS 140-2 Validated Ciphers: opensshserver.config</h3>
+<div>harden_sshd_ciphers_opensshserver_conf_crypto_policy</div>
+<h4>Description</h4>
+<p>Crypto Policies provide a centralized control over crypto algorithms usage of many packages.
+OpenSSH is supported by system crypto policy, but the OpenSSH configuration may be
+set up incorrectly.
+
+To check that Crypto Policies settings for ciphers are configured correctly, ensure that
+<tt>/etc/crypto-policies/back-ends/opensshserver.config</tt> contains the following
+text and is not commented out:
+<pre>-oCiphers=<tt>$sshd_approved_ciphers</tt></pre></p>
+<h4>Rationale</h4>
+<p>Overriding the system crypto policy makes the behavior of the OpenSSH server
+violate expectations, and makes system configuration more fragmented. By
+specifying a cipher list with the order of ciphers being in a “strongest to
+weakest” orientation, the system will automatically attempt to use the
+strongest cipher for securing SSH connections.</p>
+</div>
+
+<div id="harden_sshd_crypto_policy" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Harden SSHD Crypto Policy</h3>
+<div>harden_sshd_crypto_policy</div>
+<h4>Description</h4>
+<p>Crypto Policies are means of enforcing certain cryptographic settings for selected applications including OpenSSH server.
+The SSHD service is by default configured to modify its configuration based on currently configured Crypto-Policy. However, in certain cases it might be needed to override the Crypto Policy specific to OpenSSH Server and leave rest of the Crypto Policy intact.
+This can be done by dropping a file named <tt>opensshserver-xxx.config</tt>, replacing <tt>xxx</tt> with arbitrary identifier, into <tt>/etc/crypto-policies/local.d</tt>. This has to be followed by running <tt>update-crypto-policies</tt> so that changes are applied.
+Changes are propagated into <tt>/etc/crypto-policies/back-ends/opensshserver.config</tt>. This rule checks if this file contains predefined <tt>CRYPTO_POLICY</tt> environment variable configured with predefined value.</p>
+<h4>Rationale</h4>
+<p>The Common Criteria requirements specify that certain parameters for OpenSSH Server are configured e.g. supported ciphers, accepted host key algorithms, public key types, key exchange algorithms, HMACs and GSSAPI key exchange is disabled. Currently particular requirements specified by CC are stricter compared to any existing Crypto Policy.</p>
+</div>
+
+<div id="harden_sshd_macs_openssh_conf_crypto_policy" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure SSH Client to Use FIPS 140-2 Validated MACs: openssh.config</h3>
+<div>harden_sshd_macs_openssh_conf_crypto_policy</div>
+<h4>Description</h4>
+<p>Crypto Policies provide a centralized control over crypto algorithms usage of many packages.
+OpenSSH is supported by system crypto policy, but the OpenSSH configuration may be
+set up incorrectly.
+
+To check that Crypto Policies settings are configured correctly, ensure that
+<tt>/etc/crypto-policies/back-ends/openssh.config</tt> contains the following
+line and is not commented out:
+<tt>MACs <tt>$sshd_approved_macs</tt></tt></p>
+<h4>Rationale</h4>
+<p>Overriding the system crypto policy makes the behavior of the OpenSSH
+client violate expectations, and makes system configuration more
+fragmented.</p>
+</div>
+
+<div id="harden_sshd_macs_opensshserver_conf_crypto_policy" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure SSH Server to Use FIPS 140-2 Validated MACs: opensshserver.config</h3>
+<div>harden_sshd_macs_opensshserver_conf_crypto_policy</div>
+<h4>Description</h4>
+<p>Crypto Policies provide a centralized control over crypto algorithms usage of many packages.
+OpenSSH is supported by system crypto policy, but the OpenSSH configuration may be
+set up incorrectly.
+
+To check that Crypto Policies settings are configured correctly, ensure that
+<tt>/etc/crypto-policies/back-ends/opensshserver.config</tt> contains the following
+text and is not commented out:
+<tt>-oMACS=<tt>$sshd_approved_macs</tt></tt></p>
+<h4>Rationale</h4>
+<p>Overriding the system crypto policy makes the behavior of the OpenSSH
+server violate expectations, and makes system configuration more
+fragmented.</p>
+</div>
+
+<div id="openssl_use_strong_entropy" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>OpenSSL uses strong entropy source</h3>
+<div>openssl_use_strong_entropy</div>
+<h4>Description</h4>
+<p>By default, OpenSSL doesn't always use a SP800-90A compliant random number generator.
+A way to configure OpenSSL to always use a strong source is to setup a wrapper that
+defines a shell function that shadows the actual <tt>openssl</tt> binary,
+and that ensures that the <tt>-rand /dev/random</tt> option is added to every <tt>openssl</tt> invocation.
+
+To do so, place the following shell snippet exactly as-is to <tt>/etc/profile.d/openssl-rand.sh</tt>:
+<pre>
+# provide a default -rand /dev/random option to openssl commands that
+# support it
+
+# written inefficiently for maximum shell compatibility
+openssl()
+(
+  openssl_bin=/usr/bin/openssl
+
+  case "$*" in
+    # if user specified -rand, honor it
+    *\ -rand\ *|*\ -help*) exec $openssl_bin "$@" ;;
+  esac
+
+  cmds=`$openssl_bin list -digest-commands -cipher-commands | tr '\n' ' '`
+  for i in `$openssl_bin list -commands`; do
+    if $openssl_bin list -options "$i" | grep -q '^rand '; then
+      cmds=" $i $cmds"
+    fi
+  done
+
+  case "$cmds" in
+    *\ "$1"\ *)
+      cmd="$1"; shift
+      exec $openssl_bin "$cmd" -rand /dev/random "$@" ;;
+  esac
+
+  exec $openssl_bin "$@"
+)
+</pre></p>
+<h4>Rationale</h4>
+<p>This rule ensures that <tt>openssl</tt> invocations always uses SP800-90A compliant random number generator as a default behavior.</p>
+</div>
+
+<div id="package_crypto-policies_installed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Install crypto-policies package</h3>
+<div>package_crypto-policies_installed</div>
+<h4>Description</h4>
+<p>The <code>crypto-policies</code> package can be installed with the following command:
+<pre>
+$ sudo dnf install crypto-policies</pre></p>
+<h4>Rationale</h4>
+<p>Centralized cryptographic policies simplify applying secure ciphers across an operating system and
+the applications that run on that operating system. Use of weak or untested encryption algorithms
+undermines the purposes of utilizing encryption to protect data.</p>
+</div>
+
+<div id="fips_crypto_subpolicy" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>FIPS Must Use a Supported Subpolicy</h3>
+<div>fips_crypto_subpolicy</div>
+<h4>Description</h4>
+<p>Sub-policies can be used to modify existing crypto policies.
+Some sub-policies such as <tt>NO-ENFORCE-EMS</tt> reduce the security of the system and should not be used.
+Other such as <tt>AD-SUPPORT</tt> should only be enabled if operationally required.
+The <tt>OSPP</tt>, <tt>NO-SHA1</tt>, <tt>NO-CAMELLIA</tt>, and <tt>ECDHE-ONLY</tt> are allowed by this rule.</p>
+<h4>Rationale</h4>
+<p>Sub-policies can cause insecure ciphers to be used.</p>
+</div>
+
+<div id="fips_crypto_policy_symlinks" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>System Wide Crypto Policy Files Must Point to FIPS Policy</h3>
+<div>fips_crypto_policy_symlinks</div>
+<h4>Description</h4>
+<p>All files in /etc/crypto-policies/back-ends/ except for nss.config should be symlinks pointing
+to /usr/share/crypto-policies/FIPS/
+<pre>
+$ stat -c%N /etc/crypto-policies/back-ends/*
+'/etc/crypto-policies/back-ends/bind.config' -> '/usr/share/crypto-policies/FIPS/bind.txt'
+'/etc/crypto-policies/back-ends/gnutls.config' -> '/usr/share/crypto-policies/FIPS/gnutls.txt'
+'/etc/crypto-policies/back-ends/java.config' -> '/usr/share/crypto-policies/FIPS/java.txt'
+'/etc/crypto-policies/back-ends/javasystem.config' -> '/usr/share/crypto-policies/FIPS/javasystem.txt'
+'/etc/crypto-policies/back-ends/krb5.config' -> '/usr/share/crypto-policies/FIPS/krb5.txt'
+'/etc/crypto-policies/back-ends/libreswan.config' -> '/usr/share/crypto-policies/FIPS/libreswan.txt'
+'/etc/crypto-policies/back-ends/libssh.config' -> '/usr/share/crypto-policies/FIPS/libssh.txt'
+'/etc/crypto-policies/back-ends/nss.config'
+'/etc/crypto-policies/back-ends/openssh.config' -> '/usr/share/crypto-policies/FIPS/openssh.txt'
+'/etc/crypto-policies/back-ends/opensshserver.config' -> '/usr/share/crypto-policies/FIPS/opensshserver.txt'
+'/etc/crypto-policies/back-ends/opensslcnf.config' -> '/usr/share/crypto-policies/FIPS/opensslcnf.txt'
+'/etc/crypto-policies/back-ends/openssl.config' -> '/usr/share/crypto-policies/FIPS/openssl.txt'
+'/etc/crypto-policies/back-ends/openssl_fips.config' -> '/usr/share/crypto-policies/FIPS/openssl_fips.txt'
+</pre></p>
+<h4>Rationale</h4>
+<p>Centralized cryptographic policies simplify applying secure ciphers across an operating
+system and the applications that run on that operating system. Use of weak or untested
+encryption algorithms undermines the purposes of using encryption to protect data.</p>
+</div>
+
+
+
+
+</body>
+</html>
