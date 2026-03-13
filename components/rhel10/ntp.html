@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'ntp'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'ntp'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>ntp</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<ul>
+
+<li>ntp</li>
+
+</ul>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#chronyd_client_only">chronyd_client_only</a></li>
+
+<li><a href="#chronyd_configure_pool_and_server">chronyd_configure_pool_and_server</a></li>
+
+<li><a href="#chronyd_no_chronyc_network">chronyd_no_chronyc_network</a></li>
+
+<li><a href="#chronyd_or_ntpd_set_maxpoll">chronyd_or_ntpd_set_maxpoll</a></li>
+
+<li><a href="#chronyd_or_ntpd_specify_multiple_servers">chronyd_or_ntpd_specify_multiple_servers</a></li>
+
+<li><a href="#chronyd_or_ntpd_specify_remote_server">chronyd_or_ntpd_specify_remote_server</a></li>
+
+<li><a href="#chronyd_run_as_chrony_user">chronyd_run_as_chrony_user</a></li>
+
+<li><a href="#chrony_set_nts">chrony_set_nts</a></li>
+
+<li><a href="#chronyd_server_directive">chronyd_server_directive</a></li>
+
+<li><a href="#chronyd_specify_remote_server">chronyd_specify_remote_server</a></li>
+
+<li><a href="#chronyd_sync_clock">chronyd_sync_clock</a></li>
+
+<li><a href="#file_groupowner_etc_chrony_keys">file_groupowner_etc_chrony_keys</a></li>
+
+<li><a href="#file_owner_etc_chrony_keys">file_owner_etc_chrony_keys</a></li>
+
+<li><a href="#file_permissions_etc_chrony_keys">file_permissions_etc_chrony_keys</a></li>
+
+<li><a href="#ntpd_configure_restrictions">ntpd_configure_restrictions</a></li>
+
+<li><a href="#ntpd_run_as_ntp_user">ntpd_run_as_ntp_user</a></li>
+
+<li><a href="#ntpd_specify_multiple_servers">ntpd_specify_multiple_servers</a></li>
+
+<li><a href="#ntpd_specify_remote_server">ntpd_specify_remote_server</a></li>
+
+<li><a href="#ntp_single_service_active">ntp_single_service_active</a></li>
+
+<li><a href="#package_chrony_installed">package_chrony_installed</a></li>
+
+<li><a href="#package_ntp_installed">package_ntp_installed</a></li>
+
+<li><a href="#package_ntp_removed">package_ntp_removed</a></li>
+
+<li><a href="#package_timesyncd_installed">package_timesyncd_installed</a></li>
+
+<li><a href="#package_timesyncd_removed">package_timesyncd_removed</a></li>
+
+<li><a href="#service_chronyd_enabled">service_chronyd_enabled</a></li>
+
+<li><a href="#service_chronyd_disabled">service_chronyd_disabled</a></li>
+
+<li><a href="#service_chronyd_or_ntpd_enabled">service_chronyd_or_ntpd_enabled</a></li>
+
+<li><a href="#service_ntp_enabled">service_ntp_enabled</a></li>
+
+<li><a href="#service_ntpd_enabled">service_ntpd_enabled</a></li>
+
+<li><a href="#service_timesyncd_enabled">service_timesyncd_enabled</a></li>
+
+<li><a href="#service_timesyncd_disabled">service_timesyncd_disabled</a></li>
+
+<li><a href="#service_timesyncd_configured">service_timesyncd_configured</a></li>
+
+<li><a href="#service_timesyncd_root_distance_configured">service_timesyncd_root_distance_configured</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="chronyd_client_only" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable chrony daemon from acting as server</h3>
+<div>chronyd_client_only</div>
+<h4>Description</h4>
+<p>The <tt>port</tt> option in <tt>/etc/chrony.conf</tt> can be set to
+<tt>0</tt> to make chrony daemon to never open any listening port
+for server operation and to operate strictly in a client-only mode.</p>
+<h4>Rationale</h4>
+<p>In order to prevent unauthorized connection of devices, unauthorized transfer of information, or unauthorized tunneling (i.e., embedding of data types within data types), organizations must disable or restrict unused or unnecessary physical and logical ports/protocols on information systems.
+Operating systems are capable of providing a wide variety of functions and services. Some of the functions and services provided by default may not be necessary to support essential organizational operations. Additionally, it is sometimes convenient to provide multiple services from a single component (e.g., VPN and IPS); however, doing so increases risk over limiting the services provided by any one component.
+To support the requirements and principles of least functionality, the operating system must support the organizational requirements, providing only essential capabilities and limiting the use of ports, protocols, and/or services to only those required, authorized, and approved to conduct official business or to address authorized quality of life issues.</p>
+</div>
+
+<div id="chronyd_configure_pool_and_server" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Chrony Configure Pool and Server</h3>
+<div>chronyd_configure_pool_and_server</div>
+<h4>Description</h4>
+<p><tt>Chrony</tt> is a daemon which implements the Network Time Protocol (NTP). It is designed to
+synchronize system clocks across a variety of systems and use a source that is highly
+accurate. More information on <tt>chrony</tt> can be found at
+
+    <a xmlns='http://www.w3.org/1999/xhtml' href='https://chrony-project.org/'>https://chrony-project.org/</a>.
+<tt>Chrony</tt> can be configured to be a client and/or a server.
+Add or edit server or pool lines to <tt>/etc/chrony.conf</tt> as appropriate:
+<pre>server &lt;remote-server&gt;</pre>
+Multiple servers may be configured.</p>
+<h4>Rationale</h4>
+<p>If <tt>chrony</tt> is in use on the system proper configuration is vital to ensuring time
+synchronization is working properly.</p>
+</div>
+
+<div id="chronyd_no_chronyc_network" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable network management of chrony daemon</h3>
+<div>chronyd_no_chronyc_network</div>
+<h4>Description</h4>
+<p>The <tt>cmdport</tt> option in <tt>/etc/chrony.conf</tt> can be set to
+<tt>0</tt> to stop chrony daemon from listening on the UDP port 323
+for management connections made by chronyc.</p>
+<h4>Rationale</h4>
+<p>Minimizing the exposure of the server functionality of the chrony
+daemon diminishes the attack surface.</p>
+</div>
+
+<div id="chronyd_or_ntpd_set_maxpoll" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure Time Service Maxpoll Interval</h3>
+<div>chronyd_or_ntpd_set_maxpoll</div>
+<h4>Description</h4>
+<p>The <tt>maxpoll</tt> should be configured to
+<tt>$var_time_service_set_maxpoll</tt> in <tt>/etc/ntp.conf</tt> or
+<tt>/etc/chrony.conf</tt> (or <tt>/etc/chrony.d/</tt>) to continuously poll time servers. To configure
+<tt>maxpoll</tt> in <tt>/etc/ntp.conf</tt> or <tt>/etc/chrony.conf</tt> (or <tt>/etc/chrony.d/</tt>)
+add the following after each <tt>server</tt>, <tt>pool</tt> or <tt>peer</tt> entry:
+<pre>maxpoll <tt>$var_time_service_set_maxpoll</tt></pre>
+to <tt>server</tt> directives. If using chrony, any <tt>pool</tt> directives
+should be configured too.</p>
+<h4>Rationale</h4>
+<p>Inaccurate time stamps make it more difficult to correlate events and can lead to an inaccurate analysis. Determining the correct time a particular event occurred on a system is critical when conducting forensic analysis and investigating system events. Sources outside the configured acceptable allowance (drift) may be inaccurate.
+Synchronizing internal information system clocks provides uniformity of time stamps for information systems with multiple system clocks and systems connected over a network.
+Organizations should consider endpoints that may not have regular access to the authoritative time server (e.g., mobile, teleworking, and tactical endpoints).</p>
+</div>
+
+<div id="chronyd_or_ntpd_specify_multiple_servers" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Specify Additional Remote NTP Servers</h3>
+<div>chronyd_or_ntpd_specify_multiple_servers</div>
+<h4>Description</h4>
+<p>Depending on specific functional requirements of a concrete
+production environment, the Red Hat Enterprise Linux 10 system can be
+configured to utilize the services of the <tt>chronyd</tt> NTP daemon (the
+default), or services of the <tt>ntpd</tt> NTP daemon. Refer to
+
+    
+    <a xmlns='http://www.w3.org/1999/xhtml' href='https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/8/html-single/configuring_basic_system_settings/index#proc_migrating-to-chrony_configuring-time-synchronization'>https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/8/html-single/configuring_basic_system_settings/index#proc_migrating-to-chrony_configuring-time-synchronization</a>
+
+for more detailed comparison of the features of both of the choices, and for
+further guidance how to choose between the two NTP daemons.
+<br />
+Additional NTP servers can be specified for time synchronization. To do so,
+perform the following:
+<ul>
+<li> if the system is configured to use the <tt>chronyd</tt> as the NTP daemon
+(the default), edit the file <tt>/etc/chrony.conf</tt> as follows,</li>
+<li> if the system is configured to use the <tt>ntpd</tt> as the NTP daemon,
+edit the file <tt>/etc/ntp.conf</tt> as documented below.</li>
+</ul>
+Add additional lines of the following form, substituting the IP address or
+hostname of a remote NTP server for <em>ntpserver</em>:
+<pre>server <i>ntpserver</i></pre></p>
+<h4>Rationale</h4>
+<p>Specifying additional NTP servers increases the availability of
+accurate time data, in the event that one of the specified servers becomes
+unavailable. This is typical for a system acting as an NTP server for
+other systems.</p>
+</div>
+
+<div id="chronyd_or_ntpd_specify_remote_server" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Specify a Remote NTP Server</h3>
+<div>chronyd_or_ntpd_specify_remote_server</div>
+<h4>Description</h4>
+<p>Depending on specific functional requirements of a concrete
+production environment, the Red Hat Enterprise Linux 10 system can be
+configured to utilize the services of the <tt>chronyd</tt> NTP daemon (the
+default), or services of the <tt>ntpd</tt> NTP daemon. Refer to
+
+    
+    <a xmlns='http://www.w3.org/1999/xhtml' href='https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/8/html-single/configuring_basic_system_settings/index#proc_migrating-to-chrony_configuring-time-synchronization'>https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/8/html-single/configuring_basic_system_settings/index#proc_migrating-to-chrony_configuring-time-synchronization</a>
+
+for more detailed comparison of the features of both of the choices, and for
+further guidance how to choose between the two NTP daemons.
+<br />
+To specify a remote NTP server for time synchronization, perform the following:
+<ul>
+<li> if the system is configured to use the <tt>chronyd</tt> as the NTP daemon (the
+default), edit the file <tt>/etc/chrony.conf</tt> as follows,</li>
+<li> if the system is configured to use the <tt>ntpd</tt> as the NTP daemon,
+edit the file <tt>/etc/ntp.conf</tt> as documented below.</li>
+</ul>
+Add or correct the following lines, substituting the IP or hostname of a remote
+NTP server for <em>ntpserver</em>:
+<pre>server <i>ntpserver</i></pre>
+This instructs the NTP software to contact that remote server to obtain time
+data.</p>
+<h4>Rationale</h4>
+<p>Synchronizing with an NTP server makes it possible to collate system
+logs from multiple sources or correlate computer events with real time events.</p>
+</div>
+
+<div id="chronyd_run_as_chrony_user" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure that chronyd is running under chrony user account</h3>
+<div>chronyd_run_as_chrony_user</div>
+<h4>Description</h4>
+<p>chrony is a daemon which implements the Network Time Protocol (NTP). It is designed to
+synchronize system clocks across a variety of systems and use a source that is highly
+accurate. More information on chrony can be found at
+
+    <a xmlns='http://www.w3.org/1999/xhtml' href='https://chrony-project.org/'>https://chrony-project.org/</a>.
+Chrony can be configured to be a client and/or a server.
+To ensure that chronyd is running under chrony user account,
+remove any <tt>-u ...</tt> option from <tt>OPTIONS</tt> other than <tt>-u chrony</tt>,
+as chrony is run under its own user by default.
+This recommendation only applies if chrony is in use on the system.</p>
+<h4>Rationale</h4>
+<p>If chrony is in use on the system proper configuration is vital to ensuring time synchronization
+is working properly.</p>
+</div>
+
+<div id="chrony_set_nts" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure Time Service to use NTS</h3>
+<div>chrony_set_nts</div>
+<h4>Description</h4>
+<p>The system should be configured to use time servers that support Network Time Security (NTS).
+The specified time server must support NTS and must be configured to use NTS.
+To configure NTS for given time server add <tt>nts</tt> to each <tt>server</tt> or <tt>pool</tt> line in <tt>/etc/chrony.conf</tt>.</p>
+<h4>Rationale</h4>
+<p>Network Time Security (NTS) uses Transport Layer Security (TLS) to secure Network Time Protocol (NTP) communications.
+Not using NTS could allow an attacker to interpret and modify the data sent back from the time server
+Inaccurate time stamps make it more difficult to correlate events and can lead to an inaccurate analysis.
+Determining the correct time a particular event occurred on a system is critical when conducting forensic analysis and investigating system events.
+Sources outside the configured acceptable allowance (drift) may be inaccurate.</p>
+</div>
+
+<div id="chronyd_server_directive" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure Chrony is only configured with the server directive</h3>
+<div>chronyd_server_directive</div>
+<h4>Description</h4>
+<p>Check that Chrony only has time sources configured with the <tt>server</tt> directive.</p>
+<h4>Rationale</h4>
+<p>Depending on the infrastructure being used the <tt>pool</tt> directive may not be supported.
+Using the <tt>server</tt> directive allows for better control of where the system gets time data from.</p>
+</div>
+
+<div id="chronyd_specify_remote_server" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>A remote time server for Chrony is configured</h3>
+<div>chronyd_specify_remote_server</div>
+<h4>Description</h4>
+<p><tt>Chrony</tt> is a daemon which implements the Network Time Protocol (NTP). It is designed
+to synchronize system clocks across a variety of systems and use a source that is highly
+accurate. More information on <tt>chrony</tt> can be found at
+
+    <a xmlns='http://www.w3.org/1999/xhtml' href='https://chrony-project.org/'>https://chrony-project.org/</a>.
+<tt>Chrony</tt> can be configured to be a client and/or a server.
+Add or edit server or pool lines to <tt>/etc/chrony.conf</tt> as appropriate:
+<pre>server &lt;remote-server&gt;</pre>
+Alternatively, server or pool directives can be specified in files included via
+<tt>sourcedir</tt> or <tt>confdir</tt> directives in <tt>/etc/chrony.conf</tt>.
+When using <tt>sourcedir</tt>, create <tt>.sources</tt> files in the specified directory:
+<pre># In /etc/chrony.conf:
+sourcedir /etc/chrony/sources.d
+
+# In /etc/chrony/sources.d/ntp.sources:
+server 0.pool.ntp.org</pre>
+When using <tt>confdir</tt>, create <tt>.conf</tt> files in the specified directory:
+<pre># In /etc/chrony.conf:
+confdir /etc/chrony/conf.d
+
+# In /etc/chrony/conf.d/ntp-servers.conf:
+pool 1.pool.ntp.org</pre>
+Multiple servers may be configured.</p>
+<h4>Rationale</h4>
+<p>If <tt>chrony</tt> is in use on the system proper configuration is vital to ensuring time
+synchronization is working properly.</p>
+</div>
+
+<div id="chronyd_sync_clock" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Synchronize internal information system clocks</h3>
+<div>chronyd_sync_clock</div>
+<h4>Description</h4>
+<p>Synchronizing internal information system clocks provides uniformity
+of time stamps for information systems with multiple system clocks and
+systems connected over a network.</p>
+<h4>Rationale</h4>
+<p>Inaccurate time stamps make it more difficult to correlate events and
+can lead to an inaccurate analysis. Determining the correct time a
+particular event occurred on a system is critical when conducting
+forensic analysis and investigating system events.</p>
+</div>
+
+<div id="file_groupowner_etc_chrony_keys" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Group Who Owns /etc/chrony.keys File</h3>
+<div>file_groupowner_etc_chrony_keys</div>
+<h4>Description</h4>
+<p> To properly set the group owner of <code>/etc/chrony.keys</code>, run the command:
+<pre>$ sudo chgrp chrony /etc/chrony.keys</pre>
+</p>
+<h4>Rationale</h4>
+<p>The ownership of the /etc/chrony.keys file by the chrony group is important
+because this file hosts chrony cryptographic keys. Protection
+of this file is critical for system security. Assigning the ownership to
+chrony ensures exclusive control of the chrony cryptography keys.</p>
+</div>
+
+<div id="file_owner_etc_chrony_keys" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify User Who Owns /etc/chrony.keys File</h3>
+<div>file_owner_etc_chrony_keys</div>
+<h4>Description</h4>
+<p> To properly set the owner of <code>/etc/chrony.keys</code>, run the command:
+<pre>$ sudo chown root /etc/chrony.keys </pre>
+</p>
+<h4>Rationale</h4>
+<p>The ownership of the /etc/chrony.keys file by the chrony user is important
+because this file hosts chrony cryptographic keys. Protection
+of this file is critical for system security. Assigning the ownership to
+chrony ensures exclusive control of the chrony cryptographic keys.</p>
+</div>
+
+<div id="file_permissions_etc_chrony_keys" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Permissions On /etc/chrony.keys File</h3>
+<div>file_permissions_etc_chrony_keys</div>
+<h4>Description</h4>
+<p> To properly set the permissions of <code>/etc/chrony.keys</code>, run the command: <pre>$ sudo chmod 0640 /etc/chrony.keys</pre></p>
+<h4>Rationale</h4>
+<p>Setting correct permissions on the /etc/chrony.keys file is important
+because this file hosts chrony cryptographic keys. Protection
+of this file is critical for system security. Assigning the correct mode
+ensures exclusive control of the chrony cryptographic keys.</p>
+</div>
+
+<div id="ntpd_configure_restrictions" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure server restrictions for ntpd</h3>
+<div>ntpd_configure_restrictions</div>
+<h4>Description</h4>
+<p>ntpd is a daemon which implements the Network Time Protocol (NTP). It is designed to
+synchronize system clocks across a variety of systems and use a source that is highly
+accurate. More information on NTP can be found at
+
+    <a xmlns='http://www.w3.org/1999/xhtml' href='http://www.ntp.org'>http://www.ntp.org</a>.
+ntp can be configured to be a client and/or a server.
+To ensure that ntpd implements correct server restrictions, make sure that the following lines exist in the file <tt>/etc/ntpd.conf</tt>:
+<pre>restrict -4 default kod nomodify notrap nopeer noquery</pre>
+<pre>restrict -6 default kod nomodify notrap nopeer noquery</pre>
+This recommendation only applies if ntp is in use on the system.</p>
+<h4>Rationale</h4>
+<p>If ntp is in use on the system proper configuration is vital to ensuring time synchronization
+is working properly.</p>
+</div>
+
+<div id="ntpd_run_as_ntp_user" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure ntpd To Run As ntp User</h3>
+<div>ntpd_run_as_ntp_user</div>
+<h4>Description</h4>
+<p>ntp is a daemon which implements the Network Time Protocol (NTP). It is designed to
+synchronize system clocks across a variety of systems and use a source that is highly
+accurate. More information on NTP can be found at
+
+    <a xmlns='http://www.w3.org/1999/xhtml' href='http://www.ntp.org'>http://www.ntp.org</a>.
+ntp can be configured to be a client and/or a server.
+To ensure that ntpd is running as ntp user, Add or edit the
+<tt>OPTIONS</tt> variable in <tt>/etc/sysconfig/ntpd</tt> to include ' -u ntp:ntp ':
+<pre>OPTIONS="-u ntp:ntp"</pre>
+This recommendation only applies if ntp is in use on the system.</p>
+<h4>Rationale</h4>
+<p>If ntp is in use on the system proper configuration is vital to ensuring time synchronization
+is working properly. Running ntpd under dedicated user accounts limits the attack surface for
+potential attacker exploiting security flaws in the daemon or the protocol.</p>
+</div>
+
+<div id="ntpd_specify_multiple_servers" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Specify Additional Remote NTP Servers</h3>
+<div>ntpd_specify_multiple_servers</div>
+<h4>Description</h4>
+<p>Additional NTP servers can be specified for time synchronization
+in the file <tt>/etc/ntp.conf</tt>.  To do so, add additional lines of the
+following form, substituting the IP address or hostname of a remote NTP server for
+<em>ntpserver</em>:
+<pre>server <i>ntpserver</i></pre></p>
+<h4>Rationale</h4>
+<p>Specifying additional NTP servers increases the availability of
+accurate time data, in the event that one of the specified servers becomes
+unavailable. This is typical for a system acting as an NTP server for
+other systems.</p>
+</div>
+
+<div id="ntpd_specify_remote_server" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Specify a Remote NTP Server</h3>
+<div>ntpd_specify_remote_server</div>
+<h4>Description</h4>
+<p>To specify a remote NTP server for time synchronization, edit
+the file <tt>/etc/ntp.conf</tt>. Add or correct the following lines,
+substituting the IP or hostname of a remote NTP server for <em>ntpserver</em>:
+<pre>server <i>ntpserver</i></pre>
+This instructs the NTP software to contact that remote server to obtain time
+data.</p>
+<h4>Rationale</h4>
+<p>Synchronizing with an NTP server makes it possible
+to collate system logs from multiple sources or correlate computer events with
+real time events.</p>
+</div>
+
+<div id="ntp_single_service_active" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure a Single Time Synchronization Service is in Use</h3>
+<div>ntp_single_service_active</div>
+<h4>Description</h4>
+<p>The system must have exactly one active time synchronization service to avoid conflicts
+and ensure consistent time synchronization. Only one of the following services should be
+enabled and active at any time:
+<ul>
+    <li>chrony - A versatile NTP implementation</li>
+    <li>systemd-timesyncd - A lightweight NTP client</li>
+</ul>
+Having zero active time synchronization services leaves the system without accurate
+time synchronization, while having multiple active services can lead to unexpected and
+unreliable results.</p>
+<h4>Rationale</h4>
+<p>Running multiple time synchronization services simultaneously can lead to conflicts
+in time synchronization, unpredictable behavior, and unreliable results. A single service
+ensures consistent and accurate time synchronization.
+
+Having no active time synchronization service leaves the system without accurate
+time synchronization, which can affect security mechanisms, log consistency, and forensic
+investigations.</p>
+</div>
+
+<div id="package_chrony_installed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>The Chrony package is installed</h3>
+<div>package_chrony_installed</div>
+<h4>Description</h4>
+<p>System time should be synchronized between all systems in an environment. This is
+typically done by establishing an authoritative time server or set of servers and having all
+systems synchronize their clocks to them.
+The <code>chrony</code> package can be installed with the following command:
+<pre>
+$ sudo dnf install chrony</pre></p>
+<h4>Rationale</h4>
+<p>Time synchronization is important to support time sensitive security mechanisms like
+Kerberos and also ensures log files have consistent time records across the enterprise,
+which aids in forensic investigations.</p>
+</div>
+
+<div id="package_ntp_installed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Install the ntp service</h3>
+<div>package_ntp_installed</div>
+<h4>Description</h4>
+<p>The ntpd service should be installed.</p>
+<h4>Rationale</h4>
+<p>Time synchronization (using NTP) is required by almost all network and administrative tasks (syslog, cryptographic based services (authentication, etc.), etc.). Ntpd is regularly maintained and updated, supporting security features such as RFC 5906.</p>
+</div>
+
+<div id="package_ntp_removed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Remove the ntp service</h3>
+<div>package_ntp_removed</div>
+<h4>Description</h4>
+<p>The ntpd service should not be installed.</p>
+<h4>Rationale</h4>
+<p>Inaccurate time stamps make it more difficult to correlate events
+and can lead to an inaccurate analysis. Determining the correct
+time a particular event occurred on a system is critical when
+conducting forensic analysis and investigating system events.
+Sources outside the configured acceptable allowance (drift)
+may be inaccurate.
+</p>
+</div>
+
+<div id="package_timesyncd_installed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Install the systemd_timesyncd Service</h3>
+<div>package_timesyncd_installed</div>
+<h4>Description</h4>
+<p>The systemd_timesyncd service should be installed.</p>
+<h4>Rationale</h4>
+<p>Time synchronization (using NTP) is required by almost all network and administrative tasks (syslog, cryptographic based services (authentication, etc.), etc.). systemd_timesyncd is a part of the systemd suite and acts as a NTP client.</p>
+</div>
+
+<div id="package_timesyncd_removed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Remove the systemd_timesyncd Service</h3>
+<div>package_timesyncd_removed</div>
+<h4>Description</h4>
+<p>The systemd_timesyncd service should not be installed.</p>
+<h4>Rationale</h4>
+<p>Inaccurate time stamps make it more difficult to correlate events
+and can lead to an inaccurate analysis. Determining the correct
+time a particular event occurred on a system is critical when
+conducting forensic analysis and investigating system events.
+Sources outside the configured acceptable allowance (drift)
+may be inaccurate.
+</p>
+</div>
+
+<div id="service_chronyd_enabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>The Chronyd service is enabled</h3>
+<div>service_chronyd_enabled</div>
+<h4>Description</h4>
+<p>chrony is a daemon which implements the Network Time Protocol (NTP) is designed to
+synchronize system clocks across a variety of systems and use a source that is highly
+accurate. More information on chrony can be found at
+
+    <a xmlns='http://www.w3.org/1999/xhtml' href='https://chrony-project.org/'>https://chrony-project.org/</a>.
+Chrony can be configured to be a client and/or a server.
+To enable Chronyd service, you can run:
+<tt># systemctl enable chronyd.service</tt>
+This recommendation only applies if chrony is in use on the system.</p>
+<h4>Rationale</h4>
+<p>If chrony is in use on the system proper configuration is vital to ensuring time
+synchronization is working properly.</p>
+</div>
+
+<div id="service_chronyd_disabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>The Chronyd service is disabled</h3>
+<div>service_chronyd_disabled</div>
+<h4>Description</h4>
+<p>
+The <code>chrony</code> service can be disabled with the following command:
+<pre>$ sudo systemctl mask --now chrony.service</pre></p>
+<h4>Rationale</h4>
+<p>Disabling the <tt>chrony</tt> service ensures that there is
+only single one time service running.</p>
+</div>
+
+<div id="service_chronyd_or_ntpd_enabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Enable the NTP Daemon</h3>
+<div>service_chronyd_or_ntpd_enabled</div>
+<h4>Description</h4>
+<p>
+
+
+Run the following command to determine the current status of the
+<code>chronyd</code> service:
+<pre>$ sudo systemctl is-active chronyd</pre>
+If the service is running, it should return the following: <pre>active</pre>
+
+Note: The <tt>chronyd</tt> daemon is enabled by default.
+<br /><br />
+
+
+Run the following command to determine the current status of the
+<code>ntpd</code> service:
+<pre>$ sudo systemctl is-active ntpd</pre>
+If the service is running, it should return the following: <pre>active</pre>
+Note: The <tt>ntpd</tt> daemon is not enabled by default. Though as mentioned
+in the previous sections in certain environments the <tt>ntpd</tt> daemon might
+be preferred to be used rather than the <tt>chronyd</tt> one. Refer to:
+
+    
+    <a xmlns='http://www.w3.org/1999/xhtml' href='https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/8/html-single/configuring_basic_system_settings/index#proc_migrating-to-chrony_configuring-time-synchronization'>https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/8/html-single/configuring_basic_system_settings/index#proc_migrating-to-chrony_configuring-time-synchronization</a>
+
+for guidance which NTP daemon to choose depending on the environment used.</p>
+<h4>Rationale</h4>
+<p>Enabling some of <tt>chronyd</tt> or <tt>ntpd</tt> services ensures
+that the NTP daemon will be running and that the system will synchronize its
+time to any servers specified. This is important whether the system is
+configured to be a client (and synchronize only its own clock) or it is also
+acting as an NTP server to other systems.  Synchronizing time is essential for
+authentication services such as Kerberos, but it is also important for
+maintaining accurate logs and auditing possible security breaches.
+<br /><br />
+The <tt>chronyd</tt> and <tt>ntpd</tt> NTP daemons offer all of the
+functionality of <tt>ntpdate</tt>, which is now deprecated.</p>
+</div>
+
+<div id="service_ntp_enabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Enable the NTP Daemon</h3>
+<div>service_ntp_enabled</div>
+<h4>Description</h4>
+<p>
+The <code>ntp</code> service can be enabled with the following command:
+<pre>$ sudo systemctl enable ntp.service</pre></p>
+<h4>Rationale</h4>
+<p>Enabling the <tt>ntp</tt> service ensures that the <tt>ntp</tt>
+service will be running and that the system will synchronize its time to
+any servers specified. This is important whether the system is configured to be
+a client (and synchronize only its own clock) or it is also acting as an NTP
+server to other systems.  Synchronizing time is essential for authentication
+services such as Kerberos, but it is also important for maintaining accurate
+logs and auditing possible security breaches.
+<br /><br />
+The NTP daemon offers all of the functionality of <tt>ntpdate</tt>, which is now
+deprecated.</p>
+</div>
+
+<div id="service_ntpd_enabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Enable the NTP Daemon</h3>
+<div>service_ntpd_enabled</div>
+<h4>Description</h4>
+<p>
+The <code>ntpd</code> service can be enabled with the following command:
+<pre>$ sudo systemctl enable ntpd.service</pre></p>
+<h4>Rationale</h4>
+<p>Enabling the <tt>ntpd</tt> service ensures that the <tt>ntpd</tt>
+service will be running and that the system will synchronize its time to
+any servers specified. This is important whether the system is configured to be
+a client (and synchronize only its own clock) or it is also acting as an NTP
+server to other systems.  Synchronizing time is essential for authentication
+services such as Kerberos, but it is also important for maintaining accurate
+logs and auditing possible security breaches.
+<br /><br />
+The NTP daemon offers all of the functionality of <tt>ntpdate</tt>, which is now
+deprecated.</p>
+</div>
+
+<div id="service_timesyncd_enabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Enable systemd_timesyncd Service</h3>
+<div>service_timesyncd_enabled</div>
+<h4>Description</h4>
+<p>
+The <code>systemd_timesyncd</code> service can be enabled with the following command:
+<pre>$ sudo systemctl enable systemd_timesyncd.service</pre></p>
+<h4>Rationale</h4>
+<p>Enabling the <tt>systemd_timesyncd</tt> service ensures that this host
+uses the ntp protocol to fetch time data from a ntp server.
+Synchronizing time is essential for authentication
+services such as Kerberos, but it is also important for maintaining accurate
+logs and auditing possible security breaches.
+<br /><br />
+Additional information on Ubuntu network time protocol is
+available at
+
+    <a xmlns='http://www.w3.org/1999/xhtml' href='https://help.ubuntu.com/lts/serverguide/NTP.html.en'>https://help.ubuntu.com/lts/serverguide/NTP.html.en</a>.</p>
+</div>
+
+<div id="service_timesyncd_disabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable systemd_timesyncd Service</h3>
+<div>service_timesyncd_disabled</div>
+<h4>Description</h4>
+<p>
+The <code>systemd_timesyncd</code> service can be disabled with the following command:
+<pre>$ sudo systemctl mask --now systemd_timesyncd.service</pre></p>
+<h4>Rationale</h4>
+<p>Disabling the <tt>systemd_timesyncd</tt> service ensures that there is
+only single one time service running.
+<br /><br />
+Additional information on Ubuntu network time protocol is
+available at
+
+    <a xmlns='http://www.w3.org/1999/xhtml' href='https://ubuntu.com/server/docs/about-time-synchronisation'>https://ubuntu.com/server/docs/about-time-synchronisation</a>.</p>
+</div>
+
+<div id="service_timesyncd_configured" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure Systemd Timesyncd Servers</h3>
+<div>service_timesyncd_configured</div>
+<h4>Description</h4>
+<p><tt>systemd-timesyncd</tt> is a daemon that has been added for synchronizing the system clock
+across the network. The <tt>systemd-timesyncd</tt> daemon implements:
+  - Implements an SNTP client
+  - Runs with minimal privileges
+  - Saves the current clock to disk every time a new NTP sync has been acquired
+  - Is hooked up with networkd to only operate when network connectivity is available
+Add or edit server or pool lines to <tt>/etc/systemd/timesyncd.conf</tt> as appropriate:
+<pre>server &lt;remote-server&gt;</pre>
+Multiple servers may be configured.</p>
+<h4>Rationale</h4>
+<p>Configuring <tt>systemd-timesyncd</tt> ensures time synchronization is working properly.</p>
+</div>
+
+<div id="service_timesyncd_root_distance_configured" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure Systemd Timesyncd Root Distance Servers</h3>
+<div>service_timesyncd_root_distance_configured</div>
+<h4>Description</h4>
+<p><tt>systemd-timesyncd</tt> server configuration should have RootDistanceMaxSec is
+listed in accordance with local policy. This setting describes the maximum estimated
+time required for a packet to travel to the server connected.</p>
+<h4>Rationale</h4>
+<p>Configuring <tt>systemd-timesyncd</tt> RootDistanceMaxSec ensures time synchronization
+is using servers that are close enough to the client.</p>
+</div>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'gnome'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'gnome'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>gnome</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<ul>
+
+<li>gnome</li>
+
+<li>gnome_login_screen</li>
+
+<li>gnome_media_settings</li>
+
+<li>gnome_network_settings</li>
+
+<li>gnome_remote_access_settings</li>
+
+<li>gnome_screen_locking</li>
+
+<li>gnome_system_settings</li>
+
+<li>gui_login_banner</li>
+
+</ul>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#banner_etc_gdm_banner">banner_etc_gdm_banner</a></li>
+
+<li><a href="#dconf_db_up_to_date">dconf_db_up_to_date</a></li>
+
+<li><a href="#dconf_gnome_banner_enabled">dconf_gnome_banner_enabled</a></li>
+
+<li><a href="#dconf_gnome_disable_automount">dconf_gnome_disable_automount</a></li>
+
+<li><a href="#dconf_gnome_disable_automount_open">dconf_gnome_disable_automount_open</a></li>
+
+<li><a href="#dconf_gnome_disable_autorun">dconf_gnome_disable_autorun</a></li>
+
+<li><a href="#dconf_gnome_disable_ctrlaltdel_reboot">dconf_gnome_disable_ctrlaltdel_reboot</a></li>
+
+<li><a href="#dconf_gnome_disable_geolocation">dconf_gnome_disable_geolocation</a></li>
+
+<li><a href="#dconf_gnome_disable_power_settings">dconf_gnome_disable_power_settings</a></li>
+
+<li><a href="#dconf_gnome_disable_restart_shutdown">dconf_gnome_disable_restart_shutdown</a></li>
+
+<li><a href="#dconf_gnome_disable_thumbnailers">dconf_gnome_disable_thumbnailers</a></li>
+
+<li><a href="#dconf_gnome_disable_user_admin">dconf_gnome_disable_user_admin</a></li>
+
+<li><a href="#dconf_gnome_disable_user_list">dconf_gnome_disable_user_list</a></li>
+
+<li><a href="#dconf_gnome_disable_wifi_create">dconf_gnome_disable_wifi_create</a></li>
+
+<li><a href="#dconf_gnome_disable_wifi_notification">dconf_gnome_disable_wifi_notification</a></li>
+
+<li><a href="#dconf_gnome_enable_smartcard_auth">dconf_gnome_enable_smartcard_auth</a></li>
+
+<li><a href="#dconf_gnome_lock_screen_on_smartcard_removal">dconf_gnome_lock_screen_on_smartcard_removal</a></li>
+
+<li><a href="#dconf_gnome_login_banner_text">dconf_gnome_login_banner_text</a></li>
+
+<li><a href="#dconf_gnome_login_retries">dconf_gnome_login_retries</a></li>
+
+<li><a href="#dconf_gnome_remote_access_credential_prompt">dconf_gnome_remote_access_credential_prompt</a></li>
+
+<li><a href="#dconf_gnome_remote_access_encryption">dconf_gnome_remote_access_encryption</a></li>
+
+<li><a href="#dconf_gnome_screensaver_idle_activation_enabled">dconf_gnome_screensaver_idle_activation_enabled</a></li>
+
+<li><a href="#dconf_gnome_screensaver_idle_activation_locked">dconf_gnome_screensaver_idle_activation_locked</a></li>
+
+<li><a href="#dconf_gnome_screensaver_idle_delay">dconf_gnome_screensaver_idle_delay</a></li>
+
+<li><a href="#dconf_gnome_screensaver_lock_delay">dconf_gnome_screensaver_lock_delay</a></li>
+
+<li><a href="#dconf_gnome_screensaver_lock_enabled">dconf_gnome_screensaver_lock_enabled</a></li>
+
+<li><a href="#dconf_gnome_screensaver_lock_locked">dconf_gnome_screensaver_lock_locked</a></li>
+
+<li><a href="#dconf_gnome_screensaver_mode_blank">dconf_gnome_screensaver_mode_blank</a></li>
+
+<li><a href="#dconf_gnome_screensaver_user_info">dconf_gnome_screensaver_user_info</a></li>
+
+<li><a href="#dconf_gnome_screensaver_user_locks">dconf_gnome_screensaver_user_locks</a></li>
+
+<li><a href="#dconf_gnome_session_idle_user_locks">dconf_gnome_session_idle_user_locks</a></li>
+
+<li><a href="#enable_dconf_user_profile">enable_dconf_user_profile</a></li>
+
+<li><a href="#gnome_gdm_disable_automatic_login">gnome_gdm_disable_automatic_login</a></li>
+
+<li><a href="#gnome_gdm_disable_guest_login">gnome_gdm_disable_guest_login</a></li>
+
+<li><a href="#gnome_gdm_disable_unattended_automatic_login">gnome_gdm_disable_unattended_automatic_login</a></li>
+
+<li><a href="#gnome_gdm_disable_xdmcp">gnome_gdm_disable_xdmcp</a></li>
+
+<li><a href="#gui_login_dod_acknowledgement">gui_login_dod_acknowledgement</a></li>
+
+<li><a href="#package_gdm_removed">package_gdm_removed</a></li>
+
+<li><a href="#xwayland_disabled">xwayland_disabled</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="banner_etc_gdm_banner" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Modify the System GUI Login Banner</h3>
+<div>banner_etc_gdm_banner</div>
+<h4>Description</h4>
+<p>To configure the GUI system login banner edit <tt>/etc/gdm/banner</tt>.
+Replace the default text with a message compliant with the local site
+policy or a legal disclaimer.
+
+The DoD required text is either:
+<br /><br />
+<tt>You are accessing a U.S. Government (USG) Information System (IS) that
+is provided for USG-authorized use only. By using this IS (which includes
+any device attached to this IS), you consent to the following conditions:
+<br />-The USG routinely intercepts and monitors communications on this IS
+for purposes including, but not limited to, penetration testing, COMSEC
+monitoring, network operations and defense, personnel misconduct (PM), law
+enforcement (LE), and counterintelligence (CI) investigations.
+<br />-At any time, the USG may inspect and seize data stored on this IS.
+<br />-Communications using, or data stored on, this IS are not private,
+are subject to routine monitoring, interception, and search, and may be
+disclosed or used for any USG-authorized purpose.
+<br />-This IS includes security measures (e.g., authentication and access
+controls) to protect USG interests -- not for your personal benefit or
+privacy.
+<br />-Notwithstanding the above, using this IS does not constitute consent
+to PM, LE or CI investigative searching or monitoring of the content of
+privileged communications, or work product, related to personal
+representation or services by attorneys, psychotherapists, or clergy, and
+their assistants. Such communications and work product are private and
+confidential. See User Agreement for details.</tt>
+<br /><br />
+OR:
+<br /><br />
+<tt>I've read &amp; consent to terms in IS user agreem't.</tt></p>
+<h4>Rationale</h4>
+<p>Display of a standardized and approved use notification before granting
+access to the operating system ensures privacy and security notification
+verbiage used is consistent with applicable federal laws, Executive Orders,
+directives, policies, regulations, standards, and guidance.
+<br /><br />
+System use notifications are required only for access via login interfaces
+with human users and are not required when such human interfaces do not
+exist.</p>
+</div>
+
+<div id="dconf_db_up_to_date" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Make sure that the dconf databases are up-to-date with regards to respective keyfiles</h3>
+<div>dconf_db_up_to_date</div>
+<h4>Description</h4>
+<p>By default, DConf uses a binary database as a data backend.
+The system-level database is compiled from keyfiles in the /etc/dconf/db/
+directory by the <pre>dconf update</pre> command. More specifically, content present
+in the following directories:
+<pre>/etc/dconf/db/distro.d</pre>
+<pre>/etc/dconf/db/local.d</pre></p>
+<h4>Rationale</h4>
+<p>Unlike text-based keyfiles, the binary database is impossible to check by OVAL.
+Therefore, in order to evaluate dconf configuration, both have to be true at the same time -
+configuration files have to be compliant, and the database needs to be more recent than those keyfiles,
+which gives confidence that it reflects them.</p>
+</div>
+
+<div id="dconf_gnome_banner_enabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Enable GNOME3 Login Warning Banner</h3>
+<div>dconf_gnome_banner_enabled</div>
+<h4>Description</h4>
+<p>In the default graphical environment, displaying a login warning banner
+in the GNOME Display Manager's login screen can be enabled on the login
+screen by setting <tt>banner-message-enable</tt> to <tt>true</tt>.
+<br /><br />
+To enable, add or edit <tt>banner-message-enable</tt> to
+<tt>/etc/dconf/db/distro.d/00-security-settings</tt>. For example:
+<pre>[org/gnome/login-screen]
+banner-message-enable=true</pre>
+Once the setting has been added, add a lock to
+<tt>/etc/dconf/db/distro.d/locks/00-security-settings-lock</tt> to prevent user modification.
+For example:
+<pre>/org/gnome/login-screen/banner-message-enable</pre>
+After the settings have been set, run <tt>dconf update</tt>.
+The banner text must also be set.</p>
+<h4>Rationale</h4>
+<p>Display of a standardized and approved use notification before granting access to the operating system
+ensures privacy and security notification verbiage used is consistent with applicable federal laws,
+Executive Orders, directives, policies, regulations, standards, and guidance.
+<br /><br />
+For U.S. Government systems, system use notifications are required only for access via login interfaces
+with human users and are not required when such human interfaces do not exist.</p>
+</div>
+
+<div id="dconf_gnome_disable_automount" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable GNOME3 Automounting</h3>
+<div>dconf_gnome_disable_automount</div>
+<h4>Description</h4>
+<p>The system's default desktop environment, GNOME3, will mount
+devices and removable media (such as DVDs, CDs and USB flash drives) whenever
+they are inserted into the system. To disable automount within GNOME3, add or set
+<tt>automount</tt> to <tt>false</tt> in <tt>/etc/dconf/db/distro.d/00-security-settings</tt>.
+For example:
+<pre>[org/gnome/desktop/media-handling]
+automount=false</pre>
+Once the settings have been added, add a lock to
+<tt>/etc/dconf/db/distro.d/locks/00-security-settings-lock</tt> to prevent user modification.
+For example:
+<pre>/org/gnome/desktop/media-handling/automount</pre>
+After the settings have been set, run <tt>dconf update</tt>.</p>
+<h4>Rationale</h4>
+<p>Disabling automatic mounting in GNOME3 can prevent
+the introduction of malware via removable media.
+It will, however, also prevent desktop users from legitimate use
+of removable media.</p>
+</div>
+
+<div id="dconf_gnome_disable_automount_open" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable GNOME3 Automount Opening</h3>
+<div>dconf_gnome_disable_automount_open</div>
+<h4>Description</h4>
+<p>The system's default desktop environment, GNOME3, will mount
+devices and removable media (such as DVDs, CDs and USB flash drives) whenever
+they are inserted into the system. To disable automount-open within GNOME3, add or set
+<tt>automount-open</tt> to <tt>false</tt> in <tt>/etc/dconf/db/distro.d/00-security-settings</tt>.
+For example:
+<pre>[org/gnome/desktop/media-handling]
+automount-open=false</pre>
+Once the settings have been added, add a lock to
+<tt>/etc/dconf/db/distro.d/locks/00-security-settings-lock</tt> to prevent user modification.
+For example:
+<pre>/org/gnome/desktop/media-handling/automount-open</pre>
+After the settings have been set, run <tt>dconf update</tt>.</p>
+<h4>Rationale</h4>
+<p>Automatically mounting file systems permits easy introduction of unknown devices, thereby facilitating malicious activity.
+Disabling automatic mounting in GNOME3 can prevent
+the introduction of malware via removable media.
+It will, however, also prevent desktop users from legitimate use
+of removable media.</p>
+</div>
+
+<div id="dconf_gnome_disable_autorun" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable GNOME3 Automount running</h3>
+<div>dconf_gnome_disable_autorun</div>
+<h4>Description</h4>
+<p>The system's default desktop environment, GNOME3, will mount
+devices and removable media (such as DVDs, CDs and USB flash drives) whenever
+they are inserted into the system. To disable autorun-never within GNOME3, add or set
+<tt>autorun-never</tt> to <tt>true</tt> in <tt>/etc/dconf/db/distro.d/00-security-settings</tt>.
+For example:
+<pre>[org/gnome/desktop/media-handling]
+autorun-never=true</pre>
+Once the settings have been added, add a lock to
+<tt>/etc/dconf/db/distro.d/locks/00-security-settings-lock</tt> to prevent user modification.
+For example:
+<pre>/org/gnome/desktop/media-handling/autorun-never</pre>
+After the settings have been set, run <tt>dconf update</tt>.</p>
+<h4>Rationale</h4>
+<p>Automatically mounting file systems permits easy introduction of unknown devices, thereby facilitating malicious activity.
+Disabling automatic mount running in GNOME3 can prevent
+the introduction of malware via removable media.
+It will, however, also prevent desktop users from legitimate use
+of removable media.</p>
+</div>
+
+<div id="dconf_gnome_disable_ctrlaltdel_reboot" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable Ctrl-Alt-Del Reboot Key Sequence in GNOME3</h3>
+<div>dconf_gnome_disable_ctrlaltdel_reboot</div>
+<h4>Description</h4>
+<p>By default, <tt>GNOME</tt> will reboot the system if the
+<tt>Ctrl-Alt-Del</tt> key sequence is pressed.
+<br /><br />
+To configure the system to ignore the <tt>Ctrl-Alt-Del</tt> key sequence
+from the Graphical User Interface (GUI) instead of rebooting the system,
+add or set <tt>logout</tt> to <tt>['']</tt> in
+<tt>/etc/dconf/db/local.d/00-security-settings</tt>. For example:
+<pre>[org/gnome/settings-daemon/plugins/media-keys]
+logout=['']</pre>
+Once the settings have been added, add a lock to
+<tt>/etc/dconf/db/local.d/locks/00-security-settings-lock</tt> to prevent
+user modification. For example:
+<pre>/org/gnome/settings-daemon/plugins/media-keys/logout</pre>
+After the settings have been set, run <tt>dconf update</tt>.</p>
+<h4>Rationale</h4>
+<p>A locally logged-in user who presses Ctrl-Alt-Del, when at the console,
+can reboot the system. If accidentally pressed, as could happen in
+the case of mixed OS environment, this can create the risk of short-term
+loss of availability of systems due to unintentional reboot.</p>
+</div>
+
+<div id="dconf_gnome_disable_geolocation" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable Geolocation in GNOME3</h3>
+<div>dconf_gnome_disable_geolocation</div>
+<h4>Description</h4>
+<p><tt>GNOME</tt> allows the clock and applications to track and access
+location information. This setting should be disabled as applications
+should not track system location. To configure the system to disable
+location tracking, add or set <tt>enabled</tt> to <tt>false</tt> in
+<tt>/etc/dconf/db/local.d/00-security-settings</tt>. For example:
+<pre>[org/gnome/system/location]
+enabled=false</pre>
+To configure the clock to disable location tracking, add or set
+<tt>geolocation</tt> to <tt>false</tt> in
+<tt>/etc/dconf/db/local.d/00-security-settings</tt>. For example:
+<pre>[org/gnome/clocks]
+geolocation=false</pre>
+Once the settings have been added, add a lock to
+<tt>/etc/dconf/db/local.d/locks/00-security-settings-lock</tt> to prevent
+user modification. For example:
+<pre>/org/gnome/system/location/enabled
+/org/gnome/clocks/geolocation</pre>
+After the settings have been set, run <tt>dconf update</tt>.</p>
+<h4>Rationale</h4>
+<p>Power settings should not be enabled on systems that are not mobile devices.
+Enabling power settings on non-mobile devices could have unintended processing
+consequences on standard systems.</p>
+</div>
+
+<div id="dconf_gnome_disable_power_settings" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable Power Settings in GNOME3</h3>
+<div>dconf_gnome_disable_power_settings</div>
+<h4>Description</h4>
+<p>By default, <tt>GNOME</tt> enables a power profile designed for mobile devices
+with battery usage. While useful for mobile devices, this setting should be disabled
+for all other systems. To configure the system to disable the power setting, add or set
+<tt>active</tt> to <tt>false</tt> in
+<tt>/etc/dconf/db/local.d/00-security-settings</tt>. For example:
+<pre>[org/gnome/settings-daemon/plugins/power]
+active=false
+</pre>
+Once the settings have been added, add a lock to
+<tt>/etc/dconf/db/local.d/locks/00-security-settings-lock</tt> to prevent user modification.
+For example:
+<pre>/org/gnome/settings-daemon/plugins/power</pre>
+After the settings have been set, run <tt>dconf update</tt>.</p>
+<h4>Rationale</h4>
+<p>Power settings should not be enabled on systems that are not mobile devices.
+Enabling power settings on non-mobile devices could have unintended processing
+consequences on standard systems.</p>
+</div>
+
+<div id="dconf_gnome_disable_restart_shutdown" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable the GNOME3 Login Restart and Shutdown Buttons</h3>
+<div>dconf_gnome_disable_restart_shutdown</div>
+<h4>Description</h4>
+<p>In the default graphical environment, users logging directly into the
+system are greeted with a login screen that allows any user, known or
+unknown, the ability the ability to shutdown or restart the system. This
+functionality should be disabled by setting
+<tt>disable-restart-buttons</tt> to <tt>true</tt>.
+<br /><br />
+To disable, add or edit <tt>disable-restart-buttons</tt> to
+<tt>/etc/dconf/db/distro.d/00-security-settings</tt>. For example:
+<pre>[org/gnome/login-screen]
+disable-restart-buttons=true</pre>
+Once the setting has been added, add a lock to
+<tt>/etc/dconf/db/distro.d/locks/00-security-settings-lock</tt> to prevent
+user modification. For example:
+<pre>/org/gnome/login-screen/disable-restart-buttons</pre>
+After the settings have been set, run <tt>dconf update</tt>.</p>
+<h4>Rationale</h4>
+<p>A user who is at the console can reboot the system at the login screen. If restart or shutdown buttons
+are pressed at the login screen, this can create the risk of short-term loss of availability of systems
+due to reboot.</p>
+</div>
+
+<div id="dconf_gnome_disable_thumbnailers" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable All GNOME3 Thumbnailers</h3>
+<div>dconf_gnome_disable_thumbnailers</div>
+<h4>Description</h4>
+<p>The system's default desktop environment, GNOME3, uses
+a number of different thumbnailer programs to generate thumbnails
+for any new or modified content in an opened folder. To disable the
+execution of these thumbnail applications, add or set <tt>disable-all</tt>
+to <tt>true</tt> in <tt>/etc/dconf/db/local.d/00-security-settings</tt>.
+For example:
+<pre>[org/gnome/desktop/thumbnailers]
+disable-all=true</pre>
+Once the settings have been added, add a lock to
+<tt>/etc/dconf/db/local.d/locks/00-security-settings-lock</tt> to prevent user modification.
+For example:
+<pre>/org/gnome/desktop/thumbnailers/disable-all</pre>
+After the settings have been set, run <tt>dconf update</tt>.
+This effectively prevents an attacker from gaining access to a
+system through a flaw in GNOME3's Nautilus thumbnail creators.</p>
+<h4>Rationale</h4>
+<p>An attacker with knowledge of a flaw in a GNOME3 thumbnailer application could craft a malicious
+file to exploit this flaw. Assuming the attacker could place the malicious file on the local filesystem
+(via a web upload for example) and assuming a user browses the same location using Nautilus, the
+malicious file would exploit the thumbnailer with the potential for malicious code execution. It
+is best to disable these thumbnailer applications unless they are explicitly required.</p>
+</div>
+
+<div id="dconf_gnome_disable_user_admin" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable User Administration in GNOME3</h3>
+<div>dconf_gnome_disable_user_admin</div>
+<h4>Description</h4>
+<p>By default, <tt>GNOME</tt> will allow all users to have some administratrion
+capability. This should be disabled so that non-administrative users are not making
+configuration changes. To configure the system to disable user administration
+capability in the Graphical User Interface (GUI), add or set
+<tt>user-administration-disabled</tt> to <tt>true</tt> in
+<tt>/etc/dconf/db/local.d/00-security-settings</tt>. For example:
+<pre>[org/gnome/desktop/lockdown]
+user-administration-disabled=true
+</pre>
+Once the settings have been added, add a lock to
+<tt>/etc/dconf/db/local.d/locks/00-security-settings-lock</tt> to prevent user modification.
+For example:
+<pre>/org/gnome/desktop/lockdown/user-administration-disabled</pre>
+After the settings have been set, run <tt>dconf update</tt>.</p>
+<h4>Rationale</h4>
+<p>Allowing all users to have some administratrive capabilities to the system through
+the Graphical User Interface (GUI) when they would not have them otherwise could allow
+unintended configuration changes as well as a nefarious user the capability to make system
+changes such as adding new accounts, etc.</p>
+</div>
+
+<div id="dconf_gnome_disable_user_list" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable the GNOME3 Login User List</h3>
+<div>dconf_gnome_disable_user_list</div>
+<h4>Description</h4>
+<p>In the default graphical environment, users logging directly into the
+system are greeted with a login screen that displays all known users.
+This functionality should be disabled by setting <tt>disable-user-list</tt>
+to <tt>true</tt>.
+<br /><br />
+To disable, add or edit <tt>disable-user-list</tt> to
+<tt>/etc/dconf/db/distro.d/00-security-settings</tt>. For example:
+<pre>[org/gnome/login-screen]
+disable-user-list=true</pre>
+Once the setting has been added, add a lock to
+<tt>/etc/dconf/db/distro.d/locks/00-security-settings-lock</tt> to prevent
+user modification. For example:
+<pre>/org/gnome/login-screen/disable-user-list</pre>
+After the settings have been set, run <tt>dconf update</tt>.</p>
+<h4>Rationale</h4>
+<p>Leaving the user list enabled is a security risk since it allows anyone
+with physical access to the system to quickly enumerate known user accounts
+without logging in.</p>
+</div>
+
+<div id="dconf_gnome_disable_wifi_create" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable WIFI Network Connection Creation in GNOME3</h3>
+<div>dconf_gnome_disable_wifi_create</div>
+<h4>Description</h4>
+<p><tt>GNOME</tt> allows users to create ad-hoc wireless connections through the
+<tt>NetworkManager</tt> applet. Wireless connections should be disabled by
+adding or setting <tt>disable-wifi-create</tt> to <tt>true</tt> in
+<tt>/etc/dconf/db/local.d/00-security-settings</tt>. For example:
+<pre>[org/gnome/nm-applet]
+disable-wifi-create=true
+</pre>
+Once the settings have been added, add a lock to
+<tt>/etc/dconf/db/local.d/locks/00-security-settings-lock</tt> to prevent user modification.
+For example:
+<pre>/org/gnome/nm-applet/disable-wifi-create</pre>
+After the settings have been set, run <tt>dconf update</tt>.</p>
+<h4>Rationale</h4>
+<p>Wireless network connections should not be allowed to be configured by general
+users on a given system as it could open the system to backdoor attacks.</p>
+</div>
+
+<div id="dconf_gnome_disable_wifi_notification" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable WIFI Network Notification in GNOME3</h3>
+<div>dconf_gnome_disable_wifi_notification</div>
+<h4>Description</h4>
+<p>By default, <tt>GNOME</tt> disables WIFI notification. This should be permanently set
+so that users do not connect to a wireless network when the system finds one.
+While useful for mobile devices, this setting should be disabled for all other systems.
+To configure the system to disable the WIFI notification, add or set
+<tt>suppress-wireless-networks-available</tt> to <tt>true</tt> in
+<tt>/etc/dconf/db/local.d/00-security-settings</tt>. For example:
+<pre>[org/gnome/nm-applet]
+suppress-wireless-networks-available=true
+</pre>
+Once the settings have been added, add a lock to
+<tt>/etc/dconf/db/local.d/locks/00-security-settings-lock</tt> to prevent user modification.
+For example:
+<pre>/org/gnome/nm-applet/suppress-wireless-networks-available</pre>
+After the settings have been set, run <tt>dconf update</tt>.</p>
+<h4>Rationale</h4>
+<p>Wireless network connections should not be allowed to be configured by general
+users on a given system as it could open the system to backdoor attacks.</p>
+</div>
+
+<div id="dconf_gnome_enable_smartcard_auth" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Enable the GNOME3 Login Smartcard Authentication</h3>
+<div>dconf_gnome_enable_smartcard_auth</div>
+<h4>Description</h4>
+<p>In the default graphical environment, smart card authentication
+can be enabled on the login screen by setting <tt>enable-smartcard-authentication</tt>
+to <tt>true</tt>.
+<br /><br />
+To enable, add or edit <tt>enable-smartcard-authentication</tt> to
+<tt>/etc/dconf/db/distro.d/00-security-settings</tt>. For example:
+<pre>[org/gnome/login-screen]
+enable-smartcard-authentication=true</pre>
+Once the setting has been added, add a lock to
+<tt>/etc/dconf/db/distro.d/locks/00-security-settings-lock</tt> to prevent user modification.
+For example:
+<pre>/org/gnome/login-screen/enable-smartcard-authentication</pre>
+After the settings have been set, run <tt>dconf update</tt>.</p>
+<h4>Rationale</h4>
+<p>Smart card login provides two-factor authentication stronger than
+that provided by a username and password combination. Smart cards leverage PKI
+(public key infrastructure) in order to provide and verify credentials.</p>
+</div>
+
+<div id="dconf_gnome_lock_screen_on_smartcard_removal" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Enable the GNOME3 Screen Locking On Smartcard Removal</h3>
+<div>dconf_gnome_lock_screen_on_smartcard_removal</div>
+<h4>Description</h4>
+<p>In the default graphical environment, screen locking on smartcard removal
+can be enabled by setting <tt>removal-action</tt>
+to <tt>'lock-screen'</tt>.
+<br /><br />
+To enable, add or edit <tt>removal-action</tt> to
+<tt>/etc/dconf/db/local.d/00-security-settings</tt>. For example:
+<pre>[org/gnome/settings-daemon/peripherals/smartcard]
+removal-action='lock-screen'</pre>
+Once the setting has been added, add a lock to
+<tt>/etc/dconf/db/local.d/locks/00-security-settings-lock</tt> to prevent user modification.
+For example:
+<pre>/org/gnome/settings-daemon/peripherals/smartcard/removal-action</pre>
+After the settings have been set, run <tt>dconf update</tt>.</p>
+<h4>Rationale</h4>
+<p>Locking the screen automatically when removing the smartcard can
+prevent undesired access to system.</p>
+</div>
+
+<div id="dconf_gnome_login_banner_text" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Set the GNOME3 Login Warning Banner Text</h3>
+<div>dconf_gnome_login_banner_text</div>
+<h4>Description</h4>
+<p>In the default graphical environment, configuring the login warning banner text
+in the GNOME Display Manager's login screen can be configured on the login
+screen by setting <tt>banner-message-text</tt> to <tt>'<i>APPROVED_BANNER</i>'</tt>
+where <i>APPROVED_BANNER</i> is the approved banner for your environment.
+<br /><br />
+To enable, add or edit <tt>banner-message-text</tt> to
+
+<tt>/etc/dconf/db/distro.d/00-security-settings</tt>. For example:
+<pre>[org/gnome/login-screen]
+banner-message-text='<i>APPROVED_BANNER</i>'</pre>
+Once the setting has been added, add a lock to
+<tt>/etc/dconf/db/distro.d/locks/00-security-settings-lock</tt> to prevent user modification.
+For example:
+<pre>/org/gnome/login-screen/banner-message-text</pre>
+
+After the settings have been set, run <tt>dconf update</tt>.
+When entering a warning banner that spans several lines, remember
+to begin and end the string with <tt>'</tt> and use <tt>\n</tt> for new lines.</p>
+<h4>Rationale</h4>
+<p>An appropriate warning message reinforces policy awareness during the logon
+process and facilitates possible legal action against attackers.</p>
+</div>
+
+<div id="dconf_gnome_login_retries" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Set the GNOME3 Login Number of Failures</h3>
+<div>dconf_gnome_login_retries</div>
+<h4>Description</h4>
+<p>In the default graphical environment, the GNOME3 login
+screen and be configured to restart the authentication process after
+a configured number of attempts. This can be configured by setting
+<tt>allowed-failures</tt> to <tt>3</tt> or less.
+<br /><br />
+To enable, add or edit <tt>allowed-failures</tt> to
+<tt>/etc/dconf/db/distro.d/00-security-settings</tt>. For example:
+<pre>[org/gnome/login-screen]
+allowed-failures=3</pre>
+Once the setting has been added, add a lock to
+<tt>/etc/dconf/db/distro.d/locks/00-security-settings-lock</tt> to prevent user modification.
+For example:
+<pre>/org/gnome/login-screen/allowed-failures</pre>
+After the settings have been set, run <tt>dconf update</tt>.</p>
+<h4>Rationale</h4>
+<p>Setting the password retry prompts that are permitted on a per-session basis to a low value
+requires some software, such as SSH, to re-connect. This can slow down and
+draw additional attention to some types of password-guessing attacks.</p>
+</div>
+
+<div id="dconf_gnome_remote_access_credential_prompt" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Require Credential Prompting for Remote Access in GNOME3</h3>
+<div>dconf_gnome_remote_access_credential_prompt</div>
+<h4>Description</h4>
+<p>By default, <tt>GNOME</tt> does not require credentials when using <tt>Vino</tt> for
+remote access. To configure the system to require remote credentials, add or set
+<tt>authentication-methods</tt> to <tt>['vnc']</tt> in
+<tt>/etc/dconf/db/distro.d/00-security-settings</tt>. For example:
+<pre>[org/gnome/Vino]
+authentication-methods=['vnc']
+</pre>
+Once the settings have been added, add a lock to
+<tt>/etc/dconf/db/distro.d/locks/00-security-settings-lock</tt> to prevent user modification.
+For example:
+<pre>/org/gnome/Vino/authentication-methods</pre>
+After the settings have been set, run <tt>dconf update</tt>.</p>
+<h4>Rationale</h4>
+<p>Username and password prompting is required for remote access. Otherwise, non-authorized
+and nefarious users can access the system freely.</p>
+</div>
+
+<div id="dconf_gnome_remote_access_encryption" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Require Encryption for Remote Access in GNOME3</h3>
+<div>dconf_gnome_remote_access_encryption</div>
+<h4>Description</h4>
+<p>By default, <tt>GNOME</tt> requires encryption when using <tt>Vino</tt> for remote access.
+To prevent remote access encryption from being disabled, add or set
+<tt>require-encryption</tt> to <tt>true</tt> in
+<tt>/etc/dconf/db/distro.d/00-security-settings</tt>. For example:
+<pre>[org/gnome/Vino]
+require-encryption=true
+</pre>
+Once the settings have been added, add a lock to
+<tt>/etc/dconf/db/distro.d/locks/00-security-settings-lock</tt> to prevent user modification.
+For example:
+<pre>/org/gnome/Vino/require-encryption</pre>
+After the settings have been set, run <tt>dconf update</tt>.</p>
+<h4>Rationale</h4>
+<p>Open X displays allow an attacker to capture keystrokes and to execute commands
+remotely.</p>
+</div>
+
+<div id="dconf_gnome_screensaver_idle_activation_enabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Enable GNOME3 Screensaver Idle Activation</h3>
+<div>dconf_gnome_screensaver_idle_activation_enabled</div>
+<h4>Description</h4>
+<p>To activate the screensaver in the GNOME3 desktop after a period of inactivity,
+add or set <tt>idle-activation-enabled</tt> to <tt>true</tt> in
+<tt>/etc/dconf/db/distro.d/00-security-settings</tt>. For example:
+<pre>[org/gnome/desktop/screensaver]
+idle-activation-enabled=true</pre>
+Once the setting has been added, add a lock to
+<tt>/etc/dconf/db/distro.d/locks/00-security-settings-lock</tt> to prevent user modification.
+For example:
+<pre>/org/gnome/desktop/screensaver/idle-activation-enabled</pre>
+After the settings have been set, run <tt>dconf update</tt>.</p>
+<h4>Rationale</h4>
+<p>A session time-out lock is a temporary action taken when a user stops work and moves away from the immediate
+physical vicinity of the information system but does not logout because of the temporary nature of the absence.
+Rather than relying on the user to manually lock their operating system session prior to vacating the vicinity,
+GNOME desktops can be configured to identify when a user's session has idled and take action to initiate the
+session lock.
+<br /><br />
+Enabling idle activation of the screensaver ensures the screensaver will
+be activated after the idle delay.  Applications requiring continuous,
+real-time screen display (such as network management products) require the
+login session does not have administrator rights and the display station is located in a
+controlled-access area.</p>
+</div>
+
+<div id="dconf_gnome_screensaver_idle_activation_locked" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure Users Cannot Change GNOME3 Screensaver Idle Activation</h3>
+<div>dconf_gnome_screensaver_idle_activation_locked</div>
+<h4>Description</h4>
+<p>If not already configured, ensure that users cannot change GNOME3 screensaver lock settings
+by adding <pre>/org/gnome/desktop/screensaver/idle-activation-enabled</pre>
+to <tt>/etc/dconf/db/local.d/00-security-settings</tt>.
+For example:
+<pre>/org/gnome/desktop/screensaver/idle-activation-enabled</pre>
+After the settings have been set, run <tt>dconf update</tt>.</p>
+<h4>Rationale</h4>
+<p>A session lock is a temporary action taken when a user stops work and moves away from the immediate physical vicinity
+of the information system but does not want to logout because of the temporary nature of the absence.</p>
+</div>
+
+<div id="dconf_gnome_screensaver_idle_delay" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Set GNOME3 Screensaver Inactivity Timeout</h3>
+<div>dconf_gnome_screensaver_idle_delay</div>
+<h4>Description</h4>
+<p>The idle time-out value for inactivity in the GNOME3 desktop is configured via the <tt>idle-delay</tt>
+setting must be set under an appropriate configuration file(s) in the <tt>/etc/dconf/db/distro.d</tt> directory
+and locked in <tt>/etc/dconf/db/distro.d/locks</tt> directory to prevent user modification.
+<br /><br />
+For example, to configure the system for a 15 minute delay, add the following to
+<tt>/etc/dconf/db/distro.d/00-security-settings</tt>:
+<pre>[org/gnome/desktop/session]
+idle-delay=uint32 900</pre></p>
+<h4>Rationale</h4>
+<p>A session time-out lock is a temporary action taken when a user stops work and moves away from
+the immediate physical vicinity of the information system but does not logout because of the
+temporary nature of the absence. Rather than relying on the user to manually lock their operating
+system session prior to vacating the vicinity, GNOME3 can be configured to identify when
+a user's session has idled and take action to initiate a session lock.</p>
+</div>
+
+<div id="dconf_gnome_screensaver_lock_delay" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Set GNOME3 Screensaver Lock Delay After Activation Period</h3>
+<div>dconf_gnome_screensaver_lock_delay</div>
+<h4>Description</h4>
+<p>To activate the locking delay of the screensaver in the GNOME3 desktop when
+the screensaver is activated, add or set <tt>lock-delay</tt> to <tt>uint32 <tt>$var_screensaver_lock_delay</tt></tt> in
+<tt>/etc/dconf/db/distro.d/00-security-settings</tt>. For example:
+<pre>[org/gnome/desktop/screensaver]
+lock-delay=uint32 <tt>$var_screensaver_lock_delay</tt>
+</pre>
+After the settings have been set, run <tt>dconf update</tt>.</p>
+<h4>Rationale</h4>
+<p>A session lock is a temporary action taken when a user stops work and moves away from the immediate physical vicinity
+of the information system but does not want to logout because of the temporary nature of the absence.</p>
+</div>
+
+<div id="dconf_gnome_screensaver_lock_enabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Enable GNOME3 Screensaver Lock After Idle Period</h3>
+<div>dconf_gnome_screensaver_lock_enabled</div>
+<h4>Description</h4>
+<p>
+To activate locking of the screensaver in the GNOME3 desktop when it is activated,
+add or set <tt>lock-enabled</tt> to <tt>true</tt> in
+<tt>/etc/dconf/db/distro.d/00-security-settings</tt>. For example:
+<pre>[org/gnome/desktop/screensaver]
+lock-enabled=true
+</pre>
+Once the settings have been added, add a lock to
+<tt>/etc/dconf/db/distro.d/locks/00-security-settings-lock</tt> to prevent user modification.
+For example:
+<pre>/org/gnome/desktop/screensaver/lock-enabled</pre>
+After the settings have been set, run <tt>dconf update</tt>.</p>
+<h4>Rationale</h4>
+<p>A session lock is a temporary action taken when a user stops work and moves away from the immediate physical vicinity
+of the information system but does not want to logout because of the temporary nature of the absence.</p>
+</div>
+
+<div id="dconf_gnome_screensaver_lock_locked" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure Users Cannot Change GNOME3 Screensaver Lock After Idle Period</h3>
+<div>dconf_gnome_screensaver_lock_locked</div>
+<h4>Description</h4>
+<p>If not already configured, ensure that users cannot change GNOME3 screensaver lock settings
+by adding <pre>/org/gnome/desktop/screensaver/lock-enabled</pre>
+to <tt>/etc/dconf/db/local.d/locks/00-security-settings</tt>.
+For example:
+<pre>/org/gnome/desktop/screensaver/lock-enabled</pre>
+After the settings have been set, run <tt>dconf update</tt>.</p>
+<h4>Rationale</h4>
+<p>A session lock is a temporary action taken when a user stops work and moves away from the immediate physical vicinity
+of the information system but does not want to logout because of the temporary nature of the absence.</p>
+</div>
+
+<div id="dconf_gnome_screensaver_mode_blank" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Implement Blank Screensaver</h3>
+<div>dconf_gnome_screensaver_mode_blank</div>
+<h4>Description</h4>
+<p>
+
+
+To set the screensaver mode in the GNOME3 desktop to a blank screen,
+add or set <tt>picture-uri</tt> to <tt>string ''</tt> in
+<tt>/etc/dconf/db/distro.d/00-security-settings</tt>. For example:
+<pre>[org/gnome/desktop/screensaver]
+picture-uri=string ''
+</pre>
+Once the settings have been added, add a lock to
+<tt>/etc/dconf/db/distro.d/locks/00-security-settings-lock</tt> to prevent user modification.
+For example:
+<pre>/org/gnome/desktop/screensaver/picture-uri</pre>
+After the settings have been set, run <tt>dconf update</tt>.</p>
+<h4>Rationale</h4>
+<p>Setting the screensaver mode to blank-only conceals the
+contents of the display from passersby.</p>
+</div>
+
+<div id="dconf_gnome_screensaver_user_info" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable Full User Name on Splash Shield</h3>
+<div>dconf_gnome_screensaver_user_info</div>
+<h4>Description</h4>
+<p>By default when the screen is locked, the splash shield will show the user's
+full name. This should be disabled to prevent casual observers from seeing
+who has access to the system. This can be disabled by adding or setting
+<tt>show-full-name-in-top-bar</tt> to <tt>false</tt> in
+<tt>/etc/dconf/db/local.d/00-security-settings</tt>. For example:
+<pre>[org/gnome/desktop/screensaver]
+show-full-name-in-top-bar=false
+</pre>
+Once the settings have been added, add a lock to
+<tt>/etc/dconf/db/local.d/locks/00-security-settings-lock</tt> to prevent user modification.
+For example:
+<pre>/org/gnome/desktop/screensaver/show-full-name-in-top-bar</pre>
+After the settings have been set, run <tt>dconf update</tt>.</p>
+<h4>Rationale</h4>
+<p>Setting the splash screen to not reveal the logged in user's name
+conceals who has access to the system from passersby.</p>
+</div>
+
+<div id="dconf_gnome_screensaver_user_locks" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure Users Cannot Change GNOME3 Screensaver Settings</h3>
+<div>dconf_gnome_screensaver_user_locks</div>
+<h4>Description</h4>
+<p>If not already configured, ensure that users cannot change GNOME3 screensaver lock settings
+by adding <tt>/org/gnome/desktop/screensaver/lock-delay</tt>
+to <tt>/etc/dconf/db/distro.d/locks/00-security-settings-lock</tt> to prevent user modification.
+For example:
+<pre>/org/gnome/desktop/screensaver/lock-delay</pre>
+After the settings have been set, run <tt>dconf update</tt>.</p>
+<h4>Rationale</h4>
+<p>A session time-out lock is a temporary action taken when a user stops work and moves away from the immediate
+physical vicinity of the information system but does not logout because of the temporary nature of the absence.
+Rather than relying on the user to manually lock their operating system session prior to vacating the vicinity,
+GNOME desktops can be configured to identify when a user's session has idled and take action to initiate the
+session lock. As such, users should not be allowed to change session settings.</p>
+</div>
+
+<div id="dconf_gnome_session_idle_user_locks" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure Users Cannot Change GNOME3 Session Idle Settings</h3>
+<div>dconf_gnome_session_idle_user_locks</div>
+<h4>Description</h4>
+<p>If not already configured, ensure that users cannot change GNOME3 session idle settings
+by adding <tt>/org/gnome/desktop/session/idle-delay</tt>
+to <tt>/etc/dconf/db/distro.d/locks/00-security-settings-lock</tt> to prevent user modification.
+For example:
+<pre>/org/gnome/desktop/session/idle-delay</pre>
+After the settings have been set, run <tt>dconf update</tt>.</p>
+<h4>Rationale</h4>
+<p>A session time-out lock is a temporary action taken when a user stops work and moves away from the immediate
+physical vicinity of the information system but does not logout because of the temporary nature of the absence.
+Rather than relying on the user to manually lock their operating system session prior to vacating the vicinity,
+GNOME desktops can be configured to identify when a user's session has idled and take action to initiate the
+session lock. As such, users should not be allowed to change session settings.</p>
+</div>
+
+<div id="enable_dconf_user_profile" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure GNOME3 DConf User Profile</h3>
+<div>enable_dconf_user_profile</div>
+<h4>Description</h4>
+<p>By default, DConf provides a standard user profile. This profile contains a list
+of DConf configuration databases. The user profile and database always take the
+highest priority. As such the DConf User profile should always exist and be
+configured correctly.
+<br /><br />
+
+To make sure that the user profile is configured correctly, the <tt>/etc/dconf/profile/user</tt>
+should be set as follows:
+<pre>user-db:user
+system-db:local
+system-db:site
+system-db:distro
+</pre></p>
+<h4>Rationale</h4>
+<p>Failure to have a functional DConf profile prevents GNOME3 configuration settings
+from being enforced for all users and allows various security risks.</p>
+</div>
+
+<div id="gnome_gdm_disable_automatic_login" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable GDM Automatic Login</h3>
+<div>gnome_gdm_disable_automatic_login</div>
+<h4>Description</h4>
+<p>The GNOME Display Manager (GDM) can allow users to automatically login without
+user interaction or credentials. User should always be required to authenticate themselves
+to the system that they are authorized to use. To disable user ability to automatically
+login to the system, set the <tt>AutomaticLoginEnable</tt> to <tt>false</tt> in the
+<tt>[daemon]</tt> section in <tt>/etc/gdm/custom.conf</tt>. For example:
+<pre>[daemon]
+AutomaticLoginEnable=false</pre></p>
+<h4>Rationale</h4>
+<p>Failure to restrict system access to authenticated users negatively impacts operating
+system security.</p>
+</div>
+
+<div id="gnome_gdm_disable_guest_login" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable GDM Guest Login</h3>
+<div>gnome_gdm_disable_guest_login</div>
+<h4>Description</h4>
+<p>The GNOME Display Manager (GDM) can allow users to login without credentials
+which can be useful for public kiosk scenarios. Allowing users to login without credentials
+or "guest" account access has inherent security risks and should be disabled. To do disable
+timed logins or guest account access, set the <tt>TimedLoginEnable</tt> to <tt>false</tt> in
+the <tt>[daemon]</tt> section in <tt>/etc/gdm/custom.conf</tt>. For example:
+<pre>[daemon]
+TimedLoginEnable=false</pre></p>
+<h4>Rationale</h4>
+<p>Failure to restrict system access to authenticated users negatively impacts operating
+system security.</p>
+</div>
+
+<div id="gnome_gdm_disable_unattended_automatic_login" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable GDM Unattended or Automatic Login</h3>
+<div>gnome_gdm_disable_unattended_automatic_login</div>
+<h4>Description</h4>
+<p>The GNOME Display Manager (GDM) can allow users to automatically login without
+user interaction or credentials or unattended login. User should always be required to authenticate themselves
+to the system that they are authorized to use. To disable user ability to automatically
+login to the system, set the <tt>DISPLAYMANAGER_AUTOLOGIN=""</tt>
+or <tt>DISPLAYMANAGER_PASSWORD_LESS_LOGIN="no"</tt> in the
+<tt>/etc/sysconfig/displaymanager</tt>. For example:
+<pre>DISPLAYMANAGER_AUTOLOGIN=""
+DISPLAYMANAGER_PASSWORD_LESS_LOGIN="no"</pre></p>
+<h4>Rationale</h4>
+<p>Failure to restrict system access to authenticated users negatively impacts operating
+system security.</p>
+</div>
+
+<div id="gnome_gdm_disable_xdmcp" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable XDMCP in GDM</h3>
+<div>gnome_gdm_disable_xdmcp</div>
+<h4>Description</h4>
+<p>XDMCP is an unencrypted protocol, and therefore, presents a security risk.
+To disable XDMCP support in Gnome, set <code>Enable</code> to <code>false</code> under the <code>[xdmcp]</code> configuration section in <code>/etc/gdm/custom.conf</code>. For example:
+<pre>
+[xdmcp]
+Enable=false
+</pre></p>
+<h4>Rationale</h4>
+<p>XDMCP provides unencrypted remote access through the Gnome Display Manager (GDM) which does
+not provide for the confidentiality and integrity of user passwords or the
+remote session. If a privileged user were to login using XDMCP, the
+privileged user password could be compromised due to typed XEvents
+and keystrokes will traversing over the network in clear text.</p>
+</div>
+
+<div id="gui_login_dod_acknowledgement" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Display the Standard Mandatory DoD Notice and Consent Banner until Explicit Acknowledgement</h3>
+<div>gui_login_dod_acknowledgement</div>
+<h4>Description</h4>
+<p>Display of a standardized and approved use notification before granting access to the SUSE operating system ensures privacy and security notification verbiage used is consistent with applicable federal laws, Executive Orders, directives, policies, regulations, standards, and guidance.<br/><br/>
+
+The banner must be acknowledged by the user prior to allowing the user access to the SUSE operating system. This provides assurance that the user has seen the message and accepted the conditions for access. If the consent banner is not acknowledged by the user, DoD will not be in compliance with system use notifications required by law.<br/><br/>
+
+System use notifications are required only for access via logon interfaces with human users and are not required when such human interfaces do not exist.<br/><br/>
+
+The banner must be formatted in accordance with applicable DoD policy. Use the following verbiage for the SUSE operating system:
+
+<pre>You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only.
+
+By using this IS (which includes any device attached to this IS), you consent to the following conditions:
+
+-The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations.
+
+-At any time, the USG may inspect and seize data stored on this IS.
+
+-Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose.
+
+-This IS includes security measures (e.g., authentication and access controls) to protect USG interests--not for your personal benefit or privacy.
+
+-Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details.</pre>
+
+Check the configuration by running the following command:
+
+<pre># more /etc/gdm/Xsession</pre>
+
+The beginning of the file must contain the following text immediately after <tt>#!/bin/sh</tt>:
+
+<pre>if ! zenity --text-info \
+--title "Consent" \
+--filename=/etc/gdm/banner \
+--no-markup \
+--checkbox="Accept." 10 10; then
+sleep 1;
+exit 1;
+fi</pre></p>
+<h4>Rationale</h4>
+<p>Display of a standardized and approved use notification before granting access to the operating system
+ensures privacy and security notification verbiage used is consistent with applicable federal laws,
+Executive Orders, directives, policies, regulations, standards, and guidance.
+<br /><br />
+For U.S. Government systems, system use notifications are required only for access via login interfaces
+with human users and are not required when such human interfaces do not exist.</p>
+</div>
+
+<div id="package_gdm_removed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Remove the GDM Package Group</h3>
+<div>package_gdm_removed</div>
+<h4>Description</h4>
+<p>
+By removing the <tt>gdm</tt> package, the system no longer has GNOME installed.
+
+If X Windows is not installed then the system cannot boot into graphical user mode.
+This prevents the system from being accidentally or maliciously booted into a <tt>graphical.target</tt>
+mode. To do so, run the following command:
+
+<pre>$ sudo yum remove gdm</pre></p>
+<h4>Rationale</h4>
+<p>Unnecessary service packages must not be installed to decrease the attack surface of the system.
+A graphical environment is unnecessary for certain types of systems including a virtualization
+hypervisor.</p>
+</div>
+
+<div id="xwayland_disabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable XWayland</h3>
+<div>xwayland_disabled</div>
+<h4>Description</h4>
+<p>Edit the file <tt>/etc/gdm/custom.conf</tt> and add or modify the following line in the
+<tt>[daemon]</tt> block:
+<pre>
+[daemon]
+WaylandEnable=false
+</pre>
+<p>
+This will disable XWayland support in GDM.
+</p></p>
+<h4>Rationale</h4>
+<p>XWayland is a compatibility layer for running X11 applications on Wayland.
+It is not secure and should be disabled. Wayland's security benefits from not relying on X11's network listener. Without X11,
+there's no network listener, making it harder for malicious actors to exploit vulnerabilities
+in X11. However, enabling Xwayland (running X11 applications on Wayland) introduces
+X11's security concerns.
+All X vulnerabilities apply to Xwayland, including keylogging, but they only affect X
+windows and interactions with them.
+Malware can potentially exploit Xwayland vulnerabilities to keylog or intercept other
+input events.</p>
+</div>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,2049 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Definition of Australian Signals Directorate Information Security Manual for rhel9</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Definition of Australian Signals Directorate Information Security Manual for rhel9</h1>
+
+
+
+based on <a href="https://www.cyber.gov.au/resources-business-and-government/essential-cyber-security/ism">https://www.cyber.gov.au/resources-business-and-government/essential-cyber-security/ism</a>
+
+
+<div class="all_controls">
+<div class="one_control">
+  <h2>0418: Credentials are kept separate from systems they are used to authenticate to, except for when performing authentication activities.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/password_expiration/accounts_maximum_age_login_defs/rule.yml"> accounts_maximum_age_login_defs</a>: Set Password Maximum Age
+      <ul><li>CCE-83606-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/password_expiration/accounts_minimum_age_login_defs/rule.yml"> accounts_minimum_age_login_defs</a>: Set Password Minimum Age
+      <ul><li>CCE-83610-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/password_expiration/accounts_password_warn_age_login_defs/rule.yml"> accounts_password_warn_age_login_defs</a>: Set Password Warning Age
+      <ul><li>CCE-83609-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/crypto/configure_kerberos_crypto_policy/rule.yml"> configure_kerberos_crypto_policy</a>: Configure Kerberos to use System Crypto Policy
+      <ul><li>CCE-83449-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/crypto/configure_ssh_crypto_policy/rule.yml"> configure_ssh_crypto_policy</a>: Configure SSH to use System Crypto Policy
+      <ul><li>CCE-83445-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ldap/openldap_client/enable_ldap_client/rule.yml"> enable_ldap_client</a>: Enable the LDAP Client For Use in Authconfig
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/kerberos/kerberos_disable_no_keytab/rule.yml"> kerberos_disable_no_keytab</a>: Disable Kerberos by removing host keytab
+      <ul><li>CCE-84221-1</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network_nmcli_permissions/rule.yml"> network_nmcli_permissions</a>: Prevent non-Privileged Users from Modifying Network Interfaces using nmcli
+      <ul><li>CCE-90061-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/selinux-booleans/sebool_kerberos_enabled/rule.yml"> sebool_kerberos_enabled</a>: Enable the kerberos_enabled SELinux Boolean
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/set_password_hashing_algorithm/set_password_hashing_algorithm_libuserconf/rule.yml"> set_password_hashing_algorithm_libuserconf</a>: Set Password Hashing Algorithm in /etc/libuser.conf
+      <ul><li>CCE-88865-1</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/set_password_hashing_algorithm/set_password_hashing_algorithm_logindefs/rule.yml"> set_password_hashing_algorithm_logindefs</a>: Set Password Hashing Algorithm in /etc/login.defs
+      <ul><li>CCE-90590-1</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/set_password_hashing_algorithm/set_password_hashing_algorithm_passwordauth/rule.yml"> set_password_hashing_algorithm_passwordauth</a>: Set PAM Password Hashing Algorithm - password-auth
+      <ul><li>CCE-85946-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/set_password_hashing_algorithm/set_password_hashing_algorithm_systemauth/rule.yml"> set_password_hashing_algorithm_systemauth</a>: Set PAM Password Hashing Algorithm - system-auth
+      <ul><li>CCE-83581-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_disable_gssapi_auth/rule.yml"> sshd_disable_gssapi_auth</a>: Disable GSSAPI Authentication
+      <ul><li>CCE-90808-7</li></ul>
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/var_password_hashing_algorithm_pam.var">var_password_hashing_algorithm_pam</a> = yescrypt</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>0421: Passphrases used for single-factor authentication are at least 4 random words with a total minimum length of 14 characters, unless more stringent requirements apply.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/password_expiration/accounts_password_minlen_login_defs/rule.yml"> accounts_password_minlen_login_defs</a>: Set Password Minimum Length in login.defs
+      <ul><li>CCE-83608-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_dcredit/rule.yml"> accounts_password_pam_dcredit</a>: Ensure PAM Enforces Password Requirements - Minimum Digit Characters
+      <ul><li>CCE-83566-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_lcredit/rule.yml"> accounts_password_pam_lcredit</a>: Ensure PAM Enforces Password Requirements - Minimum Lowercase Characters
+      <ul><li>CCE-83570-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_minclass/rule.yml"> accounts_password_pam_minclass</a>: Ensure PAM Enforces Password Requirements - Minimum Different Categories
+      <ul><li>CCE-83563-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_minlen/rule.yml"> accounts_password_pam_minlen</a>: Ensure PAM Enforces Password Requirements - Minimum Length
+      <ul><li>CCE-83579-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_ocredit/rule.yml"> accounts_password_pam_ocredit</a>: Ensure PAM Enforces Password Requirements - Minimum Special Characters
+      <ul><li>CCE-83565-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_ucredit/rule.yml"> accounts_password_pam_ucredit</a>: Ensure PAM Enforces Password Requirements - Minimum Uppercase Characters
+      <ul><li>CCE-83568-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_faillock_deny/rule.yml"> accounts_passwords_pam_faillock_deny</a>: Lock Accounts After Failed Password Attempts
+      <ul><li>CCE-83587-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_faillock_deny_root/rule.yml"> accounts_passwords_pam_faillock_deny_root</a>: Configure the root Account for Failed Password Attempts
+      <ul><li>CCE-83589-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_faillock_interval/rule.yml"> accounts_passwords_pam_faillock_interval</a>: Set Interval For Counting Failed Password Attempts
+      <ul><li>CCE-83583-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_faillock_unlock_time/rule.yml"> accounts_passwords_pam_faillock_unlock_time</a>: Set Lockout Time for Failed Password Attempts
+      <ul><li>CCE-83588-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_tally2_deny_root/rule.yml"> accounts_passwords_pam_tally2_deny_root</a>: Configure the root Account lock for Failed Password Attempts via pam_tally2
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_tally2_unlock_time/rule.yml"> accounts_passwords_pam_tally2_unlock_time</a>: Set Lockout Time for Failed Password Attempts using pam_tally2
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/disable_host_auth/rule.yml"> disable_host_auth</a>: Disable Host-Based Authentication
+      <ul><li>CCE-90816-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-physical/require_emergency_target_auth/rule.yml"> require_emergency_target_auth</a>: Require Authentication for Emergency Systemd Target
+      <ul><li>CCE-83592-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-physical/require_singleuser_auth/rule.yml"> require_singleuser_auth</a>: Require Authentication for Single User Mode
+      <ul><li>CCE-83594-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/selinux-booleans/sebool_authlogin_nsswitch_use_ldap/rule.yml"> sebool_authlogin_nsswitch_use_ldap</a>: Disable the authlogin_nsswitch_use_ldap SELinux Boolean
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/selinux-booleans/sebool_authlogin_radius/rule.yml"> sebool_authlogin_radius</a>: Disable the authlogin_radius SELinux Boolean
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_disable_kerb_auth/rule.yml"> sshd_disable_kerb_auth</a>: Disable Kerberos Authentication
+      <ul><li>CCE-90802-0</li></ul>
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/sshd_max_auth_tries_value.var">sshd_max_auth_tries_value</a> = 5</li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_set_max_auth_tries/rule.yml"> sshd_set_max_auth_tries</a>: Set SSH authentication attempt limit
+      <ul><li>CCE-90810-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/sssd/sssd_enable_smartcards/rule.yml"> sssd_enable_smartcards</a>: Enable Smartcards in SSSD
+      <ul><li>CCE-89155-6</li></ul>
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/password_expiration/var_accounts_maximum_age_login_defs.var">var_accounts_maximum_age_login_defs</a> = 60</li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/password_expiration/var_accounts_minimum_age_login_defs.var">var_accounts_minimum_age_login_defs</a> = 1</li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/password_expiration/var_accounts_password_minlen_login_defs.var">var_accounts_password_minlen_login_defs</a> = 14</li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/password_expiration/var_accounts_password_warn_age_login_defs.var">var_accounts_password_warn_age_login_defs</a> = 7</li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/var_authselect_profile.var">var_authselect_profile</a> = sssd</li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/var_password_pam_minlen.var">var_password_pam_minlen</a> = 14</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>0422: Passphrases used for single-factor authentication on TOP SECRET systems are at least 6 random words with a total minimum length of 20 characters.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>top_secret</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/password_expiration/accounts_password_minlen_login_defs/rule.yml"> accounts_password_minlen_login_defs</a>: Set Password Minimum Length in login.defs
+      <ul><li>CCE-83608-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_dcredit/rule.yml"> accounts_password_pam_dcredit</a>: Ensure PAM Enforces Password Requirements - Minimum Digit Characters
+      <ul><li>CCE-83566-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_lcredit/rule.yml"> accounts_password_pam_lcredit</a>: Ensure PAM Enforces Password Requirements - Minimum Lowercase Characters
+      <ul><li>CCE-83570-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_minclass/rule.yml"> accounts_password_pam_minclass</a>: Ensure PAM Enforces Password Requirements - Minimum Different Categories
+      <ul><li>CCE-83563-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_minlen/rule.yml"> accounts_password_pam_minlen</a>: Ensure PAM Enforces Password Requirements - Minimum Length
+      <ul><li>CCE-83579-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_ocredit/rule.yml"> accounts_password_pam_ocredit</a>: Ensure PAM Enforces Password Requirements - Minimum Special Characters
+      <ul><li>CCE-83565-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_ucredit/rule.yml"> accounts_password_pam_ucredit</a>: Ensure PAM Enforces Password Requirements - Minimum Uppercase Characters
+      <ul><li>CCE-83568-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_faillock_deny/rule.yml"> accounts_passwords_pam_faillock_deny</a>: Lock Accounts After Failed Password Attempts
+      <ul><li>CCE-83587-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_faillock_deny_root/rule.yml"> accounts_passwords_pam_faillock_deny_root</a>: Configure the root Account for Failed Password Attempts
+      <ul><li>CCE-83589-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_faillock_interval/rule.yml"> accounts_passwords_pam_faillock_interval</a>: Set Interval For Counting Failed Password Attempts
+      <ul><li>CCE-83583-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_faillock_unlock_time/rule.yml"> accounts_passwords_pam_faillock_unlock_time</a>: Set Lockout Time for Failed Password Attempts
+      <ul><li>CCE-83588-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_tally2_deny_root/rule.yml"> accounts_passwords_pam_tally2_deny_root</a>: Configure the root Account lock for Failed Password Attempts via pam_tally2
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_tally2_unlock_time/rule.yml"> accounts_passwords_pam_tally2_unlock_time</a>: Set Lockout Time for Failed Password Attempts using pam_tally2
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/disable_host_auth/rule.yml"> disable_host_auth</a>: Disable Host-Based Authentication
+      <ul><li>CCE-90816-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-physical/require_emergency_target_auth/rule.yml"> require_emergency_target_auth</a>: Require Authentication for Emergency Systemd Target
+      <ul><li>CCE-83592-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-physical/require_singleuser_auth/rule.yml"> require_singleuser_auth</a>: Require Authentication for Single User Mode
+      <ul><li>CCE-83594-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/selinux-booleans/sebool_authlogin_nsswitch_use_ldap/rule.yml"> sebool_authlogin_nsswitch_use_ldap</a>: Disable the authlogin_nsswitch_use_ldap SELinux Boolean
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/selinux-booleans/sebool_authlogin_radius/rule.yml"> sebool_authlogin_radius</a>: Disable the authlogin_radius SELinux Boolean
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_disable_kerb_auth/rule.yml"> sshd_disable_kerb_auth</a>: Disable Kerberos Authentication
+      <ul><li>CCE-90802-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_set_max_auth_tries/rule.yml"> sshd_set_max_auth_tries</a>: Set SSH authentication attempt limit
+      <ul><li>CCE-90810-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/sssd/sssd_enable_smartcards/rule.yml"> sssd_enable_smartcards</a>: Enable Smartcards in SSSD
+      <ul><li>CCE-89155-6</li></ul>
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/password_expiration/var_accounts_password_minlen_login_defs.var">var_accounts_password_minlen_login_defs</a> = 20</li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/var_password_pam_minlen.var">var_password_pam_minlen</a> = 20</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>0484: SSH daemon configuration</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: no</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/disable_host_auth/rule.yml"> disable_host_auth</a>: Disable Host-Based Authentication
+      <ul><li>CCE-90816-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_disable_x11_forwarding/rule.yml"> sshd_disable_x11_forwarding</a>: Disable X11 Forwarding
+      <ul><li>CCE-90798-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_enable_warning_banner/rule.yml"> sshd_enable_warning_banner</a>: Enable SSH Warning Banner
+      <ul><li>CCE-90807-9</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>0487: Passwordless SSH Connections Configuration</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>0582: Central Logging for OS Events</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/policy_rules/audit_access_failed/rule.yml"> audit_access_failed</a>: Configure auditing of unsuccessful file accesses
+      <ul><li>CCE-83672-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/policy_rules/audit_access_failed_aarch64/rule.yml"> audit_access_failed_aarch64</a>: Configure auditing of unsuccessful file accesses (AArch64)
+      <ul><li>CCE-85922-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/policy_rules/audit_access_failed_ppc64le/rule.yml"> audit_access_failed_ppc64le</a>: Configure auditing of unsuccessful file accesses (ppc64le)
+      <ul><li>CCE-86001-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/policy_rules/audit_access_success/rule.yml"> audit_access_success</a>: Configure auditing of successful file accesses
+      <ul><li>CCE-83653-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/policy_rules/audit_access_success_aarch64/rule.yml"> audit_access_success_aarch64</a>: Configure auditing of successful file accesses (AArch64)
+      <ul><li>CCE-85924-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/policy_rules/audit_access_success_ppc64le/rule.yml"> audit_access_success_ppc64le</a>: Configure auditing of successful file accesses (ppc64le)
+      <ul><li>CCE-85999-1</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_dac_actions/audit_rules_dac_modification_chmod/rule.yml"> audit_rules_dac_modification_chmod</a>: Record Events that Modify the System's Discretionary Access Controls - chmod
+      <ul><li>CCE-83830-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_dac_actions/audit_rules_dac_modification_chown/rule.yml"> audit_rules_dac_modification_chown</a>: Record Events that Modify the System's Discretionary Access Controls - chown
+      <ul><li>CCE-83812-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_execution_selinux_commands/audit_rules_execution_chcon/rule.yml"> audit_rules_execution_chcon</a>: Record Any Attempts to Run chcon
+      <ul><li>CCE-83748-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_execution_selinux_commands/audit_rules_execution_restorecon/rule.yml"> audit_rules_execution_restorecon</a>: Record Any Attempts to Run restorecon
+      <ul><li>CCE-83749-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_execution_selinux_commands/audit_rules_execution_semanage/rule.yml"> audit_rules_execution_semanage</a>: Record Any Attempts to Run semanage
+      <ul><li>CCE-83750-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_execution_selinux_commands/audit_rules_execution_setfiles/rule.yml"> audit_rules_execution_setfiles</a>: Record Any Attempts to Run setfiles
+      <ul><li>CCE-83736-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_execution_selinux_commands/audit_rules_execution_setsebool/rule.yml"> audit_rules_execution_setsebool</a>: Record Any Attempts to Run setsebool
+      <ul><li>CCE-83751-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_execution_selinux_commands/audit_rules_execution_seunshare/rule.yml"> audit_rules_execution_seunshare</a>: Record Any Attempts to Run seunshare
+      <ul><li>CCE-83746-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_kernel_module_loading/audit_rules_kernel_module_loading/rule.yml"> audit_rules_kernel_module_loading</a>: Ensure auditd Collects Information on Kernel Module Loading and Unloading
+      <ul><li>CCE-83804-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_login_events/audit_rules_login_events_faillock/rule.yml"> audit_rules_login_events_faillock</a>: Record Attempts to Alter Logon and Logout Events - faillock
+      <ul><li>CCE-83783-1</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_login_events/audit_rules_login_events_lastlog/rule.yml"> audit_rules_login_events_lastlog</a>: Record Attempts to Alter Logon and Logout Events - lastlog
+      <ul><li>CCE-83785-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_login_events/audit_rules_login_events_tallylog/rule.yml"> audit_rules_login_events_tallylog</a>: Record Attempts to Alter Logon and Logout Events - tallylog
+      <ul><li>CCE-83782-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_rules_networkconfig_modification/rule.yml"> audit_rules_networkconfig_modification</a>: Record Events that Modify the System's Network Environment
+      <ul><li>CCE-83706-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_privileged_commands/audit_rules_privileged_commands/rule.yml"> audit_rules_privileged_commands</a>: Ensure auditd Collects Information on the Use of Privileged Commands
+      <ul><li>CCE-83759-1</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_rules_session_events_btmp/rule.yml"> audit_rules_session_events_btmp</a>: Record Attempts to Alter Process and Session Initiation Information btmp
+      <ul><li>CCE-86198-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_rules_session_events_utmp/rule.yml"> audit_rules_session_events_utmp</a>: Record Attempts to Alter Process and Session Initiation Information utmp
+      <ul><li>CCE-86202-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_rules_session_events_wtmp/rule.yml"> audit_rules_session_events_wtmp</a>: Record Attempts to Alter Process and Session Initiation Information wtmp
+      <ul><li>CCE-86203-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_rules_sysadmin_actions/rule.yml"> audit_rules_sysadmin_actions</a>: Ensure auditd Collects System Administrator Actions
+      <ul><li>CCE-83729-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_time_rules/audit_rules_time_adjtimex/rule.yml"> audit_rules_time_adjtimex</a>: Record attempts to alter time through adjtimex
+      <ul><li>CCE-83840-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_time_rules/audit_rules_time_clock_settime/rule.yml"> audit_rules_time_clock_settime</a>: Record Attempts to Alter Time Through clock_settime
+      <ul><li>CCE-83837-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_time_rules/audit_rules_time_settimeofday/rule.yml"> audit_rules_time_settimeofday</a>: Record attempts to alter time through settimeofday
+      <ul><li>CCE-83836-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_time_rules/audit_rules_time_stime/rule.yml"> audit_rules_time_stime</a>: Record Attempts to Alter Time Through stime
+      <ul><li>CCE-83835-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_time_rules/audit_rules_time_watch_localtime/rule.yml"> audit_rules_time_watch_localtime</a>: Record Attempts to Alter the localtime File
+      <ul><li>CCE-83839-1</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_file_modification/audit_rules_unsuccessful_file_modification_creat/rule.yml"> audit_rules_unsuccessful_file_modification_creat</a>: Record Unsuccessful Access Attempts to Files - creat
+      <ul><li>CCE-83786-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_file_modification/audit_rules_unsuccessful_file_modification_ftruncate/rule.yml"> audit_rules_unsuccessful_file_modification_ftruncate</a>: Record Unsuccessful Access Attempts to Files - ftruncate
+      <ul><li>CCE-83800-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_file_modification/audit_rules_unsuccessful_file_modification_open/rule.yml"> audit_rules_unsuccessful_file_modification_open</a>: Record Unsuccessful Access Attempts to Files - open
+      <ul><li>CCE-83801-1</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_file_modification/audit_rules_unsuccessful_file_modification_open_by_handle_at/rule.yml"> audit_rules_unsuccessful_file_modification_open_by_handle_at</a>: Record Unsuccessful Access Attempts to Files - open_by_handle_at
+      <ul><li>CCE-83796-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_file_modification/audit_rules_unsuccessful_file_modification_openat/rule.yml"> audit_rules_unsuccessful_file_modification_openat</a>: Record Unsuccessful Access Attempts to Files - openat
+      <ul><li>CCE-83794-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_file_modification/audit_rules_unsuccessful_file_modification_truncate/rule.yml"> audit_rules_unsuccessful_file_modification_truncate</a>: Record Unsuccessful Access Attempts to Files - truncate
+      <ul><li>CCE-83792-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_rules_usergroup_modification_group/rule.yml"> audit_rules_usergroup_modification_group</a>: Record Events that Modify User/Group Information - /etc/group
+      <ul><li>CCE-83722-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_rules_usergroup_modification_gshadow/rule.yml"> audit_rules_usergroup_modification_gshadow</a>: Record Events that Modify User/Group Information - /etc/gshadow
+      <ul><li>CCE-83723-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_rules_usergroup_modification_opasswd/rule.yml"> audit_rules_usergroup_modification_opasswd</a>: Record Events that Modify User/Group Information - /etc/security/opasswd
+      <ul><li>CCE-83712-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_rules_usergroup_modification_passwd/rule.yml"> audit_rules_usergroup_modification_passwd</a>: Record Events that Modify User/Group Information - /etc/passwd
+      <ul><li>CCE-83714-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_rules_usergroup_modification_shadow/rule.yml"> audit_rules_usergroup_modification_shadow</a>: Record Events that Modify User/Group Information - /etc/shadow
+      <ul><li>CCE-83725-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/configure_auditd_data_retention/auditd_data_retention_flush/rule.yml"> auditd_data_retention_flush</a>: Configure auditd flush priority
+      <ul><li>CCE-83685-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/configure_auditd_data_retention/auditd_freq/rule.yml"> auditd_freq</a>: Set number of records to cause an explicit flush to audit logs
+      <ul><li>CCE-83704-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/configure_auditd_data_retention/auditd_local_events/rule.yml"> auditd_local_events</a>: Include Local Events in Audit Logs
+      <ul><li>CCE-83682-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/configure_auditd_data_retention/auditd_log_format/rule.yml"> auditd_log_format</a>: Resolve information before writing to audit logs
+      <ul><li>CCE-83696-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/configure_auditd_data_retention/auditd_name_format/rule.yml"> auditd_name_format</a>: Set type of computer node name logging in audit logs
+      <ul><li>CCE-83686-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/configure_auditd_data_retention/auditd_write_logs/rule.yml"> auditd_write_logs</a>: Write Audit Logs to the Disk
+      <ul><li>CCE-83705-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/package_audit_installed/rule.yml"> package_audit_installed</a>: Ensure the audit Subsystem is Installed
+      <ul><li>CCE-83649-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/selinux-booleans/sebool_auditadm_exec_content/rule.yml"> sebool_auditadm_exec_content</a>: Enable the auditadm_exec_content SELinux Boolean
+      <ul><li>CCE-84090-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_print_last_log/rule.yml"> sshd_print_last_log</a>: Enable SSH Print Last Log
+      <ul><li>CCE-90804-6</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>0846: All users (with the exception of local administrator accounts and break glass accounts) cannot disable, bypass or be exempted from application control.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/policy_rules/audit_access_failed/rule.yml"> audit_access_failed</a>: Configure auditing of unsuccessful file accesses
+      <ul><li>CCE-83672-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/policy_rules/audit_access_failed_aarch64/rule.yml"> audit_access_failed_aarch64</a>: Configure auditing of unsuccessful file accesses (AArch64)
+      <ul><li>CCE-85922-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/policy_rules/audit_access_failed_ppc64le/rule.yml"> audit_access_failed_ppc64le</a>: Configure auditing of unsuccessful file accesses (ppc64le)
+      <ul><li>CCE-86001-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/policy_rules/audit_access_success/rule.yml"> audit_access_success</a>: Configure auditing of successful file accesses
+      <ul><li>CCE-83653-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/policy_rules/audit_access_success_aarch64/rule.yml"> audit_access_success_aarch64</a>: Configure auditing of successful file accesses (AArch64)
+      <ul><li>CCE-85924-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/policy_rules/audit_access_success_ppc64le/rule.yml"> audit_access_success_ppc64le</a>: Configure auditing of successful file accesses (ppc64le)
+      <ul><li>CCE-85999-1</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_privileged_commands/audit_rules_privileged_commands/rule.yml"> audit_rules_privileged_commands</a>: Ensure auditd Collects Information on the Use of Privileged Commands
+      <ul><li>CCE-83759-1</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_rules_session_events_btmp/rule.yml"> audit_rules_session_events_btmp</a>: Record Attempts to Alter Process and Session Initiation Information btmp
+      <ul><li>CCE-86198-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_rules_session_events_utmp/rule.yml"> audit_rules_session_events_utmp</a>: Record Attempts to Alter Process and Session Initiation Information utmp
+      <ul><li>CCE-86202-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_rules_session_events_wtmp/rule.yml"> audit_rules_session_events_wtmp</a>: Record Attempts to Alter Process and Session Initiation Information wtmp
+      <ul><li>CCE-86203-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_file_modification/audit_rules_unsuccessful_file_modification_creat/rule.yml"> audit_rules_unsuccessful_file_modification_creat</a>: Record Unsuccessful Access Attempts to Files - creat
+      <ul><li>CCE-83786-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_file_modification/audit_rules_unsuccessful_file_modification_ftruncate/rule.yml"> audit_rules_unsuccessful_file_modification_ftruncate</a>: Record Unsuccessful Access Attempts to Files - ftruncate
+      <ul><li>CCE-83800-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_file_modification/audit_rules_unsuccessful_file_modification_open/rule.yml"> audit_rules_unsuccessful_file_modification_open</a>: Record Unsuccessful Access Attempts to Files - open
+      <ul><li>CCE-83801-1</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_file_modification/audit_rules_unsuccessful_file_modification_open_by_handle_at/rule.yml"> audit_rules_unsuccessful_file_modification_open_by_handle_at</a>: Record Unsuccessful Access Attempts to Files - open_by_handle_at
+      <ul><li>CCE-83796-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_file_modification/audit_rules_unsuccessful_file_modification_openat/rule.yml"> audit_rules_unsuccessful_file_modification_openat</a>: Record Unsuccessful Access Attempts to Files - openat
+      <ul><li>CCE-83794-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_file_modification/audit_rules_unsuccessful_file_modification_truncate/rule.yml"> audit_rules_unsuccessful_file_modification_truncate</a>: Record Unsuccessful Access Attempts to Files - truncate
+      <ul><li>CCE-83792-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/package_audit_installed/rule.yml"> package_audit_installed</a>: Ensure the audit Subsystem is Installed
+      <ul><li>CCE-83649-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/selinux-booleans/sebool_auditadm_exec_content/rule.yml"> sebool_auditadm_exec_content</a>: Enable the auditadm_exec_content SELinux Boolean
+      <ul><li>CCE-84090-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_print_last_log/rule.yml"> sshd_print_last_log</a>: Enable SSH Print Last Log
+      <ul><li>CCE-90804-6</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>0974: Multi-factor authentication is used to authenticate unprivileged users of systems.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: no</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/password_expiration/accounts_password_minlen_login_defs/rule.yml"> accounts_password_minlen_login_defs</a>: Set Password Minimum Length in login.defs
+      <ul><li>CCE-83608-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_dcredit/rule.yml"> accounts_password_pam_dcredit</a>: Ensure PAM Enforces Password Requirements - Minimum Digit Characters
+      <ul><li>CCE-83566-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_lcredit/rule.yml"> accounts_password_pam_lcredit</a>: Ensure PAM Enforces Password Requirements - Minimum Lowercase Characters
+      <ul><li>CCE-83570-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_minclass/rule.yml"> accounts_password_pam_minclass</a>: Ensure PAM Enforces Password Requirements - Minimum Different Categories
+      <ul><li>CCE-83563-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_minlen/rule.yml"> accounts_password_pam_minlen</a>: Ensure PAM Enforces Password Requirements - Minimum Length
+      <ul><li>CCE-83579-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_ocredit/rule.yml"> accounts_password_pam_ocredit</a>: Ensure PAM Enforces Password Requirements - Minimum Special Characters
+      <ul><li>CCE-83565-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_ucredit/rule.yml"> accounts_password_pam_ucredit</a>: Ensure PAM Enforces Password Requirements - Minimum Uppercase Characters
+      <ul><li>CCE-83568-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_faillock_deny/rule.yml"> accounts_passwords_pam_faillock_deny</a>: Lock Accounts After Failed Password Attempts
+      <ul><li>CCE-83587-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_faillock_deny_root/rule.yml"> accounts_passwords_pam_faillock_deny_root</a>: Configure the root Account for Failed Password Attempts
+      <ul><li>CCE-83589-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_faillock_interval/rule.yml"> accounts_passwords_pam_faillock_interval</a>: Set Interval For Counting Failed Password Attempts
+      <ul><li>CCE-83583-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_faillock_unlock_time/rule.yml"> accounts_passwords_pam_faillock_unlock_time</a>: Set Lockout Time for Failed Password Attempts
+      <ul><li>CCE-83588-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_tally2_deny_root/rule.yml"> accounts_passwords_pam_tally2_deny_root</a>: Configure the root Account lock for Failed Password Attempts via pam_tally2
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_tally2_unlock_time/rule.yml"> accounts_passwords_pam_tally2_unlock_time</a>: Set Lockout Time for Failed Password Attempts using pam_tally2
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/disable_host_auth/rule.yml"> disable_host_auth</a>: Disable Host-Based Authentication
+      <ul><li>CCE-90816-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-physical/require_emergency_target_auth/rule.yml"> require_emergency_target_auth</a>: Require Authentication for Emergency Systemd Target
+      <ul><li>CCE-83592-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-physical/require_singleuser_auth/rule.yml"> require_singleuser_auth</a>: Require Authentication for Single User Mode
+      <ul><li>CCE-83594-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/selinux-booleans/sebool_authlogin_nsswitch_use_ldap/rule.yml"> sebool_authlogin_nsswitch_use_ldap</a>: Disable the authlogin_nsswitch_use_ldap SELinux Boolean
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/selinux-booleans/sebool_authlogin_radius/rule.yml"> sebool_authlogin_radius</a>: Disable the authlogin_radius SELinux Boolean
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_disable_kerb_auth/rule.yml"> sshd_disable_kerb_auth</a>: Disable Kerberos Authentication
+      <ul><li>CCE-90802-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_set_max_auth_tries/rule.yml"> sshd_set_max_auth_tries</a>: Set SSH authentication attempt limit
+      <ul><li>CCE-90810-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/sssd/sssd_enable_smartcards/rule.yml"> sssd_enable_smartcards</a>: Enable Smartcards in SSSD
+      <ul><li>CCE-89155-6</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>0988: An accurate time source is established and used consistently across systems to assist with identifying connections between events.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ntp/chronyd_configure_pool_and_server/rule.yml"> chronyd_configure_pool_and_server</a>: Chrony Configure Pool and Server
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ntp/chronyd_or_ntpd_specify_multiple_servers/rule.yml"> chronyd_or_ntpd_specify_multiple_servers</a>: Specify Additional Remote NTP Servers
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ntp/chronyd_specify_remote_server/rule.yml"> chronyd_specify_remote_server</a>: A remote time server for Chrony is configured
+      <ul><li>CCE-84218-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ntp/package_chrony_installed/rule.yml"> package_chrony_installed</a>: The Chrony package is installed
+      <ul><li>CCE-84215-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/logging/ensure_rsyslog_log_file_configuration/rsyslog_cron_logging/rule.yml"> rsyslog_cron_logging</a>: Ensure cron Is Logging To Rsyslog
+      <ul><li>CCE-83994-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/logging/ensure_rsyslog_log_file_configuration/rsyslog_files_groupownership/rule.yml"> rsyslog_files_groupownership</a>: Ensure Log Files Are Owned By Appropriate Group
+      <ul><li>CCE-83834-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/logging/ensure_rsyslog_log_file_configuration/rsyslog_files_ownership/rule.yml"> rsyslog_files_ownership</a>: Ensure Log Files Are Owned By Appropriate User
+      <ul><li>CCE-83946-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/logging/ensure_rsyslog_log_file_configuration/rsyslog_files_permissions/rule.yml"> rsyslog_files_permissions</a>: Ensure System Log Files Have Correct Permissions
+      <ul><li>CCE-83689-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/logging/rsyslog_accepting_remote_messages/rsyslog_nolisten/rule.yml"> rsyslog_nolisten</a>: Ensure rsyslog Does Not Accept Remote Messages Unless Acting As Log Server
+      <ul><li>CCE-83995-1</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/logging/rsyslog_sending_messages/rsyslog_remote_loghost/rule.yml"> rsyslog_remote_loghost</a>: Ensure Logs Sent To Remote Host
+      <ul><li>CCE-83990-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/logging/rsyslog_sending_messages/rsyslog_remote_tls/rule.yml"> rsyslog_remote_tls</a>: Configure TLS for rsyslog remote logging
+      <ul><li>CCE-83991-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/logging/rsyslog_sending_messages/rsyslog_remote_tls_cacert/rule.yml"> rsyslog_remote_tls_cacert</a>: Configure CA certificate for rsyslog remote logging
+      <ul><li>CCE-83992-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ntp/service_chronyd_enabled/rule.yml"> service_chronyd_enabled</a>: The Chronyd service is enabled
+      <ul><li>CCE-84217-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ntp/service_chronyd_or_ntpd_enabled/rule.yml"> service_chronyd_or_ntpd_enabled</a>: Enable the NTP Daemon
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>1034: A HIPS is implemented on critical servers and high-value servers.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/software-integrity/aide/package_aide_installed/rule.yml"> package_aide_installed</a>: Install AIDE
+      <ul><li>CCE-90843-4</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>1055: LAN Manager and NT LAN Manager authentication methods are disabled.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: no</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/password_expiration/accounts_maximum_age_login_defs/rule.yml"> accounts_maximum_age_login_defs</a>: Set Password Maximum Age
+      <ul><li>CCE-83606-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/password_expiration/accounts_minimum_age_login_defs/rule.yml"> accounts_minimum_age_login_defs</a>: Set Password Minimum Age
+      <ul><li>CCE-83610-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/password_expiration/accounts_password_warn_age_login_defs/rule.yml"> accounts_password_warn_age_login_defs</a>: Set Password Warning Age
+      <ul><li>CCE-83609-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/crypto/configure_kerberos_crypto_policy/rule.yml"> configure_kerberos_crypto_policy</a>: Configure Kerberos to use System Crypto Policy
+      <ul><li>CCE-83449-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ldap/openldap_client/enable_ldap_client/rule.yml"> enable_ldap_client</a>: Enable the LDAP Client For Use in Authconfig
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/kerberos/kerberos_disable_no_keytab/rule.yml"> kerberos_disable_no_keytab</a>: Disable Kerberos by removing host keytab
+      <ul><li>CCE-84221-1</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network_nmcli_permissions/rule.yml"> network_nmcli_permissions</a>: Prevent non-Privileged Users from Modifying Network Interfaces using nmcli
+      <ul><li>CCE-90061-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/selinux-booleans/sebool_kerberos_enabled/rule.yml"> sebool_kerberos_enabled</a>: Enable the kerberos_enabled SELinux Boolean
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/set_password_hashing_algorithm/set_password_hashing_algorithm_libuserconf/rule.yml"> set_password_hashing_algorithm_libuserconf</a>: Set Password Hashing Algorithm in /etc/libuser.conf
+      <ul><li>CCE-88865-1</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/set_password_hashing_algorithm/set_password_hashing_algorithm_logindefs/rule.yml"> set_password_hashing_algorithm_logindefs</a>: Set Password Hashing Algorithm in /etc/login.defs
+      <ul><li>CCE-90590-1</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/set_password_hashing_algorithm/set_password_hashing_algorithm_passwordauth/rule.yml"> set_password_hashing_algorithm_passwordauth</a>: Set PAM Password Hashing Algorithm - password-auth
+      <ul><li>CCE-85946-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/set_password_hashing_algorithm/set_password_hashing_algorithm_systemauth/rule.yml"> set_password_hashing_algorithm_systemauth</a>: Set PAM Password Hashing Algorithm - system-auth
+      <ul><li>CCE-83581-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_disable_gssapi_auth/rule.yml"> sshd_disable_gssapi_auth</a>: Disable GSSAPI Authentication
+      <ul><li>CCE-90808-7</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>1173: Multi-factor authentication is used to authenticate privileged users of systems.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/password_expiration/accounts_password_minlen_login_defs/rule.yml"> accounts_password_minlen_login_defs</a>: Set Password Minimum Length in login.defs
+      <ul><li>CCE-83608-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_dcredit/rule.yml"> accounts_password_pam_dcredit</a>: Ensure PAM Enforces Password Requirements - Minimum Digit Characters
+      <ul><li>CCE-83566-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_lcredit/rule.yml"> accounts_password_pam_lcredit</a>: Ensure PAM Enforces Password Requirements - Minimum Lowercase Characters
+      <ul><li>CCE-83570-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_minclass/rule.yml"> accounts_password_pam_minclass</a>: Ensure PAM Enforces Password Requirements - Minimum Different Categories
+      <ul><li>CCE-83563-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_minlen/rule.yml"> accounts_password_pam_minlen</a>: Ensure PAM Enforces Password Requirements - Minimum Length
+      <ul><li>CCE-83579-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_ocredit/rule.yml"> accounts_password_pam_ocredit</a>: Ensure PAM Enforces Password Requirements - Minimum Special Characters
+      <ul><li>CCE-83565-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_ucredit/rule.yml"> accounts_password_pam_ucredit</a>: Ensure PAM Enforces Password Requirements - Minimum Uppercase Characters
+      <ul><li>CCE-83568-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_faillock_deny/rule.yml"> accounts_passwords_pam_faillock_deny</a>: Lock Accounts After Failed Password Attempts
+      <ul><li>CCE-83587-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_faillock_deny_root/rule.yml"> accounts_passwords_pam_faillock_deny_root</a>: Configure the root Account for Failed Password Attempts
+      <ul><li>CCE-83589-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_faillock_interval/rule.yml"> accounts_passwords_pam_faillock_interval</a>: Set Interval For Counting Failed Password Attempts
+      <ul><li>CCE-83583-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_faillock_unlock_time/rule.yml"> accounts_passwords_pam_faillock_unlock_time</a>: Set Lockout Time for Failed Password Attempts
+      <ul><li>CCE-83588-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_tally2_deny_root/rule.yml"> accounts_passwords_pam_tally2_deny_root</a>: Configure the root Account lock for Failed Password Attempts via pam_tally2
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_tally2_unlock_time/rule.yml"> accounts_passwords_pam_tally2_unlock_time</a>: Set Lockout Time for Failed Password Attempts using pam_tally2
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/disable_host_auth/rule.yml"> disable_host_auth</a>: Disable Host-Based Authentication
+      <ul><li>CCE-90816-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-physical/require_emergency_target_auth/rule.yml"> require_emergency_target_auth</a>: Require Authentication for Emergency Systemd Target
+      <ul><li>CCE-83592-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-physical/require_singleuser_auth/rule.yml"> require_singleuser_auth</a>: Require Authentication for Single User Mode
+      <ul><li>CCE-83594-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/selinux-booleans/sebool_authlogin_nsswitch_use_ldap/rule.yml"> sebool_authlogin_nsswitch_use_ldap</a>: Disable the authlogin_nsswitch_use_ldap SELinux Boolean
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/selinux-booleans/sebool_authlogin_radius/rule.yml"> sebool_authlogin_radius</a>: Disable the authlogin_radius SELinux Boolean
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_disable_kerb_auth/rule.yml"> sshd_disable_kerb_auth</a>: Disable Kerberos Authentication
+      <ul><li>CCE-90802-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_set_max_auth_tries/rule.yml"> sshd_set_max_auth_tries</a>: Set SSH authentication attempt limit
+      <ul><li>CCE-90810-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/sssd/sssd_enable_smartcards/rule.yml"> sssd_enable_smartcards</a>: Enable Smartcards in SSSD
+      <ul><li>CCE-89155-6</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>1277: Data communicated between database servers and web servers is encrypted.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: no</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/crypto/openssl_use_strong_entropy/rule.yml"> openssl_use_strong_entropy</a>: OpenSSL uses strong entropy source
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>1288: Files imported or exported via gateways or CDSs undergo antivirus scanning using multiple different scanning engines.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: no</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/software-integrity/aide/package_aide_installed/rule.yml"> package_aide_installed</a>: Install AIDE
+      <ul><li>CCE-90843-4</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>1311: SNMP version 1 and SNMP version 2 are not used on networks.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: no</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/snmp/disabling_snmp_service/service_snmpd_disabled/rule.yml"> service_snmpd_disabled</a>: Disable snmpd Service
+      <ul><li>CCE-90832-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/snmp/snmp_configure_server/snmpd_use_newer_protocol/rule.yml"> snmpd_use_newer_protocol</a>: Configure SNMP Service to Use Only SNMPv3 or Newer
+      <ul><li>CCE-87293-7</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>1315: The administrative interface on wireless access points is disabled for wireless network connections.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-ipv6/configuring_ipv6/network_ipv6_static_address/rule.yml"> network_ipv6_static_address</a>: Manually Assign Global IPv6 Address
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-wireless/wireless_software/wireless_disable_interfaces/rule.yml"> wireless_disable_interfaces</a>: Deactivate Wireless Network Interfaces
+      <ul><li>CCE-84066-0</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>1319: Static addressing is not used for assigning IP addresses on wireless networks.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: no</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-ipv6/configuring_ipv6/network_ipv6_static_address/rule.yml"> network_ipv6_static_address</a>: Manually Assign Global IPv6 Address
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-wireless/wireless_software/wireless_disable_interfaces/rule.yml"> wireless_disable_interfaces</a>: Deactivate Wireless Network Interfaces
+      <ul><li>CCE-84066-0</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>1341: A HIPS is implemented on workstations.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/software-integrity/aide/package_aide_installed/rule.yml"> package_aide_installed</a>: Install AIDE
+      <ul><li>CCE-90843-4</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>1386: Network management traffic can only originate from administrative infrastructure.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: no</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-physical/screen_locking/smart_card_login/configure_opensc_card_drivers/rule.yml"> configure_opensc_card_drivers</a>: Configure opensc Smart Card Drivers
+      <ul><li>CCE-89122-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-physical/screen_locking/smart_card_login/force_opensc_card_drivers/rule.yml"> force_opensc_card_drivers</a>: Force opensc To Use Defined Smart Card Driver
+      <ul><li>CCE-89151-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-physical/screen_locking/smart_card_login/package_opensc_installed/rule.yml"> package_opensc_installed</a>: Install the opensc Package For Multifactor Authentication
+      <ul><li>CCE-83595-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-physical/screen_locking/smart_card_login/package_pcsc-lite-ccid_installed/rule.yml"> package_pcsc-lite-ccid_installed</a>: Install the pcsc-lite-ccid package
+      <ul><li>CCE-86246-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-physical/screen_locking/smart_card_login/package_pcsc-lite_installed/rule.yml"> package_pcsc-lite_installed</a>: Install the pcsc-lite package
+      <ul><li>CCE-86280-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/sudo/package_sudo_installed/rule.yml"> package_sudo_installed</a>: Install sudo Package
+      <ul><li>CCE-83523-1</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-physical/screen_locking/smart_card_login/service_pcscd_enabled/rule.yml"> service_pcscd_enabled</a>: Enable the pcscd Service
+      <ul><li>CCE-87907-2</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>1401: Multi-factor authentication uses either: something users have and something users know, or something users have that is unlocked by something users know or are.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: no</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/password_expiration/accounts_password_minlen_login_defs/rule.yml"> accounts_password_minlen_login_defs</a>: Set Password Minimum Length in login.defs
+      <ul><li>CCE-83608-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_dcredit/rule.yml"> accounts_password_pam_dcredit</a>: Ensure PAM Enforces Password Requirements - Minimum Digit Characters
+      <ul><li>CCE-83566-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_lcredit/rule.yml"> accounts_password_pam_lcredit</a>: Ensure PAM Enforces Password Requirements - Minimum Lowercase Characters
+      <ul><li>CCE-83570-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_minclass/rule.yml"> accounts_password_pam_minclass</a>: Ensure PAM Enforces Password Requirements - Minimum Different Categories
+      <ul><li>CCE-83563-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_minlen/rule.yml"> accounts_password_pam_minlen</a>: Ensure PAM Enforces Password Requirements - Minimum Length
+      <ul><li>CCE-83579-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_ocredit/rule.yml"> accounts_password_pam_ocredit</a>: Ensure PAM Enforces Password Requirements - Minimum Special Characters
+      <ul><li>CCE-83565-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_ucredit/rule.yml"> accounts_password_pam_ucredit</a>: Ensure PAM Enforces Password Requirements - Minimum Uppercase Characters
+      <ul><li>CCE-83568-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_faillock_deny/rule.yml"> accounts_passwords_pam_faillock_deny</a>: Lock Accounts After Failed Password Attempts
+      <ul><li>CCE-83587-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_faillock_deny_root/rule.yml"> accounts_passwords_pam_faillock_deny_root</a>: Configure the root Account for Failed Password Attempts
+      <ul><li>CCE-83589-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_faillock_interval/rule.yml"> accounts_passwords_pam_faillock_interval</a>: Set Interval For Counting Failed Password Attempts
+      <ul><li>CCE-83583-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_faillock_unlock_time/rule.yml"> accounts_passwords_pam_faillock_unlock_time</a>: Set Lockout Time for Failed Password Attempts
+      <ul><li>CCE-83588-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_tally2_deny_root/rule.yml"> accounts_passwords_pam_tally2_deny_root</a>: Configure the root Account lock for Failed Password Attempts via pam_tally2
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_tally2_unlock_time/rule.yml"> accounts_passwords_pam_tally2_unlock_time</a>: Set Lockout Time for Failed Password Attempts using pam_tally2
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/disable_host_auth/rule.yml"> disable_host_auth</a>: Disable Host-Based Authentication
+      <ul><li>CCE-90816-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-physical/require_emergency_target_auth/rule.yml"> require_emergency_target_auth</a>: Require Authentication for Emergency Systemd Target
+      <ul><li>CCE-83592-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-physical/require_singleuser_auth/rule.yml"> require_singleuser_auth</a>: Require Authentication for Single User Mode
+      <ul><li>CCE-83594-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/selinux-booleans/sebool_authlogin_nsswitch_use_ldap/rule.yml"> sebool_authlogin_nsswitch_use_ldap</a>: Disable the authlogin_nsswitch_use_ldap SELinux Boolean
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/selinux-booleans/sebool_authlogin_radius/rule.yml"> sebool_authlogin_radius</a>: Disable the authlogin_radius SELinux Boolean
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_disable_kerb_auth/rule.yml"> sshd_disable_kerb_auth</a>: Disable Kerberos Authentication
+      <ul><li>CCE-90802-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_set_max_auth_tries/rule.yml"> sshd_set_max_auth_tries</a>: Set SSH authentication attempt limit
+      <ul><li>CCE-90810-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/sssd/sssd_enable_smartcards/rule.yml"> sssd_enable_smartcards</a>: Enable Smartcards in SSSD
+      <ul><li>CCE-89155-6</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>1402: Credentials stored on systems are protected by a password manager; a hardware security module; or by salting, hashing and stretching them before storage within a database</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/password_expiration/accounts_maximum_age_login_defs/rule.yml"> accounts_maximum_age_login_defs</a>: Set Password Maximum Age
+      <ul><li>CCE-83606-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/password_expiration/accounts_minimum_age_login_defs/rule.yml"> accounts_minimum_age_login_defs</a>: Set Password Minimum Age
+      <ul><li>CCE-83610-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/password_storage/accounts_password_all_shadowed/rule.yml"> accounts_password_all_shadowed</a>: Verify All Account Password Hashes are Shadowed
+      <ul><li>CCE-83618-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/password_expiration/accounts_password_warn_age_login_defs/rule.yml"> accounts_password_warn_age_login_defs</a>: Set Password Warning Age
+      <ul><li>CCE-83609-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/crypto/configure_kerberos_crypto_policy/rule.yml"> configure_kerberos_crypto_policy</a>: Configure Kerberos to use System Crypto Policy
+      <ul><li>CCE-83449-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ldap/openldap_client/enable_ldap_client/rule.yml"> enable_ldap_client</a>: Enable the LDAP Client For Use in Authconfig
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/kerberos/kerberos_disable_no_keytab/rule.yml"> kerberos_disable_no_keytab</a>: Disable Kerberos by removing host keytab
+      <ul><li>CCE-84221-1</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network_nmcli_permissions/rule.yml"> network_nmcli_permissions</a>: Prevent non-Privileged Users from Modifying Network Interfaces using nmcli
+      <ul><li>CCE-90061-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/selinux-booleans/sebool_kerberos_enabled/rule.yml"> sebool_kerberos_enabled</a>: Enable the kerberos_enabled SELinux Boolean
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/set_password_hashing_algorithm/set_password_hashing_algorithm_libuserconf/rule.yml"> set_password_hashing_algorithm_libuserconf</a>: Set Password Hashing Algorithm in /etc/libuser.conf
+      <ul><li>CCE-88865-1</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/set_password_hashing_algorithm/set_password_hashing_algorithm_logindefs/rule.yml"> set_password_hashing_algorithm_logindefs</a>: Set Password Hashing Algorithm in /etc/login.defs
+      <ul><li>CCE-90590-1</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/set_password_hashing_algorithm/set_password_hashing_algorithm_passwordauth/rule.yml"> set_password_hashing_algorithm_passwordauth</a>: Set PAM Password Hashing Algorithm - password-auth
+      <ul><li>CCE-85946-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/set_password_hashing_algorithm/set_password_hashing_algorithm_systemauth/rule.yml"> set_password_hashing_algorithm_systemauth</a>: Set PAM Password Hashing Algorithm - system-auth
+      <ul><li>CCE-83581-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_disable_gssapi_auth/rule.yml"> sshd_disable_gssapi_auth</a>: Disable GSSAPI Authentication
+      <ul><li>CCE-90808-7</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>1405: A centralised event logging facility is implemented and event logs are sent to the facility as soon as possible after they occur.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ntp/chronyd_configure_pool_and_server/rule.yml"> chronyd_configure_pool_and_server</a>: Chrony Configure Pool and Server
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ntp/chronyd_or_ntpd_specify_multiple_servers/rule.yml"> chronyd_or_ntpd_specify_multiple_servers</a>: Specify Additional Remote NTP Servers
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ntp/chronyd_specify_remote_server/rule.yml"> chronyd_specify_remote_server</a>: A remote time server for Chrony is configured
+      <ul><li>CCE-84218-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ntp/package_chrony_installed/rule.yml"> package_chrony_installed</a>: The Chrony package is installed
+      <ul><li>CCE-84215-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/logging/ensure_rsyslog_log_file_configuration/rsyslog_cron_logging/rule.yml"> rsyslog_cron_logging</a>: Ensure cron Is Logging To Rsyslog
+      <ul><li>CCE-83994-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/logging/ensure_rsyslog_log_file_configuration/rsyslog_files_groupownership/rule.yml"> rsyslog_files_groupownership</a>: Ensure Log Files Are Owned By Appropriate Group
+      <ul><li>CCE-83834-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/logging/ensure_rsyslog_log_file_configuration/rsyslog_files_ownership/rule.yml"> rsyslog_files_ownership</a>: Ensure Log Files Are Owned By Appropriate User
+      <ul><li>CCE-83946-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/logging/ensure_rsyslog_log_file_configuration/rsyslog_files_permissions/rule.yml"> rsyslog_files_permissions</a>: Ensure System Log Files Have Correct Permissions
+      <ul><li>CCE-83689-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/logging/rsyslog_accepting_remote_messages/rsyslog_nolisten/rule.yml"> rsyslog_nolisten</a>: Ensure rsyslog Does Not Accept Remote Messages Unless Acting As Log Server
+      <ul><li>CCE-83995-1</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/logging/rsyslog_sending_messages/rsyslog_remote_loghost/rule.yml"> rsyslog_remote_loghost</a>: Ensure Logs Sent To Remote Host
+      <ul><li>CCE-83990-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/logging/rsyslog_sending_messages/rsyslog_remote_tls/rule.yml"> rsyslog_remote_tls</a>: Configure TLS for rsyslog remote logging
+      <ul><li>CCE-83991-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/logging/rsyslog_sending_messages/rsyslog_remote_tls_cacert/rule.yml"> rsyslog_remote_tls_cacert</a>: Configure CA certificate for rsyslog remote logging
+      <ul><li>CCE-83992-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ntp/service_chronyd_enabled/rule.yml"> service_chronyd_enabled</a>: The Chronyd service is enabled
+      <ul><li>CCE-84217-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ntp/service_chronyd_or_ntpd_enabled/rule.yml"> service_chronyd_or_ntpd_enabled</a>: Enable the NTP Daemon
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>1409: Operating systems are hardened using ASD and vendor hardening guidance, with the most restrictive guidance taking precedence when conflicts occur</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: no</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/dir_perms_world_writable_sticky_bits/rule.yml"> dir_perms_world_writable_sticky_bits</a>: Verify that All World-Writable Directories Have Sticky Bits Set
+      <ul><li>CCE-83895-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/enable_authselect/rule.yml"> enable_authselect</a>: Enable authselect
+      <ul><li>CCE-89732-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_within_important_dirs/file_ownership_binary_dirs/rule.yml"> file_ownership_binary_dirs</a>: Verify that System Executables Have Root Ownership
+      <ul><li>CCE-83908-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_within_important_dirs/file_ownership_library_dirs/rule.yml"> file_ownership_library_dirs</a>: Verify that Shared Library Files Have Root Ownership
+      <ul><li>CCE-83907-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_within_important_dirs/file_permissions_binary_dirs/rule.yml"> file_permissions_binary_dirs</a>: Verify that System Executables Have Restrictive Permissions
+      <ul><li>CCE-83911-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_within_important_dirs/file_permissions_library_dirs/rule.yml"> file_permissions_library_dirs</a>: Verify that Shared Library Files Have Restrictive Permissions
+      <ul><li>CCE-83909-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/file_permissions_unauthorized_sgid/rule.yml"> file_permissions_unauthorized_sgid</a>: Ensure All SGID Executables Are Authorized
+      <ul><li>CCE-83901-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/file_permissions_unauthorized_suid/rule.yml"> file_permissions_unauthorized_suid</a>: Ensure All SUID Executables Are Authorized
+      <ul><li>CCE-83897-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/file_permissions_unauthorized_world_writable/rule.yml"> file_permissions_unauthorized_world_writable</a>: Ensure No World-Writable Files Exist
+      <ul><li>CCE-83902-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/partitions/mount_option_dev_shm_nodev/rule.yml"> mount_option_dev_shm_nodev</a>: Add nodev Option to /dev/shm
+      <ul><li>CCE-83881-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/partitions/mount_option_dev_shm_noexec/rule.yml"> mount_option_dev_shm_noexec</a>: Add noexec Option to /dev/shm
+      <ul><li>CCE-83857-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/partitions/mount_option_dev_shm_nosuid/rule.yml"> mount_option_dev_shm_nosuid</a>: Add nosuid Option to /dev/shm
+      <ul><li>CCE-83891-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network_sniffer_disabled/rule.yml"> network_sniffer_disabled</a>: Ensure System is Not Acting as a Network Sniffer
+      <ul><li>CCE-83996-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/fapolicyd/package_fapolicyd_installed/rule.yml"> package_fapolicyd_installed</a>: Install fapolicyd Package
+      <ul><li>CCE-84224-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-firewalld/firewalld_activation/package_firewalld_installed/rule.yml"> package_firewalld_installed</a>: Install firewalld Package
+      <ul><li>CCE-84021-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/system-tools/package_rear_installed/rule.yml"> package_rear_installed</a>: Install rear Package
+      <ul><li>CCE-83503-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/logging/package_rsyslog_installed/rule.yml"> package_rsyslog_installed</a>: Ensure rsyslog is Installed
+      <ul><li>CCE-84063-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/proxy/disabling_squid/package_squid_removed/rule.yml"> package_squid_removed</a>: Uninstall squid Package
+      <ul><li>CCE-84238-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/obsolete/telnet/package_telnet-server_removed/rule.yml"> package_telnet-server_removed</a>: Uninstall telnet-server Package
+      <ul><li>CCE-84149-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/obsolete/telnet/package_telnet_removed/rule.yml"> package_telnet_removed</a>: Remove telnet Clients
+      <ul><li>CCE-84146-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/obsolete/inetd_and_xinetd/package_xinetd_removed/rule.yml"> package_xinetd_removed</a>: Uninstall xinetd Package
+      <ul><li>CCE-84155-1</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/obsolete/nis/package_ypbind_removed/rule.yml"> package_ypbind_removed</a>: Remove NIS Client
+      <ul><li>CCE-84151-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/software-integrity/rpm_verification/rpm_verify_hashes/rule.yml"> rpm_verify_hashes</a>: Verify File Hashes with RPM
+      <ul><li>CCE-90841-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/software-integrity/rpm_verification/rpm_verify_ownership/rule.yml"> rpm_verify_ownership</a>: Verify and Correct Ownership with RPM
+      <ul><li>CCE-90842-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/software-integrity/rpm_verification/rpm_verify_permissions/rule.yml"> rpm_verify_permissions</a>: Verify and Correct File Permissions with RPM
+      <ul><li>CCE-90840-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/updating/security_patches_up_to_date/rule.yml"> security_patches_up_to_date</a>: Ensure Software Patches Installed
+      <ul><li>CCE-84185-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/selinux_policytype/rule.yml"> selinux_policytype</a>: Configure SELinux Policy
+      <ul><li>CCE-84074-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/selinux_state/rule.yml"> selinux_state</a>: Ensure SELinux State is Enforcing
+      <ul><li>CCE-84079-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/service_auditd_enabled/rule.yml"> service_auditd_enabled</a>: Enable auditd Service
+      <ul><li>CCE-90829-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/avahi/disable_avahi_group/service_avahi-daemon_disabled/rule.yml"> service_avahi-daemon_disabled</a>: Disable Avahi Server Software
+      <ul><li>CCE-90824-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/fapolicyd/service_fapolicyd_enabled/rule.yml"> service_fapolicyd_enabled</a>: Enable the File Access Policy Service
+      <ul><li>CCE-84227-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-firewalld/firewalld_activation/service_firewalld_enabled/rule.yml"> service_firewalld_enabled</a>: Verify firewalld Enabled
+      <ul><li>CCE-90833-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/logging/service_rsyslog_enabled/rule.yml"> service_rsyslog_enabled</a>: Enable rsyslog Service
+      <ul><li>CCE-83989-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/proxy/disabling_squid/service_squid_disabled/rule.yml"> service_squid_disabled</a>: Disable Squid
+      <ul><li>CCE-84239-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/obsolete/telnet/service_telnet_disabled/rule.yml"> service_telnet_disabled</a>: Disable telnet Service
+      <ul><li>CCE-84150-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/obsolete/inetd_and_xinetd/service_xinetd_disabled/rule.yml"> service_xinetd_disabled</a>: Disable xinetd Service
+      <ul><li>CCE-84156-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_enable_strictmodes/rule.yml"> sshd_enable_strictmodes</a>: Enable Use of Strict Mode Checking
+      <ul><li>CCE-90809-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_set_loglevel_info/rule.yml"> sshd_set_loglevel_info</a>: Set LogLevel to INFO
+      <ul><li>CCE-90813-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_use_directory_configuration/rule.yml"> sshd_use_directory_configuration</a>: Distribute the SSH Server configuration to multiple files in a config directory.
+      <ul><li>CCE-87681-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/restrictions/enable_execshield_settings/sysctl_kernel_exec_shield/rule.yml"> sysctl_kernel_exec_shield</a>: Enable ExecShield via sysctl
+      <ul><li>CCE-83970-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/restrictions/sysctl_kernel_kexec_load_disabled/rule.yml"> sysctl_kernel_kexec_load_disabled</a>: Disable Kernel Image Loading
+      <ul><li>CCE-83954-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/restrictions/enable_execshield_settings/sysctl_kernel_kptr_restrict/rule.yml"> sysctl_kernel_kptr_restrict</a>: Restrict Exposed Kernel Pointer Addresses Access
+      <ul><li>CCE-83972-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/restrictions/enable_execshield_settings/sysctl_kernel_randomize_va_space/rule.yml"> sysctl_kernel_randomize_va_space</a>: Enable Randomized Layout of Virtual Address Space
+      <ul><li>CCE-83971-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/restrictions/sysctl_kernel_unprivileged_bpf_disabled/rule.yml"> sysctl_kernel_unprivileged_bpf_disabled</a>: Disable Access to Network bpf() Syscall From Unprivileged Processes
+      <ul><li>CCE-83957-1</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/restrictions/sysctl_kernel_yama_ptrace_scope/rule.yml"> sysctl_kernel_yama_ptrace_scope</a>: Restrict usage of ptrace to descendant processes
+      <ul><li>CCE-83965-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/restrictions/sysctl_net_core_bpf_jit_harden/rule.yml"> sysctl_net_core_bpf_jit_harden</a>: Harden the operation of the BPF just-in-time compiler
+      <ul><li>CCE-83966-2</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>1416: A software firewall is implemented on workstations and servers to restrict inbound and outbound network connections to an organisation-approved set of applications and services.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-firewalld/ruleset_modifications/configure_firewalld_ports/rule.yml"> configure_firewalld_ports</a>: Configure the Firewalld Ports
+      <ul><li>CCE-86041-1</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/firewalld_sshd_port_enabled/rule.yml"> firewalld_sshd_port_enabled</a>: Enable SSH Server firewalld Firewall Exception
+      <ul><li>CCE-89175-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-firewalld/ruleset_modifications/set_firewalld_default_zone/rule.yml"> set_firewalld_default_zone</a>: Set Default firewalld Zone for Incoming Packets
+      <ul><li>CCE-84023-1</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>1417: Antivirus software is implemented on workstations and server.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: no</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/software-integrity/aide/package_aide_installed/rule.yml"> package_aide_installed</a>: Install AIDE
+      <ul><li>CCE-90843-4</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>1418: If there is no business requirement for reading from removable media and devices, such functionality is disabled via the use of device access control software or by disabling external communication interfaces</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/usbguard/package_usbguard_installed/rule.yml"> package_usbguard_installed</a>: Install usbguard Package
+      <ul><li>CCE-84203-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/usbguard/service_usbguard_enabled/rule.yml"> service_usbguard_enabled</a>: Enable the USBGuard Service
+      <ul><li>CCE-84205-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/usbguard/usbguard_allow_hid_and_hub/rule.yml"> usbguard_allow_hid_and_hub</a>: Authorize Human Interface Devices and USB hubs in USBGuard daemon
+      <ul><li>CCE-84210-4</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>1446: When using elliptic curve cryptography, a suitable curve from NIST SP 800-186 is used.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/crypto/configure_crypto_policy/rule.yml"> configure_crypto_policy</a>: Configure System Cryptography Policy
+      <ul><li>CCE-83450-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/fips/enable_dracut_fips_module/rule.yml"> enable_dracut_fips_module</a>: Enable Dracut FIPS Module
+      <ul><li>CCE-86547-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/fips/enable_fips_mode/rule.yml"> enable_fips_mode</a>: Enable FIPS Mode
+      <ul><li>CCE-88742-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/fips/system_booted_in_fips_mode/rule.yml"> system_booted_in_fips_mode</a>: Verify that the system was booted with fips=1
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/crypto/var_system_crypto_policy.var">var_system_crypto_policy</a> = fips</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>1449: SSH private keys are protected with a passphrase or a key encryption key</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: no</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/file_permissions_sshd_private_key/rule.yml"> file_permissions_sshd_private_key</a>: Verify Permissions on SSH Server Private *_key Key Files
+      <ul><li>CCE-90820-2</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>1467: The latest release of office productivity suites, web browsers and their extensions, email clients, PDF software, and security products are used.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/updating/dnf-automatic_apply_updates/rule.yml"> dnf-automatic_apply_updates</a>: Configure dnf-automatic to Install Available Updates Automatically
+      <ul><li>CCE-83456-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/system-tools/package_libdnf-plugin-subscription-manager_installed/rule.yml"> package_libdnf-plugin-subscription-manager_installed</a>: Install libdnf-plugin-subscription-manager Package
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/system-tools/package_subscription-manager_installed/rule.yml"> package_subscription-manager_installed</a>: Install subscription-manager Package
+      <ul><li>CCE-83506-6</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>1483: The latest release of internet-facing server applications are used.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/updating/dnf-automatic_apply_updates/rule.yml"> dnf-automatic_apply_updates</a>: Configure dnf-automatic to Install Available Updates Automatically
+      <ul><li>CCE-83456-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/system-tools/package_libdnf-plugin-subscription-manager_installed/rule.yml"> package_libdnf-plugin-subscription-manager_installed</a>: Install libdnf-plugin-subscription-manager Package
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/system-tools/package_subscription-manager_installed/rule.yml"> package_subscription-manager_installed</a>: Install subscription-manager Package
+      <ul><li>CCE-83506-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_allow_only_protocol2/rule.yml"> sshd_allow_only_protocol2</a>: Allow Only SSH Protocol 2
+      <ul><li>CCE-90812-9</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>1491: Unprivileged users are prevented from running script execution engines.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/root_logins/no_shelllogin_for_systemaccounts/rule.yml"> no_shelllogin_for_systemaccounts</a>: Ensure that System Accounts Do Not Run a Shell Upon Login
+      <ul><li>CCE-83623-9</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>1493: Software registers for workstations, servers, network devices and other ICT equipment are developed, implemented, maintained and verified on a regular basis.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/updating/dnf-automatic_apply_updates/rule.yml"> dnf-automatic_apply_updates</a>: Configure dnf-automatic to Install Available Updates Automatically
+      <ul><li>CCE-83456-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/updating/dnf-automatic_security_updates_only/rule.yml"> dnf-automatic_security_updates_only</a>: Configure dnf-automatic to Install Only Security Updates
+      <ul><li>CCE-83461-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/updating/ensure_gpgcheck_globally_activated/rule.yml"> ensure_gpgcheck_globally_activated</a>: Ensure gpgcheck Enabled In Main dnf Configuration
+      <ul><li>CCE-83457-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/updating/ensure_gpgcheck_local_packages/rule.yml"> ensure_gpgcheck_local_packages</a>: Ensure gpgcheck Enabled for Local Packages
+      <ul><li>CCE-83463-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/updating/ensure_gpgcheck_never_disabled/rule.yml"> ensure_gpgcheck_never_disabled</a>: Ensure gpgcheck Enabled for All dnf Package Repositories
+      <ul><li>CCE-83464-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/updating/ensure_oracle_gpgkey_installed/rule.yml"> ensure_oracle_gpgkey_installed</a>: Ensure Oracle Linux GPG Key Installed
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/updating/ensure_redhat_gpgkey_installed/rule.yml"> ensure_redhat_gpgkey_installed</a>: Ensure Red Hat GPG Key Installed
+      <ul><li>CCE-84180-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/system-tools/package_libdnf-plugin-subscription-manager_installed/rule.yml"> package_libdnf-plugin-subscription-manager_installed</a>: Install libdnf-plugin-subscription-manager Package
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/system-tools/package_sequoia-sq_installed/rule.yml"> package_sequoia-sq_installed</a>: Install sequoia-sq Package
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/system-tools/package_subscription-manager_installed/rule.yml"> package_subscription-manager_installed</a>: Install subscription-manager Package
+      <ul><li>CCE-83506-6</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>1504: Multi-factor authentication is used to authenticate users to their organisation’s online services that process, store or communicate their organisation’s sensitive data.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: no</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/password_expiration/accounts_password_minlen_login_defs/rule.yml"> accounts_password_minlen_login_defs</a>: Set Password Minimum Length in login.defs
+      <ul><li>CCE-83608-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_dcredit/rule.yml"> accounts_password_pam_dcredit</a>: Ensure PAM Enforces Password Requirements - Minimum Digit Characters
+      <ul><li>CCE-83566-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_lcredit/rule.yml"> accounts_password_pam_lcredit</a>: Ensure PAM Enforces Password Requirements - Minimum Lowercase Characters
+      <ul><li>CCE-83570-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_minclass/rule.yml"> accounts_password_pam_minclass</a>: Ensure PAM Enforces Password Requirements - Minimum Different Categories
+      <ul><li>CCE-83563-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_minlen/rule.yml"> accounts_password_pam_minlen</a>: Ensure PAM Enforces Password Requirements - Minimum Length
+      <ul><li>CCE-83579-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_ocredit/rule.yml"> accounts_password_pam_ocredit</a>: Ensure PAM Enforces Password Requirements - Minimum Special Characters
+      <ul><li>CCE-83565-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_ucredit/rule.yml"> accounts_password_pam_ucredit</a>: Ensure PAM Enforces Password Requirements - Minimum Uppercase Characters
+      <ul><li>CCE-83568-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_faillock_deny/rule.yml"> accounts_passwords_pam_faillock_deny</a>: Lock Accounts After Failed Password Attempts
+      <ul><li>CCE-83587-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_faillock_deny_root/rule.yml"> accounts_passwords_pam_faillock_deny_root</a>: Configure the root Account for Failed Password Attempts
+      <ul><li>CCE-83589-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_faillock_interval/rule.yml"> accounts_passwords_pam_faillock_interval</a>: Set Interval For Counting Failed Password Attempts
+      <ul><li>CCE-83583-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_faillock_unlock_time/rule.yml"> accounts_passwords_pam_faillock_unlock_time</a>: Set Lockout Time for Failed Password Attempts
+      <ul><li>CCE-83588-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_tally2_deny_root/rule.yml"> accounts_passwords_pam_tally2_deny_root</a>: Configure the root Account lock for Failed Password Attempts via pam_tally2
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_tally2_unlock_time/rule.yml"> accounts_passwords_pam_tally2_unlock_time</a>: Set Lockout Time for Failed Password Attempts using pam_tally2
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/disable_host_auth/rule.yml"> disable_host_auth</a>: Disable Host-Based Authentication
+      <ul><li>CCE-90816-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-physical/require_emergency_target_auth/rule.yml"> require_emergency_target_auth</a>: Require Authentication for Emergency Systemd Target
+      <ul><li>CCE-83592-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-physical/require_singleuser_auth/rule.yml"> require_singleuser_auth</a>: Require Authentication for Single User Mode
+      <ul><li>CCE-83594-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/selinux-booleans/sebool_authlogin_nsswitch_use_ldap/rule.yml"> sebool_authlogin_nsswitch_use_ldap</a>: Disable the authlogin_nsswitch_use_ldap SELinux Boolean
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/selinux-booleans/sebool_authlogin_radius/rule.yml"> sebool_authlogin_radius</a>: Disable the authlogin_radius SELinux Boolean
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_disable_kerb_auth/rule.yml"> sshd_disable_kerb_auth</a>: Disable Kerberos Authentication
+      <ul><li>CCE-90802-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_set_max_auth_tries/rule.yml"> sshd_set_max_auth_tries</a>: Set SSH authentication attempt limit
+      <ul><li>CCE-90810-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/sssd/sssd_enable_smartcards/rule.yml"> sssd_enable_smartcards</a>: Enable Smartcards in SSSD
+      <ul><li>CCE-89155-6</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>1505: Multi-factor authentication is used to authenticate users of data repositories.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: no</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/password_expiration/accounts_password_minlen_login_defs/rule.yml"> accounts_password_minlen_login_defs</a>: Set Password Minimum Length in login.defs
+      <ul><li>CCE-83608-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_dcredit/rule.yml"> accounts_password_pam_dcredit</a>: Ensure PAM Enforces Password Requirements - Minimum Digit Characters
+      <ul><li>CCE-83566-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_lcredit/rule.yml"> accounts_password_pam_lcredit</a>: Ensure PAM Enforces Password Requirements - Minimum Lowercase Characters
+      <ul><li>CCE-83570-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_minclass/rule.yml"> accounts_password_pam_minclass</a>: Ensure PAM Enforces Password Requirements - Minimum Different Categories
+      <ul><li>CCE-83563-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_minlen/rule.yml"> accounts_password_pam_minlen</a>: Ensure PAM Enforces Password Requirements - Minimum Length
+      <ul><li>CCE-83579-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_ocredit/rule.yml"> accounts_password_pam_ocredit</a>: Ensure PAM Enforces Password Requirements - Minimum Special Characters
+      <ul><li>CCE-83565-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_ucredit/rule.yml"> accounts_password_pam_ucredit</a>: Ensure PAM Enforces Password Requirements - Minimum Uppercase Characters
+      <ul><li>CCE-83568-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_faillock_deny/rule.yml"> accounts_passwords_pam_faillock_deny</a>: Lock Accounts After Failed Password Attempts
+      <ul><li>CCE-83587-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_faillock_deny_root/rule.yml"> accounts_passwords_pam_faillock_deny_root</a>: Configure the root Account for Failed Password Attempts
+      <ul><li>CCE-83589-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_faillock_interval/rule.yml"> accounts_passwords_pam_faillock_interval</a>: Set Interval For Counting Failed Password Attempts
+      <ul><li>CCE-83583-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_faillock_unlock_time/rule.yml"> accounts_passwords_pam_faillock_unlock_time</a>: Set Lockout Time for Failed Password Attempts
+      <ul><li>CCE-83588-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_tally2_deny_root/rule.yml"> accounts_passwords_pam_tally2_deny_root</a>: Configure the root Account lock for Failed Password Attempts via pam_tally2
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_tally2_unlock_time/rule.yml"> accounts_passwords_pam_tally2_unlock_time</a>: Set Lockout Time for Failed Password Attempts using pam_tally2
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/disable_host_auth/rule.yml"> disable_host_auth</a>: Disable Host-Based Authentication
+      <ul><li>CCE-90816-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-physical/require_emergency_target_auth/rule.yml"> require_emergency_target_auth</a>: Require Authentication for Emergency Systemd Target
+      <ul><li>CCE-83592-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-physical/require_singleuser_auth/rule.yml"> require_singleuser_auth</a>: Require Authentication for Single User Mode
+      <ul><li>CCE-83594-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/selinux-booleans/sebool_authlogin_nsswitch_use_ldap/rule.yml"> sebool_authlogin_nsswitch_use_ldap</a>: Disable the authlogin_nsswitch_use_ldap SELinux Boolean
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/selinux-booleans/sebool_authlogin_radius/rule.yml"> sebool_authlogin_radius</a>: Disable the authlogin_radius SELinux Boolean
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_disable_kerb_auth/rule.yml"> sshd_disable_kerb_auth</a>: Disable Kerberos Authentication
+      <ul><li>CCE-90802-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_set_max_auth_tries/rule.yml"> sshd_set_max_auth_tries</a>: Set SSH authentication attempt limit
+      <ul><li>CCE-90810-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/sssd/sssd_enable_smartcards/rule.yml"> sssd_enable_smartcards</a>: Enable Smartcards in SSSD
+      <ul><li>CCE-89155-6</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>1506: The use of SSH version 1 is disabled for SSH connections.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>1546: Users are authenticated before they are granted access to a system and its resources</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/root_logins/accounts_no_uid_except_zero/rule.yml"> accounts_no_uid_except_zero</a>: Verify Only Root Has UID 0
+      <ul><li>CCE-83624-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/password_expiration/accounts_password_minlen_login_defs/rule.yml"> accounts_password_minlen_login_defs</a>: Set Password Minimum Length in login.defs
+      <ul><li>CCE-83608-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_dcredit/rule.yml"> accounts_password_pam_dcredit</a>: Ensure PAM Enforces Password Requirements - Minimum Digit Characters
+      <ul><li>CCE-83566-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_lcredit/rule.yml"> accounts_password_pam_lcredit</a>: Ensure PAM Enforces Password Requirements - Minimum Lowercase Characters
+      <ul><li>CCE-83570-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_minclass/rule.yml"> accounts_password_pam_minclass</a>: Ensure PAM Enforces Password Requirements - Minimum Different Categories
+      <ul><li>CCE-83563-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_minlen/rule.yml"> accounts_password_pam_minlen</a>: Ensure PAM Enforces Password Requirements - Minimum Length
+      <ul><li>CCE-83579-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_ocredit/rule.yml"> accounts_password_pam_ocredit</a>: Ensure PAM Enforces Password Requirements - Minimum Special Characters
+      <ul><li>CCE-83565-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_ucredit/rule.yml"> accounts_password_pam_ucredit</a>: Ensure PAM Enforces Password Requirements - Minimum Uppercase Characters
+      <ul><li>CCE-83568-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_faillock_deny/rule.yml"> accounts_passwords_pam_faillock_deny</a>: Lock Accounts After Failed Password Attempts
+      <ul><li>CCE-83587-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_faillock_deny_root/rule.yml"> accounts_passwords_pam_faillock_deny_root</a>: Configure the root Account for Failed Password Attempts
+      <ul><li>CCE-83589-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_faillock_interval/rule.yml"> accounts_passwords_pam_faillock_interval</a>: Set Interval For Counting Failed Password Attempts
+      <ul><li>CCE-83583-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_faillock_unlock_time/rule.yml"> accounts_passwords_pam_faillock_unlock_time</a>: Set Lockout Time for Failed Password Attempts
+      <ul><li>CCE-83588-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_tally2_deny_root/rule.yml"> accounts_passwords_pam_tally2_deny_root</a>: Configure the root Account lock for Failed Password Attempts via pam_tally2
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_tally2_unlock_time/rule.yml"> accounts_passwords_pam_tally2_unlock_time</a>: Set Lockout Time for Failed Password Attempts using pam_tally2
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/disable_host_auth/rule.yml"> disable_host_auth</a>: Disable Host-Based Authentication
+      <ul><li>CCE-90816-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/password_storage/no_empty_passwords/rule.yml"> no_empty_passwords</a>: Prevent Login to Accounts With Empty Password
+      <ul><li>CCE-83611-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-physical/require_emergency_target_auth/rule.yml"> require_emergency_target_auth</a>: Require Authentication for Emergency Systemd Target
+      <ul><li>CCE-83592-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-physical/require_singleuser_auth/rule.yml"> require_singleuser_auth</a>: Require Authentication for Single User Mode
+      <ul><li>CCE-83594-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/selinux-booleans/sebool_authlogin_nsswitch_use_ldap/rule.yml"> sebool_authlogin_nsswitch_use_ldap</a>: Disable the authlogin_nsswitch_use_ldap SELinux Boolean
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/selinux-booleans/sebool_authlogin_radius/rule.yml"> sebool_authlogin_radius</a>: Disable the authlogin_radius SELinux Boolean
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_disable_empty_passwords/rule.yml"> sshd_disable_empty_passwords</a>: Disable SSH Access via Empty Passwords
+      <ul><li>CCE-90799-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_disable_kerb_auth/rule.yml"> sshd_disable_kerb_auth</a>: Disable Kerberos Authentication
+      <ul><li>CCE-90802-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_disable_rhosts/rule.yml"> sshd_disable_rhosts</a>: Disable SSH Support for .rhosts Files
+      <ul><li>CCE-90797-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_disable_root_login/rule.yml"> sshd_disable_root_login</a>: Disable SSH Root Login
+      <ul><li>CCE-90800-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_disable_user_known_hosts/rule.yml"> sshd_disable_user_known_hosts</a>: Disable SSH Support for User Known Hosts
+      <ul><li>CCE-90796-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_do_not_permit_user_env/rule.yml"> sshd_do_not_permit_user_env</a>: Do Not Allow SSH Environment Options
+      <ul><li>CCE-90803-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_set_max_auth_tries/rule.yml"> sshd_set_max_auth_tries</a>: Set SSH authentication attempt limit
+      <ul><li>CCE-90810-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/sssd/sssd_enable_smartcards/rule.yml"> sssd_enable_smartcards</a>: Enable Smartcards in SSSD
+      <ul><li>CCE-89155-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/sudo/sudo_remove_no_authenticate/rule.yml"> sudo_remove_no_authenticate</a>: Ensure Users Re-Authenticate for Privilege Escalation - sudo !authenticate
+      <ul><li>CCE-83544-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/sudo/sudo_remove_nopasswd/rule.yml"> sudo_remove_nopasswd</a>: Ensure Users Re-Authenticate for Privilege Escalation - sudo NOPASSWD
+      <ul><li>CCE-83536-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/sudo/sudo_require_authentication/rule.yml"> sudo_require_authentication</a>: Ensure Users Re-Authenticate for Privilege Escalation - sudo
+      <ul><li>CCE-83543-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/restrictions/sysctl_kernel_dmesg_restrict/rule.yml"> sysctl_kernel_dmesg_restrict</a>: Restrict Access to Kernel Message Buffer
+      <ul><li>CCE-83952-2</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>1552: All web application content is offered exclusively using HTTPS.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: no</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/crypto/openssl_use_strong_entropy/rule.yml"> openssl_use_strong_entropy</a>: OpenSSL uses strong entropy source
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>1557: Passphrases used for single-factor authentication on SECRET systems are at least 5 random words with a total minimum length of 17 characters.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>secret</li>
+  </ul>
+  <p>Automated: no</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/password_expiration/accounts_password_minlen_login_defs/rule.yml"> accounts_password_minlen_login_defs</a>: Set Password Minimum Length in login.defs
+      <ul><li>CCE-83608-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_dcredit/rule.yml"> accounts_password_pam_dcredit</a>: Ensure PAM Enforces Password Requirements - Minimum Digit Characters
+      <ul><li>CCE-83566-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_lcredit/rule.yml"> accounts_password_pam_lcredit</a>: Ensure PAM Enforces Password Requirements - Minimum Lowercase Characters
+      <ul><li>CCE-83570-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_minclass/rule.yml"> accounts_password_pam_minclass</a>: Ensure PAM Enforces Password Requirements - Minimum Different Categories
+      <ul><li>CCE-83563-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_minlen/rule.yml"> accounts_password_pam_minlen</a>: Ensure PAM Enforces Password Requirements - Minimum Length
+      <ul><li>CCE-83579-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_ocredit/rule.yml"> accounts_password_pam_ocredit</a>: Ensure PAM Enforces Password Requirements - Minimum Special Characters
+      <ul><li>CCE-83565-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_ucredit/rule.yml"> accounts_password_pam_ucredit</a>: Ensure PAM Enforces Password Requirements - Minimum Uppercase Characters
+      <ul><li>CCE-83568-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_faillock_deny/rule.yml"> accounts_passwords_pam_faillock_deny</a>: Lock Accounts After Failed Password Attempts
+      <ul><li>CCE-83587-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_faillock_deny_root/rule.yml"> accounts_passwords_pam_faillock_deny_root</a>: Configure the root Account for Failed Password Attempts
+      <ul><li>CCE-83589-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_faillock_interval/rule.yml"> accounts_passwords_pam_faillock_interval</a>: Set Interval For Counting Failed Password Attempts
+      <ul><li>CCE-83583-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_faillock_unlock_time/rule.yml"> accounts_passwords_pam_faillock_unlock_time</a>: Set Lockout Time for Failed Password Attempts
+      <ul><li>CCE-83588-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_tally2_deny_root/rule.yml"> accounts_passwords_pam_tally2_deny_root</a>: Configure the root Account lock for Failed Password Attempts via pam_tally2
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_tally2_unlock_time/rule.yml"> accounts_passwords_pam_tally2_unlock_time</a>: Set Lockout Time for Failed Password Attempts using pam_tally2
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/disable_host_auth/rule.yml"> disable_host_auth</a>: Disable Host-Based Authentication
+      <ul><li>CCE-90816-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-physical/require_emergency_target_auth/rule.yml"> require_emergency_target_auth</a>: Require Authentication for Emergency Systemd Target
+      <ul><li>CCE-83592-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-physical/require_singleuser_auth/rule.yml"> require_singleuser_auth</a>: Require Authentication for Single User Mode
+      <ul><li>CCE-83594-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/selinux-booleans/sebool_authlogin_nsswitch_use_ldap/rule.yml"> sebool_authlogin_nsswitch_use_ldap</a>: Disable the authlogin_nsswitch_use_ldap SELinux Boolean
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/selinux-booleans/sebool_authlogin_radius/rule.yml"> sebool_authlogin_radius</a>: Disable the authlogin_radius SELinux Boolean
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_disable_kerb_auth/rule.yml"> sshd_disable_kerb_auth</a>: Disable Kerberos Authentication
+      <ul><li>CCE-90802-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_set_max_auth_tries/rule.yml"> sshd_set_max_auth_tries</a>: Set SSH authentication attempt limit
+      <ul><li>CCE-90810-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/sssd/sssd_enable_smartcards/rule.yml"> sssd_enable_smartcards</a>: Enable Smartcards in SSSD
+      <ul><li>CCE-89155-6</li></ul>
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/password_expiration/var_accounts_password_minlen_login_defs.var">var_accounts_password_minlen_login_defs</a> = 17</li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/var_password_pam_minlen.var">var_password_pam_minlen</a> = 17</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>1558: Passphrases used for single-factor authentication are not a list of categorised words; do not form a real sentence in a natural language; and are not constructed from song lyrics, movies, literature or any other publicly available material.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/password_expiration/accounts_password_minlen_login_defs/rule.yml"> accounts_password_minlen_login_defs</a>: Set Password Minimum Length in login.defs
+      <ul><li>CCE-83608-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_dcredit/rule.yml"> accounts_password_pam_dcredit</a>: Ensure PAM Enforces Password Requirements - Minimum Digit Characters
+      <ul><li>CCE-83566-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_lcredit/rule.yml"> accounts_password_pam_lcredit</a>: Ensure PAM Enforces Password Requirements - Minimum Lowercase Characters
+      <ul><li>CCE-83570-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_minclass/rule.yml"> accounts_password_pam_minclass</a>: Ensure PAM Enforces Password Requirements - Minimum Different Categories
+      <ul><li>CCE-83563-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_minlen/rule.yml"> accounts_password_pam_minlen</a>: Ensure PAM Enforces Password Requirements - Minimum Length
+      <ul><li>CCE-83579-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_ocredit/rule.yml"> accounts_password_pam_ocredit</a>: Ensure PAM Enforces Password Requirements - Minimum Special Characters
+      <ul><li>CCE-83565-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_ucredit/rule.yml"> accounts_password_pam_ucredit</a>: Ensure PAM Enforces Password Requirements - Minimum Uppercase Characters
+      <ul><li>CCE-83568-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_faillock_deny/rule.yml"> accounts_passwords_pam_faillock_deny</a>: Lock Accounts After Failed Password Attempts
+      <ul><li>CCE-83587-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_faillock_deny_root/rule.yml"> accounts_passwords_pam_faillock_deny_root</a>: Configure the root Account for Failed Password Attempts
+      <ul><li>CCE-83589-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_faillock_interval/rule.yml"> accounts_passwords_pam_faillock_interval</a>: Set Interval For Counting Failed Password Attempts
+      <ul><li>CCE-83583-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_faillock_unlock_time/rule.yml"> accounts_passwords_pam_faillock_unlock_time</a>: Set Lockout Time for Failed Password Attempts
+      <ul><li>CCE-83588-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_tally2_deny_root/rule.yml"> accounts_passwords_pam_tally2_deny_root</a>: Configure the root Account lock for Failed Password Attempts via pam_tally2
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_tally2_unlock_time/rule.yml"> accounts_passwords_pam_tally2_unlock_time</a>: Set Lockout Time for Failed Password Attempts using pam_tally2
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/disable_host_auth/rule.yml"> disable_host_auth</a>: Disable Host-Based Authentication
+      <ul><li>CCE-90816-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-physical/require_emergency_target_auth/rule.yml"> require_emergency_target_auth</a>: Require Authentication for Emergency Systemd Target
+      <ul><li>CCE-83592-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-physical/require_singleuser_auth/rule.yml"> require_singleuser_auth</a>: Require Authentication for Single User Mode
+      <ul><li>CCE-83594-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/selinux-booleans/sebool_authlogin_nsswitch_use_ldap/rule.yml"> sebool_authlogin_nsswitch_use_ldap</a>: Disable the authlogin_nsswitch_use_ldap SELinux Boolean
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/selinux-booleans/sebool_authlogin_radius/rule.yml"> sebool_authlogin_radius</a>: Disable the authlogin_radius SELinux Boolean
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_disable_kerb_auth/rule.yml"> sshd_disable_kerb_auth</a>: Disable Kerberos Authentication
+      <ul><li>CCE-90802-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_set_max_auth_tries/rule.yml"> sshd_set_max_auth_tries</a>: Set SSH authentication attempt limit
+      <ul><li>CCE-90810-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/sssd/sssd_enable_smartcards/rule.yml"> sssd_enable_smartcards</a>: Enable Smartcards in SSSD
+      <ul><li>CCE-89155-6</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>1559: Memorised secrets used for multi-factor authentication are a minimum of 6 characters, unless more stringent requirements apply.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/password_expiration/accounts_password_minlen_login_defs/rule.yml"> accounts_password_minlen_login_defs</a>: Set Password Minimum Length in login.defs
+      <ul><li>CCE-83608-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_dcredit/rule.yml"> accounts_password_pam_dcredit</a>: Ensure PAM Enforces Password Requirements - Minimum Digit Characters
+      <ul><li>CCE-83566-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_lcredit/rule.yml"> accounts_password_pam_lcredit</a>: Ensure PAM Enforces Password Requirements - Minimum Lowercase Characters
+      <ul><li>CCE-83570-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_minclass/rule.yml"> accounts_password_pam_minclass</a>: Ensure PAM Enforces Password Requirements - Minimum Different Categories
+      <ul><li>CCE-83563-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_minlen/rule.yml"> accounts_password_pam_minlen</a>: Ensure PAM Enforces Password Requirements - Minimum Length
+      <ul><li>CCE-83579-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_ocredit/rule.yml"> accounts_password_pam_ocredit</a>: Ensure PAM Enforces Password Requirements - Minimum Special Characters
+      <ul><li>CCE-83565-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_ucredit/rule.yml"> accounts_password_pam_ucredit</a>: Ensure PAM Enforces Password Requirements - Minimum Uppercase Characters
+      <ul><li>CCE-83568-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_faillock_deny/rule.yml"> accounts_passwords_pam_faillock_deny</a>: Lock Accounts After Failed Password Attempts
+      <ul><li>CCE-83587-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_faillock_deny_root/rule.yml"> accounts_passwords_pam_faillock_deny_root</a>: Configure the root Account for Failed Password Attempts
+      <ul><li>CCE-83589-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_faillock_interval/rule.yml"> accounts_passwords_pam_faillock_interval</a>: Set Interval For Counting Failed Password Attempts
+      <ul><li>CCE-83583-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_faillock_unlock_time/rule.yml"> accounts_passwords_pam_faillock_unlock_time</a>: Set Lockout Time for Failed Password Attempts
+      <ul><li>CCE-83588-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_tally2_deny_root/rule.yml"> accounts_passwords_pam_tally2_deny_root</a>: Configure the root Account lock for Failed Password Attempts via pam_tally2
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_tally2_unlock_time/rule.yml"> accounts_passwords_pam_tally2_unlock_time</a>: Set Lockout Time for Failed Password Attempts using pam_tally2
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/disable_host_auth/rule.yml"> disable_host_auth</a>: Disable Host-Based Authentication
+      <ul><li>CCE-90816-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-physical/require_emergency_target_auth/rule.yml"> require_emergency_target_auth</a>: Require Authentication for Emergency Systemd Target
+      <ul><li>CCE-83592-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-physical/require_singleuser_auth/rule.yml"> require_singleuser_auth</a>: Require Authentication for Single User Mode
+      <ul><li>CCE-83594-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/selinux-booleans/sebool_authlogin_nsswitch_use_ldap/rule.yml"> sebool_authlogin_nsswitch_use_ldap</a>: Disable the authlogin_nsswitch_use_ldap SELinux Boolean
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/selinux-booleans/sebool_authlogin_radius/rule.yml"> sebool_authlogin_radius</a>: Disable the authlogin_radius SELinux Boolean
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_disable_kerb_auth/rule.yml"> sshd_disable_kerb_auth</a>: Disable Kerberos Authentication
+      <ul><li>CCE-90802-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_set_max_auth_tries/rule.yml"> sshd_set_max_auth_tries</a>: Set SSH authentication attempt limit
+      <ul><li>CCE-90810-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/sssd/sssd_enable_smartcards/rule.yml"> sssd_enable_smartcards</a>: Enable Smartcards in SSSD
+      <ul><li>CCE-89155-6</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>1560: Memorised secrets used for multi-factor authentication on SECRET systems are a minimum of 8 characters</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>secret</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/password_expiration/accounts_password_minlen_login_defs/rule.yml"> accounts_password_minlen_login_defs</a>: Set Password Minimum Length in login.defs
+      <ul><li>CCE-83608-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_dcredit/rule.yml"> accounts_password_pam_dcredit</a>: Ensure PAM Enforces Password Requirements - Minimum Digit Characters
+      <ul><li>CCE-83566-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_lcredit/rule.yml"> accounts_password_pam_lcredit</a>: Ensure PAM Enforces Password Requirements - Minimum Lowercase Characters
+      <ul><li>CCE-83570-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_minclass/rule.yml"> accounts_password_pam_minclass</a>: Ensure PAM Enforces Password Requirements - Minimum Different Categories
+      <ul><li>CCE-83563-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_minlen/rule.yml"> accounts_password_pam_minlen</a>: Ensure PAM Enforces Password Requirements - Minimum Length
+      <ul><li>CCE-83579-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_ocredit/rule.yml"> accounts_password_pam_ocredit</a>: Ensure PAM Enforces Password Requirements - Minimum Special Characters
+      <ul><li>CCE-83565-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_ucredit/rule.yml"> accounts_password_pam_ucredit</a>: Ensure PAM Enforces Password Requirements - Minimum Uppercase Characters
+      <ul><li>CCE-83568-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_faillock_deny/rule.yml"> accounts_passwords_pam_faillock_deny</a>: Lock Accounts After Failed Password Attempts
+      <ul><li>CCE-83587-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_faillock_deny_root/rule.yml"> accounts_passwords_pam_faillock_deny_root</a>: Configure the root Account for Failed Password Attempts
+      <ul><li>CCE-83589-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_faillock_interval/rule.yml"> accounts_passwords_pam_faillock_interval</a>: Set Interval For Counting Failed Password Attempts
+      <ul><li>CCE-83583-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_faillock_unlock_time/rule.yml"> accounts_passwords_pam_faillock_unlock_time</a>: Set Lockout Time for Failed Password Attempts
+      <ul><li>CCE-83588-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_tally2_deny_root/rule.yml"> accounts_passwords_pam_tally2_deny_root</a>: Configure the root Account lock for Failed Password Attempts via pam_tally2
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_tally2_unlock_time/rule.yml"> accounts_passwords_pam_tally2_unlock_time</a>: Set Lockout Time for Failed Password Attempts using pam_tally2
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/disable_host_auth/rule.yml"> disable_host_auth</a>: Disable Host-Based Authentication
+      <ul><li>CCE-90816-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-physical/require_emergency_target_auth/rule.yml"> require_emergency_target_auth</a>: Require Authentication for Emergency Systemd Target
+      <ul><li>CCE-83592-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-physical/require_singleuser_auth/rule.yml"> require_singleuser_auth</a>: Require Authentication for Single User Mode
+      <ul><li>CCE-83594-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/selinux-booleans/sebool_authlogin_nsswitch_use_ldap/rule.yml"> sebool_authlogin_nsswitch_use_ldap</a>: Disable the authlogin_nsswitch_use_ldap SELinux Boolean
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/selinux-booleans/sebool_authlogin_radius/rule.yml"> sebool_authlogin_radius</a>: Disable the authlogin_radius SELinux Boolean
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_disable_kerb_auth/rule.yml"> sshd_disable_kerb_auth</a>: Disable Kerberos Authentication
+      <ul><li>CCE-90802-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_set_max_auth_tries/rule.yml"> sshd_set_max_auth_tries</a>: Set SSH authentication attempt limit
+      <ul><li>CCE-90810-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/sssd/sssd_enable_smartcards/rule.yml"> sssd_enable_smartcards</a>: Enable Smartcards in SSSD
+      <ul><li>CCE-89155-6</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>1561: Memorised secrets used for multi-factor authentication on TOP SECRET systems are a minimum of 10 characters.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>top_secret</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/password_expiration/accounts_password_minlen_login_defs/rule.yml"> accounts_password_minlen_login_defs</a>: Set Password Minimum Length in login.defs
+      <ul><li>CCE-83608-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_dcredit/rule.yml"> accounts_password_pam_dcredit</a>: Ensure PAM Enforces Password Requirements - Minimum Digit Characters
+      <ul><li>CCE-83566-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_lcredit/rule.yml"> accounts_password_pam_lcredit</a>: Ensure PAM Enforces Password Requirements - Minimum Lowercase Characters
+      <ul><li>CCE-83570-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_minclass/rule.yml"> accounts_password_pam_minclass</a>: Ensure PAM Enforces Password Requirements - Minimum Different Categories
+      <ul><li>CCE-83563-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_minlen/rule.yml"> accounts_password_pam_minlen</a>: Ensure PAM Enforces Password Requirements - Minimum Length
+      <ul><li>CCE-83579-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_ocredit/rule.yml"> accounts_password_pam_ocredit</a>: Ensure PAM Enforces Password Requirements - Minimum Special Characters
+      <ul><li>CCE-83565-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_ucredit/rule.yml"> accounts_password_pam_ucredit</a>: Ensure PAM Enforces Password Requirements - Minimum Uppercase Characters
+      <ul><li>CCE-83568-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_faillock_deny/rule.yml"> accounts_passwords_pam_faillock_deny</a>: Lock Accounts After Failed Password Attempts
+      <ul><li>CCE-83587-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_faillock_deny_root/rule.yml"> accounts_passwords_pam_faillock_deny_root</a>: Configure the root Account for Failed Password Attempts
+      <ul><li>CCE-83589-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_faillock_interval/rule.yml"> accounts_passwords_pam_faillock_interval</a>: Set Interval For Counting Failed Password Attempts
+      <ul><li>CCE-83583-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_faillock_unlock_time/rule.yml"> accounts_passwords_pam_faillock_unlock_time</a>: Set Lockout Time for Failed Password Attempts
+      <ul><li>CCE-83588-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_tally2_deny_root/rule.yml"> accounts_passwords_pam_tally2_deny_root</a>: Configure the root Account lock for Failed Password Attempts via pam_tally2
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_tally2_unlock_time/rule.yml"> accounts_passwords_pam_tally2_unlock_time</a>: Set Lockout Time for Failed Password Attempts using pam_tally2
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/disable_host_auth/rule.yml"> disable_host_auth</a>: Disable Host-Based Authentication
+      <ul><li>CCE-90816-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-physical/require_emergency_target_auth/rule.yml"> require_emergency_target_auth</a>: Require Authentication for Emergency Systemd Target
+      <ul><li>CCE-83592-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-physical/require_singleuser_auth/rule.yml"> require_singleuser_auth</a>: Require Authentication for Single User Mode
+      <ul><li>CCE-83594-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/selinux-booleans/sebool_authlogin_nsswitch_use_ldap/rule.yml"> sebool_authlogin_nsswitch_use_ldap</a>: Disable the authlogin_nsswitch_use_ldap SELinux Boolean
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/selinux-booleans/sebool_authlogin_radius/rule.yml"> sebool_authlogin_radius</a>: Disable the authlogin_radius SELinux Boolean
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_disable_kerb_auth/rule.yml"> sshd_disable_kerb_auth</a>: Disable Kerberos Authentication
+      <ul><li>CCE-90802-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_set_max_auth_tries/rule.yml"> sshd_set_max_auth_tries</a>: Set SSH authentication attempt limit
+      <ul><li>CCE-90810-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/sssd/sssd_enable_smartcards/rule.yml"> sssd_enable_smartcards</a>: Enable Smartcards in SSSD
+      <ul><li>CCE-89155-6</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>1745: Early Launch Antimalware, Secure Boot, Trusted Boot and Measured Boot functionality is enabled.</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: no</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/secureboot/secure_boot_enabled/rule.yml"> secure_boot_enabled</a>: Ensure that Secure Boot is enabled
+    </li>
+  </ul>
+  
+</div>  
+</div>  
+
+
+</body>
+</html>
