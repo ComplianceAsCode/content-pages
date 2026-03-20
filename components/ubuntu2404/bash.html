@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'bash'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'bash'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>bash</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<div>None</div>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#accounts_umask_etc_bashrc">accounts_umask_etc_bashrc</a></li>
+
+<li><a href="#accounts_umask_etc_csh_cshrc">accounts_umask_etc_csh_cshrc</a></li>
+
+<li><a href="#accounts_umask_etc_profile">accounts_umask_etc_profile</a></li>
+
+<li><a href="#accounts_umask_root">accounts_umask_root</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="accounts_umask_etc_bashrc" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure the Default Bash Umask is Set Correctly</h3>
+<div>accounts_umask_etc_bashrc</div>
+<h4>Description</h4>
+<p>To ensure the default umask for users of the Bash shell is set properly,
+add or correct the <tt>umask</tt> setting in <tt>/etc/bash.bashrc</tt> to read
+as follows:
+<pre>umask <tt>$var_accounts_user_umask</tt></pre></p>
+<h4>Rationale</h4>
+<p>The umask value influences the permissions assigned to files when they are created.
+A misconfigured umask value could result in files with excessive permissions that can be read or
+written to by unauthorized users.</p>
+</div>
+
+<div id="accounts_umask_etc_csh_cshrc" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure the Default C Shell Umask is Set Correctly</h3>
+<div>accounts_umask_etc_csh_cshrc</div>
+<h4>Description</h4>
+<p>To ensure the default umask for users of the C shell is set properly,
+add or correct the <tt>umask</tt> setting in <tt>/etc/csh.cshrc</tt> to read as follows:
+<pre>umask <tt>$var_accounts_user_umask</tt></pre></p>
+<h4>Rationale</h4>
+<p>The umask value influences the permissions assigned to files when they are created.
+A misconfigured umask value could result in files with excessive permissions that can be read or
+written to by unauthorized users.</p>
+</div>
+
+<div id="accounts_umask_etc_profile" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure the Default Umask is Set Correctly in /etc/profile</h3>
+<div>accounts_umask_etc_profile</div>
+<h4>Description</h4>
+<p>To ensure the default umask controlled by <tt>/etc/profile</tt> is set properly,
+add or correct the <tt>umask</tt> setting in <tt>/etc/profile</tt> to read as follows:
+<pre>umask <tt>$var_accounts_user_umask</tt></pre>
+
+Note that <tt>/etc/profile</tt> also reads scripts within <tt>/etc/profile.d</tt> directory.
+These scripts are also valid files to set umask value. Therefore, they should also be
+considered during the check and properly remediated, if necessary.</p>
+<h4>Rationale</h4>
+<p>The umask value influences the permissions assigned to files when they are created.
+A misconfigured umask value could result in files with excessive permissions that can be read or
+written to by unauthorized users.</p>
+</div>
+
+<div id="accounts_umask_root" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure the Root Bash Umask is Set Correctly</h3>
+<div>accounts_umask_root</div>
+<h4>Description</h4>
+<p>To ensure the root user's umask of the Bash shell is set properly,
+add or correct the <tt>umask</tt> setting in <tt>/root/.bashrc</tt>
+or <tt>/root/.profile</tt> to read as follows:
+<pre>umask 0027</pre></p>
+<h4>Rationale</h4>
+<p>The umask value influences the permissions assigned to files when they are created.
+A misconfigured umask value could result in files with excessive permissions that can be read or
+written to by unauthorized users.</p>
+</div>
+
+
+
+
+</body>
+</html>

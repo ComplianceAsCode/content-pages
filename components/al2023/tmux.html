@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'tmux'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'tmux'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>tmux</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<div>None</div>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#configure_bashrc_exec_tmux">configure_bashrc_exec_tmux</a></li>
+
+<li><a href="#configure_bashrc_tmux">configure_bashrc_tmux</a></li>
+
+<li><a href="#configure_tmux_lock_command">configure_tmux_lock_command</a></li>
+
+<li><a href="#configure_tmux_lock_after_time">configure_tmux_lock_after_time</a></li>
+
+<li><a href="#configure_tmux_lock_keybinding">configure_tmux_lock_keybinding</a></li>
+
+<li><a href="#no_tmux_in_shells">no_tmux_in_shells</a></li>
+
+<li><a href="#package_tmux_installed">package_tmux_installed</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="configure_bashrc_exec_tmux" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Support session locking with tmux</h3>
+<div>configure_bashrc_exec_tmux</div>
+<h4>Description</h4>
+<p>The <tt>tmux</tt> terminal multiplexer is used to implement
+automatic session locking. It should be started from
+<tt>/etc/bashrc</tt> or drop-in files within <tt>/etc/profile.d/</tt>.</p>
+<h4>Rationale</h4>
+<p>Unlike <tt>bash</tt> itself, the <tt>tmux</tt> terminal multiplexer
+provides a mechanism to lock sessions after period of inactivity.
+A session lock is a temporary action taken when a user stops work and moves away from the
+immediate physical vicinity of the information system but does not want to
+log out because of the temporary nature of the absence.</p>
+</div>
+
+<div id="configure_bashrc_tmux" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Support session locking with tmux (not enforcing)</h3>
+<div>configure_bashrc_tmux</div>
+<h4>Description</h4>
+<p>The <tt>tmux</tt> terminal multiplexer is used to implement
+automatic session locking. It should be started from
+<tt>/etc/bashrc</tt> or drop-in files within <tt>/etc/profile.d/</tt>.</p>
+<h4>Rationale</h4>
+<p>Unlike <tt>bash</tt> itself, the <tt>tmux</tt> terminal multiplexer
+provides a mechanism to lock sessions after period of inactivity.
+A session lock is a temporary action taken when a user stops work and moves away from the
+immediate physical vicinity of the information system but does not want to
+log out because of the temporary nature of the absence.</p>
+</div>
+
+<div id="configure_tmux_lock_command" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure the tmux Lock Command</h3>
+<div>configure_tmux_lock_command</div>
+<h4>Description</h4>
+<p>To enable console screen locking in <tt>tmux</tt> terminal multiplexer,
+the <tt>vlock</tt> command must be configured to be used as a locking
+mechanism.
+Add the following line to <tt>/etc/tmux.conf</tt>:
+<pre>set -g lock-command vlock</pre>.
+The console can now be locked with the following key combination:
+<pre>ctrl+b :lock-session</pre></p>
+<h4>Rationale</h4>
+<p>The <tt>tmux</tt> package allows for a session lock to be implemented and configured.
+However, the session lock is implemented by an external command. The <tt>tmux</tt>
+default configuration does not contain an effective session lock.</p>
+</div>
+
+<div id="configure_tmux_lock_after_time" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure tmux to lock session after inactivity</h3>
+<div>configure_tmux_lock_after_time</div>
+<h4>Description</h4>
+<p>To enable console screen locking in <tt>tmux</tt> terminal multiplexer
+after a period of inactivity,
+the <tt>lock-after-time</tt> option has to be set to a value greater than 0 and less than
+or equal to 900 in <tt>/etc/tmux.conf</tt>.</p>
+<h4>Rationale</h4>
+<p>Locking the session after a period of inactivity limits the
+potential exposure if the session is left unattended.</p>
+</div>
+
+<div id="configure_tmux_lock_keybinding" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure the tmux lock session key binding</h3>
+<div>configure_tmux_lock_keybinding</div>
+<h4>Description</h4>
+<p>To set a key binding for the screen locking in <tt>tmux</tt> terminal multiplexer,
+the <tt>session-lock</tt> command must be bound to a key.
+Add the following line to <tt>/etc/tmux.conf</tt>:
+<pre>bind X lock-session</pre>.
+The console can now be locked with the following key combination:
+<pre>Ctrl+b Shift+x</pre></p>
+<h4>Rationale</h4>
+<p>The <tt>tmux</tt> package allows for a session lock to be implemented and configured.
+However, the session lock is implemented by an external command. The <tt>tmux</tt>
+default configuration does not contain an effective session lock.</p>
+</div>
+
+<div id="no_tmux_in_shells" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Prevent user from disabling the screen lock</h3>
+<div>no_tmux_in_shells</div>
+<h4>Description</h4>
+<p>The <tt>tmux</tt> terminal multiplexer is used to implement
+automatic session locking. It should not be listed in
+<tt>/etc/shells</tt>.</p>
+<h4>Rationale</h4>
+<p>Not listing <tt>tmux</tt> among permitted shells
+prevents malicious program running as user
+from lowering security by disabling the screen lock.</p>
+</div>
+
+<div id="package_tmux_installed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Install the tmux Package</h3>
+<div>package_tmux_installed</div>
+<h4>Description</h4>
+<p>To enable console screen locking, install the <tt>tmux</tt> package.
+The <code>tmux</code> package can be installed with the following command:
+<pre>
+$ sudo dnf install tmux</pre>
+A session lock is a temporary action taken when a user stops work and moves away from the immediate physical vicinity of the information system but does not want to log out because of the temporary nature of the absence.
+The session lock is implemented at the point where session activity can be determined.
+Rather than be forced to wait for a period of time to expire before the user session can be locked, Amazon Linux 2023 needs to provide users with the ability to manually invoke a session lock so users can secure their session if it is necessary to temporarily vacate the immediate physical vicinity.
+Instruct users to begin new terminal sessions with the following command:
+<pre>$ tmux</pre>
+The console can now be locked with the following key combination:
+<pre>ctrl+b :lock-session</pre></p>
+<h4>Rationale</h4>
+<p>A session time-out lock is a temporary action taken when a user stops work and moves away from the immediate
+physical vicinity of the information system but does not logout because of the temporary nature of the absence.
+Rather than relying on the user to manually lock their operation system session prior to vacating the vicinity,
+operating systems need to be able to identify when a user's session has idled and take action to initiate the
+session lock.
+<br /><br />
+The <tt>tmux</tt> package allows for a session lock to be implemented and configured.</p>
+</div>
+
+
+
+
+</body>
+</html>
