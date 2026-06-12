@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'sssd'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'sssd'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>libnss-sss</li>
+
+<li>sssd</li>
+
+<li>sssd-common</li>
+
+<li>sssd-ipa</li>
+
+<li>libpam-sss</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<ul>
+
+<li>sssd</li>
+
+<li>sssd-ldap</li>
+
+</ul>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#package_nss_sss_installed">package_nss_sss_installed</a></li>
+
+<li><a href="#package_pam_sss_installed">package_pam_sss_installed</a></li>
+
+<li><a href="#package_sssd-ipa_installed">package_sssd-ipa_installed</a></li>
+
+<li><a href="#package_sssd_installed">package_sssd_installed</a></li>
+
+<li><a href="#service_sssd_enabled">service_sssd_enabled</a></li>
+
+<li><a href="#sssd_certificate_verification">sssd_certificate_verification</a></li>
+
+<li><a href="#sssd_certification_path_trust_anchor">sssd_certification_path_trust_anchor</a></li>
+
+<li><a href="#sssd_enable_certmap">sssd_enable_certmap</a></li>
+
+<li><a href="#sssd_enable_pam_services">sssd_enable_pam_services</a></li>
+
+<li><a href="#sssd_enable_smartcards">sssd_enable_smartcards</a></li>
+
+<li><a href="#sssd_enable_user_cert">sssd_enable_user_cert</a></li>
+
+<li><a href="#sssd_has_trust_anchor">sssd_has_trust_anchor</a></li>
+
+<li><a href="#sssd_ldap_configure_tls_ca">sssd_ldap_configure_tls_ca</a></li>
+
+<li><a href="#sssd_ldap_configure_tls_ca_dir">sssd_ldap_configure_tls_ca_dir</a></li>
+
+<li><a href="#sssd_ldap_configure_tls_reqcert">sssd_ldap_configure_tls_reqcert</a></li>
+
+<li><a href="#sssd_ldap_start_tls">sssd_ldap_start_tls</a></li>
+
+<li><a href="#sssd_memcache_timeout">sssd_memcache_timeout</a></li>
+
+<li><a href="#sssd_offline_cred_expiration">sssd_offline_cred_expiration</a></li>
+
+<li><a href="#sssd_run_as_sssd_user">sssd_run_as_sssd_user</a></li>
+
+<li><a href="#sssd_ssh_known_hosts_timeout">sssd_ssh_known_hosts_timeout</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="package_nss_sss_installed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Install nss-sss Package</h3>
+<div>package_nss_sss_installed</div>
+<h4>Description</h4>
+<p>The <code>libnss-sss</code> package can be installed with the following command:
+<pre>
+$ apt-get install libnss-sss</pre></p>
+<h4>Rationale</h4>
+<p>libnss-sss contains library that is needed
+by SSSD (System Security Services Daemon)..</p>
+</div>
+
+<div id="package_pam_sss_installed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Install pam-sss Package</h3>
+<div>package_pam_sss_installed</div>
+<h4>Description</h4>
+<p>The <code>libpam-sss</code> package can be installed with the following command:
+<pre>
+$ apt-get install libpam-sss</pre></p>
+<h4>Rationale</h4>
+<p>libpam-sss has pam module for the SSSD
+(System Security Services Daemon).</p>
+</div>
+
+<div id="package_sssd-ipa_installed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Install sssd-ipa Package</h3>
+<div>package_sssd-ipa_installed</div>
+<h4>Description</h4>
+<p>The <code>sssd-ipa</code> package can be installed with the following command:
+<pre>
+$ apt-get install sssd-ipa</pre></p>
+<h4>Rationale</h4>
+<p><tt>sssd-ipa</tt> provides the IPA back end that the SSSD can utilize to
+fetch identity data from and authenticate against an IPA server.</p>
+</div>
+
+<div id="package_sssd_installed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Install the SSSD Package</h3>
+<div>package_sssd_installed</div>
+<h4>Description</h4>
+<p>The <tt>sssd</tt> package should be installed.
+The <code>sssd</code> package can be installed with the following command:
+<pre>
+$ apt-get install sssd</pre></p>
+<h4>Rationale</h4>
+<p></p>
+</div>
+
+<div id="service_sssd_enabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Enable the SSSD Service</h3>
+<div>service_sssd_enabled</div>
+<h4>Description</h4>
+<p>The SSSD service should be enabled.
+
+The <code>sssd</code> service can be enabled with the following command:
+<pre>$ sudo systemctl enable sssd.service</pre></p>
+<h4>Rationale</h4>
+<p></p>
+</div>
+
+<div id="sssd_certificate_verification" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Certificate status checking in SSSD</h3>
+<div>sssd_certificate_verification</div>
+<h4>Description</h4>
+<p>Multifactor solutions that require devices separate from information systems gaining access include,
+for example, hardware tokens providing time-based or challenge-response authenticators and smart cards.
+Configuring <tt>certificate_verification</tt> to <tt>ocsp_dgst=<tt>$var_sssd_certificate_verification_digest_function</tt></tt> ensures that certificates for
+multifactor solutions are checked via Online Certificate Status Protocol (OCSP).</p>
+<h4>Rationale</h4>
+<p>Ensuring that multifactor solutions certificates are checked via Online Certificate Status Protocol (OCSP)
+ensures the security of the system.</p>
+</div>
+
+<div id="sssd_certification_path_trust_anchor" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Certificate trust path in SSSD</h3>
+<div>sssd_certification_path_trust_anchor</div>
+<h4>Description</h4>
+<p>Enable certification trust path for SSSD to an accepted trust anchor.</p>
+<h4>Rationale</h4>
+<p>Without path validation, an informed trust decision by the relying party cannot be made when 
+presented with any certificate not already explicitly trusted.</p>
+</div>
+
+<div id="sssd_enable_certmap" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Enable Certmap in SSSD</h3>
+<div>sssd_enable_certmap</div>
+<h4>Description</h4>
+<p>SSSD should be configured to verify the certificate of the user or group. To set this up
+ ensure that section like <tt>certmap/testing.test/rule_name</tt> is setup in
+<tt>/etc/sssd/sssd.conf</tt>. For example
+<pre>
+[certmap/testing.test/rule_name]
+matchrule =&lt;SAN&gt;.*EDIPI@mil
+maprule = (userCertificate;binary={cert!bin})
+domains = testing.test
+</pre></p>
+<h4>Rationale</h4>
+<p>Without mapping the certificate used to authenticate to the user account, the ability to
+determine the identity of the individual user or group will not be available for forensic
+analysis.</p>
+</div>
+
+<div id="sssd_enable_pam_services" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure PAM in SSSD Services</h3>
+<div>sssd_enable_pam_services</div>
+<h4>Description</h4>
+<p>SSSD should be configured to run SSSD <tt>pam</tt> services.
+To configure SSSD to known SSH hosts, add <tt>pam</tt>
+to <tt>services</tt> under the <tt>[sssd]</tt> section in
+<tt>/etc/sssd/sssd.conf</tt>. For example:
+<pre>[sssd]
+services = sudo, autofs, pam
+</pre></p>
+<h4>Rationale</h4>
+<p>Using an authentication device, such as a CAC or token that is separate from
+the information system, ensures that even if the information system is
+compromised, that compromise will not affect credentials stored on the
+authentication device.</p>
+</div>
+
+<div id="sssd_enable_smartcards" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Enable Smartcards in SSSD</h3>
+<div>sssd_enable_smartcards</div>
+<h4>Description</h4>
+<p>SSSD should be configured to authenticate access to the system using smart cards.
+To enable smart cards in SSSD, set <tt>pam_cert_auth</tt> to <tt>True</tt> under the
+<tt>[pam]</tt> section in <tt>/etc/sssd/sssd.conf</tt>. For example:
+<pre>[pam]
+pam_cert_auth = True
+</pre></p>
+<h4>Rationale</h4>
+<p>Using an authentication device, such as a CAC or token that is separate from
+the information system, ensures that even if the information system is
+compromised, that compromise will not affect credentials stored on the
+authentication device.
+<br /><br />
+Multi-Factor Authentication (MFA) solutions that require devices separate from
+information systems gaining access include, for example, hardware tokens
+providing time-based or challenge-response authenticators and smart cards
+or similar secure authentication devices issued by an organization or identity provider.</p>
+</div>
+
+<div id="sssd_enable_user_cert" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Enable Certificates Mapping in SSSD</h3>
+<div>sssd_enable_user_cert</div>
+<h4>Description</h4>
+<p>SSSD needs to be set up to link the authenticated identity to the user or group account
+for PKI-based authentication. To implement this, confirm that the /etc/sssd/sssd.conf
+file contains the following line
+<pre>
+ldap_user_certificate=userCertificate;binary
+</pre></p>
+<h4>Rationale</h4>
+<p>Without mapping the certificate used to authenticate to the user account, the ability to
+determine the identity of the individual user or group will not be available for forensic
+analysis.</p>
+</div>
+
+<div id="sssd_has_trust_anchor" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>SSSD Has a Correct Trust Anchor</h3>
+<div>sssd_has_trust_anchor</div>
+<h4>Description</h4>
+<p>SSSD must have acceptable trust anchor present.</p>
+<h4>Rationale</h4>
+<p>Without path validation, an informed trust decision by the relying party cannot be made when
+presented with any certificate not already explicitly trusted.
+
+A trust anchor is an authoritative entity represented via a public key and associated data. It
+is used in the context of public key infrastructures, X.509 digital certificates, and DNSSEC.
+
+When there is a chain of trust, usually the top entity to be trusted becomes the trust anchor;
+it can be, for example, a Certification Authority (CA). A certification path starts with the
+subject certificate and proceeds through a number of intermediate certificates up to a trusted
+root certificate, typically issued by a trusted CA.
+
+This requirement verifies that a certification path to an accepted trust anchor is used for
+certificate validation and that the path includes status information. Path validation is
+necessary for a relying party to make an informed trust decision when presented with any
+certificate not already explicitly trusted. Status information for certification paths includes
+certificate revocation lists or online certificate status protocol responses.
+Validation of the certificate status information is out of scope for this requirement.</p>
+</div>
+
+<div id="sssd_ldap_configure_tls_ca" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure SSSD LDAP Backend Client CA Certificate</h3>
+<div>sssd_ldap_configure_tls_ca</div>
+<h4>Description</h4>
+<p>Configure SSSD to implement cryptography to protect the
+integrity of LDAP remote access sessions. By setting
+the <pre>ldap_tls_cacert</pre> option in <pre>/etc/sssd/sssd.conf</pre>
+to point to the path for the X.509 certificates used for peer authentication.
+<pre>ldap_tls_cacert /path/to/tls/ca.cert</pre></p>
+<h4>Rationale</h4>
+<p>Without cryptographic integrity protections, information can be altered by
+unauthorized users without detection.
+<br /><br />
+Cryptographic mechanisms used for
+protecting the integrity of information include, for example, signed hash
+functions using asymmetric cryptography enabling distribution of the public key
+to verify the hash information while maintaining the confidentiality of the key
+used to generate the hash.</p>
+</div>
+
+<div id="sssd_ldap_configure_tls_ca_dir" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure SSSD LDAP Backend Client CA Certificate Location</h3>
+<div>sssd_ldap_configure_tls_ca_dir</div>
+<h4>Description</h4>
+<p>Configure SSSD to implement cryptography to protect the
+integrity of LDAP remote access sessions. By setting
+the <pre>ldap_tls_cacertdir</pre> option in <pre>/etc/sssd/sssd.conf</pre>
+to point to the path for the X.509 certificates used for peer authentication.
+<pre>ldap_tls_cacertdir /path/to/tls/cacert</pre></p>
+<h4>Rationale</h4>
+<p>Without cryptographic integrity protections, information can be altered by
+unauthorized users without detection.
+<br /><br />
+Cryptographic mechanisms used for
+protecting the integrity of information include, for example, signed hash
+functions using asymmetric cryptography enabling distribution of the public key
+to verify the hash information while maintaining the confidentiality of the key
+used to generate the hash.</p>
+</div>
+
+<div id="sssd_ldap_configure_tls_reqcert" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure SSSD LDAP Backend Client to Demand a Valid Certificate from the Server</h3>
+<div>sssd_ldap_configure_tls_reqcert</div>
+<h4>Description</h4>
+<p>Configure SSSD to demand a valid certificate from the server to
+protect the integrity of LDAP remote access sessions by setting
+the <pre>ldap_tls_reqcert</pre> option in <pre>/etc/sssd/sssd.conf</pre>
+to <tt>demand</tt>.</p>
+<h4>Rationale</h4>
+<p>Without a valid certificate presented to the LDAP client backend, the identity of a
+server can be forged compromising LDAP remote access sessions.</p>
+</div>
+
+<div id="sssd_ldap_start_tls" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure SSSD LDAP Backend to Use TLS For All Transactions</h3>
+<div>sssd_ldap_start_tls</div>
+<h4>Description</h4>
+<p>The LDAP client should be configured to implement TLS for the integrity
+of all remote LDAP authentication sessions. If the <tt>id_provider</tt> is
+set to <tt>ldap</tt> or <tt>ipa</tt> in <tt>/etc/sssd/sssd.conf</tt> or any of the
+<tt>/etc/sssd/sssd.conf.d</tt> configuration files, <tt>ldap_id_use_start_tls</tt>
+must be set to <tt>true</tt>.
+<br /><br />
+To check if LDAP is configured to use TLS when <tt>id_provider</tt> is
+set to <tt>ldap</tt> or <tt>ipa</tt>, use the following command:
+<pre>$ sudo grep -i ldap_id_use_start_tls /etc/sssd/sssd.conf /etc/sssd/conf.d/*.conf</pre></p>
+<h4>Rationale</h4>
+<p>Without cryptographic integrity protections, information can be
+altered by unauthorized users without detection. The ssl directive specifies
+whether to use TLS or not. If not specified it will default to no.
+It should be set to start_tls rather than doing LDAP over SSL.</p>
+</div>
+
+<div id="sssd_memcache_timeout" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure SSSD's Memory Cache to Expire</h3>
+<div>sssd_memcache_timeout</div>
+<h4>Description</h4>
+<p>SSSD's memory cache should be configured to set to expire records after
+<tt><tt>$var_sssd_memcache_timeout</tt></tt> seconds.
+To configure SSSD to expire memory cache, set <tt>memcache_timeout</tt> to
+<tt><tt>$var_sssd_memcache_timeout</tt></tt> under the
+<tt>[nss]</tt> section in <tt>/etc/sssd/sssd.conf</tt>.
+
+For example:
+<pre>[nss]
+memcache_timeout = <tt>$var_sssd_memcache_timeout</tt>
+</pre></p>
+<h4>Rationale</h4>
+<p>If cached authentication information is out-of-date, the validity of the
+authentication information may be questionable.</p>
+</div>
+
+<div id="sssd_offline_cred_expiration" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure SSSD to Expire Offline Credentials</h3>
+<div>sssd_offline_cred_expiration</div>
+<h4>Description</h4>
+<p>SSSD should be configured to expire offline credentials after 1 day.
+
+To configure SSSD to expire offline credentials, set
+<tt>offline_credentials_expiration</tt> to <tt>1</tt> under the <tt>[pam]</tt>
+section in <tt>/etc/sssd/sssd.conf</tt>. For example:
+<pre>[pam]
+offline_credentials_expiration = 1
+</pre></p>
+<h4>Rationale</h4>
+<p>If cached authentication information is out-of-date, the validity of the
+authentication information may be questionable.</p>
+</div>
+
+<div id="sssd_run_as_sssd_user" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure SSSD to run as user sssd</h3>
+<div>sssd_run_as_sssd_user</div>
+<h4>Description</h4>
+<p>SSSD processes should be configured to run as user sssd, not root.</p>
+<h4>Rationale</h4>
+<p>To minimize privileges of SSSD processes, they are configured to
+run as non-root user.</p>
+</div>
+
+<div id="sssd_ssh_known_hosts_timeout" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure SSSD to Expire SSH Known Hosts</h3>
+<div>sssd_ssh_known_hosts_timeout</div>
+<h4>Description</h4>
+<p>SSSD should be configured to expire keys from known SSH hosts after
+<tt><tt>$var_sssd_ssh_known_hosts_timeout</tt></tt> seconds.
+To configure SSSD to known SSH hosts, set <tt>ssh_known_hosts_timeout</tt>
+to <tt><tt>$var_sssd_ssh_known_hosts_timeout</tt></tt> under the
+<tt>[ssh]</tt> section in <tt>/etc/sssd/sssd.conf</tt>. For example:
+<pre>[ssh]
+ssh_known_hosts_timeout = <tt>$var_sssd_ssh_known_hosts_timeout</tt>
+</pre></p>
+<h4>Rationale</h4>
+<p>If cached authentication information is out-of-date, the validity of the
+authentication information may be questionable.</p>
+</div>
+
+
+
+
+</body>
+</html>

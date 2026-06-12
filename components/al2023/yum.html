@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'yum'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'yum'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>yum</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<div>None</div>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#clean_components_post_updating">clean_components_post_updating</a></li>
+
+<li><a href="#ensure_gpgcheck_globally_activated">ensure_gpgcheck_globally_activated</a></li>
+
+<li><a href="#ensure_gpgcheck_local_packages">ensure_gpgcheck_local_packages</a></li>
+
+<li><a href="#ensure_gpgcheck_repo_metadata">ensure_gpgcheck_repo_metadata</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="clean_components_post_updating" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure dnf Removes Previous Package Versions</h3>
+<div>clean_components_post_updating</div>
+<h4>Description</h4>
+<p><tt>dnf</tt> should be configured to remove previous software components after
+new versions have been installed. To configure <tt>dnf</tt> to remove the
+
+previous software components after updating, set the <tt>clean_requirements_on_remove</tt>
+
+
+to <tt>1</tt> in <tt>/etc/dnf/dnf.conf</tt>.</p>
+<h4>Rationale</h4>
+<p>Previous versions of software components that are not removed from the information
+system after updates have been installed may be exploited by some adversaries.</p>
+</div>
+
+<div id="ensure_gpgcheck_globally_activated" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure gpgcheck Enabled In Main dnf Configuration</h3>
+<div>ensure_gpgcheck_globally_activated</div>
+<h4>Description</h4>
+<p>The <tt>gpgcheck</tt> option controls whether
+RPM packages' signatures are always checked prior to installation.
+To configure dnf to check package signatures before installing
+them, ensure the following line appears in <tt>/etc/dnf/dnf.conf</tt> in
+the <tt>[main]</tt> section:
+<pre>gpgcheck=1</pre></p>
+<h4>Rationale</h4>
+<p>Changes to any software components can have significant effects on the
+overall security of the operating system. This requirement ensures the
+software has not been tampered with and that it has been provided by a
+trusted vendor.
+<br />
+Accordingly, patches, service packs, device drivers, or operating system
+components must be signed with a certificate recognized and approved by the
+organization.
+<br />Verifying the authenticity of the software prior to installation
+validates the integrity of the patch or upgrade received from a vendor.
+This ensures the software has not been tampered with and that it has been
+provided by a trusted vendor. Self-signed certificates are disallowed by
+this requirement. Certificates used to verify the software must be from an
+approved Certificate Authority (CA).</p>
+</div>
+
+<div id="ensure_gpgcheck_local_packages" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure gpgcheck Enabled for Local Packages</h3>
+<div>ensure_gpgcheck_local_packages</div>
+<h4>Description</h4>
+<p><tt>dnf</tt> should be configured to verify the signature(s) of local packages
+prior to installation. To configure <tt>dnf</tt> to verify signatures of local
+packages, set the <tt>localpkg_gpgcheck</tt> to <tt>1</tt> in <tt>/etc/dnf/dnf.conf</tt>.</p>
+<h4>Rationale</h4>
+<p>Changes to any software components can have significant effects to the overall security
+of the operating system. This requirement ensures the software has not been tampered and
+has been provided by a trusted vendor.
+<br /><br />
+Accordingly, patches, service packs, device drivers, or operating system components must
+be signed with a certificate recognized and approved by the organization.</p>
+</div>
+
+<div id="ensure_gpgcheck_repo_metadata" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure gpgcheck Enabled for Repository Metadata</h3>
+<div>ensure_gpgcheck_repo_metadata</div>
+<h4>Description</h4>
+<p>Verify the operating system prevents the installation of patches,
+service packs, device drivers, or operating system components of
+local packages without verification of the repository metadata.
+Check that <tt>dnf</tt> verifies the repository
+metadata prior to install with the following command.
+This should be configured by setting <tt>repo_gpgcheck</tt> to <tt>1</tt>
+in <tt>/etc/dnf/dnf.conf</tt>.</p>
+<h4>Rationale</h4>
+<p>Changes to any software components can have significant effects to the
+overall security of the operating system. This requirement ensures the
+software has not been tampered and has been provided by a trusted vendor.
+Accordingly, patches, service packs, device drivers, or operating system
+components must be signed with a certificate recognized and approved by
+the organization. Verifying the authenticity of the software prior to
+installation validates the integrity of the patch or upgrade received from
+a vendor. This ensures the software has not been tampered with and that it
+has been provided by a trusted vendor. Self-signed certificates are
+disallowed by this requirement. The operating system should not have
+to verify the software again. NOTE: For U.S. Military systems, this
+requirement does not mandate DoD certificates for this purpose; however,
+the certificate used to verify the software must be from an approved
+Certificate Authority.</p>
+</div>
+
+
+
+
+</body>
+</html>

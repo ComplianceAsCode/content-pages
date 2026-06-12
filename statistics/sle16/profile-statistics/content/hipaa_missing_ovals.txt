@@ -1,0 +1,2 @@
+xccdf_org.ssgproject.content_rule_ensure_suse_gpgkey_installed
+xccdf_org.ssgproject.content_rule_libreswan_approved_tunnels
