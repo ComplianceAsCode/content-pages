@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'rhnsd'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'rhnsd'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>rhnsd</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<div>None</div>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#service_rhnsd_disabled">service_rhnsd_disabled</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="service_rhnsd_disabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable Red Hat Network Service (rhnsd)</h3>
+<div>service_rhnsd_disabled</div>
+<h4>Description</h4>
+<p>The Red Hat Network service automatically queries Red Hat Network
+servers to determine whether there are any actions that should be executed,
+such as package updates. This only occurs if the system was registered to an
+RHN server or satellite and managed as such.
+
+The <code>rhnsd</code> service can be disabled with the following command:
+<pre>$ sudo systemctl mask --now rhnsd.service</pre></p>
+<h4>Rationale</h4>
+<p>Although systems management and patching is extremely important to
+system security, management by a system outside the enterprise enclave is not
+desirable for some environments.  However, if the system is being managed by RHN or
+ RHN Satellite Server the <tt>rhnsd</tt> daemon can remain on.</p>
+</div>
+
+
+
+
+</body>
+</html>
