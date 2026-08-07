@@ -1,0 +1,2 @@
+xccdf_org.ssgproject.content_rule_audit_sudo_log_events
+xccdf_org.ssgproject.content_rule_enable_dconf_user_profile

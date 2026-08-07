@@ -1,0 +1,2 @@
+xccdf_org.ssgproject.content_rule_kubevirt-nested-virtualization-disabled
+xccdf_org.ssgproject.content_rule_kubevirt-seccomp-profile-permissions

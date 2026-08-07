@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'libnfs'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'libnfs'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>libnfs</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<ul>
+
+<li>nfs_client_or_server_not_both</li>
+
+<li>nfs_configure_fixed_ports</li>
+
+<li>nfs_configuring_all_machines</li>
+
+<li>nfs_configuring_clients</li>
+
+<li>nfs_configuring_servers</li>
+
+</ul>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#mount_option_krb_sec_remote_filesystems">mount_option_krb_sec_remote_filesystems</a></li>
+
+<li><a href="#mount_option_nodev_remote_filesystems">mount_option_nodev_remote_filesystems</a></li>
+
+<li><a href="#mount_option_noexec_remote_filesystems">mount_option_noexec_remote_filesystems</a></li>
+
+<li><a href="#mount_option_nosuid_remote_filesystems">mount_option_nosuid_remote_filesystems</a></li>
+
+<li><a href="#nfs_fixed_lockd_tcp_port">nfs_fixed_lockd_tcp_port</a></li>
+
+<li><a href="#nfs_fixed_lockd_udp_port">nfs_fixed_lockd_udp_port</a></li>
+
+<li><a href="#nfs_fixed_mountd_port">nfs_fixed_mountd_port</a></li>
+
+<li><a href="#nfs_fixed_statd_port">nfs_fixed_statd_port</a></li>
+
+<li><a href="#nfs_no_anonymous">nfs_no_anonymous</a></li>
+
+<li><a href="#no_all_squash_exports">no_all_squash_exports</a></li>
+
+<li><a href="#no_insecure_locks_exports">no_insecure_locks_exports</a></li>
+
+<li><a href="#restrict_nfs_clients_to_privileged_ports">restrict_nfs_clients_to_privileged_ports</a></li>
+
+<li><a href="#service_nfs_disabled">service_nfs_disabled</a></li>
+
+<li><a href="#service_rpcsvcgssd_disabled">service_rpcsvcgssd_disabled</a></li>
+
+<li><a href="#use_kerberos_security_all_exports">use_kerberos_security_all_exports</a></li>
+
+<li><a href="#use_root_squashing_all_exports">use_root_squashing_all_exports</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="mount_option_krb_sec_remote_filesystems" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Mount Remote Filesystems with Kerberos Security</h3>
+<div>mount_option_krb_sec_remote_filesystems</div>
+<h4>Description</h4>
+<p>Add the <code>sec=krb5:krb5i:krb5p</code> option to the fourth column of <tt>/etc/fstab</tt> for the line which controls mounting of
+any NFS mounts.</p>
+<h4>Rationale</h4>
+<p>When an NFS server is configured to use AUTH_SYS a selected userid and groupid are used to handle
+requests from the remote user. The userid and groupid could mistakenly or maliciously be set
+incorrectly. The AUTH_GSS method of authentication uses certificates on the server and client
+systems to more securely authenticate the remote mount request.</p>
+</div>
+
+<div id="mount_option_nodev_remote_filesystems" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Mount Remote Filesystems with nodev</h3>
+<div>mount_option_nodev_remote_filesystems</div>
+<h4>Description</h4>
+<p>Add the <code>nodev</code> option to the fourth column of <tt>/etc/fstab</tt> for the line which controls mounting of
+any NFS mounts.</p>
+<h4>Rationale</h4>
+<p>Legitimate device files should only exist in the /dev directory. NFS mounts
+should not present device files to users.</p>
+</div>
+
+<div id="mount_option_noexec_remote_filesystems" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Mount Remote Filesystems with noexec</h3>
+<div>mount_option_noexec_remote_filesystems</div>
+<h4>Description</h4>
+<p>Add the <code>noexec</code> option to the fourth column of <tt>/etc/fstab</tt> for the line which controls mounting of
+any NFS mounts.</p>
+<h4>Rationale</h4>
+<p>The noexec mount option causes the system not to execute binary files. This option must be used
+for mounting any file system not containing approved binary files as they may be incompatible. Executing
+files from untrusted file systems increases the opportunity for unprivileged users to attain unauthorized
+administrative access.</p>
+</div>
+
+<div id="mount_option_nosuid_remote_filesystems" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Mount Remote Filesystems with nosuid</h3>
+<div>mount_option_nosuid_remote_filesystems</div>
+<h4>Description</h4>
+<p>Add the <code>nosuid</code> option to the fourth column of <tt>/etc/fstab</tt> for the line which controls mounting of
+any NFS mounts.</p>
+<h4>Rationale</h4>
+<p>NFS mounts should not present suid binaries to users. Only vendor-supplied suid executables
+should be installed to their default location on the local filesystem.</p>
+</div>
+
+<div id="nfs_fixed_lockd_tcp_port" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure lockd to use static TCP port</h3>
+<div>nfs_fixed_lockd_tcp_port</div>
+<h4>Description</h4>
+<p>Configure the <tt>lockd</tt> daemon to use a static TCP port as
+opposed to letting the RPC Bind service dynamically assign a port. Edit the
+file <tt>/etc/sysconfig/nfs</tt>. Add or correct the following line:
+<pre>LOCKD_TCPPORT=lockd-port</pre>
+Where <tt>lockd-port</tt> is a port which is not used by any other service on
+your network.</p>
+<h4>Rationale</h4>
+<p>Restrict service to always use a given port, so that firewalling can be done
+effectively.</p>
+</div>
+
+<div id="nfs_fixed_lockd_udp_port" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure lockd to use static UDP port</h3>
+<div>nfs_fixed_lockd_udp_port</div>
+<h4>Description</h4>
+<p>Configure the <tt>lockd</tt> daemon to use a static UDP port as
+opposed to letting the RPC Bind service dynamically assign a port. Edit the
+file <tt>/etc/sysconfig/nfs</tt>. Add or correct the following line:
+<pre>LOCKD_UDPPORT=lockd-port</pre>
+Where <tt>lockd-port</tt> is a port which is not used by any other service on
+your network.</p>
+<h4>Rationale</h4>
+<p>Restricting services to always use a given port enables firewalling
+to be done more effectively.</p>
+</div>
+
+<div id="nfs_fixed_mountd_port" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure mountd to use static port</h3>
+<div>nfs_fixed_mountd_port</div>
+<h4>Description</h4>
+<p>Configure the <tt>mountd</tt> daemon to use a static port as
+opposed to letting the RPC Bind service dynamically assign a port. Edit the
+file <tt>/etc/sysconfig/nfs</tt>. Add or correct the following line:
+<pre>MOUNTD_PORT=statd-port</pre>
+Where <tt>mountd-port</tt> is a port which is not used by any other service on your network.</p>
+<h4>Rationale</h4>
+<p>Restricting services to always use a given port enables firewalling
+to be done more effectively.</p>
+</div>
+
+<div id="nfs_fixed_statd_port" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure statd to use static port</h3>
+<div>nfs_fixed_statd_port</div>
+<h4>Description</h4>
+<p>Configure the <tt>statd</tt> daemon to use a static port as
+opposed to letting the RPC Bind service dynamically assign a port. Edit the
+file <tt>/etc/sysconfig/nfs</tt>. Add or correct the following line:
+<pre>STATD_PORT=statd-port</pre>
+Where <tt>statd-port</tt> is a port which is not used by any other service on your network.</p>
+<h4>Rationale</h4>
+<p>Restricting services to always use a given port enables firewalling
+to be done more effectively.</p>
+</div>
+
+<div id="nfs_no_anonymous" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Specify UID and GID for Anonymous NFS Connections</h3>
+<div>nfs_no_anonymous</div>
+<h4>Description</h4>
+<p>To specify the UID and GID for remote root users, edit the <tt>/etc/exports</tt> file and add the following for each export:
+<pre>
+anonuid=<tt>value greater than UID_MAX from /etc/login.defs</tt>
+anongid=<tt>value greater than GID_MAX from /etc/login.defs</tt>
+</pre>
+Note that a value of "-1" is technically acceptable as this will randomize the <tt>anonuid</tt> and
+<tt>anongid</tt> values on a Red Hat Enterprise Linux based NFS server. While acceptable from a security perspective,
+a value of <tt>-1</tt>  may cause interoperability issues, particularly with Red Hat Enterprise Linux 7 client systems.
+Alternatively, functionally equivalent values of 60001, 65534, 65535 may be used.</p>
+<h4>Rationale</h4>
+<p>Specifying the anonymous UID and GID ensures that the remote root user is mapped
+to a local account which has no permissions on the system.</p>
+</div>
+
+<div id="no_all_squash_exports" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure All-Squashing Disabled On All Exports</h3>
+<div>no_all_squash_exports</div>
+<h4>Description</h4>
+<p>The <tt>all_squash</tt> maps all uids and gids to an anonymous user.
+This should be disabled by removing any instances of the
+<tt>all_squash</tt> option from the file <tt>/etc/exports</tt>.</p>
+<h4>Rationale</h4>
+<p>The all_squash option maps all client requests to a single anonymous
+uid/gid on the NFS server, negating the ability to track file access
+by user ID.</p>
+</div>
+
+<div id="no_insecure_locks_exports" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure Insecure File Locking is Not Allowed</h3>
+<div>no_insecure_locks_exports</div>
+<h4>Description</h4>
+<p>By default the NFS server requires secure file-lock requests, which require
+credentials from the client in order to lock a file. Most NFS clients send
+credentials with file lock requests, however, there are a few clients that
+do not send credentials when requesting a file-lock, allowing the client to
+only be able to lock world-readable files. To get around this, the
+<tt>insecure_locks</tt> option can be used so these clients can access the
+desired export. This poses a security risk by potentially allowing the
+client access to data for which it does not have authorization. Remove any
+instances of the <tt>insecure_locks</tt> option from the file
+<tt>/etc/exports</tt>.</p>
+<h4>Rationale</h4>
+<p>Allowing insecure file locking could allow for sensitive data to be
+viewed or edited by an unauthorized user.</p>
+</div>
+
+<div id="restrict_nfs_clients_to_privileged_ports" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Restrict NFS Clients to Privileged Ports</h3>
+<div>restrict_nfs_clients_to_privileged_ports</div>
+<h4>Description</h4>
+<p>By default, the server NFS implementation requires that all client requests be made
+from ports less than 1024. If your organization has control over systems connected to its
+network, and if NFS requests are prohibited at the border firewall, this offers some protection
+against malicious requests from unprivileged users. Therefore, the default should not be changed.
+<br /><br />
+To ensure that the default has not been changed, ensure no line in
+<tt>/etc/exports</tt> contains the option <tt>insecure</tt>.</p>
+<h4>Rationale</h4>
+<p>Allowing client requests to be made from ports higher than 1024 could allow a unprivileged
+user to initiate an NFS connection. If the unprivileged user account has been compromised, an
+attacker could gain access to data on the NFS server.</p>
+</div>
+
+<div id="service_nfs_disabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable Network File System (nfs)</h3>
+<div>service_nfs_disabled</div>
+<h4>Description</h4>
+<p>The Network File System (NFS) service allows remote hosts to mount
+and interact with shared filesystems on the local system. If the local system
+is not designated as a NFS server then this service should be disabled.
+
+The <code>nfs-server</code> service can be disabled with the following command:
+<pre>$ sudo systemctl mask --now nfs-server.service</pre></p>
+<h4>Rationale</h4>
+<p>Unnecessary services should be disabled to decrease the attack surface of the system.</p>
+</div>
+
+<div id="service_rpcsvcgssd_disabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable Secure RPC Server Service (rpcsvcgssd)</h3>
+<div>service_rpcsvcgssd_disabled</div>
+<h4>Description</h4>
+<p>The rpcsvcgssd service manages RPCSEC GSS contexts required to
+secure protocols that use RPC (most often Kerberos and NFS). The rpcsvcgssd
+service is the server-side of RPCSEC GSS. If the system does not require secure
+RPC then this service should be disabled.
+
+The <code>rpcsvcgssd</code> service can be disabled with the following command:
+<pre>$ sudo systemctl mask --now rpcsvcgssd.service</pre></p>
+<h4>Rationale</h4>
+<p>Unnecessary services should be disabled to decrease the attack surface of the system.</p>
+</div>
+
+<div id="use_kerberos_security_all_exports" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Use Kerberos Security on All Exports</h3>
+<div>use_kerberos_security_all_exports</div>
+<h4>Description</h4>
+<p>Using Kerberos on all exported mounts prevents a malicious client or user from
+impersonating a system user. To cryptography authenticate users to the NFS server,
+add <tt>sec=krb5:krb5i:krb5p</tt> to each export in <tt>/etc/exports</tt>.</p>
+<h4>Rationale</h4>
+<p>When an NFS server is configured to use AUTH_SYS a selected userid and groupid are used to handle
+requests from the remote user. The userid and groupid could mistakenly or maliciously be set
+incorrectly. The AUTH_GSS method of authentication uses certificates on the server and client
+systems to more securely authenticate the remote mount request.</p>
+</div>
+
+<div id="use_root_squashing_all_exports" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Use Root-Squashing on All Exports</h3>
+<div>use_root_squashing_all_exports</div>
+<h4>Description</h4>
+<p>If a filesystem is exported using root squashing, requests from root on the client
+are considered to be unprivileged (mapped to a user such as nobody). This provides some mild
+protection against remote abuse of an NFS server. Root squashing is enabled by default, and
+should not be disabled.
+<br /><br />
+Ensure that no line in <tt>/etc/exports</tt> contains the option <tt>no_root_squash</tt>.</p>
+<h4>Rationale</h4>
+<p>If the NFS server allows root access to local file systems from remote hosts, this
+access could be used to compromise the system.</p>
+</div>
+
+
+
+
+</body>
+</html>

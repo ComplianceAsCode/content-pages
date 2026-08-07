@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'openssl'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'openssl'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>openssl</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<ul>
+
+<li>network_ssl</li>
+
+</ul>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#configure_openssl_crypto_policy">configure_openssl_crypto_policy</a></li>
+
+<li><a href="#configure_openssl_tls_crypto_policy">configure_openssl_tls_crypto_policy</a></li>
+
+<li><a href="#only_allow_dod_certs">only_allow_dod_certs</a></li>
+
+<li><a href="#only_allow_specific_certs">only_allow_specific_certs</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="configure_openssl_crypto_policy" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure OpenSSL library to use System Crypto Policy</h3>
+<div>configure_openssl_crypto_policy</div>
+<h4>Description</h4>
+<p>Crypto Policies provide a centralized control over crypto algorithms usage of many packages.
+OpenSSL is supported by crypto policy, but the OpenSSL configuration may be
+set up to ignore it.
+To check that Crypto Policies settings are configured correctly, you have to examine the OpenSSL config file
+available under <tt>/etc/pki/tls/openssl.cnf</tt>.
+This file has the <tt>ini</tt> format, and it enables crypto policy support
+if there is a <tt>[ crypto_policy ]</tt> section that contains the <tt>.include /etc/crypto-policies/back-ends/opensslcnf.config</tt> directive.</p>
+<h4>Rationale</h4>
+<p>Overriding the system crypto policy makes the behavior of the Java runtime violates expectations,
+and makes system configuration more fragmented.</p>
+</div>
+
+<div id="configure_openssl_tls_crypto_policy" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure OpenSSL library to use TLS Encryption</h3>
+<div>configure_openssl_tls_crypto_policy</div>
+<h4>Description</h4>
+<p>Crypto Policies are means of enforcing certain cryptographic settings for
+selected applications including OpenSSL. OpenSSL is by default configured to
+modify its configuration based on currently configured Crypto Policy.
+Editing the Crypto Policy back-end is not recommended.
+
+Check the crypto-policies(7) man page and choose a policy that configures TLS
+protocol to version 1.2 or higher, for example DEFAULT, FUTURE or FIPS policy.
+Or create and apply a custom policy that restricts minimum TLS version to 1.2.
+
+For example for versions prior to crypto-policies-20210617-1.gitc776d3e.el8.noarch
+this is expected:
+
+<pre>$ sudo grep -i MinProtocol /etc/crypto-policies/back-ends/opensslcnf.config
+
+MinProtocol = TLSv1.2
+</pre>
+
+Or for version crypto-policies-20210617-1.gitc776d3e.el8.noarch and newer this is
+expected:
+
+<pre>$ sudo grep -i MinProtocol /etc/crypto-policies/back-ends/opensslcnf.config
+
+TLS.MinProtocol = TLSv1.2
+DTLS.MinProtocol = DTLSv1.2</pre></p>
+<h4>Rationale</h4>
+<p>Without cryptographic integrity protections, information can be altered by
+unauthorized users without detection.</p>
+</div>
+
+<div id="only_allow_dod_certs" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Only Allow DoD PKI-established CAs</h3>
+<div>only_allow_dod_certs</div>
+<h4>Description</h4>
+<p>The operating system must only allow the use of DoD PKI-established
+certificate authorities for verification of the establishment of
+protected sessions.</p>
+<h4>Rationale</h4>
+<p>Untrusted Certificate Authorities (CA) can issue certificates, but they
+may be issued by organizations or individuals that seek to compromise
+DoD systems or by organizations with insufficient security controls. If
+the CA used for verifying the certificate is not a DoD-approved CA,
+trust of this CA has not been established.
+The DoD will only accept PKI-certificates obtained from a DoD-approved
+internal or external certificate authority. Reliance on CAs for the
+establishment of secure sessions includes, for example, the use of
+SSL/TLS certificates.</p>
+</div>
+
+<div id="only_allow_specific_certs" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Only Allow specific PKI-established CAs</h3>
+<div>only_allow_specific_certs</div>
+<h4>Description</h4>
+<p>The operating system must only allow the use of trusted PKI-established
+certificate authorities for verification of the establishment of
+protected sessions.</p>
+<h4>Rationale</h4>
+<p>Untrusted Certificate Authorities (CA) can issue certificates, but they
+may be issued by organizations or individuals that seek to compromise
+systems or by organizations with insufficient security controls. If
+the CA used for verifying the certificate is not a approved CA,
+trust of this CA has not been established.
+The Environment shall only accept PKI-certificates obtained from a approved
+internal or external certificate authority. Reliance on CAs for the
+establishment of secure sessions includes, for example, the use of
+SSL/TLS certificates.</p>
+</div>
+
+
+
+
+</body>
+</html>
