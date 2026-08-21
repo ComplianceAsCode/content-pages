@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'docker'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'docker'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>docker</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<ul>
+
+<li>docker</li>
+
+</ul>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#docker_selinux_enabled">docker_selinux_enabled</a></li>
+
+<li><a href="#docker_storage_configured">docker_storage_configured</a></li>
+
+<li><a href="#package_docker_installed">package_docker_installed</a></li>
+
+<li><a href="#service_docker_enabled">service_docker_enabled</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="docker_selinux_enabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure SELinux support is enabled in Docker</h3>
+<div>docker_selinux_enabled</div>
+<h4>Description</h4>
+<p>To enable the SELinux for the Docker service, the Docker service must be
+configured to run the Docker daemon with <tt>--selinux-enabled</tt> option.
+In <tt>/etc/sysconfig/docker</tt> configuration file, add or correct
+the following line to enable SELinux support in the Docker daemon:
+<pre>OPTIONS='--selinux-enabled'</pre></p>
+<h4>Rationale</h4>
+<p>If SELinux is not explicitly enabled in the Docker daemon configuration,
+Docker does not use SELinux which means Docker runs unconfined,
+and SELinux will not provide security separation for Docker container
+processes. However enabling SELinux for the Docker service prevents
+an attacker or rogue container from attacking other container processes
+and content as well as prevents taking over the host operating system.</p>
+</div>
+
+<div id="docker_storage_configured" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Use direct-lvm with the Device Mapper Storage Driver</h3>
+<div>docker_storage_configured</div>
+<h4>Description</h4>
+<p>To use Docker in production with the device mapper storage driver, the Docker
+daemon should be configured to use direct-lvm instead of loopback device as
+a storage. For setting up the LVM and configuring Docker, see the
+<a xmlns='http://www.w3.org/1999/xhtml' href='https://docs.docker.com/engine/userguide/storagedriver/device-mapper-driver/'>Docker Device Mapper Storage Documentation</a>.</p>
+<h4>Rationale</h4>
+<p>For using Docker in production, the device mapper storage driver with loopback
+devices is discouraged. The suggested way of configuring device mapper storage
+driver is direct-lvm. Choosing the right storage driver and backing filesystem
+is crucial to stability and performance.</p>
+</div>
+
+<div id="package_docker_installed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Install the docker Package</h3>
+<div>package_docker_installed</div>
+<h4>Description</h4>
+<p>The docker package provides necessary software to create containers, which
+are self-sufficient and self-contained applications using the resource
+isolation features of the kernel.
+The <code>docker</code> package can be installed with the following command:
+<pre>
+$ sudo yum install docker</pre></p>
+<h4>Rationale</h4>
+<p>To be able to run the docker service, the docker package has to be installed.</p>
+</div>
+
+<div id="service_docker_enabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Enable the Docker service</h3>
+<div>service_docker_enabled</div>
+<h4>Description</h4>
+<p>The docker service is commonly needed to
+  create containers.
+
+The <code>docker</code> service can be enabled with the following command:
+<pre>$ sudo systemctl enable docker.service</pre></p>
+<h4>Rationale</h4>
+<p>To be able to find any problems with misconfiguration of
+the docker daemon and running containers, the docker service
+has to be enabled.</p>
+</div>
+
+
+
+
+</body>
+</html>

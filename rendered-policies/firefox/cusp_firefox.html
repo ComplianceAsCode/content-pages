@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Definition of Firefox Common User Security Policy for firefox</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Definition of Firefox Common User Security Policy for firefox</h1>
+
+
+
+based on <a href="jodehnal's bachelor thesis on creating a SCAP profile for common users of Fedora workstation - link will be added after publication">jodehnal's bachelor thesis on creating a SCAP profile for common users of Fedora workstation - link will be added after publication</a>
+
+
+<div class="all_controls">
+<div class="one_control">
+  <h2>1.0: Firefox Hardening</h2>
+  <p>Description: Secure configuration of Mozilla Firefox.</p>
+  Levels: 
+  <ul><li>default</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//products/firefox/guide/firefox/firefox_policy-autoplay_video/rule.yml"> firefox_policy-autoplay_video</a>: Firefox autoplay must be disabled.
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//products/firefox/guide/firefox/firefox_policy-content_blocker/rule.yml"> firefox_policy-content_blocker</a>: Ensure the Content Blocker uBlock Origin is Installed
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//products/firefox/guide/firefox/firefox_policy-cryptomining/rule.yml"> firefox_policy-cryptomining</a>: Enabled Firefox Cryptomining protection
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//products/firefox/guide/firefox/firefox_policy-enhanced_tracking/rule.yml"> firefox_policy-enhanced_tracking</a>: Enabled Firefox Enhanced Tracking Protection
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//products/firefox/guide/firefox/firefox_policy-fingerprinting_protection/rule.yml"> firefox_policy-fingerprinting_protection</a>: Enabled Firefox Fingerprinting Protection
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//products/firefox/guide/firefox/firefox_policy-javascript_window_changes/rule.yml"> firefox_policy-javascript_window_changes</a>: Disable JavaScript's Raise Or Lower Windows Capability
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//products/firefox/guide/firefox/firefox_policy-javascript_window_resizing/rule.yml"> firefox_policy-javascript_window_resizing</a>: Disable JavaScript's Moving Or Resizing Windows Capability
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//products/firefox/guide/firefox/firefox_policy-pop-up_windows/rule.yml"> firefox_policy-pop-up_windows</a>: Enable Firefox Pop-up Blocker
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//products/firefox/guide/firefox/firefox_policy-ssl_minimum_version/rule.yml"> firefox_policy-ssl_minimum_version</a>: Firefox must be configured to allow only TLS 1.2 or above.
+    </li>
+  </ul>
+  
+</div>  
+</div>  
+
+
+</body>
+</html>

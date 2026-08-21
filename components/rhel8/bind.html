@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'bind'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'bind'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>bind</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<ul>
+
+<li>disabling_dns_server</li>
+
+<li>dns</li>
+
+<li>dns_server_chroot</li>
+
+<li>dns_server_dedicated</li>
+
+<li>dns_server_isolation</li>
+
+<li>dns_server_partition_with_views</li>
+
+<li>dns_server_protection</li>
+
+<li>dns_server_separate_internal_external</li>
+
+</ul>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#configure_bind_crypto_policy">configure_bind_crypto_policy</a></li>
+
+<li><a href="#dns_server_authenticate_zone_transfers">dns_server_authenticate_zone_transfers</a></li>
+
+<li><a href="#dns_server_disable_dynamic_updates">dns_server_disable_dynamic_updates</a></li>
+
+<li><a href="#dns_server_disable_zone_transfers">dns_server_disable_zone_transfers</a></li>
+
+<li><a href="#package_bind_removed">package_bind_removed</a></li>
+
+<li><a href="#package_dnsmasq_removed">package_dnsmasq_removed</a></li>
+
+<li><a href="#package_unbound_removed">package_unbound_removed</a></li>
+
+<li><a href="#service_named_disabled">service_named_disabled</a></li>
+
+<li><a href="#service_dnsmasq_disabled">service_dnsmasq_disabled</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="configure_bind_crypto_policy" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure BIND to use System Crypto Policy</h3>
+<div>configure_bind_crypto_policy</div>
+<h4>Description</h4>
+<p>Crypto Policies provide a centralized control over crypto algorithms usage of many packages.
+BIND is supported by crypto policy, but the BIND configuration may be
+set up to ignore it.
+
+To check that Crypto Policies settings are configured correctly, ensure that the <tt>/etc/named.conf</tt>
+includes the appropriate configuration:
+In the <tt>options</tt> section of <tt>/etc/named.conf</tt>, make sure that the following line
+is not commented out or superseded by later includes:
+<tt>include "/etc/crypto-policies/back-ends/bind.config";</tt></p>
+<h4>Rationale</h4>
+<p>Overriding the system crypto policy makes the behavior of the BIND service violate expectations,
+and makes system configuration more fragmented.</p>
+</div>
+
+<div id="dns_server_authenticate_zone_transfers" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Authenticate Zone Transfers</h3>
+<div>dns_server_authenticate_zone_transfers</div>
+<h4>Description</h4>
+<p>If it is necessary for a secondary nameserver to receive zone data
+via zone transfer from the primary server, follow the instructions here.  Use
+dnssec-keygen to create a symmetric key file in the current directory:
+<pre>$ cd /tmp
+$ sudo dnssec-keygen -a HMAC-MD5 -b 128 -n HOST dns.example.com
+Kdns.example.com .+aaa +iiiii</pre>
+This output is the name of a file containing the new key. Read the file to find
+the base64-encoded key string:
+<pre>$ sudo cat Kdns.example.com .+NNN +MMMMM .key
+dns.example.com IN KEY 512 3 157 base64-key-string</pre>
+Add the directives to <tt>/etc/named.conf</tt> on the primary server:
+<pre>key zone-transfer-key {
+  algorithm hmac-md5;
+  secret "base64-key-string ";
+};
+zone "example.com " IN {
+  type master;
+  allow-transfer { key zone-transfer-key; };
+  ...
+};</pre>
+Add the directives below to <tt>/etc/named.conf</tt> on the secondary nameserver:
+<pre>key zone-transfer-key {
+  algorithm hmac-md5;
+  secret "base64-key-string ";
+};
+
+server IP-OF-MASTER {
+  keys { zone-transfer-key; };
+};
+
+zone "example.com " IN {
+  type slave;
+  masters { IP-OF-MASTER ; };
+  ...
+};</pre></p>
+<h4>Rationale</h4>
+<p>The BIND transaction signature (TSIG) functionality allows primary
+and secondary nameservers to use a shared secret to verify authorization to
+perform zone transfers. This method is more secure than using IP-based limiting
+to restrict nameserver access, since IP addresses can be easily spoofed.
+However, if you cannot configure TSIG between your servers because, for
+instance, the secondary nameserver is not under your control and its
+administrators are unwilling to configure TSIG, you can configure an
+allow-transfer directive with numerical IP addresses or ACLs as a last resort.</p>
+</div>
+
+<div id="dns_server_disable_dynamic_updates" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable Dynamic Updates</h3>
+<div>dns_server_disable_dynamic_updates</div>
+<h4>Description</h4>
+<p>Is there a mission-critical reason to enable the risky dynamic
+update functionality? If not, edit <tt>/etc/named.conf</tt>. For each zone
+specification, correct the following directive if necessary:
+<pre>zone "example.com " IN {
+  allow-update { none; };
+  ...
+};</pre></p>
+<h4>Rationale</h4>
+<p>Dynamic updates allow remote servers to add, delete, or modify any
+entries in your zone file. Therefore, they should be considered highly risky,
+and disabled unless there is a very good reason for their use. If dynamic
+updates must be allowed, IP-based ACLs are insufficient protection, since they
+are easily spoofed. Instead, use TSIG keys (see the previous section for an
+example), and consider using the update-policy directive to restrict changes to
+only the precise type of change needed.</p>
+</div>
+
+<div id="dns_server_disable_zone_transfers" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable Zone Transfers from the Nameserver</h3>
+<div>dns_server_disable_zone_transfers</div>
+<h4>Description</h4>
+<p>Is it necessary for a secondary nameserver to receive zone data
+via zone transfer from the primary server?  If not, follow the instructions in
+this section. If so, see the next section for instructions on protecting zone
+transfers.
+Add or correct the following directive within <tt>/etc/named.conf</tt>:
+<pre>options {
+  allow-transfer { none; };
+  ...
+}</pre></p>
+<h4>Rationale</h4>
+<p>If both the primary and secondary nameserver are under your control,
+or if you have only one nameserver, it may be possible to use an external
+configuration management mechanism to distribute zone updates. In that case, it
+is not necessary to allow zone transfers within BIND itself, so they should be
+disabled to avoid the potential for abuse.</p>
+</div>
+
+<div id="package_bind_removed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Uninstall bind Package</h3>
+<div>package_bind_removed</div>
+<h4>Description</h4>
+<p>The <tt>named</tt> service is provided by the <tt>bind</tt> package.
+The <code>bind</code> package can be removed with the following command:
+<pre>
+$ sudo yum erase bind</pre></p>
+<h4>Rationale</h4>
+<p>If there is no need to make DNS server software available,
+removing it provides a safeguard against its activation.</p>
+</div>
+
+<div id="package_dnsmasq_removed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Uninstall dnsmasq Package</h3>
+<div>package_dnsmasq_removed</div>
+<h4>Description</h4>
+<p>dnsmasq is a lightweight tool that provides DNS caching, DNS forwarding and
+DHCP (Dynamic Host Configuration Protocol) services.
+<br />
+The <code>dnsmasq</code> package can be removed with the following command:
+<pre>
+$ sudo yum erase dnsmasq</pre></p>
+<h4>Rationale</h4>
+<p>Unless a system is specifically designated to act as a DNS
+caching, DNS forwarding and/or DHCP server, it is recommended that the
+package be removed to reduce the potential attack surface.</p>
+</div>
+
+<div id="package_unbound_removed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Uninstall unbound Package</h3>
+<div>package_unbound_removed</div>
+<h4>Description</h4>
+<p>The <tt>named</tt> service is provided by the <tt>unbound</tt> package.
+The <code>unbound</code> package can be removed with the following command:
+<pre>
+$ sudo yum erase unbound</pre></p>
+<h4>Rationale</h4>
+<p>If there is no need to make DNS server software available,
+removing it provides a safeguard against its activation.</p>
+</div>
+
+<div id="service_named_disabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable named Service</h3>
+<div>service_named_disabled</div>
+<h4>Description</h4>
+<p>
+The <code>named</code> service can be disabled with the following command:
+<pre>$ sudo systemctl mask --now named.service</pre></p>
+<h4>Rationale</h4>
+<p>All network services involve some risk of compromise due to
+implementation flaws and should be disabled if possible.</p>
+</div>
+
+<div id="service_dnsmasq_disabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable dnsmasq Service</h3>
+<div>service_dnsmasq_disabled</div>
+<h4>Description</h4>
+<p>
+The <code>dnsmasq</code> service can be disabled with the following command:
+<pre>$ sudo systemctl mask --now dnsmasq.service</pre></p>
+<h4>Rationale</h4>
+<p>Unless a system is specifically designated to act as a DNS
+caching, DNS forwarding and/or DHCP server, it is recommended
+that the package be removed to reduce the potential attack surface.</p>
+</div>
+
+
+
+
+</body>
+</html>
