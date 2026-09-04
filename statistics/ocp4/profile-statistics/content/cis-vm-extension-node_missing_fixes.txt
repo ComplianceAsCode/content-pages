@@ -1,0 +1,4 @@
+xccdf_org.ssgproject.content_rule_kubevirt-cache-directory-permissions
+xccdf_org.ssgproject.content_rule_kubevirt-cpu-vulnerabilities-mitigated
+xccdf_org.ssgproject.content_rule_kubevirt-nested-virtualization-disabled
+xccdf_org.ssgproject.content_rule_kubevirt-seccomp-profile-permissions

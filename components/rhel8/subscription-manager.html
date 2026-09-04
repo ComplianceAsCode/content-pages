@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'subscription-manager'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'subscription-manager'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>subscription-manager</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<div>None</div>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#package_subscription-manager_installed">package_subscription-manager_installed</a></li>
+
+<li><a href="#service_rhsmcertd_disabled">service_rhsmcertd_disabled</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="package_subscription-manager_installed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Install subscription-manager Package</h3>
+<div>package_subscription-manager_installed</div>
+<h4>Description</h4>
+<p>The <code>subscription-manager</code> package can be installed with the following command:
+<pre>
+$ sudo yum install subscription-manager</pre></p>
+<h4>Rationale</h4>
+<p>Red Hat Subscription Manager is a local service which tracks installed products
+and subscriptions on a local system to help manage subscription assignments.
+It communicates with the backend subscription service (the Customer Portal
+or an on-premise server such as Subscription Asset Manager) and works with
+content management tools such as .</p>
+</div>
+
+<div id="service_rhsmcertd_disabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable Red Hat Subscription Manager Daemon (rhsmcertd)</h3>
+<div>service_rhsmcertd_disabled</div>
+<h4>Description</h4>
+<p>The Red Hat Subscription Manager (rhsmcertd) periodically checks for
+changes in the entitlement certificates for a registered system and updates it
+accordingly.
+
+The <code>rhsmcertd</code> service can be disabled with the following command:
+<pre>$ sudo systemctl mask --now rhsmcertd.service</pre></p>
+<h4>Rationale</h4>
+<p>The <tt>rhsmcertd</tt> service can provide administrators with some
+additional control over which of their systems are entitled to particular
+subscriptions. However, for systems that are managed locally or which are not
+expected to require remote changes to their subscription status, it is
+unnecessary and can be disabled.</p>
+</div>
+
+
+
+
+</body>
+</html>
