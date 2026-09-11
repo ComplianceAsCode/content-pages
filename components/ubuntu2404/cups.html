@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'cups'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'cups'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>cups</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<ul>
+
+<li>configure_printing</li>
+
+<li>printing</li>
+
+</ul>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#cups_disable_browsing">cups_disable_browsing</a></li>
+
+<li><a href="#cups_disable_printserver">cups_disable_printserver</a></li>
+
+<li><a href="#package_cups_removed">package_cups_removed</a></li>
+
+<li><a href="#service_cups_disabled">service_cups_disabled</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="cups_disable_browsing" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable Printer Browsing Entirely if Possible</h3>
+<div>cups_disable_browsing</div>
+<h4>Description</h4>
+<p>By default, CUPS listens on the network for printer list
+broadcasts on UDP port 631. This functionality is called printer browsing.
+To disable printer browsing entirely, edit the CUPS configuration
+file, located at <tt>/etc/cups/cupsd.conf</tt>, to include the following:
+<pre>Browsing Off
+BrowseAllow none</pre></p>
+<h4>Rationale</h4>
+<p>The CUPS print service can be configured to broadcast a list of
+available printers to the network. Other systems on the network, also running
+the CUPS print service, can be configured to listen to these broadcasts and add
+and configure these printers for immediate use. By disabling this browsing
+capability, the system will no longer generate or receive such broadcasts.</p>
+</div>
+
+<div id="cups_disable_printserver" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable Print Server Capabilities</h3>
+<div>cups_disable_printserver</div>
+<h4>Description</h4>
+<p>To prevent remote users from potentially connecting to and using
+locally configured printers, disable the CUPS print server sharing
+capabilities. To do so, limit how the server will listen for print jobs by
+removing the more generic port directive from /etc/cups/cupsd.conf:
+<pre>Port 631</pre>
+and replacing it with the <tt>Listen</tt> directive:
+<pre>Listen localhost:631</pre>
+This will prevent remote users from printing to locally configured printers
+while still allowing local users on the system to print normally.</p>
+<h4>Rationale</h4>
+<p>By default, locally configured printers will not be shared over the
+network, but if this functionality has somehow been enabled, these
+recommendations will disable it again. Be sure to disable outgoing printer list
+broadcasts, or remote users will still be able to see the locally configured
+printers, even if they cannot actually print to them. To limit print serving to
+a particular set of users, use the Policy directive.</p>
+</div>
+
+<div id="package_cups_removed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Uninstall CUPS Package</h3>
+<div>package_cups_removed</div>
+<h4>Description</h4>
+<p>The <code>cups</code> package can be removed with the following command:
+<pre>
+$ apt-get remove cups</pre></p>
+<h4>Rationale</h4>
+<p>If the system does not need to print jobs or accept print jobs from other systems, it is
+recommended that CUPS be removed to reduce the potential attack surface.</p>
+</div>
+
+<div id="service_cups_disabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable the CUPS Service</h3>
+<div>service_cups_disabled</div>
+<h4>Description</h4>
+<p>
+The <code>cups</code> service can be disabled with the following command:
+<pre>$ sudo systemctl mask --now cups.service</pre></p>
+<h4>Rationale</h4>
+<p>Turn off unneeded services to reduce attack surface.</p>
+</div>
+
+
+
+
+</body>
+</html>

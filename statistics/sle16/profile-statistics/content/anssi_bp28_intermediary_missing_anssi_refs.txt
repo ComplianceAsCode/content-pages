@@ -1,0 +1,2 @@
+xccdf_org.ssgproject.content_rule_accounts_password_pam_pwhistory_remember
+xccdf_org.ssgproject.content_rule_set_password_hashing_min_rounds_logindefs

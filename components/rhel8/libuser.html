@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'libuser'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'libuser'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>libuser</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<div>None</div>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#set_password_hashing_algorithm_libuserconf">set_password_hashing_algorithm_libuserconf</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="set_password_hashing_algorithm_libuserconf" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Set Password Hashing Algorithm in /etc/libuser.conf</h3>
+<div>set_password_hashing_algorithm_libuserconf</div>
+<h4>Description</h4>
+<p>In <tt>/etc/libuser.conf</tt>, add or correct the following line in its <tt>[defaults]</tt>
+section to ensure the system will use the <tt>$var_password_hashing_algorithm_pam</tt>
+algorithm for password hashing:
+<pre>crypt_style = <tt>$var_password_hashing_algorithm_pam</tt></pre></p>
+<h4>Rationale</h4>
+<p>Passwords need to be protected at all times, and encryption is the standard method for
+protecting passwords. If passwords are not encrypted, they can be plainly read
+(i.e., clear text) and easily compromised. Passwords that are encrypted with a weak algorithm
+are no more protected than if they are kept in plain text.
+<br /><br />
+This setting ensures user and group account administration utilities are configured to store
+only encrypted representations of passwords. Additionally, the <tt>crypt_style</tt>
+configuration option in <tt>/etc/libuser.conf</tt> ensures the use of a strong hashing
+algorithm that makes password cracking attacks more difficult.</p>
+</div>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'usbguard'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'usbguard'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>usbguard</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<ul>
+
+<li>usbguard</li>
+
+</ul>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#configure_usbguard_auditbackend">configure_usbguard_auditbackend</a></li>
+
+<li><a href="#package_usbguard_installed">package_usbguard_installed</a></li>
+
+<li><a href="#service_usbguard_enabled">service_usbguard_enabled</a></li>
+
+<li><a href="#usbguard_allow_hid">usbguard_allow_hid</a></li>
+
+<li><a href="#usbguard_allow_hid_and_hub">usbguard_allow_hid_and_hub</a></li>
+
+<li><a href="#usbguard_allow_hub">usbguard_allow_hub</a></li>
+
+<li><a href="#usbguard_generate_policy">usbguard_generate_policy</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="configure_usbguard_auditbackend" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Log USBGuard daemon audit events using Linux Audit</h3>
+<div>configure_usbguard_auditbackend</div>
+<h4>Description</h4>
+<p>To configure USBGuard daemon to log via Linux Audit
+(as opposed directly to a file),
+<tt>AuditBackend</tt> option in <tt>/etc/usbguard/usbguard-daemon.conf</tt>
+needs to be set to <tt>LinuxAudit</tt>.</p>
+<h4>Rationale</h4>
+<p>Using the Linux Audit logging allows for centralized trace
+of events.</p>
+</div>
+
+<div id="package_usbguard_installed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Install usbguard Package</h3>
+<div>package_usbguard_installed</div>
+<h4>Description</h4>
+<p>
+The <code>usbguard</code> package can be installed with the following command:
+<pre>
+$ sudo dnf install usbguard</pre></p>
+<h4>Rationale</h4>
+<p><tt>usbguard</tt> is a software framework that helps to protect
+against rogue USB devices by implementing basic whitelisting/blacklisting
+capabilities based on USB device attributes.</p>
+</div>
+
+<div id="service_usbguard_enabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Enable the USBGuard Service</h3>
+<div>service_usbguard_enabled</div>
+<h4>Description</h4>
+<p>The USBGuard service should be enabled.
+
+The <code>usbguard</code> service can be enabled with the following command:
+<pre>$ sudo systemctl enable usbguard.service</pre></p>
+<h4>Rationale</h4>
+<p>The <tt>usbguard</tt> service must be running in order to
+enforce the USB device authorization policy for all USB devices.</p>
+</div>
+
+<div id="usbguard_allow_hid" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Authorize Human Interface Devices in USBGuard daemon</h3>
+<div>usbguard_allow_hid</div>
+<h4>Description</h4>
+<p>To allow authorization of Human Interface Devices (keyboard, mouse)
+by USBGuard daemon,
+add the line
+<tt>allow with-interface match-all { 03:*:* }</tt>
+to <tt>/etc/usbguard/rules.conf</tt>.</p>
+<h4>Rationale</h4>
+<p>Without allowing Human Interface Devices, it might not be possible
+to interact with the system.</p>
+</div>
+
+<div id="usbguard_allow_hid_and_hub" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Authorize Human Interface Devices and USB hubs in USBGuard daemon</h3>
+<div>usbguard_allow_hid_and_hub</div>
+<h4>Description</h4>
+<p>To allow authorization of USB devices combining human interface device and hub capabilities
+by USBGuard daemon,
+add the line
+<tt>allow with-interface match-all { 03:*:* 09:00:* }</tt>
+to <tt>/etc/usbguard/rules.conf</tt>.</p>
+<h4>Rationale</h4>
+<p>Without allowing Human Interface Devices, it might not be possible
+to interact with the system. Without allowing hubs, it might not be possible to use any
+USB devices on the system.</p>
+</div>
+
+<div id="usbguard_allow_hub" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Authorize USB hubs in USBGuard daemon</h3>
+<div>usbguard_allow_hub</div>
+<h4>Description</h4>
+<p>To allow authorization of USB hub devices by USBGuard daemon,
+add line
+<tt>allow with-interface match-all { 09:00:* }</tt>
+to <tt>/etc/usbguard/rules.conf</tt>.</p>
+<h4>Rationale</h4>
+<p>Without allowing hubs, it might not be possible to use any
+USB devices on the system.</p>
+</div>
+
+<div id="usbguard_generate_policy" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Generate USBGuard Policy</h3>
+<div>usbguard_generate_policy</div>
+<h4>Description</h4>
+<p>By default USBGuard when enabled prevents access to all USB devices and this lead
+to inaccessible system if they use USB mouse/keyboard. To prevent this scenario,
+the initial policy configuration must be generated based on current connected USB
+devices.</p>
+<h4>Rationale</h4>
+<p>The <tt>usbguard</tt> must be configured to allow connected USB devices to work
+properly, avoiding the system to become inaccessible.</p>
+</div>
+
+
+
+
+</body>
+</html>

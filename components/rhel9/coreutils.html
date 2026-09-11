@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'coreutils'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'coreutils'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>coreutils</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<div>None</div>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#accounts_user_dot_group_ownership">accounts_user_dot_group_ownership</a></li>
+
+<li><a href="#accounts_user_dot_no_world_writable_programs">accounts_user_dot_no_world_writable_programs</a></li>
+
+<li><a href="#accounts_user_dot_user_ownership">accounts_user_dot_user_ownership</a></li>
+
+<li><a href="#accounts_users_home_files_groupownership">accounts_users_home_files_groupownership</a></li>
+
+<li><a href="#accounts_users_home_files_ownership">accounts_users_home_files_ownership</a></li>
+
+<li><a href="#accounts_users_home_files_permissions">accounts_users_home_files_permissions</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="accounts_user_dot_group_ownership" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>User Initialization Files Must Be Group-Owned By The Primary Group</h3>
+<div>accounts_user_dot_group_ownership</div>
+<h4>Description</h4>
+<p>Change the group owner of interactive users files to the group found
+in <pre>/etc/passwd</pre> for the user. To change the group owner of a local
+interactive user home directory, use the following command:
+<pre>$ sudo chgrp <i>USER_GROUP</i> /home/<i>USER</i>/.<i>INIT_FILE</i></pre>
+
+This rule ensures every initialization file related to an interactive user
+is group-owned by an interactive user.</p>
+<h4>Rationale</h4>
+<p>Local initialization files for interactive users are used to configure the
+user's shell environment upon logon. Malicious modification of these files could
+compromise accounts upon logon.</p>
+</div>
+
+<div id="accounts_user_dot_no_world_writable_programs" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>User Initialization Files Must Not Run World-Writable Programs</h3>
+<div>accounts_user_dot_no_world_writable_programs</div>
+<h4>Description</h4>
+<p>Set the mode on files being executed by the user initialization files with the
+following command:
+<pre>$ sudo chmod o-w <i>FILE</i></pre></p>
+<h4>Rationale</h4>
+<p>If user start-up files execute world-writable programs, especially in
+unprotected directories, they could be maliciously modified to destroy user
+files or otherwise compromise the system at the user level. If the system is
+compromised at the user level, it is easier to elevate privileges to eventually
+compromise the system at the root and network level.</p>
+</div>
+
+<div id="accounts_user_dot_user_ownership" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>User Initialization Files Must Be Owned By the Primary User</h3>
+<div>accounts_user_dot_user_ownership</div>
+<h4>Description</h4>
+<p>Set the owner of the user initialization files for interactive users to
+the primary owner with the following command:
+<pre>$ sudo chown <i>USER</i> /home/<i>USER</i>/.*</pre>
+
+This rule ensures every initialization file related to an interactive user
+is owned by an interactive user.</p>
+<h4>Rationale</h4>
+<p>Local initialization files are used to configure the user's shell environment
+upon logon. Malicious modification of these files could compromise accounts upon
+logon.</p>
+</div>
+
+<div id="accounts_users_home_files_groupownership" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>All User Files and Directories In The Home Directory Must Be Group-Owned By The Primary Group</h3>
+<div>accounts_users_home_files_groupownership</div>
+<h4>Description</h4>
+<p>Change the group of a local interactive users files and directories to a
+group that the interactive user is a member of. To change the group owner of a
+local interactive users files and directories, use the following command:
+<pre>$ sudo chgrp <i>USER_GROUP</i> /home/<i>USER</i>/<i>FILE_DIR</i></pre>
+
+This rule ensures every file or directory under the home directory related
+to an interactive user is group-owned by an interactive user.</p>
+<h4>Rationale</h4>
+<p>If a local interactive users files are group-owned by a group of which the
+user is not a member, unintended users may be able to access them.</p>
+</div>
+
+<div id="accounts_users_home_files_ownership" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>All User Files and Directories In The Home Directory Must Have a Valid Owner</h3>
+<div>accounts_users_home_files_ownership</div>
+<h4>Description</h4>
+<p>Either remove all files and directories from the system that
+do not have a valid user, or assign a valid user to all unowned
+files and directories. To assign a valid owner to a local
+interactive user's files and directories, use the following command:
+<pre>$ sudo chown -R <i>USER</i> /home/<i>USER</i></pre>
+
+This rule ensures every file or directory under the home directory related
+to an interactive user is owned by an interactive user.</p>
+<h4>Rationale</h4>
+<p>If local interactive users do not own the files in their directories,
+unauthorized users may be able to access them. Additionally, if files are not
+owned by the user, this could be an indication of system compromise.</p>
+</div>
+
+<div id="accounts_users_home_files_permissions" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>All User Files and Directories In The Home Directory Must Have Mode 0750 Or Less Permissive</h3>
+<div>accounts_users_home_files_permissions</div>
+<h4>Description</h4>
+<p>Set the mode on files and directories in the local interactive user home
+directory with the following command:
+<pre>$ sudo chmod 0750 /home/<i>USER</i>/<i>FILE_DIR</i></pre>
+Files that begin with a "." are excluded from this requirement.</p>
+<h4>Rationale</h4>
+<p>If a local interactive user files have excessive permissions, unintended users
+may be able to access or modify them.</p>
+</div>
+
+
+
+
+</body>
+</html>

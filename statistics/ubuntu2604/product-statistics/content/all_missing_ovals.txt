@@ -1,0 +1,1 @@
+xccdf_org.ssgproject.content_rule_ufw_rules_for_open_ports

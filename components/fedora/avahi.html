@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'avahi'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'avahi'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>avahi</li>
+
+<li>avahi-autoipd</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<ul>
+
+<li>avahi</li>
+
+<li>avahi_configuration</li>
+
+</ul>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#avahi_check_ttl">avahi_check_ttl</a></li>
+
+<li><a href="#avahi_disable_publishing">avahi_disable_publishing</a></li>
+
+<li><a href="#avahi_ip_only">avahi_ip_only</a></li>
+
+<li><a href="#avahi_prevent_port_sharing">avahi_prevent_port_sharing</a></li>
+
+<li><a href="#avahi_restrict_published_information">avahi_restrict_published_information</a></li>
+
+<li><a href="#package_avahi-autoipd_removed">package_avahi-autoipd_removed</a></li>
+
+<li><a href="#package_avahi_removed">package_avahi_removed</a></li>
+
+<li><a href="#service_avahi-daemon_disabled">service_avahi-daemon_disabled</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="avahi_check_ttl" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Check Avahi Responses' TTL Field</h3>
+<div>avahi_check_ttl</div>
+<h4>Description</h4>
+<p>To make Avahi ignore packets unless the TTL field is 255, edit
+<tt>/etc/avahi/avahi-daemon.conf</tt> and ensure the following line
+appears in the <tt>[server]</tt> section:
+<pre>check-response-ttl=yes</pre></p>
+<h4>Rationale</h4>
+<p>This helps to ensure that only mDNS responses from the local network are
+processed, because the TTL field in a packet is decremented from its initial
+value of 255 whenever it is routed from one network to another. Although a
+properly-configured router or firewall should not allow mDNS packets into
+the local network at all, this option provides another check to ensure they
+are not permitted.</p>
+</div>
+
+<div id="avahi_disable_publishing" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable Avahi Publishing</h3>
+<div>avahi_disable_publishing</div>
+<h4>Description</h4>
+<p>To prevent Avahi from publishing its records, edit <tt>/etc/avahi/avahi-daemon.conf</tt>
+and ensure the following line appears in the <tt>[publish]</tt> section:
+<pre>disable-publishing=yes</pre></p>
+<h4>Rationale</h4>
+<p>This helps ensure that no record will be published by Avahi.</p>
+</div>
+
+<div id="avahi_ip_only" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Serve Avahi Only via Required Protocol</h3>
+<div>avahi_ip_only</div>
+<h4>Description</h4>
+<p>If you are using only IPv4, edit <tt>/etc/avahi/avahi-daemon.conf</tt> and ensure
+the following line exists in the <tt>[server]</tt> section:
+<pre>use-ipv6=no</pre>
+Similarly, if you are using only IPv6, disable IPv4 sockets with the line:
+<pre>use-ipv4=no</pre></p>
+<h4>Rationale</h4>
+<p></p>
+</div>
+
+<div id="avahi_prevent_port_sharing" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Prevent Other Programs from Using Avahi's Port</h3>
+<div>avahi_prevent_port_sharing</div>
+<h4>Description</h4>
+<p>To prevent other mDNS stacks from running, edit <tt>/etc/avahi/avahi-daemon.conf</tt>
+and ensure the following line appears in the <tt>[server]</tt> section:
+<pre>disallow-other-stacks=yes</pre></p>
+<h4>Rationale</h4>
+<p>This helps ensure that only Avahi is responsible for mDNS traffic coming from
+that port on the system.</p>
+</div>
+
+<div id="avahi_restrict_published_information" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Restrict Information Published by Avahi</h3>
+<div>avahi_restrict_published_information</div>
+<h4>Description</h4>
+<p>If it is necessary to publish some information to the network, it should not be joined
+by any extraneous information, or by information supplied by a non-trusted source
+on the system.
+Prevent user applications from using Avahi to publish services by adding or
+correcting the following line in the <tt>[publish]</tt> section:
+<pre>disable-user-service-publishing=yes</pre>
+Implement as many of the following lines as possible, to restrict the information
+published by Avahi.
+<pre>publish-addresses=no
+publish-hinfo=no
+publish-workstation=no
+publish-domain=no</pre>
+Inspect the files in the directory <tt>/etc/avahi/services/</tt>. Unless there
+is an operational need to publish information about each of these services,
+delete the corresponding file.</p>
+<h4>Rationale</h4>
+<p>These options prevent publishing attempts from succeeding,
+and can be applied even if publishing is disabled entirely via
+disable-publishing. Alternatively, these can be used to restrict
+the types of published information in the event that some information
+must be published.</p>
+</div>
+
+<div id="package_avahi-autoipd_removed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Uninstall avahi-autoipd Server Package</h3>
+<div>package_avahi-autoipd_removed</div>
+<h4>Description</h4>
+<p>If the system does not need to have an Avahi server which implements 
+the DNS Service Discovery and Multicast DNS protocols,
+the avahi-autoipd and avahi packages can be uninstalled.</p>
+<h4>Rationale</h4>
+<p>Automatic discovery of network services is not normally required for 
+system functionality. It is recommended to remove this package to reduce 
+the potential attack surface.</p>
+</div>
+
+<div id="package_avahi_removed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Uninstall avahi Server Package</h3>
+<div>package_avahi_removed</div>
+<h4>Description</h4>
+<p>If the system does not need to have an Avahi server which implements
+the DNS Service Discovery and Multicast DNS protocols,
+the avahi-autoipd and avahi packages can be uninstalled.</p>
+<h4>Rationale</h4>
+<p>Automatic discovery of network services is not normally required for
+system functionality. It is recommended to remove this package to reduce
+the potential attack surface.</p>
+</div>
+
+<div id="service_avahi-daemon_disabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable Avahi Server Software</h3>
+<div>service_avahi-daemon_disabled</div>
+<h4>Description</h4>
+<p>
+The <code>avahi-daemon</code> service can be disabled with the following command:
+<pre>$ sudo systemctl mask --now avahi-daemon.service</pre></p>
+<h4>Rationale</h4>
+<p>Because the Avahi daemon service keeps an open network
+port, it is subject to network attacks. Its functionality
+is convenient but is only appropriate if the local network
+can be trusted.</p>
+</div>
+
+
+
+
+</body>
+</html>
