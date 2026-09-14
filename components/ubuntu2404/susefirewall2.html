@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'susefirewall2'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'susefirewall2'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>susefirewall2</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<ul>
+
+<li>network-susefirewall2</li>
+
+</ul>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#package_SuSEfirewall2_installed">package_SuSEfirewall2_installed</a></li>
+
+<li><a href="#service_SuSEfirewall2_enabled">service_SuSEfirewall2_enabled</a></li>
+
+<li><a href="#susefirewall2_ddos_protection">susefirewall2_ddos_protection</a></li>
+
+<li><a href="#susefirewall2_only_required_services">susefirewall2_only_required_services</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="package_SuSEfirewall2_installed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Install SuSEfirewall2 Package</h3>
+<div>package_SuSEfirewall2_installed</div>
+<h4>Description</h4>
+<p>The <code>SuSEfirewall2</code> package can be installed with the following command:
+<pre>
+$ apt-get install SuSEfirewall2</pre></p>
+<h4>Rationale</h4>
+<p>The SuSEfirewall2 package should be installed to provide access control methods.</p>
+</div>
+
+<div id="service_SuSEfirewall2_enabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Enable the SuSEfirewall 2</h3>
+<div>service_SuSEfirewall2_enabled</div>
+<h4>Description</h4>
+<p>
+The <code>SuSEfirewall2</code> service can be enabled with the following command:
+<pre>$ sudo systemctl enable SuSEfirewall2.service</pre></p>
+<h4>Rationale</h4>
+<p>To prevent unauthorized connection of devices, unauthorized transfer of
+information, or unauthorized tunneling (i.e., embedding of data types
+within data types), organizations must disable or restrict unused or
+unnecessary physical and logical ports/protocols on information systems.
+
+SUSE operating systems are capable of providing a wide variety of functions
+and services. Some of the functions and services provided by default may
+not be necessary to support essential organizational operations.
+Additionally, it is sometimes convenient to provide multiple services from
+a single component (e.g., VPN and IPS); however, doing so increases risk
+over limiting the services provided by any one component.</p>
+</div>
+
+<div id="susefirewall2_ddos_protection" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Enable DoS Protections in SuSEfirewall2</h3>
+<div>susefirewall2_ddos_protection</div>
+<h4>Description</h4>
+<p>The <code>SuSEfirewall2</code> package can be installed with the following command:
+<pre>
+$ apt-get install SuSEfirewall2</pre>
+
+The <code>SuSEfirewall2</code> service can be enabled with the following command:
+<pre>$ sudo systemctl enable SuSEfirewall2.service</pre>
+
+Verify "SuSEfirewall2" is configured to protect the SUSE operating system
+against or limit the effects of DoS attacks. 
+
+Run the following command:
+
+<pre># grep -i fw_services_accept_ext /etc/sysconfig/SuSEfirewall2
+FW_SERVICES_ACCEPT_EXT="0/0,tcp,22,,hitcount=3,blockseconds=60,recentname=ssh"</pre>
+
+If the "FW_SERVICES_ACCEPT_EXT" rule does not contain both the
+<tt>hitcount</tt> and <tt>blockseconds</tt> parameters, this is a finding.</p>
+<h4>Rationale</h4>
+<p>DoS is a condition when a resource is not available for legitimate users.
+When this occurs, the organization either cannot accomplish its mission or
+must operate at degraded capacity.
+
+This requirement addresses the configuration of the SUSE operating system to
+mitigate the impact on system availability of DoS attacks that have occurred
+or are ongoing. For each system, known and potential DoS attacks must be
+identified and solutions for each type implemented. A variety of
+technologies exist to limit or, in some cases, eliminate the effects of
+DoS attacks (e.g., limiting processes or establishing memory partitions).
+Employing increased capacity and bandwidth, combined with service
+redundancy, may reduce the susceptibility to some DoS attacks.</p>
+</div>
+
+<div id="susefirewall2_only_required_services" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Only Allow Authorized Network Services in SuSEfirewall2</h3>
+<div>susefirewall2_only_required_services</div>
+<h4>Description</h4>
+<p>The <code>SuSEfirewall2</code> package can be installed with the following command:
+<pre>
+$ apt-get install SuSEfirewall2</pre>
+
+The <code>SuSEfirewall2</code> service can be enabled with the following command:
+<pre>$ sudo systemctl enable SuSEfirewall2.service</pre>
+
+Check the firewall configuration for any unnecessary or prohibited
+functions, ports, protocols, and/or services by running the following
+command:
+
+<pre># grep ^FW_ /etc/sysconfig/SuSEfirewall2
+FW_SERVICES_ACCEPT_EXT="0/0,tcp,22,,hitcount=3,blockseconds=60,recentname=ssh"</pre>
+
+Ask the System Administrator for the site or program PPSM Component Local
+Services Assessment (Component Local Services Assessment (CLSA). Verify the
+services allowed by the firewall match the PPSM CLSA. </p>
+<h4>Rationale</h4>
+<p>To prevent unauthorized connection of devices, unauthorized transfer of
+information, or unauthorized tunneling (i.e., embedding of data types
+within data types), organizations must disable or restrict unused or
+unnecessary physical and logical ports/protocols on information systems.
+
+SUSE operating systems are capable of providing a wide variety of functions
+and services. Some of the functions and services provided by default may not
+be necessary to support essential organizational operations. Additionally,
+it is sometimes convenient to provide multiple services from a single
+component (e.g., VPN and IPS); however, doing so increases risk over
+limiting the services provided by any one component.
+
+To support the requirements and principles of least functionality, the SUSE
+operating system must support the organizational requirements, providing
+only essential capabilities and limiting the use of ports, protocols,
+and/or services to only those required, authorized, and approved to conduct
+official business or address authorized quality-of-life issues.</p>
+</div>
+
+
+
+
+</body>
+</html>

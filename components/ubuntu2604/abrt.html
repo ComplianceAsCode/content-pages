@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'abrt'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'abrt'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>abrt</li>
+
+<li>abrt-addon-ccpp</li>
+
+<li>abrt-addon-kerneloops</li>
+
+<li>abrt-addon-python</li>
+
+<li>abrt-cli</li>
+
+<li>abrt-libs</li>
+
+<li>abrt-plugin-logger</li>
+
+<li>abrt-plugin-rhtsupport</li>
+
+<li>abrt-plugin-sosreport</li>
+
+<li>abrt-server-info-page</li>
+
+<li>python3-abrt-addon</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<div>None</div>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#package_abrt-addon-ccpp_removed">package_abrt-addon-ccpp_removed</a></li>
+
+<li><a href="#package_abrt-addon-kerneloops_removed">package_abrt-addon-kerneloops_removed</a></li>
+
+<li><a href="#package_abrt-addon-python_removed">package_abrt-addon-python_removed</a></li>
+
+<li><a href="#package_abrt-cli_removed">package_abrt-cli_removed</a></li>
+
+<li><a href="#package_abrt-libs_removed">package_abrt-libs_removed</a></li>
+
+<li><a href="#package_abrt-plugin-logger_removed">package_abrt-plugin-logger_removed</a></li>
+
+<li><a href="#package_abrt-plugin-rhtsupport_removed">package_abrt-plugin-rhtsupport_removed</a></li>
+
+<li><a href="#package_abrt-plugin-sosreport_removed">package_abrt-plugin-sosreport_removed</a></li>
+
+<li><a href="#package_abrt-server-info-page_removed">package_abrt-server-info-page_removed</a></li>
+
+<li><a href="#package_abrt_removed">package_abrt_removed</a></li>
+
+<li><a href="#package_python3-abrt-addon_removed">package_python3-abrt-addon_removed</a></li>
+
+<li><a href="#sebool_abrt_anon_write">sebool_abrt_anon_write</a></li>
+
+<li><a href="#sebool_abrt_handle_event">sebool_abrt_handle_event</a></li>
+
+<li><a href="#sebool_abrt_upload_watch_anon_write">sebool_abrt_upload_watch_anon_write</a></li>
+
+<li><a href="#service_abrtd_disabled">service_abrtd_disabled</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="package_abrt-addon-ccpp_removed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Uninstall abrt-addon-ccpp Package</h3>
+<div>package_abrt-addon-ccpp_removed</div>
+<h4>Description</h4>
+<p>The <code>abrt-addon-ccpp</code> package can be removed with the following command:
+<pre>
+$ apt-get remove abrt-addon-ccpp</pre></p>
+<h4>Rationale</h4>
+<p><tt>abrt-addon-ccpp</tt> contains hooks for C/C++ crashed programs and <tt>abrt</tt>'s
+C/C++ analyzer plugin.</p>
+</div>
+
+<div id="package_abrt-addon-kerneloops_removed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Uninstall abrt-addon-kerneloops Package</h3>
+<div>package_abrt-addon-kerneloops_removed</div>
+<h4>Description</h4>
+<p>The <code>abrt-addon-kerneloops</code> package can be removed with the following command:
+<pre>
+$ apt-get remove abrt-addon-kerneloops</pre></p>
+<h4>Rationale</h4>
+<p><tt>abrt-addon-kerneloops</tt> contains plugins for collecting kernel crash information and
+reporter plugin which sends this information to a specified server, usually to kerneloops.org.</p>
+</div>
+
+<div id="package_abrt-addon-python_removed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Uninstall abrt-addon-python Package</h3>
+<div>package_abrt-addon-python_removed</div>
+<h4>Description</h4>
+<p>The <code>abrt-addon-python</code> package can be removed with the following command:
+<pre>
+$ apt-get remove abrt-addon-python</pre></p>
+<h4>Rationale</h4>
+<p><tt>abrt-addon-python</tt> contains python hook and python analyzer
+plugin for handling uncaught exceptions in python programs.</p>
+</div>
+
+<div id="package_abrt-cli_removed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Uninstall abrt-cli Package</h3>
+<div>package_abrt-cli_removed</div>
+<h4>Description</h4>
+<p>The <code>abrt-cli</code> package can be removed with the following command:
+<pre>
+$ apt-get remove abrt-cli</pre></p>
+<h4>Rationale</h4>
+<p><tt>abrt-cli</tt> contains a command line client for controlling abrt daemon
+over sockets.</p>
+</div>
+
+<div id="package_abrt-libs_removed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Uninstall abrt-libs Package</h3>
+<div>package_abrt-libs_removed</div>
+<h4>Description</h4>
+<p>The <code>abrt-libs</code> package can be removed with the following command:
+<pre>
+$ apt-get remove abrt-libs</pre></p>
+<h4>Rationale</h4>
+<p><tt>abrt-libs</tt> provides libraries for the ABRT package.</p>
+</div>
+
+<div id="package_abrt-plugin-logger_removed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Uninstall abrt-plugin-logger Package</h3>
+<div>package_abrt-plugin-logger_removed</div>
+<h4>Description</h4>
+<p>The <code>abrt-plugin-logger</code> package can be removed with the following command:
+<pre>
+$ apt-get remove abrt-plugin-logger</pre></p>
+<h4>Rationale</h4>
+<p><tt>abrt-plugin-logger</tt> is an ABRT plugin which writes a report
+to a specified file.</p>
+</div>
+
+<div id="package_abrt-plugin-rhtsupport_removed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Uninstall abrt-plugin-rhtsupport Package</h3>
+<div>package_abrt-plugin-rhtsupport_removed</div>
+<h4>Description</h4>
+<p>The <code>abrt-plugin-rhtsupport</code> package can be removed with the following command:
+<pre>
+$ apt-get remove abrt-plugin-rhtsupport</pre></p>
+<h4>Rationale</h4>
+<p><tt>abrt-plugin-rhtsupport</tt> is a ABRT plugin to report bugs into the
+Red Hat Support system.</p>
+</div>
+
+<div id="package_abrt-plugin-sosreport_removed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Uninstall abrt-plugin-sosreport Package</h3>
+<div>package_abrt-plugin-sosreport_removed</div>
+<h4>Description</h4>
+<p>The <code>abrt-plugin-sosreport</code> package can be removed with the following command:
+<pre>
+$ apt-get remove abrt-plugin-sosreport</pre></p>
+<h4>Rationale</h4>
+<p><tt>abrt-plugin-sosreport</tt> provides a plugin to include an sosreport in an ABRT report.</p>
+</div>
+
+<div id="package_abrt-server-info-page_removed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Uninstall abrt-server-info-page Package</h3>
+<div>package_abrt-server-info-page_removed</div>
+<h4>Description</h4>
+<p>The <code>abrt-server-info-page</code> package can be removed with the following command:
+<pre>
+$ apt-get remove abrt-server-info-page</pre></p>
+<h4>Rationale</h4>
+<p><tt>abrt-server-info-page</tt> provides a web page with summary of ABRT services.</p>
+</div>
+
+<div id="package_abrt_removed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Uninstall Automatic Bug Reporting Tool (abrt)</h3>
+<div>package_abrt_removed</div>
+<h4>Description</h4>
+<p>The Automatic Bug Reporting Tool (<tt>abrt</tt>) collects
+and reports crash data when an application crash is detected. Using a variety
+of plugins, abrt can email crash reports to system administrators, log crash
+reports to files, or forward crash reports to a centralized issue tracking
+system such as RHTSupport.
+The <code>abrt</code> package can be removed with the following command:
+<pre>
+$ apt-get remove abrt</pre></p>
+<h4>Rationale</h4>
+<p>Mishandling crash data could expose sensitive information about
+vulnerabilities in software executing on the system, as well as sensitive
+information from within a process's address space or registers.</p>
+</div>
+
+<div id="package_python3-abrt-addon_removed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Uninstall python3-abrt-addon Package</h3>
+<div>package_python3-abrt-addon_removed</div>
+<h4>Description</h4>
+<p>The <code>python3-abrt-addon</code> package can be removed with the following command:
+<pre>
+$ apt-get remove python3-abrt-addon</pre></p>
+<h4>Rationale</h4>
+<p><tt>python3-abrt-addon</tt> contains python hook and python analyzer
+plugin for handling uncaught exceptions in python programs.</p>
+</div>
+
+<div id="sebool_abrt_anon_write" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable the abrt_anon_write SELinux Boolean</h3>
+<div>sebool_abrt_anon_write</div>
+<h4>Description</h4>
+<p>By default, the SELinux boolean <tt>abrt_anon_write</tt> is disabled.
+If this setting is enabled, it should be disabled.
+
+To disable the <code>abrt_anon_write</code> SELinux boolean, run the following command:
+<pre>$ sudo setsebool -P abrt_anon_write off</pre></p>
+<h4>Rationale</h4>
+<p></p>
+</div>
+
+<div id="sebool_abrt_handle_event" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable the abrt_handle_event SELinux Boolean</h3>
+<div>sebool_abrt_handle_event</div>
+<h4>Description</h4>
+<p>By default, the SELinux boolean <tt>abrt_handle_event</tt> is disabled.
+If this setting is enabled, it should be disabled.
+
+To disable the <code>abrt_handle_event</code> SELinux boolean, run the following command:
+<pre>$ sudo setsebool -P abrt_handle_event off</pre></p>
+<h4>Rationale</h4>
+<p></p>
+</div>
+
+<div id="sebool_abrt_upload_watch_anon_write" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable the abrt_upload_watch_anon_write SELinux Boolean</h3>
+<div>sebool_abrt_upload_watch_anon_write</div>
+<h4>Description</h4>
+<p>By default, the SELinux boolean <tt>abrt_upload_watch_anon_write</tt> is enabled.
+This setting should be disabled as it allows the Automatic Bug Report Tool (ABRT)
+to modify public files used for public file transfer services.
+
+To disable the <code>abrt_upload_watch_anon_write</code> SELinux boolean, run the following command:
+<pre>$ sudo setsebool -P abrt_upload_watch_anon_write off</pre></p>
+<h4>Rationale</h4>
+<p></p>
+</div>
+
+<div id="service_abrtd_disabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable Automatic Bug Reporting Tool (abrtd)</h3>
+<div>service_abrtd_disabled</div>
+<h4>Description</h4>
+<p>The Automatic Bug Reporting Tool (<tt>abrtd</tt>) daemon collects
+and reports crash data when an application crash is detected. Using a variety
+of plugins, abrtd can email crash reports to system administrators, log crash
+reports to files, or forward crash reports to a centralized issue tracking
+system such as RHTSupport.
+
+The <code>abrtd</code> service can be disabled with the following command:
+<pre>$ sudo systemctl mask --now abrtd.service</pre></p>
+<h4>Rationale</h4>
+<p>Mishandling crash data could expose sensitive information about
+vulnerabilities in software executing on the system, as well as sensitive
+information from within a process's address space or registers.</p>
+</div>
+
+
+
+
+</body>
+</html>

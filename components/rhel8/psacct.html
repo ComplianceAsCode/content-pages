@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'psacct'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'psacct'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>psacct</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<div>None</div>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#package_psacct_installed">package_psacct_installed</a></li>
+
+<li><a href="#service_psacct_enabled">service_psacct_enabled</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="package_psacct_installed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Install the psacct package</h3>
+<div>package_psacct_installed</div>
+<h4>Description</h4>
+<p>The process accounting service, <tt>psacct</tt>, works with programs
+including <tt>acct</tt> and <tt>ac</tt> to allow system administrators to view
+user activity, such as commands issued by users of the system.
+The <code>psacct</code> package can be installed with the following command:
+<pre>
+$ sudo yum install psacct</pre></p>
+<h4>Rationale</h4>
+<p>The <tt>psacct</tt> service can provide administrators a convenient
+view into some user activities. However, it should be noted that the auditing
+system and its audit records provide more authoritative and comprehensive
+records.</p>
+</div>
+
+<div id="service_psacct_enabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Enable Process Accounting (psacct)</h3>
+<div>service_psacct_enabled</div>
+<h4>Description</h4>
+<p>The process accounting service, <tt>psacct</tt>, works with programs
+including <tt>acct</tt> and <tt>ac</tt> to allow system administrators to view
+user activity, such as commands issued by users of the system.
+
+The <code>psacct</code> service can be enabled with the following command:
+<pre>$ sudo systemctl enable psacct.service</pre></p>
+<h4>Rationale</h4>
+<p>The <tt>psacct</tt> service can provide administrators a convenient
+view into some user activities. However, it should be noted that the auditing
+system and its audit records provide more authoritative and comprehensive
+records.</p>
+</div>
+
+
+
+
+</body>
+</html>
