@@ -1,0 +1,2 @@
+xccdf_org.ssgproject.content_rule_ensure_redhat_gpgkey_installed
+xccdf_org.ssgproject.content_rule_security_patches_up_to_date
