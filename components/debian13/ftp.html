@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'ftp'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'ftp'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>ftp</li>
+
+<li>tnftp</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<div>None</div>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#package_ftp_removed">package_ftp_removed</a></li>
+
+<li><a href="#package_tnftp_removed">package_tnftp_removed</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="package_ftp_removed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Remove ftp Package</h3>
+<div>package_ftp_removed</div>
+<h4>Description</h4>
+<p>FTP (File Transfer Protocol) is a traditional and widely used standard tool for
+transferring files between a server and clients over a network, especially where no
+authentication is necessary (permits anonymous users to connect to a server).
+<br/>
+The <code>ftp</code> package can be removed with the following command:
+<pre>
+$ apt-get remove ftp</pre></p>
+<h4>Rationale</h4>
+<p>FTP does not protect the confidentiality of data or authentication credentials. It
+is recommended SFTP be used if file transfer is required. Unless there is a need
+to run the system as a FTP server (for example, to allow anonymous downloads), it is
+recommended that the package be removed to reduce the potential attack surface.</p>
+</div>
+
+<div id="package_tnftp_removed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Remove tnftp Package</h3>
+<div>package_tnftp_removed</div>
+<h4>Description</h4>
+<p>tnftp an enhanced FTP client, is the user interface to the Internet standard File
+Transfer Protocol. The program allows a user to transfer files to and from a remote
+network site.
+The <code>ftp</code> package can be removed with the following command:
+<pre>
+$ apt-get remove ftp</pre></p>
+<h4>Rationale</h4>
+<p>Unless there is a need to run the system using Internet standard File Transfer Protocol
+(for example, to allow anonymous downloads), it is recommended that the package be
+removed to reduce the potential attack surface.</p>
+</div>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'at'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'at'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>at</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<div>None</div>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#file_at_deny_not_exist">file_at_deny_not_exist</a></li>
+
+<li><a href="#service_atd_disabled">service_atd_disabled</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="file_at_deny_not_exist" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure that /etc/at.deny does not exist</h3>
+<div>file_at_deny_not_exist</div>
+<h4>Description</h4>
+<p>The file <tt>/etc/at.deny</tt> should not exist.
+Use <tt>/etc/at.allow</tt> instead.</p>
+<h4>Rationale</h4>
+<p>Access to <tt>at</tt> should be restricted.
+It is easier to manage an allow list than a deny list.</p>
+</div>
+
+<div id="service_atd_disabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable At Service (atd)</h3>
+<div>service_atd_disabled</div>
+<h4>Description</h4>
+<p>The <tt>at</tt> and <tt>batch</tt> commands can be used to
+schedule tasks that are meant to be executed only once. This allows delayed
+execution in a manner similar to cron, except that it is not
+recurring. The daemon <tt>atd</tt> keeps track of tasks scheduled via
+<tt>at</tt> and <tt>batch</tt>, and executes them at the specified time.
+
+The <code>atd</code> service can be disabled with the following command:
+<pre>$ sudo systemctl mask --now atd.service</pre></p>
+<h4>Rationale</h4>
+<p>The <tt>atd</tt> service could be used by an unsophisticated insider to carry
+out activities outside of a normal login session, which could complicate
+accountability. Furthermore, the need to schedule tasks with <tt>at</tt> or
+<tt>batch</tt> is not common.</p>
+</div>
+
+
+
+
+</body>
+</html>

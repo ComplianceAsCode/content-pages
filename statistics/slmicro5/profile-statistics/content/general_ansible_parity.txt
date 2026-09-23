@@ -1,0 +1,2 @@
+xccdf_org.ssgproject.content_rule_auditd_data_retention_max_log_file
+xccdf_org.ssgproject.content_rule_file_permissions_unauthorized_world_writable

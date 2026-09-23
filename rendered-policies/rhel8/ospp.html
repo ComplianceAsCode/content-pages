@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Definition of Protection Profile for General Purpose Operating Systems for rhel8</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Definition of Protection Profile for General Purpose Operating Systems for rhel8</h1>
+
+
+
+based on <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=469&id=469">https://www.niap-ccevs.org/Profile/Info.cfm?PPID=469&id=469</a>
+
+
+<div class="all_controls">
+<div class="one_control">
+  <h2>AGD_OPE.1: Operational User Guidance</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/system-tools/package_openscap-scanner_installed/rule.yml"> package_openscap-scanner_installed</a>: Install openscap-scanner Package
+      <ul><li>CCE-82220-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/system-tools/package_scap-security-guide_installed/rule.yml"> package_scap-security-guide_installed</a>: Install scap-security-guide Package
+      <ul><li>CCE-82949-9</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>AGD_PRE.1: Preparative Procedures</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/system-tools/package_openscap-scanner_installed/rule.yml"> package_openscap-scanner_installed</a>: Install openscap-scanner Package
+      <ul><li>CCE-82220-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/system-tools/package_scap-security-guide_installed/rule.yml"> package_scap-security-guide_installed</a>: Install scap-security-guide Package
+      <ul><li>CCE-82949-9</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>FAU_GEN.1: Audit Data Generation (Refined)</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/policy_rules/audit_basic_configuration/rule.yml"> audit_basic_configuration</a>: Configure basic parameters of Audit system
+      <ul><li>CCE-82827-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/configure_auditd_data_retention/auditd_data_retention_flush/rule.yml"> auditd_data_retention_flush</a>: Configure auditd flush priority
+      <ul><li>CCE-80680-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/configure_auditd_data_retention/auditd_freq/rule.yml"> auditd_freq</a>: Set number of records to cause an explicit flush to audit logs
+      <ul><li>CCE-82258-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/grub2_audit_argument/rule.yml"> grub2_audit_argument</a>: Enable Auditing for Processes Which Start Prior to the Audit Daemon
+      <ul><li>CCE-80825-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/package_audit_installed/rule.yml"> package_audit_installed</a>: Ensure the audit Subsystem is Installed
+      <ul><li>CCE-81043-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/service_auditd_enabled/rule.yml"> service_auditd_enabled</a>: Enable auditd Service
+      <ul><li>CCE-80872-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_disable_root_login/rule.yml"> sshd_disable_root_login</a>: Disable SSH Root Login
+      <ul><li>CCE-80901-2</li></ul>
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/configure_auditd_data_retention/var_auditd_flush.var">var_auditd_flush</a> = incremental_async</li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/bootloader-zipl/zipl_audit_argument/rule.yml"> zipl_audit_argument</a>: Enable Auditing to Start Prior to the Audit Daemon in zIPL
+      <ul><li>CCE-83321-0</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>FAU_GEN.1.1: Audit Data Generation - Event Types to be Audited</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/policy_rules/audit_access_failed/rule.yml"> audit_access_failed</a>: Configure auditing of unsuccessful file accesses
+      <ul><li>CCE-82833-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/policy_rules/audit_access_failed_aarch64/rule.yml"> audit_access_failed_aarch64</a>: Configure auditing of unsuccessful file accesses (AArch64)
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/policy_rules/audit_access_failed_ppc64le/rule.yml"> audit_access_failed_ppc64le</a>: Configure auditing of unsuccessful file accesses (ppc64le)
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/policy_rules/audit_access_success/rule.yml"> audit_access_success</a>: Configure auditing of successful file accesses
+      <ul><li>CCE-82834-3</li></ul>
+    </li>
+    
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/policy_rules/audit_access_success_aarch64/rule.yml"> audit_access_success_aarch64</a>: Configure auditing of successful file accesses (AArch64)
+    </li>
+    
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/policy_rules/audit_access_success_ppc64le/rule.yml"> audit_access_success_ppc64le</a>: Configure auditing of successful file accesses (ppc64le)
+    </li>
+    
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/policy_rules/audit_create_failed/rule.yml"> audit_create_failed</a>: Configure auditing of unsuccessful file creations
+      <ul><li>CCE-82374-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/policy_rules/audit_create_failed_aarch64/rule.yml"> audit_create_failed_aarch64</a>: Configure auditing of unsuccessful file creations (AArch64)
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/policy_rules/audit_create_failed_ppc64le/rule.yml"> audit_create_failed_ppc64le</a>: Configure auditing of unsuccessful file creations (ppc64le)
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/policy_rules/audit_create_success/rule.yml"> audit_create_success</a>: Configure auditing of successful file creations
+      <ul><li>CCE-82829-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/policy_rules/audit_create_success_aarch64/rule.yml"> audit_create_success_aarch64</a>: Configure auditing of successful file creations (AArch64)
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/policy_rules/audit_create_success_ppc64le/rule.yml"> audit_create_success_ppc64le</a>: Configure auditing of successful file creations (ppc64le)
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/policy_rules/audit_delete_failed/rule.yml"> audit_delete_failed</a>: Configure auditing of unsuccessful file deletions
+      <ul><li>CCE-82835-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/policy_rules/audit_delete_failed_aarch64/rule.yml"> audit_delete_failed_aarch64</a>: Configure auditing of unsuccessful file deletions (AArch64)
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/policy_rules/audit_delete_failed_ppc64le/rule.yml"> audit_delete_failed_ppc64le</a>: Configure auditing of unsuccessful file deletions (ppc64le)
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/policy_rules/audit_delete_success/rule.yml"> audit_delete_success</a>: Configure auditing of successful file deletions
+      <ul><li>CCE-82836-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/policy_rules/audit_delete_success_aarch64/rule.yml"> audit_delete_success_aarch64</a>: Configure auditing of successful file deletions (AArch64)
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/policy_rules/audit_delete_success_ppc64le/rule.yml"> audit_delete_success_ppc64le</a>: Configure auditing of successful file deletions (ppc64le)
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/policy_rules/audit_modify_failed/rule.yml"> audit_modify_failed</a>: Configure auditing of unsuccessful file modifications
+      <ul><li>CCE-82830-1</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/policy_rules/audit_modify_failed_aarch64/rule.yml"> audit_modify_failed_aarch64</a>: Configure auditing of unsuccessful file modifications (AARch64)
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/policy_rules/audit_modify_failed_ppc64le/rule.yml"> audit_modify_failed_ppc64le</a>: Configure auditing of unsuccessful file modifications (ppc64le)
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/policy_rules/audit_modify_success/rule.yml"> audit_modify_success</a>: Configure auditing of successful file modifications
+      <ul><li>CCE-82832-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/policy_rules/audit_modify_success_aarch64/rule.yml"> audit_modify_success_aarch64</a>: Configure auditing of successful file modifications (AArch64)
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/policy_rules/audit_modify_success_ppc64le/rule.yml"> audit_modify_success_ppc64le</a>: Configure auditing of successful file modifications (ppc64le)
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/policy_rules/audit_module_load/rule.yml"> audit_module_load</a>: Configure auditing of loading and unloading of kernel modules
+      <ul><li>CCE-82838-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/policy_rules/audit_module_load_ppc64le/rule.yml"> audit_module_load_ppc64le</a>: Configure auditing of loading and unloading of kernel modules (ppc64le)
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/policy_rules/audit_ospp_general/rule.yml"> audit_ospp_general</a>: Perform general configuration of Audit for OSPP
+      <ul><li>CCE-82373-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/policy_rules/audit_ospp_general_aarch64/rule.yml"> audit_ospp_general_aarch64</a>: Perform general configuration of Audit for OSPP (AArch64)
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/policy_rules/audit_ospp_general_ppc64le/rule.yml"> audit_ospp_general_ppc64le</a>: Perform general configuration of Audit for OSPP (ppc64le)
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/policy_rules/audit_owner_change_failed/rule.yml"> audit_owner_change_failed</a>: Configure auditing of unsuccessful ownership changes
+      <ul><li>CCE-82384-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/policy_rules/audit_owner_change_failed_aarch64/rule.yml"> audit_owner_change_failed_aarch64</a>: Configure auditing of unsuccessful ownership changes (AArch64)
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/policy_rules/audit_owner_change_failed_ppc64le/rule.yml"> audit_owner_change_failed_ppc64le</a>: Configure auditing of unsuccessful ownership changes (ppc64le)
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/policy_rules/audit_owner_change_success/rule.yml"> audit_owner_change_success</a>: Configure auditing of successful ownership changes
+      <ul><li>CCE-82385-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/policy_rules/audit_owner_change_success_aarch64/rule.yml"> audit_owner_change_success_aarch64</a>: Configure auditing of successful ownership changes (AArch64)
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/policy_rules/audit_owner_change_success_ppc64le/rule.yml"> audit_owner_change_success_ppc64le</a>: Configure auditing of successful ownership changes (ppc64le)
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/policy_rules/audit_perm_change_failed/rule.yml"> audit_perm_change_failed</a>: Configure auditing of unsuccessful permission changes
+      <ul><li>CCE-82837-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/policy_rules/audit_perm_change_failed_aarch64/rule.yml"> audit_perm_change_failed_aarch64</a>: Configure auditing of unsuccessful permission changes (AArch64)
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/policy_rules/audit_perm_change_failed_ppc64le/rule.yml"> audit_perm_change_failed_ppc64le</a>: Configure auditing of unsuccessful permission changes (ppc64le)
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/policy_rules/audit_perm_change_success/rule.yml"> audit_perm_change_success</a>: Configure auditing of successful permission changes
+      <ul><li>CCE-82383-1</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/policy_rules/audit_perm_change_success_aarch64/rule.yml"> audit_perm_change_success_aarch64</a>: Configure auditing of successful permission changes (AArch64)
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/policy_rules/audit_perm_change_success_ppc64le/rule.yml"> audit_perm_change_success_ppc64le</a>: Configure auditing of successful permission changes (ppc64le)
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>FAU_GEN.1.2: Audit Data Generation - Audit Event Format</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/policy_rules/audit_immutable_login_uids/rule.yml"> audit_immutable_login_uids</a>: Configure immutable Audit login UIDs
+      <ul><li>CCE-82828-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/configure_auditd_data_retention/auditd_log_format/rule.yml"> auditd_log_format</a>: Resolve information before writing to audit logs
+      <ul><li>CCE-82201-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/configure_auditd_data_retention/auditd_name_format/rule.yml"> auditd_name_format</a>: Set type of computer node name logging in audit logs
+      <ul><li>CCE-82897-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-physical/disable_ctrlaltdel_burstaction/rule.yml"> disable_ctrlaltdel_burstaction</a>: Disable Ctrl-Alt-Del Burst Action
+      <ul><li>CCE-80784-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-physical/disable_ctrlaltdel_reboot/rule.yml"> disable_ctrlaltdel_reboot</a>: Disable Ctrl-Alt-Del Reboot Activation
+      <ul><li>CCE-80785-9</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>FAU_STG.1: Protected audit trail storage</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/grub2_audit_backlog_limit_argument/rule.yml"> grub2_audit_backlog_limit_argument</a>: Extend Audit Backlog Limit for the Audit Daemon
+      <ul><li>CCE-80943-4</li></ul>
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/var_audit_backlog_limit.var">var_audit_backlog_limit</a> = 8192</li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/bootloader-zipl/zipl_audit_backlog_limit_argument/rule.yml"> zipl_audit_backlog_limit_argument</a>: Extend Audit Backlog Limit for the Audit Daemon in zIPL
+      <ul><li>CCE-83341-8</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>FCS_CKM.1: Cryptographic Key Generation</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/crypto/configure_crypto_policy/rule.yml"> configure_crypto_policy</a>: Configure System Cryptography Policy
+      <ul><li>CCE-80935-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/crypto/configure_openssl_crypto_policy/rule.yml"> configure_openssl_crypto_policy</a>: Configure OpenSSL library to use System Crypto Policy
+      <ul><li>CCE-80938-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/fips/enable_fips_mode/rule.yml"> enable_fips_mode</a>: Enable FIPS Mode
+      <ul><li>CCE-80942-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/crypto/package_crypto-policies_installed/rule.yml"> package_crypto-policies_installed</a>: Install crypto-policies package
+      <ul><li>CCE-82723-8</li></ul>
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/crypto/var_system_crypto_policy.var">var_system_crypto_policy</a> = fips_ospp</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>FCS_CKM.1.1: Cryptographic Key Generation - asymmetric cryptographic</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/crypto/configure_crypto_policy/rule.yml"> configure_crypto_policy</a>: Configure System Cryptography Policy
+      <ul><li>CCE-80935-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/crypto/configure_openssl_crypto_policy/rule.yml"> configure_openssl_crypto_policy</a>: Configure OpenSSL library to use System Crypto Policy
+      <ul><li>CCE-80938-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/fips/enable_fips_mode/rule.yml"> enable_fips_mode</a>: Enable FIPS Mode
+      <ul><li>CCE-80942-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/crypto/package_crypto-policies_installed/rule.yml"> package_crypto-policies_installed</a>: Install crypto-policies package
+      <ul><li>CCE-82723-8</li></ul>
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/crypto/var_system_crypto_policy.var">var_system_crypto_policy</a> = fips_ospp</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>FCS_CKM.2: Cryptographic Key Establishment</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/crypto/configure_crypto_policy/rule.yml"> configure_crypto_policy</a>: Configure System Cryptography Policy
+      <ul><li>CCE-80935-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/crypto/configure_openssl_crypto_policy/rule.yml"> configure_openssl_crypto_policy</a>: Configure OpenSSL library to use System Crypto Policy
+      <ul><li>CCE-80938-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/fips/enable_fips_mode/rule.yml"> enable_fips_mode</a>: Enable FIPS Mode
+      <ul><li>CCE-80942-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/crypto/package_crypto-policies_installed/rule.yml"> package_crypto-policies_installed</a>: Install crypto-policies package
+      <ul><li>CCE-82723-8</li></ul>
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/crypto/var_system_crypto_policy.var">var_system_crypto_policy</a> = fips_ospp</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>FCS_COP.1/ENCRYPT: Cryptographic Operation - Encryption/Decryption</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/crypto/configure_crypto_policy/rule.yml"> configure_crypto_policy</a>: Configure System Cryptography Policy
+      <ul><li>CCE-80935-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/crypto/configure_openssl_crypto_policy/rule.yml"> configure_openssl_crypto_policy</a>: Configure OpenSSL library to use System Crypto Policy
+      <ul><li>CCE-80938-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/fips/enable_fips_mode/rule.yml"> enable_fips_mode</a>: Enable FIPS Mode
+      <ul><li>CCE-80942-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/crypto/package_crypto-policies_installed/rule.yml"> package_crypto-policies_installed</a>: Install crypto-policies package
+      <ul><li>CCE-82723-8</li></ul>
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/crypto/var_system_crypto_policy.var">var_system_crypto_policy</a> = fips_ospp</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>FCS_COP.1/HASH: Cryptographic Operation - Hashing</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/crypto/configure_crypto_policy/rule.yml"> configure_crypto_policy</a>: Configure System Cryptography Policy
+      <ul><li>CCE-80935-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/crypto/configure_openssl_crypto_policy/rule.yml"> configure_openssl_crypto_policy</a>: Configure OpenSSL library to use System Crypto Policy
+      <ul><li>CCE-80938-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/fips/enable_fips_mode/rule.yml"> enable_fips_mode</a>: Enable FIPS Mode
+      <ul><li>CCE-80942-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/crypto/package_crypto-policies_installed/rule.yml"> package_crypto-policies_installed</a>: Install crypto-policies package
+      <ul><li>CCE-82723-8</li></ul>
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/crypto/var_system_crypto_policy.var">var_system_crypto_policy</a> = fips_ospp</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>FCS_COP.1/SIGN: Cryptographic Operation - Signing</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/crypto/configure_crypto_policy/rule.yml"> configure_crypto_policy</a>: Configure System Cryptography Policy
+      <ul><li>CCE-80935-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/crypto/configure_openssl_crypto_policy/rule.yml"> configure_openssl_crypto_policy</a>: Configure OpenSSL library to use System Crypto Policy
+      <ul><li>CCE-80938-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/fips/enable_fips_mode/rule.yml"> enable_fips_mode</a>: Enable FIPS Mode
+      <ul><li>CCE-80942-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/crypto/package_crypto-policies_installed/rule.yml"> package_crypto-policies_installed</a>: Install crypto-policies package
+      <ul><li>CCE-82723-8</li></ul>
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/crypto/var_system_crypto_policy.var">var_system_crypto_policy</a> = fips_ospp</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>FCS_COP.1/KEYHMAC: Keyed-Hash Message Authentication</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/crypto/configure_crypto_policy/rule.yml"> configure_crypto_policy</a>: Configure System Cryptography Policy
+      <ul><li>CCE-80935-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/crypto/configure_openssl_crypto_policy/rule.yml"> configure_openssl_crypto_policy</a>: Configure OpenSSL library to use System Crypto Policy
+      <ul><li>CCE-80938-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/fips/enable_fips_mode/rule.yml"> enable_fips_mode</a>: Enable FIPS Mode
+      <ul><li>CCE-80942-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/crypto/package_crypto-policies_installed/rule.yml"> package_crypto-policies_installed</a>: Install crypto-policies package
+      <ul><li>CCE-82723-8</li></ul>
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/crypto/var_system_crypto_policy.var">var_system_crypto_policy</a> = fips_ospp</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>FCS_RBG_EXT.1: Random Bit Generation</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/fips/enable_dracut_fips_module/rule.yml"> enable_dracut_fips_module</a>: Enable Dracut FIPS Module
+      <ul><li>CCE-82155-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/fips/enable_fips_mode/rule.yml"> enable_fips_mode</a>: Enable FIPS Mode
+      <ul><li>CCE-80942-6</li></ul>
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/crypto/var_system_crypto_policy.var">var_system_crypto_policy</a> = fips_ospp</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>FCS_RBG_EXT.1.1: Random Bit Generation - deterministic random bit generation</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/fips/enable_dracut_fips_module/rule.yml"> enable_dracut_fips_module</a>: Enable Dracut FIPS Module
+      <ul><li>CCE-82155-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/fips/enable_fips_mode/rule.yml"> enable_fips_mode</a>: Enable FIPS Mode
+      <ul><li>CCE-80942-6</li></ul>
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/crypto/var_system_crypto_policy.var">var_system_crypto_policy</a> = fips_ospp</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>FCS_RBG_EXT.1.2: Random Bit Generation - entropy source</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/fips/enable_dracut_fips_module/rule.yml"> enable_dracut_fips_module</a>: Enable Dracut FIPS Module
+      <ul><li>CCE-82155-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/fips/enable_fips_mode/rule.yml"> enable_fips_mode</a>: Enable FIPS Mode
+      <ul><li>CCE-80942-6</li></ul>
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/crypto/var_system_crypto_policy.var">var_system_crypto_policy</a> = fips_ospp</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>FCS_SSHC_EXT.1: SSH Client Protocol</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/crypto/configure_ssh_crypto_policy/rule.yml"> configure_ssh_crypto_policy</a>: Configure SSH to use System Crypto Policy
+      <ul><li>CCE-80939-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/package_openssh-clients_installed/rule.yml"> package_openssh-clients_installed</a>: Install OpenSSH client software
+      <ul><li>CCE-82722-0</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>FCS_SSHS_EXT.1: SSH Server Protocol</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/crypto/configure_ssh_crypto_policy/rule.yml"> configure_ssh_crypto_policy</a>: Configure SSH to use System Crypto Policy
+      <ul><li>CCE-80939-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/package_openssh-server_installed/rule.yml"> package_openssh-server_installed</a>: Install the OpenSSH Server Package
+      <ul><li>CCE-83303-8</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>FCS_SSH_EXT.1: SSH Protocol</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/crypto/configure_ssh_crypto_policy/rule.yml"> configure_ssh_crypto_policy</a>: Configure SSH to use System Crypto Policy
+      <ul><li>CCE-80939-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/package_openssh-clients_installed/rule.yml"> package_openssh-clients_installed</a>: Install OpenSSH client software
+      <ul><li>CCE-82722-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/package_openssh-server_installed/rule.yml"> package_openssh-server_installed</a>: Install the OpenSSH Server Package
+      <ul><li>CCE-83303-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_use_directory_configuration/rule.yml"> sshd_use_directory_configuration</a>: Distribute the SSH Server configuration to multiple files in a config directory.
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>FCS_SSH_EXT.1.2: SSH Protocol - Authentication Methods</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_disable_gssapi_auth/rule.yml"> sshd_disable_gssapi_auth</a>: Disable GSSAPI Authentication
+      <ul><li>CCE-80897-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_disable_kerb_auth/rule.yml"> sshd_disable_kerb_auth</a>: Disable Kerberos Authentication
+      <ul><li>CCE-80898-0</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>FCS_SSH_EXT.1.8: SSH Protocol - Session</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_client/ssh_client_rekey_limit/rule.yml"> ssh_client_rekey_limit</a>: Configure session renegotiation for SSH client
+      <ul><li>CCE-82880-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_rekey_limit/rule.yml"> sshd_rekey_limit</a>: Force frequent session key renegotiation
+      <ul><li>CCE-82177-7</li></ul>
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/var_rekey_limit_size.var">var_rekey_limit_size</a> = 1G</li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/var_rekey_limit_time.var">var_rekey_limit_time</a> = 1hour</li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/crypto/var_ssh_client_rekey_limit_size.var">var_ssh_client_rekey_limit_size</a> = 1G</li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/crypto/var_ssh_client_rekey_limit_time.var">var_ssh_client_rekey_limit_time</a> = 1hour</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>FCS_TLSC_EXT.1: TLS Client Protocol</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/crypto/configure_crypto_policy/rule.yml"> configure_crypto_policy</a>: Configure System Cryptography Policy
+      <ul><li>CCE-80935-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/crypto/configure_openssl_crypto_policy/rule.yml"> configure_openssl_crypto_policy</a>: Configure OpenSSL library to use System Crypto Policy
+      <ul><li>CCE-80938-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/fips/enable_fips_mode/rule.yml"> enable_fips_mode</a>: Enable FIPS Mode
+      <ul><li>CCE-80942-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/crypto/package_crypto-policies_installed/rule.yml"> package_crypto-policies_installed</a>: Install crypto-policies package
+      <ul><li>CCE-82723-8</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>FCS_TLSC_EXT.1.1: Allowed Cipher Suites</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/crypto/configure_crypto_policy/rule.yml"> configure_crypto_policy</a>: Configure System Cryptography Policy
+      <ul><li>CCE-80935-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/crypto/configure_openssl_crypto_policy/rule.yml"> configure_openssl_crypto_policy</a>: Configure OpenSSL library to use System Crypto Policy
+      <ul><li>CCE-80938-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/fips/enable_fips_mode/rule.yml"> enable_fips_mode</a>: Enable FIPS Mode
+      <ul><li>CCE-80942-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/integrity/crypto/package_crypto-policies_installed/rule.yml"> package_crypto-policies_installed</a>: Install crypto-policies package
+      <ul><li>CCE-82723-8</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>FIA_AFL.1: Authentication failure handling</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_faillock_deny/rule.yml"> accounts_passwords_pam_faillock_deny</a>: Lock Accounts After Failed Password Attempts
+      <ul><li>CCE-80667-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_faillock_interval/rule.yml"> accounts_passwords_pam_faillock_interval</a>: Set Interval For Counting Failed Password Attempts
+      <ul><li>CCE-80669-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/accounts_passwords_pam_faillock_unlock_time/rule.yml"> accounts_passwords_pam_faillock_unlock_time</a>: Set Lockout Time for Failed Password Attempts
+      <ul><li>CCE-80670-3</li></ul>
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/var_accounts_passwords_pam_faillock_deny.var">var_accounts_passwords_pam_faillock_deny</a> = 3</li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/var_accounts_passwords_pam_faillock_fail_interval.var">var_accounts_passwords_pam_faillock_fail_interval</a> = 900</li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/locking_out_password_attempts/var_accounts_passwords_pam_faillock_unlock_time.var">var_accounts_passwords_pam_faillock_unlock_time</a> = never</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>FIA_UAU.1: Timing of authentication</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/disable_host_auth/rule.yml"> disable_host_auth</a>: Disable Host-Based Authentication
+      <ul><li>CCE-80786-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/bootloader-grub2/grub2_disable_recovery/rule.yml"> grub2_disable_recovery</a>: Disable Recovery Booting
+      <ul><li>CCE-86006-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/bootloader-grub2/non-uefi/grub2_password/rule.yml"> grub2_password</a>: Set Boot Loader Password in grub2
+      <ul><li>CCE-80828-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/bootloader-grub2/grub2_systemd_debug-shell_argument_absent/rule.yml"> grub2_systemd_debug-shell_argument_absent</a>: Ensure debug-shell service is not enabled during boot
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/password_storage/no_empty_passwords/rule.yml"> no_empty_passwords</a>: Prevent Login to Accounts With Empty Password
+      <ul><li>CCE-80841-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-physical/require_singleuser_auth/rule.yml"> require_singleuser_auth</a>: Require Authentication for Single User Mode
+      <ul><li>CCE-80855-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-physical/service_debug-shell_disabled/rule.yml"> service_debug-shell_disabled</a>: Disable debug-shell SystemD Service
+      <ul><li>CCE-80876-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_disable_empty_passwords/rule.yml"> sshd_disable_empty_passwords</a>: Disable SSH Access via Empty Passwords
+      <ul><li>CCE-80896-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/bootloader-zipl/zipl_systemd_debug-shell_argument_absent/rule.yml"> zipl_systemd_debug-shell_argument_absent</a>: Ensure debug-shell service is not enabled in zIPL
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>FIA_UAU.5: Multiple Authentication Mechanisms</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/package_openssh-clients_installed/rule.yml"> package_openssh-clients_installed</a>: Install OpenSSH client software
+      <ul><li>CCE-82722-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/package_openssh-server_installed/rule.yml"> package_openssh-server_installed</a>: Install the OpenSSH Server Package
+      <ul><li>CCE-83303-8</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>FIA_X509_EXT.1: X.509 Certificate Validation</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/system-tools/package_gnutls-utils_installed/rule.yml"> package_gnutls-utils_installed</a>: Ensure gnutls-utils is installed
+      <ul><li>CCE-82395-5</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>FIA_X509_EXT.1.1: X.509 Certificate Validation - Valid Certificates</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/system-tools/package_gnutls-utils_installed/rule.yml"> package_gnutls-utils_installed</a>: Ensure gnutls-utils is installed
+      <ul><li>CCE-82395-5</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>FIA_X509_EXT.2: X.509 Certificate Validation - basicConstraints</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/system-tools/package_gnutls-utils_installed/rule.yml"> package_gnutls-utils_installed</a>: Ensure gnutls-utils is installed
+      <ul><li>CCE-82395-5</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>FMT_MOF_EXT.1: Management of security functions behavior</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-physical/logind_session_timeout/rule.yml"> logind_session_timeout</a>: Configure Logind to terminate idle sessions after certain time of inactivity
+      <ul><li>CCE-90784-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/sudo/package_sudo_installed/rule.yml"> package_sudo_installed</a>: Install sudo Package
+      <ul><li>CCE-82214-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/selinux_policytype/rule.yml"> selinux_policytype</a>: Configure SELinux Policy
+      <ul><li>CCE-80868-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/selinux_state/rule.yml"> selinux_state</a>: Ensure SELinux State is Enforcing
+      <ul><li>CCE-80869-1</li></ul>
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-physical/var_logind_session_timeout.var">var_logind_session_timeout</a> = 30_minutes</li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/var_selinux_policy_name.var">var_selinux_policy_name</a> = targeted</li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/var_selinux_state.var">var_selinux_state</a> = enforcing</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>FMT_SMF_EXT.1: Specification of Management Functions</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_dcredit/rule.yml"> accounts_password_pam_dcredit</a>: Ensure PAM Enforces Password Requirements - Minimum Digit Characters
+      <ul><li>CCE-80653-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_lcredit/rule.yml"> accounts_password_pam_lcredit</a>: Ensure PAM Enforces Password Requirements - Minimum Lowercase Characters
+      <ul><li>CCE-80655-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_minlen/rule.yml"> accounts_password_pam_minlen</a>: Ensure PAM Enforces Password Requirements - Minimum Length
+      <ul><li>CCE-80656-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_ocredit/rule.yml"> accounts_password_pam_ocredit</a>: Ensure PAM Enforces Password Requirements - Minimum Special Characters
+      <ul><li>CCE-80663-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/accounts_password_pam_ucredit/rule.yml"> accounts_password_pam_ucredit</a>: Ensure PAM Enforces Password Requirements - Minimum Uppercase Characters
+      <ul><li>CCE-80665-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ntp/chronyd_client_only/rule.yml"> chronyd_client_only</a>: Disable chrony daemon from acting as server
+      <ul><li>CCE-82988-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/usbguard/configure_usbguard_auditbackend/rule.yml"> configure_usbguard_auditbackend</a>: Log USBGuard daemon audit events using Linux Audit
+      <ul><li>CCE-82168-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/updating/dnf-automatic_apply_updates/rule.yml"> dnf-automatic_apply_updates</a>: Configure dnf-automatic to Install Available Updates Automatically
+      <ul><li>CCE-82494-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-wireless/wireless_software/kernel_module_bluetooth_disabled/rule.yml"> kernel_module_bluetooth_disabled</a>: Disable Bluetooth Kernel Module
+      <ul><li>CCE-80832-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-uncommon/kernel_module_can_disabled/rule.yml"> kernel_module_can_disabled</a>: Disable CAN Support
+      <ul><li>CCE-82059-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-uncommon/kernel_module_sctp_disabled/rule.yml"> kernel_module_sctp_disabled</a>: Disable SCTP Support
+      <ul><li>CCE-80834-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-uncommon/kernel_module_tipc_disabled/rule.yml"> kernel_module_tipc_disabled</a>: Disable TIPC Support
+      <ul><li>CCE-82297-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-physical/logind_session_timeout/rule.yml"> logind_session_timeout</a>: Configure Logind to terminate idle sessions after certain time of inactivity
+      <ul><li>CCE-90784-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/partitions/mount_option_var_log_audit_nodev/rule.yml"> mount_option_var_log_audit_nodev</a>: Add nodev Option to /var/log/audit
+      <ul><li>CCE-82080-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/partitions/mount_option_var_log_audit_noexec/rule.yml"> mount_option_var_log_audit_noexec</a>: Add noexec Option to /var/log/audit
+      <ul><li>CCE-82975-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/partitions/mount_option_var_log_audit_nosuid/rule.yml"> mount_option_var_log_audit_nosuid</a>: Add nosuid Option to /var/log/audit
+      <ul><li>CCE-82921-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ntp/package_chrony_installed/rule.yml"> package_chrony_installed</a>: The Chrony package is installed
+      <ul><li>CCE-82874-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/fapolicyd/package_fapolicyd_installed/rule.yml"> package_fapolicyd_installed</a>: Install fapolicyd Package
+      <ul><li>CCE-82191-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-firewalld/firewalld_activation/package_firewalld_installed/rule.yml"> package_firewalld_installed</a>: Install firewalld Package
+      <ul><li>CCE-82998-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/usbguard/package_usbguard_installed/rule.yml"> package_usbguard_installed</a>: Install usbguard Package
+      <ul><li>CCE-82959-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/disk_partitioning/partition_for_var_log_audit/rule.yml"> partition_for_var_log_audit</a>: Ensure /var/log/audit Located On Separate Partition
+      <ul><li>CCE-80854-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/fapolicyd/service_fapolicyd_enabled/rule.yml"> service_fapolicyd_enabled</a>: Enable the File Access Policy Service
+      <ul><li>CCE-82249-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/network/network-firewalld/firewalld_activation/service_firewalld_enabled/rule.yml"> service_firewalld_enabled</a>: Verify firewalld Enabled
+      <ul><li>CCE-80877-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/restrictions/coredumps/service_systemd-coredump_disabled/rule.yml"> service_systemd-coredump_disabled</a>: Disable acquiring, saving, and processing core dumps
+      <ul><li>CCE-82881-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/usbguard/service_usbguard_enabled/rule.yml"> service_usbguard_enabled</a>: Enable the USBGuard Service
+      <ul><li>CCE-82853-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/restrictions/sysctl_kernel_core_pattern_empty_string/rule.yml"> sysctl_kernel_core_pattern_empty_string</a>: Disable storing core dumps
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/restrictions/sysctl_kernel_core_uses_pid/rule.yml"> sysctl_kernel_core_uses_pid</a>: Configure file name of core dumps
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/restrictions/sysctl_kernel_dmesg_restrict/rule.yml"> sysctl_kernel_dmesg_restrict</a>: Restrict Access to Kernel Message Buffer
+      <ul><li>CCE-80913-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/restrictions/sysctl_kernel_kexec_load_disabled/rule.yml"> sysctl_kernel_kexec_load_disabled</a>: Disable Kernel Image Loading
+      <ul><li>CCE-80952-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/restrictions/enable_execshield_settings/sysctl_kernel_kptr_restrict/rule.yml"> sysctl_kernel_kptr_restrict</a>: Restrict Exposed Kernel Pointer Addresses Access
+      <ul><li>CCE-80915-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/restrictions/sysctl_kernel_perf_event_paranoid/rule.yml"> sysctl_kernel_perf_event_paranoid</a>: Disallow kernel profiling by unprivileged users
+      <ul><li>CCE-81054-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/restrictions/sysctl_kernel_unprivileged_bpf_disabled_accept_default/rule.yml"> sysctl_kernel_unprivileged_bpf_disabled_accept_default</a>: Disable Access to Network bpf() Syscall From Unprivileged Processes
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/restrictions/sysctl_kernel_unprivileged_bpf_disabled_value.var">sysctl_kernel_unprivileged_bpf_disabled_value</a> = 2</li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/restrictions/sysctl_kernel_yama_ptrace_scope/rule.yml"> sysctl_kernel_yama_ptrace_scope</a>: Restrict usage of ptrace to descendant processes
+      <ul><li>CCE-80953-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/restrictions/sysctl_user_max_user_namespaces/rule.yml"> sysctl_user_max_user_namespaces</a>: Disable the use of user namespaces
+      <ul><li>CCE-82211-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/updating/timer_dnf-automatic_enabled/rule.yml"> timer_dnf-automatic_enabled</a>: Enable dnf-automatic Timer
+      <ul><li>CCE-82360-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/usbguard/usbguard_allow_hid_and_hub/rule.yml"> usbguard_allow_hid_and_hub</a>: Authorize Human Interface Devices and USB hubs in USBGuard daemon
+      <ul><li>CCE-82368-2</li></ul>
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-physical/var_logind_session_timeout.var">var_logind_session_timeout</a> = 30_minutes</li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/var_password_pam_dcredit.var">var_password_pam_dcredit</a> = 1</li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/var_password_pam_lcredit.var">var_password_pam_lcredit</a> = 1</li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/var_password_pam_minlen.var">var_password_pam_minlen</a> = 12</li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/var_password_pam_ocredit.var">var_password_pam_ocredit</a> = 1</li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-pam/password_quality/password_quality_pwquality/var_password_pam_ucredit.var">var_password_pam_ucredit</a> = 1</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>FMT_SMF_EXT.1.1: Management of security functions behavior - Restrict Administrator Functions</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-physical/logind_session_timeout/rule.yml"> logind_session_timeout</a>: Configure Logind to terminate idle sessions after certain time of inactivity
+      <ul><li>CCE-90784-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/base/service_kdump_disabled/rule.yml"> service_kdump_disabled</a>: Disable KDump Kernel Crash Analyzer (kdump)
+      <ul><li>CCE-80878-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/root_logins/use_pam_wheel_for_su/rule.yml"> use_pam_wheel_for_su</a>: Enforce usage of pam_wheel for su authentication
+      <ul><li>CCE-83318-6</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>FPT_ASLR_EXT.1: Address Space Layout Randomization</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/bootloader-grub2/grub2_vsyscall_argument/rule.yml"> grub2_vsyscall_argument</a>: Disable vsyscalls
+      <ul><li>CCE-80946-7</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>FPT_TUD_EXT.1: Trusted Update</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/updating/ensure_gpgcheck_globally_activated/rule.yml"> ensure_gpgcheck_globally_activated</a>: Ensure gpgcheck Enabled In Main yum Configuration
+      <ul><li>CCE-80790-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/updating/ensure_gpgcheck_local_packages/rule.yml"> ensure_gpgcheck_local_packages</a>: Ensure gpgcheck Enabled for Local Packages
+      <ul><li>CCE-80791-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/updating/ensure_gpgcheck_never_disabled/rule.yml"> ensure_gpgcheck_never_disabled</a>: Ensure gpgcheck Enabled for All yum Package Repositories
+      <ul><li>CCE-80792-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/updating/ensure_redhat_gpgkey_installed/rule.yml"> ensure_redhat_gpgkey_installed</a>: Ensure Red Hat GPG Key Installed
+      <ul><li>CCE-80795-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/updating/package_dnf-automatic_installed/rule.yml"> package_dnf-automatic_installed</a>: Install dnf-automatic Package
+      <ul><li>CCE-82985-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/system-tools/package_dnf-plugin-subscription-manager_installed/rule.yml"> package_dnf-plugin-subscription-manager_installed</a>: Install dnf-plugin-subscription-manager Package
+      <ul><li>CCE-82315-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/system-tools/package_sequoia-sq_installed/rule.yml"> package_sequoia-sq_installed</a>: Install sequoia-sq Package
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/system-tools/package_subscription-manager_installed/rule.yml"> package_subscription-manager_installed</a>: Install subscription-manager Package
+      <ul><li>CCE-82316-1</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>FPT_TUD_EXT.2: Trusted Update for Application Software</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/updating/ensure_gpgcheck_globally_activated/rule.yml"> ensure_gpgcheck_globally_activated</a>: Ensure gpgcheck Enabled In Main yum Configuration
+      <ul><li>CCE-80790-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/updating/ensure_gpgcheck_local_packages/rule.yml"> ensure_gpgcheck_local_packages</a>: Ensure gpgcheck Enabled for Local Packages
+      <ul><li>CCE-80791-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/updating/ensure_gpgcheck_never_disabled/rule.yml"> ensure_gpgcheck_never_disabled</a>: Ensure gpgcheck Enabled for All yum Package Repositories
+      <ul><li>CCE-80792-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/updating/ensure_redhat_gpgkey_installed/rule.yml"> ensure_redhat_gpgkey_installed</a>: Ensure Red Hat GPG Key Installed
+      <ul><li>CCE-80795-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/updating/package_dnf-automatic_installed/rule.yml"> package_dnf-automatic_installed</a>: Install dnf-automatic Package
+      <ul><li>CCE-82985-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/system-tools/package_dnf-plugin-subscription-manager_installed/rule.yml"> package_dnf-plugin-subscription-manager_installed</a>: Install dnf-plugin-subscription-manager Package
+      <ul><li>CCE-82315-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/system-tools/package_sequoia-sq_installed/rule.yml"> package_sequoia-sq_installed</a>: Install sequoia-sq Package
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/software/system-tools/package_subscription-manager_installed/rule.yml"> package_subscription-manager_installed</a>: Install subscription-manager Package
+      <ul><li>CCE-82316-1</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>FPT_TST_EXT.1: Boot Integrity</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/bootloader-zipl/zipl_bls_entries_only/rule.yml"> zipl_bls_entries_only</a>: Ensure all zIPL boot entries are BLS compliant
+      <ul><li>CCE-83485-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/bootloader-zipl/zipl_bootmap_is_up_to_date/rule.yml"> zipl_bootmap_is_up_to_date</a>: Ensure zIPL bootmap is up to date
+      <ul><li>CCE-83486-1</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>FTA_SSL.1: TSF-initiated session locking</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-physical/logind_session_timeout/rule.yml"> logind_session_timeout</a>: Configure Logind to terminate idle sessions after certain time of inactivity
+      <ul><li>CCE-90784-0</li></ul>
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-physical/var_logind_session_timeout.var">var_logind_session_timeout</a> = 30_minutes</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>FTA_TAB.1: Default TOE access banners</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_enable_warning_banner/rule.yml"> sshd_enable_warning_banner</a>: Enable SSH Warning Banner
+      <ul><li>CCE-80905-3</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>FTP_ITC_EXT.1: Trusted channel communication</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/package_openssh-clients_installed/rule.yml"> package_openssh-clients_installed</a>: Install OpenSSH client software
+      <ul><li>CCE-82722-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/package_openssh-server_installed/rule.yml"> package_openssh-server_installed</a>: Install the OpenSSH Server Package
+      <ul><li>CCE-83303-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_disable_gssapi_auth/rule.yml"> sshd_disable_gssapi_auth</a>: Disable GSSAPI Authentication
+      <ul><li>CCE-80897-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_disable_kerb_auth/rule.yml"> sshd_disable_kerb_auth</a>: Disable Kerberos Authentication
+      <ul><li>CCE-80898-0</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>FTP_ITC_EXT.1.1: Trusted channel communication - TLS</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/package_openssh-clients_installed/rule.yml"> package_openssh-clients_installed</a>: Install OpenSSH client software
+      <ul><li>CCE-82722-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/package_openssh-server_installed/rule.yml"> package_openssh-server_installed</a>: Install the OpenSSH Server Package
+      <ul><li>CCE-83303-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_disable_gssapi_auth/rule.yml"> sshd_disable_gssapi_auth</a>: Disable GSSAPI Authentication
+      <ul><li>CCE-80897-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_disable_kerb_auth/rule.yml"> sshd_disable_kerb_auth</a>: Disable Kerberos Authentication
+      <ul><li>CCE-80898-0</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>AVA_VAN.1: Vulnerability Assessment</h2>
+  <p>Description: None</p>
+  Levels: 
+  <ul><li>base</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/bootloader-grub2/grub2_init_on_alloc_argument/rule.yml"> grub2_init_on_alloc_argument</a>: Configure kernel to zero out memory before allocation
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/bootloader-grub2/grub2_page_alloc_shuffle_argument/rule.yml"> grub2_page_alloc_shuffle_argument</a>: Enable randomization of the page allocator
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/bootloader-zipl/zipl_init_on_alloc_argument/rule.yml"> zipl_init_on_alloc_argument</a>: Configure kernel to zero out memory before allocation in zIPL
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/bootloader-zipl/zipl_page_alloc_shuffle_argument/rule.yml"> zipl_page_alloc_shuffle_argument</a>: Enable randomization of the page allocator in zIPL
+    </li>
+  </ul>
+  
+</div>  
+</div>  
+
+
+</body>
+</html>

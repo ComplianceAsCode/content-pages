@@ -1,0 +1,2 @@
+xccdf_org.ssgproject.content_rule_installed_OS_is_vendor_supported
+xccdf_org.ssgproject.content_rule_ufw_rules_for_open_ports

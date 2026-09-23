@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'postfix'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'postfix'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>postfix</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<ul>
+
+<li>postfix_client</li>
+
+<li>postfix_configure_ssl_certs</li>
+
+<li>postfix_harden_os</li>
+
+<li>postfix_install_ssl_cert</li>
+
+<li>postfix_server_cfg</li>
+
+<li>postfix_server_dos</li>
+
+<li>postfix_server_mail_smtpd_recipient_restrictions</li>
+
+<li>postfix_server_mail_smtpd_relay_restrictions</li>
+
+<li>postfix_server_relay</li>
+
+<li>postfix_server_relay_require_tls</li>
+
+<li>postfix_server_relay_set_trusted</li>
+
+<li>postfix_server_relay_smtp_auth_for_untrusted</li>
+
+</ul>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#package_postfix_installed">package_postfix_installed</a></li>
+
+<li><a href="#postfix_client_configure_mail_alias">postfix_client_configure_mail_alias</a></li>
+
+<li><a href="#postfix_client_configure_mail_alias_postmaster">postfix_client_configure_mail_alias_postmaster</a></li>
+
+<li><a href="#postfix_client_configure_relayhost">postfix_client_configure_relayhost</a></li>
+
+<li><a href="#postfix_network_listening_disabled">postfix_network_listening_disabled</a></li>
+
+<li><a href="#postfix_prevent_unrestricted_relay">postfix_prevent_unrestricted_relay</a></li>
+
+<li><a href="#postfix_server_banner">postfix_server_banner</a></li>
+
+<li><a href="#service_postfix_enabled">service_postfix_enabled</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="package_postfix_installed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>The Postfix package is installed</h3>
+<div>package_postfix_installed</div>
+<h4>Description</h4>
+<p>A mail server is required for sending emails.
+The <code>postfix</code> package can be installed with the following command:
+<pre>
+$ sudo dnf install postfix</pre></p>
+<h4>Rationale</h4>
+<p>Emails can be used to notify designated personnel about important
+system events such as failures or warnings.</p>
+</div>
+
+<div id="postfix_client_configure_mail_alias" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure System to Forward All Mail For The Root Account</h3>
+<div>postfix_client_configure_mail_alias</div>
+<h4>Description</h4>
+<p>Make sure that mails delivered to root user are forwarded to a monitored
+email address. Make sure that the address
+<tt>$var_postfix_root_mail_alias</tt> is a valid email address
+reachable from the system in question. Use the following command to
+configure the alias:
+<pre>$ sudo echo "root: <tt>$var_postfix_root_mail_alias</tt>" &gt;&gt; /etc/aliases
+$ sudo newaliases</pre></p>
+<h4>Rationale</h4>
+<p>A number of system services utilize email messages sent to the root user to
+notify system administrators of active or impending issues.  These messages must
+be forwarded to at least one monitored email address.</p>
+</div>
+
+<div id="postfix_client_configure_mail_alias_postmaster" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure System to Forward All Mail From Postmaster to The Root Account</h3>
+<div>postfix_client_configure_mail_alias_postmaster</div>
+<h4>Description</h4>
+<p>Verify the administrators are notified in the event of an audit processing failure.
+Check that the "/etc/aliases" file has a defined value for "root".
+<pre>$ sudo grep "postmaster:\s*root$" /etc/aliases
+
+postmaster: root</pre></p>
+<h4>Rationale</h4>
+<p>It is critical for the appropriate personnel to be aware if a system is at risk of failing to
+process audit logs as required. Without this notification, the security personnel may be
+unaware of an impending failure of the audit capability, and system operation may be adversely
+affected.
+
+Audit processing failures include software/hardware errors, failures in the audit capturing
+mechanisms, and audit storage capacity being reached or exceeded.</p>
+</div>
+
+<div id="postfix_client_configure_relayhost" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure System to Forward All Mail through a specific host</h3>
+<div>postfix_client_configure_relayhost</div>
+<h4>Description</h4>
+<p>Set up a relay host that will act as a gateway for all outbound email.
+Edit the file <tt>/etc/postfix/main.cf</tt> to ensure that only the following
+<tt>relayhost</tt> line appears:
+<pre>relayhost = <tt>$var_postfix_relayhost</tt></pre></p>
+<h4>Rationale</h4>
+<p>A central outbound email location ensures messages sent from any network host
+can be audited for potential unexpected content.  Tooling on the central server
+may help prevent spam or viruses from being delivered.</p>
+</div>
+
+<div id="postfix_network_listening_disabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable Postfix Network Listening</h3>
+<div>postfix_network_listening_disabled</div>
+<h4>Description</h4>
+<p>Edit the file <tt>/etc/postfix/main.cf</tt> to ensure that only the following
+<tt>inet_interfaces</tt> line appears:
+<pre>inet_interfaces = <tt>$var_postfix_inet_interfaces</tt></pre></p>
+<h4>Rationale</h4>
+<p>This ensures <tt>postfix</tt> accepts mail messages
+(such as cron job reports) from the local system only,
+and not from the network, which protects it from network attack.</p>
+</div>
+
+<div id="postfix_prevent_unrestricted_relay" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Prevent Unrestricted Mail Relaying</h3>
+<div>postfix_prevent_unrestricted_relay</div>
+<h4>Description</h4>
+<p>Modify the <pre>/etc/postfix/main.cf</pre> file to restrict client connections
+to the local network with the following command:
+<pre>$ sudo postconf -e 'smtpd_client_restrictions = permit_mynetworks,reject'</pre></p>
+<h4>Rationale</h4>
+<p>If unrestricted mail relaying is permitted, unauthorized senders could use this
+host as a mail relay for the purpose of sending spam or other unauthorized
+activity.</p>
+</div>
+
+<div id="postfix_server_banner" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure SMTP Greeting Banner</h3>
+<div>postfix_server_banner</div>
+<h4>Description</h4>
+<p>Edit <tt>/etc/postfix/main.cf</tt>, and add or correct the
+following line, substituting some other wording for the banner information if
+you prefer:
+<pre>smtpd_banner = $myhostname ESMTP</pre></p>
+<h4>Rationale</h4>
+<p>The default greeting banner discloses that the listening mail
+process is Postfix.  When remote mail senders connect to the MTA on port 25,
+they are greeted by an initial banner as part of the SMTP dialogue. This banner
+is necessary, but it frequently gives away too much information, including the
+MTA software which is in use, and sometimes also its version number. Remote
+mail senders do not need this information in order to send mail, so the banner
+should be changed to reveal only the hostname (which is already known and may
+be useful) and the word ESMTP, to indicate that the modern SMTP protocol
+variant is supported.</p>
+</div>
+
+<div id="service_postfix_enabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Enable Postfix Service</h3>
+<div>service_postfix_enabled</div>
+<h4>Description</h4>
+<p>The Postfix mail transfer agent is used for local mail delivery
+within the system. The default configuration only listens for connections to
+the default SMTP port (port 25) on the loopback interface (127.0.0.1).  It is
+recommended to leave this service enabled for local mail delivery.
+
+The <code>postfix</code> service can be enabled with the following command:
+<pre>$ sudo systemctl enable postfix.service</pre></p>
+<h4>Rationale</h4>
+<p>Local mail delivery is essential to some system maintenance and
+notification tasks.</p>
+</div>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,1 @@
+xccdf_org.ssgproject.content_rule_file_permissions_unauthorized_world_writable

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'certmonger'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'certmonger'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>certmonger</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<div>None</div>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#service_certmonger_disabled">service_certmonger_disabled</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="service_certmonger_disabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable Certmonger Service (certmonger)</h3>
+<div>service_certmonger_disabled</div>
+<h4>Description</h4>
+<p>Certmonger is a D-Bus based service that attempts to simplify interaction
+with certifying authorities on networks which use public-key infrastructure. It is often
+combined with Red Hat's IPA (Identity Policy Audit) security information management
+solution to aid in the management of certificates.
+
+The <code>certmonger</code> service can be disabled with the following command:
+<pre>$ sudo systemctl mask --now certmonger.service</pre></p>
+<h4>Rationale</h4>
+<p>The services provided by certmonger may be essential for systems
+fulfilling some roles a PKI infrastructure, but its functionality is not necessary
+for many other use cases.</p>
+</div>
+
+
+
+
+</body>
+</html>

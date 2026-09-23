@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'sendmail'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'sendmail'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>sendmail</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<div>None</div>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#package_sendmail_removed">package_sendmail_removed</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="package_sendmail_removed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Uninstall Sendmail Package</h3>
+<div>package_sendmail_removed</div>
+<h4>Description</h4>
+<p>Sendmail is not the default mail transfer agent and is
+not installed by default.
+The <code>sendmail</code> package can be removed with the following command:
+<pre>
+$ sudo dnf remove sendmail</pre></p>
+<h4>Rationale</h4>
+<p>The sendmail software was not developed with security in mind and
+its design prevents it from being effectively contained by SELinux.  Postfix
+should be used instead.</p>
+</div>
+
+
+
+
+</body>
+</html>
