@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'telnet'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'telnet'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>telnet</li>
+
+<li>telnet-server</li>
+
+<li>telnetd</li>
+
+<li>telnetd-ssl</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<ul>
+
+<li>telnet</li>
+
+</ul>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#package_inetutils-telnet_removed">package_inetutils-telnet_removed</a></li>
+
+<li><a href="#package_telnet-server_removed">package_telnet-server_removed</a></li>
+
+<li><a href="#package_telnet_removed">package_telnet_removed</a></li>
+
+<li><a href="#package_telnetd-ssl_removed">package_telnetd-ssl_removed</a></li>
+
+<li><a href="#package_telnetd_removed">package_telnetd_removed</a></li>
+
+<li><a href="#service_telnet_disabled">service_telnet_disabled</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="package_inetutils-telnet_removed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Remove telnet Clients</h3>
+<div>package_inetutils-telnet_removed</div>
+<h4>Description</h4>
+<p>The telnet client allows users to start connections to other systems via
+the telnet protocol.</p>
+<h4>Rationale</h4>
+<p>The <tt>telnet</tt> protocol is insecure and unencrypted. The use
+of an unencrypted transmission medium could allow an unauthorized user
+to steal credentials. The <tt>ssh</tt> package provides an
+encrypted session and stronger security and is included in Debian 13.</p>
+</div>
+
+<div id="package_telnet-server_removed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Uninstall telnet-server Package</h3>
+<div>package_telnet-server_removed</div>
+<h4>Description</h4>
+<p>The <code>telnet-server</code> package can be removed with the following command:
+<pre>
+$ apt-get remove telnet-server</pre></p>
+<h4>Rationale</h4>
+<p>It is detrimental for operating systems to provide, or install by default,
+functionality exceeding requirements or mission objectives. These
+unnecessary capabilities are often overlooked and therefore may remain
+insecure. They increase the risk to the platform by providing additional
+attack vectors.
+<br />
+The telnet service provides an unencrypted remote access service which does
+not provide for the confidentiality and integrity of user passwords or the
+remote session. If a privileged user were to login using this service, the
+privileged user password could be compromised.
+<br />
+Removing the <tt>telnet-server</tt> package decreases the risk of the
+telnet service's accidental (or intentional) activation.</p>
+</div>
+
+<div id="package_telnet_removed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Remove telnet Clients</h3>
+<div>package_telnet_removed</div>
+<h4>Description</h4>
+<p>The telnet client allows users to start connections to other systems via
+the telnet protocol.</p>
+<h4>Rationale</h4>
+<p>The <tt>telnet</tt> protocol is insecure and unencrypted. The use
+of an unencrypted transmission medium could allow an unauthorized user
+to steal credentials. The <tt>ssh</tt> package provides an
+encrypted session and stronger security and is included in Debian 13.</p>
+</div>
+
+<div id="package_telnetd-ssl_removed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Uninstall the ssl compliant telnet server</h3>
+<div>package_telnetd-ssl_removed</div>
+<h4>Description</h4>
+<p>The <tt>telnet</tt> daemon, even with ssl support, should be uninstalled.</p>
+<h4>Rationale</h4>
+<p><tt>telnet</tt>, even with ssl support, should not be installed.
+When remote shell is required, up-to-date ssh daemon can be used.</p>
+</div>
+
+<div id="package_telnetd_removed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Uninstall the telnet server</h3>
+<div>package_telnetd_removed</div>
+<h4>Description</h4>
+<p>The telnet daemon should be uninstalled.</p>
+<h4>Rationale</h4>
+<p><tt>telnet</tt> allows clear text communications, and does not protect
+any data transmission between client and server. Any confidential data
+can be listened and no integrity checking is made.'</p>
+</div>
+
+<div id="service_telnet_disabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable telnet Service</h3>
+<div>service_telnet_disabled</div>
+<h4>Description</h4>
+<p>Make sure that the activation of the <tt>telnet</tt> service on system boot is disabled.
+
+The <code>telnet</code> socket can be disabled with the following command:
+<pre>$ sudo systemctl mask --now telnet.socket</pre></p>
+<h4>Rationale</h4>
+<p>The telnet protocol uses unencrypted network communication, which means that data from the
+login session, including passwords and all other information transmitted during the session,
+can be stolen by eavesdroppers on the network. The telnet protocol is also subject to
+man-in-the-middle attacks.</p>
+</div>
+
+
+
+
+</body>
+</html>

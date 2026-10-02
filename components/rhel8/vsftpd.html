@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'vsftpd'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'vsftpd'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>vsftpd</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<ul>
+
+<li>disabling_vsftpd</li>
+
+<li>ftp_configure_vsftpd</li>
+
+<li>ftp_restrict_users</li>
+
+<li>ftp_use_vsftpd</li>
+
+</ul>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#ftp_configure_firewall">ftp_configure_firewall</a></li>
+
+<li><a href="#ftp_disable_uploads">ftp_disable_uploads</a></li>
+
+<li><a href="#ftp_home_partition">ftp_home_partition</a></li>
+
+<li><a href="#ftp_limit_users">ftp_limit_users</a></li>
+
+<li><a href="#ftp_log_transactions">ftp_log_transactions</a></li>
+
+<li><a href="#ftp_present_banner">ftp_present_banner</a></li>
+
+<li><a href="#ftp_restrict_to_anon">ftp_restrict_to_anon</a></li>
+
+<li><a href="#package_vsftpd_installed">package_vsftpd_installed</a></li>
+
+<li><a href="#package_vsftpd_removed">package_vsftpd_removed</a></li>
+
+<li><a href="#service_vsftpd_disabled">service_vsftpd_disabled</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="ftp_configure_firewall" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure Firewalls to Protect the FTP Server</h3>
+<div>ftp_configure_firewall</div>
+<h4>Description</h4>
+<p>By default, <tt>iptables</tt>
+blocks access to the ports used by the web server.
+
+To configure <tt>iptables</tt> to allow port 21 traffic, one must edit
+<tt>/etc/sysconfig/iptables</tt> and
+<tt>/etc/sysconfig/ip6tables</tt> (if IPv6 is in use).
+Add the following line, ensuring that it appears before the final LOG and DROP lines for the INPUT chain:
+<pre>-A INPUT -m state --state NEW -p tcp --dport 21 -j ACCEPT</pre>
+Edit the file <tt>/etc/sysconfig/iptables-config</tt>. Ensure that the space-separated list of modules contains
+the FTP connection tracking module:
+<pre>IPTABLES_MODULES="ip_conntrack_ftp"</pre></p>
+<h4>Rationale</h4>
+<p>These settings configure the firewall to allow connections to an FTP server.</p>
+</div>
+
+<div id="ftp_disable_uploads" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable FTP Uploads if Possible</h3>
+<div>ftp_disable_uploads</div>
+<h4>Description</h4>
+<p>Is there a mission-critical reason for users to upload files via FTP? If not,
+edit the vsftpd configuration file to add or correct the following configuration options:
+<pre>write_enable=NO</pre>
+If FTP uploads are necessary, follow the guidance in the remainder of this section to secure these transactions
+as much as possible.</p>
+<h4>Rationale</h4>
+<p>Anonymous FTP can be a convenient way to make files available for universal download. However, it is less
+common to have a need to allow unauthenticated users to place files on the FTP server. If this must be done, it
+is necessary to ensure that files cannot be uploaded and downloaded from the same directory.</p>
+</div>
+
+<div id="ftp_home_partition" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Place the FTP Home Directory on its Own Partition</h3>
+<div>ftp_home_partition</div>
+<h4>Description</h4>
+<p>By default, the anonymous FTP root is the home directory of the FTP user account. The df command can
+be used to verify that this directory is on its own partition.</p>
+<h4>Rationale</h4>
+<p>If there is a mission-critical reason for anonymous users to upload files, precautions must be taken to prevent
+these users from filling a disk used by other services.</p>
+</div>
+
+<div id="ftp_limit_users" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Limit Users Allowed FTP Access if Necessary</h3>
+<div>ftp_limit_users</div>
+<h4>Description</h4>
+<p>If there is a mission-critical reason for users to access their accounts via the insecure FTP protocol, limit the set of users who are allowed this access. Edit the vsftpd configuration file. Add or correct the following configuration options:
+<pre>userlist_enable=YES
+userlist_file=/etc/vsftp.ftpusers
+userlist_deny=NO</pre>
+Edit the file <tt>/etc/vsftp.ftpusers</tt>. For each user USERNAME who should be allowed to access the system via FTP, add a line containing that user's name:
+<pre>USERNAME</pre>
+If anonymous access is also required, add the anonymous usernames to <tt>/etc/vsftp.ftpusers</tt> as well.
+<pre>anonymous
+ftp</pre></p>
+<h4>Rationale</h4>
+<p>Historically, the file <tt>/etc/ftpusers</tt> contained a list of users who were not allowed to access the system via FTP. It was used to prevent system users such as the root user from logging in via the insecure FTP protocol. However, when the configuration option <tt>userlist deny=NO</tt> is set, vsftpd interprets ftpusers as the set of users who are allowed to login via FTP. Since it should be possible for most users to access their accounts via secure protocols, it is recommended that this setting be used, so that non-anonymous FTP access can be limited to legacy users who have been explicitly identified.</p>
+</div>
+
+<div id="ftp_log_transactions" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Enable Logging of All FTP Transactions</h3>
+<div>ftp_log_transactions</div>
+<h4>Description</h4>
+<p>Add or correct the following configuration options within the <tt>vsftpd</tt>
+configuration file, located at <tt>/etc/vsftpd/vsftpd.conf</tt>:
+<pre>xferlog_enable=YES
+xferlog_std_format=NO
+log_ftp_protocol=YES</pre></p>
+<h4>Rationale</h4>
+<p>To trace malicious activity facilitated by the FTP service, it must be configured to ensure that all commands sent to
+the FTP server are logged using the verbose vsftpd log
+format. The default vsftpd log file is <tt>/var/log/vsftpd.log</tt>.</p>
+</div>
+
+<div id="ftp_present_banner" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Create Warning Banners for All FTP Users</h3>
+<div>ftp_present_banner</div>
+<h4>Description</h4>
+<p>
+Edit the vsftpd configuration file, which resides at <tt>/etc/vsftpd/vsftpd.conf</tt>
+
+by default. Add or correct the following configuration options:
+<pre>banner_file=/etc/issue</pre></p>
+<h4>Rationale</h4>
+<p>This setting will cause the system greeting banner to be used for FTP connections as well.</p>
+</div>
+
+<div id="ftp_restrict_to_anon" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Restrict Access to Anonymous Users if Possible</h3>
+<div>ftp_restrict_to_anon</div>
+<h4>Description</h4>
+<p>Is there a mission-critical reason for users to transfer files to/from their own accounts
+using FTP, rather than using a secure protocol like SCP/SFTP? If not, edit the vsftpd
+configuration file. Add or correct the following configuration option:
+
+<pre>local_enable=NO</pre>
+
+If non-anonymous FTP logins are necessary, follow the guidance in the remainder of
+this section to secure these logins as much as possible.</p>
+<h4>Rationale</h4>
+<p>The use of non-anonymous FTP logins is strongly discouraged. Since SSH clients 
+and servers are widely available, and since SSH provides support for a transfer
+mode which resembles FTP in user interface, there is no good reason to allow
+password-based FTP access.'</p>
+</div>
+
+<div id="package_vsftpd_installed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Install vsftpd Package</h3>
+<div>package_vsftpd_installed</div>
+<h4>Description</h4>
+<p>If this system must operate as an FTP server, install the <tt>vsftpd</tt> package via the standard channels.
+The <code>vsftpd</code> package can be installed with the following command:
+<pre>
+$ sudo yum install vsftpd</pre></p>
+<h4>Rationale</h4>
+<p>After Red Hat Enterprise Linux 2.1, Red Hat switched from distributing <tt>wu-ftpd</tt> with
+Red Hat Enterprise Linux to distributing <tt>vsftpd</tt>. For security
+and for consistency with future Red Hat releases, the use of <tt>vsftpd</tt> is recommended.</p>
+</div>
+
+<div id="package_vsftpd_removed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Uninstall vsftpd Package</h3>
+<div>package_vsftpd_removed</div>
+<h4>Description</h4>
+<p>The <code>vsftpd</code> package can be removed with the following command: <pre> $ sudo yum erase vsftpd</pre></p>
+<h4>Rationale</h4>
+<p>Removing the <tt>vsftpd</tt> package decreases the risk of its
+accidental activation.</p>
+</div>
+
+<div id="service_vsftpd_disabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable vsftpd Service</h3>
+<div>service_vsftpd_disabled</div>
+<h4>Description</h4>
+<p>
+The <code>vsftpd</code> service can be disabled with the following command:
+<pre>$ sudo systemctl mask --now vsftpd.service</pre></p>
+<h4>Rationale</h4>
+<p>Running FTP server software provides a network-based avenue
+of attack, and should be disabled if not needed.
+Furthermore, the FTP protocol is unencrypted and creates
+a risk of compromising sensitive information.</p>
+</div>
+
+
+
+
+</body>
+</html>

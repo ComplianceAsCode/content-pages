@@ -1,0 +1,5 @@
+xccdf_org.ssgproject.content_rule_encrypt_partitions
+xccdf_org.ssgproject.content_rule_grub2_password
+xccdf_org.ssgproject.content_rule_libreswan_approved_tunnels
+xccdf_org.ssgproject.content_rule_selinux_confinement_of_daemons
+xccdf_org.ssgproject.content_rule_sshd_use_directory_configuration

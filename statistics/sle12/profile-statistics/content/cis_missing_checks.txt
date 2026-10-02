@@ -1,0 +1,2 @@
+xccdf_org.ssgproject.content_rule_ensure_GPG_keys_are_configured
+xccdf_org.ssgproject.content_rule_ensure_package_repositories_are_configured

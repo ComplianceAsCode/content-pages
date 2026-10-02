@@ -1,0 +1,1 @@
+xccdf_org.ssgproject.content_rule_dconf_db_up_to_date
