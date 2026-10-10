@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To '389-ds-base'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To '389-ds-base'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>389-ds-base</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<div>None</div>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#package_389-ds-base_removed">package_389-ds-base_removed</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="package_389-ds-base_removed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Uninstall 389-ds-base Package</h3>
+<div>package_389-ds-base_removed</div>
+<h4>Description</h4>
+<p>The 389-ds-base RPM is not installed by default on a Amazon Linux 2023
+system. It is needed only by the 389-ds server, not by the
+clients which use LDAP for authentication. If the system is not
+intended for use as an LDAP Server it should be removed.</p>
+<h4>Rationale</h4>
+<p>Unnecessary packages should not be installed to decrease the attack
+surface of the system.  While this software is clearly essential on an LDAP
+server, it is not necessary on typical desktop or workstation systems.</p>
+</div>
+
+
+
+
+</body>
+</html>
