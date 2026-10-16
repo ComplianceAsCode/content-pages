@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'sap'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'sap'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>sap</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<ul>
+
+<li>sap_host</li>
+
+</ul>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#accounts_authorized_local_users_sidadm_orasid">accounts_authorized_local_users_sidadm_orasid</a></li>
+
+<li><a href="#package_glibc_installed">package_glibc_installed</a></li>
+
+<li><a href="#package_uuidd_installed">package_uuidd_installed</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="accounts_authorized_local_users_sidadm_orasid" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Only sidadm and orasid/oracle User Accounts Exist on Operating System</h3>
+<div>accounts_authorized_local_users_sidadm_orasid</div>
+<h4>Description</h4>
+<p>SAP tends to use the server or virtual machine exclusively. There should be only
+SAP system users <tt>sidadm</tt> and <tt>orasid</tt> that exist on the operating
+system (or virtual machine). If SAP Host Agent is installed, the user <tt>sapadm</tt>
+must exist too. With Oracle Database using <tt>oracle</tt> user, the user <tt>oracle</tt>
+should exist as well. While <tt>SID</tt> is the SAP System ID, which is always
+three alphanumeric characters in upper case, beginning with an alphabetic character,
+the user names <tt>sidadm</tt> and <tt>orasid</tt> are in lower case.
+<br /> <br />
+Besides the above SAP users that are automatically detected, other operating system
+users can be customized in the refine value variable
+<tt>var_accounts_authorized_local_users_regex</tt>.
+OVAL regular expression is used for the user list.
+<br /> <br />
+Test result of both <tt>fail</tt> or <tt>error</tt> means mismatch of user names and
+SAP system. The bash remediation commands can be used to delete unexpected users on
+the operating system.</p>
+<h4>Rationale</h4>
+<p>Accounts providing no operational purpose provide additional opportunities for
+system compromise. Unnecessary accounts include user accounts for individuals not
+requiring access to the system and application accounts for applications not installed
+on the system.</p>
+</div>
+
+<div id="package_glibc_installed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Package glibc Installed</h3>
+<div>package_glibc_installed</div>
+<h4>Description</h4>
+<p>The package <tt>glibc</tt> is installed on Linux by default, but the
+<tt>glibc</tt> version might not be sufficient for SAP. Please refer to
+SAP note of your Linux version for the minimum requirement on <tt>glibc</tt>.
+The <code>glibc</code> package can be installed with the following command:
+<pre>
+$ sudo yum install glibc</pre></p>
+<h4>Rationale</h4>
+<p>The <tt>glibc</tt> package contains standard C and math libraries used by
+multiple programs on Linux. The <tt>glibc</tt> shipped with first release
+of each major Linux version is often not sufficient for SAP.
+An update is required after the first OS installation.</p>
+</div>
+
+<div id="package_uuidd_installed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Package uuidd Installed</h3>
+<div>package_uuidd_installed</div>
+<h4>Description</h4>
+<p>The package <tt>uuidd</tt> is not installed on normal Linux distribution
+by default. Applications require this package to avoid database
+inconsistences caused by duplicated UUIDs. Especially in banking services
+with SAP where massive UUIDs are created in a short time period, it is
+important to install the package <tt>uuidd</tt>. More information can be
+found in SAP note 1391070.
+The <code>uuidd</code> package can be installed with the following command:
+<pre>
+$ sudo yum install uuidd</pre></p>
+<h4>Rationale</h4>
+<p>The <tt>uuidd</tt> package contains a userspace daemon (uuidd) which is
+used to generate unique identifiers even at very high rates on
+SMP systems.</p>
+</div>
+
+
+
+
+</body>
+</html>

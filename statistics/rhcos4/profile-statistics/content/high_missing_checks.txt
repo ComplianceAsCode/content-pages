@@ -1,0 +1,4 @@
+xccdf_org.ssgproject.content_rule_bios_disable_usb_boot
+xccdf_org.ssgproject.content_rule_partition_for_var_log
+xccdf_org.ssgproject.content_rule_partition_for_var_log_audit
+xccdf_org.ssgproject.content_rule_wireless_disable_in_bios

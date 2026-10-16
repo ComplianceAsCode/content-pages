@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'samba'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'samba'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>samba</li>
+
+<li>samba-common</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<ul>
+
+<li>configuring_samba</li>
+
+<li>disabling_samba</li>
+
+<li>smb</li>
+
+<li>smb_disable_printing</li>
+
+<li>smb_restrict_file_sharing</li>
+
+</ul>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#mount_option_smb_client_signing">mount_option_smb_client_signing</a></li>
+
+<li><a href="#package_samba-common_installed">package_samba-common_installed</a></li>
+
+<li><a href="#package_samba_removed">package_samba_removed</a></li>
+
+<li><a href="#require_smb_client_signing">require_smb_client_signing</a></li>
+
+<li><a href="#service_smb_disabled">service_smb_disabled</a></li>
+
+<li><a href="#smb_server_disable_root">smb_server_disable_root</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="mount_option_smb_client_signing" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Require Client SMB Packet Signing, if using mount.cifs</h3>
+<div>mount_option_smb_client_signing</div>
+<h4>Description</h4>
+<p>Require packet signing of clients who mount Samba
+shares using the <tt>mount.cifs</tt> program (e.g., those who specify shares
+in <tt>/etc/fstab</tt>). To do so, ensure signing options (either
+<tt>sec=krb5i</tt> or <tt>sec=ntlmv2i</tt>) are used.
+<br /><br />
+See the <tt>mount.cifs(8)</tt> man page for more information. A Samba
+client should only communicate with servers who can support SMB
+packet signing.</p>
+<h4>Rationale</h4>
+<p>Packet signing can prevent man-in-the-middle
+attacks which modify SMB packets in transit.</p>
+</div>
+
+<div id="package_samba-common_installed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Install the Samba Common Package</h3>
+<div>package_samba-common_installed</div>
+<h4>Description</h4>
+<p>The <tt>samba-common</tt> package should be installed.
+The <code>samba-common</code> package can be installed with the following command:
+<pre>
+$ sudo yum install samba-common</pre></p>
+<h4>Rationale</h4>
+<p>If the samba-common package is not installed, samba cannot be configured.</p>
+</div>
+
+<div id="package_samba_removed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Uninstall Samba Package</h3>
+<div>package_samba_removed</div>
+<h4>Description</h4>
+<p>The <code>samba</code> package can be removed with the following command: <pre> $ sudo yum erase samba</pre></p>
+<h4>Rationale</h4>
+<p>If there is no need to make the Samba software available,
+removing it provides a safeguard against its activation.</p>
+</div>
+
+<div id="require_smb_client_signing" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Require Client SMB Packet Signing, if using smbclient</h3>
+<div>require_smb_client_signing</div>
+<h4>Description</h4>
+<p>To require samba clients running <tt>smbclient</tt> to use
+packet signing, add the following to the <tt>[global]</tt> section
+of the Samba configuration file, <tt>/etc/samba/smb.conf</tt>:
+<pre>client signing = mandatory</pre>
+Requiring samba clients such as <tt>smbclient</tt> to use packet
+signing ensures they can
+only communicate with servers that support packet signing.</p>
+<h4>Rationale</h4>
+<p>Packet signing can prevent
+man-in-the-middle attacks which modify SMB packets in
+transit.</p>
+</div>
+
+<div id="service_smb_disabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable Samba</h3>
+<div>service_smb_disabled</div>
+<h4>Description</h4>
+<p>
+The <code>smb</code> service can be disabled with the following command:
+<pre>$ sudo systemctl mask --now smb.service</pre></p>
+<h4>Rationale</h4>
+<p>Running a Samba server provides a network-based avenue of attack, and
+should be disabled if not needed.</p>
+</div>
+
+<div id="smb_server_disable_root" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable Root Access to SMB Shares</h3>
+<div>smb_server_disable_root</div>
+<h4>Description</h4>
+<p>Administrators should not use administrator accounts to access
+Samba file and printer shares. Disable the root user and the wheel
+administrator group:
+<pre>[<i>share</i>]
+  invalid users = root @wheel</pre>
+If administrator accounts cannot be disabled, ensure that local system
+passwords and Samba service passwords do not match.</p>
+<h4>Rationale</h4>
+<p>Typically, administrator access is required when Samba must create user and
+system accounts and shares. Domain member servers and standalone servers may
+not need administrator access at all. If that is the case, add the invalid
+users parameter to <tt>[global]</tt> instead.</p>
+</div>
+
+
+
+
+</body>
+</html>
