@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'firewalld'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'firewalld'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>firewalld</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<ul>
+
+<li>firewalld_activation</li>
+
+<li>network-firewalld</li>
+
+</ul>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#configure_firewalld_ports">configure_firewalld_ports</a></li>
+
+<li><a href="#configure_firewalld_rate_limiting">configure_firewalld_rate_limiting</a></li>
+
+<li><a href="#configured_firewalld_default_deny">configured_firewalld_default_deny</a></li>
+
+<li><a href="#ensure_firewall_rules_for_open_ports">ensure_firewall_rules_for_open_ports</a></li>
+
+<li><a href="#firewalld-backend">firewalld-backend</a></li>
+
+<li><a href="#firewalld_loopback_traffic_restricted">firewalld_loopback_traffic_restricted</a></li>
+
+<li><a href="#firewalld_loopback_traffic_trusted">firewalld_loopback_traffic_trusted</a></li>
+
+<li><a href="#network_implement_access_control">network_implement_access_control</a></li>
+
+<li><a href="#package_firewalld_installed">package_firewalld_installed</a></li>
+
+<li><a href="#package_firewalld_removed">package_firewalld_removed</a></li>
+
+<li><a href="#service_firewalld_disabled">service_firewalld_disabled</a></li>
+
+<li><a href="#service_firewalld_enabled">service_firewalld_enabled</a></li>
+
+<li><a href="#set_firewalld_appropriate_zone">set_firewalld_appropriate_zone</a></li>
+
+<li><a href="#set_firewalld_default_zone">set_firewalld_default_zone</a></li>
+
+<li><a href="#unnecessary_firewalld_services_ports_disabled">unnecessary_firewalld_services_ports_disabled</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="configure_firewalld_ports" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure the Firewalld Ports</h3>
+<div>configure_firewalld_ports</div>
+<h4>Description</h4>
+<p>Configure the <tt>firewalld</tt> ports to allow approved services to have access to the system.
+To configure <tt>firewalld</tt> to open ports, run the following command:
+<pre>firewall-cmd --permanent --add-port=<i>port_number/tcp</i></pre>
+To configure <tt>firewalld</tt> to allow access for pre-defined services, run the following
+command:
+<pre>firewall-cmd --permanent --add-service=<i>service_name</i></pre></p>
+<h4>Rationale</h4>
+<p>In order to prevent unauthorized connection of devices, unauthorized transfer of information,
+or unauthorized tunneling (i.e., embedding of data types within data types), organizations must
+disable or restrict unused or unnecessary physical and logical ports/protocols on information
+systems.
+<br /><br />
+Operating systems are capable of providing a wide variety of functions and services.
+Some of the functions and services provided by default may not be necessary to support
+essential organizational operations.
+Additionally, it is sometimes convenient to provide multiple services from a single component
+(e.g., VPN and IPS); however, doing so increases risk over limiting the services provided by
+one component.
+<br /><br />
+To support the requirements and principles of least functionality, the operating system must
+support the organizational requirements, providing only essential capabilities and limiting the
+use of ports, protocols, and/or services to only those required, authorized, and approved to
+conduct official business.</p>
+</div>
+
+<div id="configure_firewalld_rate_limiting" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure firewalld To Rate Limit Connections</h3>
+<div>configure_firewalld_rate_limiting</div>
+<h4>Description</h4>
+<p>Create a direct firewall rule to protect against DoS attacks with the following
+command:
+<pre>$ sudo firewall-cmd --permanent --direct --add-rule ipv4 filter INPUT_direct 0 -p tcp -m limit --limit 25/minute --limit-burst 100  -j INPUT_ZONES</pre></p>
+<h4>Rationale</h4>
+<p>DoS is a condition when a resource is not available for legitimate users. When
+this occurs, the organization either cannot accomplish its mission or must
+operate at degraded capacity.
+<br /><br />
+This requirement addresses the configuration of
+the operating system to mitigate the impact of DoS attacks that have occurred or
+are ongoing on system availability. For each system, known and potential DoS
+attacks must be identified and solutions for each type implemented. A variety of
+technologies exist to limit or, in some cases, eliminate the effects of DoS
+attacks (e.g., limiting processes or establishing memory partitions). Employing
+increased capacity and bandwidth, combined with service redundancy, may reduce
+the susceptibility to some DoS attacks.</p>
+</div>
+
+<div id="configured_firewalld_default_deny" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Firewalld Must Employ a Deny-all, Allow-by-exception Policy for Allowing Connections to Other Systems</h3>
+<div>configured_firewalld_default_deny</div>
+<h4>Description</h4>
+<p>Ubuntu 24.04 incorporates the "firewalld" daemon, which allows for many different configurations. One of these configurations is zones.
+Zones can be utilized to a deny-all, allow-by-exception approach.
+The default "drop" zone will drop all incoming network packets unless it is explicitly allowed by the configuration file or is related to an outgoing network connection.</p>
+<h4>Rationale</h4>
+<p>Failure to restrict network connectivity only to authorized systems permits inbound connections from malicious systems.
+It also permits outbound connections that may facilitate exfiltration of data.</p>
+</div>
+
+<div id="ensure_firewall_rules_for_open_ports" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure firewall rules exist for all open ports</h3>
+<div>ensure_firewall_rules_for_open_ports</div>
+<h4>Description</h4>
+<p>Any ports that have been opened on non-loopback addresses need firewall rules to govern
+traffic.</p>
+<h4>Rationale</h4>
+<p>Without a firewall rule configured for open ports default firewall policy will drop all
+packets to these ports.</p>
+</div>
+
+<div id="firewalld-backend" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure Firewalld to Use the Nftables Backend</h3>
+<div>firewalld-backend</div>
+<h4>Description</h4>
+<p>Firewalld can be configured with many backends, such as nftables.</p>
+<h4>Rationale</h4>
+<p>Nftables is modern kernel module for controlling network connections coming into a system.
+Utilizing the limit statement in "nftables" can help to mitigate DoS attacks.</p>
+</div>
+
+<div id="firewalld_loopback_traffic_restricted" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure Firewalld to Restrict Loopback Traffic</h3>
+<div>firewalld_loopback_traffic_restricted</div>
+<h4>Description</h4>
+<p>Configure <tt>firewalld</tt> to restrict loopback traffic to the <tt>lo</tt> interface.
+
+The loopback traffic must be trusted by assigning the <tt>lo</tt> interface to the
+<tt>firewalld</tt> <tt>trusted</tt> zone. However, the loopback traffic must be restricted
+to the loopback interface as an anti-spoofing measure.
+
+To configure <tt>firewalld</tt> to restrict loopback traffic to the <tt>lo</tt> interface,
+run the following commands:
+<pre>
+sudo firewall-cmd --permanent --zone=trusted --add-rich-rule='rule family=ipv4 source address="127.0.0.1" destination not address="127.0.0.1" drop'
+sudo firewall-cmd --permanent --zone=trusted --add-rich-rule='rule family=ipv6 source address="::1" destination not address="::1" drop'
+</pre>
+
+To ensure <tt>firewalld</tt> settings are applied in runtime, run the following command:
+<pre>firewall-cmd --reload</pre></p>
+<h4>Rationale</h4>
+<p>Loopback traffic is generated between processes on machine and is typically critical to
+operation of the system. The loopback interface is the only place that loopback network
+traffic should be seen, all other interfaces should ignore traffic on this network as an
+anti-spoofing measure.</p>
+</div>
+
+<div id="firewalld_loopback_traffic_trusted" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure Firewalld to Trust Loopback Traffic</h3>
+<div>firewalld_loopback_traffic_trusted</div>
+<h4>Description</h4>
+<p>Assign loopback interface to the <tt>firewalld</tt> <tt>trusted</tt> zone in order to
+explicitly allow the loopback traffic in the system.
+
+To configure <tt>firewalld</tt> to trust loopback traffic, run the following command:
+<pre>sudo firewall-cmd --permanent --zone=trusted --add-interface=lo</pre>
+To ensure <tt>firewalld</tt> settings are applied in runtime, run the following command:
+<pre>firewall-cmd --reload</pre></p>
+<h4>Rationale</h4>
+<p>Loopback traffic is generated between processes on machine and is typically critical to
+operation of the system. The loopback interface is the only place that loopback network
+traffic should be seen, all other interfaces should ignore traffic on this network as an
+anti-spoofing measure.</p>
+</div>
+
+<div id="network_implement_access_control" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Grant Or Deny System Access To Specific Hosts And Services</h3>
+<div>network_implement_access_control</div>
+<h4>Description</h4>
+<p>To verify the system's access control program is configured
+to grant or deny system access to specific hosts check to see
+if "firewalld" is active with the following command:
+
+<pre># systemctl status firewalld
+firewalld.service - firewalld - dynamic firewall daemon
+Loaded: loaded (/usr/lib/systemd/system/firewalld.service; enabled)
+Active: active (running) since Sun 2014-04-20 14:06:46 BST; 30s ago</pre>
+
+If "firewalld" is active, check to see if it is configured to grant or deny
+access to specific hosts or services with the following commands:
+
+<pre># firewall-cmd --get-default-zone
+public
+
+# firewall-cmd --list-all --zone=public
+public (active)
+target: default
+icmp-block-inversion: no
+interfaces: eth0
+sources:
+services: mdns ssh
+ports:
+protocols:
+masquerade: no
+forward-ports:
+icmp-blocks:</pre>
+
+If "firewalld" is not active, determine whether "tcpwrappers" is being used by checking
+whether the "hosts.allow" and "hosts.deny" files are empty with the following commands:
+
+<pre># ls -al /etc/hosts.allow
+rw-r----- 1 root root 9 Aug 2 23:13 /etc/hosts.allow
+
+# ls -al /etc/hosts.deny
+-rw-r----- 1 root root 9 Apr 9 2007 /etc/hosts.deny</pre>
+
+If "firewalld" and "tcpwrappers" are not installed, configured, and active,
+ask the SA if another access control program (such as iptables) is installed
+and active.
+
+Ask the SA to show that the running configuration grants or denies access
+to specific hosts or services.
+
+If "firewalld" is active and is not configured to grant access to specific
+hosts or "tcpwrappers" is not configured to grant or deny access to
+specific hosts, this is a finding.</p>
+<h4>Rationale</h4>
+<p>If the systems access control program is not configured with appropriate
+rules for allowing and denying access to system network resources,
+services may be accessible to unauthorized hosts.</p>
+</div>
+
+<div id="package_firewalld_installed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Install firewalld Package</h3>
+<div>package_firewalld_installed</div>
+<h4>Description</h4>
+<p>The <code>firewalld</code> package can be installed with the following command:
+<pre>
+$ apt-get install firewalld</pre></p>
+<h4>Rationale</h4>
+<p>"Firewalld" provides an easy and effective way to block/limit remote access to the system via ports, services, and protocols.
+
+Remote access services, such as those providing remote access to network devices and information systems, which lack automated control capabilities, increase risk and make remote user access management difficult at best.
+
+Remote access is access to nonpublic information systems by an authorized user (or an information system) communicating through an external, non-organization-controlled network. Remote access methods include, for example, dial-up, broadband, and wireless.
+
+Ubuntu 24.04 functionality (e.g., SSH) must be capable of taking enforcement action if the audit reveals unauthorized activity.
+Automated control of remote access sessions allows organizations to ensure ongoing compliance with remote access policies by enforcing connection rules of remote access applications on a variety of information system components (e.g., servers, workstations, notebook computers, smartphones, and tablets)."</p>
+</div>
+
+<div id="package_firewalld_removed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Uninstall firewalld Package</h3>
+<div>package_firewalld_removed</div>
+<h4>Description</h4>
+<p>firewalld (Dynamic Firewall Manager) provides a dynamically managed firewall with
+support for network/firewall “zones” to assign a level of trust to a network and its
+associated connections, interfaces or sources. It has support for IPv4, IPv6, Ethernet
+bridges and also for IPSet firewall settings. There is a separation of the runtime and
+permanent configuration options.
+The <code>firewalld</code> package can be removed with the following command:
+<pre>
+$ apt-get remove firewalld</pre></p>
+<h4>Rationale</h4>
+<p>Running both <b>nftables.service</b> and <b>firewalld.service</b> may lead to conflict and
+unexpected results.</p>
+</div>
+
+<div id="service_firewalld_disabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify firewalld service disabled</h3>
+<div>service_firewalld_disabled</div>
+<h4>Description</h4>
+<p>Firewalld (Dynamic Firewall Manager) provides a dynamically managed firewall with
+support for network/firewall “zones” to assign a level of trust to a network and its
+associated connections, interfaces or sources. It has support for IPv4, IPv6, Ethernet
+bridges and also for IPSet firewall settings. There is a separation of the runtime and
+permanent configuration options.
+
+The <code>firewalld</code> service can be disabled with the following command:
+<pre>$ sudo systemctl mask --now firewalld.service</pre></p>
+<h4>Rationale</h4>
+<p>Running Firewalld along other service with the same functionality may lead to conflict
+and unexpected results.</p>
+</div>
+
+<div id="service_firewalld_enabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify firewalld Enabled</h3>
+<div>service_firewalld_enabled</div>
+<h4>Description</h4>
+<p>
+The <code>firewalld</code> service can be enabled with the following command:
+<pre>$ sudo systemctl enable firewalld.service</pre></p>
+<h4>Rationale</h4>
+<p>Access control methods provide the ability to enhance system security posture
+by restricting services and known good IP addresses and address ranges. This
+prevents connections from unknown hosts and protocols.</p>
+</div>
+
+<div id="set_firewalld_appropriate_zone" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure network interfaces are assigned to appropriate zone</h3>
+<div>set_firewalld_appropriate_zone</div>
+<h4>Description</h4>
+<p>Firewall zones define the trust level of network connections or interfaces.
+Note: Changing firewall settings while connected over network can result in 
+being locked out of the system.</p>
+<h4>Rationale</h4>
+<p>A network interface not assigned to the appropriate zone can allow unexpected or
+undesired network traffic to be accepted on the interface.</p>
+</div>
+
+<div id="set_firewalld_default_zone" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Set Default firewalld Zone for Incoming Packets</h3>
+<div>set_firewalld_default_zone</div>
+<h4>Description</h4>
+<p>To set the default zone to <tt>drop</tt> for
+the built-in default zone which processes incoming IPv4 and IPv6 packets,
+modify the following line in
+<tt>/etc/firewalld/firewalld.conf</tt> to be:
+<pre>DefaultZone=drop</pre></p>
+<h4>Rationale</h4>
+<p>In <tt>firewalld</tt> the default zone is applied only after all
+the applicable rules in the table are examined for a match. Setting the
+default zone to <tt>drop</tt> implements proper design for a firewall, i.e.
+any packets which are not explicitly permitted should not be
+accepted.</p>
+</div>
+
+<div id="unnecessary_firewalld_services_ports_disabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure Unnecessary Services and Ports Are Not Accepted</h3>
+<div>unnecessary_firewalld_services_ports_disabled</div>
+<h4>Description</h4>
+<p>Services and ports can be accepted or explicitly rejected or dropped by a zone.
+For every zone, a default behavior can be set that handles incoming traffic that
+is not further specified. Such behavior is defined by setting the target of the zone.
+The possible options are:
+- <tt>ACCEPT</tt> - accepts all incoming packets except those disabled by a specific rule.
+- <tt>REJECT</tt> - disables all incoming packets except those that have been allowed in
+   specific rules and the source machine is informed about the rejection.
+- <tt>DROP</tt> - disables all incoming packets except those that have been allowed in
+   specific rules and no information sent to the source machine.</p>
+<h4>Rationale</h4>
+<p>To reduce the attack surface of a system, all services and ports should be blocked unless
+required.</p>
+</div>
+
+
+
+
+</body>
+</html>

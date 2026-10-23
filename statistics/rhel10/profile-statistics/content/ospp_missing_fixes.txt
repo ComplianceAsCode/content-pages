@@ -1,0 +1,3 @@
+xccdf_org.ssgproject.content_rule_grub2_password
+xccdf_org.ssgproject.content_rule_zipl_bls_entries_only
+xccdf_org.ssgproject.content_rule_zipl_systemd_debug-shell_argument_absent

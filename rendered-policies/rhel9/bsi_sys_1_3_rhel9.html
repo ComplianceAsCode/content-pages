@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Definition of SYS.1.3 Linux Server (RHEL9) for rhel9</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Definition of SYS.1.3 Linux Server (RHEL9) for rhel9</h1>
+
+
+
+based on <a href="https://www.bsi.bund.de/SharedDocs/Downloads/EN/BSI/Grundschutz/International/bsi_it_gs_comp_2022.pdf">https://www.bsi.bund.de/SharedDocs/Downloads/EN/BSI/Grundschutz/International/bsi_it_gs_comp_2022.pdf</a>
+
+
+<div class="all_controls">
+<div class="one_control">
+  <h2>SYS.1.3.A1: ELIMINATED</h2>
+  <p>Description: This requirement has been eliminated.</p>
+  Levels: 
+  <ul><li>basic</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>SYS.1.3.A2: Careful Allocation of IDs</h2>
+  <p>Description: (1) Each login name, each user ID (UID) and each group ID (GID) MUST ONLY be used once.
+(2) Every user MUST be a member of at least one group. (3) Every GID mentioned in the /etc/passwd
+file MUST be defined in the /etc/group file. (4) Every group SHOULD only contain the users that
+are absolutely necessary. (5) In networked systems, care MUST also be taken to ensure that user
+and group names (UIDs and GIDs) are assigned consistently in the system network if there is a
+possibility that the same UIDs or GIDs could be assigned to different user or group names on
+the systems during cross-system access.</p>
+  Levels: 
+  <ul><li>basic</li>
+  </ul>
+  <p>Automated: no</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/account_unique_id/rule.yml"> account_unique_id</a>: Ensure All Accounts on the System Have Unique User IDs
+      <ul><li>CCE-88493-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/account_expiration/account_unique_name/rule.yml"> account_unique_name</a>: Ensure All Accounts on the System Have Unique Names
+      <ul><li>CCE-83628-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/password_storage/gid_passwd_group_same/rule.yml"> gid_passwd_group_same</a>: All GIDs referenced in /etc/passwd must be defined in /etc/group
+      <ul><li>CCE-83613-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/group_unique_id/rule.yml"> group_unique_id</a>: Ensure All Groups on the System Have Unique Group ID
+      <ul><li>CCE-86043-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-restrictions/group_unique_name/rule.yml"> group_unique_name</a>: Ensure All Groups on the System Have Unique Group Names
+      <ul><li>CCE-86966-9</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SYS.1.3.A3: No Automatic Integration of Removable Drives</h2>
+  <p>Description: (1) Removable media such as USB pen drives or CDs/DVDs MUST NOT be integrated automatically.</p>
+  Levels: 
+  <ul><li>basic</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/mounting/bios_disable_usb_boot/rule.yml"> bios_disable_usb_boot</a>: Disable Booting from USB Devices in Boot Firmware
+      <ul><li>CCE-87913-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/mounting/grub2_nousb_argument/rule.yml"> grub2_nousb_argument</a>: Disable Kernel Support for USB via Bootloader Configuration
+      <ul><li>CCE-89568-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/mounting/kernel_module_usb-storage_disabled/rule.yml"> kernel_module_usb-storage_disabled</a>: Disable Modprobe Loading of USB Storage Driver
+      <ul><li>CCE-83851-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/mounting/service_autofs_disabled/rule.yml"> service_autofs_disabled</a>: Disable the Automounter
+      <ul><li>CCE-83850-8</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SYS.1.3.A4: Protection from Exploitation of Vulnerabilities in Applications</h2>
+  <p>Description: (1) ASLR and DEP/NX MUST be activated in the kernel and used by applications to make it harder
+to exploit vulnerabilities in applications. (2) Security functions of the kernel and of the standard
+libraries (such as heap and stack protection) MUST NOT be disabled.</p>
+  Levels: 
+  <ul><li>basic</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/restrictions/enable_nx/bios_enable_execution_restrictions/rule.yml"> bios_enable_execution_restrictions</a>: Enable NX or XD Support in the BIOS
+      <ul><li>CCE-88577-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/grub2_enable_selinux/rule.yml"> grub2_enable_selinux</a>: Ensure SELinux Not Disabled in /etc/default/grub
+      <ul><li>CCE-84078-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/package_libselinux_installed/rule.yml"> package_libselinux_installed</a>: Install libselinux Package
+      <ul><li>CCE-84069-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/selinux_not_disabled/rule.yml"> selinux_not_disabled</a>: Ensure SELinux is Not Disabled
+      <ul><li>CCE-86152-6</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SYS.1.3.A5: Secure Installation of Software Packages</h2>
+  <p>Description: (1) If software to be installed is to be compiled from source code, it MUST ONLY be unpacked,
+configured, and compiled using an unprivileged user account. (2) The software to be installed
+MUST NOT then be installed in the root file system of the server in question in an
+uncontrolled manner.
+
+(3) If the software is compiled from the source text, the selected parameters SHOULD be
+documented appropriately. (4) Based on this documentation, it SHOULD be possible to compile
+the software in a transparent and reproducible manner at any time. (5) All further installation
+steps SHOULD also be documented.</p>
+  Levels: 
+  <ul><li>basic</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>SYS.1.3.A6: Managing Users and Groups</h2>
+  <p>Description: (1) The corresponding management tools SHOULD be used for managing users and groups. (2) The
+configuration files /etc/passwd, /etc/shadow, /etc/group, and /etc/sudoers SHOULD NOT be
+edited directly.</p>
+  Levels: 
+  <ul><li>standard</li>
+  </ul>
+  <p>Automated: no</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_rules_usergroup_modification_group/rule.yml"> audit_rules_usergroup_modification_group</a>: Record Events that Modify User/Group Information - /etc/group
+      <ul><li>CCE-83722-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_rules_usergroup_modification_gshadow/rule.yml"> audit_rules_usergroup_modification_gshadow</a>: Record Events that Modify User/Group Information - /etc/gshadow
+      <ul><li>CCE-83723-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_rules_usergroup_modification_opasswd/rule.yml"> audit_rules_usergroup_modification_opasswd</a>: Record Events that Modify User/Group Information - /etc/security/opasswd
+      <ul><li>CCE-83712-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_rules_usergroup_modification_passwd/rule.yml"> audit_rules_usergroup_modification_passwd</a>: Record Events that Modify User/Group Information - /etc/passwd
+      <ul><li>CCE-83714-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/audit_rules_usergroup_modification_shadow/rule.yml"> audit_rules_usergroup_modification_shadow</a>: Record Events that Modify User/Group Information - /etc/shadow
+      <ul><li>CCE-83725-2</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SYS.1.3.A7: ELIMINATED</h2>
+  <p>Description: This requirement has been eliminated.</p>
+  Levels: 
+  <ul><li>standard</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>SYS.1.3.A8: Encrypted Access via Secure Shell</h2>
+  <p>Description: (1) Only Secure Shell (SSH) SHOULD be used to create an encrypted and authenticated interactive
+connection between two IT systems. (2) All other protocols whose functions are covered by
+Secure Shell SHOULD be disabled completely. (3) For authentication, users SHOULD primarily
+use certificates instead of passwords.</p>
+  Levels: 
+  <ul><li>standard</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/firewalld_sshd_port_enabled/rule.yml"> firewalld_sshd_port_enabled</a>: Enable SSH Server firewalld Firewall Exception
+      <ul><li>CCE-89175-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/obsolete/telnet/package_telnet-server_removed/rule.yml"> package_telnet-server_removed</a>: Uninstall telnet-server Package
+      <ul><li>CCE-84149-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/obsolete/telnet/package_telnet_removed/rule.yml"> package_telnet_removed</a>: Remove telnet Clients
+      <ul><li>CCE-84146-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/service_sshd_enabled/rule.yml"> service_sshd_enabled</a>: Enable the OpenSSH Service
+      <ul><li>CCE-90822-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_allow_only_protocol2/rule.yml"> sshd_allow_only_protocol2</a>: Allow Only SSH Protocol 2
+      <ul><li>CCE-90812-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_disable_empty_passwords/rule.yml"> sshd_disable_empty_passwords</a>: Disable SSH Access via Empty Passwords
+      <ul><li>CCE-90799-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_disable_root_password_login/rule.yml"> sshd_disable_root_password_login</a>: Disable SSH root Login with a Password (Insecure)
+      <ul><li>CCE-88194-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/ssh_server/sshd_enable_pubkey_auth/rule.yml"> sshd_enable_pubkey_auth</a>: Enable Public Key Authentication
+      <ul><li>CCE-86138-5</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SYS.1.3.A9: ELIMINATED</h2>
+  <p>Description: This requirement has been eliminated.</p>
+  Levels: 
+  <ul><li>standard</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>SYS.1.3.A10: Preventing Further Intrusion When Vulnerabilities Are Exploited</h2>
+  <p>Description: (1) Services and applications SHOULD be protected with individual security architecture (e.g.
+with AppArmor or SELinux). (2) In addition, chroot environments and LXC or Docker containers
+SHOULD be taken into account here. (3) It SHOULD be ensured that the standard profiles and
+rules provided are activated.</p>
+  Levels: 
+  <ul><li>standard</li>
+  </ul>
+  <p>Automated: no</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/grub2_enable_selinux/rule.yml"> grub2_enable_selinux</a>: Ensure SELinux Not Disabled in /etc/default/grub
+      <ul><li>CCE-84078-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/package_libselinux_installed/rule.yml"> package_libselinux_installed</a>: Install libselinux Package
+      <ul><li>CCE-84069-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/selinux_confinement_of_daemons/rule.yml"> selinux_confinement_of_daemons</a>: Ensure No Daemons are Unconfined by SELinux
+      <ul><li>CCE-84075-1</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/selinux_not_disabled/rule.yml"> selinux_not_disabled</a>: Ensure SELinux is Not Disabled
+      <ul><li>CCE-86152-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/selinux_policytype/rule.yml"> selinux_policytype</a>: Configure SELinux Policy
+      <ul><li>CCE-84074-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/selinux_state/rule.yml"> selinux_state</a>: Ensure SELinux State is Enforcing
+      <ul><li>CCE-84079-3</li></ul>
+    </li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/var_selinux_policy_name.var">var_selinux_policy_name</a> = targeted</li>
+    
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/var_selinux_state.var">var_selinux_state</a> = enforcing</li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SYS.1.3.A11: ELIMINATED</h2>
+  <p>Description: This requirement has been eliminated.</p>
+  Levels: 
+  <ul><li>standard</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>SYS.1.3.A12: ELIMINATED</h2>
+  <p>Description: This requirement has been eliminated.</p>
+  Levels: 
+  <ul><li>standard</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>SYS.1.3.A13: ELIMINATED</h2>
+  <p>Description: This requirement has been eliminated.</p>
+  Levels: 
+  <ul><li>elevated</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>SYS.1.3.A14: Preventing Unauthorised Collection of System and User Information</h2>
+  <p>Description: (1) Information output for users regarding the operating system and access to protocol and
+configuration files SHOULD be limited to the required minimum. (2) Moreover, confidential
+information SHOULD NOT be provided as parameters when commands are issued.</p>
+  Levels: 
+  <ul><li>standard</li>
+  </ul>
+  <p>Automated: no</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/file_group_ownership_var_log_audit/rule.yml"> file_group_ownership_var_log_audit</a>: System Audit Logs Must Be Group Owned By Root
+      <ul><li>CCE-89603-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/cron_and_at/restrict_at_cron_users/file_groupowner_at_allow/rule.yml"> file_groupowner_at_allow</a>: Verify Group Who Owns /etc/at.allow file
+      <ul><li>CCE-87103-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_important_account_files/file_groupowner_backup_etc_group/rule.yml"> file_groupowner_backup_etc_group</a>: Verify Group Who Owns Backup group File
+      <ul><li>CCE-83928-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_important_account_files/file_groupowner_backup_etc_gshadow/rule.yml"> file_groupowner_backup_etc_gshadow</a>: Verify Group Who Owns Backup gshadow File
+      <ul><li>CCE-83951-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_important_account_files/file_groupowner_backup_etc_passwd/rule.yml"> file_groupowner_backup_etc_passwd</a>: Verify Group Who Owns Backup passwd File
+      <ul><li>CCE-83933-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_important_account_files/file_groupowner_backup_etc_shadow/rule.yml"> file_groupowner_backup_etc_shadow</a>: Verify User Who Owns Backup shadow File
+      <ul><li>CCE-83938-1</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/cron_and_at/restrict_at_cron_users/file_groupowner_cron_allow/rule.yml"> file_groupowner_cron_allow</a>: Verify Group Who Owns /etc/cron.allow file
+      <ul><li>CCE-86830-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/cron_and_at/file_groupowner_cron_d/rule.yml"> file_groupowner_cron_d</a>: Verify Group Who Owns cron.d
+      <ul><li>CCE-84177-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/cron_and_at/file_groupowner_cron_daily/rule.yml"> file_groupowner_cron_daily</a>: Verify Group Who Owns cron.daily
+      <ul><li>CCE-84170-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/cron_and_at/file_groupowner_cron_hourly/rule.yml"> file_groupowner_cron_hourly</a>: Verify Group Who Owns cron.hourly
+      <ul><li>CCE-84186-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/cron_and_at/file_groupowner_cron_monthly/rule.yml"> file_groupowner_cron_monthly</a>: Verify Group Who Owns cron.monthly
+      <ul><li>CCE-84189-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/cron_and_at/file_groupowner_cron_weekly/rule.yml"> file_groupowner_cron_weekly</a>: Verify Group Who Owns cron.weekly
+      <ul><li>CCE-84174-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/cron_and_at/file_groupowner_crontab/rule.yml"> file_groupowner_crontab</a>: Verify Group Who Owns Crontab
+      <ul><li>CCE-84171-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/bootloader-grub2/uefi/file_groupowner_efi_grub2_cfg/rule.yml"> file_groupowner_efi_grub2_cfg</a>: Verify the UEFI Boot Loader grub.cfg Group Ownership
+      <ul><li>CCE-86696-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/bootloader-grub2/uefi/file_groupowner_efi_user_cfg/rule.yml"> file_groupowner_efi_user_cfg</a>: Verify /boot/grub2/user.cfg Group Ownership
+      <ul><li>CCE-86013-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_important_account_files/file_groupowner_etc_group/rule.yml"> file_groupowner_etc_group</a>: Verify Group Who Owns group File
+      <ul><li>CCE-83945-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_important_account_files/file_groupowner_etc_gshadow/rule.yml"> file_groupowner_etc_gshadow</a>: Verify Group Who Owns gshadow File
+      <ul><li>CCE-83948-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-banners/file_groupowner_etc_issue/rule.yml"> file_groupowner_etc_issue</a>: Verify Group Ownership of System Login Banner
+      <ul><li>CCE-86699-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-banners/file_groupowner_etc_issue_net/rule.yml"> file_groupowner_etc_issue_net</a>: Verify Group Ownership of System Login Banner for Remote Connections
+      <ul><li>CCE-86052-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-banners/file_groupowner_etc_motd/rule.yml"> file_groupowner_etc_motd</a>: Verify Group Ownership of Message of the Day Banner
+      <ul><li>CCE-86697-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_important_account_files/file_groupowner_etc_passwd/rule.yml"> file_groupowner_etc_passwd</a>: Verify Group Who Owns passwd File
+      <ul><li>CCE-83950-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_important_account_files/file_groupowner_etc_shadow/rule.yml"> file_groupowner_etc_shadow</a>: Verify Group Who Owns shadow File
+      <ul><li>CCE-83930-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_important_account_files/file_groupowner_etc_shells/rule.yml"> file_groupowner_etc_shells</a>: Verify Group Who Owns /etc/shells File
+      <ul><li>CCE-90434-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/bootloader-grub2/non-uefi/file_groupowner_grub2_cfg/rule.yml"> file_groupowner_grub2_cfg</a>: Verify /boot/grub2/grub.cfg Group Ownership
+      <ul><li>CCE-83848-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/file_groupowner_sshd_config/rule.yml"> file_groupowner_sshd_config</a>: Verify Group Who Owns SSH Server config file
+      <ul><li>CCE-90817-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/bootloader-grub2/non-uefi/file_groupowner_user_cfg/rule.yml"> file_groupowner_user_cfg</a>: Verify /boot/grub2/user.cfg Group Ownership
+      <ul><li>CCE-86010-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/file_permissions_auditd/file_groupownership_audit_binaries/rule.yml"> file_groupownership_audit_binaries</a>: Verify that audit tools are owned by group root
+      <ul><li>CCE-86457-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/file_groupownership_audit_configuration/rule.yml"> file_groupownership_audit_configuration</a>: Audit Configuration Files Must Be Owned By Group root
+      <ul><li>CCE-86446-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-session/file_groupownership_home_directories/rule.yml"> file_groupownership_home_directories</a>: All Interactive User Home Directories Must Be Group-Owned By The Primary Group
+      <ul><li>CCE-83629-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/file_groupownership_sshd_private_key/rule.yml"> file_groupownership_sshd_private_key</a>: Verify Group Ownership on SSH Server Private *_key Key Files
+      <ul><li>CCE-86127-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/file_groupownership_sshd_pub_key/rule.yml"> file_groupownership_sshd_pub_key</a>: Verify Group Ownership on SSH Server Public *.pub Key Files
+      <ul><li>CCE-86136-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/cron_and_at/restrict_at_cron_users/file_owner_at_allow/rule.yml"> file_owner_at_allow</a>: Verify User Who Owns /etc/at.allow file
+      <ul><li>CCE-86346-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_important_account_files/file_owner_backup_etc_group/rule.yml"> file_owner_backup_etc_group</a>: Verify User Who Owns Backup group File
+      <ul><li>CCE-83944-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_important_account_files/file_owner_backup_etc_gshadow/rule.yml"> file_owner_backup_etc_gshadow</a>: Verify User Who Owns Backup gshadow File
+      <ul><li>CCE-83929-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_important_account_files/file_owner_backup_etc_passwd/rule.yml"> file_owner_backup_etc_passwd</a>: Verify User Who Owns Backup passwd File
+      <ul><li>CCE-83947-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_important_account_files/file_owner_backup_etc_shadow/rule.yml"> file_owner_backup_etc_shadow</a>: Verify Group Who Owns Backup shadow File
+      <ul><li>CCE-83949-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/cron_and_at/restrict_at_cron_users/file_owner_cron_allow/rule.yml"> file_owner_cron_allow</a>: Verify User Who Owns /etc/cron.allow file
+      <ul><li>CCE-86844-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/cron_and_at/file_owner_cron_d/rule.yml"> file_owner_cron_d</a>: Verify Owner on cron.d
+      <ul><li>CCE-84169-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/cron_and_at/file_owner_cron_daily/rule.yml"> file_owner_cron_daily</a>: Verify Owner on cron.daily
+      <ul><li>CCE-84188-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/cron_and_at/file_owner_cron_hourly/rule.yml"> file_owner_cron_hourly</a>: Verify Owner on cron.hourly
+      <ul><li>CCE-84168-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/cron_and_at/file_owner_cron_monthly/rule.yml"> file_owner_cron_monthly</a>: Verify Owner on cron.monthly
+      <ul><li>CCE-84179-1</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/cron_and_at/file_owner_cron_weekly/rule.yml"> file_owner_cron_weekly</a>: Verify Owner on cron.weekly
+      <ul><li>CCE-84190-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/cron_and_at/file_owner_crontab/rule.yml"> file_owner_crontab</a>: Verify Owner on crontab
+      <ul><li>CCE-84167-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/bootloader-grub2/uefi/file_owner_efi_grub2_cfg/rule.yml"> file_owner_efi_grub2_cfg</a>: Verify the UEFI Boot Loader grub.cfg User Ownership
+      <ul><li>CCE-86695-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/bootloader-grub2/uefi/file_owner_efi_user_cfg/rule.yml"> file_owner_efi_user_cfg</a>: Verify /boot/grub2/user.cfg User Ownership
+      <ul><li>CCE-86022-1</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_important_account_files/file_owner_etc_group/rule.yml"> file_owner_etc_group</a>: Verify User Who Owns group File
+      <ul><li>CCE-83925-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_important_account_files/file_owner_etc_gshadow/rule.yml"> file_owner_etc_gshadow</a>: Verify User Who Owns gshadow File
+      <ul><li>CCE-83924-1</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-banners/file_owner_etc_issue/rule.yml"> file_owner_etc_issue</a>: Verify ownership of System Login Banner
+      <ul><li>CCE-86700-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-banners/file_owner_etc_issue_net/rule.yml"> file_owner_etc_issue_net</a>: Verify ownership of System Login Banner for Remote Connections
+      <ul><li>CCE-86057-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-banners/file_owner_etc_motd/rule.yml"> file_owner_etc_motd</a>: Verify ownership of Message of the Day Banner
+      <ul><li>CCE-86698-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_important_account_files/file_owner_etc_passwd/rule.yml"> file_owner_etc_passwd</a>: Verify User Who Owns passwd File
+      <ul><li>CCE-83943-1</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_important_account_files/file_owner_etc_shadow/rule.yml"> file_owner_etc_shadow</a>: Verify User Who Owns shadow File
+      <ul><li>CCE-83926-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_important_account_files/file_owner_etc_shells/rule.yml"> file_owner_etc_shells</a>: Verify Who Owns /etc/shells File
+      <ul><li>CCE-90435-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/bootloader-grub2/non-uefi/file_owner_grub2_cfg/rule.yml"> file_owner_grub2_cfg</a>: Verify /boot/grub2/grub.cfg User Ownership
+      <ul><li>CCE-83845-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/file_owner_sshd_config/rule.yml"> file_owner_sshd_config</a>: Verify Owner on SSH Server config file
+      <ul><li>CCE-90821-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/bootloader-grub2/non-uefi/file_owner_user_cfg/rule.yml"> file_owner_user_cfg</a>: Verify /boot/grub2/user.cfg User Ownership
+      <ul><li>CCE-86016-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/file_permissions_auditd/file_ownership_audit_binaries/rule.yml"> file_ownership_audit_binaries</a>: Verify that audit tools are owned by root
+      <ul><li>CCE-86454-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/file_ownership_audit_configuration/rule.yml"> file_ownership_audit_configuration</a>: Audit Configuration Files Must Be Owned By Root
+      <ul><li>CCE-86445-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-session/file_ownership_home_directories/rule.yml"> file_ownership_home_directories</a>: All Interactive User Home Directories Must Be Owned By The Primary User
+      <ul><li>CCE-87917-1</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/file_ownership_sshd_private_key/rule.yml"> file_ownership_sshd_private_key</a>: Verify Ownership on SSH Server Private *_key Key Files
+      <ul><li>CCE-86119-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/file_ownership_sshd_pub_key/rule.yml"> file_ownership_sshd_pub_key</a>: Verify Ownership on SSH Server Public *.pub Key Files
+      <ul><li>CCE-86130-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/file_ownership_var_log_audit/rule.yml"> file_ownership_var_log_audit</a>: System Audit Logs Must Be Owned By Root
+      <ul><li>CCE-83726-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/cron_and_at/restrict_at_cron_users/file_permissions_at_allow/rule.yml"> file_permissions_at_allow</a>: Verify Permissions on /etc/at.allow file
+      <ul><li>CCE-86904-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/file_permissions_auditd/file_permissions_audit_binaries/rule.yml"> file_permissions_audit_binaries</a>: Verify that audit tools Have Mode 0755 or less
+      <ul><li>CCE-86448-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/file_permissions_audit_configuration/rule.yml"> file_permissions_audit_configuration</a>: Audit Configuration Files Permissions are 640 or More Restrictive
+      <ul><li>CCE-88002-1</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_important_account_files/file_permissions_backup_etc_group/rule.yml"> file_permissions_backup_etc_group</a>: Verify Permissions on Backup group File
+      <ul><li>CCE-83939-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_important_account_files/file_permissions_backup_etc_gshadow/rule.yml"> file_permissions_backup_etc_gshadow</a>: Verify Permissions on Backup gshadow File
+      <ul><li>CCE-83942-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_important_account_files/file_permissions_backup_etc_passwd/rule.yml"> file_permissions_backup_etc_passwd</a>: Verify Permissions on Backup passwd File
+      <ul><li>CCE-83940-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_important_account_files/file_permissions_backup_etc_shadow/rule.yml"> file_permissions_backup_etc_shadow</a>: Verify Permissions on Backup shadow File
+      <ul><li>CCE-83935-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/cron_and_at/restrict_at_cron_users/file_permissions_cron_allow/rule.yml"> file_permissions_cron_allow</a>: Verify Permissions on /etc/cron.allow file
+      <ul><li>CCE-86877-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/cron_and_at/file_permissions_cron_d/rule.yml"> file_permissions_cron_d</a>: Verify Permissions on cron.d
+      <ul><li>CCE-84183-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/cron_and_at/file_permissions_cron_daily/rule.yml"> file_permissions_cron_daily</a>: Verify Permissions on cron.daily
+      <ul><li>CCE-84175-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/cron_and_at/file_permissions_cron_hourly/rule.yml"> file_permissions_cron_hourly</a>: Verify Permissions on cron.hourly
+      <ul><li>CCE-84173-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/cron_and_at/file_permissions_cron_monthly/rule.yml"> file_permissions_cron_monthly</a>: Verify Permissions on cron.monthly
+      <ul><li>CCE-84181-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/cron_and_at/file_permissions_cron_weekly/rule.yml"> file_permissions_cron_weekly</a>: Verify Permissions on cron.weekly
+      <ul><li>CCE-84187-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/cron_and_at/file_permissions_crontab/rule.yml"> file_permissions_crontab</a>: Verify Permissions on crontab
+      <ul><li>CCE-84176-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/bootloader-grub2/uefi/file_permissions_efi_grub2_cfg/rule.yml"> file_permissions_efi_grub2_cfg</a>: Verify the UEFI Boot Loader grub.cfg Permissions
+      <ul><li>CCE-85925-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/bootloader-grub2/uefi/file_permissions_efi_user_cfg/rule.yml"> file_permissions_efi_user_cfg</a>: Verify /boot/grub2/user.cfg Permissions
+      <ul><li>CCE-86029-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_important_account_files/file_permissions_etc_group/rule.yml"> file_permissions_etc_group</a>: Verify Permissions on group File
+      <ul><li>CCE-83934-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_important_account_files/file_permissions_etc_gshadow/rule.yml"> file_permissions_etc_gshadow</a>: Verify Permissions on gshadow File
+      <ul><li>CCE-83921-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-banners/file_permissions_etc_issue/rule.yml"> file_permissions_etc_issue</a>: Verify permissions on System Login Banner
+      <ul><li>CCE-83551-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-banners/file_permissions_etc_issue_net/rule.yml"> file_permissions_etc_issue_net</a>: Verify permissions on System Login Banner for Remote Connections
+      <ul><li>CCE-86048-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-banners/file_permissions_etc_motd/rule.yml"> file_permissions_etc_motd</a>: Verify permissions on Message of the Day Banner
+      <ul><li>CCE-83554-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_important_account_files/file_permissions_etc_passwd/rule.yml"> file_permissions_etc_passwd</a>: Verify Permissions on passwd File
+      <ul><li>CCE-83931-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_important_account_files/file_permissions_etc_shadow/rule.yml"> file_permissions_etc_shadow</a>: Verify Permissions on shadow File
+      <ul><li>CCE-83941-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/permissions_important_account_files/file_permissions_etc_shells/rule.yml"> file_permissions_etc_shells</a>: Verify Permissions on /etc/shells File
+      <ul><li>CCE-90432-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/bootloader-grub2/non-uefi/file_permissions_grub2_cfg/rule.yml"> file_permissions_grub2_cfg</a>: Verify /boot/grub2/grub.cfg Permissions
+      <ul><li>CCE-83846-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/accounts/accounts-session/file_permissions_home_directories/rule.yml"> file_permissions_home_directories</a>: All Interactive User Home Directories Must Have mode 0750 Or Less Permissive
+      <ul><li>CCE-83634-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/file_permissions_sshd_config/rule.yml"> file_permissions_sshd_config</a>: Verify Permissions on SSH Server config file
+      <ul><li>CCE-90818-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/file_permissions_sshd_private_key/rule.yml"> file_permissions_sshd_private_key</a>: Verify Permissions on SSH Server Private *_key Key Files
+      <ul><li>CCE-90820-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/ssh/file_permissions_sshd_pub_key/rule.yml"> file_permissions_sshd_pub_key</a>: Verify Permissions on SSH Server Public *.pub Key Files
+      <ul><li>CCE-90819-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/file_permissions_unauthorized_sgid/rule.yml"> file_permissions_unauthorized_sgid</a>: Ensure All SGID Executables Are Authorized
+      <ul><li>CCE-83901-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/file_permissions_unauthorized_suid/rule.yml"> file_permissions_unauthorized_suid</a>: Ensure All SUID Executables Are Authorized
+      <ul><li>CCE-83897-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/file_permissions_unauthorized_world_writable/rule.yml"> file_permissions_unauthorized_world_writable</a>: Ensure No World-Writable Files Exist
+      <ul><li>CCE-83902-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/permissions/files/file_permissions_ungroupowned/rule.yml"> file_permissions_ungroupowned</a>: Ensure All Files Are Owned by a Group
+      <ul><li>CCE-83906-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/bootloader-grub2/non-uefi/file_permissions_user_cfg/rule.yml"> file_permissions_user_cfg</a>: Verify /boot/grub2/user.cfg Permissions
+      <ul><li>CCE-86025-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/auditing/auditd_configure_rules/file_permissions_var_log_audit/rule.yml"> file_permissions_var_log_audit</a>: System Audit Logs Must Have Mode 0640 or Less Permissive
+      <ul><li>CCE-83720-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/services/cron_and_at/package_cron_installed/rule.yml"> package_cron_installed</a>: Install the cron service
+      <ul><li>CCE-86170-8</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>SYS.1.3.A15: ELIMINATED</h2>
+  <p>Description: This requirement has been eliminated.</p>
+  Levels: 
+  <ul><li>elevated</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>SYS.1.3.A16: Additional Prevention of Further Intrusion When Vulnerabilities Are Exploited</h2>
+  <p>Description: (1) The use of system calls SHOULD be limited to those absolutely necessary, particularly for
+exposed services and applications. (2) The standard profiles and/or rules (e.g. of SELinux or
+AppArmor) SHOULD be checked manually and, if necessary, adapted to an organisation's own
+security policies. (3) If necessary, new rules and profiles SHOULD be drawn up.</p>
+  Levels: 
+  <ul><li>elevated</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>SYS.1.3.A17: Additional Kernel Protection</h2>
+  <p>Description: (1) Specially hardened kernels (e.g. grsecurity, PaX) and appropriate protective safeguards such as
+memory protection or file system protection SHOULD be implemented to prevent
+exploitation of vulnerabilities and propagation in operating systems.</p>
+  Levels: 
+  <ul><li>elevated</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+</div>  
+
+
+</body>
+</html>

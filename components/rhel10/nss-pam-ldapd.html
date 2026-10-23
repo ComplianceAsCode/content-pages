@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'nss-pam-ldapd'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'nss-pam-ldapd'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>nss-pam-ldapd</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<div>None</div>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#ldap_client_start_tls">ldap_client_start_tls</a></li>
+
+<li><a href="#ldap_client_tls_cacertpath">ldap_client_tls_cacertpath</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="ldap_client_start_tls" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure LDAP Client to Use TLS For All Transactions</h3>
+<div>ldap_client_start_tls</div>
+<h4>Description</h4>
+<p>This check verifies cryptography has been implemented
+to protect the integrity of remote LDAP authentication sessions.
+<br /><br />
+To determine if LDAP is being used for authentication, use the following
+command:
+<pre>$ sudo grep -i useldapauth /etc/sysconfig/authconfig</pre>
+<br /><br />
+If <tt>USELDAPAUTH=yes</tt>, then LDAP is being used. To check if LDAP is
+configured to use TLS, use the following command:
+<pre>$ sudo grep -i ssl /etc/pam_ldap.conf</pre></p>
+<h4>Rationale</h4>
+<p>Without cryptographic integrity protections, information can be altered by
+unauthorized users without detection. The ssl directive specifies whether
+to use TLS or not. If not specified it will default to no. It should be set
+to start_tls rather than doing LDAP over SSL.</p>
+</div>
+
+<div id="ldap_client_tls_cacertpath" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure Certificate Directives for LDAP Use of TLS</h3>
+<div>ldap_client_tls_cacertpath</div>
+<h4>Description</h4>
+<p>Ensure a copy of a trusted CA certificate has been placed in the file
+<tt>/etc/pki/tls/CA/cacert.pem</tt>. Configure LDAP to enforce TLS use and
+to trust certificates signed by that CA. First, edit the file
+<tt>/etc/nslcd.conf</tt>, and add or correct either of the following lines:
+<pre>tls_cacertdir /etc/pki/tls/CA</pre> or 
+<pre>tls_cacertfile /etc/pki/tls/CA/cacert.pem</pre>
+Then review the LDAP server and ensure TLS has been configured.</p>
+<h4>Rationale</h4>
+<p>The tls_cacertdir or tls_cacertfile directives are required when
+tls_checkpeer is configured (which is the default for openldap versions 2.1 and
+up). These directives define the path to the trust certificates signed by the
+site CA.</p>
+</div>
+
+
+
+
+</body>
+</html>
