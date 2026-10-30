@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'screen'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'screen'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>screen</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<div>None</div>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#package_screen_installed">package_screen_installed</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="package_screen_installed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Install the screen Package</h3>
+<div>package_screen_installed</div>
+<h4>Description</h4>
+<p>To enable console screen locking, install the <tt>screen</tt> package.
+The <code>screen</code> package can be installed with the following command:
+<pre>
+$ sudo dnf install screen</pre>
+Instruct users to begin new terminal sessions with the following command:
+<pre>$ screen</pre>
+The console can now be locked with the following key combination:
+<pre>ctrl+a x</pre></p>
+<h4>Rationale</h4>
+<p>A session time-out lock is a temporary action taken when a user stops work and moves away from the immediate
+physical vicinity of the information system but does not logout because of the temporary nature of the absence.
+Rather than relying on the user to manually lock their operation system session prior to vacating the vicinity,
+operating systems need to be able to identify when a user's session has idled and take action to initiate the
+session lock.
+<br /><br />
+The <tt>screen</tt> package allows for a session lock to be implemented and configured.</p>
+</div>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Definition of BSI APP.4.4 Kubernetes for ocp4</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Definition of BSI APP.4.4 Kubernetes for ocp4</h1>
+
+
+
+based on <a href="https://www.bsi.bund.de/SharedDocs/Downloads/EN/BSI/Grundschutz/International/bsi_it_gs_comp_2022.pdf">https://www.bsi.bund.de/SharedDocs/Downloads/EN/BSI/Grundschutz/International/bsi_it_gs_comp_2022.pdf</a>
+
+
+<div class="all_controls">
+<div class="one_control">
+  <h2>APP.4.4.A1: Planning the Separation of the Applications</h2>
+  <p>Description: Before going live, the manner in which the applications running in the pods in question and their different test and production operating environments will be separated MUST be planned. Based on the protection needs of the applications, the planning MUST determine which architecture of namespaces, meta tags, clusters, and networks adequately addresses the risks at hand and whether virtualised servers and networks should also be used. The planning MUST include provisions separating for networks, CPUs, and persistent volumes. The separation SHOULD also take into account and be aligned with the network zone concept and the protection requirements at hand. Each application SHOULD run in a separate Kubernetes namespace that includes all the programs of the application. Only applications with similar protection needs and similar possible attack vectors SHOULD share a Kubernetes cluster.</p>
+  Levels: 
+  <ul><li>basic</li>
+  </ul>
+  <p>Automated: no</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/general/general_namespace_separation/rule.yml"> general_namespace_separation</a>: Each Namespace should only host one application
+      <ul><li>CCE-90279-1</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>APP.4.4.A2: Planning Automation with CI/CD</h2>
+  <p>Description: (1) Automating the operation of applications in Kubernetes using CI/CD MUST ONLY take place after appropriate planning. (2) The planning MUST cover the entire lifecycle from commissioning to decommissioning, including development, testing, operation, monitoring, and updates. (3) A roles and rights concept and the securing of Kubernetes Secrets MUST be part of the planning</p>
+  Levels: 
+  <ul><li>basic</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>APP.4.4.A3: Identity and Access Management for Kubernetes</h2>
+  <p>Description: (1) Kubernetes and all other control plane applications MUST authenticate and authorise each action taken by a user or, in automated mode, corresponding software. This applies whether the actions are taken via a client, a web interface, or a corresponding API. Administrative actions MUST NOT be performed anonymously. (2) Each user MUST ONLY be granted the permissions they absolutely require. Unlimited access rights MUST be granted in a very restrictive manner. (3) Only a small group of people SHOULD be authorised to define automation processes. Only selected administrators SHOULD be given the right to create or change shares for persistent volumes in Kubernetes.</p>
+  Levels: 
+  <ul><li>basic</li>
+  </ul>
+  <p>Automated: no</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/api-server/api_server_anonymous_auth/rule.yml"> api_server_anonymous_auth</a>: Ensure that anonymous requests to the API Server are authorized
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/general/kubeadmin_removed/rule.yml"> kubeadmin_removed</a>: Ensure that the kubeadmin secret has been removed
+      <ul><li>CCE-90387-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/kubelet/kubelet_anonymous_auth/rule.yml"> kubelet_anonymous_auth</a>: Disable Anonymous Authentication to the Kubelet
+      <ul><li>CCE-83815-1</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/rbac/rbac_least_privilege/rule.yml"> rbac_least_privilege</a>: Ensure that the RBAC setup follows the principle of least privilege
+      <ul><li>CCE-90678-4</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>APP.4.4.A4: Separation of Pods</h2>
+  <p>Description: (1) The operating system kernel of nodes MUST have isolation mechanisms to restrict visibility and resource usage among the corresponding pods (cf. Linux namespaces and cgroups). (2) At minimum, this isolation MUST include process IDs, inter-process communication, user IDs, the file system, and the network (including the hostname).</p>
+  Levels: 
+  <ul><li>basic</li>
+  </ul>
+  <p>Automated: no</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/scc/scc_limit_host_dir_volume_plugin/rule.yml"> scc_limit_host_dir_volume_plugin</a>: Limit Containers Ability to use the HostDir volume plugin
+      <ul><li>CCE-86255-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/scc/scc_limit_ipc_namespace/rule.yml"> scc_limit_ipc_namespace</a>: Limit Access to the Host IPC Namespace
+      <ul><li>CCE-84042-1</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/scc/scc_limit_net_raw_capability/rule.yml"> scc_limit_net_raw_capability</a>: Limit Use of the CAP_NET_RAW
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/scc/scc_limit_network_namespace/rule.yml"> scc_limit_network_namespace</a>: Limit Access to the Host Network Namespace
+      <ul><li>CCE-83492-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/scc/scc_limit_privileged_containers/rule.yml"> scc_limit_privileged_containers</a>: Limit Privileged Container Use
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/scc/scc_limit_process_id_namespace/rule.yml"> scc_limit_process_id_namespace</a>: Limit Access to the Host Process ID Namespace
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/scc/scc_limit_root_containers/rule.yml"> scc_limit_root_containers</a>: Limit Container Running As Root User
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>APP.4.4.A5: Backup in the Cluster</h2>
+  <p>Description: (1) A cluster MUST have a backup. The backup MUST include:
+  (2) • Persistent volumes
+  (3) • Configuration files for Kubernetes and the other programs of the control plane
+  (4) • The current state of the Kubernetes cluster, including extensions
+  (5) • Databases of the configuration (namely etcd in this case)
+  (6) • All infrastructure applications required to operate the cluster and the services within
+it
+  (7) • The data storage of the code and image registries
+(8) Snapshots for the operation of the applications SHOULD also be considered. Snapshots MUST NOT be considered a substitute for backups.</p>
+  Levels: 
+  <ul><li>basic</li>
+  </ul>
+  <p>Automated: no</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/etcd/etcd_backup/rule.yml"> etcd_backup</a>: Configure Recurring Backups For etcd
+      <ul><li>CCE-88188-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/general/general_backup_solution_installed/rule.yml"> general_backup_solution_installed</a>: A Backup Solution Has To Be Installed
+      <ul><li>CCE-90185-0</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>APP.4.4.A6: Initialisation of Pods</h2>
+  <p>Description: If an initialisation (e.g. of an application) takes place in a pod at start-up, this SHOULD take place in a separate Init container. It SHOULD be ensured that the initialisation terminates all processes that are already running. Kubernetes SHOULD ONLY start the other containers if the initialisation is successful.</p>
+  Levels: 
+  <ul><li>standard</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>APP.4.4.A7: Separation of Networks for Kubernetes</h2>
+  <p>Description: (1) Networks for the administration of nodes, the control plane, and the individual networks of application services SHOULD be separated. (2) Only the network ports of the pods necessary for operation SHOULD be released into the designated networks. (3) If a Kubernetes cluster contains multiple applications, all the network connections between the Kubernetes namespaces SHOULD first be prohibited and only required network connections permitted (whitelisting). (4) The network ports necessary for the administration of the nodes, the runtime, and Kubernetes (including its extensions) SHOULD ONLY be accessible from the corresponding administration network and from pods that need them. (5) Only selected administrators SHOULD be authorised in Kubernetes to manage the CNI and create or change rules for the network.</p>
+  Levels: 
+  <ul><li>standard</li>
+  </ul>
+  <p>Automated: no</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/networking/configure_network_policies/rule.yml"> configure_network_policies</a>: Ensure that the CNI in use supports Network Policies
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/networking/configure_network_policies_namespaces/rule.yml"> configure_network_policies_namespaces</a>: Ensure that application Namespaces have Network Policies defined.
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/general/general_network_separation/rule.yml"> general_network_separation</a>: Create Network Boundaries between Functional Different Nodes
+      <ul><li>CCE-86851-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/networking/project_config_and_template_network_policy/rule.yml"> project_config_and_template_network_policy</a>: Ensure that project templates autocreate Network Policies
+      <ul><li>CCE-86070-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/rbac/rbac_least_privilege/rule.yml"> rbac_least_privilege</a>: Ensure that the RBAC setup follows the principle of least privilege
+      <ul><li>CCE-90678-4</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>APP.4.4.A8: Securing Configuration Files on Kubernetes</h2>
+  <p>Description: (1) The configuration files of a Kubernetes cluster, including all its extensions and applications, SHOULD be versioned and annotated. (2) Access rights to configuration file management software SHOULD be granted in a restrictive manner. (3) Read and write access rights to the configuration files of the control plane SHOULD be assigned and restricted with particular care.</p>
+  Levels: 
+  <ul><li>standard</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>APP.4.4.A9: Use of Kubernetes Service Accounts</h2>
+  <p>Description: (1) Pods SHOULD NOT use the "default" service account. (2) Rights SHOULD NOT be granted to the "default" service account. (3) Pods for different applications SHOULD run under their own service accounts. (4) Access rights for the service accounts of the applications' pods SHOULD be limited to those that are strictly necessary. (5) Pods that do not require a service account SHOULD not be able to view it or have access to corresponding tokens. (6) Only control plane pods and pods that absolutely need them SHOULD use privileged service accounts. (7) Automation programs SHOULD each receive their own tokens, even if they share a common service account due to similar tasks.</p>
+  Levels: 
+  <ul><li>standard</li>
+  </ul>
+  <p>Automated: no</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/accounts/accounts_no_clusterrolebindings_default_service_account/rule.yml"> accounts_no_clusterrolebindings_default_service_account</a>: Ensure no ClusterRoleBindings set for default Service Account
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/accounts/accounts_no_rolebindings_default_service_account/rule.yml"> accounts_no_rolebindings_default_service_account</a>: Ensure no RoleBindings set for default Service Account
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/accounts/accounts_restrict_service_account_tokens/rule.yml"> accounts_restrict_service_account_tokens</a>: Restrict Automounting of Service Account Tokens
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/accounts/accounts_unique_service_account/rule.yml"> accounts_unique_service_account</a>: Ensure Usage of Unique Service Accounts 
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/rbac/rbac_least_privilege/rule.yml"> rbac_least_privilege</a>: Ensure that the RBAC setup follows the principle of least privilege
+      <ul><li>CCE-90678-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/rbac/rbac_wildcard_use/rule.yml"> rbac_wildcard_use</a>: Minimize Wildcard Usage in Cluster and Local Roles
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/scc/scc_drop_container_capabilities/rule.yml"> scc_drop_container_capabilities</a>: Drop Container Capabilities
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/scc/scc_limit_container_allowed_capabilities/rule.yml"> scc_limit_container_allowed_capabilities</a>: Limit Container Capabilities
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/scc/scc_limit_host_dir_volume_plugin/rule.yml"> scc_limit_host_dir_volume_plugin</a>: Limit Containers Ability to use the HostDir volume plugin
+      <ul><li>CCE-86255-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/scc/scc_limit_host_ports/rule.yml"> scc_limit_host_ports</a>: Limit Containers Ability to bind to privileged ports
+      <ul><li>CCE-86205-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/scc/scc_limit_ipc_namespace/rule.yml"> scc_limit_ipc_namespace</a>: Limit Access to the Host IPC Namespace
+      <ul><li>CCE-84042-1</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/scc/scc_limit_net_raw_capability/rule.yml"> scc_limit_net_raw_capability</a>: Limit Use of the CAP_NET_RAW
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/scc/scc_limit_network_namespace/rule.yml"> scc_limit_network_namespace</a>: Limit Access to the Host Network Namespace
+      <ul><li>CCE-83492-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/scc/scc_limit_privilege_escalation/rule.yml"> scc_limit_privilege_escalation</a>: Limit Containers Ability to Escalate Privileges
+      <ul><li>CCE-83447-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/scc/scc_limit_privileged_containers/rule.yml"> scc_limit_privileged_containers</a>: Limit Privileged Container Use
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/scc/scc_limit_process_id_namespace/rule.yml"> scc_limit_process_id_namespace</a>: Limit Access to the Host Process ID Namespace
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/scc/scc_limit_root_containers/rule.yml"> scc_limit_root_containers</a>: Limit Container Running As Root User
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>APP.4.4.A10: Securing Automation Processes</h2>
+  <p>Description: (1) All automation software processes, such as CI/CD and their pipelines, SHOULD only operate with the rights that are strictly necessary. (2) If different user groups can change configurations or start pods via automation software, this SHOULD be done for each group through separate processes that only have the rights necessary for the respective user group.</p>
+  Levels: 
+  <ul><li>standard</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>APP.4.4.A11: Container Monitoring</h2>
+  <p>Description: (1) In pods, each container SHOULD define a health check for start-up and operation ("readiness" and "liveness"). (2) These checks SHOULD provide information about the availability of the software running in a pod. (3) The checks SHOULD fail if the monitored software cannot perform its tasks properly. (4) For each of these checks, a time period SHOULD be defined that is appropriate for the service running in the pod. (5) Based on these checks, Kubernetes SHOULD delete or restart the pods.</p>
+  Levels: 
+  <ul><li>standard</li>
+  </ul>
+  <p>Automated: no</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/general/liveness_readiness_probe_in_workload/rule.yml"> liveness_readiness_probe_in_workload</a>: Ensure that all workloads have liveness and readiness probes
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>APP.4.4.A12: Securing Infrastructure Applications</h2>
+  <p>Description: (1) If a separate registry for images or automation software, persistent volume management, configuration file storage, or similar is in use, its protection SHOULD at least consider:
+  (2) • Use of personal and service accounts for access
+  (3) • Encrypted communication on all network ports
+  (4) • Restrictive assignment of permissions to user and service accounts
+  (5) • Logging of changes
+  (6) • Regular data backups.</p>
+  Levels: 
+  <ul><li>standard</li>
+  </ul>
+  <p>Automated: no</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/registry/ocp_insecure_allowed_registries_for_import/rule.yml"> ocp_insecure_allowed_registries_for_import</a>: Check configured allowed registries for import uses secure protocol
+      <ul><li>CCE-86235-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/registry/ocp_insecure_registries/rule.yml"> ocp_insecure_registries</a>: Check if any insecure registry sources is configured
+      <ul><li>CCE-86123-7</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>APP.4.4.A13: Automated Configuration Auditing</h2>
+  <p>Description: (1) There SHOULD be an automated audit that checks the settings of nodes, of Kubernetes, and of the pods of applications against a defined list of allowed settings and standardised benchmarks. (2) Kubernetes SHOULD enforce these established rules in each cluster by connecting appropriate tools.</p>
+  Levels: 
+  <ul><li>elevated</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/risk-assessment/scansetting_has_autoapplyremediations/rule.yml"> scansetting_has_autoapplyremediations</a>: Enable AutoApplyRemediation for at least One ScanSetting
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/risk-assessment/scansettingbinding_exists/rule.yml"> scansettingbinding_exists</a>: Ensure that Compliance Operator is scanning the cluster
+      <ul><li>CCE-83697-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/risk-assessment/scansettings_have_schedule/rule.yml"> scansettings_have_schedule</a>: Ensure that Compliance Operator scans are running periodically
+      <ul><li>CCE-90762-6</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>APP.4.4.A14: Use of Dedicated Nodes</h2>
+  <p>Description: (1) In a Kubernetes cluster, nodes SHOULD be assigned dedicated tasks and only run pods that are assigned to each task. (2) Bastion nodes SHOULD handle all incoming and outgoing data connections of between applications and other networks. (3) Management nodes SHOULD operate control plane pods and only handle control plane data connections. (4) If deployed, storage nodes SHOULD only operate the fixed persistent volume services pods in a cluster.</p>
+  Levels: 
+  <ul><li>elevated</li>
+  </ul>
+  <p>Automated: no</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/networking/configure_egress_ip_node_assignable/rule.yml"> configure_egress_ip_node_assignable</a>: Check Egress IPs Assignable to Nodes
+      <ul><li>CCE-86787-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/general/general_network_separation/rule.yml"> general_network_separation</a>: Create Network Boundaries between Functional Different Nodes
+      <ul><li>CCE-86851-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/general/general_node_separation/rule.yml"> general_node_separation</a>: Create Boundaries between Resources using Nodes or Clusters
+      <ul><li>CCE-88903-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/master/master_taint_noschedule/rule.yml"> master_taint_noschedule</a>: Verify that Control Plane Nodes are not schedulable for workloads
+      <ul><li>CCE-88731-5</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>APP.4.4.A15: Separation of Applications at Node and Cluster Level</h2>
+  <p>Description: (1) Applications with very high protection needs SHOULD each use their own Kubernetes clusters or dedicated nodes that are not available for other applications</p>
+  Levels: 
+  <ul><li>elevated</li>
+  </ul>
+  <p>Automated: no</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/general/general_node_separation/rule.yml"> general_node_separation</a>: Create Boundaries between Resources using Nodes or Clusters
+      <ul><li>CCE-88903-0</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>APP.4.4.A16: Use of Operators</h2>
+  <p>Description: (1) The automation of operational tasks in operators SHOULD be used for particularly critical applications and control plane programs.</p>
+  Levels: 
+  <ul><li>elevated</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>APP.4.4.A17: Attestation of Nodes</h2>
+  <p>Description: (1) Nodes SHOULD send a cryptographically secured (and, if possible, TPM-verified) status message to the control plane. (2) The control plane SHOULD ONLY accept nodes into a cluster that have successfully proven their integrity.</p>
+  Levels: 
+  <ul><li>elevated</li>
+  </ul>
+  <p>Automated: no</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/api-server/api_server_client_ca/rule.yml"> api_server_client_ca</a>: Configure the Client Certificate Authority for the API Server
+      <ul><li>CCE-84284-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/api-server/api_server_https_for_kubelet_conn/rule.yml"> api_server_https_for_kubelet_conn</a>: Ensure that the --kubelet-https argument is set to true
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/api-server/api_server_kubelet_client_cert/rule.yml"> api_server_kubelet_client_cert</a>: Configure the kubelet Certificate File for the API Server
+      <ul><li>CCE-84080-1</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/api-server/api_server_kubelet_client_key/rule.yml"> api_server_kubelet_client_key</a>: Configure the kubelet Certificate Key for the API Server
+      <ul><li>CCE-83591-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/api-server/api_server_tls_cert/rule.yml"> api_server_tls_cert</a>: Configure the Certificate for the API Server
+      <ul><li>CCE-83779-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/api-server/api_server_tls_cipher_suites/rule.yml"> api_server_tls_cipher_suites</a>: Use Strong Cryptographic Ciphers on the API Server
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/api-server/api_server_tls_private_key/rule.yml"> api_server_tls_private_key</a>: Configure the Certificate Key for the API Server
+      <ul><li>CCE-84282-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/api-server/api_server_tls_security_profile_not_old/rule.yml"> api_server_tls_security_profile_not_old</a>: Ensure APIServer is not configured with Old tlsSecurityProfile
+      <ul><li>CCE-86223-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/integrity/cluster_version_operator_exists/rule.yml"> cluster_version_operator_exists</a>: Ensure that Cluster Version Operator is deployed
+      <ul><li>CCE-90670-1</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/integrity/cluster_version_operator_verify_integrity/rule.yml"> cluster_version_operator_verify_integrity</a>: Ensure that Cluster Version Operator verifies integrity
+      <ul><li>CCE-90671-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/worker/file_groupowner_kubelet_conf/rule.yml"> file_groupowner_kubelet_conf</a>: Verify Group Who Owns The Kubelet Configuration File
+      <ul><li>CCE-84233-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/worker/file_groupowner_worker_ca/rule.yml"> file_groupowner_worker_ca</a>: Verify Group Who Owns the Worker Certificate Authority File
+      <ul><li>CCE-83440-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/worker/file_groupowner_worker_kubeconfig/rule.yml"> file_groupowner_worker_kubeconfig</a>: Verify Group Who Owns The Worker Kubeconfig File
+      <ul><li>CCE-83409-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/worker/file_groupowner_worker_service/rule.yml"> file_groupowner_worker_service</a>: Verify Group Who Owns The OpenShift Node Service File
+      <ul><li>CCE-83975-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/integrity/file_integrity_exists/rule.yml"> file_integrity_exists</a>: Ensure that File Integrity Operator is scanning the cluster
+      <ul><li>CCE-83657-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/general/file_integrity_notification_enabled/rule.yml"> file_integrity_notification_enabled</a>: Ensure the notification is enabled for file integrity operator
+      <ul><li>CCE-90572-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/worker/file_owner_kubelet/rule.yml"> file_owner_kubelet</a>: Verify User Who Owns The Kubelet Configuration File
+      <ul><li>CCE-85900-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/worker/file_owner_kubelet_conf/rule.yml"> file_owner_kubelet_conf</a>: Verify User Who Owns The Kubelet Configuration File
+      <ul><li>CCE-83976-1</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/worker/file_owner_worker_ca/rule.yml"> file_owner_worker_ca</a>: Verify User Who Owns the Worker Certificate Authority File
+      <ul><li>CCE-83495-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/worker/file_owner_worker_kubeconfig/rule.yml"> file_owner_worker_kubeconfig</a>: Verify User Who Owns The Worker Kubeconfig File
+      <ul><li>CCE-83408-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/worker/file_owner_worker_service/rule.yml"> file_owner_worker_service</a>: Verify User Who Owns The OpenShift Node Service File
+      <ul><li>CCE-84193-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/worker/file_permissions_kubelet/rule.yml"> file_permissions_kubelet</a>: Verify Permissions on The Kubelet Configuration File
+      <ul><li>CCE-85896-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/worker/file_permissions_kubelet_conf/rule.yml"> file_permissions_kubelet_conf</a>: Verify Permissions on The Kubelet Configuration File
+      <ul><li>CCE-83470-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/worker/file_permissions_worker_ca/rule.yml"> file_permissions_worker_ca</a>: Verify Permissions on the Worker Certificate Authority File
+      <ul><li>CCE-83493-7</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/worker/file_permissions_worker_kubeconfig/rule.yml"> file_permissions_worker_kubeconfig</a>: Verify Permissions on the Worker Kubeconfig File
+      <ul><li>CCE-83509-0</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/worker/file_permissions_worker_service/rule.yml"> file_permissions_worker_service</a>: Verify Permissions on the OpenShift Node Service File
+      <ul><li>CCE-83455-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/kubelet/kubelet_configure_client_ca/rule.yml"> kubelet_configure_client_ca</a>: kubelet - Configure the Client CA Certificate
+      <ul><li>CCE-83724-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/kubelet/kubelet_configure_tls_cert/rule.yml"> kubelet_configure_tls_cert</a>: Ensure That The kubelet Client Certificate Is Correctly Set
+      <ul><li>CCE-83396-2</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/kubelet/kubelet_configure_tls_cipher_suites/rule.yml"> kubelet_configure_tls_cipher_suites</a>: Ensure that the Kubelet only makes use of Strong Cryptographic Ciphers
+      <ul><li>CCE-86030-4</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/kubelet/kubelet_configure_tls_key/rule.yml"> kubelet_configure_tls_key</a>: Ensure That The kubelet Server Key Is Correctly Set
+      <ul><li>CCE-90614-9</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/kubelet/kubelet_configure_tls_min_version/rule.yml"> kubelet_configure_tls_min_version</a>: Ensure Kubelet is configured with allowed TLS versions
+      <ul><li>CCE-86623-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/general/tls_version_check_apiserver/rule.yml"> tls_version_check_apiserver</a>: Ensure TLS v1.2 is minimum for Openshift APIServer
+      <ul><li>CCE-85863-9</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>APP.4.4.A18: Use of Micro-Segmentation</h2>
+  <p>Description: (1) Pods SHOULD ONLY be able to communicate with each other through the necessary network ports, even within a Kubernetes namespace. (2) There SHOULD be rules within the CNI that disallow all but the necessary network connections within the Kubernetes namespace. (3) These rules SHOULD precisely define the source and destination of the allowed connections using at least one of the following criteria: service name, metadata (“labels”), Kubernetes service accounts, or certificate-based authentication. (4) All the criteria used as labels for a connection SHOULD be secured in such a way that they can only be changed by authorised persons and management services.</p>
+  Levels: 
+  <ul><li>elevated</li>
+  </ul>
+  <p>Automated: no</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/networking/configure_appropriate_network_policies/rule.yml"> configure_appropriate_network_policies</a>: Ensure Appropriate Network Policies are Configured
+      <ul><li>CCE-89537-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/networking/configure_network_policies/rule.yml"> configure_network_policies</a>: Ensure that the CNI in use supports Network Policies
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/networking/configure_network_policies_namespaces/rule.yml"> configure_network_policies_namespaces</a>: Ensure that application Namespaces have Network Policies defined.
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/networking/project_config_and_template_network_policy/rule.yml"> project_config_and_template_network_policy</a>: Ensure that project templates autocreate Network Policies
+      <ul><li>CCE-86070-0</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>APP.4.4.A19: High Availability of Kubernetes</h2>
+  <p>Description: (1) A Kubernetes operation SHOULD be set up in such a way that if a site fails, the clusters (and thus the applications in the pods) either continue to run without interruption or can be restarted in a short time at another site. (2) Should a restart be required, all the necessary configuration files, images, user data, network connections, and other resources required for operation (including the necessary hardware) SHOULD already be available at the alternative site. (3) For the uninterrupted operation of clusters, the control plane of Kubernetes, the infrastructure applications of the clusters, and the pods of the applications SHOULD be distributed across several fire zones based on the location data of the corresponding nodes so that the failure of a fire zone will not lead to the failure of an application.</p>
+  Levels: 
+  <ul><li>elevated</li>
+  </ul>
+  <p>Automated: yes</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/high-availability/anti_affinity_or_topology_spread_constraints_in_deployment/rule.yml"> anti_affinity_or_topology_spread_constraints_in_deployment</a>: Ensure Deployments have either Anti-Affinity Rules or Topology Spread Constraints
+      <ul><li>CCE-89351-1</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/high-availability/anti_affinity_or_topology_spread_constraints_in_statefulset/rule.yml"> anti_affinity_or_topology_spread_constraints_in_statefulset</a>: Ensure Statefulsets have either Anti-Affinity Rules or Topology Spread Constraints
+      <ul><li>CCE-89908-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/high-availability/control_plane_nodes_in_three_zones/rule.yml"> control_plane_nodes_in_three_zones</a>: Ensure Control Plane / Master Nodes are Distributed Across Three Failure Zones
+      <ul><li>CCE-88713-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/high-availability/infra_nodes_in_two_zones_or_more/rule.yml"> infra_nodes_in_two_zones_or_more</a>: Ensure Infrastructure Nodes are Distributed Across Three Failure Zones
+      <ul><li>CCE-87050-1</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/high-availability/multiple_nodes_in_every_mcp/rule.yml"> multiple_nodes_in_every_mcp</a>: Ensure every MachineConfigPool consists of More Than One Node
+      <ul><li>CCE-90465-6</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/high-availability/three_control_plane_nodes/rule.yml"> three_control_plane_nodes</a>: Ensure there are Three Machines in the Master MachineConfigPool
+      <ul><li>CCE-87551-8</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/high-availability/worker_nodes_in_two_zones_or_more/rule.yml"> worker_nodes_in_two_zones_or_more</a>: Ensure Worker Nodes are Distributed Across Three Failure Zones
+      <ul><li>CCE-88863-6</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>APP.4.4.A20: Encrypted Data Storage for Pods</h2>
+  <p>Description: The file systems containing the persistent data of the control plane (etcd in particular in this context) and the application services SHOULD be encrypted.</p>
+  Levels: 
+  <ul><li>elevated</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>APP.4.4.A21: Regular Restart of Pods</h2>
+  <p>Description: (1) Pods SHOULD be stopped and restarted regularly if there is an increased risk of external interference and a very high need for protection. (2) No pod SHOULD run for more than 24 hours. The availability of the applications in a pod SHOULD be ensured.</p>
+  Levels: 
+  <ul><li>elevated</li>
+  </ul>
+  <p>Automated: no</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/general/kube_descheduler_lifecycle_policy/rule.yml"> kube_descheduler_lifecycle_policy</a>: Ensure that the LifecycleAndUtilization Profile for the Kube Descheduler Operator is Enabled
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/general/kube_descheduler_operator_exists/rule.yml"> kube_descheduler_operator_exists</a>: Ensure that the Kube Descheduler operator is deployed
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//applications/openshift/general/kube_descheduler_podlifetime/rule.yml"> kube_descheduler_podlifetime</a>: Set Pod Lifetime for the Deschedulers
+    </li>
+  </ul>
+  
+</div>  
+</div>  
+
+
+</body>
+</html>

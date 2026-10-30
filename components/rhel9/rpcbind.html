@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'rpcbind'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'rpcbind'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>rpcbind</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<div>None</div>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#package_rpcbind_removed">package_rpcbind_removed</a></li>
+
+<li><a href="#service_rpcbind_disabled">service_rpcbind_disabled</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="package_rpcbind_removed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Uninstall rpcbind Package</h3>
+<div>package_rpcbind_removed</div>
+<h4>Description</h4>
+<p>The rpcbind utility maps RPC services to the ports on which they listen.
+RPC processes notify rpcbind when they start, registering the ports they
+are listening on and the RPC program numbers they expect to serve. The
+rpcbind service redirects the client to the proper port number so it can
+communicate with the requested service. If the system does not require RPC
+(such as for NFS servers) then this service should be disabled.
+The <code>rpcbind</code> package can be removed with the following command:
+<pre>
+$ sudo dnf remove rpcbind</pre></p>
+<h4>Rationale</h4>
+<p>If the system does not require rpc based services, it is recommended that
+rpcbind be disabled to reduce the attack surface.</p>
+</div>
+
+<div id="service_rpcbind_disabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable rpcbind Service</h3>
+<div>service_rpcbind_disabled</div>
+<h4>Description</h4>
+<p>The rpcbind utility maps RPC services to the ports on which they listen.
+RPC processes notify rpcbind when they start, registering the ports they
+are listening on and the RPC program numbers they expect to serve. The
+rpcbind service redirects the client to the proper port number so it can
+communicate with the requested service. If the system does not require RPC
+(such as for NFS servers) then this service should be disabled.
+
+The <code>rpcbind</code> service can be disabled with the following command:
+<pre>$ sudo systemctl mask --now rpcbind.service</pre></p>
+<h4>Rationale</h4>
+<p>If the system does not require rpc based services, it is recommended that
+rpcbind be disabled to reduce the attack surface.</p>
+</div>
+
+
+
+
+</body>
+</html>

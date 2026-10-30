@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'zipl'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'zipl'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>zipl</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<ul>
+
+<li>bootloader-zipl</li>
+
+</ul>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#zipl_audit_argument">zipl_audit_argument</a></li>
+
+<li><a href="#zipl_audit_backlog_limit_argument">zipl_audit_backlog_limit_argument</a></li>
+
+<li><a href="#zipl_bls_entries_only">zipl_bls_entries_only</a></li>
+
+<li><a href="#zipl_bootmap_is_up_to_date">zipl_bootmap_is_up_to_date</a></li>
+
+<li><a href="#zipl_enable_selinux">zipl_enable_selinux</a></li>
+
+<li><a href="#zipl_init_on_alloc_argument">zipl_init_on_alloc_argument</a></li>
+
+<li><a href="#zipl_page_alloc_shuffle_argument">zipl_page_alloc_shuffle_argument</a></li>
+
+<li><a href="#zipl_page_poison_argument">zipl_page_poison_argument</a></li>
+
+<li><a href="#zipl_slub_debug_argument">zipl_slub_debug_argument</a></li>
+
+<li><a href="#zipl_systemd_debug-shell_argument_absent">zipl_systemd_debug-shell_argument_absent</a></li>
+
+<li><a href="#zipl_vsyscall_argument">zipl_vsyscall_argument</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="zipl_audit_argument" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Enable Auditing to Start Prior to the Audit Daemon in zIPL</h3>
+<div>zipl_audit_argument</div>
+<h4>Description</h4>
+<p>To ensure all processes can be audited, even those which start prior to the audit daemon,
+check that all boot entries in <tt>/boot/loader/entries/*.conf</tt> have <tt>audit=1</tt>
+included in its options.<br />
+
+To ensure that new kernels and boot entries continue to enable audit,
+add <tt>audit=1</tt> to <tt>/etc/kernel/cmdline</tt>.</p>
+<h4>Rationale</h4>
+<p>Each process on the system carries an "auditable" flag which indicates whether
+its activities can be audited. Although <tt>auditd</tt> takes care of enabling
+this for all processes which launch after it does, adding the kernel argument
+ensures it is set for every process during boot.</p>
+</div>
+
+<div id="zipl_audit_backlog_limit_argument" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Extend Audit Backlog Limit for the Audit Daemon in zIPL</h3>
+<div>zipl_audit_backlog_limit_argument</div>
+<h4>Description</h4>
+<p>To improve the kernel capacity to queue all log events, even those which start prior to the audit daemon,
+check that all boot entries in <tt>/boot/loader/entries/*.conf</tt> have <tt>audit_backlog_limit=8192</tt>
+included in its options.<br />
+To ensure that new kernels and boot entries continue to extend the audit log events queue,
+add <tt>audit_backlog_limit=8192</tt> to <tt>/etc/kernel/cmdline</tt>.</p>
+<h4>Rationale</h4>
+<p>audit_backlog_limit sets the queue length for audit events awaiting transfer
+to the audit daemon. Until the audit daemon is up and running, all log messages
+are stored in this queue.  If the queue is overrun during boot process, the action
+defined by audit failure flag is taken.</p>
+</div>
+
+<div id="zipl_bls_entries_only" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure all zIPL boot entries are BLS compliant</h3>
+<div>zipl_bls_entries_only</div>
+<h4>Description</h4>
+<p>Ensure that zIPL boot entries fully adheres to Boot Loader Specification (BLS)
+by checking that <tt>/etc/zipl.conf</tt> doesn't contain <tt>image = </tt>.</p>
+<h4>Rationale</h4>
+<p>Ubuntu 24.04 adheres to Boot Loader Specification (BLS) and is the preferred method of
+configuration.</p>
+</div>
+
+<div id="zipl_bootmap_is_up_to_date" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure zIPL bootmap is up to date</h3>
+<div>zipl_bootmap_is_up_to_date</div>
+<h4>Description</h4>
+<p>Make sure that <tt>/boot/bootmap</tt> is up to date.<br />
+Every time a boot entry or zIPL configuration is changed <tt>/boot/bootmap</tt> needs to
+be updated to reflect the changes.<br />
+Run <tt>zipl</tt> command to generate an updated <tt>/boot/bootmap</tt>.</p>
+<h4>Rationale</h4>
+<p>The file <tt>/boot/bootmap</tt> contains all boot data, keeping it up to date is crucial to
+boot correct kernel and options.</p>
+</div>
+
+<div id="zipl_enable_selinux" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure SELinux Not Disabled in zIPL</h3>
+<div>zipl_enable_selinux</div>
+<h4>Description</h4>
+<p>To ensure SELinux is not disabled at boot time,
+check that no boot entry in <tt>/boot/loader/entries/*.conf</tt> has <tt>selinux=0</tt>
+included in its options.<br /></p>
+<h4>Rationale</h4>
+<p>Disabling a major host protection feature, such as SELinux, at boot time prevents
+it from confining system services at boot time.  Further, it increases
+the chances that it will remain off during system operation.</p>
+</div>
+
+<div id="zipl_init_on_alloc_argument" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure kernel to zero out memory before allocation in zIPL</h3>
+<div>zipl_init_on_alloc_argument</div>
+<h4>Description</h4>
+<p>To ensure that the kernel is configured to zero out memory before
+allocation, check that all boot entries in
+<tt>/boot/loader/entries/*.conf</tt> have <tt>init_on_alloc=1</tt>
+included in its options.<br />
+
+To ensure that new kernels and boot entries continue to zero out memory
+before allocation, add <tt>init_on_alloc=1</tt> to <tt>/etc/kernel/cmdline</tt>.</p>
+<h4>Rationale</h4>
+<p>When the kernel configuration option <tt>init_on_alloc</tt> is enabled,
+all page allocator and slab allocator memory will be zeroed when allocated,
+eliminating many kinds of "uninitialized heap memory" flaws, effectively
+preventing data leaks.</p>
+</div>
+
+<div id="zipl_page_alloc_shuffle_argument" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Enable randomization of the page allocator in zIPL</h3>
+<div>zipl_page_alloc_shuffle_argument</div>
+<h4>Description</h4>
+<p>To enable the randomization of the page allocator in the kernel, check that
+all boot entries in <tt>/boot/loader/entries/*.conf</tt> have
+<tt>page_alloc.shuffle=1</tt> included in its options.<br />
+
+To enable randomization of the page allocator also for  newly installed
+kernels, add <tt>page_alloc.shuffle=1</tt> to <tt>/etc/kernel/cmdline</tt>.</p>
+<h4>Rationale</h4>
+<p>The <tt>CONFIG_SHUFFLE_PAGE_ALLOCATOR</tt> config option is primarily
+focused on improving the average utilization of a direct-mapped
+memory-side-cache. Aside of this performance effect, it also reduces
+predictability of page allocations in situations when the bad actor can
+crash the system and somehow leverage knowledge of (page) allocation order
+right after a fresh reboot, or can control the timing between a
+hot-pluggable memory node (as in NUMA node) and applications allocating
+memory ouf of that node. The <tt>page_alloc.shuffle=1</tt> kernel command
+line parameter then forces this functionality irrespectively of memory cache
+architecture.</p>
+</div>
+
+<div id="zipl_page_poison_argument" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Enable page allocator poisoning in zIPL</h3>
+<div>zipl_page_poison_argument</div>
+<h4>Description</h4>
+<p>To enable poisoning of free pages,
+check that all boot entries in <tt>/boot/loader/entries/*.conf</tt> have <tt>page_poison=1</tt>
+included in its options.<br />
+To ensure that new kernels and boot entries continue to enable page poisoning,
+add <tt>page_poison=1</tt> to <tt>/etc/kernel/cmdline</tt>.</p>
+<h4>Rationale</h4>
+<p>Poisoning writes an arbitrary value to freed pages, so any modification or
+reference to that page after being freed or before being initialized will be
+detected and prevented.
+This prevents many types of use-after-free vulnerabilities at little performance cost.
+Also prevents leak of data and detection of corrupted memory.</p>
+</div>
+
+<div id="zipl_slub_debug_argument" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Enable SLUB/SLAB allocator poisoning in zIPL</h3>
+<div>zipl_slub_debug_argument</div>
+<h4>Description</h4>
+<p>To enable poisoning of SLUB/SLAB objects,
+check that all boot entries in <tt>/boot/loader/entries/*.conf</tt> have <tt>slub_debug=P</tt>
+included in its options.<br />
+To ensure that new kernels and boot entries continue to enable poisoning of SLUB/SLAB objects,
+add <tt>slub_debug=P</tt> to <tt>/etc/kernel/cmdline</tt>.</p>
+<h4>Rationale</h4>
+<p>Poisoning writes an arbitrary value to freed objects, so any modification or
+reference to that object after being freed or before being initialized will be
+detected and prevented.
+This prevents many types of use-after-free vulnerabilities at little performance cost.
+Also prevents leak of data and detection of corrupted memory.</p>
+</div>
+
+<div id="zipl_systemd_debug-shell_argument_absent" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure debug-shell service is not enabled in zIPL</h3>
+<div>zipl_systemd_debug-shell_argument_absent</div>
+<h4>Description</h4>
+<p>systemd's <tt>debug-shell</tt> service is intended to
+diagnose systemd related boot issues with various <tt>systemctl</tt>
+commands. Once enabled and following a system reboot, the root shell
+will be available on <tt>tty9</tt> which is access by pressing
+<tt>CTRL-ALT-F9</tt>. The <tt>debug-shell</tt> service should only be used
+for systemd related issues and should otherwise be disabled.
+<br /><br />
+By default, the <tt>debug-shell</tt> systemd service is already disabled.
+
+Ensure the debug-shell is not enabled by the <tt>systemd.debug-shel=1</tt>
+boot parameter option.
+
+Check that not boot entries in <tt>/boot/loader/entries/*.conf</tt> have
+<tt>systemd.debug-shell=1</tt> included in its options.<br />
+To ensure that new kernels and boot entries don't enable the debug-shell, check
+that <tt>systemd.debug-shell=1</tt> is not present in <tt>/etc/kernel/cmdline</tt>.</p>
+<h4>Rationale</h4>
+<p>This prevents attackers with physical access from trivially bypassing security
+on the machine through valid troubleshooting configurations and gaining root
+access when the system is rebooted.</p>
+</div>
+
+<div id="zipl_vsyscall_argument" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable vsyscalls in zIPL</h3>
+<div>zipl_vsyscall_argument</div>
+<h4>Description</h4>
+<p>To disable use of virtual syscalls,
+check that all boot entries in <tt>/boot/loader/entries/*.conf</tt> have <tt>vsyscall=none</tt>
+included in its options.<br />
+To ensure that new kernels and boot entries continue to disable virtual syscalls,
+add <tt>vsyscall=none</tt> to <tt>/etc/kernel/cmdline</tt>.</p>
+<h4>Rationale</h4>
+<p>Virtual Syscalls provide an opportunity of attack for a user who has control
+of the return instruction pointer.</p>
+</div>
+
+
+
+
+</body>
+</html>

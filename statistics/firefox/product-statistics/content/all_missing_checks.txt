@@ -1,0 +1,3 @@
+xccdf_org.ssgproject.content_rule_firefox_preferences-auto-download_actions
+xccdf_org.ssgproject.content_rule_firefox_preferences-dod_root_certificate_installed
+xccdf_org.ssgproject.content_rule_firefox_preferences-enable_ca_trust

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'cyrus-sasl'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'cyrus-sasl'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>cyrus-sasl</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<div>None</div>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#service_saslauthd_disabled">service_saslauthd_disabled</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="service_saslauthd_disabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable Cyrus SASL Authentication Daemon (saslauthd)</h3>
+<div>service_saslauthd_disabled</div>
+<h4>Description</h4>
+<p>The <tt>saslauthd</tt> service handles plaintext authentication requests on
+behalf of the SASL library. The service isolates all code requiring superuser
+privileges for SASL authentication into a single process, and can also be used
+to provide proxy authentication services to clients that do not understand SASL
+based authentication.
+
+The <code>saslauthd</code> service can be disabled with the following command:
+<pre>$ sudo systemctl mask --now saslauthd.service</pre></p>
+<h4>Rationale</h4>
+<p>The <tt>saslauthd</tt> service provides essential functionality for
+performing authentication in some directory environments, such as those which
+use Kerberos and LDAP. For others, however, in which only local files may be
+consulted, it is not necessary and should be disabled.</p>
+</div>
+
+
+
+
+</body>
+</html>

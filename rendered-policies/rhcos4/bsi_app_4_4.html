@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Definition of BSI APP.4.4 Kubernetes for rhcos4</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Definition of BSI APP.4.4 Kubernetes for rhcos4</h1>
+
+
+
+based on <a href="https://www.bsi.bund.de/SharedDocs/Downloads/EN/BSI/Grundschutz/International/bsi_it_gs_comp_2022.pdf">https://www.bsi.bund.de/SharedDocs/Downloads/EN/BSI/Grundschutz/International/bsi_it_gs_comp_2022.pdf</a>
+
+
+<div class="all_controls">
+<div class="one_control">
+  <h2>APP.4.4.A1: Planning the Separation of the Applications</h2>
+  <p>Description: Before going live, the manner in which the applications running in the pods in question and their different test and production operating environments will be separated MUST be planned. Based on the protection needs of the applications, the planning MUST determine which architecture of namespaces, meta tags, clusters, and networks adequately addresses the risks at hand and whether virtualised servers and networks should also be used. The planning MUST include provisions separating for networks, CPUs, and persistent volumes. The separation SHOULD also take into account and be aligned with the network zone concept and the protection requirements at hand. Each application SHOULD run in a separate Kubernetes namespace that includes all the programs of the application. Only applications with similar protection needs and similar possible attack vectors SHOULD share a Kubernetes cluster.</p>
+  Levels: 
+  <ul><li>basic</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>APP.4.4.A2: Planning Automation with CI/CD</h2>
+  <p>Description: (1) Automating the operation of applications in Kubernetes using CI/CD MUST ONLY take place after appropriate planning. (2) The planning MUST cover the entire lifecycle from commissioning to decommissioning, including development, testing, operation, monitoring, and updates. (3) A roles and rights concept and the securing of Kubernetes Secrets MUST be part of the planning</p>
+  Levels: 
+  <ul><li>basic</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>APP.4.4.A3: Identity and Access Management for Kubernetes</h2>
+  <p>Description: (1) Kubernetes and all other control plane applications MUST authenticate and authorise each action taken by a user or, in automated mode, corresponding software. This applies whether the actions are taken via a client, a web interface, or a corresponding API. Administrative actions MUST NOT be performed anonymously. (2) Each user MUST ONLY be granted the permissions they absolutely require. Unlimited access rights MUST be granted in a very restrictive manner. (3) Only a small group of people SHOULD be authorised to define automation processes. Only selected administrators SHOULD be given the right to create or change shares for persistent volumes in Kubernetes.</p>
+  Levels: 
+  <ul><li>basic</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>APP.4.4.A4: Separation of Pods</h2>
+  <p>Description: (1) The operating system kernel of nodes MUST have isolation mechanisms to restrict visibility and resource usage among the corresponding pods (cf. Linux namespaces and cgroups). (2) At minimum, this isolation MUST include process IDs, inter-process communication, user IDs, the file system, and the network (including the hostname).</p>
+  Levels: 
+  <ul><li>basic</li>
+  </ul>
+  <p>Automated: no</p>
+  Selections:
+  <ul>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/coreos_enable_selinux_kernel_argument/rule.yml"> coreos_enable_selinux_kernel_argument</a>: Ensure SELinux Not Disabled in the kernel arguments
+      <ul><li>CCE-83899-5</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/selinux_policytype/rule.yml"> selinux_policytype</a>: Configure SELinux Policy
+      <ul><li>CCE-82532-3</li></ul>
+    </li>
+    <li><a href="https://github.com/ComplianceAsCode/content/tree/master//linux_os/guide/system/selinux/selinux_state/rule.yml"> selinux_state</a>: Ensure SELinux State is Enforcing
+      <ul><li>CCE-82531-5</li></ul>
+    </li>
+  </ul>
+  
+</div>  
+<div class="one_control">
+  <h2>APP.4.4.A5: Backup in the Cluster</h2>
+  <p>Description: (1) A cluster MUST have a backup. The backup MUST include:
+  (2) • Persistent volumes
+  (3) • Configuration files for Kubernetes and the other programs of the control plane
+  (4) • The current state of the Kubernetes cluster, including extensions
+  (5) • Databases of the configuration (namely etcd in this case)
+  (6) • All infrastructure applications required to operate the cluster and the services within
+it
+  (7) • The data storage of the code and image registries
+(8) Snapshots for the operation of the applications SHOULD also be considered. Snapshots MUST NOT be considered a substitute for backups.</p>
+  Levels: 
+  <ul><li>basic</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>APP.4.4.A6: Initialisation of Pods</h2>
+  <p>Description: If an initialisation (e.g. of an application) takes place in a pod at start-up, this SHOULD take place in a separate Init container. It SHOULD be ensured that the initialisation terminates all processes that are already running. Kubernetes SHOULD ONLY start the other containers if the initialisation is successful.</p>
+  Levels: 
+  <ul><li>standard</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>APP.4.4.A7: Separation of Networks for Kubernetes</h2>
+  <p>Description: (1) Networks for the administration of nodes, the control plane, and the individual networks of application services SHOULD be separated. (2) Only the network ports of the pods necessary for operation SHOULD be released into the designated networks. (3) If a Kubernetes cluster contains multiple applications, all the network connections between the Kubernetes namespaces SHOULD first be prohibited and only required network connections permitted (whitelisting). (4) The network ports necessary for the administration of the nodes, the runtime, and Kubernetes (including its extensions) SHOULD ONLY be accessible from the corresponding administration network and from pods that need them. (5) Only selected administrators SHOULD be authorised in Kubernetes to manage the CNI and create or change rules for the network.</p>
+  Levels: 
+  <ul><li>standard</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>APP.4.4.A8: Securing Configuration Files on Kubernetes</h2>
+  <p>Description: (1) The configuration files of a Kubernetes cluster, including all its extensions and applications, SHOULD be versioned and annotated. (2) Access rights to configuration file management software SHOULD be granted in a restrictive manner. (3) Read and write access rights to the configuration files of the control plane SHOULD be assigned and restricted with particular care.</p>
+  Levels: 
+  <ul><li>standard</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>APP.4.4.A9: Use of Kubernetes Service Accounts</h2>
+  <p>Description: (1) Pods SHOULD NOT use the "default" service account. (2) Rights SHOULD NOT be granted to the "default" service account. (3) Pods for different applications SHOULD run under their own service accounts. (4) Access rights for the service accounts of the applications' pods SHOULD be limited to those that are strictly necessary. (5) Pods that do not require a service account SHOULD not be able to view it or have access to corresponding tokens. (6) Only control plane pods and pods that absolutely need them SHOULD use privileged service accounts. (7) Automation programs SHOULD each receive their own tokens, even if they share a common service account due to similar tasks.</p>
+  Levels: 
+  <ul><li>standard</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>APP.4.4.A10: Securing Automation Processes</h2>
+  <p>Description: (1) All automation software processes, such as CI/CD and their pipelines, SHOULD only operate with the rights that are strictly necessary. (2) If different user groups can change configurations or start pods via automation software, this SHOULD be done for each group through separate processes that only have the rights necessary for the respective user group.</p>
+  Levels: 
+  <ul><li>standard</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>APP.4.4.A11: Container Monitoring</h2>
+  <p>Description: (1) In pods, each container SHOULD define a health check for start-up and operation ("readiness" and "liveness"). (2) These checks SHOULD provide information about the availability of the software running in a pod. (3) The checks SHOULD fail if the monitored software cannot perform its tasks properly. (4) For each of these checks, a time period SHOULD be defined that is appropriate for the service running in the pod. (5) Based on these checks, Kubernetes SHOULD delete or restart the pods.</p>
+  Levels: 
+  <ul><li>standard</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>APP.4.4.A12: Securing Infrastructure Applications</h2>
+  <p>Description: (1) If a separate registry for images or automation software, persistent volume management, configuration file storage, or similar is in use, its protection SHOULD at least consider:
+  (2) • Use of personal and service accounts for access
+  (3) • Encrypted communication on all network ports
+  (4) • Restrictive assignment of permissions to user and service accounts
+  (5) • Logging of changes
+  (6) • Regular data backups.</p>
+  Levels: 
+  <ul><li>standard</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>APP.4.4.A13: Automated Configuration Auditing</h2>
+  <p>Description: (1) There SHOULD be an automated audit that checks the settings of nodes, of Kubernetes, and of the pods of applications against a defined list of allowed settings and standardised benchmarks. (2) Kubernetes SHOULD enforce these established rules in each cluster by connecting appropriate tools.</p>
+  Levels: 
+  <ul><li>elevated</li>
+  </ul>
+  <p>Automated: yes</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>APP.4.4.A14: Use of Dedicated Nodes</h2>
+  <p>Description: (1) In a Kubernetes cluster, nodes SHOULD be assigned dedicated tasks and only run pods that are assigned to each task. (2) Bastion nodes SHOULD handle all incoming and outgoing data connections of between applications and other networks. (3) Management nodes SHOULD operate control plane pods and only handle control plane data connections. (4) If deployed, storage nodes SHOULD only operate the fixed persistent volume services pods in a cluster.</p>
+  Levels: 
+  <ul><li>elevated</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>APP.4.4.A15: Separation of Applications at Node and Cluster Level</h2>
+  <p>Description: (1) Applications with very high protection needs SHOULD each use their own Kubernetes clusters or dedicated nodes that are not available for other applications</p>
+  Levels: 
+  <ul><li>elevated</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>APP.4.4.A16: Use of Operators</h2>
+  <p>Description: (1) The automation of operational tasks in operators SHOULD be used for particularly critical applications and control plane programs.</p>
+  Levels: 
+  <ul><li>elevated</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>APP.4.4.A17: Attestation of Nodes</h2>
+  <p>Description: (1) Nodes SHOULD send a cryptographically secured (and, if possible, TPM-verified) status message to the control plane. (2) The control plane SHOULD ONLY accept nodes into a cluster that have successfully proven their integrity.</p>
+  Levels: 
+  <ul><li>elevated</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>APP.4.4.A18: Use of Micro-Segmentation</h2>
+  <p>Description: (1) Pods SHOULD ONLY be able to communicate with each other through the necessary network ports, even within a Kubernetes namespace. (2) There SHOULD be rules within the CNI that disallow all but the necessary network connections within the Kubernetes namespace. (3) These rules SHOULD precisely define the source and destination of the allowed connections using at least one of the following criteria: service name, metadata (“labels”), Kubernetes service accounts, or certificate-based authentication. (4) All the criteria used as labels for a connection SHOULD be secured in such a way that they can only be changed by authorised persons and management services.</p>
+  Levels: 
+  <ul><li>elevated</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>APP.4.4.A19: High Availability of Kubernetes</h2>
+  <p>Description: (1) A Kubernetes operation SHOULD be set up in such a way that if a site fails, the clusters (and thus the applications in the pods) either continue to run without interruption or can be restarted in a short time at another site. (2) Should a restart be required, all the necessary configuration files, images, user data, network connections, and other resources required for operation (including the necessary hardware) SHOULD already be available at the alternative site. (3) For the uninterrupted operation of clusters, the control plane of Kubernetes, the infrastructure applications of the clusters, and the pods of the applications SHOULD be distributed across several fire zones based on the location data of the corresponding nodes so that the failure of a fire zone will not lead to the failure of an application.</p>
+  Levels: 
+  <ul><li>elevated</li>
+  </ul>
+  <p>Automated: yes</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>APP.4.4.A20: Encrypted Data Storage for Pods</h2>
+  <p>Description: The file systems containing the persistent data of the control plane (etcd in particular in this context) and the application services SHOULD be encrypted.</p>
+  Levels: 
+  <ul><li>elevated</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+<div class="one_control">
+  <h2>APP.4.4.A21: Regular Restart of Pods</h2>
+  <p>Description: (1) Pods SHOULD be stopped and restarted regularly if there is an increased risk of external interference and a very high need for protection. (2) No pod SHOULD run for more than 24 hours. The availability of the applications in a pod SHOULD be ensured.</p>
+  Levels: 
+  <ul><li>elevated</li>
+  </ul>
+  <p>Automated: no</p>
+  <p>
+  <strong>No rules selected</strong>
+  </p>
+</div>  
+</div>  
+
+
+</body>
+</html>

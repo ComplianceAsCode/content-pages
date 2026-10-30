@@ -1,0 +1,2 @@
+xccdf_org.ssgproject.content_rule_configure_opensc_nss_db
+xccdf_org.ssgproject.content_rule_libreswan_approved_tunnels
