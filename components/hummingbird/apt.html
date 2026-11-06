@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'apt'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'apt'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>apt</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<ul>
+
+<li>apt</li>
+
+</ul>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#apt_conf_disallow_unauthenticated">apt_conf_disallow_unauthenticated</a></li>
+
+<li><a href="#apt_conf_disable_recommends">apt_conf_disable_recommends</a></li>
+
+<li><a href="#apt_conf_disable_suggests">apt_conf_disable_suggests</a></li>
+
+<li><a href="#apt_disable_weak_dependencies">apt_disable_weak_dependencies</a></li>
+
+<li><a href="#apt_sources_list_official">apt_sources_list_official</a></li>
+
+<li><a href="#directory_groupowner_apt_auth_conf_d">directory_groupowner_apt_auth_conf_d</a></li>
+
+<li><a href="#directory_groupowner_apt_sources_list_d">directory_groupowner_apt_sources_list_d</a></li>
+
+<li><a href="#directory_groupowner_apt_trusted_gpg_d">directory_groupowner_apt_trusted_gpg_d</a></li>
+
+<li><a href="#directory_groupowner_usr_share_keyrings">directory_groupowner_usr_share_keyrings</a></li>
+
+<li><a href="#directory_owner_apt_auth_conf_d">directory_owner_apt_auth_conf_d</a></li>
+
+<li><a href="#directory_owner_apt_sources_list_d">directory_owner_apt_sources_list_d</a></li>
+
+<li><a href="#directory_owner_apt_trusted_gpg_d">directory_owner_apt_trusted_gpg_d</a></li>
+
+<li><a href="#directory_owner_usr_share_keyrings">directory_owner_usr_share_keyrings</a></li>
+
+<li><a href="#directory_permissions_apt_auth_conf_d">directory_permissions_apt_auth_conf_d</a></li>
+
+<li><a href="#directory_permissions_apt_sources_list_d">directory_permissions_apt_sources_list_d</a></li>
+
+<li><a href="#directory_permissions_apt_trusted_gpg_d">directory_permissions_apt_trusted_gpg_d</a></li>
+
+<li><a href="#directory_permissions_usr_share_keyrings">directory_permissions_usr_share_keyrings</a></li>
+
+<li><a href="#file_groupowner_apt_auth_conf_d">file_groupowner_apt_auth_conf_d</a></li>
+
+<li><a href="#file_groupowner_apt_gpg_keys">file_groupowner_apt_gpg_keys</a></li>
+
+<li><a href="#file_groupowner_apt_sources_list_d">file_groupowner_apt_sources_list_d</a></li>
+
+<li><a href="#file_owner_apt_auth_conf_d">file_owner_apt_auth_conf_d</a></li>
+
+<li><a href="#file_owner_apt_gpg_keys">file_owner_apt_gpg_keys</a></li>
+
+<li><a href="#file_owner_apt_sources_list_d">file_owner_apt_sources_list_d</a></li>
+
+<li><a href="#file_permissions_apt_auth_conf_d">file_permissions_apt_auth_conf_d</a></li>
+
+<li><a href="#file_permissions_apt_gpg_keys">file_permissions_apt_gpg_keys</a></li>
+
+<li><a href="#file_permissions_apt_sources_list_d">file_permissions_apt_sources_list_d</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="apt_conf_disallow_unauthenticated" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable unauthenticated repositories in APT configuration</h3>
+<div>apt_conf_disallow_unauthenticated</div>
+<h4>Description</h4>
+<p>Unauthenticated repositories should not be used for updates.</p>
+<h4>Rationale</h4>
+<p>Repositories hosts all packages that will be installed on the system during update.
+    If a repository is not authenticated, the associated packages can't be trusted,
+    and then should not be installed locally.</p>
+</div>
+
+<div id="apt_conf_disable_recommends" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure that apt Recommends weak dependencies are disabled</h3>
+<div>apt_conf_disable_recommends</div>
+<h4>Description</h4>
+<p>The debian packaging specification allows for three levels of dependencies to be declared: strong dependencies (Requires), and two levels of weak dependencies (Recommends and Suggests).
+This rule verify that Recommends dependencies are disabled.</p>
+<h4>Rationale</h4>
+<p>Unless the system explicitely requires the capability provided by a weak dependency, it is recommended that the weak dependency is not installed to reduce the attack surface</p>
+</div>
+
+<div id="apt_conf_disable_suggests" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure that apt Suggests weak dependencies are disabled</h3>
+<div>apt_conf_disable_suggests</div>
+<h4>Description</h4>
+<p>The debian packaging specification allows for three levels of dependencies to be declared: strong dependencies (Requires), and two levels of weak dependencies (Recommends and Suggests).
+This rule verify that Suggests dependencies are disabled.</p>
+<h4>Rationale</h4>
+<p>Unless the system explicitely requires the capability provided by a weak dependency, it is recommended that the weak dependency is not installed to reduce the attack surface</p>
+</div>
+
+<div id="apt_disable_weak_dependencies" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable APT Weak Dependencies</h3>
+<div>apt_disable_weak_dependencies</div>
+<h4>Description</h4>
+<p>APT should be configured to avoid installing packages listed only as
+Recommends or Suggests dependencies.</p>
+<h4>Rationale</h4>
+<p>Unless a system specifically requires the additional capabilities provided by
+weak dependencies, those packages should not be installed in order to reduce
+the potential attack surface.</p>
+</div>
+
+<div id="apt_sources_list_official" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure that official distribution repositories are used</h3>
+<div>apt_sources_list_official</div>
+<h4>Description</h4>
+<p>Check that official Debian repositories, including security repository, are configured in apt.</p>
+<h4>Rationale</h4>
+<p>The Debian distribution deliver DSA (Debian Security Announce), through the official
+    Debian security repository, to correct various vulnerabilities impacting the Debian
+    packages. Using the official repositories is the best way to ensure that the Debian
+    updates are integrated soon enough.</p>
+</div>
+
+<div id="directory_groupowner_apt_auth_conf_d" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Group Owner on /etc/apt/auth.conf.d Directory</h3>
+<div>directory_groupowner_apt_auth_conf_d</div>
+<h4>Description</h4>
+<p> To properly set the group owner of <code>/etc/apt/auth.conf.d</code>, run the command:
+<pre>$ sudo chgrp root /etc/apt/auth.conf.d</pre>
+</p>
+<h4>Rationale</h4>
+<p>The /etc/apt/auth.conf.d directory should be group-owned by root to prevent
+unauthorized changes to APT authentication configuration.</p>
+</div>
+
+<div id="directory_groupowner_apt_sources_list_d" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Group Owner on /etc/apt/sources.list.d Directory</h3>
+<div>directory_groupowner_apt_sources_list_d</div>
+<h4>Description</h4>
+<p> To properly set the group owner of <code>/etc/apt/sources.list.d</code>, run the command:
+<pre>$ sudo chgrp root /etc/apt/sources.list.d</pre>
+</p>
+<h4>Rationale</h4>
+<p>The /etc/apt/sources.list.d directory should be group-owned by root to
+prevent unauthorized changes to APT repository configuration.</p>
+</div>
+
+<div id="directory_groupowner_apt_trusted_gpg_d" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Group Owner on /etc/apt/trusted.gpg.d Directory</h3>
+<div>directory_groupowner_apt_trusted_gpg_d</div>
+<h4>Description</h4>
+<p> To properly set the group owner of <code>/etc/apt/trusted.gpg.d</code>, run the command:
+<pre>$ sudo chgrp root /etc/apt/trusted.gpg.d</pre>
+</p>
+<h4>Rationale</h4>
+<p>The /etc/apt/trusted.gpg.d directory should be group-owned by root to prevent
+unauthorized changes to APT trusted keys.</p>
+</div>
+
+<div id="directory_groupowner_usr_share_keyrings" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Group Owner on /usr/share/keyrings Directory</h3>
+<div>directory_groupowner_usr_share_keyrings</div>
+<h4>Description</h4>
+<p> To properly set the group owner of <code>/usr/share/keyrings</code>, run the command:
+<pre>$ sudo chgrp root /usr/share/keyrings</pre>
+</p>
+<h4>Rationale</h4>
+<p>The /usr/share/keyrings directory should be group-owned by root to prevent
+unauthorized changes to package repository keys.</p>
+</div>
+
+<div id="directory_owner_apt_auth_conf_d" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Owner on /etc/apt/auth.conf.d Directory</h3>
+<div>directory_owner_apt_auth_conf_d</div>
+<h4>Description</h4>
+<p> To properly set the owner of <code>/etc/apt/auth.conf.d</code>, run the command:
+<pre>$ sudo chown root /etc/apt/auth.conf.d </pre>
+</p>
+<h4>Rationale</h4>
+<p>The /etc/apt/auth.conf.d directory should be owned by root to prevent
+unauthorized changes to APT authentication configuration.</p>
+</div>
+
+<div id="directory_owner_apt_sources_list_d" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Owner on /etc/apt/sources.list.d Directory</h3>
+<div>directory_owner_apt_sources_list_d</div>
+<h4>Description</h4>
+<p> To properly set the owner of <code>/etc/apt/sources.list.d</code>, run the command:
+<pre>$ sudo chown root /etc/apt/sources.list.d </pre>
+</p>
+<h4>Rationale</h4>
+<p>The /etc/apt/sources.list.d directory should be owned by root to prevent
+unauthorized changes to APT repository configuration.</p>
+</div>
+
+<div id="directory_owner_apt_trusted_gpg_d" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Owner on /etc/apt/trusted.gpg.d Directory</h3>
+<div>directory_owner_apt_trusted_gpg_d</div>
+<h4>Description</h4>
+<p> To properly set the owner of <code>/etc/apt/trusted.gpg.d</code>, run the command:
+<pre>$ sudo chown root /etc/apt/trusted.gpg.d </pre>
+</p>
+<h4>Rationale</h4>
+<p>The /etc/apt/trusted.gpg.d directory should be owned by root to prevent
+unauthorized changes to APT trusted keys.</p>
+</div>
+
+<div id="directory_owner_usr_share_keyrings" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Owner on /usr/share/keyrings Directory</h3>
+<div>directory_owner_usr_share_keyrings</div>
+<h4>Description</h4>
+<p> To properly set the owner of <code>/usr/share/keyrings</code>, run the command:
+<pre>$ sudo chown root /usr/share/keyrings </pre>
+</p>
+<h4>Rationale</h4>
+<p>The /usr/share/keyrings directory should be owned by root to prevent
+unauthorized changes to package repository keys.</p>
+</div>
+
+<div id="directory_permissions_apt_auth_conf_d" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Permissions on /etc/apt/auth.conf.d Directory</h3>
+<div>directory_permissions_apt_auth_conf_d</div>
+<h4>Description</h4>
+<p> To properly set the permissions of <code>/etc/apt/auth.conf.d</code>, run the command: <pre>$ sudo chmod 0755 /etc/apt/auth.conf.d</pre></p>
+<h4>Rationale</h4>
+<p>The /etc/apt/auth.conf.d directory contains configuration that may include
+repository credentials. Its permissions should prevent unauthorized changes.</p>
+</div>
+
+<div id="directory_permissions_apt_sources_list_d" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Permissions on /etc/apt/sources.list.d Directory</h3>
+<div>directory_permissions_apt_sources_list_d</div>
+<h4>Description</h4>
+<p> To properly set the permissions of <code>/etc/apt/sources.list.d</code>, run the command: <pre>$ sudo chmod 0755 /etc/apt/sources.list.d</pre></p>
+<h4>Rationale</h4>
+<p>A non-root user should not be able to add or remove APT repository
+configuration from /etc/apt/sources.list.d.</p>
+</div>
+
+<div id="directory_permissions_apt_trusted_gpg_d" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Permissions on /etc/apt/trusted.gpg.d Directory</h3>
+<div>directory_permissions_apt_trusted_gpg_d</div>
+<h4>Description</h4>
+<p> To properly set the permissions of <code>/etc/apt/trusted.gpg.d</code>, run the command: <pre>$ sudo chmod 0755 /etc/apt/trusted.gpg.d</pre></p>
+<h4>Rationale</h4>
+<p>A non-privileged user with write access to /etc/apt/trusted.gpg.d can
+compromise the APT chain of trust by adding trusted keys.</p>
+</div>
+
+<div id="directory_permissions_usr_share_keyrings" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Permissions on /usr/share/keyrings Directory</h3>
+<div>directory_permissions_usr_share_keyrings</div>
+<h4>Description</h4>
+<p> To properly set the permissions of <code>/usr/share/keyrings</code>, run the command: <pre>$ sudo chmod 0755 /usr/share/keyrings</pre></p>
+<h4>Rationale</h4>
+<p>A non-root user should not be able to add or remove package repository keys
+from /usr/share/keyrings.</p>
+</div>
+
+<div id="file_groupowner_apt_auth_conf_d" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Group Owner on Files in /etc/apt/auth.conf.d</h3>
+<div>file_groupowner_apt_auth_conf_d</div>
+<h4>Description</h4>
+<p>The <code>/etc/apt/auth.conf.d/*.conf</code> should be group-owned by the <code>root</code> group.</p>
+<h4>Rationale</h4>
+<p>Files in /etc/apt/auth.conf.d should be group-owned by root to prevent
+unauthorized changes to APT authentication configuration.</p>
+</div>
+
+<div id="file_groupowner_apt_gpg_keys" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Group Owner on APT GPG Key Files</h3>
+<div>file_groupowner_apt_gpg_keys</div>
+<h4>Description</h4>
+<p>The <code>/usr/share/keyrings/*.gpg and /etc/apt/trusted.gpg.d/*.gpg</code> should be group-owned by the <code>root</code> group.</p>
+<h4>Rationale</h4>
+<p>APT GPG key files should be group-owned by root to prevent unauthorized
+modification of package trust anchors.</p>
+</div>
+
+<div id="file_groupowner_apt_sources_list_d" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Group Owner on Files in /etc/apt/sources.list.d</h3>
+<div>file_groupowner_apt_sources_list_d</div>
+<h4>Description</h4>
+<p>The <code>/etc/apt/sources.list.d/*</code> should be group-owned by the <code>root</code> group.</p>
+<h4>Rationale</h4>
+<p>Files in /etc/apt/sources.list.d should be group-owned by root to prevent
+unauthorized changes to APT repository configuration.</p>
+</div>
+
+<div id="file_owner_apt_auth_conf_d" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Owner on Files in /etc/apt/auth.conf.d</h3>
+<div>file_owner_apt_auth_conf_d</div>
+<h4>Description</h4>
+<p>The <code>/etc/apt/auth.conf.d/*.conf</code> should be owned by the <code>root</code> user.</p>
+<h4>Rationale</h4>
+<p>Files in /etc/apt/auth.conf.d should be owned by root to prevent
+unauthorized changes to APT authentication configuration.</p>
+</div>
+
+<div id="file_owner_apt_gpg_keys" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Owner on APT GPG Key Files</h3>
+<div>file_owner_apt_gpg_keys</div>
+<h4>Description</h4>
+<p>The <code>/usr/share/keyrings/*.gpg and /etc/apt/trusted.gpg.d/*.gpg</code> should be owned by the <code>root</code> user.</p>
+<h4>Rationale</h4>
+<p>APT GPG key files should be owned by root to prevent unauthorized modification
+of package trust anchors.</p>
+</div>
+
+<div id="file_owner_apt_sources_list_d" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Owner on Files in /etc/apt/sources.list.d</h3>
+<div>file_owner_apt_sources_list_d</div>
+<h4>Description</h4>
+<p>The <code>/etc/apt/sources.list.d/*</code> should be owned by the <code>root</code> user.</p>
+<h4>Rationale</h4>
+<p>Files in /etc/apt/sources.list.d should be owned by root to prevent
+unauthorized changes to APT repository configuration.</p>
+</div>
+
+<div id="file_permissions_apt_auth_conf_d" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Permissions on Files in /etc/apt/auth.conf.d</h3>
+<div>file_permissions_apt_auth_conf_d</div>
+<h4>Description</h4>
+<p>The <code>/etc/apt/auth.conf.d/*.conf</code> shall have the <code>0640</code> permission mode.</p>
+<h4>Rationale</h4>
+<p>Files in /etc/apt/auth.conf.d may contain credentials for private
+repositories or proxies and should not be readable by unauthorized users.</p>
+</div>
+
+<div id="file_permissions_apt_gpg_keys" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Permissions on APT GPG Key Files</h3>
+<div>file_permissions_apt_gpg_keys</div>
+<h4>Description</h4>
+<p>The <code>/usr/share/keyrings/*.gpg and /etc/apt/trusted.gpg.d/*.gpg</code> shall have the <code>0644</code> permission mode.</p>
+<h4>Rationale</h4>
+<p>APT GPG key files are used to verify package authenticity. Restricting their
+permissions prevents unauthorized modification while keeping them readable by APT.</p>
+</div>
+
+<div id="file_permissions_apt_sources_list_d" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Verify Permissions on Files in /etc/apt/sources.list.d</h3>
+<div>file_permissions_apt_sources_list_d</div>
+<h4>Description</h4>
+<p>The <code>/etc/apt/sources.list.d/*</code> shall have the <code>0644</code> permission mode.</p>
+<h4>Rationale</h4>
+<p>Files in /etc/apt/sources.list.d contain APT repository configuration. They
+should not be writable by non-root users.</p>
+</div>
+
+
+
+
+</body>
+</html>

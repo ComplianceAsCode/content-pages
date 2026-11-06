@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'sysstat'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'sysstat'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>sysstat</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<div>None</div>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#service_sysstat_disabled">service_sysstat_disabled</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="service_sysstat_disabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable System Statistics Reset Service (sysstat)</h3>
+<div>service_sysstat_disabled</div>
+<h4>Description</h4>
+<p>The <tt>sysstat</tt> service resets various I/O and CPU
+performance statistics to zero in order to begin counting from a fresh state
+at boot time.
+
+The <code>sysstat</code> service can be disabled with the following command:
+<pre>$ sudo systemctl mask --now sysstat.service</pre></p>
+<h4>Rationale</h4>
+<p>By default the <tt>sysstat</tt> service runs a program at
+boot to reset performance statistics. This data can be retrieved using programs such as
+<tt>sar</tt> and <tt>sadc</tt>. While the <tt>sysstat</tt> service may provide useful
+insight into system operation, through the lens of providing only essential system services,
+this service should be disabled. </p>
+</div>
+
+
+
+
+</body>
+</html>

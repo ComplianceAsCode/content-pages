@@ -1,0 +1,3 @@
+xccdf_org.ssgproject.content_rule_file_owner_groupowner_permissions_pod_logs
+xccdf_org.ssgproject.content_rule_kubelet_configure_tls_min_version
+xccdf_org.ssgproject.content_rule_reject_unsigned_images_by_default

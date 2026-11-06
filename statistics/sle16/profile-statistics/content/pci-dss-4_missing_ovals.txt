@@ -1,0 +1,2 @@
+xccdf_org.ssgproject.content_rule_mask_nonessential_services
+xccdf_org.ssgproject.content_rule_security_patches_up_to_date
