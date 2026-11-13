@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'glibc'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'glibc'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>glibc</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<div>None</div>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#package_glibc_installed">package_glibc_installed</a></li>
+
+<li><a href="#no_nis_in_nsswitch">no_nis_in_nsswitch</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="package_glibc_installed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Package glibc Installed</h3>
+<div>package_glibc_installed</div>
+<h4>Description</h4>
+<p>The package <tt>glibc</tt> is installed on Linux by default, but the
+<tt>glibc</tt> version might not be sufficient for SAP. Please refer to
+SAP note of your Linux version for the minimum requirement on <tt>glibc</tt>.
+The <code>glibc</code> package can be installed with the following command:
+<pre>
+$ sudo dnf install glibc</pre></p>
+<h4>Rationale</h4>
+<p>The <tt>glibc</tt> package contains standard C and math libraries used by
+multiple programs on Linux. The <tt>glibc</tt> shipped with first release
+of each major Linux version is often not sufficient for SAP.
+An update is required after the first OS installation.</p>
+</div>
+
+<div id="no_nis_in_nsswitch" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Name Service Switch does not use NIS</h3>
+<div>no_nis_in_nsswitch</div>
+<h4>Description</h4>
+<p>Each call to a function which retrieves data from a system database like the
+password or group database is handled by the Name Service Switch
+implementation in the GNU C library.  The various services provided are
+implemented by independent modules, each of which naturally varies widely
+from the other. One of such modules is the <tt>nis</tt> module, which allows
+to get information from NIS servers.</p>
+<h4>Rationale</h4>
+<p>NIS service is insecure and should not be used.</p>
+</div>
+
+
+
+
+</body>
+</html>

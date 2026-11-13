@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'dconf'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'dconf'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>dconf</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<div>None</div>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#dconf_gnome_disable_user_admin">dconf_gnome_disable_user_admin</a></li>
+
+<li><a href="#dconf_gnome_lock_screen_on_smartcard_removal">dconf_gnome_lock_screen_on_smartcard_removal</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="dconf_gnome_disable_user_admin" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable User Administration in GNOME3</h3>
+<div>dconf_gnome_disable_user_admin</div>
+<h4>Description</h4>
+<p>By default, <tt>GNOME</tt> will allow all users to have some administratrion
+capability. This should be disabled so that non-administrative users are not making
+configuration changes. To configure the system to disable user administration
+capability in the Graphical User Interface (GUI), add or set
+<tt>user-administration-disabled</tt> to <tt>true</tt> in
+<tt>/etc/dconf/db/local.d/00-security-settings</tt>. For example:
+<pre>[org/gnome/desktop/lockdown]
+user-administration-disabled=true
+</pre>
+Once the settings have been added, add a lock to
+<tt>/etc/dconf/db/local.d/locks/00-security-settings-lock</tt> to prevent user modification.
+For example:
+<pre>/org/gnome/desktop/lockdown/user-administration-disabled</pre>
+After the settings have been set, run <tt>dconf update</tt>.</p>
+<h4>Rationale</h4>
+<p>Allowing all users to have some administratrive capabilities to the system through
+the Graphical User Interface (GUI) when they would not have them otherwise could allow
+unintended configuration changes as well as a nefarious user the capability to make system
+changes such as adding new accounts, etc.</p>
+</div>
+
+<div id="dconf_gnome_lock_screen_on_smartcard_removal" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Enable the GNOME3 Screen Locking On Smartcard Removal</h3>
+<div>dconf_gnome_lock_screen_on_smartcard_removal</div>
+<h4>Description</h4>
+<p>In the default graphical environment, screen locking on smartcard removal
+can be enabled by setting <tt>removal-action</tt>
+to <tt>'lock-screen'</tt>.
+<br /><br />
+To enable, add or edit <tt>removal-action</tt> to
+<tt>/etc/dconf/db/local.d/00-security-settings</tt>. For example:
+<pre>[org/gnome/settings-daemon/peripherals/smartcard]
+removal-action='lock-screen'</pre>
+Once the setting has been added, add a lock to
+<tt>/etc/dconf/db/local.d/locks/00-security-settings-lock</tt> to prevent user modification.
+For example:
+<pre>/org/gnome/settings-daemon/peripherals/smartcard/removal-action</pre>
+After the settings have been set, run <tt>dconf update</tt>.</p>
+<h4>Rationale</h4>
+<p>Locking the screen automatically when removing the smartcard can
+prevent undesired access to system.</p>
+</div>
+
+
+
+
+</body>
+</html>

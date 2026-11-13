@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'openldap'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'openldap'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>openldap</li>
+
+<li>openldap-clients</li>
+
+<li>openldap-servers</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<ul>
+
+<li>ldap</li>
+
+<li>ldap_server_config_certificate_files</li>
+
+<li>openldap_client</li>
+
+<li>openldap_server</li>
+
+</ul>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#enable_ldap_client">enable_ldap_client</a></li>
+
+<li><a href="#ldap_client_start_tls">ldap_client_start_tls</a></li>
+
+<li><a href="#ldap_client_tls_cacertpath">ldap_client_tls_cacertpath</a></li>
+
+<li><a href="#package_389-ds-base_removed">package_389-ds-base_removed</a></li>
+
+<li><a href="#package_openldap-clients_removed">package_openldap-clients_removed</a></li>
+
+<li><a href="#package_openldap-servers_removed">package_openldap-servers_removed</a></li>
+
+<li><a href="#service_slapd_disabled">service_slapd_disabled</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="enable_ldap_client" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Enable the LDAP Client For Use in Authconfig</h3>
+<div>enable_ldap_client</div>
+<h4>Description</h4>
+<p>To determine if LDAP is being used for authentication, use the following
+command:
+<pre>$ sudo grep -i useldapauth /etc/sysconfig/authconfig</pre>
+<br /><br />
+If <tt>USELDAPAUTH=yes</tt>, then LDAP is being used. If not, set <tt>USELDAPAUTH</tt>
+to <tt>yes</tt>.</p>
+<h4>Rationale</h4>
+<p>Without cryptographic integrity protections, information can be
+altered by unauthorized users without detection. The ssl directive specifies
+whether to use TLS or not. If not specified it will default to no.
+It should be set to start_tls rather than doing LDAP over SSL.</p>
+</div>
+
+<div id="ldap_client_start_tls" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure LDAP Client to Use TLS For All Transactions</h3>
+<div>ldap_client_start_tls</div>
+<h4>Description</h4>
+<p>This check verifies cryptography has been implemented
+to protect the integrity of remote LDAP authentication sessions.
+<br /><br />
+To determine if LDAP is being used for authentication, use the following
+command:
+<pre>$ sudo grep -i useldapauth /etc/sysconfig/authconfig</pre>
+<br /><br />
+If <tt>USELDAPAUTH=yes</tt>, then LDAP is being used. To check if LDAP is
+configured to use TLS, use the following command:
+<pre>$ sudo grep -i ssl /etc/pam_ldap.conf</pre></p>
+<h4>Rationale</h4>
+<p>Without cryptographic integrity protections, information can be altered by
+unauthorized users without detection. The ssl directive specifies whether
+to use TLS or not. If not specified it will default to no. It should be set
+to start_tls rather than doing LDAP over SSL.</p>
+</div>
+
+<div id="ldap_client_tls_cacertpath" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure Certificate Directives for LDAP Use of TLS</h3>
+<div>ldap_client_tls_cacertpath</div>
+<h4>Description</h4>
+<p>Ensure a copy of a trusted CA certificate has been placed in the file
+<tt>/etc/pki/tls/CA/cacert.pem</tt>. Configure LDAP to enforce TLS use and
+to trust certificates signed by that CA. First, edit the file
+<tt>/etc/nslcd.conf</tt>, and add or correct either of the following lines:
+<pre>tls_cacertdir /etc/pki/tls/CA</pre> or 
+<pre>tls_cacertfile /etc/pki/tls/CA/cacert.pem</pre>
+Then review the LDAP server and ensure TLS has been configured.</p>
+<h4>Rationale</h4>
+<p>The tls_cacertdir or tls_cacertfile directives are required when
+tls_checkpeer is configured (which is the default for openldap versions 2.1 and
+up). These directives define the path to the trust certificates signed by the
+site CA.</p>
+</div>
+
+<div id="package_389-ds-base_removed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Uninstall 389-ds-base Package</h3>
+<div>package_389-ds-base_removed</div>
+<h4>Description</h4>
+<p>The 389-ds-base RPM is not installed by default on a AlmaLinux OS 9
+system. It is needed only by the 389-ds server, not by the
+clients which use LDAP for authentication. If the system is not
+intended for use as an LDAP Server it should be removed.</p>
+<h4>Rationale</h4>
+<p>Unnecessary packages should not be installed to decrease the attack
+surface of the system.  While this software is clearly essential on an LDAP
+server, it is not necessary on typical desktop or workstation systems.</p>
+</div>
+
+<div id="package_openldap-clients_removed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure LDAP client is not installed</h3>
+<div>package_openldap-clients_removed</div>
+<h4>Description</h4>
+<p>The Lightweight Directory Access Protocol (LDAP) is a service that provides
+a method for looking up information from a central database.
+The <code>openldap-clients</code> package can be removed with the following command:
+<pre>
+$ sudo dnf remove openldap-clients</pre></p>
+<h4>Rationale</h4>
+<p>If the system does not need to act as an LDAP client, it is recommended that the software is removed to reduce the potential attack surface.</p>
+</div>
+
+<div id="package_openldap-servers_removed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Uninstall openldap-servers Package</h3>
+<div>package_openldap-servers_removed</div>
+<h4>Description</h4>
+<p>The openldap-servers package is not installed by default on a AlmaLinux OS 9
+system. It is needed only by the OpenLDAP server, not by the
+clients which use LDAP for authentication. If the system is not
+intended for use as an LDAP Server it should be removed.</p>
+<h4>Rationale</h4>
+<p>Unnecessary packages should not be installed to decrease the attack
+surface of the system.  While this software is clearly essential on an LDAP
+server, it is not necessary on typical desktop or workstation systems.</p>
+</div>
+
+<div id="service_slapd_disabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable LDAP Server (slapd)</h3>
+<div>service_slapd_disabled</div>
+<h4>Description</h4>
+<p>The Lightweight Directory Access Protocol (LDAP) is a service that
+provides a method for looking up information from a central database.</p>
+<h4>Rationale</h4>
+<p>If the system will not need to act as an LDAP server, it is recommended
+that the software be disabled to reduce the potential attack surface.</p>
+</div>
+
+
+
+
+</body>
+</html>

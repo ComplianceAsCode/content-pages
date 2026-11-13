@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'quota-nld'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'quota-nld'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>quota-nld</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<div>None</div>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#service_quota_nld_disabled">service_quota_nld_disabled</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="service_quota_nld_disabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable Quota Netlink (quota_nld)</h3>
+<div>service_quota_nld_disabled</div>
+<h4>Description</h4>
+<p>The <tt>quota_nld</tt> service provides notifications to
+users of disk space quota violations. It listens to the kernel via a netlink
+socket for disk quota violations and notifies the appropriate user of the
+violation using D-Bus or by sending a message to the terminal that the user has
+last accessed.
+
+The <code>quota_nld</code> service can be disabled with the following command:
+<pre>$ sudo systemctl mask --now quota_nld.service</pre></p>
+<h4>Rationale</h4>
+<p>If disk quotas are enforced on the local system, then the
+<tt>quota_nld</tt> service likely provides useful functionality and should
+remain enabled. However, if disk quotas are not used or user notification of
+disk quota violation is not desired then there is no need to run this
+service.</p>
+</div>
+
+
+
+
+</body>
+</html>

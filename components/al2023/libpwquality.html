@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'libpwquality'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'libpwquality'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>libpwquality</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<div>None</div>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#accounts_password_pam_dcredit">accounts_password_pam_dcredit</a></li>
+
+<li><a href="#accounts_password_pam_dictcheck">accounts_password_pam_dictcheck</a></li>
+
+<li><a href="#accounts_password_pam_difok">accounts_password_pam_difok</a></li>
+
+<li><a href="#accounts_password_pam_enforce_local">accounts_password_pam_enforce_local</a></li>
+
+<li><a href="#accounts_password_pam_enforce_root">accounts_password_pam_enforce_root</a></li>
+
+<li><a href="#accounts_password_pam_enforcing">accounts_password_pam_enforcing</a></li>
+
+<li><a href="#accounts_password_pam_lcredit">accounts_password_pam_lcredit</a></li>
+
+<li><a href="#accounts_password_pam_maxclassrepeat">accounts_password_pam_maxclassrepeat</a></li>
+
+<li><a href="#accounts_password_pam_maxrepeat">accounts_password_pam_maxrepeat</a></li>
+
+<li><a href="#accounts_password_pam_maxsequence">accounts_password_pam_maxsequence</a></li>
+
+<li><a href="#accounts_password_pam_minclass">accounts_password_pam_minclass</a></li>
+
+<li><a href="#accounts_password_pam_minlen">accounts_password_pam_minlen</a></li>
+
+<li><a href="#accounts_password_pam_ocredit">accounts_password_pam_ocredit</a></li>
+
+<li><a href="#accounts_password_pam_pwquality_password_auth">accounts_password_pam_pwquality_password_auth</a></li>
+
+<li><a href="#accounts_password_pam_pwquality_system_auth">accounts_password_pam_pwquality_system_auth</a></li>
+
+<li><a href="#accounts_password_pam_retry">accounts_password_pam_retry</a></li>
+
+<li><a href="#accounts_password_pam_ucredit">accounts_password_pam_ucredit</a></li>
+
+<li><a href="#accounts_password_pam_unix_remember">accounts_password_pam_unix_remember</a></li>
+
+<li><a href="#accounts_umask_etc_bashrc">accounts_umask_etc_bashrc</a></li>
+
+<li><a href="#package_pam_pwquality_installed">package_pam_pwquality_installed</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="accounts_password_pam_dcredit" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure PAM Enforces Password Requirements - Minimum Digit Characters</h3>
+<div>accounts_password_pam_dcredit</div>
+<h4>Description</h4>
+<p>The pam_pwquality module's <tt>dcredit</tt> parameter controls requirements for
+usage of digits in a password. When set to a negative number, any password will be required to
+contain that many digits. When set to a positive number, pam_pwquality will grant +1 additional
+length credit for each digit. Modify the <tt>dcredit</tt> setting in
+<tt>/etc/security/pwquality.conf</tt> to require the use of a digit in passwords.</p>
+<h4>Rationale</h4>
+<p>Use of a complex password helps to increase the time and resources required
+to compromise the password. Password complexity, or strength, is a measure of
+the effectiveness of a password in resisting attempts at guessing and brute-force
+attacks.
+<br /><br />
+Password complexity is one factor of several that determines how long it takes
+to crack a password. The more complex the password, the greater the number of
+possible combinations that need to be tested before the password is compromised.
+Requiring digits makes password guessing attacks more difficult by ensuring a larger
+search space.</p>
+</div>
+
+<div id="accounts_password_pam_dictcheck" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure PAM Enforces Password Requirements - Prevent the Use of Dictionary Words</h3>
+<div>accounts_password_pam_dictcheck</div>
+<h4>Description</h4>
+<p>The pam_pwquality module's <tt>dictcheck</tt> check if passwords contains dictionary words. When
+<tt>dictcheck</tt> is set to <tt>1</tt> passwords will be checked for dictionary words.</p>
+<h4>Rationale</h4>
+<p>Use of a complex password helps to increase the time and resources required to compromise the password.
+Password complexity, or strength, is a measure of the effectiveness of a password in resisting attempts at
+guessing and brute-force attacks.
+<br /><br />
+Password complexity is one factor of several that determines how long it takes to crack a password. The more
+complex the password, the greater the number of possible combinations that need to be tested before the
+password is compromised.
+<br /><br />
+Passwords with dictionary words may be more vulnerable to password-guessing attacks.</p>
+</div>
+
+<div id="accounts_password_pam_difok" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure PAM Enforces Password Requirements - Minimum Different Characters</h3>
+<div>accounts_password_pam_difok</div>
+<h4>Description</h4>
+<p>The pam_pwquality module's <tt>difok</tt> parameter sets the number of characters
+in a password that must not be present in and old password during a password change.
+<br /><br />
+Modify the <tt>difok</tt> setting in <tt>/etc/security/pwquality.conf</tt>
+to equal <tt>$var_password_pam_difok</tt> to require differing characters
+when changing passwords.</p>
+<h4>Rationale</h4>
+<p>Use of a complex password helps to increase the time and resources
+required to compromise the password. Password complexity, or strength,
+is a measure of the effectiveness of a password in resisting attempts
+at guessing and brute–force attacks.
+<br /><br />
+Password complexity is one factor of several that determines how long
+it takes to crack a password. The more complex the password, the
+greater the number of possible combinations that need to be tested
+before the password is compromised.
+<br /><br />
+Requiring a minimum number of different characters during password changes ensures that
+newly changed passwords should not resemble previously compromised ones.
+Note that passwords which are changed on compromised systems will still be compromised, however.</p>
+</div>
+
+<div id="accounts_password_pam_enforce_local" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure PAM Enforces Password Requirements - Enforce for Local Accounts Only</h3>
+<div>accounts_password_pam_enforce_local</div>
+<h4>Description</h4>
+<p>The pam_pwquality module's <tt>local_users_only</tt> parameter controls requirements for
+enforcing password complexity by pam_pwquality only for local user accounts and ignoring
+centralized user account management password complexity configurations. Enable the <tt>local_users_only</tt>
+setting in <tt>/etc/security/pwquality.conf</tt> to require password complexity enforcement
+for only local user accounts.</p>
+<h4>Rationale</h4>
+<p>The operating system must provide automated mechanisms for supporting account management
+functions. Enterprise environments make application account management challenging and
+complex. A manual process for account management functions adds the risk of a potential
+oversight or other error.</p>
+</div>
+
+<div id="accounts_password_pam_enforce_root" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure PAM Enforces Password Requirements - Enforce for root User</h3>
+<div>accounts_password_pam_enforce_root</div>
+<h4>Description</h4>
+<p>The pam_pwquality module's <tt>enforce_for_root</tt> parameter controls requirements for
+enforcing password complexity for the root user. Enable the <tt>enforce_for_root</tt>
+setting in <tt>/etc/security/pwquality.conf</tt> to require the <tt>root</tt> user
+to use complex passwords.</p>
+<h4>Rationale</h4>
+<p>Use of a complex password helps to increase the time and resources required to compromise
+the password. Password complexity, or strength, is a measure of the effectiveness of a
+password in resisting attempts at guessing and brute-force attacks.
+
+Password complexity is one factor of several that determines how long it takes to crack a
+password. The more complex the password, the greater the number of possible combinations
+that need to be tested before the password is compromised.</p>
+</div>
+
+<div id="accounts_password_pam_enforcing" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure PAM Enforces Password Requirements - Enforcing</h3>
+<div>accounts_password_pam_enforcing</div>
+<h4>Description</h4>
+<p>Verify that the operating system uses "pwquality" to enforce the
+password complexity rules.
+
+Verify the pwquality module is being enforced by operating system by
+running the following command:
+<pre>
+$ grep -i enforcing /etc/security/pwquality.conf
+enforcing = 1
+</pre>
+
+If the value of "enforcing" is not "1" or the line is commented out,
+this is a finding.</p>
+<h4>Rationale</h4>
+<p>Use of a complex password helps to increase the time and resources
+required to compromise the password. Password complexity, or strength,
+is a measure of the effectiveness of a password in resisting attempts at
+guessing and brute-force attacks. Using enforcing=1 ensures "pwquality"
+enforces complex password construction configuration and has the ability
+to limit brute-force attacks on the system.</p>
+</div>
+
+<div id="accounts_password_pam_lcredit" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure PAM Enforces Password Requirements - Minimum Lowercase Characters</h3>
+<div>accounts_password_pam_lcredit</div>
+<h4>Description</h4>
+<p>The pam_pwquality module's <tt>lcredit</tt> parameter controls requirements for
+usage of lowercase letters in a password. When set to a negative number, any password will be required to
+contain that many lowercase characters. When set to a positive number, pam_pwquality will grant +1 additional
+length credit for each lowercase character. Modify the <tt>lcredit</tt> setting in
+<tt>/etc/security/pwquality.conf</tt> to require the use of a lowercase character in passwords.</p>
+<h4>Rationale</h4>
+<p>Use of a complex password helps to increase the time and resources required
+to compromise the password. Password complexity, or strength, is a measure of
+the effectiveness of a password in resisting attempts at guessing and brute-force
+attacks.
+<br />
+Password complexity is one factor of several that determines how long it takes
+to crack a password. The more complex the password, the greater the number of
+possible combinations that need to be tested before the password is compromised.
+Requiring a minimum number of lowercase characters makes password guessing attacks
+more difficult by ensuring a larger search space.</p>
+</div>
+
+<div id="accounts_password_pam_maxclassrepeat" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure PAM Enforces Password Requirements - Maximum Consecutive Repeating Characters from Same Character Class</h3>
+<div>accounts_password_pam_maxclassrepeat</div>
+<h4>Description</h4>
+<p>The pam_pwquality module's <tt>maxclassrepeat</tt> parameter controls requirements for
+consecutive repeating characters from the same character class. When set to a positive number, it will reject passwords
+which contain more than that number of consecutive characters from the same character class. Modify the
+<tt>maxclassrepeat</tt> setting in <tt>/etc/security/pwquality.conf</tt> to equal <tt>$var_password_pam_maxclassrepeat</tt>
+to prevent a run of (<tt>$var_password_pam_maxclassrepeat</tt> + 1) or more identical characters.</p>
+<h4>Rationale</h4>
+<p>Use of a complex password helps to increase the time and resources required to compromise the password.
+Password complexity, or strength, is a measure of the effectiveness of a password in resisting
+attempts at guessing and brute-force attacks.
+<br />
+Password complexity is one factor of several that determines how long it takes to crack a password. The
+more complex a password, the greater the number of possible combinations that need to be tested before the
+password is compromised.</p>
+</div>
+
+<div id="accounts_password_pam_maxrepeat" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Set Password Maximum Consecutive Repeating Characters</h3>
+<div>accounts_password_pam_maxrepeat</div>
+<h4>Description</h4>
+<p>The pam_pwquality module's <tt>maxrepeat</tt> parameter controls requirements for
+consecutive repeating characters. When set to a positive number, it will reject passwords
+which contain more than that number of consecutive characters. Modify the <tt>maxrepeat</tt> setting
+in <tt>/etc/security/pwquality.conf</tt> to equal <tt>$var_password_pam_maxrepeat</tt> to prevent a
+run of (<tt>$var_password_pam_maxrepeat</tt> + 1) or more identical characters.</p>
+<h4>Rationale</h4>
+<p>Use of a complex password helps to increase the time and resources required to compromise the password.
+Password complexity, or strength, is a measure of the effectiveness of a password in resisting attempts at
+guessing and brute-force attacks.
+<br /><br />
+Password complexity is one factor of several that determines how long it takes to crack a password. The more
+complex the password, the greater the number of possible combinations that need to be tested before the
+password is compromised.
+<br /><br />
+Passwords with excessive repeating characters may be more vulnerable to password-guessing attacks.</p>
+</div>
+
+<div id="accounts_password_pam_maxsequence" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Limit the maximum number of sequential characters in passwords</h3>
+<div>accounts_password_pam_maxsequence</div>
+<h4>Description</h4>
+<p>The <tt>pwquality maxsequence</tt> setting defines the maximum allowable length for consecutive 
+character sequences in a new password. Such sequences can be, e.g., 123 or abc. If the value is 
+set to 0, this check will be turned off.
+<br /><br />
+Note: Passwords that consist mainly of such sequences are unlikely to meet the simplicity criteria 
+unless the sequence constitutes only a small portion of the overall password.</p>
+<h4>Rationale</h4>
+<p>Use of a strong password helps to increase the time and resources required to
+compromise the password. Password complexity, or strength, is a measure of the
+effectiveness of a password in resisting attempts at guessing and brute-force attacks.
+<br /><br />
+Password complexity is one important factor that determines the duration required to crack it.
+A more intricate password results in a larger number of potential combinations that must be 
+tested before successfully compromising the password.</p>
+</div>
+
+<div id="accounts_password_pam_minclass" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure PAM Enforces Password Requirements - Minimum Different Categories</h3>
+<div>accounts_password_pam_minclass</div>
+<h4>Description</h4>
+<p>The pam_pwquality module's <tt>minclass</tt> parameter controls
+requirements for usage of different character classes, or types, of character
+that must exist in a password before it is considered valid. For example,
+setting this value to three (3) requires that any password must have characters
+from at least three different categories in order to be approved. The default
+value is zero (0), meaning there are no required classes. There are four
+categories available:
+<pre>
+* Upper-case characters
+* Lower-case characters
+* Digits
+* Special characters (for example, punctuation)
+</pre>
+Modify the <tt>minclass</tt> setting in <tt>/etc/security/pwquality.conf</tt> entry
+to require <tt>$var_password_pam_minclass</tt>
+differing categories of characters when changing passwords.</p>
+<h4>Rationale</h4>
+<p>Use of a complex password helps to increase the time and resources required to compromise the password.
+Password complexity, or strength, is a measure of the effectiveness of a password in resisting attempts
+at guessing and brute-force attacks.
+<br /><br />
+Password complexity is one factor of several that determines how long it takes to crack a password. The
+more complex the password, the greater the number of possible combinations that need to be tested before
+the password is compromised.
+<br /><br />
+Requiring a minimum number of character categories makes password guessing attacks more difficult
+by ensuring a larger search space.</p>
+</div>
+
+<div id="accounts_password_pam_minlen" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure PAM Enforces Password Requirements - Minimum Length</h3>
+<div>accounts_password_pam_minlen</div>
+<h4>Description</h4>
+<p>The pam_pwquality module's <tt>minlen</tt> parameter controls requirements for
+minimum characters required in a password. Add <tt>minlen=<tt>$var_password_pam_minlen</tt></tt>
+after pam_pwquality to set minimum password length requirements.</p>
+<h4>Rationale</h4>
+<p>The shorter the password, the lower the number of possible combinations
+that need to be tested before the password is compromised.
+<br />
+Password complexity, or strength, is a measure of the effectiveness of a
+password in resisting attempts at guessing and brute-force attacks.
+Password length is one factor of several that helps to determine strength
+and how long it takes to crack a password. Use of more characters in a password
+helps to exponentially increase the time and/or resources required to
+compromise the password.</p>
+</div>
+
+<div id="accounts_password_pam_ocredit" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure PAM Enforces Password Requirements - Minimum Special Characters</h3>
+<div>accounts_password_pam_ocredit</div>
+<h4>Description</h4>
+<p>The pam_pwquality module's <tt>ocredit=</tt> parameter controls requirements for
+usage of special (or "other") characters in a password. When set to a negative number,
+any password will be required to contain that many special characters.
+When set to a positive number, pam_pwquality will grant +1
+additional length credit for each special character. Modify the <tt>ocredit</tt> setting
+in <tt>/etc/security/pwquality.conf</tt> to equal <tt>$var_password_pam_ocredit</tt>
+to require use of a special character in passwords.</p>
+<h4>Rationale</h4>
+<p>Use of a complex password helps to increase the time and resources required
+to compromise the password. Password complexity, or strength, is a measure of
+the effectiveness of a password in resisting attempts at guessing and brute-force
+attacks.
+<br /><br />
+Password complexity is one factor of several that determines how long it takes
+to crack a password. The more complex the password, the greater the number of
+possible combinations that need to be tested before the password is compromised.
+Requiring a minimum number of special characters makes password guessing attacks
+more difficult by ensuring a larger search space.</p>
+</div>
+
+<div id="accounts_password_pam_pwquality_password_auth" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure PAM password complexity module is enabled in password-auth</h3>
+<div>accounts_password_pam_pwquality_password_auth</div>
+<h4>Description</h4>
+<p>To enable PAM password complexity in password-auth file:
+Edit the <tt>password</tt> section in
+<tt>/etc/pam.d/password-auth</tt> to show
+<tt>password    requisite                                    pam_pwquality.so</tt>.</p>
+<h4>Rationale</h4>
+<p>Enabling PAM password complexity permits to enforce strong passwords and consequently
+makes the system less prone to dictionary attacks.</p>
+</div>
+
+<div id="accounts_password_pam_pwquality_system_auth" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure PAM password complexity module is enabled in system-auth</h3>
+<div>accounts_password_pam_pwquality_system_auth</div>
+<h4>Description</h4>
+<p>To enable PAM password complexity in system-auth file:
+Edit the <tt>password</tt> section in
+<tt>/etc/pam.d/system-auth</tt> to show
+<tt>password    requisite                                    pam_pwquality.so</tt>.</p>
+<h4>Rationale</h4>
+<p>Enabling PAM password complexity permits to enforce strong passwords and consequently
+makes the system less prone to dictionary attacks.</p>
+</div>
+
+<div id="accounts_password_pam_retry" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure PAM Enforces Password Requirements - Authentication Retry Prompts Permitted Per-Session</h3>
+<div>accounts_password_pam_retry</div>
+<h4>Description</h4>
+<p>To configure the number of retry prompts that are permitted per-session:
+
+Edit the <tt>pam_pwquality.so</tt> statement in
+
+<tt>/etc/pam.d/system-auth</tt> to show
+
+
+<tt>retry=<tt>$var_password_pam_retry</tt></tt>, or a lower value if site
+policy is more restrictive. The profile requirement is a maximum of <tt>retry=<tt>$var_password_pam_retry</tt></tt> prompts
+per session.</p>
+<h4>Rationale</h4>
+<p>Setting the password retry prompts that are permitted on a per-session basis to a low value
+requires some software, such as SSH, to re-connect. This can slow down and
+draw additional attention to some types of password-guessing attacks. Note that this
+is different from account lockout, which is provided by the pam_faillock module.</p>
+</div>
+
+<div id="accounts_password_pam_ucredit" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure PAM Enforces Password Requirements - Minimum Uppercase Characters</h3>
+<div>accounts_password_pam_ucredit</div>
+<h4>Description</h4>
+<p>The pam_pwquality module's <tt>ucredit=</tt> parameter controls requirements for
+usage of uppercase letters in a password. When set to a negative number, any password will be required to
+contain that many uppercase characters. When set to a positive number, pam_pwquality will grant +1 additional
+length credit for each uppercase character. Modify the <tt>ucredit</tt> setting in
+<tt>/etc/security/pwquality.conf</tt> to require the use of an uppercase character in passwords.</p>
+<h4>Rationale</h4>
+<p>Use of a complex password helps to increase the time and resources required to compromise the password.
+Password complexity, or strength, is a measure of the effectiveness of a password in resisting attempts
+at guessing and brute-force attacks.
+<br /><br />
+Password complexity is one factor of several that determines how long it takes to crack a password. The more
+complex the password, the greater the number of possible combinations that need to be tested before
+the password is compromised.</p>
+</div>
+
+<div id="accounts_password_pam_unix_remember" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Limit Password Reuse</h3>
+<div>accounts_password_pam_unix_remember</div>
+<h4>Description</h4>
+<p>Do not allow users to reuse recent passwords. This can be accomplished by using the
+<tt>remember</tt> option for the <tt>pam_unix</tt> or <tt>pam_pwhistory</tt> PAM modules.</p>
+<h4>Rationale</h4>
+<p>Preventing reuse of previous passwords helps ensure that a compromised password is not
+reused by a user.</p>
+</div>
+
+<div id="accounts_umask_etc_bashrc" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure the Default Bash Umask is Set Correctly</h3>
+<div>accounts_umask_etc_bashrc</div>
+<h4>Description</h4>
+<p>To ensure the default umask for users of the Bash shell is set properly,
+add or correct the <tt>umask</tt> setting in <tt>/etc/bashrc</tt> to read
+as follows:
+<pre>umask <tt>$var_accounts_user_umask</tt></pre></p>
+<h4>Rationale</h4>
+<p>The umask value influences the permissions assigned to files when they are created.
+A misconfigured umask value could result in files with excessive permissions that can be read or
+written to by unauthorized users.</p>
+</div>
+
+<div id="package_pam_pwquality_installed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Install pam_pwquality Package</h3>
+<div>package_pam_pwquality_installed</div>
+<h4>Description</h4>
+<p>
+The <code>libpwquality</code> package can be installed with the following command:
+<pre>
+$ sudo dnf install libpwquality</pre></p>
+<h4>Rationale</h4>
+<p>Use of a complex password helps to increase the time and resources required
+to compromise the password. Password complexity, or strength, is a measure
+of the effectiveness of a password in resisting attempts at guessing and
+brute-force attacks. "pwquality" enforces complex password construction
+configuration and has the ability to limit brute-force attacks on the system.</p>
+</div>
+
+
+
+
+</body>
+</html>

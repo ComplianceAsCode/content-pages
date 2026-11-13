@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'tcpd'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'tcpd'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>tcpd</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<div>None</div>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#package_tcp_wrappers_removed">package_tcp_wrappers_removed</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="package_tcp_wrappers_removed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Uninstall tcpd Package</h3>
+<div>package_tcp_wrappers_removed</div>
+<h4>Description</h4>
+<p>The <code>tcpd</code> package can be removed with the following command:
+<pre>
+$ sudo dnf remove tcpd</pre></p>
+<h4>Rationale</h4>
+<p>Administrators can use TCP wrapper library and daemon for host
+control over network services. In these implementations,
+<tt>xinetd</tt> runs <tt>tcpd</tt> program, which first looks
+at the incoming connection as well as the access control lists
+in the /etc/hosts.allow and /etc/hosts.deny files.
+Removing the <tt>xinetd</tt> package decreases the risk of the
+xinetd service's accidental (or intentional) activation. The
+removal of <tt>tcpd</tt> package will support this protective
+measure in addition.</p>
+</div>
+
+
+
+
+</body>
+</html>
