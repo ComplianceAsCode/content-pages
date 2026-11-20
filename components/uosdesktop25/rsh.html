@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'rsh'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'rsh'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>rsh</li>
+
+<li>rsh-server</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<div>None</div>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#no_rsh_trust_files">no_rsh_trust_files</a></li>
+
+<li><a href="#package_rsh-server_removed">package_rsh-server_removed</a></li>
+
+<li><a href="#package_rsh_removed">package_rsh_removed</a></li>
+
+<li><a href="#service_rexec_disabled">service_rexec_disabled</a></li>
+
+<li><a href="#service_rlogin_disabled">service_rlogin_disabled</a></li>
+
+<li><a href="#service_rsh_disabled">service_rsh_disabled</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="no_rsh_trust_files" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Remove Rsh Trust Files</h3>
+<div>no_rsh_trust_files</div>
+<h4>Description</h4>
+<p>The files <tt>/etc/hosts.equiv</tt> and <tt>~/.rhosts</tt> (in
+each user's home directory) list remote hosts and users that are trusted by the
+local system when using the rshd daemon.
+To remove these files, run the following command to delete them from any
+location:
+<pre>$ sudo rm /etc/hosts.equiv</pre>
+<pre>$ rm ~/.rhosts</pre></p>
+<h4>Rationale</h4>
+<p>This action is only meaningful if <tt>.rhosts</tt> support is permitted
+through PAM. Trust files are convenient, but when used in conjunction with
+the R-services, they can allow unauthenticated access to a system.</p>
+</div>
+
+<div id="package_rsh-server_removed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Uninstall rsh-server Package</h3>
+<div>package_rsh-server_removed</div>
+<h4>Description</h4>
+<p>The <code>rsh-server</code> package can be removed with the following command:
+<pre>
+$ apt-get remove rsh-server</pre></p>
+<h4>Rationale</h4>
+<p>The <tt>rsh-server</tt> service provides unencrypted remote access service which does not
+provide for the confidentiality and integrity of user passwords or the remote session and has very weak
+authentication. If a privileged user were to login using this service, the privileged user password
+could be compromised. The <tt>rsh-server</tt> package provides several obsolete and insecure
+network services. Removing it decreases the risk of those services' accidental (or intentional)
+activation.</p>
+</div>
+
+<div id="package_rsh_removed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Uninstall rsh Package</h3>
+<div>package_rsh_removed</div>
+<h4>Description</h4>
+<p>
+The <tt>rsh</tt> package contains the client commands
+
+for the rsh services</p>
+<h4>Rationale</h4>
+<p>These legacy clients contain numerous security exposures and have
+been replaced with the more secure SSH package. Even if the server is removed,
+it is best to ensure the clients are also removed to prevent users from
+inadvertently attempting to use these commands and therefore exposing
+
+their credentials. Note that removing the <tt>rsh</tt> package removes
+
+the clients for <tt>rsh</tt>,<tt>rcp</tt>, and <tt>rlogin</tt>.</p>
+</div>
+
+<div id="service_rexec_disabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable rexec Service</h3>
+<div>service_rexec_disabled</div>
+<h4>Description</h4>
+<p>The <tt>rexec</tt> service, which is available with the <tt>rsh-server</tt> package
+and runs as a service through xinetd or separately as a systemd socket, should be disabled.
+If using xinetd, set <tt>disable</tt> to <tt>yes</tt> in <tt>/etc/xinetd.d/rexec</tt>.
+
+The <code>rexec</code> socket can be disabled with the following command:
+<pre>$ sudo systemctl mask --now rexec.socket</pre></p>
+<h4>Rationale</h4>
+<p>The rexec service uses unencrypted network communications, which
+means that data from the login session, including passwords and
+all other information transmitted during the session, can be
+stolen by eavesdroppers on the network.</p>
+</div>
+
+<div id="service_rlogin_disabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable rlogin Service</h3>
+<div>service_rlogin_disabled</div>
+<h4>Description</h4>
+<p>The <tt>rlogin</tt> service, which is available with
+the <tt>rsh-server</tt> package and runs as a service through xinetd or separately
+as a systemd socket, should be disabled.
+If using xinetd, set <tt>disable</tt> to <tt>yes</tt> in <tt>/etc/xinetd.d/rlogin</tt>.
+
+The <code>rlogin</code> socket can be disabled with the following command:
+<pre>$ sudo systemctl mask --now rlogin.socket</pre></p>
+<h4>Rationale</h4>
+<p>The rlogin service uses unencrypted network communications, which
+means that data from the login session, including passwords and
+all other information transmitted during the session, can be
+stolen by eavesdroppers on the network.</p>
+</div>
+
+<div id="service_rsh_disabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable rsh Service</h3>
+<div>service_rsh_disabled</div>
+<h4>Description</h4>
+<p>The <tt>rsh</tt> service, which is available with
+the <tt>rsh-server</tt> package and runs as a service through xinetd or separately
+as a systemd socket, should be disabled.
+If using xinetd, set <tt>disable</tt> to <tt>yes</tt> in <tt>/etc/xinetd.d/rsh</tt>.
+
+The <code>rsh</code> socket can be disabled with the following command:
+<pre>$ sudo systemctl mask --now rsh.socket</pre></p>
+<h4>Rationale</h4>
+<p>The rsh service uses unencrypted network communications, which
+means that data from the login session, including passwords and
+all other information transmitted during the session, can be
+stolen by eavesdroppers on the network.</p>
+</div>
+
+
+
+
+</body>
+</html>

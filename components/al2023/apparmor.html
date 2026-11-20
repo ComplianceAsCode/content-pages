@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'apparmor'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'apparmor'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>apparmor</li>
+
+<li>apparmor-parser</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<ul>
+
+<li>apparmor</li>
+
+</ul>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#all_apparmor_profiles_enforced">all_apparmor_profiles_enforced</a></li>
+
+<li><a href="#all_apparmor_profiles_in_enforce_complain_mode">all_apparmor_profiles_in_enforce_complain_mode</a></li>
+
+<li><a href="#apparmor_configured">apparmor_configured</a></li>
+
+<li><a href="#grub2_enable_apparmor">grub2_enable_apparmor</a></li>
+
+<li><a href="#package_apparmor_installed">package_apparmor_installed</a></li>
+
+<li><a href="#package_apparmor-utils_installed">package_apparmor-utils_installed</a></li>
+
+<li><a href="#package_pam_apparmor_installed">package_pam_apparmor_installed</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="all_apparmor_profiles_enforced" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Enforce all AppArmor Profiles</h3>
+<div>all_apparmor_profiles_enforced</div>
+<h4>Description</h4>
+<p>AppArmor profiles define what resources applications are able to access.
+To set all profiles to enforce mode run the following command:
+<pre>$ sudo aa-enforce /etc/apparmor.d/*</pre>
+To list unconfined processes run the following command:
+
+<pre>$ sudo aa-unconfined</pre>
+
+Any unconfined processes may need to have a profile created or activated
+for them and then be restarted.</p>
+<h4>Rationale</h4>
+<p>Security configuration requirements vary from site to site. Some sites may
+mandate a policy that is stricter than the default policy, which is perfectly
+acceptable. This recommendation is intended to ensure that any policies that
+exist on the system are activated.</p>
+</div>
+
+<div id="all_apparmor_profiles_in_enforce_complain_mode" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>All AppArmor Profiles are in enforce or complain mode</h3>
+<div>all_apparmor_profiles_in_enforce_complain_mode</div>
+<h4>Description</h4>
+<p>AppArmor profiles define what resources applications are able to access.
+To set all profiles to either <tt>enforce</tt> or <tt>complain</tt>  mode
+run the following command to set all profiles to <tt>enforce</tt> mode:
+<pre>$ sudo aa-enforce /etc/apparmor.d/*</pre>
+run the following command to set all profiles to <tt>complain</tt> mode:
+<pre>$ sudo aa-complain /etc/apparmor.d/*</pre>
+To list unconfined processes run the following command:
+
+<pre>$ sudo aa-unconfined</pre>
+
+Any unconfined processes may need to have a profile created or activated
+for them and then be restarted.</p>
+<h4>Rationale</h4>
+<p>Security configuration requirements vary from site to site. Some sites may
+mandate a policy that is stricter than the default policy, which is perfectly
+acceptable. This recommendation is intended to ensure that any policies that
+exist on the system are activated.</p>
+</div>
+
+<div id="apparmor_configured" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure AppArmor is Active and Configured</h3>
+<div>apparmor_configured</div>
+<h4>Description</h4>
+<p>Verify that the Apparmor tool is configured to
+control whitelisted applications and user home directory access
+control.<br/><br/>
+
+The <code>apparmor</code> service can be enabled with the following command:
+<pre>$ sudo systemctl enable apparmor.service</pre></p>
+<h4>Rationale</h4>
+<p>Using a whitelist provides a configuration management method for allowing
+the execution of only authorized software. Using only authorized software
+decreases risk by limiting the number of potential vulnerabilities.<br/><br/>
+
+The organization must identify authorized software programs and permit
+execution of authorized software by adding each authorized program to the
+"pam_apparmor" exception policy. The process used to identify software
+programs that are authorized to execute on organizational information
+systems is commonly referred to as whitelisting.<br/><br/>
+
+Verification of whitelisted software occurs prior to execution or at system
+startup.<br/><br/>
+
+Users' home directories/folders may contain information of a sensitive
+nature. Nonprivileged users should coordinate any sharing of information
+with a System Administrator (SA) through shared resources.<br/><br/>
+
+Apparmor can confine users to their home directory, not allowing them to
+make any changes outside of their own home directories. Confining users to
+their home directory will minimize the risk of sharing information.</p>
+</div>
+
+<div id="grub2_enable_apparmor" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure AppArmor is enabled in the bootloader configuration</h3>
+<div>grub2_enable_apparmor</div>
+<h4>Description</h4>
+<p>Configure AppArmor to be enabled at boot time and verify that it has not been
+overwritten by the bootloader boot parameters.
+
+Note: This recommendation is designed around the grub bootloader, if LILO or
+another bootloader is in use in your environment, enact equivalent settings.</p>
+<h4>Rationale</h4>
+<p>AppArmor must be enabled at boot time in your bootloader configuration to
+ensure that the controls it provides are not overridden.</p>
+</div>
+
+<div id="package_apparmor_installed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure AppArmor is installed</h3>
+<div>package_apparmor_installed</div>
+<h4>Description</h4>
+<p>AppArmor provide Mandatory Access Controls.</p>
+<h4>Rationale</h4>
+<p>Without a Mandatory Access Control system installed only the default
+Discretionary Access Control system will be available.</p>
+</div>
+
+<div id="package_apparmor-utils_installed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure AppArmor Utils is installed</h3>
+<div>package_apparmor-utils_installed</div>
+<h4>Description</h4>
+<p>AppArmor provide Mandatory Access Controls.</p>
+<h4>Rationale</h4>
+<p>Without a Mandatory Access Control system installed only the default
+Discretionary Access Control system will be available.</p>
+</div>
+
+<div id="package_pam_apparmor_installed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Install the pam_apparmor Package</h3>
+<div>package_pam_apparmor_installed</div>
+<h4>Description</h4>
+<p>The <code>pam_apparmor</code> package can be installed with the following command:
+<pre>
+$ sudo dnf install pam_apparmor</pre></p>
+<h4>Rationale</h4>
+<p>Protection of system integrity using AppArmor depends on this package being
+installed.</p>
+</div>
+
+
+
+
+</body>
+</html>

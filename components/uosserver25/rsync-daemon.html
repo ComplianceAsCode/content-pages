@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'rsync-daemon'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'rsync-daemon'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>rsync-daemon</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<div>None</div>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#package_rsync_removed">package_rsync_removed</a></li>
+
+<li><a href="#service_rsyncd_disabled">service_rsyncd_disabled</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="package_rsync_removed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Uninstall rsync Package</h3>
+<div>package_rsync_removed</div>
+<h4>Description</h4>
+<p>The rsyncd service can be used to synchronize files between systems over network links.
+The <code>rsync</code> package can be removed with the following command:
+<pre>
+$ sudo dnf remove rsync</pre></p>
+<h4>Rationale</h4>
+<p>The rsyncd service presents a security risk as it uses unencrypted protocols for
+communication.</p>
+</div>
+
+<div id="service_rsyncd_disabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure rsyncd service is disabled</h3>
+<div>service_rsyncd_disabled</div>
+<h4>Description</h4>
+<p>
+The <code>rsyncd</code> service can be disabled with the following command:
+<pre>$ sudo systemctl mask --now rsyncd.service</pre></p>
+<h4>Rationale</h4>
+<p>The rsyncd service presents a security risk as it uses unencrypted protocols for
+communication.</p>
+</div>
+
+
+
+
+</body>
+</html>

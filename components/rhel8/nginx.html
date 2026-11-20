@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'nginx'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'nginx'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>nginx</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<ul>
+
+<li>disabling_nginx</li>
+
+</ul>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#package_nginx_removed">package_nginx_removed</a></li>
+
+<li><a href="#service_nginx_disabled">service_nginx_disabled</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="package_nginx_removed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Uninstall nginx Package</h3>
+<div>package_nginx_removed</div>
+<h4>Description</h4>
+<p>The <code>nginx</code> package can be removed with the following command:
+<pre>
+$ sudo yum erase nginx</pre></p>
+<h4>Rationale</h4>
+<p>If there is no need to make the web server software available,
+removing it provides a safeguard against its activation.</p>
+</div>
+
+<div id="service_nginx_disabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable nginx Service</h3>
+<div>service_nginx_disabled</div>
+<h4>Description</h4>
+<p>
+The <code>nginx</code> service can be disabled with the following command:
+<pre>$ sudo systemctl mask --now nginx.service</pre></p>
+<h4>Rationale</h4>
+<p>Running web server software provides a network-based avenue
+of attack, and should be disabled if not needed.</p>
+</div>
+
+
+
+
+</body>
+</html>

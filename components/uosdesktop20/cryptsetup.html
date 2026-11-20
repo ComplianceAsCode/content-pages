@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'cryptsetup'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'cryptsetup'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>cryptsetup</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<div>None</div>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#package_cryptsetup-luks_installed">package_cryptsetup-luks_installed</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="package_cryptsetup-luks_installed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Install cryptsetup Package</h3>
+<div>package_cryptsetup-luks_installed</div>
+<h4>Description</h4>
+<p>The <code>cryptsetup</code> package can be installed with the following command:
+<pre>
+$ apt-get install cryptsetup</pre></p>
+<h4>Rationale</h4>
+<p>LUKS is the upcoming standard for Linux hard disk encryption. By providing a standard
+on-disk format, it does not only facilitate compatibility among distributions, but also
+provide secure management of multiple user passwords. In contrast to existing solution,
+LUKS stores all necessary setup information in the partition header, enabling the user
+to transport or migrate their data seamlessly. LUKS for dm-crypt is implemented in
+<tt>cryptsetup</tt>.</p>
+</div>
+
+
+
+
+</body>
+</html>

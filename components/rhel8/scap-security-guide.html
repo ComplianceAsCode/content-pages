@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'scap-security-guide'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'scap-security-guide'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>scap-security-guide</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<div>None</div>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#package_scap-security-guide_installed">package_scap-security-guide_installed</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="package_scap-security-guide_installed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Install scap-security-guide Package</h3>
+<div>package_scap-security-guide_installed</div>
+<h4>Description</h4>
+<p>The <code>scap-security-guide</code> package can be installed with the following command:
+<pre>
+$ sudo yum install scap-security-guide</pre></p>
+<h4>Rationale</h4>
+<p>The <tt>scap-security-guide</tt> package provides a guide for configuration of the system
+from the final system's security point of view. The guidance is specified in the Security
+Content Automation Protocol (SCAP) format and constitutes a catalog of practical hardening
+advice, linked to government requirements where applicable. The SCAP Security Guide project
+bridges the gap between generalized policy requirements and specific implementation guidelines.
+A system administrator can use the <tt>oscap</tt> CLI tool from the <tt>openscap-scanner</tt>
+package, or the SCAP Workbench GUI tool from the <tt>scap-workbench</tt> package, to verify
+that the system conforms to provided guidelines. Refer to the scap-security-guide(8) manual
+page for further information.</p>
+</div>
+
+
+
+
+</body>
+</html>

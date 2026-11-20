@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'rng-tools'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'rng-tools'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>rng-tools</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<div>None</div>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#package_rng-tools_installed">package_rng-tools_installed</a></li>
+
+<li><a href="#service_rngd_enabled">service_rngd_enabled</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="package_rng-tools_installed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Install rng-tools Package</h3>
+<div>package_rng-tools_installed</div>
+<h4>Description</h4>
+<p>The <code>rng-tools</code> package can be installed with the following command:
+<pre>
+$ sudo yum install rng-tools</pre></p>
+<h4>Rationale</h4>
+<p><tt>rng-tools</tt> provides hardware random number generator tools,
+such as those used in the formation of x509/PKI certificates.</p>
+</div>
+
+<div id="service_rngd_enabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Enable the Hardware RNG Entropy Gatherer Service</h3>
+<div>service_rngd_enabled</div>
+<h4>Description</h4>
+<p>The Hardware RNG Entropy Gatherer service should be enabled.
+
+The <code>rngd</code> service can be enabled with the following command:
+<pre>$ sudo systemctl enable rngd.service</pre></p>
+<h4>Rationale</h4>
+<p>The <tt>rngd</tt> service
+feeds random data from hardware device to kernel random device.</p>
+</div>
+
+
+
+
+</body>
+</html>

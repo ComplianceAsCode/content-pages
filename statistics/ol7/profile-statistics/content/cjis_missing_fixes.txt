@@ -1,0 +1,4 @@
+xccdf_org.ssgproject.content_rule_account_unique_name
+xccdf_org.ssgproject.content_rule_accounts_password_all_shadowed
+xccdf_org.ssgproject.content_rule_gid_passwd_group_same
+xccdf_org.ssgproject.content_rule_set_firewalld_default_zone

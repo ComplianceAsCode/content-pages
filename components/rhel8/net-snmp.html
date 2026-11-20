@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'net-snmp'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'net-snmp'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>net-snmp</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<ul>
+
+<li>disabling_snmp_service</li>
+
+<li>snmp</li>
+
+<li>snmp_configure_server</li>
+
+</ul>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#package_net-snmp_removed">package_net-snmp_removed</a></li>
+
+<li><a href="#service_snmpd_disabled">service_snmpd_disabled</a></li>
+
+<li><a href="#snmpd_no_rwusers">snmpd_no_rwusers</a></li>
+
+<li><a href="#snmpd_not_default_password">snmpd_not_default_password</a></li>
+
+<li><a href="#snmpd_use_newer_protocol">snmpd_use_newer_protocol</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="package_net-snmp_removed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Uninstall net-snmp Package</h3>
+<div>package_net-snmp_removed</div>
+<h4>Description</h4>
+<p>
+The <tt>net-snmp</tt> package provides the snmpd service.
+The <code>net-snmp</code> package can be removed with the following command:
+<pre>
+$ sudo yum erase net-snmp</pre></p>
+<h4>Rationale</h4>
+<p>If there is no need to run SNMP server software,
+removing the package provides a safeguard against its
+activation.</p>
+</div>
+
+<div id="service_snmpd_disabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable snmpd Service</h3>
+<div>service_snmpd_disabled</div>
+<h4>Description</h4>
+<p>
+The <code>snmpd</code> service can be disabled with the following command:
+<pre>$ sudo systemctl mask --now snmpd.service</pre></p>
+<h4>Rationale</h4>
+<p>Running SNMP software provides a network-based avenue of attack, and
+should be disabled if not needed.</p>
+</div>
+
+<div id="snmpd_no_rwusers" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure SNMP Read Write is disabled</h3>
+<div>snmpd_no_rwusers</div>
+<h4>Description</h4>
+<p>Edit <tt>/etc/snmp/snmpd.conf</tt>, remove any <tt>rwuser</tt> entries.
+Once the read write users have been removed, restart the SNMP service:
+<pre>$ sudo systemctl restart snmpd</pre></p>
+<h4>Rationale</h4>
+<p>Certain SNMP settings can permit users to execute system behaviors from user
+writes to the community strings.
+This may permit a compromised account to execute commands on a remote system.</p>
+</div>
+
+<div id="snmpd_not_default_password" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Ensure Default SNMP Password Is Not Used</h3>
+<div>snmpd_not_default_password</div>
+<h4>Description</h4>
+<p>Edit <tt>/etc/snmp/snmpd.conf</tt>, remove or change the default community strings of
+<tt>public</tt> and <tt>private</tt>.
+This profile configures new read-only community string to <tt><tt>$var_snmpd_ro_string</tt></tt> and read-write community string to <tt><tt>$var_snmpd_rw_string</tt></tt>.
+Once the default community strings have been changed, restart the SNMP service:
+<pre>$ sudo systemctl restart snmpd</pre></p>
+<h4>Rationale</h4>
+<p>Whether active or not, default simple network management protocol (SNMP) community
+strings must be changed to maintain security. If the service is running with the
+default authenticators, then anyone can gather data about the system and the network
+and use the information to potentially compromise the integrity of the system and
+network(s).</p>
+</div>
+
+<div id="snmpd_use_newer_protocol" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure SNMP Service to Use Only SNMPv3 or Newer</h3>
+<div>snmpd_use_newer_protocol</div>
+<h4>Description</h4>
+<p>Edit <tt>/etc/snmp/snmpd.conf</tt>, removing any references to <tt>rocommunity</tt>, <tt>rwcommunity</tt>, or <tt>com2sec</tt>.
+Upon doing that, restart the SNMP service:
+<pre>$ sudo systemctl restart snmpd</pre></p>
+<h4>Rationale</h4>
+<p>Earlier versions of SNMP are considered insecure, as they potentially allow
+unauthorized access to detailed system management information.</p>
+</div>
+
+
+
+
+</body>
+</html>
