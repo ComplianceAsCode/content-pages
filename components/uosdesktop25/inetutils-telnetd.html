@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'inetutils-telnetd'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'inetutils-telnetd'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>inetutils-telnetd</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<div>None</div>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#package_inetutils-telnetd_removed">package_inetutils-telnetd_removed</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="package_inetutils-telnetd_removed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Uninstall the inet-based telnet server</h3>
+<div>package_inetutils-telnetd_removed</div>
+<h4>Description</h4>
+<p>The inet-based telnet daemon should be uninstalled.</p>
+<h4>Rationale</h4>
+<p><tt>telnet</tt> allows clear text communications, and does not protect any
+data transmission between client and server. Any confidential data can be
+listened and no integrity checking is made.</p>
+</div>
+
+
+
+
+</body>
+</html>

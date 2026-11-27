@@ -1,0 +1,1 @@
+xccdf_org.ssgproject.content_rule_accounts_password_set_max_life_root

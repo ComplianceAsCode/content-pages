@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'ypbind'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'ypbind'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>ypbind</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<div>None</div>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#package_ypbind_removed">package_ypbind_removed</a></li>
+
+<li><a href="#service_ypbind_disabled">service_ypbind_disabled</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="package_ypbind_removed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Remove NIS Client</h3>
+<div>package_ypbind_removed</div>
+<h4>Description</h4>
+<p>The Network Information Service (NIS), formerly known as Yellow Pages,
+is a client-server directory service protocol used to distribute system configuration
+files. The NIS client (<tt>ypbind</tt>) was used to bind a system to an NIS server
+and receive the distributed configuration files.</p>
+<h4>Rationale</h4>
+<p>The NIS service is inherently an insecure system that has been vulnerable
+to DOS attacks, buffer overflows and has poor authentication for querying
+NIS maps. NIS generally has been replaced by such protocols as Lightweight
+Directory Access Protocol (LDAP). It is recommended that the service be
+removed.</p>
+</div>
+
+<div id="service_ypbind_disabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable ypbind Service</h3>
+<div>service_ypbind_disabled</div>
+<h4>Description</h4>
+<p>The <tt>ypbind</tt> service, which allows the system to act as a client in
+a NIS or NIS+ domain, should be disabled.
+
+The <code>ypbind</code> service can be disabled with the following command:
+<pre>$ sudo systemctl mask --now ypbind.service</pre></p>
+<h4>Rationale</h4>
+<p>Disabling the <tt>ypbind</tt> service ensures the system is not acting
+as a client in a NIS or NIS+ domain. This service should be disabled
+unless in use.</p>
+</div>
+
+
+
+
+</body>
+</html>

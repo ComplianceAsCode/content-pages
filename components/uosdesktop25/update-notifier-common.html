@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'update-notifier-common'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'update-notifier-common'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>update-notifier-common</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<div>None</div>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#service_update-notifier-motd_disabled">service_update-notifier-motd_disabled</a></li>
+
+<li><a href="#timer_update-notifier-motd_disabled">timer_update-notifier-motd_disabled</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="service_update-notifier-motd_disabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable and Mask update-notifier-motd Service</h3>
+<div>service_update-notifier-motd_disabled</div>
+<h4>Description</h4>
+<p>The update-notifier-motd service generates dynamic message-of-the-day
+content. 
+The <code>update-notifier-motd</code> service can be disabled with the following command:
+<pre>$ sudo systemctl mask --now update-notifier-motd.service</pre></p>
+<h4>Rationale</h4>
+<p>Disabling dynamic MOTD updates prevents unaudited network and system data
+from being added to login banners.</p>
+</div>
+
+<div id="timer_update-notifier-motd_disabled" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Disable and Mask update-notifier-motd Timer</h3>
+<div>timer_update-notifier-motd_disabled</div>
+<h4>Description</h4>
+<p>The update-notifier-motd.timer unit must be inactive and not enabled when
+the update-notifier-common package is installed. Masking is the preferred
+remediation because it also prevents transient activation.</p>
+<h4>Rationale</h4>
+<p>Disabling the timer prevents periodic regeneration of dynamic login
+message content.</p>
+</div>
+
+
+
+
+</body>
+</html>

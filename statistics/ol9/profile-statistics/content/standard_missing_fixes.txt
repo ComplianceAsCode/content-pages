@@ -1,0 +1,4 @@
+xccdf_org.ssgproject.content_rule_accounts_password_all_shadowed
+xccdf_org.ssgproject.content_rule_file_permissions_unauthorized_sgid
+xccdf_org.ssgproject.content_rule_file_permissions_unauthorized_suid
+xccdf_org.ssgproject.content_rule_root_path_no_dot

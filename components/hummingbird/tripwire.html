@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8"/>
+  <title>Rules Related To 'tripwire'</title>
+  
+<style>
+</style>
+</head>
+<body>
+
+
+
+<h1>Rules Related To 'tripwire'</h1>
+
+
+
+
+
+<h2>Component overview</h2>
+
+<h3>Relevant packages:</h3>
+
+<ul>
+
+<li>tripwire</li>
+
+</ul>
+
+
+<h3>Relevant groups:</h3>
+
+<ul>
+
+<li>tripwire</li>
+
+</ul>
+
+
+<h3>Changelog:</h3>
+
+<div>No changes recorded.</div>
+
+
+<h3>Relevant rules:</h3>
+
+<ul>
+
+<li><a href="#package_tripwire_installed">package_tripwire_installed</a></li>
+
+<li><a href="#tripwire_build_database">tripwire_build_database</a></li>
+
+<li><a href="#tripwire_periodic_cron_checking">tripwire_periodic_cron_checking</a></li>
+
+</ul>
+
+
+
+<h2>Rule details</h2>
+
+
+<div id="package_tripwire_installed" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Install Tripwire</h3>
+<div>package_tripwire_installed</div>
+<h4>Description</h4>
+<p>The <code>tripwire</code> package needs to be present in the container or container image.</p>
+<h4>Rationale</h4>
+<p>The tripwire package provides the Tripwire file and directory integrity
+checker, a common alternative to AIDE. It must be installed for any
+integrity checking to be possible.</p>
+</div>
+
+<div id="tripwire_build_database" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Build and Initialize Tripwire Database</h3>
+<div>tripwire_build_database</div>
+<h4>Description</h4>
+<p>Run the following command to generate the initial known-good database,
+supplying the local passphrase when prompted:
+<pre>$ sudo tripwire --init</pre>
+By default the database is written to
+<tt>/var/lib/tripwire/$(HOSTNAME).twd</tt>, as configured by the
+<tt>DBFILE</tt> directive in <tt>/etc/tripwire/twcfg.txt</tt>.
+To run a manual integrity check afterwards:
+<pre>$ sudo tripwire --check</pre>
+If the check produces unexpected output, investigate.</p>
+<h4>Rationale</h4>
+<p>For Tripwire to be effective, an initial database of "known-good"
+information about files must be captured so that installed files can be
+verified against it.</p>
+</div>
+
+<div id="tripwire_periodic_cron_checking" class="rule" style="border-bottom: 2px solid; margin-bottom: 1cm; padding-bottom: 1cm;">
+<h3>Configure Periodic Execution of Tripwire</h3>
+<div>tripwire_periodic_cron_checking</div>
+<h4>Description</h4>
+<p>Tripwire should run at least weekly. The Debian <tt>tripwire</tt> package
+installs <tt>/etc/cron.daily/tripwire</tt> by default, which runs
+<tt>tripwire --check</tt> once a day and mails the report to root. The
+script can instead be moved to <tt>/etc/cron.weekly</tt> if weekly checks
+are preferred.</p>
+<h4>Rationale</h4>
+<p>By default, integrity checking tools do not run themselves periodically.
+Running Tripwire on a schedule is necessary to reveal unexpected changes
+to installed files in a timely manner.</p>
+</div>
+
+
+
+
+</body>
+</html>
